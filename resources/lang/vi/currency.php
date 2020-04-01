@@ -1,0 +1,51 @@
+<?php
+return [
+    'manager'       => 'Quản lý tiền tệ',
+    'code'          => 'Mã',
+    'name'          => 'Tên',
+    'symbol'        => 'Ký hiệu',
+    'precision'     => 'Số chữ số thập phân',
+    'exchange_rate' => 'Tỉ giá',
+    'thousands'     => 'Dấu Ngăn cách phần nghìn',
+    'status'        => 'Trạng thái',
+    'sort'          => 'Sắp xếp',
+    'symbol_first'  => 'Ký hiệu hiện đầu tiên',
+    'admin'         => [
+        'title'          => 'Tiền tệ',
+        'create_success' => 'Tạo mới thành công!',
+        'edit_success'   => 'Cập nhật thành công!',
+        'list'           => 'Danh sách tiền tệ',
+        'id'             => 'ID',
+        'status'         => 'Status',
+        'action'         => 'Hành động',
+        'delete'         => 'Xóa',
+        'edit'           => 'Chỉnh sửa',
+        'add_new'        => 'Thêm mới',
+        'export'         => 'Xuất',
+        'refresh'        => 'Làm mới',
+        'result_item'    => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
+        'sort'           => 'Sắp xếp',
+        'search'         => 'Tìm kiếm',
+        'add_new_title'  => 'Tạo tiền tệ',
+        'add_new_des'    => 'Tạo mới tiền tệ',
+
+        'search_place'   => 'Tìm tên hoặc code',
+        'choose_icon'    => 'Chọn icon',
+
+        'sort_order'     => [
+            'id_asc'    => 'ID asc',
+            'id_desc'   => 'ID desc',
+            'name_asc'  => 'Tên a-z',
+            'name_desc' => 'Tên z-a',
+        ],
+
+        'sort_order'     => [
+            'id_asc'     => 'ID asc',
+            'id_desc'    => 'ID desc',
+            'name_asc'   => 'Tên a-z',
+            'name_desc'  => 'Tên z-a',
+            'email_asc'  => 'Email a-z',
+            'email_desc' => 'Email z-a',
+        ],
+    ],
+];

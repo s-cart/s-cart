@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAGY,IAHR,CAAA,AAAA,GAAC,CAAI,KAAK,AAAT,EACD,MAAM,CACF,WAAW,CACP,iBAAiB,CAAC;EACd,MAAM,EAAE,IAAI;CAIf;;AARb,AAKgB,IALZ,CAAA,AAAA,GAAC,CAAI,KAAK,AAAT,EACD,MAAM,CACF,WAAW,CACP,iBAAiB,AAEZ,IAAK,CAAA,WAAW,EAAE;EACf,YAAY,EAAE,GAAG,CAAC,KAAK,CCJ9B,OAAO;CDKH",
+    "sources": [
+        "main-rtl.scss",
+        "setting.scss"
+    ],
+    "names": [],
+    "file": "main-rtl.css"
+}

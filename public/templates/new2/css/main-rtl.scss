@@ -1,0 +1,13 @@
+@import "./setting";
+body[dir="rtl"] {
+    header {
+        .header-top {
+            .header-top-right {
+                border: none;
+                &:not(:last-child) {
+                    border-right: 1px solid $grayLight2;
+                }
+            }
+        }
+    }
+}

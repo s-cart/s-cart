@@ -1,0 +1,45 @@
+<?php
+return [
+    'id' => 'ID',
+    'title' => 'Tiêu đề',
+    'alias'                 => 'URL tùy chỉnh <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span>',
+    'alias_validate'        => 'Tối đa 100 kí tự trong nhóm: "A-Z", "a-z", "0-9" and "-_" ',
+    'keyword' => 'Từ khóa',
+    'description' => 'Mô tả',
+    'content' => 'Nội dung',
+    'image' => 'Hình ảnh',
+    'parent' => 'Danh mục cha',
+    'top' => 'Hiển thị ngoài web',
+    'status' => 'Trạng thái',
+    'sort' => 'Sắp xếp',
+    'admin' => [
+        'title' => 'Blog/Tin tức',
+        'create_success' => 'Tạo item thành công!',
+        'edit_success' => 'chỉnh sửa item thành công!',
+        'list' => 'Quản lý Blog/News',
+        'action' => 'Hành động',
+        'delete' => 'Xóa',
+        'edit' => 'Sửa',
+        'add_new' => 'Thêm mới',
+        'add_new_title' => 'Tạo Blog/News',
+        'add_new_des' => 'Tạo mới một Blog/News',
+        'export' => 'Xuất',
+        'refresh' => 'Làm mới',
+        'result_item' => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
+        'sort' => 'Sắp xếp',
+        'select_category' => 'Chọn Blog/News',
+
+        'sort_order' => [
+            'id_asc' => 'ID asc',
+            'id_desc' => 'ID desc',
+            'title_asc' => 'Tiêu đề a-z',
+            'title_desc' => 'Tiêu đề z-a',
+        ],
+        'search' => 'Tìm kiếm',
+        'search_place' => 'Tìm tiêu đề hoặc ID Blog/News',
+        'search_order' => [
+            'status' => 'Tất cả trạng thái',
+        ],
+    ],
+
+];

@@ -1,0 +1,36 @@
+<?php
+return [
+    'id' => 'ID',
+    'user' => 'User',
+    'method' => 'Method',
+    'path' => 'Path',
+    'ip' => 'IP',
+    'user_agent' => 'User agent',
+    'input' => 'Input',
+    'created_at' => 'Time',
+    'admin' => [
+        'list' => 'Log manager',
+        'action' => 'Action',
+        'delete' => 'Delete',
+        'edit' => 'Edit',
+        'add_new' => 'Add new',
+        'refresh' => 'Refresh',
+        'result_item' => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'sort' => 'Sort',
+        'sort_order' => [
+            'path_desc' => 'Path Z-A',
+            'path_asc' => 'Path A-Z',
+            'method_asc' => 'Method A-Z',
+            'method_desc' => 'Method Z-A',
+            'user_agent_desc' => 'User agent Z-A',
+            'user_agent_asc' => 'User agent A-Z',
+            'user_id_asc' => 'User  A-Z',
+            'user_id_desc' => 'User  Z-A',
+            'id_asc' => 'ID  A-Z',
+            'id_desc' => 'ID  Z-A',
+            'ip_asc' => 'IP  A-Z',
+            'ip_desc' => 'IP  Z-A',
+        ],
+
+    ],
+];

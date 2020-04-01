@@ -1,0 +1,38 @@
+$primaryColor: #0e8ce4;
+$primaryColor-05: rgba(14, 140, 228, 0.5);
+$primaryColor-025:rgba(14, 140, 228, .25);
+$primaryColor-01:rgba(14, 140, 228, .1);
+$grayDark: #262b2f;
+$grayLight: #F0F0E9;
+$grayLight2: #D6D6D0;
+$grayLight3:#696763;
+$grayLight4: #888;
+$white: white;
+$black: black;
+$bgBlock: #fff9f8;
+$bkBlock2: #262b2f;
+$primaryFont: "Roboto";
+$secondaryFont: "Rufina";
+$fontSizeDefaut: 14px;
+$wrapper: 192rem;
+$container: 117rem;
+@mixin font-size($n) {
+    font-size: $n * 1.2rem;
+}
+
+@mixin hover-font-color-orange() {
+    &:hover {
+        color: $primaryColor !important;
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

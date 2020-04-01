@@ -1,0 +1,8 @@
+body[dir="rtl"] header .header-top .header-top-right {
+  border: none;
+}
+
+body[dir="rtl"] header .header-top .header-top-right:not(:last-child) {
+  border-right: 1px solid #D6D6D0;
+}
+/*# sourceMappingURL=main-rtl.css.map */

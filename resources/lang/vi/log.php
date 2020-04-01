@@ -1,0 +1,36 @@
+<?php
+return [
+    'id' => 'ID',
+    'user' => 'Người dùng',
+    'method' => 'Phương thức',
+    'path' => 'Path',
+    'ip' => 'IP',
+    'user_agent' => 'User agent',
+    'input' => 'Input',
+    'created_at' => 'Thời gian',
+    'admin' => [
+        'list' => 'Quản lý truy cập',
+        'action' => 'Hành động',
+        'delete' => 'Xóa',
+        'edit' => 'Chỉnh sửa',
+        'add_new' => 'Thêm mới',
+        'refresh' => 'Làm mới',
+        'result_item' => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
+        'sort' => 'Sắp xếp',
+        'sort_order' => [
+            'path_desc' => 'Path Z-A',
+            'path_asc' => 'Path A-Z',
+            'method_asc' => 'Method A-Z',
+            'method_desc' => 'Method Z-A',
+            'user_agent_desc' => 'User agent Z-A',
+            'user_agent_asc' => 'User agent A-Z',
+            'user_id_asc' => 'User  A-Z',
+            'user_id_desc' => 'User  Z-A',
+            'id_asc' => 'ID  A-Z',
+            'id_desc' => 'ID  Z-A',
+            'ip_asc' => 'IP  A-Z',
+            'ip_desc' => 'IP  Z-A',
+        ],
+
+    ],
+];
