@@ -63,7 +63,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Requirements:
 
-Version 3.2, 3.3, 3.4, 4.x
+Version 1.x
 
 > Core laravel framework 6.x Requirements::
 
