@@ -81,7 +81,7 @@ Version 1.x
 
 ## Installation & configuration:
 
-<b>How to map your domain to s-cart? <a href="https://s-cart.org/installation.html">CLICK HERE</a></b>
+<b>How to map your domain to s-cart? <a href="https://s-cart.org/docs/master/installation.html">CLICK HERE</a></b>
 
 **Step1: Install last version S-cart**
 
