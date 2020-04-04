@@ -93,7 +93,7 @@ class AdminPluginsOnlineController extends Controller
 
         if($unzip) {
             File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/public'), public_path($pathPlugin));
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/app'), app_path($pathPlugin));
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/src'), app_path($pathPlugin));
             File::deleteDirectory(storage_path('tmp/'.$pathTmp));
             Storage::disk('tmp')->delete($fileTmp);
             $namespace = sc_get_class_plugin_config($code, $key);
