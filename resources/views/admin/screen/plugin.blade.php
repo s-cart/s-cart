@@ -74,7 +74,7 @@
                       <td>{{ $pluginClass->title }}</td>
                       <td>{{ $pluginClass->version??'' }}</td>
                       <td>{{ $pluginClass->auth??'' }}</td>
-                      <td>{{ $pluginClass->link??'' }}</td>
+                      <td><a href="{{ $pluginClass->link??'' }}" target=_new><i class="fa fa-link" aria-hidden="true"></i>Link</a></td>
                       <td>{{ $pluginsInstalled[$codePlugin]['sort']??'' }}</td>
                       <td>{{ $pluginStatusTitle }}</td>
                       <td>{!! $pluginAction !!}</td>

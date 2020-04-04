@@ -28,7 +28,8 @@ return [
     'free'      => 'Miễn phí',
     'date'      => 'Ngày tạo',
     'located'      => 'Đã tải về',
-    'code' => 'Mã',
+    'code' => 'Mã code',
+    'click_here' => 'Bấm vào đây',
     'image_demo' => 'Hình mẫu',
     'guide'      => 'Xem hướng dẫn <a target=_new href="https://s-cart.org/guide/template.html?lang=vi">Ở ĐÂY</a>',
     'admin'      => [

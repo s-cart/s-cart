@@ -41,7 +41,7 @@
                       if (array_key_exists($plugin['key'], $arrPluginLocal)) {
                         $pluginAction = trans('admin.plugin_manager.located');
                       } else {
-                        $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['path'].'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
                       }
                     @endphp
 
@@ -77,7 +77,7 @@
                         </span>
 
                         </td>
-                        <td>{{ $plugin['downloaded']??'' }}</td>
+                        <td>{{ $plugin['download']??'' }}</td>
                         <td>{{ $plugin['date']??'' }}</td>
                         <td>{!! $pluginAction ?? '' !!}</td>
                       </tr>
