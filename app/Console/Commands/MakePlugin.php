@@ -70,10 +70,10 @@ class MakePlugin extends Command
         $msg = '';
 
         $name = sc_word_format_url($name);
-        $source = "format/template/views";
+        $source = "format/template/src";
         $sourcePublic = "format/template/public";
         $sID = md5(time());
-        $tmp = $this->tmpFolder."/".$sID.'/'.$name.'/views';
+        $tmp = $this->tmpFolder."/".$sID.'/'.$name.'/src';
         $tmpPublic = $this->tmpFolder."/".$sID.'/'.$name.'/public';
         $description = "views/templates/".$name;
         $descriptionPublic = "public/templates/".$name;
@@ -113,10 +113,10 @@ class MakePlugin extends Command
         }
         $pluginUrlKey = sc_word_format_url($key);
 
-        $source = "format/plugin/app";
+        $source = "format/plugin/src";
         $sourcePublic = "format/plugin/public";
         $sID = md5(time());
-        $tmp = $this->tmpFolder."/".$sID.'/'.$pluginKey.'/app';
+        $tmp = $this->tmpFolder."/".$sID.'/'.$pluginKey.'/src';
         $tmpPublic = $this->tmpFolder."/".$sID.'/'.$pluginKey.'/public';
         $description = 'Plugins/'.$pluginCode.'/'.$pluginKey;
         try {

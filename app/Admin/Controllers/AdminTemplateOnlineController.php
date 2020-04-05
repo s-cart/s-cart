@@ -11,23 +11,36 @@ class AdminTemplateOnlineController extends Controller
     {
         $arrTemplateLibrary = [];
         $page = request('page') ?? 1;
-        $dataApi = file_get_contents('https://s-cart.org/api/templates?page[size]=20&page[number]='.$page);
+        $url = config('scart.api_link').'/templates/?page[size]=20&page[number]='.$page;
+        $ch            = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $dataApi   = curl_exec($ch);
+        curl_close($ch);
         $dataApi = json_decode($dataApi, true);
         if(!empty($dataApi['data'])) {
             foreach ($dataApi['data'] as $key => $data) {
                 $arrTemplateLibrary[] = [
-                    'key' => $data['key'],
-                    'name' => $data['name'],
-                    'description' => $data['description'],
-                    'image' => $data['image'],
-                    'path' => 'https://s-cart.org/templates/download/'.$data['key'],
-                    'price' => $data['price'],
-                    'is_free' => $data['is_free'],
-                    'downloaded' => $data['downloaded'],
-                    'username' =>  $data['username'],
-                    'times' =>  $data['times'],
-                    'points' =>  $data['points'],
-                    'link' => '',
+                    'sku' => $data['sku'] ?? '',
+                    'key' => $data['key'] ?? '',
+                    'name' => $data['name'] ?? '',
+                    'description' => $data['description'] ?? '',
+                    'image' => $data['image'] ?? '',
+                    'image_demo' => $data['image_demo'] ?? '',
+                    'path' => $data['path'] ?? '',
+                    'file' => $data['file'] ?? '',
+                    'version' => $data['version'] ?? '',
+                    'scart_version' => $data['scart_version'] ?? '',
+                    'price' => $data['price'] ?? 0,
+                    'price_final' => $data['price_final'] ?? 0,
+                    'price_promotion' => $data['price_promotion'] ?? 0,
+                    'is_free' => $data['is_free'] ?? 0,
+                    'download' => $data['download'] ?? 0,
+                    'username' =>  $data['username'] ?? '',
+                    'times' =>  $data['times'] ?? 0,
+                    'points' =>  $data['points'] ?? 0,
+                    'date' =>  $data['date'] ?? '',
+                    'link' =>  $data['link'] ?? '',
                 ];
             }
         }
@@ -64,7 +77,7 @@ class AdminTemplateOnlineController extends Controller
         $unzip = sc_unzip(storage_path('tmp/'.$fileTmp), storage_path('tmp/'.$pathTmp));
         if($unzip) {
             File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/public'), public_path('templates/'.$key));
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/views'), resource_path('views/templates/'.$key));
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/src'), resource_path('views/templates/'.$key));
             File::deleteDirectory(storage_path('tmp/'.$pathTmp));
             Storage::disk('tmp')->delete($fileTmp);
         } else {

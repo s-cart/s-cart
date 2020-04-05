@@ -26,23 +26,35 @@ class AdminPluginsOnlineController extends Controller
     {
         $arrPluginLibrary = [];
         $page = request('page') ?? 1;
-        $dataApi = file_get_contents('https://s-cart.org/api/plugins/'.$code.'?page[size]=20&page[number]='.$page);
+
+        $url = config('scart.api_link').'/plugins/'.$code.'?page[size]=20&page[number]='.$page;
+        $ch            = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $dataApi   = curl_exec($ch);
+        curl_close($ch);
         $dataApi = json_decode($dataApi, true);
         if(!empty($dataApi['data'])) {
             foreach ($dataApi['data'] as $key => $data) {
                 $arrPluginLibrary[] = [
-                    'key' => $data['key'],
-                    'name' => $data['name'],
-                    'description' => $data['description'],
-                    'image' => $data['image'],
-                    'path' => 'https://s-cart.org/plugins/download/'.$data['key'],
-                    'price' => $data['price'],
-                    'is_free' => $data['is_free'],
-                    'downloaded' => $data['downloaded'],
-                    'username' =>  $data['username'],
-                    'times' =>  $data['times'],
-                    'points' =>  $data['points'],
-                    'link' => '',
+                    'sku' => $data['sku'] ?? '',
+                    'key' => $data['key'] ?? '',
+                    'name' => $data['name'] ?? '',
+                    'description' => $data['description'] ?? '',
+                    'image' => $data['image'] ?? '',
+                    'path' => $data['path'] ?? '',
+                    'file' => $data['file'] ?? '',
+                    'scart_version' => $data['scart_version'] ?? '',
+                    'version' => $data['version'] ?? '',
+                    'price' => $data['price'] ?? 0,
+                    'price_final' => $data['price_final'] ?? 0,
+                    'is_free' => $data['is_free'] ?? 0,
+                    'download' => $data['download'] ?? 0,
+                    'username' =>  $data['username'] ?? '',
+                    'times' =>  $data['times'] ?? 0,
+                    'points' =>  $data['points'] ?? 0,
+                    'date' =>  $data['date'] ?? '',
+                    'link' =>  $data['link'] ?? '',
                 ];
             }
         }
@@ -81,7 +93,7 @@ class AdminPluginsOnlineController extends Controller
 
         if($unzip) {
             File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/public'), public_path($pathPlugin));
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/app'), app_path($pathPlugin));
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/src'), app_path($pathPlugin));
             File::deleteDirectory(storage_path('tmp/'.$pathTmp));
             Storage::disk('tmp')->delete($fileTmp);
             $namespace = sc_get_class_plugin_config($code, $key);

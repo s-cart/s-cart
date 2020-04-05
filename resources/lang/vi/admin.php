@@ -330,7 +330,7 @@ return [
         'code'        => 'Mã code',
         'name'        => 'Tên chức năng',
         'sort'        => 'Thứ tự',
-        'action'      => 'Thao tác',
+        'action'      => 'Hành động',
         'status'      => 'Trạng thái',
         'enable'      => 'Kích hoạt',
         'disable'     => 'Tắt',

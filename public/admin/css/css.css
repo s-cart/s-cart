@@ -52,3 +52,15 @@
 .menu-left{
   display: inline;
 }
+.sc-old-price {
+  text-decoration: line-through;
+  color: #a95d5d;
+  font-size: 13px;
+  padding: 10px;
+}
+.sc-new-price {
+  color: #FE980F;
+  font-size: 14px;
+  padding: 10px 5px;
+  font-weight: bold;
+}

@@ -474,7 +474,7 @@ CREATE TABLE `sc_admin_store` (
 
 LOCK TABLES `sc_admin_store` WRITE;
 /*!40000 ALTER TABLE `sc_admin_store` DISABLE KEYS */;
-INSERT INTO `sc_admin_store` VALUES (1,'/data/logo/scart-mid.png',1,'0123456789','Support: 0987654321','admin-demo@s-cart.org','','123st - abc - xyz',NULL,NULL,'new2');
+INSERT INTO `sc_admin_store` VALUES (1,'/data/logo/scart-mid.png',1,'0123456789','Support: 0987654321','admin-demo@s-cart.org','','123st - abc - xyz',NULL,NULL,'default-new');
 /*!40000 ALTER TABLE `sc_admin_store` ENABLE KEYS */;
 UNLOCK TABLES;
 

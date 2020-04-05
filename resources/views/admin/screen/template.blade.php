@@ -19,10 +19,8 @@
                   <th>{{ trans('template.code') }}</th>
                   <th>{{ trans('template.image_demo') }}</th>
                   <th>{{ trans('template.auth') }}</th>
-                  <th>{{ trans('template.email') }}</th>
                   <th>{{ trans('template.website') }}</th>
                   <th>{{ trans('template.version') }}</th>
-                  <th>{{ trans('template.status') }}</th>
                   <th>{{ trans('template.action') }}</th>
                 </tr>
                 </thead>
@@ -32,13 +30,12 @@
                      <td>{!!sc_image_render(asset('templates/'.$key.'/'.$template['config']['image'])??'','50px','', $template['config']['name']??'')!!}</td>
                      <td>{{ $template['config']['name']??'' }}</td>
                      <td>{{ $key??'' }}</td>
-                     <td onclick="imagedemo('{{ asset('templates/'.$key.'/images/demo.jpg') }}')"><a>Click</a></td>
+                     <td onclick="imagedemo('{{ asset('templates/'.$key.'/images/demo.jpg') }}')"><a>{{ trans('template.click_here') }}</a></td>
                      <td>{{ $template['config']['auth']??'' }}</td>
-                     <td>{{ $template['config']['email']??'' }}</td>
-                     <td>{{ $template['config']['website']??'' }} <a href="{{ $template['config']['website']??'' }}" target=_new><i class="fa fa-share" aria-hidden="true"></i></a></td>
+                     <td><a href="{{ $template['config']['website']??'' }}" target=_new><i class="fa fa-link" aria-hidden="true"></i>Link</a></td>
                      <td>{{ $template['config']['version']??'' }}</td>
-                      <td><input data-id={{ $key }} type="checkbox" class="swith" {!! ($templateCurrent==$key)?'checked="checked" disabled="disabled"':'' !!}></td>
                       <td>
+                        <input data-id={{ $key }} type="checkbox" class="swith" {!! ($templateCurrent==$key)?'checked="checked" disabled="disabled"':'' !!}>
                         @if ($templateCurrent != $key)
                           <span onClick="removeTemplate($(this), '{{ $key }}');" title="{{ trans('template.remove') }}" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                         @endif

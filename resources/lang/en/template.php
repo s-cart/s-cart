@@ -27,6 +27,7 @@ return [
     'price'      => 'Price',
     'free'      => 'Free',
     'date'      => 'Date',
+    'click_here'      => 'Click here',
     'located'      => 'Located',
     'code' => 'Code',
     'image_demo' => 'Image demo',

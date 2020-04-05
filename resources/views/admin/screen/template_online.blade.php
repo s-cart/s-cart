@@ -20,10 +20,10 @@
                   <th>{{ trans('template.name') }}</th>
                   <th>{{ trans('template.version') }}</th>
                   <th>{{ trans('template.auth') }}</th>
-                  <th>{{ trans('template.link') }}</th>
+                  <th>{{ trans('template.image_demo') }}</th>
                   <th>{{ trans('template.price') }}</th>
                   <th>{{ trans('template.rated') }}</th>
-                  <th>{{ trans('template.downloaded') }}</th>
+                  <th><i class="fa fa-download" aria-hidden="true"></i></th>
                   <th>{{ trans('template.date') }}</th>
                   <th>{{ trans('template.action') }}</th>
                 </tr>
@@ -41,7 +41,11 @@
                       if (array_key_exists($template['key'], $arrTemplateLocal)) {
                         $templateAction = trans('template.located');
                       } else {
-                        $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['path'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        if(($template['is_free'] || $template['price_final'] == 0)) {
+                          $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['file'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        } else {
+                          $templateAction = '';
+                        }
                       }
                     @endphp
 
@@ -50,13 +54,24 @@
                         <td>{{ $template['key'] }}</td>
                         <td>{{ $template['name'] }} <span data-toggle="tooltip" title="{!! $template['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $template['version']??'' }}</td>
-                        <td>{{ $template['auth']??'' }}</td>
-                        <td><a target=_new href="{{ $template['link'] }}"><i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}</a></td>
-                        <td>{!! $template['price']? $template['price']:'<span class="label label-success">'.trans('template.free').'</span>' !!}</td>
+                        <td>{{ $template['username']??'' }}</td>
+                        <td onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
+                        <td>
+                          @if ($template['is_free'] || $template['price_final'] == 0)
+                            <span class="label label-success">{{ trans('template.free') }}</span>
+                          @else
+                              @if ($template['price_final'] != $template['price'])
+                                  <span class="sc-old-price">{{ number_format($template['price']) }}</span><br>
+                                  <span class="sc-new-price">${{ number_format($template['price_final']) }}</span>
+                              @else
+                                <span class="sc-new-price">${{ number_format($template['price_final']) }}</span>
+                              @endif
+                          @endif
+                        </td>
                         <td>
                           @php
-                          $vote = $template['rate']['point'];
-                          $vote_times = $template['rate']['times'];
+                          $vote = $template['points'];
+                          $vote_times = $template['times'];
                           $cal_vote = $vote_times?round($vote/$vote_times,1):0;
                           @endphp
                           <span title="{{ $cal_vote }}" style="color:#e66c16">
@@ -77,9 +92,16 @@
                         </span>
 
                         </td>
-                        <td>{{ $template['downloaded']??'' }}</td>
+                        <td>{{ $template['download']??'' }}</td>
                         <td>{{ $template['date']??'' }}</td>
-                        <td>{!! $templateAction ?? '' !!}</td>
+                        <td>
+                          {!! $templateAction ?? '' !!}
+                          <a href="{{ $template['link'] }}" title="Link home">
+                            <span class="btn btn-flat btn-default" type="button">
+                            <i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}
+                            </span>
+                          </a>
+                        </td>                        
                       </tr>
                     @endforeach
                   @endif
@@ -171,6 +193,18 @@
     })
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    function imagedemo(image) {
+      Swal.fire({
+        title: '{{  trans('template.image_demo') }}',
+        text: '',
+        imageUrl: image,
+        imageWidth: 800,
+        imageHeight: 800,
+        imageAlt: 'Image demo',
+      })
+    }
+
 </script>
 
 @endpush
