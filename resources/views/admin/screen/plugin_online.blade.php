@@ -20,10 +20,9 @@
                   <th>{{ trans('admin.plugin_manager.name') }}</th>
                   <th>{{ trans('admin.plugin_manager.version') }}</th>
                   <th>{{ trans('admin.plugin_manager.auth') }}</th>
-                  <th>{{ trans('admin.plugin_manager.link') }}</th>
                   <th>{{ trans('admin.plugin_manager.price') }}</th>
                   <th>{{ trans('admin.plugin_manager.rated') }}</th>
-                  <th>{{ trans('admin.plugin_manager.downloaded') }}</th>
+                  <th><i class="fa fa-download" aria-hidden="true"></i></th>
                   <th>{{ trans('admin.plugin_manager.date') }}</th>
                   <th>{{ trans('admin.plugin_manager.action') }}</th>
                 </tr>
@@ -39,9 +38,13 @@
                     @foreach ($arrPluginLibrary as  $plugin)
                     @php
                       if (array_key_exists($plugin['key'], $arrPluginLocal)) {
-                        $pluginAction = trans('admin.plugin_manager.located');
+                        $pluginAction = '<span class="btn btn-flat btn-default" type="button">'.trans('admin.plugin_manager.located').'</span>';
                       } else {
-                        $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        if(($plugin['is_free'] || $plugin['price_final'] == 0)) {
+                          $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        } else {
+                          $pluginAction = '';
+                        }
                       }
                     @endphp
 
@@ -51,8 +54,18 @@
                         <td>{{ $plugin['name'] }} <span data-toggle="tooltip" title="{!! $plugin['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $plugin['version']??'' }}</td>
                         <td>{{ $plugin['username']??'' }}</td>
-                        <td><a target=_new href="{{ $plugin['link'] }}"><i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('admin.plugin_manager.link') !!}</a></td>
-                        <td>{!! $plugin['is_free']? '<span class="label label-success">'.trans('admin.plugin_manager.free').'</span>' : $plugin['price'] !!}</td>
+                        <td>
+                          @if ($plugin['is_free'] || $plugin['price_final'] == 0)
+                            <span class="label label-success">{{ trans('admin.plugin_manager.free') }}</span>
+                          @else
+                              @if ($plugin['price_final'] != $plugin['price'])
+                                  <span class="sc-old-price">{{ number_format($plugin['price']) }}</span><br>
+                                  <span class="sc-new-price">${{ number_format($plugin['price_final']) }}</span>
+                              @else
+                                <span class="sc-new-price">${{ number_format($plugin['price_final']) }}</span>
+                              @endif
+                          @endif
+                        </td>
                         <td>
                           @php
                           $vote = $plugin['points'];
@@ -79,7 +92,14 @@
                         </td>
                         <td>{{ $plugin['download']??'' }}</td>
                         <td>{{ $plugin['date']??'' }}</td>
-                        <td>{!! $pluginAction ?? '' !!}</td>
+                        <td>
+                          {!! $pluginAction ?? '' !!}
+                          <a href="{{ $plugin['link'] }}" title="Link home">
+                            <span class="btn btn-flat btn-default" type="button">
+                              <i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}
+                            </span>
+                          </a>
+                        </td>  
                       </tr>
                     @endforeach
                   @endif

@@ -21,7 +21,6 @@
                   <th>{{ trans('template.auth') }}</th>
                   <th>{{ trans('template.website') }}</th>
                   <th>{{ trans('template.version') }}</th>
-                  <th>{{ trans('template.status') }}</th>
                   <th>{{ trans('template.action') }}</th>
                 </tr>
                 </thead>
@@ -35,8 +34,8 @@
                      <td>{{ $template['config']['auth']??'' }}</td>
                      <td><a href="{{ $template['config']['website']??'' }}" target=_new><i class="fa fa-link" aria-hidden="true"></i>Link</a></td>
                      <td>{{ $template['config']['version']??'' }}</td>
-                      <td><input data-id={{ $key }} type="checkbox" class="swith" {!! ($templateCurrent==$key)?'checked="checked" disabled="disabled"':'' !!}></td>
                       <td>
+                        <input data-id={{ $key }} type="checkbox" class="swith" {!! ($templateCurrent==$key)?'checked="checked" disabled="disabled"':'' !!}>
                         @if ($templateCurrent != $key)
                           <span onClick="removeTemplate($(this), '{{ $key }}');" title="{{ trans('template.remove') }}" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                         @endif

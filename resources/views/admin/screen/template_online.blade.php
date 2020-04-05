@@ -21,10 +21,9 @@
                   <th>{{ trans('template.version') }}</th>
                   <th>{{ trans('template.auth') }}</th>
                   <th>{{ trans('template.image_demo') }}</th>
-                  <th>{{ trans('template.link') }}</th>
                   <th>{{ trans('template.price') }}</th>
                   <th>{{ trans('template.rated') }}</th>
-                  <th>{{ trans('template.downloaded') }}</th>
+                  <th><i class="fa fa-download" aria-hidden="true"></i></th>
                   <th>{{ trans('template.date') }}</th>
                   <th>{{ trans('template.action') }}</th>
                 </tr>
@@ -42,7 +41,11 @@
                       if (array_key_exists($template['key'], $arrTemplateLocal)) {
                         $templateAction = trans('template.located');
                       } else {
-                        $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['file'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        if(($template['is_free'] || $template['price_final'] == 0)) {
+                          $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['file'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                        } else {
+                          $templateAction = '';
+                        }
                       }
                     @endphp
 
@@ -53,8 +56,18 @@
                         <td>{{ $template['version']??'' }}</td>
                         <td>{{ $template['username']??'' }}</td>
                         <td onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
-                        <td><a target=_new href="{{ $template['link'] }}"><i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}</a></td>
-                        <td>{!! $template['price']? $template['price']:'<span class="label label-success">'.trans('template.free').'</span>' !!}</td>
+                        <td>
+                          @if ($template['is_free'] || $template['price_final'] == 0)
+                            <span class="label label-success">{{ trans('template.free') }}</span>
+                          @else
+                              @if ($template['price_final'] != $template['price'])
+                                  <span class="sc-old-price">{{ number_format($template['price']) }}</span><br>
+                                  <span class="sc-new-price">${{ number_format($template['price_final']) }}</span>
+                              @else
+                                <span class="sc-new-price">${{ number_format($template['price_final']) }}</span>
+                              @endif
+                          @endif
+                        </td>
                         <td>
                           @php
                           $vote = $template['points'];
@@ -81,7 +94,14 @@
                         </td>
                         <td>{{ $template['download']??'' }}</td>
                         <td>{{ $template['date']??'' }}</td>
-                        <td>{!! $templateAction ?? '' !!}</td>
+                        <td>
+                          {!! $templateAction ?? '' !!}
+                          <a href="{{ $template['link'] }}" title="Link home">
+                            <span class="btn btn-flat btn-default" type="button">
+                            <i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}
+                            </span>
+                          </a>
+                        </td>                        
                       </tr>
                     @endforeach
                   @endif
