@@ -281,7 +281,7 @@ class InsertDatabaseAdmin extends Migration
 
         ]);
         DB::table(SC_DB_PREFIX.'admin_store')->insert(
-            ['logo' => '/data/logo/scart-mid.png', 'site_status' => 1, 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => 'admin-demo@s-cart.org', 'time_active' => '', 'address' => '123st - abc - xyz']
+            ['logo' => '/data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => 'admin-demo@s-cart.org', 'time_active' => '', 'address' => '123st - abc - xyz']
         );
 
         DB::table(SC_DB_PREFIX.'admin_store_description')->insert([

@@ -125,7 +125,6 @@ class CreateTablesAdmin extends Migration
         Schema::create(SC_DB_PREFIX.'admin_store', function (Blueprint $table) {
             $table->increments('id');
             $table->string('logo', 255)->nullable();
-            $table->tinyInteger('site_status')->default(1);
             $table->string('phone', 20)->nullable();
             $table->string('long_phone', 100)->nullable();
             $table->string('email', 150)->nullable();
