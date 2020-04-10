@@ -1,5 +1,12 @@
 <?php
 $router->group(['prefix' => 'plugin'], function ($router) {
+    //Process import
+    $router->get('/import', 'AdminPluginsController@importPlugin')
+        ->name('admin_plugin.import');
+    $router->post('/import', 'AdminPluginsController@processImport')
+        ->name('admin_plugin.process_import');
+    //End process
+    
     $router->get('/{code}', 'AdminPluginsController@index')
         ->name('admin_plugin');
     $router->post('/install', 'AdminPluginsController@install')
@@ -17,4 +24,5 @@ $router->group(['prefix' => 'plugin'], function ($router) {
         ->name('admin_plugin_online');
     $router->post('/install/online', 'AdminPluginsOnlineController@install')
         ->name('admin_plugin_online.install');
+
 });
