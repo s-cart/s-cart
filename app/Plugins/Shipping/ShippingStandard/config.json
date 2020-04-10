@@ -1,0 +1,11 @@
+{
+    "name": "Shipping standard",
+    "image": "",
+    "auth": "Naruto",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Shipping",
+    "configKey": "ShippingStandard",
+    "version": "1.1"
+}

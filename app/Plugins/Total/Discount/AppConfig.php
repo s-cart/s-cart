@@ -8,24 +8,24 @@ use App\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
-    public $configGroup = 'Plugins';
-    public $configCode = 'Total';
-    public $configKey = 'Discount';
-    public $pathPlugin;
-    
     public function __construct()
     {
+    	$config = file_get_contents(__DIR__.'/config.json');
+    	$config = json_decode($config, true);
+    	$this->configGroup = $config['configGroup'];
+    	$this->configCode = $config['configCode'];
+    	$this->configKey = $config['configKey'];
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
         $this->title = trans($this->pathPlugin.'::lang.title');
-        $this->image = '';
+        $this->image = $this->pathPlugin.'/'.$config['image'];
+        $this->version = $config['version'];
+        $this->auth = $config['auth'];
+        $this->link = $config['link'];
         $this->separator = false;
         $this->suffix = false;
         $this->prefix = false;
         $this->length = 8;
         $this->mask = '****-****';
-        $this->version = '1.0.0';
-        $this->auth = 'Lanh Le';
-        $this->link = 'https://s-cart.org';
 
     }
 
