@@ -82,11 +82,21 @@ class MakePlugin extends Command
             if($download) {
                 File::copyDirectory(storage_path($source), storage_path($tmp));
                 File::copyDirectory(storage_path($sourcePublic), storage_path($tmpPublic));
+
+                $appConfigJson = file_get_contents(storage_path($tmp.'/config.json'));
+                $appConfigJson      = str_replace('Template_Key', $name, $appConfigJson);
+                file_put_contents(storage_path($tmp.'/config.json'), $appConfigJson);
+
+
                 sc_zip(storage_path($this->tmpFolder."/".$sID), storage_path($this->tmpFolder.'/'.$sID.'.zip'));
                 $path = $sID;
             } else {
                 File::copyDirectory(storage_path($source), resource_path($description));
                 File::copyDirectory(storage_path($sourcePublic), base_path($descriptionPublic));
+
+                $appConfigJson = file_get_contents(resource_path($description.'/config.json'));
+                $appConfigJson      = str_replace('Template_Key', $name, $appConfigJson);
+                file_put_contents(resource_path($description.'/config.json'), $appConfigJson);
             }
             File::deleteDirectory(storage_path($this->tmpFolder.'/'.$sID));
         } catch(\Exception $e) {
