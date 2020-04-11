@@ -48,4 +48,80 @@ class AdminTemplateController extends Controller
         return response()->json($response);
     }
 
+
+
+    
+    /**
+     * Import template
+     */
+    public function importTemplate() {
+        $data =  [
+            'title' => trans('template.import')
+        ];
+        return view('admin.screen.template_upload')
+        ->with($data);
+    }
+
+    /**
+     * Process import
+     *
+     * @return  [type]  [return description]
+     */
+    public function processImport() {
+        $data = request()->all();
+        $validator = \Validator::make(
+            $data,
+            [
+                'file'   => 'required|mimetypes:application/zip|max:51200',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $pathTmp = time();
+        $pathFile = sc_file_upload($data['file'],'tmp', $pathFolder = $pathTmp);
+        if($pathFile) {
+            $unzip = sc_unzip(storage_path('tmp/'.$pathFile), storage_path('tmp/'.$pathTmp));
+            if($unzip) {
+                $checkConfig = glob(storage_path('tmp/'.$pathTmp) . '/*/src/config.json');
+                if($checkConfig) {
+                    $folderName = explode('/src',$checkConfig[0]);
+                    $folderName = explode('/', $folderName[0]);
+                    $folderName = end($folderName);
+                    $config = json_decode(file_get_contents($checkConfig[0]), true);
+                    $configKey = $config['configKey'] ?? '';
+                    if (!$configKey) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('template.error_config'));
+                    }
+
+                    $arrTemplateLocal = sc_get_all_template();
+                    if(array_key_exists($configKey, $arrTemplateLocal)) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('template.error_exist'));
+                    }
+                    try {
+                        File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/public'), public_path('templates/'.$configKey));
+                        File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/src'), resource_path('views/templates/'.$configKey));
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                    } catch(\Exception $e) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', $e->getMessage());
+                    }
+
+                } else {
+                    File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                    return redirect()->back()->with('error', trans('template.error_check_config'));
+                }
+            } else {
+                return redirect()->back()->with('error', trans('template.error_unzip'));
+            }
+        } else {
+            return redirect()->back()->with('error', trans('template.error_upload'));
+        }
+        return redirect()->back()->with('success', trans('template.import_success')); 
+    }
 }

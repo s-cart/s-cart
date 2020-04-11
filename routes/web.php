@@ -75,7 +75,6 @@ Route::get('currency/{code}', function ($code) {
 Route::get('/banner/{id}', 'ShopFront@clickBanner')
 ->name('banner.click');    
 
-
 //--Please keep 2 lines route (pages + pageNotFound) at the bottom
 Route::get('/{alias}'.$suffix, 'ShopFront@pageDetail')->name('page.detail');
 // Route::fallback('ShopFront@pageNotFound')->name('pageNotFound'); //Make sure before using this route. There will be disadvantages when detecting 404 errors for static files like images, scripts ..

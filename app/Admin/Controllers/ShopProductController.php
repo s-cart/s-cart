@@ -140,14 +140,15 @@ class ShopProductController extends Controller
             }
             $arrName = [];
             foreach ($row->categories as $category) {
-                $arrName[] = $category->descriptions->groupBy('lang')['vi'][0]->title;
+                
+                $arrName[] = $category->descriptions()->where('lang', sc_get_locale())->first()->title;
             }
             $dataMap = [
                 'id' => $row['id'],
                 'image' => sc_image_render($row->getThumb(), '50px', '50px', $row['name']),
                 'sku' => $row['sku'],
                 'name' => $row['name'],
-                'category' => implode('; ', $arrName),
+                'category' => implode(';<br>', $arrName),
                 
             ];
             if(sc_config('product_cost')){

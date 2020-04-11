@@ -23,10 +23,6 @@
                 <div class="box-body">
                     <div class="fields-group">
 
-
-                        <div class="box-body">
-                            <div class="fields-group">
-
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-sm-2  control-label">{{ trans('supplier.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                                     <div class="col-sm-8">
@@ -186,11 +182,6 @@
                                         @endif
                                     </div>
                                 </div>
-
-
-                            </div>
-                        </div>
-
 
                         <!-- /.box-body -->
 

@@ -7,7 +7,8 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#">{{ trans('template.local') }}</a></li>
             <li class=""><a href="{{ route('admin_template_online.index') }}">{{ trans('template.online') }}</a></li>
-            <li class="pull-right">{!! trans('admin.template_more') !!}</li>
+            <li>{!! trans('template.template_import') !!}</li>
+            <li class="pull-right">{!! trans('template.template_more') !!}</li>
           </ul>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding" id="pjax-container">

@@ -1,5 +1,18 @@
 <?php
 return [
+    'import' => 'Import Template',
+    'file_format' => 'File format',
+    'choose_file' => 'Choose File',
+    'import_submit' => 'Import',
+    'import_note' => 'File <span style="color:red">.zip</span>, max size is <span style="color:red">50MB</span>',
+    'error_unzip' => 'Error while unzip',
+    'error_upload' => 'Error while uploading file',
+    'error_check_config' => 'Cannot find config file',
+    'error_config_format' => 'The config file is not in the right format',
+    'import_success' => 'Import success!',
+    'error_exist' => 'Template exist!',
+    'template_import' => '<a href="'.route('admin_template.import').'" target=_new><span class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Template</span></a>',
+    'template_more' => '<a href="https://s-cart.org/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>',
     'manager'    => 'Template management',
     'title'      => 'Template list',
     'name'       => 'Template name',

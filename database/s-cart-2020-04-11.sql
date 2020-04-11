@@ -1,8 +1,8 @@
--- MariaDB dump 10.17  Distrib 10.4.6-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.17  Distrib 10.4.8-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: s-cart
 -- ------------------------------------------------------
--- Server version	10.4.6-MariaDB
+-- Server version	10.4.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -128,7 +128,7 @@ CREATE TABLE `oauth_clients` (
 
 LOCK TABLES `oauth_clients` WRITE;
 /*!40000 ALTER TABLE `oauth_clients` DISABLE KEYS */;
-INSERT INTO `oauth_clients` VALUES (1,NULL,'S_Cart Personal Access Client','ve4wVRj2ZDRNtZrR1DDywdSpHxgK3rlmo4CotRaa','http://localhost',1,0,0,'2020-03-24 08:37:16','2020-03-24 08:37:16'),(2,NULL,'S_Cart Password Grant Client','cAF7VXQwiyEc9ibDJPVE2gFBMUa4uP7SGfw7y0iM','http://localhost',0,1,0,'2020-03-24 08:37:17','2020-03-24 08:37:17');
+INSERT INTO `oauth_clients` VALUES (1,NULL,'S_Cart Personal Access Client','xGHJL2UNFkbaY9WAK9TS92qBt1G9R0u67fpZwuV2','http://localhost',1,0,0,'2020-04-11 05:23:22','2020-04-11 05:23:22'),(2,NULL,'S_Cart Password Grant Client','QExMmI4KVuNOgKOAtz0wmZmqcSXL0McbS0o94uUT','http://localhost',0,1,0,'2020-04-11 05:23:22','2020-04-11 05:23:22');
 /*!40000 ALTER TABLE `oauth_clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `oauth_personal_access_clients` (
 
 LOCK TABLES `oauth_personal_access_clients` WRITE;
 /*!40000 ALTER TABLE `oauth_personal_access_clients` DISABLE KEYS */;
-INSERT INTO `oauth_personal_access_clients` VALUES (1,1,'2020-03-24 08:37:17','2020-03-24 08:37:17');
+INSERT INTO `oauth_personal_access_clients` VALUES (1,1,'2020-04-11 05:23:22','2020-04-11 05:23:22');
 /*!40000 ALTER TABLE `oauth_personal_access_clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `sc_admin_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `sc_admin_log_user_id_index` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,6 +243,7 @@ CREATE TABLE `sc_admin_log` (
 
 LOCK TABLES `sc_admin_log` WRITE;
 /*!40000 ALTER TABLE `sc_admin_log` DISABLE KEYS */;
+INSERT INTO `sc_admin_log` VALUES (1,1,'sc_admin','GET','::1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36','[]','2020-04-11 05:23:31','2020-04-11 05:23:31'),(2,1,'sc_admin/backup','GET','::1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36','[]','2020-04-11 05:23:38','2020-04-11 05:23:38'),(3,1,'sc_admin/backup/generate','POST','::1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36','{\"_token\":\"R8hdX2QYyzhplvn9rnvcbUr6478n83b8A7S14sgv\"}','2020-04-11 05:23:41','2020-04-11 05:23:41');
 /*!40000 ALTER TABLE `sc_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +277,7 @@ CREATE TABLE `sc_admin_menu` (
 
 LOCK TABLES `sc_admin_menu` WRITE;
 /*!40000 ALTER TABLE `sc_admin_menu` DISABLE KEYS */;
-INSERT INTO `sc_admin_menu` VALUES (1,6,11,'lang::admin.menu_titles.order_manager','fa-cart-arrow-down','',0,NULL,NULL,NULL,NULL),(2,6,12,'lang::admin.menu_titles.catalog_mamager','fa-folder-open','',0,NULL,NULL,NULL,NULL),(3,6,13,'lang::admin.menu_titles.customer_manager','fa-group','',0,NULL,NULL,NULL,NULL),(4,8,201,'lang::admin.menu_titles.template_layout','fa-object-ungroup','',0,NULL,NULL,NULL,NULL),(5,9,301,'lang::admin.menu_titles.config_manager','fa-cogs','',0,NULL,NULL,NULL,NULL),(6,0,10,'lang::ADMIN SHOP','fa-minus','',0,NULL,NULL,NULL,NULL),(7,0,100,'lang::ADMIN CONTENT','fa-minus','',0,NULL,NULL,NULL,NULL),(8,0,200,'lang::ADMIN EXTENSION','fa-minus','',0,NULL,NULL,NULL,NULL),(9,0,300,'lang::ADMIN SYSTEM','fa-minus','',0,NULL,NULL,NULL,NULL),(10,7,102,'lang::page.admin.title','fa-clone','admin::page',0,NULL,NULL,NULL,NULL),(11,1,6,'lang::shipping_status.admin.title','fa-truck','admin::shipping_status',0,NULL,NULL,NULL,NULL),(12,1,3,'lang::order.admin.title','fa-shopping-cart','admin::order',0,NULL,NULL,NULL,NULL),(13,1,4,'lang::order_status.admin.title','fa-asterisk','admin::order_status',0,NULL,NULL,NULL,NULL),(14,1,5,'lang::payment_status.admin.title','fa-recycle','admin::payment_status',0,NULL,NULL,NULL,NULL),(15,2,0,'lang::category.admin.title','fa-folder-open-o','admin::category',0,NULL,NULL,NULL,NULL),(16,2,0,'lang::product.admin.title','fa-file-photo-o','admin::product',0,NULL,NULL,NULL,NULL),(17,2,0,'lang::supplier.admin.title','fa-user-secret','admin::supplier',0,NULL,NULL,NULL,NULL),(18,2,0,'lang::brand.admin.title','fa-bank','admin::brand',0,NULL,NULL,NULL,NULL),(19,2,0,'lang::attribute_group.admin.title','fa-bars','admin::attribute_group',0,NULL,NULL,NULL,NULL),(20,3,0,'lang::customer.admin.title','fa-user','admin::customer',0,NULL,NULL,NULL,NULL),(21,3,0,'lang::subscribe.admin.title','fa-user-circle-o','admin::subscribe',0,NULL,NULL,NULL,NULL),(22,4,0,'lang::block_content.admin.title','fa-newspaper-o','admin::block_content',0,NULL,NULL,NULL,NULL),(23,4,0,'lang::admin.menu_titles.block_link','fa-chrome','admin::link',0,NULL,NULL,NULL,NULL),(24,4,0,'lang::admin.menu_titles.template_manager','fa-columns','admin::template',0,NULL,NULL,NULL,NULL),(26,5,1,'lang::store_info.admin.title','fa-h-square','admin::store_info',0,NULL,NULL,NULL,NULL),(27,5,4,'lang::admin.menu_titles.email_setting','fa-envelope','',0,NULL,NULL,NULL,NULL),(28,27,0,'lang::email.admin.title','fa-cog','admin::email',0,NULL,NULL,NULL,NULL),(29,27,0,'lang::email_template.admin.title','fa-bars','admin::email_template',0,NULL,NULL,NULL,NULL),(30,5,5,'lang::admin.menu_titles.localisation','fa-shirtsinbulk','',0,NULL,NULL,NULL,NULL),(31,30,0,'lang::language.admin.title','fa-pagelines','admin::language',0,NULL,NULL,NULL,NULL),(32,30,0,'lang::currency.admin.title','fa-dollar','admin::currency',0,NULL,NULL,NULL,NULL),(33,7,101,'lang::banner.admin.title','fa-image','admin::banner',0,NULL,NULL,NULL,NULL),(34,5,5,'lang::backup.admin.title','fa-save','admin::backup',0,NULL,NULL,NULL,NULL),(35,8,202,'lang::admin.menu_titles.plugins','fa-puzzle-piece','',0,NULL,NULL,NULL,NULL),(37,9,302,'lang::admin.menu_titles.report_manager','fa-pie-chart','',0,NULL,NULL,NULL,NULL),(38,9,0,'lang::admin.menu_titles.admin','fa-sitemap','',0,NULL,NULL,NULL,NULL),(39,35,0,'admin.plugin_manager.Payment','fa-money','admin::plugin/payment',0,NULL,NULL,NULL,NULL),(40,35,0,'admin.plugin_manager.Shipping','fa-ambulance','admin::plugin/shipping',0,NULL,NULL,NULL,NULL),(41,35,0,'admin.plugin_manager.Total','fa-cog','admin::plugin/total',0,NULL,NULL,NULL,NULL),(42,35,100,'admin.plugin_manager.Other','fa-circle-thin','admin::plugin/other',0,NULL,NULL,NULL,NULL),(43,35,0,'admin.plugin_manager.Cms','fa-modx','admin::plugin/cms',0,NULL,NULL,NULL,NULL),(46,38,0,'lang::admin.menu_titles.users','fa-users','admin::user',0,NULL,NULL,NULL,NULL),(47,38,0,'lang::admin.menu_titles.roles','fa-user','admin::role',0,NULL,NULL,NULL,NULL),(48,38,0,'lang::admin.menu_titles.permission','fa-ban','admin::permission',0,NULL,NULL,NULL,NULL),(49,38,0,'lang::admin.menu_titles.menu','fa-bars','admin::menu',0,NULL,NULL,NULL,NULL),(50,38,0,'lang::admin.menu_titles.operation_log','fa-history','admin::log',0,NULL,NULL,NULL,NULL),(52,7,103,'lang::news.admin.title','fa-file-powerpoint-o','admin::news',0,NULL,NULL,NULL,NULL),(53,5,3,'lang::setting.title','fa-cog','admin::setting',0,NULL,NULL,NULL,NULL),(54,37,0,'lang::admin.menu_titles.report_product','fa-bars','admin::report/product',0,NULL,NULL,NULL,NULL),(55,2,100,'lang::product.config_manager.title','fa fa-cog','admin::product_config',0,NULL,NULL,NULL,NULL),(56,3,100,'lang::customer.config_manager.title','fa fa-cog','admin::customer_config',0,NULL,NULL,NULL,NULL),(57,5,2,'lang::url.config_manager.title','fa-gg','admin::url_config',0,NULL,NULL,NULL,NULL),(58,5,5,'lang::admin.menu_titles.cache_manager','fa-tripadvisor','admin::cache_config',0,NULL,NULL,NULL,NULL),(59,9,303,'lang::admin.menu_titles.api_manager','fa-plug','admin::api_connection',0,NULL,NULL,NULL,NULL),(60,5,3,'lang::maintain.config_manager.title','fa-flag','admin::maintain',0,NULL,NULL,NULL,NULL);
+INSERT INTO `sc_admin_menu` VALUES (1,6,11,'lang::admin.menu_titles.order_manager','fa-cart-arrow-down','',0,NULL,NULL,NULL,NULL),(2,6,12,'lang::admin.menu_titles.catalog_mamager','fa-folder-open','',0,NULL,NULL,NULL,NULL),(3,6,13,'lang::admin.menu_titles.customer_manager','fa-group','',0,NULL,NULL,NULL,NULL),(4,8,201,'lang::admin.menu_titles.template_layout','fa-object-ungroup','',0,NULL,NULL,NULL,NULL),(5,9,301,'lang::admin.menu_titles.config_manager','fa-cogs','',0,NULL,NULL,NULL,NULL),(6,0,10,'lang::ADMIN SHOP','fa-minus','',0,NULL,NULL,NULL,NULL),(7,0,100,'lang::ADMIN CONTENT','fa-minus','',0,NULL,NULL,NULL,NULL),(8,0,200,'lang::ADMIN EXTENSION','fa-minus','',0,NULL,NULL,NULL,NULL),(9,0,300,'lang::ADMIN SYSTEM','fa-minus','',0,NULL,NULL,NULL,NULL),(10,7,102,'lang::page.admin.title','fa-clone','admin::page',0,NULL,NULL,NULL,NULL),(11,1,6,'lang::shipping_status.admin.title','fa-truck','admin::shipping_status',0,NULL,NULL,NULL,NULL),(12,1,3,'lang::order.admin.title','fa-shopping-cart','admin::order',0,NULL,NULL,NULL,NULL),(13,1,4,'lang::order_status.admin.title','fa-asterisk','admin::order_status',0,NULL,NULL,NULL,NULL),(14,1,5,'lang::payment_status.admin.title','fa-recycle','admin::payment_status',0,NULL,NULL,NULL,NULL),(15,2,0,'lang::category.admin.title','fa-folder-open-o','admin::category',0,NULL,NULL,NULL,NULL),(16,2,0,'lang::product.admin.title','fa-file-photo-o','admin::product',0,NULL,NULL,NULL,NULL),(17,2,0,'lang::supplier.admin.title','fa-user-secret','admin::supplier',0,NULL,NULL,NULL,NULL),(18,2,0,'lang::brand.admin.title','fa-bank','admin::brand',0,NULL,NULL,NULL,NULL),(19,2,0,'lang::attribute_group.admin.title','fa-bars','admin::attribute_group',0,NULL,NULL,NULL,NULL),(20,3,0,'lang::customer.admin.title','fa-user','admin::customer',0,NULL,NULL,NULL,NULL),(21,3,0,'lang::subscribe.admin.title','fa-user-circle-o','admin::subscribe',0,NULL,NULL,NULL,NULL),(22,4,0,'lang::block_content.admin.title','fa-newspaper-o','admin::block_content',0,NULL,NULL,NULL,NULL),(23,4,0,'lang::admin.menu_titles.block_link','fa-chrome','admin::link',0,NULL,NULL,NULL,NULL),(24,4,0,'lang::admin.menu_titles.template_manager','fa-columns','admin::template',0,NULL,NULL,NULL,NULL),(26,5,1,'lang::store_info.admin.title','fa-h-square','admin::store_info',0,NULL,NULL,NULL,NULL),(27,5,4,'lang::admin.menu_titles.email_setting','fa-envelope','',0,NULL,NULL,NULL,NULL),(28,27,0,'lang::email.admin.title','fa-cog','admin::email',0,NULL,NULL,NULL,NULL),(29,27,0,'lang::email_template.admin.title','fa-bars','admin::email_template',0,NULL,NULL,NULL,NULL),(30,5,5,'lang::admin.menu_titles.localisation','fa-shirtsinbulk','',0,NULL,NULL,NULL,NULL),(31,30,0,'lang::language.admin.title','fa-pagelines','admin::language',0,NULL,NULL,NULL,NULL),(32,30,0,'lang::currency.admin.title','fa-dollar','admin::currency',0,NULL,NULL,NULL,NULL),(33,7,101,'lang::banner.admin.title','fa-image','admin::banner',0,NULL,NULL,NULL,NULL),(34,5,5,'lang::backup.admin.title','fa-save','admin::backup',0,NULL,NULL,NULL,NULL),(35,8,202,'lang::admin.menu_titles.plugins','fa-puzzle-piece','',0,NULL,NULL,NULL,NULL),(37,9,302,'lang::admin.menu_titles.report_manager','fa-pie-chart','',0,NULL,NULL,NULL,NULL),(38,9,0,'lang::admin.menu_titles.admin','fa-sitemap','',0,NULL,NULL,NULL,NULL),(39,35,0,'plugin.Payment','fa-money','admin::plugin/payment',0,NULL,NULL,NULL,NULL),(40,35,0,'plugin.Shipping','fa-ambulance','admin::plugin/shipping',0,NULL,NULL,NULL,NULL),(41,35,0,'plugin.Total','fa-cog','admin::plugin/total',0,NULL,NULL,NULL,NULL),(42,35,100,'plugin.Other','fa-circle-thin','admin::plugin/other',0,NULL,NULL,NULL,NULL),(43,35,0,'plugin.Cms','fa-modx','admin::plugin/cms',0,NULL,NULL,NULL,NULL),(46,38,0,'lang::admin.menu_titles.users','fa-users','admin::user',0,NULL,NULL,NULL,NULL),(47,38,0,'lang::admin.menu_titles.roles','fa-user','admin::role',0,NULL,NULL,NULL,NULL),(48,38,0,'lang::admin.menu_titles.permission','fa-ban','admin::permission',0,NULL,NULL,NULL,NULL),(49,38,0,'lang::admin.menu_titles.menu','fa-bars','admin::menu',0,NULL,NULL,NULL,NULL),(50,38,0,'lang::admin.menu_titles.operation_log','fa-history','admin::log',0,NULL,NULL,NULL,NULL),(52,7,103,'lang::news.admin.title','fa-file-powerpoint-o','admin::news',0,NULL,NULL,NULL,NULL),(53,5,3,'lang::setting.title','fa-cog','admin::setting',0,NULL,NULL,NULL,NULL),(54,37,0,'lang::admin.menu_titles.report_product','fa-bars','admin::report/product',0,NULL,NULL,NULL,NULL),(55,2,100,'lang::product.config_manager.title','fa fa-cog','admin::product_config',0,NULL,NULL,NULL,NULL),(56,3,100,'lang::customer.config_manager.title','fa fa-cog','admin::customer_config',0,NULL,NULL,NULL,NULL),(57,5,2,'lang::link.config_manager.title','fa-gg','admin::url_config',0,NULL,NULL,NULL,NULL),(58,5,5,'lang::admin.menu_titles.cache_manager','fa-tripadvisor','admin::cache_config',0,NULL,NULL,NULL,NULL),(59,9,303,'lang::admin.menu_titles.api_manager','fa-plug','admin::api_connection',0,NULL,NULL,NULL,NULL),(60,5,3,'lang::maintain.config_manager.title','fa-flag','admin::maintain',0,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sc_admin_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,7 +333,7 @@ CREATE TABLE `sc_admin_permission` (
 
 LOCK TABLES `sc_admin_permission` WRITE;
 /*!40000 ALTER TABLE `sc_admin_permission` DISABLE KEYS */;
-INSERT INTO `sc_admin_permission` VALUES (1,'Admin manager','admin.manager','GET::sc_admin/user,GET::sc_admin/role,GET::sc_admin/permission,ANY::sc_admin/log/*,ANY::sc_admin/menu/*','2020-03-24 08:37:08',NULL),(2,'Dashboard','dashboard','GET::sc_admin','2020-03-24 08:37:08',NULL),(3,'Auth manager','auth.full','ANY::sc_admin/auth/*','2020-03-24 08:37:08',NULL),(4,'Setting manager','setting.full','ANY::sc_admin/store_info/*,ANY::sc_admin/setting/*,ANY::sc_admin/url_config/*,ANY::sc_admin/product_config/*, ANY::sc_admin/customer_config/*, ANY::sc_admin/cache_config/*, ANY::sc_admin/email/*,ANY::sc_admin/email_template/*,ANY::sc_admin/language/*,ANY::sc_admin/currency/*,ANY::sc_admin/backup/*,ANY::sc_admin/api_connection/*,ANY::sc_admin/maintain/*','2020-03-24 08:37:08',NULL),(5,'Upload management','upload.full','ANY::sc_admin/uploads/*','2020-03-24 08:37:08',NULL),(6,'Plugin manager','plugin.full','ANY::sc_admin/plugin/*','2020-03-24 08:37:08',NULL),(8,'CMS manager','cms.full','ANY::sc_admin/page/*,ANY::sc_admin/banner/*,ANY::sc_admin/cms_category/*,ANY::sc_admin/cms_content/*,ANY::sc_admin/news/*','2020-03-24 08:37:08',NULL),(11,'Discount manager','discount.full','ANY::sc_admin/shop_discount/*','2020-03-24 08:37:08',NULL),(14,'Shipping status','shipping_status.full','ANY::sc_admin/shipping_status/*','2020-03-24 08:37:08',NULL),(15,'Payment  status','payment_status.full','ANY::sc_admin/payment_status/*','2020-03-24 08:37:08',NULL),(17,'Customer manager','customer.full','ANY::sc_admin/customer/*,ANY::sc_admin/subscribe/*','2020-03-24 08:37:08',NULL),(18,'Order status','order_status.full','ANY::sc_admin/order_status/*','2020-03-24 08:37:08',NULL),(19,'Product manager','product.full','ANY::sc_admin/category/*,ANY::sc_admin/supplier/*,ANY::sc_admin/brand/*,ANY::sc_admin/attribute_group/*,ANY::sc_admin/product/*','2020-03-24 08:37:08',NULL),(20,'Order Manager','order.full','ANY::sc_admin/order/*','2020-03-24 08:37:08',NULL),(21,'Report manager','report.full','ANY::sc_admin/report/*','2020-03-24 08:37:08',NULL),(22,'Template manager','template.full','ANY::sc_admin/block_content/*,ANY::sc_admin/link/*,ANY::sc_admin/template/*','2020-03-24 08:37:08',NULL);
+INSERT INTO `sc_admin_permission` VALUES (1,'Admin manager','admin.manager','GET::sc_admin/user,GET::sc_admin/role,GET::sc_admin/permission,ANY::sc_admin/log/*,ANY::sc_admin/menu/*','2020-04-11 05:23:20',NULL),(2,'Dashboard','dashboard','GET::sc_admin','2020-04-11 05:23:20',NULL),(3,'Auth manager','auth.full','ANY::sc_admin/auth/*','2020-04-11 05:23:20',NULL),(4,'Setting manager','setting.full','ANY::sc_admin/store_info/*,ANY::sc_admin/setting/*,ANY::sc_admin/url_config/*,ANY::sc_admin/product_config/*, ANY::sc_admin/customer_config/*, ANY::sc_admin/cache_config/*, ANY::sc_admin/email/*,ANY::sc_admin/email_template/*,ANY::sc_admin/language/*,ANY::sc_admin/currency/*,ANY::sc_admin/backup/*,ANY::sc_admin/api_connection/*,ANY::sc_admin/maintain/*','2020-04-11 05:23:20',NULL),(5,'Upload management','upload.full','ANY::sc_admin/uploads/*','2020-04-11 05:23:20',NULL),(6,'Plugin manager','plugin.full','ANY::sc_admin/plugin/*','2020-04-11 05:23:20',NULL),(8,'CMS manager','cms.full','ANY::sc_admin/page/*,ANY::sc_admin/banner/*,ANY::sc_admin/cms_category/*,ANY::sc_admin/cms_content/*,ANY::sc_admin/news/*','2020-04-11 05:23:20',NULL),(11,'Discount manager','discount.full','ANY::sc_admin/shop_discount/*','2020-04-11 05:23:20',NULL),(14,'Shipping status','shipping_status.full','ANY::sc_admin/shipping_status/*','2020-04-11 05:23:20',NULL),(15,'Payment  status','payment_status.full','ANY::sc_admin/payment_status/*','2020-04-11 05:23:20',NULL),(17,'Customer manager','customer.full','ANY::sc_admin/customer/*,ANY::sc_admin/subscribe/*','2020-04-11 05:23:20',NULL),(18,'Order status','order_status.full','ANY::sc_admin/order_status/*','2020-04-11 05:23:20',NULL),(19,'Product manager','product.full','ANY::sc_admin/category/*,ANY::sc_admin/supplier/*,ANY::sc_admin/brand/*,ANY::sc_admin/attribute_group/*,ANY::sc_admin/product/*','2020-04-11 05:23:20',NULL),(20,'Order Manager','order.full','ANY::sc_admin/order/*','2020-04-11 05:23:20',NULL),(21,'Report manager','report.full','ANY::sc_admin/report/*','2020-04-11 05:23:20',NULL),(22,'Template manager','template.full','ANY::sc_admin/block_content/*,ANY::sc_admin/link/*,ANY::sc_admin/template/*','2020-04-11 05:23:20',NULL);
 /*!40000 ALTER TABLE `sc_admin_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +362,7 @@ CREATE TABLE `sc_admin_role` (
 
 LOCK TABLES `sc_admin_role` WRITE;
 /*!40000 ALTER TABLE `sc_admin_role` DISABLE KEYS */;
-INSERT INTO `sc_admin_role` VALUES (1,'Administrator','administrator','2020-03-24 08:37:08',NULL),(2,'Group only View','view.all','2020-03-24 08:37:08',NULL),(3,'Manager','manager','2020-03-24 08:37:08',NULL),(4,'Cms manager','cms','2020-03-24 08:37:08',NULL),(5,'Accountant','accountant','2020-03-24 08:37:08',NULL),(6,'Marketing','maketing','2020-03-24 08:37:08',NULL);
+INSERT INTO `sc_admin_role` VALUES (1,'Administrator','administrator','2020-04-11 05:23:20',NULL),(2,'Group only View','view.all','2020-04-11 05:23:20',NULL),(3,'Manager','manager','2020-04-11 05:23:20',NULL),(4,'Cms manager','cms','2020-04-11 05:23:20',NULL),(5,'Accountant','accountant','2020-04-11 05:23:20',NULL),(6,'Marketing','maketing','2020-04-11 05:23:20',NULL);
 /*!40000 ALTER TABLE `sc_admin_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,7 +389,7 @@ CREATE TABLE `sc_admin_role_menu` (
 
 LOCK TABLES `sc_admin_role_menu` WRITE;
 /*!40000 ALTER TABLE `sc_admin_role_menu` DISABLE KEYS */;
-INSERT INTO `sc_admin_role_menu` VALUES (1,38,'2020-03-24 08:37:08',NULL),(2,38,'2020-03-24 08:37:08',NULL),(3,38,'2020-03-24 08:37:08',NULL);
+INSERT INTO `sc_admin_role_menu` VALUES (1,38,'2020-04-11 05:23:20',NULL),(2,38,'2020-04-11 05:23:20',NULL),(3,38,'2020-04-11 05:23:20',NULL);
 /*!40000 ALTER TABLE `sc_admin_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,7 +416,7 @@ CREATE TABLE `sc_admin_role_permission` (
 
 LOCK TABLES `sc_admin_role_permission` WRITE;
 /*!40000 ALTER TABLE `sc_admin_role_permission` DISABLE KEYS */;
-INSERT INTO `sc_admin_role_permission` VALUES (3,1,'2020-03-24 08:37:08',NULL),(3,2,'2020-03-24 08:37:08',NULL),(3,3,'2020-03-24 08:37:08',NULL),(3,4,'2020-03-24 08:37:08',NULL),(3,5,'2020-03-24 08:37:08',NULL),(3,8,'2020-03-24 08:37:08',NULL),(3,11,'2020-03-24 08:37:08',NULL),(3,14,'2020-03-24 08:37:08',NULL),(3,15,'2020-03-24 08:37:08',NULL),(3,17,'2020-03-24 08:37:08',NULL),(3,18,'2020-03-24 08:37:08',NULL),(3,19,'2020-03-24 08:37:08',NULL),(3,20,'2020-03-24 08:37:08',NULL),(3,21,'2020-03-24 08:37:08',NULL),(3,22,'2020-03-24 08:37:08',NULL),(4,3,'2020-03-24 08:37:08',NULL),(4,5,'2020-03-24 08:37:08',NULL),(4,8,'2020-03-24 08:37:08',NULL),(5,2,'2020-03-24 08:37:08',NULL),(5,3,'2020-03-24 08:37:08',NULL),(5,20,'2020-03-24 08:37:08',NULL),(5,21,'2020-03-24 08:37:08',NULL),(6,2,'2020-03-24 08:37:08',NULL),(6,3,'2020-03-24 08:37:08',NULL),(6,5,'2020-03-24 08:37:08',NULL),(6,8,'2020-03-24 08:37:08',NULL),(6,11,'2020-03-24 08:37:08',NULL),(6,14,'2020-03-24 08:37:08',NULL),(6,15,'2020-03-24 08:37:08',NULL),(6,17,'2020-03-24 08:37:08',NULL),(6,18,'2020-03-24 08:37:08',NULL),(6,19,'2020-03-24 08:37:08',NULL),(6,20,'2020-03-24 08:37:08',NULL),(6,21,'2020-03-24 08:37:08',NULL);
+INSERT INTO `sc_admin_role_permission` VALUES (3,1,'2020-04-11 05:23:20',NULL),(3,2,'2020-04-11 05:23:20',NULL),(3,3,'2020-04-11 05:23:20',NULL),(3,4,'2020-04-11 05:23:20',NULL),(3,5,'2020-04-11 05:23:20',NULL),(3,8,'2020-04-11 05:23:20',NULL),(3,11,'2020-04-11 05:23:20',NULL),(3,14,'2020-04-11 05:23:20',NULL),(3,15,'2020-04-11 05:23:20',NULL),(3,17,'2020-04-11 05:23:20',NULL),(3,18,'2020-04-11 05:23:20',NULL),(3,19,'2020-04-11 05:23:20',NULL),(3,20,'2020-04-11 05:23:20',NULL),(3,21,'2020-04-11 05:23:20',NULL),(3,22,'2020-04-11 05:23:20',NULL),(4,3,'2020-04-11 05:23:20',NULL),(4,5,'2020-04-11 05:23:20',NULL),(4,8,'2020-04-11 05:23:20',NULL),(5,2,'2020-04-11 05:23:20',NULL),(5,3,'2020-04-11 05:23:20',NULL),(5,20,'2020-04-11 05:23:20',NULL),(5,21,'2020-04-11 05:23:20',NULL),(6,2,'2020-04-11 05:23:20',NULL),(6,3,'2020-04-11 05:23:20',NULL),(6,5,'2020-04-11 05:23:20',NULL),(6,8,'2020-04-11 05:23:20',NULL),(6,11,'2020-04-11 05:23:20',NULL),(6,14,'2020-04-11 05:23:20',NULL),(6,15,'2020-04-11 05:23:20',NULL),(6,17,'2020-04-11 05:23:20',NULL),(6,18,'2020-04-11 05:23:20',NULL),(6,19,'2020-04-11 05:23:20',NULL),(6,20,'2020-04-11 05:23:20',NULL),(6,21,'2020-04-11 05:23:20',NULL);
 /*!40000 ALTER TABLE `sc_admin_role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -455,7 +456,6 @@ DROP TABLE IF EXISTS `sc_admin_store`;
 CREATE TABLE `sc_admin_store` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `site_status` tinyint(4) NOT NULL DEFAULT 1,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `long_phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -474,7 +474,7 @@ CREATE TABLE `sc_admin_store` (
 
 LOCK TABLES `sc_admin_store` WRITE;
 /*!40000 ALTER TABLE `sc_admin_store` DISABLE KEYS */;
-INSERT INTO `sc_admin_store` VALUES (1,'/data/logo/scart-mid.png',1,'0123456789','Support: 0987654321','admin-demo@s-cart.org','','123st - abc - xyz',NULL,NULL,'default-new');
+INSERT INTO `sc_admin_store` VALUES (1,'/data/logo/scart-mid.png','0123456789','Support: 0987654321','admin-demo@s-cart.org','','123st - abc - xyz',NULL,NULL,'default-new');
 /*!40000 ALTER TABLE `sc_admin_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -536,7 +536,7 @@ CREATE TABLE `sc_admin_user` (
 
 LOCK TABLES `sc_admin_user` WRITE;
 /*!40000 ALTER TABLE `sc_admin_user` DISABLE KEYS */;
-INSERT INTO `sc_admin_user` VALUES (1,'admin','$2y$10$fllXGrCa9gsV4fu0Dmnts.nJmrPM.c/dbh7wTw0DgSNrxVIpfL9yG','Administrator','admin-demo@s-cart.org','/admin/avatar/user.jpg',NULL,'2020-03-24 08:37:08',NULL);
+INSERT INTO `sc_admin_user` VALUES (1,'admin','$2y$10$vjpP0ZGlc0X3a2GuNp8aVOy7ivA8zt4Fa2LDCQHpZO7WfdcCs6WT6','Administrator','admin-demo@s-cart.org','/admin/avatar/user.jpg',NULL,'2020-04-11 05:23:20',NULL);
 /*!40000 ALTER TABLE `sc_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,7 +592,7 @@ CREATE TABLE `sc_api_connection` (
 
 LOCK TABLES `sc_api_connection` WRITE;
 /*!40000 ALTER TABLE `sc_api_connection` DISABLE KEYS */;
-INSERT INTO `sc_api_connection` VALUES (1,'Demo api connection','appmobile','5e79c6ba2f7fc',NULL,NULL,1);
+INSERT INTO `sc_api_connection` VALUES (1,'Demo api connection','appmobile','5e91544962b08',NULL,NULL,1);
 /*!40000 ALTER TABLE `sc_api_connection` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1077,7 +1077,7 @@ CREATE TABLE `sc_shop_order` (
 
 LOCK TABLES `sc_shop_order` WRITE;
 /*!40000 ALTER TABLE `sc_shop_order` DISABLE KEYS */;
-INSERT INTO `sc_shop_order` VALUES (1,1,5000,2000,0,1,1,1,0,7000,'USD',1.00,0,7000,'Naruto','Kun','ADDRESS 1','ADDRESS 2','VN',NULL,NULL,'667151172','test@test.com','ok','Cash','ShippingStandard',NULL,NULL,NULL,'2020-03-24 08:37:13',NULL);
+INSERT INTO `sc_shop_order` VALUES (1,1,5000,2000,0,1,1,1,0,7000,'USD',1.00,0,7000,'Naruto','Kun','ADDRESS 1','ADDRESS 2','VN',NULL,NULL,'667151172','test@test.com','ok','Cash','ShippingStandard',NULL,NULL,NULL,'2020-04-11 05:23:21',NULL);
 /*!40000 ALTER TABLE `sc_shop_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1141,7 +1141,7 @@ CREATE TABLE `sc_shop_order_history` (
 
 LOCK TABLES `sc_shop_order_history` WRITE;
 /*!40000 ALTER TABLE `sc_shop_order_history` DISABLE KEYS */;
-INSERT INTO `sc_shop_order_history` VALUES (1,1,'New order',0,1,1,'2020-03-24 15:37:13');
+INSERT INTO `sc_shop_order_history` VALUES (1,1,'New order',0,1,1,'2020-04-11 12:23:21');
 /*!40000 ALTER TABLE `sc_shop_order_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1770,7 +1770,7 @@ CREATE TABLE `sc_shop_user` (
 
 LOCK TABLES `sc_shop_user` WRITE;
 /*!40000 ALTER TABLE `sc_shop_user` DISABLE KEYS */;
-INSERT INTO `sc_shop_user` VALUES (1,'Naruto','Kun','test@test.com',0,NULL,'$2y$10$rbwW6PvaE8CVS9XVzxltg.nVp9mMWNsL0QMUgSdhSbKEb9fFQ3GwS','70000','HCM','HCM city','KTC','VN','0667151172',NULL,1,1,'2020-03-24 08:37:13',NULL);
+INSERT INTO `sc_shop_user` VALUES (1,'Naruto','Kun','test@test.com',0,NULL,'$2y$10$8gvlXSub3U.TFf3tEj0oouWY5o3cPCB6HeNz2KSDryj16XB3w2nFC','70000','HCM','HCM city','KTC','VN','0667151172',NULL,1,1,'2020-04-11 05:23:21',NULL);
 /*!40000 ALTER TABLE `sc_shop_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1783,4 +1783,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 15:37:39
+-- Dump completed on 2020-04-11 12:23:43

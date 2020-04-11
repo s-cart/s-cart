@@ -21,11 +21,6 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-
-                    <div class="box-body">
-                        <div class="fields-group">
-
-
                             <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
                                 <label for="image" class="col-sm-2  control-label">{{ trans('banner.image') }}</label>
                                 <div class="col-sm-8">
@@ -135,10 +130,6 @@
                                     <input class="input" type="checkbox" name="status"  {{ old('status',(empty($banner['status'])?0:1))?'checked':''}}>
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-
 
                     <!-- /.box-body -->
 

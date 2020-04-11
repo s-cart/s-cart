@@ -63,6 +63,7 @@ return [
         'tmp' => [
             'driver'     => 'local',
             'root'       => storage_path('tmp'),
+            'url'        => '',
         ],
 
         's3'     => [

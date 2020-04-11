@@ -7,12 +7,13 @@
           <ul class="nav nav-tabs">
             <li class=""><a href="{{ route('admin_template.index') }}">{{ trans('template.local') }}</a></li>
             <li class="active"><a href="#">{{ trans('template.online') }}</a></li>
-            <li class="pull-right">{!! trans('admin.template_more') !!}</li>
+            <li>{!! trans('template.template_import') !!}</li>
+            <li class="pull-right">{!! trans('template.template_more') !!}</li>
           </ul>
             <!-- /.box-header -->
           <section id="pjax-container" class="table-list">
             <div class="box-body table-responsive no-padding">
-              <table id="plugin" class="table table-bordered table-hover">
+              <table id="template" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>{{ trans('template.image') }}</th>

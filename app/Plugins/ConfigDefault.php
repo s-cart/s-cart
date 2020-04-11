@@ -4,7 +4,9 @@ namespace App\Plugins;
 
 abstract class  ConfigDefault
 {       
-    
+    public $configGroup;
+    public $configCode;
+    public $configKey;
     public $title;
     public $version;
     public $auth;

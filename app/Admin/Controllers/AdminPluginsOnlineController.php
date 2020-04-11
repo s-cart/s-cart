@@ -62,7 +62,7 @@ class AdminPluginsOnlineController extends Controller
         $code = sc_word_format_class($code);
 
         $arrPluginLocal = sc_get_all_plugin($code);
-        $title = trans('admin.plugin_manager.' . $code.'_plugin');
+        $title = trans('plugin.' . $code.'_plugin');
 
         return view('admin.screen.plugin_online')->with(
             [
@@ -85,17 +85,23 @@ class AdminPluginsOnlineController extends Controller
             $data = file_get_contents($path);
             $pathTmp = $code.'_'.$key.'_'.time();
             $fileTmp = $pathTmp.'.zip';
-            Storage::disk('tmp')->put($fileTmp, $data);
+            Storage::disk('tmp')->put($pathTmp.'/'.$fileTmp, $data);
         } catch(\Exception $e) {
             $response = ['error' => 1, 'msg' => $e->getMessage()];
         }
-        $unzip = sc_unzip(storage_path('tmp/'.$fileTmp), storage_path('tmp/'.$pathTmp));
+        $unzip = sc_unzip(storage_path('tmp/'.$pathTmp.'/'.$fileTmp), storage_path('tmp/'.$pathTmp));
 
         if($unzip) {
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/public'), public_path($pathPlugin));
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/src'), app_path($pathPlugin));
+            $checkConfig = glob(storage_path('tmp/'.$pathTmp) . '/*/src/config.json');
+            if(!$checkConfig) {
+                return $response = ['error' => 1, 'msg' => 'Cannot found file config.json'];
+            }
+            $folderName = explode('/src',$checkConfig[0]);
+            $folderName = explode('/', $folderName[0]);
+            $folderName = end($folderName);
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/public'), public_path($pathPlugin));
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/src'), app_path($pathPlugin));
             File::deleteDirectory(storage_path('tmp/'.$pathTmp));
-            Storage::disk('tmp')->delete($fileTmp);
             $namespace = sc_get_class_plugin_config($code, $key);
             $response = (new $namespace)->install();
         } else {

@@ -5,9 +5,10 @@
       <div class="col-md-12">
         <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class=""><a href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}">{{ trans('admin.plugin_manager.local') }}</a></li>
-          <li class="active"><a href="#">{{ trans('admin.plugin_manager.online') }}</a></li>
-          <li class="pull-right">{!! trans('admin.extensions_more') !!}</li>
+          <li class=""><a href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}">{{ trans('plugin.local') }}</a></li>
+          <li class="active"><a href="#">{{ trans('plugin.online') }}</a></li>
+          <li>{!! trans('plugin.plugin_import') !!}</li>
+          <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
         </ul>
             <!-- /.box-header -->
           <section id="pjax-container" class="table-list">
@@ -15,33 +16,33 @@
               <table id="plugin" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>{{ trans('admin.plugin_manager.image') }}</th>
-                  <th>{{ trans('admin.plugin_manager.code') }}</th>
-                  <th>{{ trans('admin.plugin_manager.name') }}</th>
-                  <th>{{ trans('admin.plugin_manager.version') }}</th>
-                  <th>{{ trans('admin.plugin_manager.auth') }}</th>
-                  <th>{{ trans('admin.plugin_manager.price') }}</th>
-                  <th>{{ trans('admin.plugin_manager.rated') }}</th>
+                  <th>{{ trans('plugin.image') }}</th>
+                  <th>{{ trans('plugin.code') }}</th>
+                  <th>{{ trans('plugin.name') }}</th>
+                  <th>{{ trans('plugin.version') }}</th>
+                  <th>{{ trans('plugin.auth') }}</th>
+                  <th>{{ trans('plugin.price') }}</th>
+                  <th>{{ trans('plugin.rated') }}</th>
                   <th><i class="fa fa-download" aria-hidden="true"></i></th>
-                  <th>{{ trans('admin.plugin_manager.date') }}</th>
-                  <th>{{ trans('admin.plugin_manager.action') }}</th>
+                  <th>{{ trans('plugin.date') }}</th>
+                  <th>{{ trans('plugin.action') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                   @if (!$arrPluginLibrary)
                     <tr>
                       <td colspan="5" style="text-align: center;color: red;">
-                        {{ trans('admin.plugin_manager.empty') }}
+                        {{ trans('plugin.empty') }}
                       </td>
                     </tr>
                   @else
                     @foreach ($arrPluginLibrary as  $plugin)
                     @php
                       if (array_key_exists($plugin['key'], $arrPluginLocal)) {
-                        $pluginAction = '<span class="btn btn-flat btn-default" type="button">'.trans('admin.plugin_manager.located').'</span>';
+                        $pluginAction = '<span class="btn btn-flat btn-default" type="button">'.trans('plugin.located').'</span>';
                       } else {
                         if(($plugin['is_free'] || $plugin['price_final'] == 0)) {
-                          $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                          $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('plugin.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
                         } else {
                           $pluginAction = '';
                         }
@@ -56,7 +57,7 @@
                         <td>{{ $plugin['username']??'' }}</td>
                         <td>
                           @if ($plugin['is_free'] || $plugin['price_final'] == 0)
-                            <span class="label label-success">{{ trans('admin.plugin_manager.free') }}</span>
+                            <span class="label label-success">{{ trans('plugin.free') }}</span>
                           @else
                               @if ($plugin['price_final'] != $plugin['price'])
                                   <span class="sc-old-price">{{ number_format($plugin['price']) }}</span><br>

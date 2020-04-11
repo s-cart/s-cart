@@ -151,7 +151,7 @@ class ShopCart extends GeneralController
             $validate['country'] = 'required|min:2';
         }
         if(sc_config('customer_postcode')) {
-            $validate['postcode'] = 'required|min:7';
+            $validate['postcode'] = 'required|min:5';
         }
         if(sc_config('customer_company')) {
             $validate['company'] = 'required|min:3';

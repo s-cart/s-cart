@@ -5,9 +5,10 @@
       <div class="col-md-12">
         <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#">{{ trans('admin.plugin_manager.local') }}</a></li>
-          <li class=""><a href="{{  route('admin_plugin_online', ['code' => strtolower($code)]) }}">{{ trans('admin.plugin_manager.online') }}</a></li>
-          <li class="pull-right">{!! trans('admin.extensions_more') !!}</li>
+          <li class="active"><a href="#">{{ trans('plugin.local') }}</a></li>
+          <li class=""><a href="{{  route('admin_plugin_online', ['code' => strtolower($code)]) }}">{{ trans('plugin.online') }}</a></li>
+          <li>{!! trans('plugin.plugin_import') !!}</li>
+          <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
         </ul>
 
             <!-- /.box-header -->
@@ -15,21 +16,21 @@
              <table id="plugin" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>{{ trans('admin.plugin_manager.image') }}</th>
-                  <th>{{ trans('admin.plugin_manager.code') }}</th>
-                  <th>{{ trans('admin.plugin_manager.name') }}</th>
-                  <th>{{ trans('admin.plugin_manager.version') }}</th>
-                  <th>{{ trans('admin.plugin_manager.auth') }}</th>
-                  <th>{{ trans('admin.plugin_manager.link') }}</th>
-                  <th>{{ trans('admin.plugin_manager.sort') }}</th>
-                  <th>{{ trans('admin.plugin_manager.action') }}</th>
+                  <th>{{ trans('plugin.image') }}</th>
+                  <th>{{ trans('plugin.code') }}</th>
+                  <th>{{ trans('plugin.name') }}</th>
+                  <th>{{ trans('plugin.version') }}</th>
+                  <th>{{ trans('plugin.auth') }}</th>
+                  <th>{{ trans('plugin.link') }}</th>
+                  <th>{{ trans('plugin.sort') }}</th>
+                  <th>{{ trans('plugin.action') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                   @if (!$plugins)
                     <tr>
                       <td colspan="5" style="text-align: center;color: red;">
-                        {{ trans('admin.plugin_manager.empty') }}
+                        {{ trans('plugin.empty') }}
                       </td>
                     </tr>
                   @else
@@ -39,30 +40,30 @@
                     $pluginClass = new $classConfig;
                     //Check Plugin installed
                     if(!array_key_exists($codePlugin, $pluginsInstalled->toArray())){
-                      $pluginStatusTitle = trans('admin.plugin_manager.not_install');
-                      $pluginAction = '<span onClick="installPlugin($(this),\''.$codePlugin.'\');" title="'.trans('admin.plugin_manager.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+                      $pluginStatusTitle = trans('plugin.not_install');
+                      $pluginAction = '<span onClick="installPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
                     }else{
                       //Check plugin enable
                       if($pluginsInstalled[$codePlugin]['value']){
-                        $pluginStatusTitle = trans('admin.plugin_manager.actived');
-                        $pluginAction ='<span onClick="disablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('admin.plugin_manager.disable').'" type="button" class="btn btn-flat btn-warning btn-flat"><i class="fa fa-power-off"></i></span>&nbsp;';
+                        $pluginStatusTitle = trans('plugin.actived');
+                        $pluginAction ='<span onClick="disablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.disable').'" type="button" class="btn btn-flat btn-warning btn-flat"><i class="fa fa-power-off"></i></span>&nbsp;';
                           if($pluginClass->config()){
-                            $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('admin.plugin_manager.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
+                            $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
                           }
                           //You can not remove if plugin is default
                           if(!in_array($codePlugin, $arrDefault)) {
-                            $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('admin.plugin_manager.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                            $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
                           }
                       }else{
-                        $pluginStatusTitle = trans('admin.plugin_manager.disabled');
-                        $pluginAction = '<span onClick="enablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('admin.plugin_manager.enable').'" type="button" class="btn btn-flat btn-primary"><i class="fa fa-paper-plane"></i></span>&nbsp;';
+                        $pluginStatusTitle = trans('plugin.disabled');
+                        $pluginAction = '<span onClick="enablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.enable').'" type="button" class="btn btn-flat btn-primary"><i class="fa fa-paper-plane"></i></span>&nbsp;';
                           if($pluginClass->config()){
-                            $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('admin.plugin_manager.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
+                            $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
                           }
 
                           //You can not remove if plugin is default
                           if(!in_array($codePlugin, $arrDefault)) {
-                            $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('admin.plugin_manager.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                            $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
                           }
                       }
                     }

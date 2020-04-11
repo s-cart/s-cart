@@ -4,7 +4,7 @@ return [
         'about' => 'S-Cart is a free e-commerce website project for businesses, built on the Laravel framework (PHP & Mysql)',
         'about_pro' => 'Best Laravel eCommerce Platform for Business!',
         'about_us' => '- About us, please visit <a target="_new" href="https://s-cart.org/">S-Cart\'s homepage</a>',
-        'document' => '- Installation guide <a target="_new" href="https://s-cart.org/installation.html">HERE</a>',
+        'document' => '- Installation guide <a target="_new" href="https://s-cart.org/docs/master/installation.html">HERE</a>',
         'version' => 'Versions',
         'terms' => '<span style="color:red">*</span> Please read the terms before installing <a target="_new" href="https://s-cart.org/license.html">HERE</a>.',
         'terms_pro' => '<span style="color:red">*</span> Please read the terms before installing <a target="_new" href="https://s-cart.org/pro.html">HERE</a>.',

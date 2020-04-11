@@ -38,7 +38,8 @@ class AdminPluginsController extends Controller
         }
         $pluginsInstalled = sc_get_plugin_installed($code, $onlyActive = false);
         $plugins = sc_get_all_plugin($code);
-        $title = trans('admin.plugin_manager.' . $code.'_plugin');
+        $title = trans('plugin
+        .' . $code.'_plugin');
         return $this->render($pluginsInstalled, $plugins,  $title, $code, $arrDefault);
     }
 
@@ -54,6 +55,9 @@ class AdminPluginsController extends Controller
             ]);
     }
 
+    /**
+     * Install Plugin
+     */
     public function install()
     {
         $key = request('key');
@@ -62,6 +66,12 @@ class AdminPluginsController extends Controller
         $response = (new $namespace)->install();
         return json_encode($response);
     }
+
+    /**
+     * Uninstall plugin
+     *
+     * @return  [type]  [return description]
+     */
     public function uninstall()
     {
         $key = request('key');
@@ -72,6 +82,12 @@ class AdminPluginsController extends Controller
         File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
         return json_encode($response);
     }
+
+    /**
+     * Enable plugin
+     *
+     * @return  [type]  [return description]
+     */
     public function enable()
     {
         $key = request('key');
@@ -80,6 +96,12 @@ class AdminPluginsController extends Controller
         $response = (new $namespace)->enable();
         return json_encode($response);
     }
+
+    /**
+     * Disable plugin
+     *
+     * @return  [type]  [return description]
+     */
     public function disable()
     {
         $key = request('key');
@@ -88,6 +110,15 @@ class AdminPluginsController extends Controller
         $response = (new $namespace)->disable();
         return json_encode($response);
     }
+
+    /**
+     * Process plugin
+     *
+     * @param   [type]  $code  [$code description]
+     * @param   [type]  $key   [$key description]
+     *
+     * @return  [type]         [return description]
+     */
     public function process($code, $key)
     {
         $data = request()->all();
@@ -95,4 +126,85 @@ class AdminPluginsController extends Controller
         $response = (new $namespace)->process($data);
         return json_encode($response);
     }
+
+    /**
+     * Import plugin
+     */
+    public function importPlugin() {
+        $data =  [
+            'title' => trans('plugin.import')
+        ];
+        return view('admin.screen.plugin_upload')
+        ->with($data);
+    }
+
+    /**
+     * Process import
+     *
+     * @return  [type]  [return description]
+     */
+    public function processImport() {
+        $data = request()->all();
+        $validator = \Validator::make(
+            $data,
+            [
+                'file'   => 'required|mimetypes:application/zip|max:51200',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $pathTmp = time();
+        $pathFile = sc_file_upload($data['file'],'tmp', $pathFolder = $pathTmp);
+        if($pathFile) {
+            $unzip = sc_unzip(storage_path('tmp/'.$pathFile), storage_path('tmp/'.$pathTmp));
+            if($unzip) {
+                $checkConfig = glob(storage_path('tmp/'.$pathTmp) . '/*/src/config.json');
+                if($checkConfig) {
+                    $folderName = explode('/src',$checkConfig[0]);
+                    $folderName = explode('/', $folderName[0]);
+                    $folderName = end($folderName);
+                    $config = json_decode(file_get_contents($checkConfig[0]), true);
+                    $configGroup = $config['configGroup'] ?? '';
+                    $configCode = $config['configCode'] ?? '';
+                    $configKey = $config['configKey'] ?? '';
+                    if (!$configGroup || !$configCode || !$configKey) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('plugin.error_config'));
+                    }
+
+                    $arrPluginLocal = sc_get_all_plugin($configCode);
+                    if(array_key_exists($configKey, $arrPluginLocal)) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('plugin.error_exist'));
+                    }
+
+                    $pathPlugin = $configGroup.'/'.$configCode.'/'.$configKey;
+                    try {
+                        File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/public'), public_path($pathPlugin));
+                        File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/src'), app_path($pathPlugin));
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        $namespace = sc_get_class_plugin_config($configCode, $configKey);
+                        $response = (new $namespace)->install();
+                    } catch(\Exception $e) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', $e->getMessage());
+                    }
+
+                } else {
+                    File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                    return redirect()->back()->with('error', trans('plugin.error_check_config'));
+                }
+            } else {
+                return redirect()->back()->with('error', trans('plugin.error_unzip'));
+            }
+        } else {
+            return redirect()->back()->with('error', trans('plugin.error_upload'));
+        }
+        return redirect()->back()->with('success', trans('plugin.import_success')); 
+    }
+
 }

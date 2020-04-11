@@ -1,0 +1,11 @@
+{
+    "name": "Discount module",
+    "image": "",
+    "auth": "Naruto",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Total",
+    "configKey": "Discount",
+    "version": "1.1"
+}

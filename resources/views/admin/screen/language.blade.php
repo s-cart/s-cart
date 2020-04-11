@@ -23,10 +23,6 @@
                 <div class="box-body">
                     <div class="fields-group">
 
-
-                        <div class="box-body">
-                            <div class="fields-group">
-
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name"
                                         class="col-sm-2  control-label">{{ trans('language.name') }}</label>
@@ -136,10 +132,6 @@
 
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-
 
                         <!-- /.box-body -->
 
