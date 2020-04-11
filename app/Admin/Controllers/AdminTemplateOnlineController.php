@@ -74,12 +74,19 @@ class AdminTemplateOnlineController extends Controller
             $response = ['error' => 1, 'msg' => $e->getMessage()];
         }
 
-        $unzip = sc_unzip(storage_path('tmp/'.$fileTmp), storage_path('tmp/'.$pathTmp));
+        $unzip = sc_unzip(storage_path('tmp/'.$pathTmp.'/'.$fileTmp), storage_path('tmp/'.$pathTmp));
         if($unzip) {
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/public'), public_path('templates/'.$key));
-            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$key.'/src'), resource_path('views/templates/'.$key));
+            $checkConfig = glob(storage_path('tmp/'.$pathTmp) . '/*/src/config.json');
+            if(!$checkConfig) {
+                return $response = ['error' => 1, 'msg' => 'Cannot found file config.json'];
+            }
+            $folderName = explode('/src',$checkConfig[0]);
+            $folderName = explode('/', $folderName[0]);
+            $folderName = end($folderName);
+            
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/public'), public_path('templates/'.$key));
+            File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/src'), resource_path('views/templates/'.$key));
             File::deleteDirectory(storage_path('tmp/'.$pathTmp));
-            Storage::disk('tmp')->delete($fileTmp);
         } else {
             $response = ['error' => 1, 'msg' => 'error while unzip'];
         }

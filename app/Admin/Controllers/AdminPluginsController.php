@@ -38,7 +38,8 @@ class AdminPluginsController extends Controller
         }
         $pluginsInstalled = sc_get_plugin_installed($code, $onlyActive = false);
         $plugins = sc_get_all_plugin($code);
-        $title = trans('admin.plugin_manager.' . $code.'_plugin');
+        $title = trans('plugin
+        .' . $code.'_plugin');
         return $this->render($pluginsInstalled, $plugins,  $title, $code, $arrDefault);
     }
 
@@ -204,89 +205,6 @@ class AdminPluginsController extends Controller
             return redirect()->back()->with('error', trans('plugin.error_upload'));
         }
         return redirect()->back()->with('success', trans('plugin.import_success')); 
-    }
-
-
-    public function exportFormat() {
-        $type = request('type');
-        switch ($type) {
-            case 'import_product':
-                header('Content-Type: text/csv; charset=utf-8');
-                header('Content-Disposition: attachment; filename='.$type.'.csv');
-                $output = fopen('php://output', 'w');
-                $dataHeader = [
-                    'sku' => 'SKU of product',
-                    'image' => 'Path of image',
-                    'brand_id' => 'ID of Brand',
-                    'vendor_id' => 'ID of vendor',
-                    'price' => 'Price is numeric',
-                    'cost' => 'Cost  is numeric',
-                    'stock' => 'Stock  is numeric',
-                    'sold' => 'Sold  is numeric',
-                    'type' => 'Type  is numeric',
-                    'kind' => 'Kind is numeric',
-                    'virtual' => 'Virtual is numeric',
-                    'status' => 'Status: 0 off - 1 on',
-                    'date_available' => 'Empty or like 2020-10-06',
-                ];
-                $dataExample = [
-                    'sku' => 'SKUDEMO_001',
-                    'image' => '/data/product/img-22.jpg',
-                    'brand_id' => '2',
-                    'vendor_id' => '1',
-                    'price' => '15000',
-                    'cost' => '5000',
-                    'stock' => '100',
-                    'sold' => '0',
-                    'type' => '0',
-                    'kind' => '0',
-                    'virtual' => '0',
-                    'status' => '1',
-                    'date_available' => '2020-10-06',
-                ];
-                fputcsv($output, array_keys($dataHeader));
-                fputcsv($output, $dataHeader);
-                fputcsv($output, $dataExample);
-                break;
-
-                case 'import_product_description':
-                    header('Content-Type: text/csv; charset=utf-8');
-                    header('Content-Disposition: attachment; filename='.$type.'.csv');
-                    $output = fopen('php://output', 'w');
-                    $dataHeader = [
-                        'sku' => 'SKU of product',
-                        'lang' => 'Code of language. Ex en,vi',
-                        'name' => 'Name of product',
-                        'keyword' => 'Keywords',
-                        'description' => 'Description',
-                        'content' => 'Detail for product',
-                    ];
-                    $dataExample1 = [
-                        'sku' => 'SKUDEMO_001',
-                        'lang' => 'en',
-                        'name' => 'Easy Polo Black Edition',
-                        'keyword' => 's-cart, free',
-                        'description' => '',
-                        'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>',
-                    ];
-                    $dataExample2 = [
-                        'sku' => 'SKUDEMO_001',
-                        'lang' => 'vi',
-                        'name' => 'Phien ban mau den',
-                        'keyword' => '',
-                        'description' => '',
-                        'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>',
-                    ];                    
-                    fputcsv($output, array_keys($dataHeader));
-                    fputcsv($output, $dataHeader);
-                    fputcsv($output, $dataExample1);
-                    fputcsv($output, $dataExample2);
-                    break;
-
-            default:
-                ;
-        }
-        exit;
     }
 
 }

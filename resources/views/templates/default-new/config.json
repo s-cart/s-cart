@@ -4,5 +4,6 @@
     "auth": "Sesshomaru",
     "email": "ntrong0603.dgt@gmail.com",
     "website": "https://S-Cart.Org",
-    "version": "1.0.0"
+    "configKey": "default-new",
+    "version": "1.1"
 }
