@@ -69,7 +69,7 @@ class AdminTemplateOnlineController extends Controller
             $data = file_get_contents($path);
             $pathTmp = $key.'_'.time();
             $fileTmp = $pathTmp.'.zip';
-            Storage::disk('tmp')->put($fileTmp, $data);
+            Storage::disk('tmp')->put($pathTmp.'/'.$fileTmp, $data);
         } catch(\Exception $e) {
             $response = ['error' => 1, 'msg' => $e->getMessage()];
         }

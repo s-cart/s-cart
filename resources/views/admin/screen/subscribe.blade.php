@@ -21,10 +21,6 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-
-                    <div class="box-body">
-                        <div class="fields-group">
-
                             <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-sm-2  control-label">{{ trans('subscribe.email') }}</label>
                                 <div class="col-sm-8">
@@ -49,11 +45,6 @@
 
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-
-
                     <!-- /.box-body -->
 
                     <div class="box-footer">

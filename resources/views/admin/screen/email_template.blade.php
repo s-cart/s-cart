@@ -21,10 +21,6 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-
-                    <div class="box-body">
-                        <div class="fields-group">
-
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-sm-2  control-label">{{ trans('email_template.name') }}</label>
                                 <div class="col-sm-8">
@@ -72,7 +68,7 @@
                             <div class="form-group  ">
                                 <label for="status" class="col-sm-2  control-label">{{ trans('email_template.status') }}</label>
                                 <div class="col-sm-8">
-                                    <input class="input" type="checkbox" name="status"  {!! old('status',(empty($obj['status'])?0:1))?'checked':''!!}>
+                                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
                                 </div>
                             </div>
 
@@ -84,9 +80,6 @@
                                     </div>                                   
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
 
 
                     <!-- /.box-body -->
@@ -122,7 +115,6 @@
 @push('scripts')
 
 <script type="text/javascript">
-    $("[name='top'],[name='status']").bootstrapSwitch();
     $(document).ready(function(){
         var group = $("[name='group'] option:selected").val();
         loadListVariable(group);
@@ -155,8 +147,7 @@
 </script>
 
 <script type="text/javascript">
-
-$(document).ready(function() {
+    $(document).ready(function() {
     $('.select2').select2()
 });
 

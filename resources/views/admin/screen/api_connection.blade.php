@@ -21,10 +21,6 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-
-                    <div class="box-body">
-                        <div class="fields-group">
-
                             <div class="form-group   {{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="col-sm-2  control-label">{{ trans('api_connection.description') }}</label>
                                 <div class="col-sm-8">
@@ -102,9 +98,6 @@
 
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
 
 
                     <!-- /.box-body -->

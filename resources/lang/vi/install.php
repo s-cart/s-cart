@@ -4,7 +4,7 @@ return [
         'about' => 'S-Cart là một dự án website thương mại điện tử miễn phí cho doanh nghiệp, được xây dựng trên nền tảng Laravel framework (PHP & Mysql).',
         'about_pro' => 'Mã nguồn website thương mại điện tử doành cho doanh nghiệp!',
         'about_us' => '- Để hiểu thêm về chúng tôi, hãy ghé thăm <a target="_new" href="https://s-cart.org/">Trang chủ của S-Cart</a>',
-        'document' => '- Tài liệu hướng dẫn cài đặt <a target="_new" href="https://s-cart.org/installation.html">TẠI ĐÂY</a>',
+        'document' => '- Tài liệu hướng dẫn cài đặt <a target="_new" href="https://s-cart.org/docs/master/installation.html">TẠI ĐÂY</a>',
         'version' => 'Phiên bản',
         'terms' => '<span style="color:red">*</span> Vui lòng đọc điều kiện trước khi cài đặt <a target="_new" href="https://s-cart.org/license.html">Ở ĐÂY</a>.',
         'terms_pro' => '<span style="color:red">*</span> Vui lòng đọc điều kiện trước khi cài đặt <a target="_new" href="https://s-cart.org/pro.html">Ở ĐÂY</a>.',
