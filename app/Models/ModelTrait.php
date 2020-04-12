@@ -95,8 +95,8 @@ trait ModelTrait
     /**
      * Set random mode
      */
-    public function setRandom() {
-        $this->sc_random = 1;
+    public function setRandom($status = 1) {
+        $this->sc_random = (int)$status;
         return $this;
     }
     
