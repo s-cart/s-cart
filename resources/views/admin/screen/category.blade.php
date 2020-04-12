@@ -36,19 +36,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group   {{ $errors->has('descriptions.'.$code.'.name') ? ' has-error' : '' }}">
-                            <label for="{{ $code }}__name"
-                                class="col-sm-2  control-label">{{ trans('category.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                        <div class="form-group   {{ $errors->has('descriptions.'.$code.'.title') ? ' has-error' : '' }}">
+                            <label for="{{ $code }}__title"
+                                class="col-sm-2  control-label">{{ trans('category.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                    <input type="text" id="{{ $code }}__name" name="descriptions[{{ $code }}][name]"
-                                        value="{!! old()? old('descriptions.'.$code.'.name'):($descriptions[$code]['name']??'') !!}"
-                                        class="form-control {{ $code.'__name' }}" placeholder="" />
+                                    <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
+                                        value="{!! old()? old('descriptions.'.$code.'.title'):($descriptions[$code]['title']??'') !!}"
+                                        class="form-control {{ $code.'__title' }}" placeholder="" />
                                 </div>
-                                @if ($errors->has('descriptions.'.$code.'.name'))
+                                @if ($errors->has('descriptions.'.$code.'.title'))
                                 <span class="help-block">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.name') }}
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.title') }}
                                 </span>
                                 @else
                                     <span class="help-block">
