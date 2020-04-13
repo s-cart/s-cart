@@ -107,7 +107,7 @@ class ShopProductController extends Controller
             ->where($tableDescription . '.lang', sc_get_locale());
 
         if ($keyword) {
-            $obj = $obj->where(function ($sql) use($tableDescription, $tableProduct) use($keyword){
+            $obj = $obj->where(function ($sql) use($tableDescription, $tableProduct, $keyword){
                 $sql->where($tableDescription . '.name', 'like', '%' . $keyword . '%')
                 ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
                 ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%')
