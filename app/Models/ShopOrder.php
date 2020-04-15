@@ -74,18 +74,6 @@ class ShopOrder extends Model
     }
 
 /**
- * [updateInfo description]
- * Don't apply for fields discount, shiping, received, cause
- * @param  [type] $order_id  [description]
- * @param  [type] $arrFields [description]
- * @return [type]            [description]
- */
-    public static function updateInfo($arrFields, $order_id)
-    {
-        return self::where('id', $order_id)->update($arrFields);
-    }
-
-/**
  * Update status order
  * @param  [type]  $order_id
  * @param  integer $status

@@ -23,10 +23,9 @@ class ShopOrderTotal extends Model
     const NEED_REFUND = 3;
 
     /**
-     * [processDataTotal description]
+     * Process data order total
      * @param  array      $objects  [description]
-     * @param  float|null $subtotal [description]
-     * @return [type]               [description]
+     * @return [array]    order total after process
      */
     public static function processDataTotal(array $objects = [])
     {
@@ -92,6 +91,9 @@ class ShopOrderTotal extends Model
         return $value;
     }
 
+    /**
+     * Get shipping method
+     */
     public static function getShippingMethod()
     {
         $arrShipping = [];
@@ -110,6 +112,9 @@ class ShopOrderTotal extends Model
         return $arrShipping;
     }
 
+    /**
+     * Get payment method
+     */
     public static function getPaymentMethod()
     {
         $arrPayment = [];
@@ -125,6 +130,9 @@ class ShopOrderTotal extends Model
         return $arrPayment;
     }
 
+    /**
+     * Get total method
+     */
     public static function getTotalMethod()
     {
         $totalMethod = [];
@@ -155,6 +163,9 @@ class ShopOrderTotal extends Model
         return $totalMethod;
     }
 
+    /**
+     * Get received value
+     */
     public static function getReceived()
     {
         return array(
@@ -181,9 +192,9 @@ class ShopOrderTotal extends Model
     }
 
     /**
-     * [updateSubTotal description]
-     * @param  [type] $order_id [description]
-     * @param  [type] $subtotal_value    [description]
+     * Update new sub total
+     * @param  [int] $order_id [description]
+     * @param  [int] $subtotal_value    [description]
      * @return [type]           [description]
      */
     public static function updateSubTotal($order_id, $subtotal_value)
@@ -229,16 +240,16 @@ class ShopOrderTotal extends Model
     }
 
     /**
-     * [updateField description]
-     * @param  [type] $field [description]
-     * @return [type]        [description]
+     * Update data when row of total change
+     * @param  [array] $row [description]
+     * @return [void]
      */
-    public static function updateField($field)
+    public static function updateRowTotal($row)
     {
-        //Udate field
-        $upField = self::find($field['id']);
-        $upField->value = $field['value'];
-        $upField->text = $field['text'];
+        //Udate row
+        $upField = self::find($row['id']);
+        $upField->value = $row['value'];
+        $upField->text = $row['text'];
         $upField->updated_at = date('Y-m-d H:i:s');
         $upField->save();
         $order_id = $upField->order_id;
@@ -278,10 +289,11 @@ class ShopOrderTotal extends Model
         $order->balance = $total + $received;
         $order->total = $total;
         $order->save();
-
-        return $order_id;
     }
 
+    /**
+     * Get object total for order
+     */
     public static function getObjectOrderTotal(){
         $objects = array();
         $objects[] = self::getShippingMethod();
