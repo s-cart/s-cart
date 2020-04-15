@@ -364,70 +364,64 @@ class ShopOrderController extends Controller
         return response()->json($arrayReturn);
     }
 
-/**
- * [postOrderUpdate description]
- * @param   [description]
- * @return [type]           [description]
- */
+    /**
+     * process update order
+     * @return [json]           [description]
+     */
     public function postOrderUpdate()
     {
         $id = request('pk');
-        $field = request('name');
+        $code = request('name');
         $value = request('value');
-        if ($field == 'shipping' || $field == 'discount' || $field == 'received') {
+        if ($code == 'shipping' || $code == 'discount' || $code == 'received') {
             $order_total_origin = ShopOrderTotal::find($id);
             $order_id = $order_total_origin->order_id;
             $oldValue = $order_total_origin->value;
             $order = ShopOrder::find($order_id);
-            $fieldTotal = [
+            $rowTotal = [
                 'id' => $id,
-                'code' => $field,
+                'code' => $code,
                 'value' => $value,
                 'text' => sc_currency_render_symbol($value, $order->currency),
             ];
-            ShopOrderTotal::updateField($fieldTotal);
+            ShopOrderTotal::updateRowTotal($rowTotal);
         } else {
-            $arrFields = [
-                $field => $value,
-            ];
             $order_id = $id;
             $order = ShopOrder::find($order_id);
-            $oldValue = $order->{$field};
-            ShopOrder::updateInfo($arrFields, $order_id);
+            $oldValue = $order->{$code};
+            $order->update([$code => $value]);
         }
 
         //Add history
         $dataHistory = [
             'order_id' => $order_id,
-            'content' => 'Change <b>' . $field . '</b> from <span style="color:blue">\'' . $oldValue . '\'</span> to <span style="color:red">\'' . $value . '\'</span>',
+            'content' => 'Change <b>' . $code . '</b> from <span style="color:blue">\'' . $oldValue . '\'</span> to <span style="color:red">\'' . $value . '\'</span>',
             'admin_id' => Admin::user()->id,
             'order_status_id' => $order->status,
         ];
         (new ShopOrder)->addOrderHistory($dataHistory);
 
-        if ($order_id) {
-            $orderUpdated = ShopOrder::find($order_id);
-            if ($orderUpdated->balance == 0 && $orderUpdated->total != 0) {
-                $style = 'style="color:#0e9e33;font-weight:bold;"';
-            } else
-            if ($orderUpdated->balance < 0) {
-                $style = 'style="color:#ff2f00;font-weight:bold;"';
-            } else {
-                $style = 'style="font-weight:bold;"';
-            }
-            $blance = '<tr ' . $style . ' class="data-balance"><td>' . trans('order.balance') . ':</td><td align="right">' . sc_currency_format($orderUpdated->balance) . '</td></tr>';
-            return response()->json(['error' => 0, 'detail' => [
+        $orderUpdated = ShopOrder::find($order_id);
+        if ($orderUpdated->balance == 0 && $orderUpdated->total != 0) {
+            $style = 'style="color:#0e9e33;font-weight:bold;"';
+        } else
+        if ($orderUpdated->balance < 0) {
+            $style = 'style="color:#ff2f00;font-weight:bold;"';
+        } else {
+            $style = 'style="font-weight:bold;"';
+        }
+        $blance = '<tr ' . $style . ' class="data-balance"><td>' . trans('order.balance') . ':</td><td align="right">' . sc_currency_format($orderUpdated->balance) . '</td></tr>';
+        return response()->json(['error' => 0, 'detail' => 
+            [
                 'total' => sc_currency_format($orderUpdated->total),
                 'subtotal' => sc_currency_format($orderUpdated->subtotal),
                 'shipping' => sc_currency_format($orderUpdated->shipping),
                 'discount' => sc_currency_format($orderUpdated->discount),
                 'received' => sc_currency_format($orderUpdated->received),
                 'balance' => $blance,
-            ],'msg' => trans('order.admin.update_success')
-            ]);
-        } else {
-            return response()->json(['error' => 1, 'msg' => 'Error ']);
-        }
+            ],
+            'msg' => trans('order.admin.update_success')
+        ]);
     }
 
 /**
