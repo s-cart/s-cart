@@ -28,13 +28,7 @@
 
                         @foreach ($languages as $code => $language)
 
-                        <div class="form-group">
-                            <label class="col-sm-2  control-label"></label>
-                            <div class="col-sm-8">
-                                <b>{{ $language->name }}</b>
-                                {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}
-                            </div>
-                        </div>
+                        <legend>{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</legend>
 
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.title') ? ' has-error' : '' }}">
