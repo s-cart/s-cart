@@ -174,4 +174,15 @@ class AuthController extends GeneralController
     {
         return response()->json($request->user());
     }
+
+    /**
+     * Get the authenticated User
+     *
+     * @return [json] user object
+     */
+    public function orders(Request $request)
+    {
+        return response()->json($request->user()->orders);
+    }
+
 }

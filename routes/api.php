@@ -26,6 +26,7 @@ Route::group(['middleware' => ['json.response', 'api.connection', 'throttle:1000
         ], function() {
             Route::get('logout', 'AuthController@logout');
             Route::get('user', 'AuthController@user');
+            Route::get('orders', 'AuthController@orders');
         });
     });
     
