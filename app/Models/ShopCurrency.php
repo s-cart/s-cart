@@ -227,11 +227,12 @@ class ShopCurrency extends Model
         return self::where('status', 1)->sort()->get();
     }
 //Scort
-    public function scopeSort($query, $column = null)
+    public function scopeSort($query, $sortBy = null, $sortOrder = 'desc')
     {
-        $column = $column ?? 'sort';
-        return $query->orderBy($column, 'asc')->orderBy('id', 'desc');
+        $sortBy = $sortBy ?? 'sort';
+        return $query->orderBy($sortBy, $sortOrder);
     }
+
     protected static function boot() {
         parent::boot();
         static::deleting(function ($model) {

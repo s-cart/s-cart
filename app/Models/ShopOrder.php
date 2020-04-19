@@ -100,9 +100,10 @@ class ShopOrder extends Model
     }
 
 //Scort
-    public function scopeSort($query)
+    public function scopeSort($query, $sortBy = null, $sortOrder = 'desc')
     {
-        return $query->orderBy('id', 'desc');
+        $sortBy = $sortBy ?? 'sort';
+        return $query->orderBy($sortBy, $sortOrder);
     }
 
     /**

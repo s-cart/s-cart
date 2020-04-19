@@ -32,10 +32,10 @@ class ShopBanner extends Model
 
     }
 //Scort
-    public function scopeSort($query, $column = null)
+    public function scopeSort($query, $sortBy = null, $sortOrder = 'desc')
     {
-        $column = $column ?? 'sort';
-        return $query->orderBy($column, 'asc')->orderBy('id', 'desc');
+        $sortBy = $sortBy ?? 'sort';
+        return $query->orderBy($sortBy, $sortOrder);
     }
 
     /**
