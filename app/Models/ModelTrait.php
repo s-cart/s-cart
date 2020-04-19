@@ -17,11 +17,10 @@ trait ModelTrait
     protected  $sc_keyword = ''; // search search product
  
 
+    
     /**
      * Set value limit
-     *
-     * @param   [int]  $limit
-     *
+     * @param   [string]  $limit 
      */
     public function setLimit($limit) {
         if ($limit === 'all') {
@@ -33,10 +32,8 @@ trait ModelTrait
     }
 
     /**
-     * Set value status
-     *
-     * @param   [int]  $status
-     *
+     * Set status
+     * @param   [string]  $status 
      */
     private function setStatus($status) {
         if ($status === 'all') {
@@ -48,26 +45,21 @@ trait ModelTrait
     }
 
     /**
-     * Set sort
-     *
-     * @param   [array]  $sort ex: ['sort', 'desc']
-     *
+     * Set value sort
+     * @param   [array]  $sort ['field', 'asc|desc']
      */
-    public function setSort($sort) {
+    public function setSort(array $sort) {
         if(is_array($sort)) {
             $this->sc_sort[] = $sort;
         }
         return $this;
     }
 
-
-     /**
+    /**
      * Add more where
-     *
-     * @param   [array]  $moreWhere ex: ['field', '=', 'value']
-     *
+     * @param   [array]  $moreWhere 
      */
-    public function setMoreWhere($moreWhere) {
+    public function setMoreWhere(array $moreWhere) {
         if(is_array($moreWhere)) {
             if(count($moreWhere) == 2) {
                 $where[0] = $moreWhere[0];
@@ -95,14 +87,14 @@ trait ModelTrait
     /**
      * Set random mode
      */
-    public function setRandom($status = 1) {
-        $this->sc_random = (int)$status;
+    public function setRandom() {
+        $this->sc_random = 1;
         return $this;
     }
     
     /**
      * Set keyword search
-     * @param   [string]  $keyword
+     * @param   [string]  $keyword 
      */
     public function setKeyword($keyword) {
         if(trim($keyword)) {
@@ -128,8 +120,9 @@ trait ModelTrait
 
      /**
      * Get data
+     * @param   [array]  $action 
      */
-    public function getData($action = []) {
+    public function getData(array $action = []) {
         $query = $this->buildQuery();
         if (!empty($action['query'])) {
             return $query;
