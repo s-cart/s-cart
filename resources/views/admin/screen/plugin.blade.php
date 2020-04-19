@@ -6,7 +6,9 @@
         <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#">{{ trans('plugin.local') }}</a></li>
-          <li class=""><a href="{{  route('admin_plugin_online', ['code' => strtolower($code)]) }}">{{ trans('plugin.online') }}</a></li>
+          @if (config('scart.settings.api_plugin'))
+          <li class=""><a href="{{  route('admin_plugin_online', ['code' => strtolower($code)]) }}">{{ trans('plugin.online') }}</a></li>\
+          @endif
           <li>{!! trans('plugin.plugin_import') !!}</li>
           <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
         </ul>

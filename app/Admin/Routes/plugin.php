@@ -20,9 +20,10 @@ $router->group(['prefix' => 'plugin'], function ($router) {
     $router->match(['put', 'post'], '/process/{code}/{key}', 'AdminPluginsController@process')
         ->name('admin_plugin.process');
 
-    $router->get('/{code}/online', 'AdminPluginsOnlineController@index')
+    if(config('scart.settings.api_plugin')) {
+        $router->get('/{code}/online', 'AdminPluginsOnlineController@index')
         ->name('admin_plugin_online');
-    $router->post('/install/online', 'AdminPluginsOnlineController@install')
-        ->name('admin_plugin_online.install');
-
+        $router->post('/install/online', 'AdminPluginsOnlineController@install')
+            ->name('admin_plugin_online.install');
+    }
 });
