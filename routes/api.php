@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => ['json.response', 'api.connection', 'throttle:1000']], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('login', 'AuthController@login');
+        Route::post('create', 'AuthController@create');
       
         Route::group([
           'middleware' => 'auth:api'

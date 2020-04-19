@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\ShopUser;
-
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Validator;
+use App\Models\ShopEmailTemplate;
+use App\Models\ShopCountry;
+use App\Http\Controllers\Auth\AuthTrait;
 class AuthController extends GeneralController
 {
+    use AuthTrait;
+
     /**
      * Login user and create token
      *
@@ -54,6 +60,95 @@ class AuthController extends GeneralController
             )->toDateTimeString()
         ]);
     }
+
+    /**
+     * Create new customer
+     */
+    public function create(Request $request)
+    {
+        $data = $request->all();
+        $data['reg_country'] = strtoupper($data['reg_country'] ?? '');
+        $v = $this->validator($data);
+        if ($v->fails()) {
+            $msg = '';
+            foreach ($v->errors()->toArray() as $key => $value) {
+                $msg .=$key." : ".$value[0]."\n ";
+            }
+            return response()->json([
+                'error' => 1,
+                'msg' => 'Error while create new customer',
+                'detail' => $msg
+            ]);
+        }
+        $user = $this->insert($data);
+        return response()->json($user);
+    }
+
+    /**
+     * Validate data input
+     */
+    protected function validator(array $data)
+    {
+        $dataMapping = $this->mappingValidator($data);
+        return Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
+    }
+
+    /**
+     * Inser data new customer
+     */
+    protected function insert($data)
+    {
+        $dataMap = $this->mappDataInsert($data);
+
+        $user = ShopUser::createCustomer($dataMap);
+        if ($user) {
+            if (sc_config('welcome_customer')) {
+
+                $checkContent = (new ShopEmailTemplate)->where('group', 'welcome_customer')->where('status', 1)->first();
+                if ($checkContent) {
+                    $content = $checkContent->text;
+                    $dataFind = [
+                        '/\{\{\$title\}\}/',
+                        '/\{\{\$first_name\}\}/',
+                        '/\{\{\$last_name\}\}/',
+                        '/\{\{\$email\}\}/',
+                        '/\{\{\$phone\}\}/',
+                        '/\{\{\$password\}\}/',
+                        '/\{\{\$address1\}\}/',
+                        '/\{\{\$address2\}\}/',
+                        '/\{\{\$country\}\}/',
+                    ];
+                    $dataReplace = [
+                        trans('email.welcome_customer.title'),
+                        $dataMap['first_name'],
+                        $dataMap['last_name'],
+                        $dataMap['email'],
+                        $dataMap['phone'],
+                        $dataMap['password'],
+                        $dataMap['address1'],
+                        $dataMap['address2'],
+                        $dataMap['country'],
+                    ];
+                    $content = preg_replace($dataFind, $dataReplace, $content);
+                    $data_mail = [
+                        'content' => $content,
+                    ];
+
+                    $config = [
+                        'to' => $data['reg_email'],
+                        'subject' => trans('email.welcome_customer.title'),
+                    ];
+
+                    sc_send_mail($this->templatePath . '.mail.welcome_customer', $data_mail, $config, []);
+                }
+
+            }
+        } else {
+
+        }
+        return $user;
+    }
+
   
     /**
      * Logout user (Revoke the token)
