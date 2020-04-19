@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\ShopUser;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ShopEmailTemplate;
-use App\Models\ShopCountry;
 use App\Http\Controllers\Auth\AuthTrait;
 class AuthController extends GeneralController
 {
@@ -165,24 +163,4 @@ class AuthController extends GeneralController
         ]);
     }
   
-    /**
-     * Get the authenticated User
-     *
-     * @return [json] user object
-     */
-    public function user(Request $request)
-    {
-        return response()->json($request->user());
-    }
-
-    /**
-     * Get the authenticated User
-     *
-     * @return [json] user object
-     */
-    public function orders(Request $request)
-    {
-        return response()->json($request->user()->orders);
-    }
-
 }
