@@ -5,31 +5,6 @@
     $kindOpt = old('kind')
 @endphp
 
-<style>
-    #start-add {
-        margin: 20px;
-    }
-
-    @if($kindOpt == '') 
-    
-        #main-add, #box-footer {
-            display: none;
-        }
-
-    @else 
-        .kind {
-            display: none;
-        }
-        .kind{{ $kindOpt }}
-        {
-            display: block;
-        }
-    @endif 
-
-    .select-product {
-        margin: 10px 0;
-    }
-</style>
 <div class="row">
     <div class="col-md-12">
         <div class="box">
@@ -46,7 +21,7 @@
 
 
             <!-- form start -->
-            <form action="{{ route('admin_product.create') }}" method="post" name="form_name" accept-charset="UTF-8"
+            <form action="{{ route('admin_product.create') }}" method="post" name="form_name" accept-charset="UTF-8" 
                 class="form-horizontal" id="form-main" enctype="multipart/form-data">
 
                 <div class="col-xs-12" id="start-add">
@@ -86,17 +61,9 @@
 
                         {{-- descriptions --}}
                         @foreach ($languages as $code => $language)
-
-                        <div class="form-group ">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-8">
-                                <b>{{ $language->name }}</b>
-                                {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}
-                            </div>
-                        </div>
-
+                        <legend>{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</legend>
                         <div
-                            class="form-group    {{ $errors->has('descriptions.'.$code.'.name') ? ' has-error' : '' }}">
+                            class="form-group  {{ $errors->has('descriptions.'.$code.'.name') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__name"
                                 class="col-sm-2  control-label">{{ trans('product.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
@@ -186,10 +153,10 @@
                         @endforeach
                         {{-- //descriptions --}}
 
+                        <hr>
 
                         {{-- select category --}}
                         <div class="form-group  kind kind0 kind1 {{ $errors->has('category') ? ' has-error' : '' }}">
-                            <hr>
                             @php
                             $listCate = [];
                             if(is_array(old('category'))){
@@ -590,9 +557,10 @@
                         {{-- //status --}}
 
 @if (sc_config('product_kind'))
+                        <hr class="kind kind2">
                         {{-- List product in groups --}}
                         <div class="form-group  kind kind2 {{ $errors->has('productInGroup') ? ' has-error' : '' }}">
-                            <hr>
+                            
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-8"><label>{{ trans('product.admin.select_product_in_group') }}</label>
                             </div>
@@ -624,10 +592,9 @@
                         </div>
                         {{-- //end List product in groups --}}
 
-
+                        <hr class="kind kind2">
                         {{-- List product build --}}
                         <div class="form-group  kind kind1 {{ $errors->has('productBuild') ? ' has-error' : '' }}">
-                            <hr>
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.admin.select_product_in_build') }}</label>
@@ -673,8 +640,8 @@
                         {{-- List product attributes --}}
 
                         @if (!empty($attributeGroup))
+                        <hr class="kind kind0">
                         <div class="form-group kind kind0">
-                            <hr>
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.attribute') }}</label>
@@ -752,24 +719,35 @@
 @endsection
 
 @push('styles')
+<style>
+    #start-add {
+        margin: 20px;
+    }
 
-{{-- input image --}}
-{{-- <link rel="stylesheet" href="{{ asset('admin/plugin/fileinput.min.css')}}"> --}}
+    @if($kindOpt == '') 
+    
+        #main-add, #box-footer {
+            display: none;
+        }
+    @else 
+        .kind {
+            display: none;
+        }
+        .kind{{ $kindOpt }}
+        {
+            display: block;
+        }
+    @endif 
+
+    .select-product {
+        margin: 10px 0;
+    }
+</style>
 
 @endpush
 
 @push('scripts')
 @include('admin.component.ckeditor_js')
-
-
-
-{{-- input image --}}
-{{-- <script src="{{ asset('admin/plugin/fileinput.min.js')}}"></script> --}}
-
-
-
-
-
 
 <script type="text/javascript">
     // Promotion

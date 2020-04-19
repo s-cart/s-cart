@@ -9,7 +9,7 @@ return [
     'description' => 'Mô tả',
     'image'       => 'Hình ảnh',
     'parent'      => 'Danh mục cha',
-    'top'         => 'Hiển thị ngoài web',
+    'top'         => 'Hiển thị ưu tiên',
     'status'      => 'Trạng thái',
     'sort'        => 'Sắp xếp',
     'help_top'    => 'Hiển thị danh mục này bên ngoài website',

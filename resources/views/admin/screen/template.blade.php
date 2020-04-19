@@ -6,7 +6,9 @@
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#">{{ trans('template.local') }}</a></li>
+            @if (config('scart.settings.api_template'))
             <li class=""><a href="{{ route('admin_template_online.index') }}">{{ trans('template.online') }}</a></li>
+            @endif
             <li>{!! trans('template.template_import') !!}</li>
             <li class="pull-right">{!! trans('template.template_more') !!}</li>
           </ul>

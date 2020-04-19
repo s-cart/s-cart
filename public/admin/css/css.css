@@ -64,3 +64,8 @@
   padding: 10px 5px;
   font-weight: bold;
 }
+#form-main hr{
+  background-color: #afafaf;
+  height: 1px;
+  margin-bottom: 40px !important;
+}

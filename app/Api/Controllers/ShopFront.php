@@ -3,11 +3,9 @@ namespace App\Api\Controllers;
 
 use App\Http\Controllers\GeneralController;
 use App\Models\ShopBrand;
-use App\Models\ShopBanner;
 use App\Models\ShopCategory;
 use App\Models\ShopProduct;
 use App\Models\ShopSupplier;
-use Illuminate\Http\Request;
 
 class ShopFront extends GeneralController
 {

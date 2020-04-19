@@ -9,9 +9,12 @@ return [
     'api_connection_required_help' => 'Connection account is required to use the API<br>
     <b>API list:</b><br>
     <i>
+    '.url('api/auth/create').'<br>
     '.url('api/auth/login').'<br>
     '.url('api/auth/logout').'<br>
     '.url('api/auth/user').'<br>
+    '.url('api/auth/orders').'<br>
+    '.url('api/auth/orders/{id}').'<br>
     '.url('api/categories').'<br>
     '.url('api/categories/{id}').'<br>
     '.url('api/products').'<br>

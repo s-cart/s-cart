@@ -9,7 +9,7 @@ return [
     'content' => 'Nội dung',
     'image' => 'Hình ảnh',
     'parent' => 'Danh mục cha',
-    'top' => 'Hiển thị ngoài web',
+    'top' => 'Hiển thị ưu tiên',
     'status' => 'Trạng thái',
     'sort' => 'Sắp xếp',
     'admin' => [
