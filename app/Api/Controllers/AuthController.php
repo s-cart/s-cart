@@ -38,7 +38,8 @@ class AuthController extends GeneralController
 
         if(!Auth::attempt($credentials)){
             return response()->json([
-                'message' => 'Unauthorized'
+                'error' => 1,
+                'msg' => 'Unauthorized'
             ], 401);
         }
 
@@ -159,7 +160,8 @@ class AuthController extends GeneralController
     {
         $request->user()->token()->revoke();
         return response()->json([
-            'message' => 'Successfully logged out'
+            'error' => 0,
+            'msg' => 'Successfully logged out'
         ]);
     }
   
