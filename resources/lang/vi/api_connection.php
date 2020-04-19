@@ -10,8 +10,11 @@ return [
     <b>Danh sách API:</b><br>
     <i>
     '.url('api/auth/login').'<br>
+    '.url('api/auth/create').'<br>
     '.url('api/auth/logout').'<br>
     '.url('api/auth/user').'<br>
+    '.url('api/auth/orders').'<br>
+    '.url('api/auth/orders/{id}').'<br>
     '.url('api/categories').'<br>
     '.url('api/categories/{id}').'<br>
     '.url('api/products').'<br>
