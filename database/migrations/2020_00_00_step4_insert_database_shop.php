@@ -627,6 +627,10 @@ class InsertDatabaseShop extends Migration
             ]
         );
 
+        DB::table(SC_DB_PREFIX.'shop_tax')->insert([
+            ['id' => '1','name' => 'Tax (10%)', 'value' => 10],
+            ]
+        );
     }
 
     /**

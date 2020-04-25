@@ -1,0 +1,37 @@
+<?php
+return [
+    'id'      => 'ID',
+    'name'    => 'Name',
+    'value'   => 'Value tax (%)',
+    'admin'   => [
+        'title'          => 'Tax',
+        'admin_title'          => 'Tax manager',
+        'non_tax'          => 'Do not use Tax',
+        'auto'          => 'Tax default',
+        'create_success' => 'Create new item success!',
+        'edit_success'   => 'Edit item success!',
+        'list'           => 'Tax list',
+        'id'             => 'ID',
+        'status'         => 'Status',
+        'action'         => 'Action',
+        'edit'           => 'Edit',
+        'export'         => 'Export',
+        'delete'         => 'Delete',
+        'default'         => 'Default',
+        'refresh'        => 'Refresh',
+        'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'sort'           => 'Sort',
+        'search'         => 'Search',
+        'add_new'        => 'Add new',
+        'add_new_title'  => 'Add tax',
+        'add_new_des'    => 'Create a new tax',
+
+        'search_place'   => 'Search name',
+        'sort_order'     => [
+            'id_asc'     => 'ID asc',
+            'id_desc'    => 'ID desc',
+            'name_asc'   => 'Name asc',
+            'name_desc'  => 'Name desc',
+        ],
+    ],
+];

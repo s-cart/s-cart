@@ -31,6 +31,7 @@ return [
     'sold'                  => 'Sold',
     'sort'                  => 'Sort',
     'image'                 => 'Image',
+    'tax'                 => 'Tax',
     'status'                => 'Status',
     'date_available'        => 'Date available',
     'import_multi'          => 'Import multiple',
@@ -119,10 +120,12 @@ return [
         'cost'                    => 'Use COST PRICE',
         'type'                    => 'Use TYPE (new, hot,...)',
         'kind'                    => 'Use KIND (single, group, bundle)',
-        'virtual'                    => 'Use TYPE VIRTUAL',
+        'virtual'                    => 'Use Product type: download, virtual, physical',
         'attribute'                    => 'Use ATTRIBUTE (color, size,...)',
         'promotion'                    => 'Use PROMOTION PRICE',
-        'available'                    => 'Use AVAILABLE TIME',
+        'available'                    => 'Use Time to start selling',
+        'tax'                    => 'Tax configuration',
+        'product_display_price_include_tax'   => 'Display price include tax',
     ]
 
 ];

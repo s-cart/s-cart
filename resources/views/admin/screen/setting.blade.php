@@ -46,12 +46,7 @@
             <td>{{ trans('env.ADMIN_LOG') }}</td>
             <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOG') }}" data-value="{{ sc_config('ADMIN_LOG') }}" data-original-title="{{ trans('env.ADMIN_LOG') }}" title=""></a></td>
           </tr>
-
-          <tr>
-            <td>{{ trans('env.ADMIN_LOG_EXP') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="ADMIN_LOG_EXP" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOG_EXP') }}" data-value="{{ sc_config('ADMIN_LOG_EXP') }}" data-original-title="" title=""></a></td>
-          </tr>
-
+          
           <tr>
             <td>{{ trans('env.ADMIN_NAME') }}</td>
             <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_NAME" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_NAME') }}" data-value="{{ sc_config('ADMIN_NAME') }}" data-original-title="" title=""></a></td>

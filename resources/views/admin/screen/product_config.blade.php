@@ -23,6 +23,10 @@
                <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
              </tr>
            @endforeach
+           <tr>
+            <td>{{ trans('product.config_manager.tax') }}</td>
+            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title=""></a></td>
+          </tr>
          </tbody>
        </table>
       </div>
@@ -48,8 +52,6 @@
 <script type="text/javascript">
   // Editable
 $(document).ready(function() {
-
-       $.fn.editable.defaults.mode = 'inline';
       $.fn.editable.defaults.params = function (params) {
         params._token = "{{ csrf_token() }}";
         return params;
@@ -61,7 +63,7 @@ $(document).ready(function() {
             }
         },
         success: function(data) {
-          if(data.error == ){
+          if(data.error == 0){
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
@@ -79,8 +81,8 @@ $(document).ready(function() {
 });
 </script>
 
-    {{-- //Pjax --}}
-   <script src="{{ asset('admin/plugin/jquery.pjax.js')}}"></script>
+{{-- //Pjax --}}
+  <script src="{{ asset('admin/plugin/jquery.pjax.js')}}"></script>
 
   <script type="text/javascript">
 
@@ -102,14 +104,6 @@ $(document).ready(function() {
     });
 
     {!! $script_sort??'' !!}
-
-    $(document).on('ready pjax:end', function(event) {
-      $('.table-list input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
-      });
-    })
 
   </script>
     {{-- //End pjax --}}

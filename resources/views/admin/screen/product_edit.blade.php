@@ -391,6 +391,31 @@
                         {{-- //Price --}}
 @endif
 
+@if (sc_config('product_tax'))
+                        {{-- Tax --}}
+                        <div class="form-group  {{ $errors->has('tax_flag') ? ' has-error' : '' }}">
+                            <label for="tax_flag" class="col-sm-2 control-label">{{ trans('product.tax') }}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm tax_flag select2" style="width: 100%;"
+                                    name="tax_flag">
+                                    <option value="0" {{ (old('tax_flag') == 0) ? 'selected':'' }}>{{ trans('tax.admin.non_tax') }}</option>
+                                    <option value="auto" {{ (old('tax_flag') == 'auto') ? 'selected':'' }}>{{ trans('tax.admin.auto') }}</option>
+                                    @foreach ($taxs as $k => $v)
+                                    <option value="{{ $k }}"
+                                        {{ (old('tax_flag') ==$k || (!old() && $product->tax_flag ==$k) ) ? 'selected':'' }}>
+                                        {{ $v->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('tax_flag'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('tax_flag') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        {{-- //Tax --}}
+@endif
+
 @if (sc_config('product_promotion'))
                         {{-- price promotion --}}
                         <div class="form-group  kind kind0 kind1">

@@ -14,6 +14,7 @@ return [
     'SITE_LANGUAGE' => 'Ngôn ngữ',
     'SITE_CURRENCY' => 'Tiền tệ',
     'SITE_STATUS' => 'TẮT/MỞ website',
+    'SITE_TAX' => 'Cấu hình thuế',
     'field' => 'Biến môi trường',
     'value' => 'Giá trị',
     'title' => 'Cấu hình website',

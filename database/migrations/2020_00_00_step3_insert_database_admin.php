@@ -11,7 +11,7 @@ class InsertDatabaseAdmin extends Migration
     public $adminPassword = '$2y$10$JcmAHe5eUZ2rS0jU1GWr/.xhwCnh2RU13qwjTPcqfmtZXjZxcryPO';
     public $adminEmail = 'your-email@your-domain.com';
     public $timezone_default = 'Asia/Ho_Chi_Minh';
-    public $language_default = 'vi';
+    public $language_default = 'en';
 
     /**
      * Run the migrations.
@@ -76,6 +76,7 @@ class InsertDatabaseAdmin extends Migration
             ['id' => 58, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.cache_manager', 'icon' => 'fa-tripadvisor', 'uri' => 'admin::cache_config', 'key' => null, 'type' => 0],
             ['id' => 59, 'parent_id' => 9, 'sort' => 303, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fa-plug', 'uri' => 'admin::api_connection', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 5, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fa-flag', 'uri' => 'admin::maintain', 'key' => null, 'type' => 0],
+            ['id' => 61, 'parent_id' => 5, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
 
         ]
         );
@@ -84,7 +85,25 @@ class InsertDatabaseAdmin extends Migration
             ['id' => '1', 'name' => 'Admin manager', 'slug' => 'admin.manager', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'/user,GET::'.SC_ADMIN_PREFIX.'/role,GET::'.SC_ADMIN_PREFIX.'/permission,ANY::'.SC_ADMIN_PREFIX.'/log/*,ANY::'.SC_ADMIN_PREFIX.'/menu/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '3', 'name' => 'Auth manager', 'slug' => 'auth.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/auth/*', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '4', 'name' => 'Setting manager', 'slug' => 'setting.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/setting/*,ANY::'.SC_ADMIN_PREFIX.'/url_config/*,ANY::'.SC_ADMIN_PREFIX.'/product_config/*, ANY::'.SC_ADMIN_PREFIX.'/customer_config/*, ANY::'.SC_ADMIN_PREFIX.'/cache_config/*, ANY::'.SC_ADMIN_PREFIX.'/email/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/language/*,ANY::'.SC_ADMIN_PREFIX.'/currency/*,ANY::'.SC_ADMIN_PREFIX.'/backup/*,ANY::'.SC_ADMIN_PREFIX.'/api_connection/*,ANY::'.SC_ADMIN_PREFIX.'/maintain/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '4', 'name' => 'Setting manager', 'slug' => 'setting.full', 
+                'http_uri' => '
+                    ANY::'.SC_ADMIN_PREFIX.'/store_info/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/setting/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/url_config/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/product_config/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/customer_config/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/cache_config/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/email/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/email_template/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/language/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/currency/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/backup/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/api_connection/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/maintain/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/tax/*,
+                ',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
             ['id' => '5', 'name' => 'Upload management', 'slug' => 'upload.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/uploads/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Plugin manager', 'slug' => 'plugin.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/plugin/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '8', 'name' => 'CMS manager', 'slug' => 'cms.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/page/*,ANY::'.SC_ADMIN_PREFIX.'/banner/*,ANY::'.SC_ADMIN_PREFIX.'/cms_category/*,ANY::'.SC_ADMIN_PREFIX.'/cms_content/*,ANY::'.SC_ADMIN_PREFIX.'/news/*', 'created_at' => date('Y-m-d H:i:s')],
@@ -265,6 +284,8 @@ class InsertDatabaseAdmin extends Migration
             ['group' => '', 'code' => 'product', 'key' => 'product_virtual', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.virtual', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_attribute', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.attribute', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available', 'store_id' => '1'],
+            ['group' => '', 'code' => 'product', 'key' => 'product_display_price_include_tax', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.product_display_price_include_tax', 'store_id' => '1'],
+            ['group' => '', 'code' => 'env', 'key' => 'product_tax', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
 
             ['group' => '', 'code' => 'customer', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => '1'],
             ['group' => '', 'code' => 'customer', 'key' => 'customer_address1', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address1', 'store_id' => '1'],

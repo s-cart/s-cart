@@ -4,14 +4,15 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
-use Illuminate\Http\Request;
+use App\Models\ShopTax;
 use App\Admin\AdminConfigTrait;
 class AdminProductConfigController extends Controller
 {
     use AdminConfigTrait;
     public function index()
     {
-
+        $taxs = ShopTax::pluck('name', 'id')->toArray();
+        $taxs[0] = trans('tax.admin.non_tax');
         $data = [
             'title' => trans('product.config_manager.title'),
             'subTitle' => '',
@@ -22,6 +23,7 @@ class AdminProductConfigController extends Controller
             ->where('code', 'product')
             ->orderBy('sort', 'desc')->get();
         $data['configs'] = $obj;
+        $data['taxs'] = $taxs;
 
         return view('admin.screen.product_config')
             ->with($data);

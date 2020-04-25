@@ -9,7 +9,6 @@ return [
     'ADMIN_LOGO_MINI' => 'Admin logo mini',
     'ADMIN_TITLE' => 'Admin title',
     'ADMIN_LOG' => 'Admin log',
-    'ADMIN_LOG_EXP' => 'Admin log exclude',
     'SITE_TIMEZONE' => 'Site timezone',
     'SITE_LANGUAGE' => 'Site language',
     'SITE_CURRENCY' => 'Site curency',

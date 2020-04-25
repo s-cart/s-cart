@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\ShopAttributeGroup;
 use App\Models\ShopBrand;
+use App\Models\ShopTax;
 use App\Models\ShopCategory;
 use App\Models\ShopLanguage;
 use App\Models\ShopProduct;
@@ -14,7 +15,6 @@ use App\Models\ShopProductDescription;
 use App\Models\ShopProductGroup;
 use App\Models\ShopProductImage;
 use App\Models\ShopSupplier;
-use Illuminate\Http\Request;
 use Validator;
 
 class ShopProductController extends Controller
@@ -273,6 +273,7 @@ class ShopProductController extends Controller
             'categories' => (new ShopCategory)->getTreeCategories(),
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
+            'taxs' => (new ShopTax)->getList(),
             'types' => $this->types,
             'virtuals' => $this->virtuals,
             'kinds' => $this->kinds,
@@ -400,6 +401,7 @@ class ShopProductController extends Controller
             'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
             'image' => $data['image']??'',
+            'tax_flag' => $data['tax_flag']??0,
             'status' => (!empty($data['status']) ? 1 : 0),
             'sort' => (int) $data['sort'],
         ];
@@ -536,6 +538,7 @@ class ShopProductController extends Controller
             'categories' => (new ShopCategory)->getTreeCategories(),
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
+            'taxs' => (new ShopTax)->getList(),
             'types' => $this->types,
             'virtuals' => $this->virtuals,
             'kinds' => $this->kinds,
@@ -640,6 +643,7 @@ class ShopProductController extends Controller
         $supplier_id = $data['supplier_id']?? '';
         $dataUpdate = [
             'image' => $data['image'] ?? '',
+            'tax_flag' => $data['tax_flag'] ?? 0,
             'brand_id' => $data['brand_id'] ?? 0,
             'supplier_id' => implode(',', $supplier_id  ),
             'price' => $data['price'] ?? 0,
