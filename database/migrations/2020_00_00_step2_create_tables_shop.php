@@ -180,6 +180,7 @@ class CreateTablesShop extends Migration
             $table->integer('price')->default(0);
             $table->integer('qty')->default(0);
             $table->integer('total_price')->default(0);
+            $table->integer('tax')->default(0);
             $table->string('sku', 50);
             $table->string('currency', 10);
             $table->float('exchange_rate')->nullable();
@@ -255,6 +256,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('type')->nullable()->default(0)->index();
             $table->tinyInteger('kind')->nullable()->default(0)->comment('0:single, 1:bundle, 2:group')->index();
             $table->tinyInteger('virtual')->nullable()->default(0)->comment('0:physical, 1:download, 2:only view, 3: Service')->index();
+            $table->tinyInteger('tax_flag')->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
             $table->tinyInteger('status')->default(0)->index();
             $table->tinyInteger('sort')->default(0);
             $table->integer('view')->default(0);
