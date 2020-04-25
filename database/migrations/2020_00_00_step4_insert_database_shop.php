@@ -347,6 +347,7 @@ class InsertDatabaseShop extends Migration
 
         DB::table(SC_DB_PREFIX.'shop_supplier')->insert([
             ['id' => '1', 'alias' => 'abc-distributor',  'name' => 'ABC distributor', 'email' => 'abc@abc.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0'],
+            ['id' => '2', 'alias' => 'xyz-distributor',  'name' => 'XYZ distributor', 'email' => 'xyz@xyz.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0'],
         ]);
 
         DB::table(SC_DB_PREFIX.'shop_user')->insert([
