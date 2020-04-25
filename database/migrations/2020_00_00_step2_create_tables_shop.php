@@ -480,6 +480,14 @@ class CreateTablesShop extends Migration
             $table->datetime('last_active')->nullable();
             $table->tinyInteger('status')->default(0);
         });
+
+        Schema::create(SC_DB_PREFIX.'shop_tax', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 100);
+            $table->integer('value')->default(0);
+            $table->tinyInteger('status')->default(0);
+        });
+
     }
 
     /**
@@ -531,6 +539,7 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news_description');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_sessions');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_tax');
         //Passport
         Schema::dropIfExists('oauth_auth_codes');
         Schema::dropIfExists('oauth_access_tokens');
