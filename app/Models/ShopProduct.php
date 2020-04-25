@@ -33,10 +33,6 @@ class ShopProduct extends Model
     {
         return $this->belongsTo(ShopBrand::class, 'brand_id', 'id');
     }
-    public function supplier()
-    {
-        return $this->belongsTo(ShopSupplier::class, 'supplier_id', 'id');
-    }
     public function categories()
     {
         return $this->belongsToMany(ShopCategory::class, ShopProductCategory::class, 'product_id', 'category_id');
@@ -690,7 +686,15 @@ class ShopProduct extends Model
         }
 
         if (count($this->sc_supplier)) {
-            $query = $query->whereIn('supplier_id', $this->sc_supplier);
+
+            foreach ($this->sc_supplier as  $supplier_id) {
+                $query = $query->where(function($query) use($supplier_id){
+                $query->where('supplier_id', $supplier_id)
+                      ->orWhere('supplier_id', 'like', $supplier_id.',%')
+                      ->orWhere('supplier_id', 'like', '%,'.$supplier_id.',%')
+                      ->orWhere('supplier_id', 'like', '%,'.$supplier_id);
+                });
+            }
         }
 
         if (count($this->sc_moreWhere)) {

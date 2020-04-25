@@ -247,7 +247,7 @@ class CreateTablesShop extends Migration
             $table->string('mpn', 64)->nullable()->comment('mpn code');
             $table->string('image', 255)->nullable();
             $table->integer('brand_id')->nullable()->default(0)->index();
-            $table->integer('supplier_id')->nullable()->default(0)->index();
+            $table->string('supplier_id', 50)->nullable()->index();
             $table->integer('price')->nullable()->default(0);
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);

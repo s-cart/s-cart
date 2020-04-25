@@ -23,12 +23,6 @@ class ShopSupplier extends Model
         return self::$getList;
     }
 
-    public function products()
-    {
-        return $this->hasMany(ShopProduct::class, 'supplier_id', 'id');
-    }
-
-
     protected static function boot()
     {
         parent::boot();

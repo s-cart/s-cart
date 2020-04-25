@@ -315,15 +315,25 @@
 @if (sc_config('product_supplier'))
                         {{-- Supplier --}}
                         <div class="form-group  {{ $errors->has('supplier_id') ? ' has-error' : '' }}">
+                            @php
+                            $listSupplier = [];
+                            $supplier_id = old('supplier_id', explode(',', $product->supplier_id));
+                            if(is_array($supplier_id)){
+                                foreach($supplier_id as $value){
+                                    $listSupplier[] = (int)$value;
+                                }
+                            }
+                            @endphp
                             <label for="supplier_id" class="col-sm-2 control-label">{{ trans('product.supplier') }}</label>
                             <div class="col-sm-8">
-                                <select class="form-control input-sm supplier_id select2" style="width: 100%;"
-                                    name="supplier_id">
+                                <select class="form-control input-sm supplier_id select2" multiple="multiple"
+                                    data-placeholder="{{ trans('product.admin.select_supplier') }}" style="width: 100%;"
+                                    name="supplier_id[]">
                                     <option value=""></option>
                                     @foreach ($suppliers as $k => $v)
                                     <option value="{{ $k }}"
-                                        {{ (old('supplier_id') ==$k || (!old() && $product->supplier_id ==$k) ) ? 'selected':'' }}>
-                                        {{ $v->name }}</option>
+                                        {{ (count($listSupplier) && in_array($v->id, $listSupplier))?'selected':'' }}>{{ $v->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('supplier_id'))

@@ -386,9 +386,10 @@ class ShopProductController extends Controller
         $productBuild = $data['productBuild'] ?? [];
         $productBuildQty = $data['productBuildQty'] ?? [];
         $subImages = $data['sub_image'] ?? [];
+        $supplier_id = $data['supplier_id']?? '';
         $dataInsert = [
             'brand_id' => $data['brand_id']??0,
-            'supplier_id' => $data['supplier_id']??0,
+            'supplier_id' => implode(',', $supplier_id ),
             'price' => $data['price']??0,
             'sku' => $data['sku'],
             'cost' => $data['cost']??0,
@@ -636,10 +637,11 @@ class ShopProductController extends Controller
         $productBuild = $data['productBuild'] ?? [];
         $productBuildQty = $data['productBuildQty'] ?? [];
         $subImages = $data['sub_image'] ?? [];
+        $supplier_id = $data['supplier_id']?? '';
         $dataUpdate = [
             'image' => $data['image'] ?? '',
             'brand_id' => $data['brand_id'] ?? 0,
-            'supplier_id' => $data['supplier_id'] ?? 0,
+            'supplier_id' => implode(',', $supplier_id  ),
             'price' => $data['price'] ?? 0,
             'cost' => $data['cost'] ?? 0,
             'stock' => $data['stock'] ?? 0,
