@@ -3,7 +3,6 @@
 namespace App\Library\ShoppingCart;
 
 use Illuminate\Contracts\Support\Arrayable;
-use App\Library\ShoppingCart\Contracts\Buyable;
 use Illuminate\Contracts\Support\Jsonable;
 
 class CartItem implements Arrayable, Jsonable
@@ -149,19 +148,6 @@ class CartItem implements Arrayable, Jsonable
         $this->qty = $qty;
     }
 
-    /**
-     * Update the cart item from a Buyable.
-     *
-     * @param \App\Library\ShoppingCart\Contracts\Buyable $item
-     * @return void
-     */
-    public function updateFromBuyable(Buyable $item)
-    {
-        $this->id       = $item->getBuyableIdentifier($this->options);
-        $this->name     = $item->getBuyableDescription($this->options);
-        $this->price    = $item->getBuyablePrice($this->options);
-        $this->tax      = $item->getBuyableTax($this->options);
-    }
 
     /**
      * Update the cart item from an array.
@@ -222,23 +208,6 @@ class CartItem implements Arrayable, Jsonable
         return null;
     }
 
-    /**
-     * Create a new instance from a Buyable.
-     *
-     * @param \App\Library\ShoppingCart\Contracts\Buyable $item
-     * @param array                                      $options
-     * @return \App\Library\ShoppingCart\CartItem
-     */
-    public static function fromBuyable(Buyable $item, array $options = [])
-    {
-        return new self(
-            $item->getBuyableIdentifier($options), 
-            $item->getBuyableDescription($options), 
-            $item->getBuyablePrice($options), 
-            $options, 
-            $item->getBuyableTax($options)
-        );
-    }
 
     /**
      * Create a new instance from the given array.

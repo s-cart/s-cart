@@ -2,7 +2,6 @@
 
 namespace App\Library\ShoppingCart;
 
-use App\Library\ShoppingCart\Contracts\Buyable;
 use App\Library\ShoppingCart\Exceptions\CartAlreadyStoredException;
 use App\Library\ShoppingCart\Exceptions\InvalidRowIDException;
 use App\Library\ShoppingCart\Exceptions\UnknownModelException;
@@ -88,12 +87,6 @@ class Cart
      */
     public function add($id, $name = null, $qty = null, $price = null, array $options = [], $tax = 0)
     {
-        if ($this->isMulti($id)) {
-            return array_map(function ($item) {
-                return $this->add($item);
-            }, $id);
-        }
-
         $cartItem = $this->createCartItem($id, $name, $qty, $price, $options, $tax);
 
         $content = $this->getContent();
@@ -122,9 +115,7 @@ class Cart
     {
         $cartItem = $this->get($rowId);
 
-        if ($qty instanceof Buyable) {
-            $cartItem->updateFromBuyable($qty);
-        } elseif (is_array($qty)) {
+       if (is_array($qty)) {
             $cartItem->updateFromArray($qty);
         } else {
             $cartItem->qty = $qty;
@@ -399,11 +390,7 @@ class Cart
      */
     private function createCartItem($id, $name, $qty, $price, array $options, $tax = 0)
     {
-        if ($id instanceof Buyable) {
-            $cartItem = CartItem::fromBuyable($id, $qty ?: []);
-            $cartItem->setQuantity($name ?: 1);
-            $cartItem->associate($id);
-        } elseif (is_array($id)) {
+        if (is_array($id)) {
             $cartItem = CartItem::fromArray($id);
             $cartItem->setQuantity($id['qty']);
         } else {
@@ -412,21 +399,6 @@ class Cart
         }
 
         return $cartItem;
-    }
-
-    /**
-     * Check if the item is a multidimensional array or an array of Buyables.
-     *
-     * @param mixed $item
-     * @return bool
-     */
-    private function isMulti($item)
-    {
-        if (!is_array($item)) {
-            return false;
-        }
-
-        return is_array(head($item)) || head($item) instanceof Buyable;
     }
 
     /**

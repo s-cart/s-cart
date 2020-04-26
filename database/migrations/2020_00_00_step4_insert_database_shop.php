@@ -216,7 +216,7 @@ class InsertDatabaseShop extends Migration
             ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3'],
         ]);
         DB::table(SC_DB_PREFIX.'shop_shipping_standard')->insert([
-            ['fee' => 20000, 'shipping_free' => 100000],
+            ['fee' => 20, 'shipping_free' => 10000],
         ]);
 
         DB::table(SC_DB_PREFIX.'shop_product_category')->insert([
@@ -339,10 +339,6 @@ class InsertDatabaseShop extends Migration
             ['id' => '1', 'name' => 'Not sent'],
             ['id' => '2', 'name' => 'Sending'],
             ['id' => '3', 'name' => 'Shipping done'],
-        ]);
-
-        DB::table(SC_DB_PREFIX.'shop_shipping')->insert([
-            ['type' => '0', 'value' => '20000', 'free' => '10000000', 'status' => '1'],
         ]);
 
         DB::table(SC_DB_PREFIX.'shop_supplier')->insert([
@@ -628,7 +624,7 @@ class InsertDatabaseShop extends Migration
         );
 
         DB::table(SC_DB_PREFIX.'shop_tax')->insert([
-            ['id' => '1','name' => 'Tax (10%)', 'value' => 10],
+            ['id' => '1','name' => 'Tax default (10%)', 'value' => 10],
             ]
         );
     }

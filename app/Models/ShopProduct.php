@@ -753,8 +753,8 @@ class ShopProduct extends Model
         if($this->tax_id == 'auto') {
             return ShopTax::checkStatus();
         } else {
-            $arrTaxId = ShopTax::getArrayId();
-            if($this->tax_id == 0 || !in_array($this->tax_id, $arrTaxId)) {
+            $arrTaxList = ShopTax::getList();
+            if($this->tax_id == 0 || !$arrTaxList->has($this->tax_id)) {
                 return 0;
             }
         }

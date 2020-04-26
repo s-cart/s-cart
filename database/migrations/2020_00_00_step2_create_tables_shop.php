@@ -318,13 +318,6 @@ class CreateTablesShop extends Migration
             $table->index(['product_id', 'attribute_group_id']);
         });
 
-        Schema::create(SC_DB_PREFIX.'shop_shipping', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('type')->default(0);
-            $table->integer('value')->default(0);
-            $table->integer('free')->default(0);
-            $table->integer('status')->default(1);
-        });
 
         Schema::create(SC_DB_PREFIX.'shop_shipping_status', function (Blueprint $table) {
             $table->increments('id');
@@ -527,7 +520,6 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_attribute_group');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_group');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_category');
-        Schema::dropIfExists(SC_DB_PREFIX.'shop_shipping');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_shipping_status');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_shoppingcart');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_promotion');

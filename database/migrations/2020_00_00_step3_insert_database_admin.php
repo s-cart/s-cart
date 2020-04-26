@@ -284,7 +284,7 @@ class InsertDatabaseAdmin extends Migration
             ['group' => '', 'code' => 'product', 'key' => 'product_virtual', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.virtual', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_attribute', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.attribute', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available', 'store_id' => '1'],
-            ['group' => '', 'code' => 'env', 'key' => 'product_tax', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
+            ['group' => '', 'code' => 'env', 'key' => 'product_tax', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
 
             ['group' => '', 'code' => 'customer', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => '1'],
             ['group' => '', 'code' => 'customer', 'key' => 'customer_address1', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address1', 'store_id' => '1'],
