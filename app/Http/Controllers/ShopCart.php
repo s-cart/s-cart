@@ -413,7 +413,6 @@ class ShopCart extends GeneralController
 
         $id = request('id');
         $product = (new ShopProduct)->getDetail($id);
-        $html = '';
         switch ($instance) {
             case 'default':
                 if ($product->attributes->count() || $product->kind == SC_PRODUCT_GROUP) {
@@ -460,6 +459,7 @@ class ShopCart extends GeneralController
                                 'name' => $product->name,
                                 'qty' => 1,
                                 'price' => $product->getFinalPrice(),
+                                'tax' => $product->getTaxValue(),
                             )
                         );
                     } catch (\Exception $e) {
