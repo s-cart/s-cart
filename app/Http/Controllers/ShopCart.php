@@ -8,6 +8,7 @@ use App\Models\ShopCountry;
 use App\Models\ShopOrder;
 use App\Models\ShopOrderTotal;
 use App\Models\ShopProduct;
+use App\Models\ShopUserAddress;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -68,18 +69,35 @@ class ShopCart extends GeneralController
         // Shipping address
         $user = auth()->user();
         if ($user) {
-            $addressDefaul = [
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'address1' => $user->address1,
-                'address2' => $user->address2,
-                'postcode' => $user->postcode,
-                'company' => $user->company,
-                'country' => $user->country,
-                'phone' => $user->phone,
-                'comment' => '',
-            ];
+            $address = $user->getAddressDefault();
+            if($address) {
+                $addressDefaul = [
+                    'first_name' => $address->first_name,
+                    'last_name' => $address->last_name,
+                    'email' => $user->email,
+                    'address1' => $address->address1,
+                    'address2' => $address->address2,
+                    'postcode' => $address->postcode,
+                    'company' => $user->company,
+                    'country' => $address->country,
+                    'phone' => $address->phone,
+                    'comment' => '',
+                ];
+            } else {
+                $addressDefaul = [
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'email' => $user->email,
+                    'address1' => $user->address1,
+                    'address2' => $user->address2,
+                    'postcode' => $user->postcode,
+                    'company' => $user->company,
+                    'country' => $user->country,
+                    'phone' => $user->phone,
+                    'comment' => '',
+                ];
+            }
+
         } else {
             $addressDefaul = [
                 'first_name' => '',
@@ -108,6 +126,7 @@ class ShopCart extends GeneralController
                 'shippingMethod' => $shippingMethod,
                 'paymentMethod' => $paymentMethod,
                 'totalMethod' => $totalMethod,
+                'addressList' => auth()->user() ? auth()->user()->addresses : [],
                 'dataTotal' => ShopOrderTotal::processDataTotal($objects),
                 'shippingAddress' => $shippingAddress,
                 'layout_page' => 'shop_cart',
@@ -154,7 +173,7 @@ class ShopCart extends GeneralController
             $validate['postcode'] = 'required|min:5';
         }
         if(sc_config('customer_company')) {
-            $validate['company'] = 'required|min:3';
+            $validate['company'] = 'nullable|min:3';
         }
 
         $messages = [
@@ -199,7 +218,9 @@ class ShopCart extends GeneralController
         session(['shippingMethod' => request('shippingMethod')]);
         //Set session paymentMethod
         session(['paymentMethod' => request('paymentMethod')]);
-        //Set session shippingAddress
+        //Set session address process
+        session(['address_process' => request('address_process')]);
+        //Set session shippingAddressshippingAddress
         session(
             [
                 'shippingAddress' => [
@@ -310,11 +331,12 @@ class ShopCart extends GeneralController
      */
     public function addOrder(Request $request)
     {
+        $user = auth()->user();
         if (Cart::instance('default')->count() == 0) {
             return redirect()->route('home');
         }
         //Not allow for guest
-        if (!sc_config('shop_allow_guest') && !auth()->user()) {
+        if (!sc_config('shop_allow_guest') && !$user) {
             return redirect()->route('login');
         } //
 
@@ -326,9 +348,9 @@ class ShopCart extends GeneralController
             $shippingAddress = session('shippingAddress') ?? [];
             $paymentMethod = session('paymentMethod') ?? '';
             $shippingMethod = session('shippingMethod') ?? '';
+            $address_process = session('address_process') ?? '';
         }
-
-        $uID = auth()->user()->id ?? 0;
+        $uID = $user->id ?? 0;
         //Process total
         $subtotal = (new ShopOrderTotal)->sumValueTotal('subtotal', $dataTotal); //sum total
         $tax = (new ShopOrderTotal)->sumValueTotal('tax', $dataTotal); //sum tax
@@ -391,6 +413,20 @@ class ShopCart extends GeneralController
         //Set session orderID
         session(['orderID' => $createOrder['orderID']]);
 
+        //Create new address
+        if ($address_process == 'new') {
+            $addressNew = [
+                'first_name' => $shippingAddress['first_name'] ?? '',
+                'last_name' => $shippingAddress['last_name'] ?? '',
+                'postcode' => $shippingAddress['postcode'] ?? '',
+                'address1' => $shippingAddress['address1'] ?? '',
+                'address2' => $shippingAddress['address2'] ?? '',
+                'country' => $shippingAddress['country'] ?? '',
+                'phone' => $shippingAddress['phone'] ?? '',
+            ];
+            $user->addresses()->save(new ShopUserAddress(sc_clean($addressNew)));
+            session()->forget('address_process'); //destroy address_process
+        }
 
         $paymentMethod = sc_get_class_plugin_controller('Payment', session('paymentMethod'));
 

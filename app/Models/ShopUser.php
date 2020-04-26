@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\ShopEmailTemplate;
+use App\Models\ShopUserAddress;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Auth;
@@ -35,6 +36,11 @@ class ShopUser extends Authenticatable
     public function orders()
     {
         return $this->hasMany(ShopOrder::class, 'user_id', 'id');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(ShopUserAddress::class, 'user_id', 'id');
     }
 
     public static function getList()
@@ -113,11 +119,36 @@ class ShopUser extends Authenticatable
  */
     public static function createCustomer($dataInsert)
     {
-        $dataUpdate = sc_clean($dataInsert, 'password');
-        return self::create($dataUpdate);
+        $dataClean = sc_clean($dataInsert, 'password');
+        $dataAddress = [
+            'first_name' => $dataClean['first_name'] ?? '',
+            'last_name' => $dataClean['last_name'] ?? '',
+            'postcode' => $dataClean['postcode'] ?? '',
+            'address1' => $dataClean['address1'] ?? '',
+            'address2' => $dataClean['address2'] ?? '',
+            'country' => $dataClean['country'] ?? '',
+            'phone' => $dataClean['phone'] ?? '',
+        ];
+        $user = self::create($dataClean);
+        $address = $user->addresses()->save(new ShopUserAddress($dataAddress));
+        $user->address_id = $address->id;
+        $user->save();
+        return $user;
     }
-
+    
     public function profile() {
         return Auth::user();
     }
+
+    /**
+     * Get address default of user
+     *
+     * @return  [collect]
+     */
+    public function getAddressDefault() {
+        return (new ShopUserAddress)->where('user_id', $this->id)
+            ->where('id', $this->address_id)
+            ->first();
+    }
+
 }

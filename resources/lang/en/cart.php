@@ -32,6 +32,8 @@ return [
     'company'          => 'Company',
     'postcode'         => 'Postcode',
     'cart_empty'       => 'Cart empty',
+    'change_address'   => 'Change shipping address',
+    'add_new_address'  => '+ Add new address',
     'validation' => [
         'shippingMethod_required' => 'Shipping method is required',
         'paymentMethod_required' => 'Payment method is required',

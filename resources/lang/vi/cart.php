@@ -32,6 +32,8 @@ return [
     'company'          => 'Công ty',
     'postcode'         => 'Mã bưu chính',
     'cart_empty'       => 'Giỏ hàng trống',
+    'change_address'   => 'Thay đổi địa chỉ giao hàng',
+    'add_new_address'  => '+ Thêm mới địa chỉ',
     'validation' => [
         'shippingMethod_required' => 'Bạn chưa chọn phương thức giao hàng',
         'paymentMethod_required' => 'Bạn chưa chọn phương thức thanh toán',

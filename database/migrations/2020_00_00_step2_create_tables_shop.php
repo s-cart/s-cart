@@ -350,6 +350,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
             $table->string('password', 100);
+            $table->integer('address_id')->default(0)->index();
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
@@ -361,6 +362,19 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('group')->default(1);
             $table->timestamps();
         });
+
+        Schema::create(SC_DB_PREFIX.'shop_address', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('first_name', 100);
+            $table->string('last_name', 100)->nullable();
+            $table->string('postcode', 10)->nullable();
+            $table->string('address1', 100)->nullable();
+            $table->string('address2', 100)->nullable();
+            $table->string('country', 10)->default('VN');
+            $table->string('phone', 20);
+        });
+
 
         Schema::create(SC_DB_PREFIX.'shop_supplier', function (Blueprint $table) {
             $table->increments('id');

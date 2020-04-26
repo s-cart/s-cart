@@ -6,6 +6,7 @@ use App\Models\ShopCountry;
 use App\Models\ShopOrder;
 use App\Models\ShopOrderStatus;
 use App\Models\ShopUser;
+use App\Models\ShopUserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -24,12 +25,11 @@ class ShopAccount extends GeneralController
      */
     public function index()
     {
-        $user = Auth::user();
         return view($this->templatePath . '.account.index')
             ->with(
                 [
                     'title' => trans('account.my_profile'),
-                    'user' => $user,
+                    'user' => $this->user,
                     'layout_page' => 'shop_profile',
                 ]
             );
@@ -42,12 +42,11 @@ class ShopAccount extends GeneralController
      */
     public function changePassword()
     {
-        $user = Auth::user();
         return view($this->templatePath . '.account.change_password')
         ->with(
             [
                 'title' => trans('account.change_password'),
-                'user' => $user,
+                'user' => $this->user,
                 'layout_page' => 'shop_profile',
             ]
         );
@@ -62,9 +61,7 @@ class ShopAccount extends GeneralController
      */
     public function postChangePassword(Request $request)
     {
-        $user = Auth::user();
-        $id = $user->id;
-        $dataUser = ShopUser::find($id);
+        $dataUser = Auth::user();
         $password = $request->get('password');
         $password_old = $request->get('password_old');
         if (trim($password_old) == '') {
@@ -100,8 +97,8 @@ class ShopAccount extends GeneralController
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
-
-        ShopUser::updateInfo(['password' => bcrypt($password)], $id);
+        $dataUser->password = bcrypt($password);
+        $dataUser->save();
 
         return redirect()->route('member.index')
             ->with(['message' => trans('account.update_success')]);
@@ -241,6 +238,23 @@ class ShopAccount extends GeneralController
                 'layout_page' => 'shop_profile',
                 ]
             );
+    }
+
+    /**
+     * Get address detail
+     *
+     * @return  [json] 
+     */
+    public function getAddress() {
+        $id = request('id');
+        $address =  (new ShopUserAddress)->where('user_id', auth()->user()->id)
+        ->where('id', $id)
+        ->first();
+        if($address) {
+            return $address->toJson();
+        } else {
+            return json_encode(['error' => 1, 'msg' => 'Address not found']);
+        }
     }
 
 }

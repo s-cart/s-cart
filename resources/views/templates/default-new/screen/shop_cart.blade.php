@@ -111,6 +111,18 @@ $attributesGroup: array
                     action="{{ route('cart.process') }}">
                     <div class="row">
                         <div class="col-md-6">
+                            @if (auth()->user())
+                            <div class="">
+                                <select class="form-control" name="address_process" style="width: 100%;" id="addressList">
+                                    <option value="">{{ trans('cart.change_address') }}</option>
+                                    @foreach ($addressList as $k => $address)
+                                    <option value="{{ $address->id }}">- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2 }}</option>
+                                    @endforeach
+                                    <option value="new">{{ trans('cart.add_new_address') }}</option>
+                                </select>
+                            </div>
+                            @endif
+
                             @csrf
                             <table class="table  table-bordered table-responsive">
                                 <tr>
@@ -470,11 +482,54 @@ $attributesGroup: array
         updateCart(input)
     }
 
-$('#submit-order').click(function(){
-    $('#form-order').submit();
-    $(this).prop('disabled',true);
-});
+    $('#submit-order').click(function(){
+        $('#form-order').submit();
+        $(this).prop('disabled',true);
+    });
 
+    $('#addressList').change(function(){
+        var id = $('#addressList').val();
+        if(!id) {
+            return;   
+        } else if(id == 'new') {
+            $('#form-order [name="first_name"]').val('');
+            $('#form-order [name="last_name"]').val('');
+            $('#form-order [name="phone"]').val('');
+            $('#form-order [name="postcode"]').val('');
+            $('#form-order [name="company"]').val('');
+            $('#form-order [name="country"]').val('');
+            $('#form-order [name="address1"]').val('');
+            $('#form-order [name="address2"]').val('');
+        } else {
+            $.ajax({
+            url: '{{ route('member.address_detail') }}',
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            cache: false,
+            data: {
+                id: id,
+                _token:'{{ csrf_token() }}'},
+            success: function(data){
+                error= parseInt(data.error);
+                if(error === 1)
+                {
+                    alert(data.msg);
+                }else{
+                    $('#form-order [name="first_name"]').val(data.first_name);
+                    $('#form-order [name="last_name"]').val(data.last_name);
+                    $('#form-order [name="phone"]').val(data.phone);
+                    $('#form-order [name="postcode"]').val(data.postcode);
+                    $('#form-order [name="company"]').val(data.company);
+                    $('#form-order [name="country"]').val(data.country);
+                    $('#form-order [name="address1"]').val(data.address1);
+                    $('#form-order [name="address2"]').val(data.address2);
+                }
+
+                }
+        });
+        }
+    });
 
 </script>
 @endpush

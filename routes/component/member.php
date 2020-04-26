@@ -17,4 +17,6 @@ Route::group(['prefix' => $prefixMember, 'middleware' => 'auth'], function ($rou
         ->name('member.change_infomation');
     $router->post('/change_infomation', 'ShopAccount@postChangeInfomation')
         ->name('member.post_change_infomation');
+    $router->post('/address-detail', 'ShopAccount@getAddress')
+        ->name('member.address_detail');   
 });
