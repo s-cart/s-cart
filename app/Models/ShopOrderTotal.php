@@ -207,16 +207,23 @@ class ShopOrderTotal extends Model
     /**
      * Update new sub total
      * @param  [int] $order_id [description]
-     * @param  [int] $subtotal_value    [description]
      * @return [type]           [description]
      */
-    public static function updateSubTotal($order_id, $subtotal_value)
+    public static function updateSubTotal($order_id)
     {
-
         try {
             $order = ShopOrder::find($order_id);
-            $order->subtotal = $subtotal_value;
-            $total = $subtotal_value + $order->discount + $order->shipping;
+            $details = $order->details;
+            $tax = $subTotal = 0;
+            if($details->count()) {
+                foreach ($details as $detail) {
+                    $tax +=$detail->tax;
+                    $subTotal +=$detail->total_price;
+                }
+            }
+            $order->subtotal = $subTotal;
+            $order->tax = $tax;
+            $total = $subTotal + $tax + $order->discount + $order->shipping;
             $balance = $total + $order->received;
             $payment_status = 0;
             if ($balance == $total) {
@@ -239,11 +246,19 @@ class ShopOrderTotal extends Model
                 ->first();
             $updateTotal->value = $total;
             $updateTotal->save();
+            
             //Update Subtotal
             $updateSubTotal = self::where('order_id', $order_id)
                 ->where('code', 'subtotal')
                 ->first();
-            $updateSubTotal->value = $subtotal_value;
+            $updateSubTotal->value = $subTotal;
+            $updateSubTotal->save();
+
+            //Update tax
+            $updateSubTotal = self::where('order_id', $order_id)
+            ->where('code', 'tax')
+            ->first();
+            $updateSubTotal->value = $tax;
             $updateSubTotal->save();
 
             return 1;
@@ -272,6 +287,9 @@ class ShopOrderTotal extends Model
         $total = $discount = $shipping = $received = 0;
         foreach ($totalData as $key => $value) {
             if ($value['code'] === 'subtotal') {
+                $total += $value['value'];
+            }
+            if ($value['code'] === 'tax') {
                 $total += $value['value'];
             }
             if ($value['code'] === 'discount') {

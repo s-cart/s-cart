@@ -24,6 +24,7 @@ return [
     'shipping_address1'     => 'Address 1',
     'address1'              => 'Address 1',
     'shipping_address2'     => 'Address 2',
+    'shipping_company'     => 'Address 2',
     'postcode'              => 'Postcode',
     'company'               => 'Company',
     'address2'              => 'Address 2',

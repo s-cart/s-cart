@@ -227,38 +227,63 @@ class ShopOrderController extends Controller
     {
         $users = ShopUser::getList();
         $data = request()->all();
-        $dataOrigin = request()->all();
-        $validator = Validator::make($dataOrigin, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'user_id' => 'required',
-            'country' => 'required',
-            'address1' => 'required',
-            'address2' => 'required',
-            'currency' => 'required',
+        $validate = [
+            'first_name' => 'required|max:100',
+            'address1' => 'required|max:100',
             'exchange_rate' => 'required',
             'status' => 'required',
             'payment_method' => 'required',
             'shipping_method' => 'required',
-            'phone' => 'required|regex:/^0[^0][0-9\-]{7,13}$/|max:20',
-        ], [
-            'first_name.required' => trans('validation.required'),
-            'last_name.required' => trans('validation.required'),
-            'user_id.required' => trans('validation.required'),
-            'country.required' => trans('validation.required'),
-            'address1.required' => trans('validation.required'),
-            'address2.required' => trans('validation.required'),
-            'currency.required' => trans('validation.required'),
-            'exchange_rate.required' => trans('validation.required'),
-            'status.required' => trans('validation.required'),
-            'payment_method.required' => trans('validation.required'),
-            'shipping_method.required' => trans('validation.required'),
-            'phone.required' => trans('validation.required'),
-            'phone.regex' => trans('validation.phone'),
-        ]);
+        ];
+        if(sc_config('customer_lastname')) {
+            $validate['last_name'] = 'required|max:100';
+        }
+        if(sc_config('customer_address2')) {
+            $validate['address2'] = 'required|max:100';
+        }
+        if(sc_config('customer_phone')) {
+            $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+        }
+        if(sc_config('customer_country')) {
+            $validate['country'] = 'required|min:2';
+        }
+        if(sc_config('customer_postcode')) {
+            $validate['postcode'] = 'required|min:5';
+        }
+        if(sc_config('customer_company')) {
+            $validate['company'] = 'required|min:3';
+        }
+        $messages = [
+            'last_name.required' => trans('validation.required',['attribute'=> trans('cart.last_name')]),
+            'first_name.required' => trans('validation.required',['attribute'=> trans('cart.first_name')]),
+            'email.required' => trans('validation.required',['attribute'=> trans('cart.email')]),
+            'address1.required' => trans('validation.required',['attribute'=> trans('cart.address1')]),
+            'address2.required' => trans('validation.required',['attribute'=> trans('cart.address2')]),
+            'phone.required' => trans('validation.required',['attribute'=> trans('cart.phone')]),
+            'country.required' => trans('validation.required',['attribute'=> trans('cart.country')]),
+            'postcode.required' => trans('validation.required',['attribute'=> trans('cart.postcode')]),
+            'company.required' => trans('validation.required',['attribute'=> trans('cart.company')]),
+            'sex.required' => trans('validation.required',['attribute'=> trans('cart.sex')]),
+            'birthday.required' => trans('validation.required',['attribute'=> trans('cart.birthday')]),
+            'email.email' => trans('validation.email',['attribute'=> trans('cart.email')]),
+            'phone.regex' => trans('validation.regex',['attribute'=> trans('cart.phone')]),
+            'postcode.min' => trans('validation.min',['attribute'=> trans('cart.postcode')]),
+            'country.min' => trans('validation.min',['attribute'=> trans('cart.country')]),
+            'first_name.max' => trans('validation.max',['attribute'=> trans('cart.first_name')]),
+            'email.max' => trans('validation.max',['attribute'=> trans('cart.email')]),
+            'address1.max' => trans('validation.max',['attribute'=> trans('cart.address1')]),
+            'address2.max' => trans('validation.max',['attribute'=> trans('cart.address2')]),
+            'last_name.max' => trans('validation.max',['attribute'=> trans('cart.last_name')]),
+            'birthday.date' => trans('validation.date',['attribute'=> trans('cart.birthday')]),
+            'birthday.date_format' => trans('validation.date_format',['attribute'=> trans('cart.birthday')]),
+            'shipping_method.required' => trans('cart.validation.shippingMethod_required'),
+            'payment_method.required' => trans('cart.validation.paymentMethod_required'),
+        ];
+
+
+        $validator = Validator::make($data, $validate, $messages);
 
         if ($validator->fails()) {
-            // dd($validator->messages());
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -267,13 +292,15 @@ class ShopOrderController extends Controller
         $dataInsert = [
             'user_id' => $data['user_id'],
             'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
+            'last_name' => $data['last_name'] ?? '',
             'status' => $data['status'],
             'currency' => $data['currency'],
             'address1' => $data['address1'],
-            'address2' => $data['address2'],
-            'country' => $data['country'],
-            'phone' => $data['phone'],
+            'address2' => $data['address2'] ?? '',
+            'country' => $data['country'] ?? '',
+            'company' => $data['company'] ?? '',
+            'postcode' => $data['postcode'] ?? '',
+            'phone' => $data['phone'] ?? '',
             'payment_method' => $data['payment_method'],
             'shipping_method' => $data['shipping_method'],
             'exchange_rate' => $data['exchange_rate'],
@@ -283,6 +310,7 @@ class ShopOrderController extends Controller
         $order = ShopOrder::create($dataInsert);
         ShopOrderTotal::insert([
             ['code' => 'subtotal', 'value' => 0, 'title' => 'Subtotal', 'sort' => 1, 'order_id' => $order->id],
+            ['code' => 'tax', 'value' => 0, 'title' => 'Tax', 'sort' => 2, 'order_id' => $order->id],
             ['code' => 'shipping', 'value' => 0, 'title' => 'Shipping', 'sort' => 10, 'order_id' => $order->id],
             ['code' => 'discount', 'value' => 0, 'title' => 'Discount', 'sort' => 20, 'order_id' => $order->id],
             ['code' => 'total', 'value' => 0, 'title' => 'Total', 'sort' => 100, 'order_id' => $order->id],
@@ -436,6 +464,7 @@ class ShopOrderController extends Controller
         $add_price = request('add_price');
         $add_qty = request('add_qty');
         $add_att = request('add_att');
+        $add_tax = request('add_tax');
         $order_id = request('order_id');
         $items = [];
         $order = ShopOrder::find($order_id);
@@ -443,7 +472,6 @@ class ShopOrderController extends Controller
             //where exits id and qty > 0
             if ($id && $add_qty[$key]) {
                 $product = (new ShopProduct)->getDetail($id);
-                $attDetails = $product->attributes->pluck('name', 'id')->all();
                 $pAttr = json_encode($add_att[$id] ?? []);
                 $items[] = array(
                     'order_id' => $order_id,
@@ -453,6 +481,7 @@ class ShopOrderController extends Controller
                     'price' => $add_price[$key],
                     'total_price' => $add_price[$key] * $add_qty[$key],
                     'sku' => $product->sku,
+                    'tax' => $add_tax[$key],
                     'attribute' => $pAttr,
                     'currency' => $order->currency,
                     'exchange_rate' => $order->exchange_rate,
@@ -472,11 +501,7 @@ class ShopOrderController extends Controller
                 ];
                 (new ShopOrder)->addOrderHistory($dataHistory);
 
-                //Update total price
-                $subtotal = ShopOrderDetail::select(DB::raw('sum(total_price) as subtotal'))
-                    ->where('order_id', $order_id)
-                    ->first()->subtotal;
-                $updateSubTotal = ShopOrderTotal::updateSubTotal($order_id, empty($subtotal) ? 0 : $subtotal);
+                ShopOrderTotal::updateSubTotal($order_id);
                 //end update total price
                 return response()->json(['error' => 0, 'msg' => trans('order.admin.update_success')]);
             } catch (\Exception $e) {
@@ -523,10 +548,7 @@ class ShopOrderController extends Controller
             }
 
             //Update total price
-            $subtotal = ShopOrderDetail::select(DB::raw('sum(total_price) as subtotal'))
-                ->where('order_id', $orderID)
-                ->first()->subtotal;
-            ShopOrderTotal::updateSubTotal($orderID, $subtotal);
+            ShopOrderTotal::updateSubTotal($orderID);
             //end update total price
 
             //refresh order info after update
@@ -544,6 +566,7 @@ class ShopOrderController extends Controller
             $arrayReturn = ['error' => 0, 'detail' => [
                 'total' => sc_currency_format($orderUpdated->total),
                 'subtotal' => sc_currency_format($orderUpdated->subtotal),
+                'tax' => sc_currency_format($orderUpdated->tax),
                 'shipping' => sc_currency_format($orderUpdated->shipping),
                 'discount' => sc_currency_format($orderUpdated->discount),
                 'received' => sc_currency_format($orderUpdated->received),
@@ -575,10 +598,7 @@ class ShopOrderController extends Controller
             $itemDetail->delete(); //Remove item from shop order detail
             $order = ShopOrder::find($order_id);
             //Update total price
-            $subtotal = ShopOrderDetail::select(DB::raw('sum(total_price) as subtotal'))
-                ->where('order_id', $order_id)
-                ->first()->subtotal;
-            ShopOrderTotal::updateSubTotal($order_id, empty($subtotal) ? 0 : $subtotal);
+            ShopOrderTotal::updateSubTotal($order_id);
             //Update stock, sold
             ShopProduct::updateStock($product_id, -$qty);
 

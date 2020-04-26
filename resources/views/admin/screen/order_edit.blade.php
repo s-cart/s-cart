@@ -29,24 +29,51 @@
                     <tr>
                       <td class="td-title">{{ trans('order.shipping_first_name') }}:</td><td><a href="#" class="updateInfoRequired" data-name="first_name" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.shipping_first_name') }}" >{!! $order->first_name !!}</a></td>
                     </tr>
+
+                    @if (sc_config('customer_lastname'))
                     <tr>
                       <td class="td-title">{{ trans('order.shipping_last_name') }}:</td><td><a href="#" class="updateInfoRequired" data-name="last_name" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.shipping_last_name') }}" >{!! $order->last_name !!}</a></td>
                     </tr>
+                    @endif
+
+                    @if (sc_config('customer_phone'))
                     <tr>
                       <td class="td-title">{{ trans('order.shipping_phone') }}:</td><td><a href="#" class="updateInfoRequired" data-name="phone" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.shipping_phone') }}" >{!! $order->phone !!}</a></td>
                     </tr>
+                    @endif
+
                     <tr>
                       <td class="td-title">{{ trans('order.email') }}:</td><td>{!! empty($order->email)?'N/A':$order->email!!}</td>
                     </tr>
+
+                    @if (sc_config('customer_company'))
+                    <tr>
+                      <td class="td-title">{{ trans('order.company') }}:</td><td><a href="#" class="updateInfoRequired" data-name="company" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.company') }}" >{!! $order->company !!}</a></td>
+                    </tr>
+                    @endif
+
+                    @if (sc_config('customer_postcode'))
+                    <tr>
+                      <td class="td-title">{{ trans('order.postcode') }}:</td><td><a href="#" class="updateInfoRequired" data-name="postcode" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.postcode') }}" >{!! $order->postcode !!}</a></td>
+                    </tr>
+                    @endif
+
                     <tr>
                       <td class="td-title">{{ trans('order.shipping_address1') }}:</td><td><a href="#" class="updateInfoRequired" data-name="address1" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.address1') }}" >{!! $order->address1 !!}</a></td>
                     </tr>
-                      <tr>
+
+                    @if (sc_config('customer_address2'))
+                    <tr>
                       <td class="td-title">{{ trans('order.shipping_address2') }}:</td><td><a href="#" class="updateInfoRequired" data-name="address2" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.address2') }}" >{!! $order->address2 !!}</a></td>
                     </tr>
-                      <tr>
+                    @endif
+
+                    @if (sc_config('customer_country'))
+                    <tr>
                       <td class="td-title">{{ trans('order.country') }}:</td><td><a href="#" class="updateInfoRequired" data-name="country" data-type="select" data-source ="{{ json_encode($countryMap) }}" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.country') }}" data-value="{!! $order->country !!}"></a></td>
                     </tr>
+                    @endif
+
                 </table>
             </div>
             <div class="col-sm-6">
@@ -94,6 +121,7 @@
                     <th class="product_price">{{ trans('product.price') }}</th>
                     <th class="product_qty">{{ trans('product.quantity') }}</th>
                     <th class="product_total">{{ trans('product.total_price') }}</th>
+                    <th class="product_tax">{{ trans('product.tax') }}</th>
                     <th>{{ trans('admin.action') }}</th>
                   </tr>
                 </thead>
@@ -116,6 +144,7 @@
                             <td class="product_price"><a href="#" class="edit-item-detail" data-value="{{ $item->price }}" data-name="price" data-type="number" min=0 data-pk="{{ $item->id }}" data-url="{{ route("admin_order.edit_item") }}" data-title="{{ trans('product.price') }}">{{ $item->price }}</a></td>
                             <td class="product_qty">x <a href="#" class="edit-item-detail" data-value="{{ $item->qty }}" data-name="qty" data-type="number" min=0 data-pk="{{ $item->id }}" data-url="{{ route("admin_order.edit_item") }}" data-title="{{ trans('order.qty') }}"> {{ $item->qty }}</a></td>
                             <td class="product_total item_id_{{ $item->id }}">{{ sc_currency_render_symbol($item->total_price,$order->currency)}}</td>
+                            <td class="product_tax"><a href="#" class="edit-item-detail" data-value="{{ $item->tax }}" data-name="tax" data-type="number" min=0 data-pk="{{ $item->id }}" data-url="{{ route("admin_order.edit_item") }}" data-title="{{ trans('order.tax') }}"> {{ $item->tax }}</a></td>
                             <td>
                                 <span  onclick="deleteItem({{ $item->id }});" class="btn btn-danger btn-xs" data-title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></span>
                             </td>
@@ -146,6 +175,10 @@
                     @if ($element['code'] =='subtotal')
                       <tr><td  class="td-title-normal">{!! $element['title'] !!}:</td><td style="text-align:right" class="data-{{ $element['code'] }}">{{ sc_currency_format($element['value']) }}</td></tr>
                     @endif
+                    @if ($element['code'] =='tax')
+                    <tr><td  class="td-title-normal">{!! $element['title'] !!}:</td><td style="text-align:right" class="data-{{ $element['code'] }}">{{ sc_currency_format($element['value']) }}</td></tr>
+                    @endif
+
                     @if ($element['code'] =='shipping')
                       <tr><td>{!! $element['title'] !!}:</td><td style="text-align:right"><a href="#" class="updatePrice data-{{ $element['code'] }}"  data-name="{{ $element['code'] }}" data-type="text" data-pk="{{ $element['id'] }}" data-url="{{ route("admin_order.update") }}" data-title="{{ trans('order.shipping_price') }}">{{$element['value'] }}</a></td></tr>
                     @endif
@@ -235,6 +268,7 @@
               <td><input onChange="update_total($(this));" type="number" min="0" class="add_price form-control" name="add_price[]" value="0"></td>
               <td><input onChange="update_total($(this));" type="number" min="0" class="add_qty form-control" name="add_qty[]" value="0"></td>
               <td><input type="number" disabled class="add_total form-control" value="0"></td>
+              <td><input  type="number" min="0" class="add_tax form-control" name="add_tax[]" value="0"></td>
               <td><button onClick="$(this).parent().parent().remove();" class="btn btn-danger btn-md btn-flat" data-title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></td>
             </tr>
           <tr>
@@ -310,6 +344,7 @@ function update_total(e){
             node.find('.add_qty').eq(0).val('');
             node.find('.add_price').eq(0).val('');
             node.find('.add_attr').html('');
+            node.find('.add_tax').html('');
         }else{
             $.ajax({
                 url : '{{ route('admin_order.product_info') }}',
@@ -327,6 +362,7 @@ function update_total(e){
                 node.find('.add_price').eq(0).val(returnedData.price_final * {!! ($order->exchange_rate)??1 !!});
                 node.find('.add_total').eq(0).val(returnedData.price_final * {!! ($order->exchange_rate)??1 !!});
                 node.find('.add_attr').eq(0).html(returnedData.renderAttDetails);
+                node.find('.add_tax').eq(0).html(returnedData.tax);
                 $('#loading').hide();
                 }
             });
@@ -440,6 +476,7 @@ function all_editable(){
                 $('.data-shipping').html(response.detail.shipping);
                 $('.data-received').html(response.detail.received);
                 $('.data-subtotal').html(response.detail.subtotal);
+                $('.data-tax').html(response.detail.tax);
                 $('.data-total').html(response.detail.total);
                 $('.data-shipping').html(response.detail.shipping);
                 $('.data-discount').html(response.detail.discount);
@@ -474,6 +511,7 @@ function all_editable(){
                   $('.data-shipping').html(response.detail.shipping);
                   $('.data-received').html(response.detail.received);
                   $('.data-subtotal').html(response.detail.subtotal);
+                  $('.data-tax').html(response.detail.tax);
                   $('.data-total').html(response.detail.total);
                   $('.data-shipping').html(response.detail.shipping);
                   $('.data-discount').html(response.detail.discount);

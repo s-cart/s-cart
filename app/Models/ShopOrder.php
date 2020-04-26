@@ -178,7 +178,7 @@ class ShopOrder extends Model
                 $cartDetail['currency'] = $currency;
                 $cartDetail['exchange_rate'] = $exchange_rate;
                 $cartDetail['sku'] = $product->sku;
-                $cartDetail['tax'] = sc_tax_price($cartDetail['price'], $product->getTaxValue()) - $cartDetail['price'] ;
+                $cartDetail['tax'] = (sc_tax_price($cartDetail['price'], $product->getTaxValue()) - $cartDetail['price']) *  $cartDetail['qty'];
                 $this->addOrderDetail($cartDetail);
 
                 //Update stock and sold

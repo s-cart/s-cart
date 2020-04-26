@@ -53,6 +53,7 @@
                                 </div>
                             </div>
 
+                        @if (sc_config('customer_lastname'))
                             <div class="form-group   {{ $errors->has('last_name') ? ' has-error' : '' }}">
                                 <label for="last_name" class="col-sm-2  control-label">{{ trans('order.shipping_last_name') }}</label>
                                 <div class="col-sm-8">
@@ -67,6 +68,41 @@
                                         @endif
                                 </div>
                             </div>
+                        @endif
+
+                        @if (sc_config('customer_company'))
+                            <div class="form-group   {{ $errors->has('company') ? ' has-error' : '' }}">
+                                <label for="company" class="col-sm-2  control-label">{{ trans('order.company') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <input type="text" id="company" name="company" value="{!! old('company') !!}" class="form-control company" placeholder="" />
+                                    </div>
+                                        @if ($errors->has('company'))
+                                            <span class="help-block">
+                                                {{ $errors->first('company') }}
+                                            </span>
+                                        @endif
+                                </div>
+                            </div>
+                        @endif
+
+                        @if (sc_config('customer_postcode'))
+                            <div class="form-group   {{ $errors->has('postcode') ? ' has-error' : '' }}">
+                                <label for="postcode" class="col-sm-2  control-label">{{ trans('order.postcode') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <input type="text" id="postcode" name="postcode" value="{!! old('postcode') !!}" class="form-control postcode" placeholder="" />
+                                    </div>
+                                        @if ($errors->has('postcode'))
+                                            <span class="help-block">
+                                                {{ $errors->first('postcode') }}
+                                            </span>
+                                        @endif
+                                </div>
+                            </div>
+                        @endif
 
                             <div class="form-group   {{ $errors->has('address1') ? ' has-error' : '' }}">
                                 <label for="address1" class="col-sm-2  control-label">{{ trans('order.shipping_address1') }}</label>
@@ -82,6 +118,8 @@
                                     @endif
                                 </div>
                             </div>
+
+                        @if (sc_config('customer_address2'))    
                             <div class="form-group   {{ $errors->has('address2') ? ' has-error' : '' }}">
                                 <label for="address2" class="col-sm-2  control-label">{{ trans('order.shipping_address2') }}</label>
                                 <div class="col-sm-8">
@@ -96,7 +134,9 @@
                                         @endif
                                 </div>
                             </div>
+                        @endif
 
+                        @if (sc_config('customer_country'))
                             <div class="form-group  {{ $errors->has('country') ? ' has-error' : '' }}">
                                 <label for="country" class="col-sm-2 asterisk control-label">{{ trans('order.country') }}</label>
                                 <div class="col-sm-8">
@@ -113,8 +153,9 @@
                                         @endif
                                 </div>
                             </div>
+                        @endif
 
-
+                        @if (sc_config('customer_phone'))
                             <div class="form-group   {{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <label for="phone" class="col-sm-2  control-label">{{ trans('order.shipping_phone') }}</label>
                                 <div class="col-sm-8">
@@ -129,6 +170,7 @@
                                         @endif
                                 </div>
                             </div>
+                        @endif
 
                             <div class="form-group   {{ $errors->has('currency') ? ' has-error' : '' }}">
                                 <label for="currency" class="col-sm-2 asterisk control-label">{{ trans('order.currency') }}</label>
@@ -293,6 +335,8 @@ function addInfo(){
                 $('[name="address1"]').val(returnedData.address1);
                 $('[name="address2"]').val(returnedData.address2);
                 $('[name="phone"]').val(returnedData.phone);
+                $('[name="company"]').val(returnedData.company);
+                $('[name="postcode"]').val(returnedData.postcode);
                 $('[name="country"]').val(returnedData.country).change();
                 $('#loading').hide();
             }
