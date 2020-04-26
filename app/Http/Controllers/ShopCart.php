@@ -282,9 +282,10 @@ class ShopCart extends GeneralController
             $options = $form_attr;
             $dataCart = array(
                 'id' => $product_id,
-                'name' => $product->sku,
+                'name' => $product->name,
                 'qty' => $qty,
                 'price' => $product->getFinalPrice(),
+                'tax' => $product->getTaxValue(),
             );
             if ($options) {
                 $dataCart['options'] = $options;
@@ -330,6 +331,7 @@ class ShopCart extends GeneralController
         $uID = auth()->user()->id ?? 0;
         //Process total
         $subtotal = (new ShopOrderTotal)->sumValueTotal('subtotal', $dataTotal); //sum total
+        $tax = (new ShopOrderTotal)->sumValueTotal('tax', $dataTotal); //sum tax
         $shipping = (new ShopOrderTotal)->sumValueTotal('shipping', $dataTotal); //sum shipping
         $discount = (new ShopOrderTotal)->sumValueTotal('discount', $dataTotal); //sum discount
         $received = (new ShopOrderTotal)->sumValueTotal('received', $dataTotal); //sum received
@@ -341,6 +343,7 @@ class ShopCart extends GeneralController
         $dataOrder['shipping'] = $shipping;
         $dataOrder['discount'] = $discount;
         $dataOrder['received'] = $received;
+        $dataOrder['tax'] = $tax;
         $dataOrder['payment_status'] = self::PAYMENT_UNPAID;
         $dataOrder['shipping_status'] = self::SHIPPING_NOTSEND;
         $dataOrder['status'] = self::ORDER_STATUS_NEW;
@@ -433,6 +436,7 @@ class ShopCart extends GeneralController
                             'name' => $product->name,
                             'qty' => 1,
                             'price' => $product->getFinalPrice(),
+                            'tax' => $product->getTaxValue(),
                         )
                     );
                 } else {

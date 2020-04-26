@@ -8,6 +8,7 @@ use App\Models\ShopProductCategory;
 use App\Models\ShopProductDescription;
 use App\Models\ShopProductGroup;
 use App\Models\ShopProductPromotion;
+use App\Models\ShopTax;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Cache;
@@ -77,6 +78,15 @@ class ShopProduct extends Model
         }
     }
 
+    /*
+    *Get final price with tax
+    */
+    public function getFinalPriceTax()
+    {
+        return sc_tax_price($this->getFinalPrice(), $this->getTaxValue());
+    }
+
+
     /**
      * [showPrice description]
      * @param  [type] $classNew [description]
@@ -89,10 +99,13 @@ class ShopProduct extends Model
         if (!sc_config('product_price')) {
             return false;
         }
+        $price = $this->price;
+        $priceFinal = $this->getFinalPrice();
+        // Process with tax
         return  view('templates.'.sc_store('template').'.common.show_price', 
             [
-                'price' => $this->price,
-                'priceFinal' => $this->getFinalPrice(),
+                'price' => $price,
+                'priceFinal' => $priceFinal,
                 'kind' => $this->kind,
             ]);
     }
@@ -111,10 +124,13 @@ class ShopProduct extends Model
         if (!sc_config('product_price')) {
             return false;
         }
+        $price = $this->price;
+        $priceFinal = $this->getFinalPrice();
+        // Process with tax
         return  view('templates.'.sc_store('template').'.common.show_price_detail', 
         [
-            'price' => $this->price,
-            'priceFinal' => $this->getFinalPrice(),
+            'price' => $price,
+            'priceFinal' => $priceFinal,
             'kind' => $this->kind,
         ]);
     }
@@ -723,6 +739,41 @@ class ShopProduct extends Model
         }
 
         return $query;
+    }
+
+    /**
+     * Get tax ID
+     *
+     * @return  [type]  [return description]
+     */
+    public function getTaxId() {
+        if(!ShopTax::checkStatus()) {
+            return 0;
+        }
+        if($this->tax_id == 'auto') {
+            return ShopTax::checkStatus();
+        } else {
+            $arrTaxId = ShopTax::getArrayId();
+            if($this->tax_id == 0 || !in_array($this->tax_id, $arrTaxId)) {
+                return 0;
+            }
+        }
+        return $this->tax_id;
+    }
+
+    /**
+     * Get value tax (%)
+     *
+     * @return  [type]  [return description]
+     */
+    public function getTaxValue() {
+        $taxId = $this->getTaxId();
+        if($taxId) {
+            $arrValue = ShopTax::getArrayValue();
+            return $arrValue[$taxId] ?? 0;
+        } else {
+            return 0;
+        }
     }
 
 }

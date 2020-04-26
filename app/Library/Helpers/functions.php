@@ -324,8 +324,8 @@ if (!function_exists('sc_unzip')) {
 }
 
 /*
-    Get locale
-    */
+Get locale
+*/
 if (!function_exists('sc_get_locale')) {
     function sc_get_locale()
     {
@@ -334,23 +334,33 @@ if (!function_exists('sc_get_locale')) {
 }
 
 /*
-    Get all template
-    */
-    if (!function_exists('sc_get_all_template')) {
-        function sc_get_all_template()
-        {
-            $arrTemplates = [];
-            foreach (glob(resource_path() . "/views/templates/*") as $template) {
-                if (is_dir($template)) {
-                    $infoTemlate['code'] = explode('templates/', $template)[1];
-                    $config = ['name' => '', 'auth' => '', 'email' => '', 'website' => ''];
-                    if (file_exists($template . '/config.json')) {
-                        $config = json_decode(file_get_contents($template . '/config.json'), true);
-                    }
-                    $infoTemlate['config'] = $config;
-                    $arrTemplates[$infoTemlate['code']] = $infoTemlate;
+Get all template
+*/
+if (!function_exists('sc_get_all_template')) {
+    function sc_get_all_template()
+    {
+        $arrTemplates = [];
+        foreach (glob(resource_path() . "/views/templates/*") as $template) {
+            if (is_dir($template)) {
+                $infoTemlate['code'] = explode('templates/', $template)[1];
+                $config = ['name' => '', 'auth' => '', 'email' => '', 'website' => ''];
+                if (file_exists($template . '/config.json')) {
+                    $config = json_decode(file_get_contents($template . '/config.json'), true);
                 }
+                $infoTemlate['config'] = $config;
+                $arrTemplates[$infoTemlate['code']] = $infoTemlate;
             }
-            return $arrTemplates;
         }
+        return $arrTemplates;
     }
+}
+
+/*
+    Return price with tax
+*/
+if (!function_exists('sc_tax_price')) {
+    function sc_tax_price($price, $tax)
+    {
+        return floor($price * (100 + $tax) /100);
+    }
+}

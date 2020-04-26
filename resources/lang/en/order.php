@@ -70,6 +70,7 @@ return [
         'discount'  => 'Discount',
         'received'  => 'Received',
         'balance'   => 'Balance',
+        'tax'       => 'Tax',
     ],
     'admin'                 => [
         'title'                => 'Order manager',

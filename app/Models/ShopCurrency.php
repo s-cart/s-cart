@@ -200,21 +200,29 @@ class ShopCurrency extends Model
             return self::format($money) . $space_symbol . $symbol;
         }
     }
+    
 /**
- * [sumCart description]
- * @param  [type]     $details [description]
- * @param  float|null $rate    [description]
- * @return [type]              [description]
+ * Sum value of cart
+ *
+ * @param   [\App\Library\ShoppingCart\CartItem] $details  [$details description]
+ * @param   float  $rate     [$rate description]
+ *
+ * @return  [array]
  */
     public static function sumCart($details, float $rate = null)
     {
-        $sum  = 0;
+        $sumSubtotal  = 0;
+        $sumSubtotalWithTax  = 0;
         $rate = ($rate) ? $rate : self::$exchange_rate;
         foreach ($details as $detail) {
-            $sum += $detail->qty * self::getValue($detail->price, $rate);
+            $sumSubtotal += $detail->qty * self::getValue($detail->price, $rate);
+            $sumSubtotalWithTax += $detail->qty * self::getValue(sc_tax_price($detail->price, $detail->tax), $rate);
         }
-        return $sum;
-
+        return 
+            [
+                'subTotal' => $sumSubtotal,
+                'subTotalWithTax' => $sumSubtotalWithTax,
+            ];
     }
 
     public static function getListRate()

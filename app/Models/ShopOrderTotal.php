@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\ShopOrder;
+use App\Models\ShopCurrency;
 use Cart;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ class ShopOrderTotal extends Model
     protected $connection = SC_CONNECTION;
     protected $guarded = [];
     const POSITION_SUBTOTAL = 1;
+    const POSITION_TAX = 2;
     const POSITION_SHIPPING_METHOD = 10;
     const POSITION_TOTAL_METHOD = 20;
     const POSITION_TOTAL = 100;
@@ -29,8 +31,9 @@ class ShopOrderTotal extends Model
      */
     public static function processDataTotal(array $objects = [])
     {
-        $subtotal = sc_currency_sumcart(Cart::instance('default')->content());
-        //You can't use Cart::subtotal(), becase when use currency, Cart::subtotal() may be not equal $subtotal
+        $carts  = ShopCurrency::sumCart(Cart::instance('default')->content());
+        $subtotal = $carts['subTotal'];
+        $tax = $carts['subTotalWithTax'] - $carts['subTotal'];
 
         //Set subtotal
         $arraySubtotal = [
@@ -41,14 +44,23 @@ class ShopOrderTotal extends Model
             'sort' => self::POSITION_SUBTOTAL,
         ];
 
+        //Set tax
+        $arrayTax = [
+            'title' => trans('order.totals.tax'),
+            'code' => 'tax',
+            'value' => $tax,
+            'text' => sc_currency_render_symbol($tax, sc_currency_code()),
+            'sort' => self::POSITION_TAX,
+        ];
+
+
+
         // set total value
-        $total = $subtotal;
+        $total = $subtotal + $tax;
         foreach ($objects as $key => $object) {
             if (is_array($object) && $object) {
-                $object['value'] = sc_currency_value($object['value']);
-                $object['text'] = sc_currency_render($object['value']);
                 if ($object['code'] != 'received') {
-                    $total += sc_currency_value($object['value']);
+                    $total += $object['value'];
                 }
             } else {
                 unset($objects[$key]);
@@ -64,6 +76,7 @@ class ShopOrderTotal extends Model
         //End total value
 
         $objects[] = $arraySubtotal;
+        $objects[] = $arrayTax;
         $objects[] = $arrayTotal;
 
         //re-sort item total
@@ -104,8 +117,8 @@ class ShopOrderTotal extends Model
             $arrShipping = [
                 'title' => $returnModuleShipping['title'],
                 'code' => 'shipping',
-                'value' => $returnModuleShipping['value'],
-                'text' => $returnModuleShipping['value'],
+                'value' => sc_currency_value($returnModuleShipping['value']),
+                'text' => sc_currency_render($returnModuleShipping['value']),
                 'sort' => self::POSITION_SHIPPING_METHOD,
             ];
         }
@@ -145,8 +158,8 @@ class ShopOrderTotal extends Model
                 $totalMethod[] = [
                     'title' => $returnModuleTotal['title'],
                     'code' => 'discount',
-                    'value' => $returnModuleTotal['value'],
-                    'text' => $returnModuleTotal['value'],
+                    'value' => sc_currency_value($returnModuleTotal['value']),
+                    'text' => sc_currency_render($returnModuleTotal['value']),
                     'sort' => self::POSITION_TOTAL_METHOD,
                 ];
             }

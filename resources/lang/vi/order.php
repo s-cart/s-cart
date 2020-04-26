@@ -70,6 +70,7 @@ return [
   'discount'  => 'Giảm giá',
   'received'  => 'Đã nhận',
   'balance'   => 'Còn lại',
+  'tax'       => 'Thuế',
  ],
  'admin'                 => [
   'title'                => 'Quản lý đơn hàng',

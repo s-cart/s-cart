@@ -127,6 +127,7 @@ class ShopOrder extends Model
             $dataOrder['shipping'] = sc_clean($dataOrder['shipping']);
             $dataOrder['discount'] = sc_clean($dataOrder['discount']);
             $dataOrder['received'] = sc_clean($dataOrder['received']);
+            $dataOrder['tax'] = sc_clean($dataOrder['tax']);
             $dataOrder['payment_status'] = sc_clean($dataOrder['payment_status']);
             $dataOrder['shipping_status'] = sc_clean($dataOrder['shipping_status']);
             $dataOrder['status'] = sc_clean($dataOrder['status']);
@@ -177,6 +178,7 @@ class ShopOrder extends Model
                 $cartDetail['currency'] = $currency;
                 $cartDetail['exchange_rate'] = $exchange_rate;
                 $cartDetail['sku'] = $product->sku;
+                $cartDetail['tax'] = sc_tax_price($cartDetail['price'], $product->getTaxValue()) - $cartDetail['price'] ;
                 $this->addOrderDetail($cartDetail);
 
                 //Update stock and sold

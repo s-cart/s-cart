@@ -56,6 +56,8 @@ return [
     'products_build'     => 'Products build',
     'products_group'     => 'Products group',
     'submit_form'        => 'Submit',
+    'price_include_tax'     => 'Price includes tax',
+    'price_without_tax'     => 'Price without taxes',
     'subscribe'          => [
         'manager'           => 'Subscribe manager',
         'email'             => 'Email',

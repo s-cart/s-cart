@@ -76,7 +76,7 @@ class InsertDatabaseAdmin extends Migration
             ['id' => 58, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.cache_manager', 'icon' => 'fa-tripadvisor', 'uri' => 'admin::cache_config', 'key' => null, 'type' => 0],
             ['id' => 59, 'parent_id' => 9, 'sort' => 303, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fa-plug', 'uri' => 'admin::api_connection', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 5, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fa-flag', 'uri' => 'admin::maintain', 'key' => null, 'type' => 0],
-            ['id' => 61, 'parent_id' => 5, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
+            ['id' => 61, 'parent_id' => 2, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
 
         ]
         );
@@ -284,7 +284,6 @@ class InsertDatabaseAdmin extends Migration
             ['group' => '', 'code' => 'product', 'key' => 'product_virtual', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.virtual', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_attribute', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.attribute', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available', 'store_id' => '1'],
-            ['group' => '', 'code' => 'product', 'key' => 'product_display_price_include_tax', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.product_display_price_include_tax', 'store_id' => '1'],
             ['group' => '', 'code' => 'env', 'key' => 'product_tax', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
 
             ['group' => '', 'code' => 'customer', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => '1'],

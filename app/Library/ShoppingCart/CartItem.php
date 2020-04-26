@@ -44,6 +44,13 @@ class CartItem implements Arrayable, Jsonable
     public $price;
 
     /**
+     * The value of tax (%).
+     *
+     * @var int
+     */
+    public $tax;
+
+    /**
      * The options for this cart item.
      *
      * @var array
@@ -64,8 +71,9 @@ class CartItem implements Arrayable, Jsonable
      * @param string     $name
      * @param float      $price
      * @param array      $options
+     * @param int        $tax
      */
-    public function __construct($id, $name, $price, array $options = [])
+    public function __construct($id, $name, $price, array $options = [], $tax = 0)
     {
         if(empty($id)) {
             throw new \InvalidArgumentException('Please supply a valid identifier.');
@@ -80,6 +88,7 @@ class CartItem implements Arrayable, Jsonable
         $this->id       = $id;
         $this->name     = $name;
         $this->price    = floatval($price);
+        $this->tax    = floatval($tax);
         $this->options  = new CartItemOptions($options);
         $this->rowId = $this->generateRowId($id, $options);
     }
@@ -94,6 +103,15 @@ class CartItem implements Arrayable, Jsonable
         return $this->price;
     }
 
+    /**
+     * Returns the value of tax (%).
+     *
+     * @return string
+     */
+    public function tax()
+    {
+        return $this->tax;
+    }
 
     /**
      * Returns the formatted subtotal.
@@ -142,6 +160,7 @@ class CartItem implements Arrayable, Jsonable
         $this->id       = $item->getBuyableIdentifier($this->options);
         $this->name     = $item->getBuyableDescription($this->options);
         $this->price    = $item->getBuyablePrice($this->options);
+        $this->tax      = $item->getBuyableTax($this->options);
     }
 
     /**
@@ -156,6 +175,7 @@ class CartItem implements Arrayable, Jsonable
         $this->qty      = array_get($attributes, 'qty', $this->qty);
         $this->name     = array_get($attributes, 'name', $this->name);
         $this->price    = array_get($attributes, 'price', $this->price);
+        $this->tax      = array_get($attributes, 'tax', $this->tax);
         $this->options  = new CartItemOptions(array_get($attributes, 'options', $this->options));
 
         $this->rowId = $this->generateRowId($this->id, $this->options->all());
@@ -191,7 +211,7 @@ class CartItem implements Arrayable, Jsonable
         }
         
         if($attribute === 'total') {
-            return $this->qty * $this->price;
+            return sc_tax_price($this->qty * $this->price, $this->tax);
         }
         
 
@@ -211,7 +231,13 @@ class CartItem implements Arrayable, Jsonable
      */
     public static function fromBuyable(Buyable $item, array $options = [])
     {
-        return new self($item->getBuyableIdentifier($options), $item->getBuyableDescription($options), $item->getBuyablePrice($options), $options);
+        return new self(
+            $item->getBuyableIdentifier($options), 
+            $item->getBuyableDescription($options), 
+            $item->getBuyablePrice($options), 
+            $options, 
+            $item->getBuyableTax($options)
+        );
     }
 
     /**
@@ -224,7 +250,7 @@ class CartItem implements Arrayable, Jsonable
     {
         $options = array_get($attributes, 'options', []);
 
-        return new self($attributes['id'], $attributes['name'], $attributes['price'], $options);
+        return new self($attributes['id'], $attributes['name'], $attributes['price'], $options, $attributes['tax']);
     }
 
     /**
@@ -236,9 +262,9 @@ class CartItem implements Arrayable, Jsonable
      * @param array      $options
      * @return \App\Library\ShoppingCart\CartItem
      */
-    public static function fromAttributes($id, $name, $price, array $options = [])
+    public static function fromAttributes($id, $name, $price, array $options = [], $tax = 0)
     {
-        return new self($id, $name, $price, $options);
+        return new self($id, $name, $price, $options, $tax);
     }
 
     /**
@@ -268,8 +294,10 @@ class CartItem implements Arrayable, Jsonable
             'name'     => $this->name,
             'qty'      => $this->qty,
             'price'    => $this->price,
+            'tax'      => $this->tax,
             'options'  => $this->options->toArray(),
-            'subtotal' => $this->subtotal
+            'subtotal' => $this->subtotal,
+            'total'    => $this->total
         ];
     }
 

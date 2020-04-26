@@ -22,13 +22,6 @@ if (!function_exists('sc_currency_render_symbol')) {
     }
 }
 
-//Process sum value of cart
-if (!function_exists('sc_currency_sumcart')) {
-    function sc_currency_sumcart($details, float $rate = null)
-    {
-        return ShopCurrency::sumCart($details, $rate);
-    }
-}
 
 //Get value after apply currency
 if (!function_exists('sc_currency_value')) {

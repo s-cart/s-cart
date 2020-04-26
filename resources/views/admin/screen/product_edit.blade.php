@@ -143,10 +143,9 @@
                         @endforeach
                         {{-- //Descriptions --}}
 
-
+                        <hr>
                         {{-- Category --}}
                         @if ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD)
-                        <hr>
 
                         @php
                         $listCate = [];
@@ -392,28 +391,30 @@
 @endif
 
 @if (sc_config('product_tax'))
+                    @if ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD)
                         {{-- Tax --}}
-                        <div class="form-group  {{ $errors->has('tax_flag') ? ' has-error' : '' }}">
-                            <label for="tax_flag" class="col-sm-2 control-label">{{ trans('product.tax') }}</label>
+                        <div class="form-group  {{ $errors->has('tax_id') ? ' has-error' : '' }}">
+                            <label for="tax_id" class="col-sm-2 control-label">{{ trans('product.tax') }}</label>
                             <div class="col-sm-8">
-                                <select class="form-control input-sm tax_flag select2" style="width: 100%;"
-                                    name="tax_flag">
-                                    <option value="0" {{ (old('tax_flag') == 0) ? 'selected':'' }}>{{ trans('tax.admin.non_tax') }}</option>
-                                    <option value="auto" {{ (old('tax_flag') == 'auto') ? 'selected':'' }}>{{ trans('tax.admin.auto') }}</option>
+                                <select class="form-control input-sm tax_id select2" style="width: 100%;"
+                                    name="tax_id">
+                                    <option value="0" {{ (old('tax_id', $product->tax_id) == 0) ? 'selected':'' }}>{{ trans('tax.admin.non_tax') }}</option>
+                                    <option value="auto" {{ (old('tax_id', $product->tax_id) == 'auto') ? 'selected':'' }}>{{ trans('tax.admin.auto') }}</option>
                                     @foreach ($taxs as $k => $v)
                                     <option value="{{ $k }}"
-                                        {{ (old('tax_flag') ==$k || (!old() && $product->tax_flag ==$k) ) ? 'selected':'' }}>
+                                        {{ (old('tax_id') ==$k || (!old() && $product->tax_id ==$k) ) ? 'selected':'' }}>
                                         {{ $v->name }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('tax_flag'))
+                                @if ($errors->has('tax_id'))
                                 <span class="help-block">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('tax_flag') }}
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('tax_id') }}
                                 </span>
                                 @endif
                             </div>
                         </div>
                         {{-- //Tax --}}
+                    @endif
 @endif
 
 @if (sc_config('product_promotion'))

@@ -86,7 +86,7 @@ class Cart
      * @param array     $options
      * @return \App\Library\ShoppingCart\CartItem
      */
-    public function add($id, $name = null, $qty = null, $price = null, array $options = [])
+    public function add($id, $name = null, $qty = null, $price = null, array $options = [], $tax = 0)
     {
         if ($this->isMulti($id)) {
             return array_map(function ($item) {
@@ -94,7 +94,7 @@ class Cart
             }, $id);
         }
 
-        $cartItem = $this->createCartItem($id, $name, $qty, $price, $options);
+        $cartItem = $this->createCartItem($id, $name, $qty, $price, $options, $tax);
 
         $content = $this->getContent();
 
@@ -237,7 +237,7 @@ class Cart
         $content = $this->getContent();
 
         $total = $content->reduce(function ($total, CartItem $cartItem) {
-            return $total + ($cartItem->qty * $cartItem->priceTax);
+            return $total + ($cartItem->qty * sc_tax_price($cartItem->price, $cartItem->tax));
         }, 0);
         return $total;
     }
@@ -397,7 +397,7 @@ class Cart
      * @param array     $options
      * @return \App\Library\ShoppingCart\CartItem
      */
-    private function createCartItem($id, $name, $qty, $price, array $options)
+    private function createCartItem($id, $name, $qty, $price, array $options, $tax = 0)
     {
         if ($id instanceof Buyable) {
             $cartItem = CartItem::fromBuyable($id, $qty ?: []);
@@ -407,7 +407,7 @@ class Cart
             $cartItem = CartItem::fromArray($id);
             $cartItem->setQuantity($id['qty']);
         } else {
-            $cartItem = CartItem::fromAttributes($id, $name, $price, $options);
+            $cartItem = CartItem::fromAttributes($id, $name, $price, $options, $tax);
             $cartItem->setQuantity($qty);
         }
 
@@ -468,7 +468,7 @@ class Cart
      */
     private function getConnectionName()
     {
-        return 'mysql';
+        return SC_CONNECTION;
     }
 
     /*

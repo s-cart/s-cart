@@ -56,6 +56,8 @@ return [
     'products_build'     => 'Sản phẩm bộ',
     'products_group'     => 'Sản phẩm nhóm',
     'submit_form'        => 'Gửi đi',
+    'price_include_tax'     => 'Giá đã có thuế',
+    'price_without_tax'     => 'Giá chưa có thuế',
     'subscribe'          => [
         'manager'           => 'Quản lý theo dõi email',
         'email'             => 'Email',

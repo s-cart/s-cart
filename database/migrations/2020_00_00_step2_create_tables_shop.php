@@ -256,7 +256,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('type')->nullable()->default(0)->index();
             $table->tinyInteger('kind')->nullable()->default(0)->comment('0:single, 1:bundle, 2:group')->index();
             $table->tinyInteger('virtual')->nullable()->default(0)->comment('0:physical, 1:download, 2:only view, 3: Service')->index();
-            $table->string('tax_flag', 50)->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
+            $table->string('tax_id', 50)->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
             $table->tinyInteger('status')->default(0)->index();
             $table->tinyInteger('sort')->default(0);
             $table->integer('view')->default(0);

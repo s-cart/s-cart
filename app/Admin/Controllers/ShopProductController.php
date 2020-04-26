@@ -401,7 +401,7 @@ class ShopProductController extends Controller
             'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
             'image' => $data['image']??'',
-            'tax_flag' => $data['tax_flag']??0,
+            'tax_id' => $data['tax_id']??0,
             'status' => (!empty($data['status']) ? 1 : 0),
             'sort' => (int) $data['sort'],
         ];
@@ -643,7 +643,7 @@ class ShopProductController extends Controller
         $supplier_id = $data['supplier_id']?? '';
         $dataUpdate = [
             'image' => $data['image'] ?? '',
-            'tax_flag' => $data['tax_flag'] ?? 0,
+            'tax_id' => $data['tax_id'] ?? 0,
             'brand_id' => $data['brand_id'] ?? 0,
             'supplier_id' => implode(',', $supplier_id  ),
             'price' => $data['price'] ?? 0,
