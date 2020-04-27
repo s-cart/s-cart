@@ -116,9 +116,9 @@ $attributesGroup: array
                                 <select class="form-control" name="address_process" style="width: 100%;" id="addressList">
                                     <option value="">{{ trans('cart.change_address') }}</option>
                                     @foreach ($addressList as $k => $address)
-                                    <option value="{{ $address->id }}">- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2 }}</option>
+                                    <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2 }}</option>
                                     @endforeach
-                                    <option value="new">{{ trans('cart.add_new_address') }}</option>
+                                    <option value="new" {{ (old('address_process') ==  'new') ? 'selected':''}}>{{ trans('cart.add_new_address') }}</option>
                                 </select>
                             </div>
                             @endif
@@ -132,7 +132,7 @@ $attributesGroup: array
                                             {{ trans('cart.first_name') }}:</label>
                                         <input name="first_name" type="text"
                                             placeholder="{{ trans('cart.first_name') }}"
-                                            value="{{(old('first_name'))?old('first_name'):$shippingAddress['first_name']}}">
+                                            value="{{old('first_name', $shippingAddress['first_name'])}}">
                                         @if($errors->has('first_name'))
                                         <span class="help-block">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -141,7 +141,7 @@ $attributesGroup: array
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
                                             {{ trans('cart.last_name') }}:</label>
                                         <input name="last_name" type="text" placeholder="{{ trans('cart.last_name') }}"
-                                            value="{{(old('last_name'))?old('last_name'):$shippingAddress['last_name']}}">
+                                            value="{{old('last_name',$shippingAddress['last_name'])}}">
                                         @if($errors->has('last_name'))
                                         <span class="help-block">{{ $errors->first('last_name') }}</span>
                                         @endif
@@ -153,7 +153,7 @@ $attributesGroup: array
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
                                             {{ trans('cart.name') }}:</label>
                                         <input name="first_name" type="text" placeholder="{{ trans('cart.name') }}"
-                                            value="{{(old('first_name'))?old('first_name'):$shippingAddress['first_name']}}">
+                                            value="{{old('first_name',$shippingAddress['first_name'])}}">
                                         @if($errors->has('first_name'))
                                         <span class="help-block">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -167,7 +167,7 @@ $attributesGroup: array
                                         <label for="email" class="control-label"><i class="fa fa-envelope"></i>
                                             {{ trans('cart.email') }}:</label>
                                         <input name="email" type="text" placeholder="{{ trans('cart.email') }}"
-                                            value="{{(old('email'))?old('email'):$shippingAddress['email']}}">
+                                            value="{{old('email', $shippingAddress['email'])}}">
                                         @if($errors->has('email'))
                                         <span class="help-block">{{ $errors->first('email') }}</span>
                                         @endif
@@ -176,7 +176,7 @@ $attributesGroup: array
                                         <label for="phone" class="control-label"><i class="fa fa-phone"
                                                 aria-hidden="true"></i> {{ trans('cart.phone') }}:</label>
                                         <input name="phone" type="text" placeholder="{{ trans('cart.phone') }}"
-                                            value="{{(old('phone'))?old('phone'):$shippingAddress['phone']}}">
+                                            value="{{old('phone',$shippingAddress['phone'])}}">
                                         @if($errors->has('phone'))
                                         <span class="help-block">{{ $errors->first('phone') }}</span>
                                         @endif
@@ -186,7 +186,7 @@ $attributesGroup: array
                                         <label for="email" class="control-label"><i class="fa fa-envelope"></i>
                                             {{ trans('cart.email') }}:</label>
                                         <input name="email" type="text" placeholder="{{ trans('cart.email') }}"
-                                            value="{{(old('email'))?old('email'):$shippingAddress['email']}}">
+                                            value="{{old('email',$shippingAddress['email'])}}">
                                         @if($errors->has('email'))
                                         <span class="help-block">{{ $errors->first('email') }}</span>
                                         @endif
@@ -202,7 +202,7 @@ $attributesGroup: array
                                         <label for="country" class="control-label"><i class="fas fa-globe"></i>
                                             {{ trans('cart.country') }}:</label>
                                         @php
-                                        $ct = (old('country'))?old('country'):$shippingAddress['country'];
+                                        $ct = old('country',$shippingAddress['company']);
                                         @endphp
                                         <select class="form-control country " style="width: 100%;" name="country">
                                             <option value="">__{{ trans('cart.country') }}__</option>
@@ -226,7 +226,7 @@ $attributesGroup: array
                                         <label for="postcode" class="control-label"><i class="fa fa-tablet"></i>
                                             {{ trans('cart.postcode') }}:</label>
                                         <input name="postcode" type="text" placeholder="{{ trans('cart.postcode') }}"
-                                            value="{{ (old('postcode'))?old('postcode'):$shippingAddress['postcode']}}">
+                                            value="{{ old('postcode',$shippingAddress['postcode'])}}">
                                         @if($errors->has('postcode'))
                                         <span class="help-block">{{ $errors->first('postcode') }}</span>
                                         @endif
@@ -238,7 +238,7 @@ $attributesGroup: array
                                         <label for="company" class="control-label"><i class="fa fa-university"></i>
                                             {{ trans('cart.company') }}</label>
                                         <input name="company" type="text" placeholder="{{ trans('cart.company') }}"
-                                            value="{{ (old('company'))?old('company'):$shippingAddress['company']}}">
+                                            value="{{ old('company',$shippingAddress['company'])}}">
                                         @if($errors->has('company'))
                                         <span class="help-block">{{ $errors->first('company') }}</span>
                                         @endif
@@ -252,7 +252,7 @@ $attributesGroup: array
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address1') }}:</label>
                                         <input name="address1" type="text" placeholder="{{ trans('cart.address1') }}"
-                                            value="{{ (old('address1'))?old('address1'):$shippingAddress['address1']}}">
+                                            value="{{ old('address1',$shippingAddress['address1'])}}">
                                         @if($errors->has('address1'))
                                         <span class="help-block">{{ $errors->first('address1') }}</span>
                                         @endif
@@ -261,7 +261,7 @@ $attributesGroup: array
                                         <label for="address2" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address2') }}</label>
                                         <input name="address2" type="text" placeholder="{{ trans('cart.address2') }}"
-                                            value="{{ (old('address2'))?old('address2'):$shippingAddress['address2']}}">
+                                            value="{{ old('address2',$shippingAddress['address2'])}}">
                                         @if($errors->has('address2'))
                                         <span class="help-block">{{ $errors->first('address2') }}</span>
                                         @endif
@@ -272,7 +272,7 @@ $attributesGroup: array
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address') }}:</label>
                                         <input name="address1" type="text" placeholder="{{ trans('cart.address') }}"
-                                            value="{{ (old('address1'))?old('address1'):$shippingAddress['address1']}}">
+                                            value="{{ old('address1',$shippingAddress['address1'])}}">
                                         @if($errors->has('address1'))
                                         <span class="help-block">{{ $errors->first('address1') }}</span>
                                         @endif
@@ -285,7 +285,7 @@ $attributesGroup: array
                                         <label class="control-label"><i class="fa fa-calendar-o"></i>
                                             {{ trans('cart.note') }}:</label>
                                         <textarea rows="5" name="comment"
-                                            placeholder="{{ trans('cart.note') }}....">{{ (old('comment'))?old('comment'):$shippingAddress['comment'] }}</textarea>
+                                            placeholder="{{ trans('cart.note') }}....">{{ old('comment','')}}</textarea>
                                     </td>
                                 </tr>
 

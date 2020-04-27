@@ -112,7 +112,7 @@ class ShopCart extends GeneralController
                 'comment' => '',
             ];
         }
-        $shippingAddress = session('shippingAddress') ? session('shippingAddress') : $addressDefaul;
+        $shippingAddress = session('shippingAddress') ?? $addressDefaul;
 
 
         $objects = ShopOrderTotal::getObjectOrderTotal();
