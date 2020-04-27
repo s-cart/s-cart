@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
+use Throwable;
 
 class Backup extends Command
 {
@@ -20,26 +21,7 @@ class Backup extends Command
      * @var string
      */
     protected $description = 'Backup database';
-    protected $process;
-    protected $fileBackup;
     const LIMIT = 10;
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->fileBackup = storage_path('backups/backup-' . date('Y-m-d-H-i-s') . '.sql');
-        $this->process    = new Process(sprintf(
-            'mysqldump --user="%s" --password="%s" %s > %s',
-            config('database.connections.mysql.username'),
-            config('database.connections.mysql.password'),
-            config('database.connections.mysql.database'),
-            $this->fileBackup
-        ));
-    }
 
     /**
      * Execute the console command.
@@ -52,12 +34,20 @@ class Backup extends Command
             echo json_encode(['error' => 1, 'msg' => trans('backup.limit_backup')]);
             exit;
         }
+        $fileBackup = storage_path('backups/backup-' . date('Y-m-d-H-i-s') . '.sql');
         try {
-            $this->process->mustRun();
+            $string = sprintf(
+                'mysqldump --user="%s" --password="%s" %s > %s',
+                config('database.connections.'.SC_CONNECTION.'.username'),
+                config('database.connections.'.SC_CONNECTION.'.password'),
+                config('database.connections.'.SC_CONNECTION.'.database'),
+                $fileBackup
+            );
+            Process::fromShellCommandline($string)->mustRun();
             echo json_encode(['error' => 0, 'msg' => 'Backup success!']);
-        } catch (\Exception $exception) {
-            if (file_exists($this->fileBackup)) {
-                unlink($this->fileBackup);
+        } catch (Throwable $exception) {
+            if (file_exists($fileBackup)) {
+                unlink($fileBackup);
             }
             echo json_encode(['error' => 1, 'msg' => $exception->getMessage()]);
         }
