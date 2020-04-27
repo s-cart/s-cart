@@ -363,7 +363,7 @@ class CreateTablesShop extends Migration
             $table->timestamps();
         });
 
-        Schema::create(SC_DB_PREFIX.'shop_address', function (Blueprint $table) {
+        Schema::create(SC_DB_PREFIX.'shop_user_address', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('first_name', 100);
@@ -539,6 +539,7 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_promotion');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_user');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_supplier');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_user_address');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_subscribe');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_country');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news');
