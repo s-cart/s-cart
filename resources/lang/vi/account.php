@@ -51,5 +51,8 @@ return [
         'date_add' => 'Ngày tạo',
         'detail_order' => 'Chi tiết',
         'id' => 'ID',
+    ],
+    'addresses'              => [
+        'empty' => 'Không có địa chỉ nào',
     ]
 ];

@@ -22,7 +22,7 @@ $layout_page = shop_profile
       <h3 class="title-optoins-customer">{{ $title }}</h3>
       @if (count($addresses) ==0)
       <div class="text-danger">
-        {{ trans('account.orders.empty') }}
+        {{ trans('account.addresses.empty') }}
       </div>
       @else
           @foreach($addresses as $address)

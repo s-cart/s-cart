@@ -44,11 +44,14 @@ return [
     'sex_women'               => 'Women',
     'sex_men'                 => 'Men',
     'orders'                   => [
-        'empty' => 'You do not have any orders',
+        'empty' => 'You do not have any order',
         'total' => 'Total',
         'status' => 'Status',
         'date_add' => 'Date add',
         'detail_order' => 'Detail',
         'id' => 'ID',
+    ],
+    'addresses'              => [
+        'empty' => 'You do not have any address',
     ]
 ];
