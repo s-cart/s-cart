@@ -104,7 +104,7 @@
 
       <div class="box-body table-responsive no-padding box-primary">
         <div class="box">
-          <canvas id="chart-days-in-month" width="700" height="200"></canvas>
+          <div id="chart-days" style="width:100%; height:auto;"></div>
         </div>
       </div>
     </div>
@@ -125,7 +125,14 @@
 
       <div class="box-body table-responsive no-padding box-primary">
           <div class="box">
-            <canvas id="chartjs-1" width="600" height="150"></canvas>
+            {{-- <div class="row"> --}}
+              <div class="col-md-4">
+                <div id="chart-pie" style="width:100%; height:auto;"></div>
+              </div>
+              <div class="col-md-8">
+                <div id="chart-month" style="width:100%; height:auto;"></div>
+              </div>
+            {{-- </div> --}}
           </div>
       </div>
     </div>
@@ -244,235 +251,203 @@
 @endpush
 
 @push('scripts')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="{{ asset('admin/plugin/chartjs/dist/Chart.bundle.min.js') }}"></script>
   <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+      var myChart = Highcharts.chart('chart-days', {
+          credits: {
+              enabled: false
+          },
+          title: {
+              text: '{{ trans('chart.static_30_day') }}'
+          },
+          xAxis: {
+              categories: {!! $arrDays !!},
+              crosshair: false
 
+          },
 
+          yAxis: [{
+              min: 0,
+              title: {
+                  text: '{{ trans('chart.order') }}'
+              },
+          }, {
+              title: {
+                  text: '{{ trans('chart.amount') }}'
+              },
+              opposite: true
+          },
+          ],
 
-$(document).ready(function($) {
-var ctx_month = document.getElementById('chart-days-in-month').getContext('2d');
- new Chart(ctx_month, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        // type: 'category',
-        labels: {!! $arrDays !!},
-        datasets: [
-
-        {
-            label: "Total amount",
-            backgroundColor: 'rgba(225,0,0,0.4)',
-            borderColor: "rgb(231, 53, 253)",
-            borderCapStyle: 'square',
-            pointHoverRadius: 8,
-            pointHoverBackgroundColor: "yellow",
-            pointHoverBorderColor: "brown",
-            data: {!! $arrTotalsAmount !!},
-            showLine: true, // disable for a single dataset,
-            yAxisID: "y-axis-gravity",
-            fill: false,
-            type: 'line',
-            lineTension: 0.1,
-        },
-        {
-            label: "Total order",
-            backgroundColor: 'rgb(138, 199, 214)',
-            borderColor: 'rgb(138, 199, 214)',
-            pointHoverRadius: 8,
-            pointHoverBackgroundColor: "brown",
-            pointHoverBorderColor: "yellow",
-            data: {!! $arrTotalsOrder !!},
-            showLine: true, // disable for a single dataset,
-            yAxisID: "y-axis-density",
-            spanGaps: true,
-            lineTension: 0.1,
-
-        },
-
-        ]
-    },
-
-    // Configuration options go here
-    options: {
-        responsive: true,
-        legend: {
-          display: true,
-        },
-        layout: {
-            padding: {
-                left: 10,
-                right: 10,
-                top: 0,
-                bottom: 0
-            }
-        },
-        scales: {
-            yAxes: [
-            {
-              position: "left",
-              id: "y-axis-density",
-                ticks: {
-                    beginAtZero:true,
-                    max: {!! $max_order  !!} + 5,
-                    min: 0,
-                    stepSize: 2,
-                },
-                  scaleLabel: {
-                     display: true,
-                     labelString: 'Total order',
-                     fontSize: 15,
-
-                  }
+          legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0
             },
-            {
-              position: "right",
-              id: "y-axis-gravity",
-              ticks: {
-                    beginAtZero:true,
-                    callback: function(label, index, labels) {
-                        return format_number(label);
-                    },
-                },
-                scaleLabel: {
-                     display: true,
-                     labelString: 'Total amount (Bit)',
-                     fontSize: 15
+
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y:.0f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+            column: {
+                      pointPadding: 0.2,
+                      borderWidth: 0
                   }
-            }
-            ]
-        },
+          },
 
-        tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+          series: [
+          {
+              type: 'column',
+              name: '{{ trans('chart.order') }}',
+              data: {!! $arrTotalsOrder !!},
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.y:.0f}'
+              }
+          },
+          {
+              type: 'spline',
+              name: '{{ trans('chart.amount') }}',
+              color: '#32ca0c',
+              yAxis: 1,
+              data: {!! $arrTotalsAmount !!},
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: false,
+                  format: '{point.y:.0f}'
+              }
+          },
+        ]
+      });
+  });
 
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += format_number(tooltipItem.yLabel);
-                    return label;
-                }
+
+
+// Set up the chart
+var chart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'chart-month',
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 0,
+            beta: 10,
+            depth: 50,
+            viewDistance: 25
+        }
+    },
+    title: {
+        text: '{{ trans('chart.static_month') }}'
+    },
+    subtitle: {
+        text: '{{ trans('chart.static_month_help') }}'
+    },
+    legend: {
+            enabled: false,
+      },
+    credits: {
+              enabled: false
+          },
+    xAxis: {
+        categories: {!! $months1 !!},
+        crosshair: false,
+
+    },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    series: [
+      {
+        data: {!! $arrTotalsAmount_year !!},
+      },
+      {
+          type : 'spline',
+          color: '#d05135',
+          data: {!! $arrTotalsAmount_year !!}
+      }
+  ]
+});
+
+function showValues() {
+    $('#alpha-value').html(chart.options.chart.options3d.alpha);
+    $('#beta-value').html(chart.options.chart.options3d.beta);
+    $('#depth-value').html(chart.options.chart.options3d.depth);
+}
+
+// Activate the sliders
+$('#sliders input').on('input change', function () {
+    chart.options.chart.options3d[this.id] = parseFloat(this.value);
+    showValues();
+    chart.redraw(false);
+});
+
+showValues();
+
+</script>
+
+<script>
+  Highcharts.chart('chart-pie', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    credits: {
+              enabled: false
+          },
+    title: {
+        text: '{{ trans('chart.static_browser') }}'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
             }
         }
-    }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Browser share',
+        data: [
+            ['Firefox', 45.0],
+            ['IE', 26.8],
+            {
+                name: 'Chrome',
+                y: 12.8,
+                sliced: true,
+                selected: true
+            },
+            ['Safari', 8.5],
+            ['Opera', 6.2],
+            ['Others', 0.7]
+        ]
+    }]
 });
-});
+</script>
 
-
-
-
-
-
-    $(document).ready(function($) {
-    var ctx_year = document.getElementById('chartjs-1').getContext('2d');
-     new Chart(ctx_year, {
-        // The type of chart we want to create
-        type: 'bar',
-
-        // The data for our dataset
-        data: {
-            "labels":{!! $months1 !!},
-            "datasets":[
-                {
-                    "label":"Total amount",
-                    "data":{!! $arrTotalsAmount_year !!},
-                    "fill":false,
-                    "backgroundColor":[
-                    "rgba(191, 25, 232, 0.2)",
-                    "rgba(191, 25, 232, 0.2)",
-                    "rgba(191, 25, 232, 0.2)",
-                    "rgba(191, 25, 232, 0.2)",
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
-                    "rgba(255, 205, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(201, 203, 207, 0.2)",
-                    "rgba(181, 147, 50, 0.2)",
-                    "rgba(232, 130, 81, 0.2)",
-                    ],
-                    "borderColor":[
-                    "rgb(191, 25, 232)",
-                    "rgb(191, 25, 232)",
-                    "rgb(191, 25, 232)",
-                    "rgb(191, 25, 232)",
-                    "rgb(255, 99, 132)",
-                    "rgb(255, 159, 64)",
-                    "rgb(255, 205, 86)",
-                    "rgb(75, 192, 192)",
-                    "rgb(54, 162, 235)",
-                    "rgb(153, 102, 255)",
-                    "rgb(201, 203, 207)",
-                    "rgb(181, 147, 50)",
-                    "rgb(232, 130, 81)",
-                    ],
-                    "borderWidth":1,
-                    type:"bar",
-                },
-                {
-                    "label":"Line total amount",
-                    "data":{!! $arrTotalsAmount_year !!},
-                    "fill":false,
-                    "backgroundColor":"red",
-                    "borderColor":"red",
-                    "borderWidth":1,
-                    type:"line",
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-              display: true,
-            },
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 0,
-                    bottom: 0
-                }
-            },
-
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                        if (label) {
-                            label += ': ';
-                        }
-                        label += format_number(tooltipItem.yLabel);
-                        return label;
-                    }
-                }
-            },
-            scales: {
-                yAxes: [
-                {
-                  position: "left",
-                  // id: "y-axis-amount",
-                  ticks: {
-                        beginAtZero:true,
-                        callback: function(label, index, labels) {
-                            return format_number(label);
-                        },
-                    },
-                    scaleLabel: {
-                         display: true,
-                         labelString: 'Bit',
-                         fontSize: 15
-                      }
-                }
-                ]
-            },
-        },
-
-    });
-    });
-  </script>
 @endpush
