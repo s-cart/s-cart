@@ -135,10 +135,6 @@ class ShopUser extends Authenticatable
         $user->save();
         return $user;
     }
-    
-    public function profile() {
-        return Auth::user();
-    }
 
     /**
      * Get address default of user

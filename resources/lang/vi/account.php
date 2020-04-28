@@ -5,6 +5,14 @@ return [
     'title_register'          => 'Đăng ký mới!',
     'register_success'        => 'Đăng ký tài khoàn thành công!',
     'order_list'              => 'Danh sách đơn hàng',
+    'address_list'            => 'Danh sách địa chỉ',
+    'address_detail'          => 'Xem chi tiết địa chỉ',
+    'delete_address_success'  => 'Xóa địa chỉ thành công!',
+    'confirm_delete'          => 'Bạn có chắc chắn muốn xóa?',
+    'chose_address_default'   => 'Set mặc định',
+    'order_detail'            => 'Chi tiết đơn hàng',
+    'order_detail_notfound'   => 'Không tìm thấy đơn hàng',
+    'order_detail_not_exist'  => 'Đơn hàng không tồn tại',
     'my_profile'              => 'Tài khoản của tôi',
     'change_password'         => 'Thay đổi mật khẩu',
     'change_infomation'       => 'Thay đổi thông tin',
@@ -42,5 +50,6 @@ return [
         'status' => 'Trạng thái',
         'date_add' => 'Ngày tạo',
         'detail_order' => 'Chi tiết',
+        'id' => 'ID',
     ]
 ];

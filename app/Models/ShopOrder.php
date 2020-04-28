@@ -291,13 +291,13 @@ class ShopOrder extends Model
     /**
      * Disable only user's order mode
      */
-    public function setOrderProfileOff() {
+    public function setOrderProfile() {
         $this->sc_order_profile = 1;
         return $this;
     }
 
     public function profile() {
-        $this->setOrderProfileOff();
+        $this->setOrderProfile();
         return $this;
     }
 

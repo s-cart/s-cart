@@ -5,6 +5,14 @@ return [
     'title_register'          => 'New User Signup!',
     'register_success'        => 'Register success!',
     'order_list'              => 'Order list',
+    'address_list'            => 'Address list',
+    'address_detail'          => 'Address detail',
+    'delete_address_success'  => 'Delete address success!',
+    'confirm_delete'          => 'Are you sure you want to delete?',
+    'chose_address_default'   => 'Set default',
+    'order_detail'            => 'Order detail',
+    'order_detail_notfound'   => 'Order not found',
+    'order_detail_not_exist'   => 'Order not exist!',
     'my_profile'              => 'My profile',
     'change_password'         => 'Change password',
     'change_infomation'       => 'Change infomation',
@@ -41,5 +49,6 @@ return [
         'status' => 'Status',
         'date_add' => 'Date add',
         'detail_order' => 'Detail',
+        'id' => 'ID',
     ]
 ];

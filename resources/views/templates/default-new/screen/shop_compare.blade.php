@@ -72,5 +72,4 @@ $compare: no paginate
 @endsection
 
 @push('scripts')
-</script>
 @endpush

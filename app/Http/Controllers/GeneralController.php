@@ -42,8 +42,6 @@ class GeneralController extends Controller
         view()->share('modelSupplier', (new ShopSupplier));
         view()->share('modelNews', (new ShopNews));
         view()->share('modelPage', (new ShopPage));
-        view()->share('modelUserProfile', (new ShopUser)->profile());
-        view()->share('modelUserOrder', (new ShopOrder)->profile());
     }
 
 
