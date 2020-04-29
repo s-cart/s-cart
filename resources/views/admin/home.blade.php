@@ -300,7 +300,7 @@
             column: {
                       pointPadding: 0.2,
                       borderWidth: 0
-                  }
+                  },
           },
 
           series: [
@@ -321,8 +321,12 @@
               data: {!! $arrTotalsAmount !!},
               borderWidth: 0,
               dataLabels: {
-                  enabled: false,
-                  format: '{point.y:.0f}'
+                  enabled: true,
+                  borderRadius: 3,
+                  backgroundColor: 'rgba(252, 255, 197, 0.7)',
+                  borderWidth: 0.5,
+                  borderColor: '#AAA',
+                  y: -6
               }
           },
         ]
@@ -364,6 +368,16 @@ var chart = new Highcharts.Chart({
     plotOptions: {
         column: {
             depth: 25
+        },
+        series: {
+            dataLabels: {
+                enabled: true,
+                borderRadius: 3,
+                backgroundColor: 'rgba(252, 255, 197, 0.7)',
+                borderWidth: 0.5,
+                borderColor: '#AAA',
+                y: -6
+            }
         }
     },
     series: [
