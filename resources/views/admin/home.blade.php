@@ -251,6 +251,7 @@
 @endpush
 
 @push('scripts')
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="{{ asset('admin/plugin/chartjs/dist/Chart.bundle.min.js') }}"></script>
@@ -264,7 +265,7 @@
               text: '{{ trans('chart.static_30_day') }}'
           },
           xAxis: {
-              categories: {!! $arrDays !!},
+              categories: {!! json_encode(array_keys($orderInMonth)) !!},
               crosshair: false
 
           },
@@ -307,7 +308,7 @@
           {
               type: 'column',
               name: '{{ trans('chart.order') }}',
-              data: {!! $arrTotalsOrder !!},
+              data: {!! json_encode(array_values($orderInMonth)) !!},
               dataLabels: {
                   enabled: true,
                   format: '{point.y:.0f}'
@@ -318,7 +319,7 @@
               name: '{{ trans('chart.amount') }}',
               color: '#32ca0c',
               yAxis: 1,
-              data: {!! $arrTotalsAmount !!},
+              data: {!! json_encode(array_values($amountInMonth)) !!},
               borderWidth: 0,
               dataLabels: {
                   enabled: true,
@@ -361,10 +362,17 @@ var chart = new Highcharts.Chart({
               enabled: false
           },
     xAxis: {
-        categories: {!! $months1 !!},
+        categories: {!! json_encode(array_keys($dataInYear)) !!},
         crosshair: false,
-
     },
+    yAxis: [
+            {
+                min: 0,
+                title: {
+                    text: '{{ trans('chart.amount') }}'
+                },
+            }
+          ],
     plotOptions: {
         column: {
             depth: 25
@@ -382,12 +390,14 @@ var chart = new Highcharts.Chart({
     },
     series: [
       {
-        data: {!! $arrTotalsAmount_year !!},
+        name : '{{ trans('chart.amount') }}',
+        data: {!! json_encode(array_values($dataInYear)) !!},
       },
       {
           type : 'spline',
           color: '#d05135',
-          data: {!! $arrTotalsAmount_year !!}
+          name : '{{ trans('chart.amount') }}',
+          data: {!! json_encode(array_values($dataInYear)) !!}
       }
   ]
 });
@@ -406,7 +416,6 @@ $('#sliders input').on('input change', function () {
 });
 
 showValues();
-
 </script>
 
 <script>
@@ -423,7 +432,7 @@ showValues();
               enabled: false
           },
     title: {
-        text: '{{ trans('chart.static_browser') }}'
+        text: '{{ trans('chart.static_country') }}'
     },
     accessibility: {
         point: {
@@ -440,26 +449,14 @@ showValues();
             depth: 35,
             dataLabels: {
                 enabled: true,
-                format: '{point.name}'
+                format: '{point.name}:{point.y}'
             }
         }
     },
     series: [{
         type: 'pie',
-        name: 'Browser share',
-        data: [
-            ['Firefox', 45.0],
-            ['IE', 26.8],
-            {
-                name: 'Chrome',
-                y: 12.8,
-                sliced: true,
-                selected: true
-            },
-            ['Safari', 8.5],
-            ['Opera', 6.2],
-            ['Others', 0.7]
-        ]
+        name: '{{ trans('chart.country') }}',
+        data: {!! $dataPie !!},
     }]
 });
 </script>

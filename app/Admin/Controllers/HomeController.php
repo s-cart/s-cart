@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopNews;
 use App\Models\ShopOrder;
 use App\Models\ShopProduct;
+use App\Models\ShopCountry;
 use App\Models\ShopUser;
 use DB;
 use Illuminate\Http\Request;
@@ -23,83 +24,64 @@ class HomeController extends Controller
         $data['products'] = new ShopProduct;
         $data['blogs'] = new ShopNews;
 
-//=========================
+        //Country statistics
+        $dataCountries = (new ShopOrder)->getCountryInYear();
+        $arrCountry = ShopCountry::getArray();
+        $arrCountryMap   = [];
+        $ctTotal = 0;
+        $ctTop = 0;
+        foreach ($dataCountries as $key => $country) {
+            $ctTotal +=$country->count;
+            if($key <= 3) {
+                $ctTop +=$country->count;
+                if($key == 0) {
+                    $arrCountryMap[] =  [
+                        'name' => $arrCountry[$country->country],
+                        'y' => $country->count,
+                        'sliced' => true,
+                        'selected' => true,
+                    ];
+                } else {
+                    $arrCountryMap[] =  [$arrCountry[$country->country], $country->count];
+                }
+            }
+        }
+        $arrCountryMap[] = ['Other', ($ctTotal - $ctTop)];
+        $data['dataPie'] = json_encode($arrCountryMap);
+        //End country statistics
 
-        $totals = ShopOrder::select(
-            DB::connection(SC_CONNECTION)->raw(
-                'DATE(created_at) as date,
-                DATE_FORMAT(created_at, "%m/%d") as md,
-                sum(total/exchange_rate) as total_amount,
-                count(id) as total_order'
-            )
-        )
-            ->groupBy('date', 'md')
-            ->having('date', '<=', date('Y-m-d'))
-            ->whereRaw('DATE(created_at) >=  DATE_SUB(DATE(NOW()), INTERVAL 1 MONTH)')
-            ->get();
 
-        $orderGroup = $totals->keyBy('md')->toArray();
-
-        $arrDays = [];
-        $arrTotalsOrder = [];
-        $arrTotalsAmount = [];
+        //Order in 30 days
+        $totalsInMonth = (new ShopOrder)->getSumOrderTotalInMonth()->keyBy('md')->toArray();
         $rangDays = new \DatePeriod(
             new \DateTime('-1 month'),
             new \DateInterval('P1D'),
             new \DateTime('+1 day')
         );
-
+        $orderInMonth  = [];
+        $amountInMonth  = [];
+        $sum = 0;
         foreach ($rangDays as $i => $day) {
-            $date = $day->format('m/d');
-            $arrDays[$i] = $date;
-            $arrTotalsAmount[$i] = isset($orderGroup[$date]) ? $orderGroup[$date]['total_amount'] : 0;
-            $arrTotalsOrder[$i] = isset($orderGroup[$date]) ? $orderGroup[$date]['total_order'] : 0;
+            $date = $day->format('m-d');
+            $orderInMonth[$date] = $totalsInMonth[$date]['total_order'] ?? '';
+            $amountInMonth[$date] = $sum + ($totalsInMonth[$date]['total_amount'] ?? 0);
+            $sum = $amountInMonth[$date];
         }
-        // dd($orderGroup);
-        $max_order = max($arrTotalsOrder);
-        foreach ($arrTotalsAmount as $key => $value) {
-            if ($key != 0) {
-                $key_first = $key - 1;
-                $arrTotalsAmount[$key] += $arrTotalsAmount[$key_first];
-            }
-        }
-        $arrDays = '["' . implode('","', $arrDays) . '"]';
-        $arrTotalsAmount = '[' . implode(',', $arrTotalsAmount) . ']';
-        $arrTotalsOrder = '[' . implode(',', $arrTotalsOrder) . ']';
-        $data['arrDays'] = $arrDays;
-        $data['arrTotalsAmount'] = $arrTotalsAmount;
-        $data['arrTotalsOrder'] = $arrTotalsOrder;
-        $data['max_order'] = $max_order;
+        $data['orderInMonth'] = $orderInMonth;
+        $data['amountInMonth'] = $amountInMonth;
 
-//===================12 months  ==============================
+        //End order in 30 days
+        
+        //Order in 12 months
+        $totalsMonth = (new ShopOrder)->getSumOrderTotalInYear()
+            ->pluck('total_amount', 'ym')->toArray();
+        $dataInYear = [];
         for ($i = 12; $i >= 0; $i--) {
-            $months1[$i] = date("m/Y", strtotime(date('Y-m-01') . " -$i months"));
-            $months2[$i] = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
-            $arrTotalsAmount_year[$i] = 0;
+            $date = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
+            $dataInYear[$date] = $totalsMonth[$date] ?? 0;
         }
-
-        $totalsMonth = ShopOrder::select(
-            DB::connection(SC_CONNECTION)->raw(
-                'DATE_FORMAT(created_at, "%Y-%m") as ym,
-                        sum(total/exchange_rate) as total_amount,
-                        count(id) as total_order'
-            )
-        )
-            ->groupBy('ym')
-            ->having('ym', '>=', $months2[12])
-            ->having('ym', '<=', $months2[0])
-            ->get();
-            
-        foreach ($totalsMonth as $key => $value) {
-            $key_month = array_search($value->ym, $months2);
-            $arrTotalsAmount_year[$key_month] = $value->total_amount;
-        }
-        $months1 = '["' . implode('","', $months1) . '"]';
-        $arrTotalsAmount_year = '[' . implode(',', $arrTotalsAmount_year) . ']';
-        $data['months1'] = $months1;
-        $data['arrTotalsAmount_year'] = $arrTotalsAmount_year;
-
-        // echo view('admin.home', $data)->render();
+        $data['dataInYear'] = $dataInYear;
+        //End order in 12 months
 
         return view('admin.home', $data);
     }

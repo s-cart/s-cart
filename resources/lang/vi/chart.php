@@ -5,5 +5,6 @@ return [
     'static_month_help' => 'Dữ liệu so sánh bằng tổng số tiền của đơn hàng, đơn vị Bit',
     'amount' => 'Tổng số tiền (Bit)',
     'order' => 'Tổng đơn hàng',
-    'static_browser' => 'Thống kê trình duyệt',
+    'static_country' => 'Đơn hàng theo quốc gia',
+    'country' => 'Quốc gia',
 ];
