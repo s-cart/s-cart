@@ -362,13 +362,13 @@
                         @endif
             
                         <span class="btn">
-                            <a href="{{ route('admin_customer.update_address', ['id' => $address->id]) }}"><i class="fa fa-edit"></i></a>
+                            <a title="{{ trans('account.addresses.edit') }}" href="{{ route('admin_customer.update_address', ['id' => $address->id]) }}"><i class="fa fa-edit"></i></a>
                         </span>
                         <span class="btn">
-                            <a href="#" title="Delete" class="delete-address" data-id="{{ $address->id }}"><i class="fa fa-trash"></i></a>
+                            <a href="#" title="{{ trans('account.addresses.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fa fa-trash"></i></a>
                         </span>
                         @if ($address->id == $customer['address_id'])
-                        <span class="btn" title="Add default"><i class="fa fa-university" aria-hidden="true"></i></span>
+                        <span class="btn" title="{{ trans('account.addresses.default') }}"><i class="fa fa-university" aria-hidden="true"></i></span>
                         @endif
                         </div>
                     @endforeach

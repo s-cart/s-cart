@@ -54,13 +54,13 @@ $layout_page = shop_profile
                 @endif
 
                 <span class="btn">
-                  <a href="{{ route('member.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
+                  <a title="{{ trans('account.addresses.edit') }}" href="{{ route('member.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
                 </span>
                 <span class="btn">
-                  <a href="#" title="Delete" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
+                  <a href="#" title="{{ trans('account.addresses.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
                 </span>
                 @if ($address->id == auth()->user()->address_id)
-                <span class="btn" title="Add default"><i class="fas fa-university" aria-hidden="true"></i></span>
+                <span class="btn" title="{{ trans('account.addresses.default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
                 @endif
               </div>
           @endforeach

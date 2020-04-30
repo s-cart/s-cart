@@ -53,5 +53,8 @@ return [
     ],
     'addresses'              => [
         'empty' => 'You do not have any address',
+        'default' => 'Address default',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
     ]
 ];

@@ -54,5 +54,8 @@ return [
     ],
     'addresses'              => [
         'empty' => 'Không có địa chỉ nào',
+        'default' => 'Địa chỉ mặc định',
+        'edit' => 'Chỉnh sửa',
+        'delete' => 'Xóa bỏ',
     ]
 ];
