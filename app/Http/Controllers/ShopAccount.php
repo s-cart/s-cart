@@ -12,10 +12,12 @@ use App\Models\ShopUserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Auth\AuthTrait;
 
 class ShopAccount extends GeneralController
 {
-    
+    use AuthTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -140,89 +142,18 @@ class ShopAccount extends GeneralController
         $user = Auth::user();
         $id = $user->id;
         $data = request()->all();
-        $dataUpdate = [
-            'first_name' => $data['first_name'],
-            'address1' => $data['address1'],
-        ];
-        $validate = [
-            'first_name' => 'required|string|max:100',
-            'address1' => 'required|string|max:255',
-        ];
-        if(sc_config('customer_lastname')) {
-            $validate['last_name'] = 'required|max:100';
-            $dataUpdate['last_name'] = $data['last_name']??'';
-        }
-        if(sc_config('customer_address2')) {
-            $validate['address2'] = 'required|max:100';
-            $dataUpdate['address2'] = $data['address2']??'';
-        }
-        if(sc_config('customer_phone')) {
-            $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
-            $dataUpdate['phone'] = $data['phone']??'';
-        }
-        if(sc_config('customer_country')) {
-            $validate['country'] = 'required|min:2';
-            $dataUpdate['country'] = $data['country']??'';
-        }
-        if(sc_config('customer_postcode')) {
-            $validate['postcode'] = 'nullable|min:5';
-            $dataUpdate['postcode'] = $data['postcode']??'';
-        }
-        if(sc_config('customer_company')) {
-            $validate['company'] = 'nullable';
-            $dataUpdate['company'] = $data['company']??'';
-        }   
-        if(sc_config('customer_sex')) {
-            $validate['sex'] = 'required';
-            $dataUpdate['sex'] = $data['sex']??'';
-        }   
-        if(sc_config('customer_birthday')) {
-            $validate['birthday'] = 'nullable|date|date_format:Y-m-d';
-            if(!empty($data['birthday'])) {
-                $dataUpdate['birthday'] = $data['birthday'];
-            }
-        } 
-        if(sc_config('customer_group')) {
-            $validate['group'] = 'nullable';
-            $dataUpdate['group'] = $data['group']??1;
-        }
+        $data['id'] = $id;
 
+        $dataMapping = $this->mappingValidatorEdit($data);
 
-        $messages = [
-            'last_name.required' => trans('validation.required',['attribute'=> trans('account.last_name')]),
-            'first_name.required' => trans('validation.required',['attribute'=> trans('account.first_name')]),
-            'email.required' => trans('validation.required',['attribute'=> trans('account.email')]),
-            'address1.required' => trans('validation.required',['attribute'=> trans('account.address1')]),
-            'address2.required' => trans('validation.required',['attribute'=> trans('account.address2')]),
-            'phone.required' => trans('validation.required',['attribute'=> trans('account.phone')]),
-            'country.required' => trans('validation.required',['attribute'=> trans('account.country')]),
-            'postcode.required' => trans('validation.required',['attribute'=> trans('account.postcode')]),
-            'company.required' => trans('validation.required',['attribute'=> trans('account.company')]),
-            'sex.required' => trans('validation.required',['attribute'=> trans('account.sex')]),
-            'birthday.required' => trans('validation.required',['attribute'=> trans('account.birthday')]),
-            'email.email' => trans('validation.email',['attribute'=> trans('account.email')]),
-            'phone.regex' => trans('validation.regex',['attribute'=> trans('account.phone')]),
-            'postcode.min' => trans('validation.min',['attribute'=> trans('account.postcode')]),
-            'country.min' => trans('validation.min',['attribute'=> trans('account.country')]),
-            'first_name.max' => trans('validation.max',['attribute'=> trans('account.first_name')]),
-            'email.max' => trans('validation.max',['attribute'=> trans('account.email')]),
-            'address1.max' => trans('validation.max',['attribute'=> trans('account.address1')]),
-            'address2.max' => trans('validation.max',['attribute'=> trans('account.address2')]),
-            'last_name.max' => trans('validation.max',['attribute'=> trans('account.last_name')]),
-            'birthday.date' => trans('validation.date',['attribute'=> trans('account.birthday')]),
-            'birthday.date_format' => trans('validation.date_format',['attribute'=> trans('account.birthday')]),
-        ];
-
-        $v = Validator::make(
-            $dataUpdate, 
-            $validate, 
-            $messages
-        );
+        $v =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
         if ($v->fails()) {
-            return redirect()->back()->withErrors($v->errors());
+            dd($v->errors());
+            return redirect()->back()
+                ->withErrors($v)
+                ->withInput();
         }
-
-        ShopUser::updateInfo($dataUpdate, $id);
+        ShopUser::updateInfo($dataMapping['dataUpdate'], $id);
 
         return redirect()->route('member.index')
             ->with(['message' => trans('account.update_success')]);

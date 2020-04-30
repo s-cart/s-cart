@@ -196,7 +196,7 @@
                                     <select class="form-control country" style="width: 100%;" name="country">
                                         <option>__{{ trans('account.country') }}__</option>
                                         @foreach ($countries as $k => $v)
-                                        <option value="{{ $k }}" {{ ($country ==$k) ? 'selected':'' }}>{{ $v }}</option>
+                                        <option value="{{ $k }}" {{ ($country == $k) ? 'selected':'' }}>{{ $v }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('country'))

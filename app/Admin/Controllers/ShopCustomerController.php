@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopCountry;
 use App\Models\ShopLanguage;
 use App\Models\ShopUser;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AuthTrait;
 use Validator;
 
 class ShopCustomerController extends Controller
 {
+    use AuthTrait;
     public $languages, $countries;
 
     public function __construct()
@@ -48,7 +49,6 @@ class ShopCustomerController extends Controller
             'country' => trans('customer.country'),
             'status' => trans('customer.status'),
             'created_at' => trans('customer.created_at'),
-            'updated_at' => trans('customer.updated_at'),
             'action' => trans('customer.admin.action'),
         ];
         $sort_order = request('sort_order') ?? 'id_desc';
@@ -88,7 +88,6 @@ class ShopCustomerController extends Controller
                 'country' => $this->countries[$row['country']]->name ?? '',
                 'status' => $row['status'] ? '<span class="label label-success">ON</span>' : '<span class="label label-danger">OFF</span>',
                 'created_at' => $row['created_at'],
-                'updated_at' => $row['updated_at'],
                 'action' => '
                     <a href="' . route('admin_customer.edit', ['id' => $row['id']]) . '"><span title="' . trans('customer.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
@@ -165,37 +164,14 @@ class ShopCustomerController extends Controller
     public function postCreate()
     {
         $data = request()->all();
-        $dataOrigin = request()->all();
-        $validator = Validator::make($dataOrigin, [
-            'email' => 'required|email|unique:'.SC_DB_PREFIX.'shop_user,email',
-            'address1' => 'required|string|max:100',
-            'address2' => 'required|string|max:100',
-            'first_name' => 'required|string|max:100',
-            'last_name' => 'required|string|max:100',
-            'country' => 'required|string|max:100',
-            'phone' => 'required|string|max:20',
-            'password' => 'required|string|max:100',
-        ]);
-
+        $dataMapping = $this->mappingValidator($data);
+        $validator =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        $dataInsert = [
-            'email' => $data['email'],
-            'address1' => $data['address1'],
-            'address2' => $data['address2'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'country' => $data['country'],
-            'phone' => $data['phone'],
-            'password' => bcrypt($data['password']),
-            'status' => empty($data['status']) ? 0 : 1,
-        ];
-
-        ShopUser::createCustomer($dataInsert);
+        ShopUser::createCustomer($dataMapping['dataInsert']);
 
         return redirect()->route('admin_customer.index')->with('success', trans('customer.admin.create_success'));
 
@@ -216,7 +192,7 @@ class ShopCustomerController extends Controller
             'title_description' => '',
             'icon' => 'fa fa-pencil-square-o',
             'customer' => $customer,
-            'countries' => (new ShopCountry)->getList(),
+            'countries' => (new ShopCountry)->getArray(),
             'url_action' => route('admin_customer.edit', ['id' => $customer['id']]),
         ];
         return view('admin.screen.customer')
@@ -228,41 +204,18 @@ class ShopCustomerController extends Controller
  */
     public function postEdit($id)
     {
-        $customer = ShopUser::find($id);
         $data = request()->all();
-        $dataOrigin = request()->all();
-        $validator = Validator::make($dataOrigin, [
-            'email' => 'required|email|unique:'.SC_DB_PREFIX.'shop_user,email,' . $customer->id . ',id',
-            'address1' => 'required|string|max:100',
-            'address2' => 'required|string|max:100',
-            'first_name' => 'required|string|max:100',
-            'last_name' => 'required|string|max:100',
-            'country' => 'required|string|max:100',
-            'phone' => 'required|string|max:20',
-            'password' => 'nullable|string|max:100',
-        ]);
+        $data['id'] = $id;
+        $dataMapping = $this->mappingValidatorEdit($data);
+
+        $validator =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-//Edit
-
-        $dataUpdate = [
-            'email' => $data['email'],
-            'address1' => $data['address1'],
-            'address2' => $data['address2'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'country' => $data['country'],
-            'phone' => $data['phone'],
-            'status' => empty($data['status']) ? 0 : 1,
-        ];
-        if ($data['password']) {
-            $dataUpdate['password'] = bcrypt($data['password']);
-        }
-        ShopUser::updateInfo($dataUpdate, $id);
+        ShopUser::updateInfo($dataMapping['dataUpdate'], $id);
 //
         return redirect()->route('admin_customer.index')->with('success', trans('customer.admin.edit_success'));
 

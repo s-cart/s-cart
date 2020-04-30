@@ -183,23 +183,26 @@ $countries
                         </div>
                         @endif
 
+
                         @if (sc_config('customer_sex'))
                         @php
                         $sex = old('sex')?old('sex'):$user['sex'];
                         @endphp
-                        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
-                            <label
-                                class="validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
-                            </label>
-                            <label class="radio-inline"><input value="0" type="radio" name="sex"
+                        <div class="form-group row {{ $errors->has('sex') ? ' has-error' : '' }}">
+                            <label for="sex"
+                                class="col-md-4 col-form-label text-md-right">{{ trans('account.sex') }}</label>
+
+                            <div class="col-md-6">
+                                <label class="radio-inline"><input value="0" type="radio" name="sex"
                                     {{ ($sex == 0)?'checked':'' }}> {{ trans('account.sex_women') }}</label>
                             <label class="radio-inline"><input value="1" type="radio" name="sex"
                                     {{ ($sex == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
-                            @if ($errors->has('sex'))
-                            <span class="help-block">
-                                {{ $errors->first('sex') }}
-                            </span>
-                            @endif
+
+                                @if($errors->has('sex'))
+                                <span class="help-block">{{ $errors->first('sex') }}</span>
+                                @endif
+
+                            </div>
                         </div>
                         @endif
 
