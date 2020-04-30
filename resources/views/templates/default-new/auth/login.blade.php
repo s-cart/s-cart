@@ -36,7 +36,3 @@ $layout_page = shop_auth
     </p>
     <button type="submit" name="SubmitLogin" class="btn btn-default btn-submit">{{ trans('account.login') }}</button>
 </form>
-
-<div>
-    
-</div>

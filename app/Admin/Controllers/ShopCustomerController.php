@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopCountry;
 use App\Models\ShopLanguage;
 use App\Models\ShopUser;
+use App\Models\ShopUserAddress;
 use App\Http\Controllers\Auth\AuthTrait;
 use Validator;
 
@@ -193,6 +194,7 @@ class ShopCustomerController extends Controller
             'icon' => 'fa fa-pencil-square-o',
             'customer' => $customer,
             'countries' => (new ShopCountry)->getArray(),
+            'addresses' => $customer->addresses,
             'url_action' => route('admin_customer.edit', ['id' => $customer['id']]),
         ];
         return view('admin.screen.customer')
@@ -236,5 +238,127 @@ Need mothod destroy to boot deleting in model
             return response()->json(['error' => 0, 'msg' => '']);
         }
     }
+
+
+    /**
+     * Render address detail
+     * @return [view]
+     */
+    public function updateAddress($id)
+    {
+        $address =  (new ShopUserAddress)
+        ->where('id', $id)
+        ->first();
+        if($address) {
+            $title = trans('account.address_detail').' #'.$address->id;
+        } else {
+            $title = trans('account.address_detail_notfound');
+        }
+        return view('admin.screen.customer_update_address')
+        ->with(
+            [
+            'title' => $title,
+            'address' => $address,
+            'customer' => ShopUser::find($address->user_id),
+            'countries' => ShopCountry::getArray(),
+            'layout_page' => 'shop_profile',
+            'url_action' => route('admin_customer.update_address', ['id' => $id]),
+            ]
+        );
+
+    }
+
+    /**
+     * Process update address
+     *
+     *
+     * @return  [redirect] 
+     */
+    public function postUpdateAddress($id)
+    {
+        $data = request()->all();
+        $address =  (new ShopUserAddress)
+        ->where('id', $id)
+        ->first();
+        
+        $dataUpdate = [
+            'first_name' => $data['first_name'],
+            'address1' => $data['address1'],
+        ];
+        $validate = [
+            'first_name' => 'required|string|max:100',
+            'address1' => 'required|string|max:255',
+        ];
+        if(sc_config('customer_lastname')) {
+            $validate['last_name'] = 'required|max:100';
+            $dataUpdate['last_name'] = $data['last_name']??'';
+        }
+        if(sc_config('customer_address2')) {
+            $validate['address2'] = 'required|max:100';
+            $dataUpdate['address2'] = $data['address2']??'';
+        }
+        if(sc_config('customer_phone')) {
+            $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+            $dataUpdate['phone'] = $data['phone']??'';
+        }
+        if(sc_config('customer_country')) {
+            $validate['country'] = 'required|min:2';
+            $dataUpdate['country'] = $data['country']??'';
+        }
+        if(sc_config('customer_postcode')) {
+            $validate['postcode'] = 'nullable|min:5';
+            $dataUpdate['postcode'] = $data['postcode']??'';
+        }
+
+        $messages = [
+            'last_name.required' => trans('validation.required',['attribute'=> trans('account.last_name')]),
+            'first_name.required' => trans('validation.required',['attribute'=> trans('account.first_name')]),
+            'address1.required' => trans('validation.required',['attribute'=> trans('account.address1')]),
+            'address2.required' => trans('validation.required',['attribute'=> trans('account.address2')]),
+            'phone.required' => trans('validation.required',['attribute'=> trans('account.phone')]),
+            'country.required' => trans('validation.required',['attribute'=> trans('account.country')]),
+            'postcode.required' => trans('validation.required',['attribute'=> trans('account.postcode')]),
+            'phone.regex' => trans('validation.regex',['attribute'=> trans('account.phone')]),
+            'postcode.min' => trans('validation.min',['attribute'=> trans('account.postcode')]),
+            'country.min' => trans('validation.min',['attribute'=> trans('account.country')]),
+            'first_name.max' => trans('validation.max',['attribute'=> trans('account.first_name')]),
+            'address1.max' => trans('validation.max',['attribute'=> trans('account.address1')]),
+            'address2.max' => trans('validation.max',['attribute'=> trans('account.address2')]),
+            'last_name.max' => trans('validation.max',['attribute'=> trans('account.last_name')]),
+        ];
+
+        $v = Validator::make(
+            $dataUpdate, 
+            $validate, 
+            $messages
+        );
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v->errors());
+        }
+
+        $address->update(sc_clean($dataUpdate));
+
+        if(!empty($data['default'])) {
+            $customer = ShopUser::find($address->user_id);
+            $customer->address_id = $id;
+            $customer->save();
+        }
+        return redirect()->route('admin_customer.edit', ['id' => $address->user_id])
+            ->with(['success' => trans('account.update_success')]);
+    }
+
+    /**
+     * Get address detail 
+     *
+     * @return  [json] 
+     */
+    public function deleteAddress() {
+        $id = request('id');
+        (new ShopUserAddress)
+        ->where('id', $id)
+        ->delete();
+        return json_encode(['error' => 0, 'msg' => trans('account.delete_address_success')]);
+    }
+
 
 }
