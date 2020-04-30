@@ -66,7 +66,7 @@ class AuthController extends GeneralController
     public function create(Request $request)
     {
         $data = $request->all();
-        $data['reg_country'] = strtoupper($data['reg_country'] ?? '');
+        $data['country'] = strtoupper($data['country'] ?? '');
         $v = $this->validator($data);
         if ($v->fails()) {
             $msg = '';
@@ -134,7 +134,7 @@ class AuthController extends GeneralController
                     ];
 
                     $config = [
-                        'to' => $data['reg_email'],
+                        'to' => $data['email'],
                         'subject' => trans('email.welcome_customer.title'),
                     ];
 

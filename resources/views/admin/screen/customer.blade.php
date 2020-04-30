@@ -30,7 +30,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="first_name" type="text" class="form-control" name="first_name" required
-                                        value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
+                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('first_name'))
                                     <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -46,7 +46,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="last_name" type="text" class="form-control" name="last_name" required
-                                        value="{{ (old('last_name'))?old('last_name'):$customer['last_name']}}">
+                                        value="{{ (old('last_name', $customer['last_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('last_name'))
                                     <span class="help-block">{{ $errors->first('last_name') }}</span>
@@ -63,7 +63,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="first_name" type="text" class="form-control" name="first_name" required
-                                        value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
+                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('first_name'))
                                     <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -83,7 +83,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="phone" type="text" class="form-control" name="phone" required
-                                        value="{{ (old('phone'))?old('phone'):$customer['phone']}}">
+                                        value="{{ (old('phone', $customer['phone'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('phone'))
                                     <span class="help-block">{{ $errors->first('phone') }}</span>
@@ -102,7 +102,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="postcode" type="text" class="form-control" name="postcode" required
-                                        value="{{ (old('postcode'))?old('postcode'):$customer['postcode']}}">
+                                        value="{{ (old('postcode', $customer['postcode'] ?? ''))}}">
                                     </div>
     
                                     @if($errors->has('postcode'))
@@ -121,7 +121,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="email" type="text" class="form-control" name="email" required
-                                        value="{{ (old('email'))?old('email'):$customer['email']}}">
+                                        value="{{ (old('email',$customer['email'] ?? ''))}}">
                                     </div>
     
                                     @if($errors->has('email'))
@@ -140,7 +140,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="address1" type="text" class="form-control" name="address1" required
-                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
+                                        value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address1'))
                                     <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -156,7 +156,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="address2" type="text" class="form-control" name="address2" required
-                                        value="{{ (old('address2'))?old('address2'):$customer['address2']}}">
+                                        value="{{ (old('address2', $customer['address2'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address2'))
                                     <span class="help-block">{{ $errors->first('address2') }}</span>
@@ -173,7 +173,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input id="address1" type="text" class="form-control" name="address1" required
-                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
+                                        value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address1'))
                                     <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -186,7 +186,7 @@
     
                             @if (sc_config('customer_country'))
                             @php
-                            $country = (old('country'))?old('country'):$customer['country'];
+                            $country = old('country', $customer['country'] ?? '');
                             @endphp
     
                             <div class="form-group row {{ $errors->has('country') ? ' has-error' : '' }}">
@@ -210,7 +210,7 @@
     
                             @if (sc_config('customer_sex'))
                             @php
-                            $sex = old('sex')?old('sex'):$customer['sex'];
+                            $sex = old('sex', $customer['sex'] ?? 0);
                             @endphp
                             <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                                 <label
@@ -240,7 +240,7 @@
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
                                         name="birthday" required
-                                        value="{{ (old('birthday'))?old('birthday'):$customer['birthday']}}">
+                                        value="{{ (old('birthday', $customer['birthday'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('birthday'))
                                     <span class="help-block">{{ $errors->first('birthday') }}</span>
@@ -249,6 +249,27 @@
                                 </div>
                             </div>
                             @endif
+
+                            @if (sc_config('customer_group'))
+                            <div class="form-group row {{ $errors->has('group') ? ' has-error' : '' }}">
+                                <label for="group"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.group') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="group" type="number" class="form-control" name="group" required
+                                        value="{{ (old('group', $customer['group'] ?? ''))}}">
+                                    </div>
+    
+                                    @if($errors->has('group'))
+                                    <span class="help-block">{{ $errors->first('group') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @endif
+
 
                             <div class="form-group  row {{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-sm-2  col-form-label text-md-right">{{ trans('customer.password') }}</label>

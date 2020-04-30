@@ -147,7 +147,7 @@ class ShopCustomerController extends Controller
             'subTitle' => '',
             'title_description' => trans('customer.admin.add_new_des'),
             'icon' => 'fa fa-plus',
-            'countries' => (new ShopCountry)->getList(),
+            'countries' => (new ShopCountry)->getArray(),
             'customer' => [],
             'url_action' => route('admin_customer.create'),
 

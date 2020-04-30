@@ -10,108 +10,108 @@ $layout_page = shop_auth
     <div class="form_content {{ (old('check_red'))?'in':'' }}" id="collapseExample">
 
         @if (sc_config('customer_lastname'))
-        <div class="form-group{{ $errors->has('reg_first_name') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_first_name'))?"input-error":"" }}"
-                name="reg_first_name" placeholder="{{ trans('account.first_name') }}"
-                value="{{ old('reg_first_name') }}">
-            @if ($errors->has('reg_first_name'))
+                class="is_required validate account_input form-control {{ ($errors->has('first_name'))?"input-error":"" }}"
+                name="first_name" placeholder="{{ trans('account.first_name') }}"
+                value="{{ old('first_name') }}">
+            @if ($errors->has('first_name'))
             <span class="help-block">
-                {{ $errors->first('reg_first_name') }}
+                {{ $errors->first('first_name') }}
             </span>
             @endif
         </div>
-        <div class="form-group{{ $errors->has('reg_last_name') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_last_name'))?"input-error":"" }}"
-                name="reg_last_name" placeholder="{{ trans('account.last_name') }}" value="{{ old('reg_last_name') }}">
-            @if ($errors->has('reg_last_name'))
+                class="is_required validate account_input form-control {{ ($errors->has('last_name'))?"input-error":"" }}"
+                name="last_name" placeholder="{{ trans('account.last_name') }}" value="{{ old('last_name') }}">
+            @if ($errors->has('last_name'))
             <span class="help-block">
-                {{ $errors->first('reg_last_name') }}
+                {{ $errors->first('last_name') }}
             </span>
             @endif
         </div>
         @else
-        <div class="form-group{{ $errors->has('reg_first_name') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_first_name'))?"input-error":"" }}"
-                name="reg_first_name" placeholder="{{ trans('account.name') }}" value="{{ old('reg_first_name') }}">
-            @if ($errors->has('reg_first_name'))
+                class="is_required validate account_input form-control {{ ($errors->has('first_name'))?"input-error":"" }}"
+                name="first_name" placeholder="{{ trans('account.name') }}" value="{{ old('first_name') }}">
+            @if ($errors->has('first_name'))
             <span class="help-block">
-                {{ $errors->first('reg_first_name') }}
+                {{ $errors->first('first_name') }}
             </span>
             @endif
         </div>
         @endif
 
 
-        <div class="form-group{{ $errors->has('reg_email') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_email'))?"input-error":"" }}"
-                name="reg_email" placeholder="{{ trans('account.email') }}" value="{{ old('reg_email') }}">
-            @if ($errors->has('reg_email'))
+                class="is_required validate account_input form-control {{ ($errors->has('email'))?"input-error":"" }}"
+                name="email" placeholder="{{ trans('account.email') }}" value="{{ old('email') }}">
+            @if ($errors->has('email'))
             <span class="help-block">
-                {{ $errors->first('reg_email') }}
+                {{ $errors->first('email') }}
             </span>
             @endif
         </div>
 
         @if (sc_config('customer_phone'))
-        <div class="form-group{{ $errors->has('reg_phone') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_phone'))?"input-error":"" }}"
-                name="reg_phone" placeholder="{{ trans('account.phone') }}" value="{{ old('reg_phone') }}">
-            @if ($errors->has('reg_phone'))
+                class="is_required validate account_input form-control {{ ($errors->has('phone'))?"input-error":"" }}"
+                name="phone" placeholder="{{ trans('account.phone') }}" value="{{ old('phone') }}">
+            @if ($errors->has('phone'))
             <span class="help-block">
-                {{ $errors->first('reg_phone') }}
+                {{ $errors->first('phone') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_postcode'))
-        <div class="form-group{{ $errors->has('reg_postcode') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('postcode') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_postcode'))?"input-error":"" }}"
-                name="reg_postcode" placeholder="{{ trans('account.postcode') }}" value="{{ old('reg_postcode') }}">
-            @if ($errors->has('reg_postcode'))
+                class="is_required validate account_input form-control {{ ($errors->has('postcode'))?"input-error":"" }}"
+                name="postcode" placeholder="{{ trans('account.postcode') }}" value="{{ old('postcode') }}">
+            @if ($errors->has('postcode'))
             <span class="help-block">
-                {{ $errors->first('reg_postcode') }}
+                {{ $errors->first('postcode') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_address2'))
-        <div class="form-group{{ $errors->has('reg_address1') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_address1'))?"input-error":"" }}"
-                name="reg_address1" placeholder="{{ trans('account.address1') }}" value="{{ old('reg_address1') }}">
-            @if ($errors->has('reg_address1'))
+                class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
+                name="address1" placeholder="{{ trans('account.address1') }}" value="{{ old('address1') }}">
+            @if ($errors->has('address1'))
             <span class="help-block">
-                {{ $errors->first('reg_address1') }}
+                {{ $errors->first('address1') }}
             </span>
             @endif
         </div>
 
-        <div class="form-group{{ $errors->has('reg_address2') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_address2'))?"input-error":"" }}"
-                name="reg_address2" placeholder="{{ trans('account.address2') }}" value="{{ old('reg_address2') }}">
-            @if ($errors->has('reg_address2'))
+                class="is_required validate account_input form-control {{ ($errors->has('address2'))?"input-error":"" }}"
+                name="address2" placeholder="{{ trans('account.address2') }}" value="{{ old('address2') }}">
+            @if ($errors->has('address2'))
             <span class="help-block">
-                {{ $errors->first('reg_address2') }}
+                {{ $errors->first('address2') }}
             </span>
             @endif
         </div>
         @else
-        <div class="form-group{{ $errors->has('reg_address1') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_address1'))?"input-error":"" }}"
-                name="reg_address1" placeholder="{{ trans('account.address') }}" value="{{ old('reg_address1') }}">
-            @if ($errors->has('reg_address1'))
+                class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
+                name="address1" placeholder="{{ trans('account.address') }}" value="{{ old('address1') }}">
+            @if ($errors->has('address1'))
             <span class="help-block">
-                {{ $errors->first('reg_address1') }}
+                {{ $errors->first('address1') }}
             </span>
             @endif
         </div>
@@ -119,95 +119,96 @@ $layout_page = shop_auth
 
 
         @if (sc_config('customer_company'))
-        <div class="form-group{{ $errors->has('reg_company') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_company'))?"input-error":"" }}"
-                name="reg_company" placeholder="{{ trans('account.company') }}" value="{{ old('reg_company') }}">
-            @if ($errors->has('reg_company'))
+                class="is_required validate account_input form-control {{ ($errors->has('company'))?"input-error":"" }}"
+                name="company" placeholder="{{ trans('account.company') }}" value="{{ old('company') }}">
+            @if ($errors->has('company'))
             <span class="help-block">
-                {{ $errors->first('reg_company') }}
+                {{ $errors->first('company') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_country'))
-        <div class="form-group  {{ $errors->has('reg_country') ? ' has-error' : '' }}">
-            <select class="form-control reg_country" style="width: 100%;" name="reg_country">
+        <div class="form-group  {{ $errors->has('country') ? ' has-error' : '' }}">
+            <select class="form-control country" style="width: 100%;" name="country">
                 <option>__{{ trans('account.country') }}__</option>
                 @foreach ($countries as $k => $v)
-                <option value="{{ $k }}" {{ (old('reg_country') ==$k) ? 'selected':'' }}>{{ $v }}</option>
+                <option value="{{ $k }}" {{ (old('country') ==$k) ? 'selected':'' }}>{{ $v }}</option>
                 @endforeach
             </select>
-            @if ($errors->has('reg_country'))
+            @if ($errors->has('country'))
             <span class="help-block">
-                {{ $errors->first('reg_country') }}
+                {{ $errors->first('country') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_sex'))
-        <div class="form-group{{ $errors->has('reg_sex') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
             <label
-                class="validate account_input {{ ($errors->has('reg_sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
+                class="validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
             </label>
-            <label class="radio-inline"><input value="0" type="radio" name="reg_sex"
-                    {{ (old('reg_sex') == 0)?'checked':'' }}> {{ trans('account.sex_women') }}</label>
-            <label class="radio-inline"><input value="1" type="radio" name="reg_sex"
-                    {{ (old('reg_sex') == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
-            @if ($errors->has('reg_sex'))
+            <label class="radio-inline"><input value="0" type="radio" name="sex"
+                    {{ (old('sex') == 0)?'checked':'' }}> {{ trans('account.sex_women') }}</label>
+            <label class="radio-inline"><input value="1" type="radio" name="sex"
+                    {{ (old('sex') == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
+            @if ($errors->has('sex'))
             <span class="help-block">
-                {{ $errors->first('reg_sex') }}
+                {{ $errors->first('sex') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_birthday'))
-        <div class="form-group{{ $errors->has('reg_birthday') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
             <input type="date"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_birthday'))?"input-error":"" }}"
-                name="reg_birthday" data-date-format="YYYY-MM-DD" placeholder="{{ trans('account.birthday') }}"
-                value="{{ old('reg_birthday','2015-08-09') }}">
-            @if ($errors->has('reg_birthday'))
+                class="is_required validate account_input form-control {{ ($errors->has('birthday'))?"input-error":"" }}"
+                name="birthday" data-date-format="YYYY-MM-DD" placeholder="{{ trans('account.birthday') }}"
+                value="{{ old('birthday','2015-08-09') }}">
+            @if ($errors->has('birthday'))
             <span class="help-block">
-                {{ $errors->first('reg_birthday') }}
+                {{ $errors->first('birthday') }}
             </span>
             @endif
         </div>
         @endif
 
         @if (sc_config('customer_group'))
-        <div class="form-group{{ $errors->has('reg_group') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">
             <input type="text"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_group'))?"input-error":"" }}"
-                name="reg_group" placeholder="{{ trans('account.group') }}" value="{{ old('reg_group') }}">
-            @if ($errors->has('reg_group'))
+                class="is_required validate account_input form-control {{ ($errors->has('group'))?"input-error":"" }}"
+                name="group" placeholder="{{ trans('account.group') }}" value="{{ old('group') }}">
+            @if ($errors->has('group'))
             <span class="help-block">
-                {{ $errors->first('reg_group') }}
+                {{ $errors->first('group') }}
             </span>
             @endif
         </div>
         @endif
 
-        <div class="form-group{{ $errors->has('reg_password') ? ' has-error' : '' }}">
+        
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <input type="password"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_password'))?"input-error":"" }}"
-                name="reg_password" placeholder="{{ trans('account.password') }}" value="">
-            @if ($errors->has('reg_password'))
+                class="is_required validate account_input form-control {{ ($errors->has('password'))?"input-error":"" }}"
+                name="password" placeholder="{{ trans('account.password') }}" value="">
+            @if ($errors->has('password'))
             <span class="help-block">
-                {{ $errors->first('reg_password') }}
+                {{ $errors->first('password') }}
             </span>
             @endif
         </div>
-        <div class="form-group{{ $errors->has('reg_password_confirmation') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
             <input type="password"
-                class="is_required validate account_input form-control {{ ($errors->has('reg_password_confirmation'))?"input-error":"" }}"
-                placeholder="{{ trans('account.password_confirm') }}" name="reg_password_confirmation" value="">
-            @if ($errors->has('reg_password_confirmation'))
+                class="is_required validate account_input form-control {{ ($errors->has('password_confirmation'))?"input-error":"" }}"
+                placeholder="{{ trans('account.password_confirm') }}" name="password_confirmation" value="">
+            @if ($errors->has('password_confirmation'))
             <span class="help-block">
-                {{ $errors->first('reg_password_confirmation') }}
+                {{ $errors->first('password_confirmation') }}
             </span>
             @endif
         </div>
