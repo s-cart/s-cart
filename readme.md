@@ -32,9 +32,10 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 - Multi-language
 - Multi-currency
+- Multi-address
 - Shopping cart
 - Customer login
-- Product attributes: cost price, promotion price, stock..
+- Product attributes: cost price, promotion price, stock, tax..
 - CMS content: category, news, content, web page
 - Module/Extension: Shipping, payment, discount, ...
 - Upload manager: banner, images,..
@@ -63,12 +64,12 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Requirements:
 
-Version 1.x
+Version 2.x
 
-> Core laravel framework 6.x Requirements::
+> Core laravel framework 7.x Requirements::
 
 ```
-- PHP >= 7.2
+- PHP >= 7.2.5
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
