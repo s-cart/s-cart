@@ -24,7 +24,7 @@
                     <div class="fields-group">
 
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-sm-2  control-label">{{ trans('supplier.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                    <label for="name" class="col-sm-2 col-form-label">{{ trans('supplier.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="form-group   {{ $errors->has('alias') ? ' has-error' : '' }}">
-                                    <label for="alias" class="col-sm-2  control-label">{!! trans('supplier.alias') !!}</label>
+                                    <label for="alias" class="col-sm-2 col-form-label">{!! trans('supplier.alias') !!}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -63,7 +63,7 @@
 
                                 <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email"
-                                        class="col-sm-2  control-label">{{ trans('supplier.email') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('supplier.email') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -82,7 +82,7 @@
 
                                 <div class="form-group   {{ $errors->has('phone') ? ' has-error' : '' }}">
                                     <label for="phone"
-                                        class="col-sm-2  control-label">{{ trans('supplier.phone') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('supplier.phone') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -100,7 +100,7 @@
 
 
                                 <div class="form-group   {{ $errors->has('url') ? ' has-error' : '' }}">
-                                    <label for="url" class="col-sm-2  control-label">{{ trans('supplier.url') }}</label>
+                                    <label for="url" class="col-sm-2 col-form-label">{{ trans('supplier.url') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -120,7 +120,7 @@
 
                                 <div class="form-group   {{ $errors->has('address') ? ' has-error' : '' }}">
                                     <label for="address"
-                                        class="col-sm-2  control-label">{{ trans('supplier.address') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('supplier.address') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -139,7 +139,7 @@
 
                                 <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
                                     <label for="image"
-                                        class="col-sm-2  control-label">{{ trans('supplier.image') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('supplier.image') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <input type="text" id="image" name="image"
@@ -167,7 +167,7 @@
                                 </div>
 
                                 <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                    <label for="sort" class="col-sm-2  control-label">{{ trans('supplier.sort') }}</label>
+                                    <label for="sort" class="col-sm-2 col-form-label">{{ trans('supplier.sort') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>

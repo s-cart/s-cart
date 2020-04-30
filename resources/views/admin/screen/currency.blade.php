@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('currency.name') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('currency.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('code') ? ' has-error' : '' }}">
-                                <label for="code" class="col-sm-2  control-label">{{ trans('currency.code') }}</label>
+                                <label for="code" class="col-sm-2 col-form-label">{{ trans('currency.code') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -60,7 +60,7 @@
 
 
                             <div class="form-group   {{ $errors->has('symbol') ? ' has-error' : '' }}">
-                                <label for="symbol" class="col-sm-2  control-label">{{ trans('currency.symbol') }}</label>
+                                <label for="symbol" class="col-sm-2 col-form-label">{{ trans('currency.symbol') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('exchange_rate') ? ' has-error' : '' }}">
-                                <label for="exchange_rate" class="col-sm-2  control-label">{{ trans('currency.exchange_rate') }}</label>
+                                <label for="exchange_rate" class="col-sm-2 col-form-label">{{ trans('currency.exchange_rate') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -90,7 +90,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('precision') ? ' has-error' : '' }}">
-                                <label for="precision" class="col-sm-2  control-label">{{ trans('currency.precision') }}</label>
+                                <label for="precision" class="col-sm-2 col-form-label">{{ trans('currency.precision') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -119,7 +119,7 @@
 
 
                             <div class="form-group   {{ $errors->has('thousands') ? ' has-error' : '' }}">
-                                <label for="thousands" class="col-sm-2  control-label">{{ trans('currency.thousands') }}</label>
+                                <label for="thousands" class="col-sm-2 col-form-label">{{ trans('currency.thousands') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2  control-label">{{ trans('currency.sort') }}</label>
+                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('currency.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -150,7 +150,7 @@
 
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('currency.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('currency.status') }}</label>
                                 <div class="col-sm-8">
                                     <input class="input" type="checkbox" name="status"  {!! old('status',(empty($currency['status'])?0:1))?'checked':''!!}>
 

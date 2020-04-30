@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('description') ? ' has-error' : '' }}">
-                                <label for="description" class="col-sm-2  control-label">{{ trans('api_connection.description') }}</label>
+                                <label for="description" class="col-sm-2 col-form-label">{{ trans('api_connection.description') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('apiconnection') ? ' has-error' : '' }}">
-                                <label for="apiconnection" class="col-sm-2  control-label">{{ trans('api_connection.apiconnection') }}</label>
+                                <label for="apiconnection" class="col-sm-2 col-form-label">{{ trans('api_connection.apiconnection') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('apikey') ? ' has-error' : '' }}">
-                                <label for="apikey" class="col-sm-2  control-label">{{ trans('api_connection.apikey') }}</label>
+                                <label for="apikey" class="col-sm-2 col-form-label">{{ trans('api_connection.apikey') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -74,7 +74,7 @@
                             <div
                             class="form-group  kind kind0 kind1  {{ $errors->has('expire') ? ' has-error' : '' }}">
                             <label for="expire"
-                                class="col-sm-2  control-label">{{ trans('api_connection.expire') }}</label>
+                                class="col-sm-2 col-form-label">{{ trans('api_connection.expire') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
@@ -92,7 +92,7 @@
 
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('api_connection.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('api_connection.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {{ old('status',(empty($api_connection['status'])?0:1))?'checked':''}}>
 

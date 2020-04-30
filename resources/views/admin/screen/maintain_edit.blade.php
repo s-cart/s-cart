@@ -29,7 +29,7 @@
                         @foreach ($languages as $code => $language)
 
                         <div class="form-group">
-                            <label class="col-sm-2  control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <b>{{ $language->name }}</b>
                                 {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}

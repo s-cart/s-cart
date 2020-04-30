@@ -141,7 +141,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('parent_id') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('menu.admin.parent') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('menu.admin.parent') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control parent select2" style="width: 100%;" name="parent_id" >
                                         <option value=""></option>
@@ -159,7 +159,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-sm-2  control-label">{{ trans('menu.admin.title') }}</label>
+                                <label for="title" class="col-sm-2 col-form-label">{{ trans('menu.admin.title') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -174,7 +174,7 @@
                             </div>
 
                           <div class="form-group">
-                              <label for="icon" class="col-sm-2  control-label">{{ trans('menu.admin.icon') }}</label>
+                              <label for="icon" class="col-sm-2 col-form-label">{{ trans('menu.admin.icon') }}</label>
                               <div class="col-sm-8">
                                   <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -184,7 +184,7 @@
                           </div>
 
                             <div class="form-group   {{ $errors->has('uri') ? ' has-error' : '' }}">
-                                <label for="uri" class="col-sm-2  control-label">{{ trans('menu.admin.uri') }}</label>
+                                <label for="uri" class="col-sm-2 col-form-label">{{ trans('menu.admin.uri') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -199,7 +199,7 @@
                             </div>
 
                             <div class="form-group    {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2  control-label">{{ trans('menu.admin.sort') }}</label>
+                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('menu.admin.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -224,7 +224,7 @@
                 }
             }
         @endphp
-                                <label for="roles" class="col-sm-2  control-label">{{ trans('menu.admin.roles') }}</label>
+                                <label for="roles" class="col-sm-2 col-form-label">{{ trans('menu.admin.roles') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm roles select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="roles[]" >
                                         <option value=""></option>
@@ -253,7 +253,7 @@
                 }
             }
         @endphp
-                                <label for="permissions" class="col-sm-2  control-label">{{ trans('menu.admin.permissions') }}</label>
+                                <label for="permissions" class="col-sm-2 col-form-label">{{ trans('menu.admin.permissions') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm permissions select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permissions[]" >
                                         <option value=""></option>

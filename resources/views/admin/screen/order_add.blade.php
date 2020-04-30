@@ -39,7 +39,7 @@
                             <input type="hidden" name="email">
 
                             <div class="form-group   {{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                <label for="first_name" class="col-sm-2  control-label">{{ trans('order.shipping_first_name') }}</label>
+                                <label for="first_name" class="col-sm-2 col-form-label">{{ trans('order.shipping_first_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -55,7 +55,7 @@
 
                         @if (sc_config('customer_lastname'))
                             <div class="form-group   {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                <label for="last_name" class="col-sm-2  control-label">{{ trans('order.shipping_last_name') }}</label>
+                                <label for="last_name" class="col-sm-2 col-form-label">{{ trans('order.shipping_last_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -72,7 +72,7 @@
 
                         @if (sc_config('customer_company'))
                             <div class="form-group   {{ $errors->has('company') ? ' has-error' : '' }}">
-                                <label for="company" class="col-sm-2  control-label">{{ trans('order.company') }}</label>
+                                <label for="company" class="col-sm-2 col-form-label">{{ trans('order.company') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -89,7 +89,7 @@
 
                         @if (sc_config('customer_postcode'))
                             <div class="form-group   {{ $errors->has('postcode') ? ' has-error' : '' }}">
-                                <label for="postcode" class="col-sm-2  control-label">{{ trans('order.postcode') }}</label>
+                                <label for="postcode" class="col-sm-2 col-form-label">{{ trans('order.postcode') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -105,7 +105,7 @@
                         @endif
 
                             <div class="form-group   {{ $errors->has('address1') ? ' has-error' : '' }}">
-                                <label for="address1" class="col-sm-2  control-label">{{ trans('order.shipping_address1') }}</label>
+                                <label for="address1" class="col-sm-2 col-form-label">{{ trans('order.shipping_address1') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -121,7 +121,7 @@
 
                         @if (sc_config('customer_address2'))    
                             <div class="form-group   {{ $errors->has('address2') ? ' has-error' : '' }}">
-                                <label for="address2" class="col-sm-2  control-label">{{ trans('order.shipping_address2') }}</label>
+                                <label for="address2" class="col-sm-2 col-form-label">{{ trans('order.shipping_address2') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -157,7 +157,7 @@
 
                         @if (sc_config('customer_phone'))
                             <div class="form-group   {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-sm-2  control-label">{{ trans('order.shipping_phone') }}</label>
+                                <label for="phone" class="col-sm-2 col-form-label">{{ trans('order.shipping_phone') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
@@ -190,7 +190,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('exchange_rate') ? ' has-error' : '' }}">
-                                <label for="exchange_rate" class="col-sm-2  control-label">{{ trans('order.exchange_rate') }}</label>
+                                <label for="exchange_rate" class="col-sm-2 col-form-label">{{ trans('order.exchange_rate') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-money fw" aria-hidden="true"></i></span>
@@ -204,14 +204,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="comment" class="col-sm-2  control-label">{{ trans('order.note') }}</label>
+                                <label for="comment" class="col-sm-2 col-form-label">{{ trans('order.note') }}</label>
                                 <div class="col-sm-8">
                                     <textarea name="comment" class="form-control comment" rows="5" placeholder="">{!! old('comment') !!}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group   {{ $errors->has('payment_method') ? ' has-error' : '' }}">
-                                <label for="payment_method" class="col-sm-2  control-label">{{ trans('order.payment_method') }}</label>
+                                <label for="payment_method" class="col-sm-2 col-form-label">{{ trans('order.payment_method') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control payment_method select2" style="width: 100%;" name="payment_method">
                                       @foreach ($paymentMethod as $k => $v)
@@ -227,7 +227,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('shipping_method') ? ' has-error' : '' }}">
-                                <label for="shipping_method" class="col-sm-2  control-label">{{ trans('order.shipping_method') }}</label>
+                                <label for="shipping_method" class="col-sm-2 col-form-label">{{ trans('order.shipping_method') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control shipping_method select2" style="width: 100%;" name="shipping_method">
                                       @foreach ($shippingMethod as $k => $v)
@@ -243,7 +243,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('status') ? ' has-error' : '' }}">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('order.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('order.status') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control status select2" style="width: 100%;" name="status">
                                       @foreach ($orderStatus as $k => $v)

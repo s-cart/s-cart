@@ -16,7 +16,7 @@
                 <div class="box-body">
                     <div class="fields-group">
                         <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }}">
-                            <label for="image" class="col-sm-2  control-label">
+                            <label for="image" class="col-sm-2 col-form-label">
                             </label>
                             <div class="col-sm-6">
                                 <div class="input-group">

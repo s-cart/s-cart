@@ -25,7 +25,7 @@
 
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name"
-                                        class="col-sm-2  control-label">{{ trans('language.name') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.name') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -43,7 +43,7 @@
 
                                 <div class="form-group   {{ $errors->has('code') ? ' has-error' : '' }}">
                                     <label for="code"
-                                        class="col-sm-2  control-label">{{ trans('language.code') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.code') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -70,7 +70,7 @@
 
                                 <div class="form-group   {{ $errors->has('icon') ? ' has-error' : '' }}">
                                     <label for="icon"
-                                        class="col-sm-2  control-label">{{ trans('language.icon') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.icon') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <input type="text" id="icon" name="icon"
@@ -96,7 +96,7 @@
 
                                 <div class="form-group   {{ $errors->has('rtl') ? ' has-error' : '' }}">
                                     <label for="rtl"
-                                        class="col-sm-2  control-label">{{ trans('language.layout_rtl') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.layout_rtl') }}</label>
                                         <div class="col-sm-8">
                                             <input type="checkbox" name="rtl" {!!
                                                 old('rtl',(empty($language['rtl'])?0:1))?'checked':''!!}>
@@ -106,7 +106,7 @@
 
                                 <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
                                     <label for="sort"
-                                        class="col-sm-2  control-label">{{ trans('language.sort') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.sort') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -125,7 +125,7 @@
 
                                 <div class="form-group  ">
                                     <label for="status"
-                                        class="col-sm-2  control-label">{{ trans('language.status') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('language.status') }}</label>
                                     <div class="col-sm-8">
                                         <input class="input" type="checkbox" name="status" {!!
                                             old('status',(empty($language['status'])?0:1))?'checked':''!!}>

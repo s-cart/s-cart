@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('link.name') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('link.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('url') ? ' has-error' : '' }}">
-                                <label for="url" class="col-sm-2  control-label">{{ trans('link.url') }}</label>
+                                <label for="url" class="col-sm-2 col-form-label">{{ trans('link.url') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -93,7 +93,7 @@
 
 
                             <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2  control-label">{{ trans('link.sort') }}</label>
+                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('link.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -108,7 +108,7 @@
                             </div>
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('link.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('link.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {{ old('status',(empty($link['status'])?0:1))?'checked':''}}>
 

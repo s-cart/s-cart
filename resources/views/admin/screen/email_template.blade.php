@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('email_template.name') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('email_template.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('group') ? ' has-error' : '' }}">
-                                <label for="group" class="col-sm-2  control-label">{{ trans('email_template.group') }}</label>
+                                <label for="group" class="col-sm-2 col-form-label">{{ trans('email_template.group') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control group select2" style="width: 100%;" name="group" >
                                         <option value=""></option>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('text') ? ' has-error' : '' }}">
-                                <label for="text" class="col-sm-2  control-label">{{ trans('email_template.text') }}</label>
+                                <label for="text" class="col-sm-2 col-form-label">{{ trans('email_template.text') }}</label>
                                 <div class="col-sm-8">
                                         <textarea class="form-control" rows="10" id="text" name="text">{!! old('text',$obj['text']??'') !!}</textarea>
                                         @if ($errors->has('text'))
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('email_template.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('email_template.status') }}</label>
                                 <div class="col-sm-8">
                                     <input class="input" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
                                 </div>

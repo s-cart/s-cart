@@ -24,7 +24,7 @@
                     <div class="fields-group">
 
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-sm-2  control-label">{{ trans('tax.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                    <label for="name" class="col-sm-2 col-form-label">{{ trans('tax.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="form-group   {{ $errors->has('value') ? ' has-error' : '' }}">
-                                    <label for="value" class="col-sm-2  control-label">{{ trans('tax.value') }}</label>
+                                    <label for="value" class="col-sm-2 col-form-label">{{ trans('tax.value') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>

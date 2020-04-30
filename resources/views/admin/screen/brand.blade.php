@@ -23,7 +23,7 @@
                 <div class="box-body">
                     <div class="fields-group">
                                 <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-sm-2  control-label">{{ trans('brand.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                    <label for="name" class="col-sm-2 col-form-label">{{ trans('brand.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -44,7 +44,7 @@
                                 </div>
 
                                 <div class="form-group   {{ $errors->has('alias') ? ' has-error' : '' }}">
-                                    <label for="alias" class="col-sm-2  control-label">{!! trans('brand.alias') !!}</label>
+                                    <label for="alias" class="col-sm-2 col-form-label">{!! trans('brand.alias') !!}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -61,7 +61,7 @@
                                 </div>
                                 
                                 <div class="form-group   {{ $errors->has('url') ? ' has-error' : '' }}">
-                                    <label for="url" class="col-sm-2  control-label">{{ trans('brand.url') }}</label>
+                                    <label for="url" class="col-sm-2 col-form-label">{{ trans('brand.url') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -82,7 +82,7 @@
 
                                 <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
                                     <label for="image"
-                                        class="col-sm-2  control-label">{{ trans('brand.image') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('brand.image') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <input type="text" id="image" name="image"
@@ -111,7 +111,7 @@
                                 </div>
 
                                 <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                    <label for="sort" class="col-sm-2  control-label">{{ trans('brand.sort') }}</label>
+                                    <label for="sort" class="col-sm-2 col-form-label">{{ trans('brand.sort') }}</label>
                                     <div class="col-sm-8">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -130,7 +130,7 @@
 
                                 <div class="form-group  ">
                                     <label for="status"
-                                        class="col-sm-2  control-label">{{ trans('brand.status') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('brand.status') }}</label>
                                     <div class="col-sm-8">
                                         <input class="input" type="checkbox" name="status"
                                             {{  old('status',(empty($brand['status'])?0:1))?'checked':''}}>

@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('block_content.name') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('block_content.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="form-group  {{ $errors->has('position') ? ' has-error' : '' }}">
-                                <label for="position" class="col-sm-2  control-label">{{ trans('block_content.admin.select_position') }}</label>
+                                <label for="position" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_position') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control position select2" style="width: 100%;" name="position" >
                                         <option value=""></option>
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('page') ? ' has-error' : '' }}">
-                                <label for="page" class="col-sm-2  control-label">{{ trans('block_content.admin.select_page') }}</label>
+                                <label for="page" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_page') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control page select2" multiple="multiple" style="width: 100%;" name="page[]" >
                                         <option value=""></option>
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('type') ? ' has-error' : '' }}">
-                                <label for="type" class="col-sm-2  control-label">{{ trans('block_content.type') }}</label>
+                                <label for="type" class="col-sm-2 col-form-label">{{ trans('block_content.type') }}</label>
                                 <div class="col-sm-8">
                             @if ($layout)
                                 <label class="radio-inline"><input type="radio" name="type" value="{!! $layout['type'] !!}" checked>{{ $layoutType[$layout['type']]}}</label>
@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('text') ? ' has-error' : '' }}">
-                                <label for="text" class="col-sm-2  control-label">{{ trans('block_content.text') }}</label>
+                                <label for="text" class="col-sm-2 col-form-label">{{ trans('block_content.text') }}</label>
                                 <div class="col-sm-8">
                                     @php
                                         $dataType = old('type',$layout['type']??'')
@@ -126,7 +126,7 @@
 
 
                             <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2  control-label">{{ trans('block_content.sort') }}</label>
+                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('block_content.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -142,7 +142,7 @@
 
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('block_content.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('block_content.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {!! old('status',(empty($layout['status'])?0:1))?'checked':''!!}>
 

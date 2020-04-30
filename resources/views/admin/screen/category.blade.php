@@ -30,7 +30,7 @@
                         <legend>{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</legend>
                         <div class="form-group   {{ $errors->has('descriptions.'.$code.'.title') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__title"
-                                class="col-sm-2  control-label">{{ trans('category.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('category.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -53,7 +53,7 @@
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.keyword') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__keyword"
-                                class="col-sm-2  control-label">{{ trans('category.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('category.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -77,7 +77,7 @@
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.description') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__description"
-                                class="col-sm-2  control-label">{{ trans('category.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('category.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                     <textarea type="text" id="{{ $code }}__description" 
                                         name="descriptions[{{ $code }}][description]"
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="form-group   {{ $errors->has('alias') ? ' has-error' : '' }}">
-                            <label for="alias" class="col-sm-2  control-label">{!! trans('category.alias') !!}</label>
+                            <label for="alias" class="col-sm-2 col-form-label">{!! trans('category.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -138,7 +138,7 @@
                         </div>                        
 
                         <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
-                            <label for="image" class="col-sm-2  control-label">{{ trans('category.image') }}</label>
+                            <label for="image" class="col-sm-2 col-form-label">{{ trans('category.image') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input type="text" id="image" name="image"
@@ -166,7 +166,7 @@
                         </div>
 
                         <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                            <label for="sort" class="col-sm-2  control-label">{{ trans('category.sort') }}</label>
+                            <label for="sort" class="col-sm-2 col-form-label">{{ trans('category.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -183,7 +183,7 @@
                         </div>
 
                         <div class="form-group  ">
-                            <label for="top" class="col-sm-2  control-label">{{ trans('category.top') }}</label>
+                            <label for="top" class="col-sm-2 col-form-label">{{ trans('category.top') }}</label>
                             <div class="col-sm-8">
                                 <input type="checkbox" name="top"
                                     {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
@@ -191,7 +191,7 @@
                         </div>
 
                         <div class="form-group  ">
-                            <label for="status" class="col-sm-2  control-label">{{ trans('category.status') }}</label>
+                            <label for="status" class="col-sm-2 col-form-label">{{ trans('category.status') }}</label>
                             <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"
                                     {{ old('status',(empty($category['status'])?0:1))?'checked':''}}>

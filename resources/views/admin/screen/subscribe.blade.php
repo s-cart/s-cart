@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-sm-2  control-label">{{ trans('subscribe.email') }}</label>
+                                <label for="email" class="col-sm-2 col-form-label">{{ trans('subscribe.email') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -39,7 +39,7 @@
 
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('subscribe.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('subscribe.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {{ old('status',(empty($subscribe['status'])?0:1))?'checked':''}}>
 

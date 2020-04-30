@@ -22,7 +22,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
-                                <label for="image" class="col-sm-2  control-label">{{ trans('banner.image') }}</label>
+                                <label for="image" class="col-sm-2 col-form-label">{{ trans('banner.image') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <input type="text" id="image" name="image" value="{{ old('image',$banner['image']??'') }}" class="form-control input-sm image" placeholder=""  />
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-group   {{ $errors->has('url') ? ' has-error' : '' }}">
-                                <label for="url" class="col-sm-2  control-label">{{ trans('banner.url') }}</label>
+                                <label for="url" class="col-sm-2 col-form-label">{{ trans('banner.url') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -79,7 +79,7 @@
                                 </div>
 
                             <div class="form-group  {{ $errors->has('html') ? ' has-error' : '' }}">
-                                <label for="html" class="col-sm-2  control-label">{{ trans('email_template.html') }}</label>
+                                <label for="html" class="col-sm-2 col-form-label">{{ trans('email_template.html') }}</label>
                                 <div class="col-sm-8">
                                         <textarea class="form-control" rows="10" id="html" name="html">{{ old('html',$banner['html']??'') }}</textarea>
                                         @if ($errors->has('html'))
@@ -92,7 +92,7 @@
 
                             @if (!empty($dataType))
                             <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
-                                <label class="col-sm-2  control-label">{{ trans('banner.type') }}</label>
+                                <label class="col-sm-2 col-form-label">{{ trans('banner.type') }}</label>
                                 <div class="col-sm-8">
                                 <select class="form-control" name="type">
                                     @foreach ($dataType as $key => $name)
@@ -110,7 +110,7 @@
 
 
                             <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2  control-label">{{ trans('banner.sort') }}</label>
+                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('banner.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('banner.status') }}</label>
+                                <label for="status" class="col-sm-2 col-form-label">{{ trans('banner.status') }}</label>
                                 <div class="col-sm-8">
                                     <input class="input" type="checkbox" name="status"  {{ old('status',(empty($banner['status'])?0:1))?'checked':''}}>
                                 </div>

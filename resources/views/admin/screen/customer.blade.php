@@ -2,7 +2,7 @@
 
 @section('main')
    <div class="row">
-      <div class="col-md-12">
+      <div class="col-sm-12">
          <div class="box">
                 <div class="box-header with-border">
                     <h2 class="box-title">{{ $title_description??'' }}</h2>
@@ -21,115 +21,237 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                <label for="first_name" class="col-sm-2  control-label">{{ trans('customer.first_name') }}</label>
+                            @if (sc_config('customer_lastname'))
+                            <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                <label for="first_name"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.first_name') }}</label>
+    
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="first_name" name="first_name" value="{{ old('first_name',$customer['first_name']??'')}}" class="form-control first_name" placeholder="" />
+                                    <input id="first_name" type="text" class="form-control" name="first_name" required
+                                        value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
                                     </div>
-                                        @if ($errors->has('first_name'))
-                                            <span class="help-block">
-                                                {{ $errors->first('first_name') }}
-                                            </span>
-                                        @endif
+                                    @if($errors->has('first_name'))
+                                    <span class="help-block">{{ $errors->first('first_name') }}</span>
+                                    @endif
+    
                                 </div>
                             </div>
-
-                            <div class="form-group   {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                <label for="last_name" class="col-sm-2  control-label">{{ trans('customer.last_name') }}</label>
+                            <div class="form-group row {{ $errors->has('last_name') ? ' has-error' : '' }}">
+                                <label for="last_name"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.last_name') }}</label>
+    
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="last_name" name="last_name" value="{{ old('last_name',$customer['last_name']??'') }}" class="form-control last_name" placeholder="" />
+                                    <input id="last_name" type="text" class="form-control" name="last_name" required
+                                        value="{{ (old('last_name'))?old('last_name'):$customer['last_name']}}">
                                     </div>
-                                        @if ($errors->has('last_name'))
-                                            <span class="help-block">
-                                                {{ $errors->first('last_name') }}
-                                            </span>
-                                        @endif
+                                    @if($errors->has('last_name'))
+                                    <span class="help-block">{{ $errors->first('last_name') }}</span>
+                                    @endif
+    
                                 </div>
                             </div>
-
-                            <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-sm-2  control-label">{{ trans('customer.email') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-envelope-open-o fa-fw"></i></span>
-                                        <input type="text"   id="email" name="email" value="{{ old('email',$customer['email']??'') }}" class="form-control email" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('email'))
-                                            <span class="help-block">
-                                                {{ $errors->first('email') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group   {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-sm-2  control-label">{{ trans('customer.phone') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                                        <input type="text"   id="phone" name="phone" value="{{ old('phone',$customer['phone']??'') }}" class="form-control phone" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('phone'))
-                                            <span class="help-block">
-                                                {{ $errors->first('phone') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group   {{ $errors->has('address1') ? ' has-error' : '' }}">
-                                <label for="address1" class="col-sm-2  control-label">{{ trans('customer.address1') }}</label>
+                            @else
+                            <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                <label for="first_name"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.name') }}</label>
+    
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="address1" name="address1" value="{{ old('address1',$customer['address1']??'') }}" class="form-control address1" placeholder="" />
+                                    <input id="first_name" type="text" class="form-control" name="first_name" required
+                                        value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
                                     </div>
-                                        @if ($errors->has('address1'))
-                                            <span class="help-block">
-                                                {{ $errors->first('address1') }}
-                                            </span>
-                                        @endif
+                                    @if($errors->has('first_name'))
+                                    <span class="help-block">{{ $errors->first('first_name') }}</span>
+                                    @endif
+    
                                 </div>
                             </div>
-
-                            <div class="form-group   {{ $errors->has('address2') ? ' has-error' : '' }}">
-                                <label for="address2" class="col-sm-2  control-label">{{ trans('customer.address2') }}</label>
+                            @endif
+    
+    
+                            @if (sc_config('customer_phone'))
+                            <div class="form-group row {{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label for="phone"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.phone') }}</label>
+    
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="address2" name="address2" value="{{ old('address2',$customer['address2']??'') }}" class="form-control address2" placeholder="" />
+                                    <input id="phone" type="text" class="form-control" name="phone" required
+                                        value="{{ (old('phone'))?old('phone'):$customer['phone']}}">
                                     </div>
-                                        @if ($errors->has('address2'))
-                                            <span class="help-block">
-                                                {{ $errors->first('address2') }}
-                                            </span>
-                                        @endif
+                                    @if($errors->has('phone'))
+                                    <span class="help-block">{{ $errors->first('phone') }}</span>
+                                    @endif
+    
                                 </div>
                             </div>
-
-                            <div class="form-group  {{ $errors->has('country') ? ' has-error' : '' }}">
-                                <label for="country" class="col-sm-2 control-label">{{ trans('customer.admin.select_country') }}</label>
+                            @endif
+    
+                            @if (sc_config('customer_postcode'))
+                            <div class="form-group row {{ $errors->has('postcode') ? ' has-error' : '' }}">
+                                <label for="postcode"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.postcode') }}</label>
+    
                                 <div class="col-sm-8">
-                                    <select class="form-control country select2" style="width: 100%;" name="country" >
-                                        <option value=""></option>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="postcode" type="text" class="form-control" name="postcode" required
+                                        value="{{ (old('postcode'))?old('postcode'):$customer['postcode']}}">
+                                    </div>
+    
+                                    @if($errors->has('postcode'))
+                                    <span class="help-block">{{ $errors->first('postcode') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @endif
+    
+                            <div class="form-group row {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.email') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="email" type="text" class="form-control" name="email" required
+                                        value="{{ (old('email'))?old('email'):$customer['email']}}">
+                                    </div>
+    
+                                    @if($errors->has('email'))
+                                    <span class="help-block">{{ $errors->first('email') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+    
+                            @if (sc_config('customer_address2'))
+                            <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                <label for="address1"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.address1') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="address1" type="text" class="form-control" name="address1" required
+                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
+                                    </div>
+                                    @if($errors->has('address1'))
+                                    <span class="help-block">{{ $errors->first('address1') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+    
+                            <div class="form-group row {{ $errors->has('address2') ? ' has-error' : '' }}">
+                                <label for="address2"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.address2') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="address2" type="text" class="form-control" name="address2" required
+                                        value="{{ (old('address2'))?old('address2'):$customer['address2']}}">
+                                    </div>
+                                    @if($errors->has('address2'))
+                                    <span class="help-block">{{ $errors->first('address2') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @else
+                            <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                <label for="address1"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.address') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input id="address1" type="text" class="form-control" name="address1" required
+                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
+                                    </div>
+                                    @if($errors->has('address1'))
+                                    <span class="help-block">{{ $errors->first('address1') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @endif
+    
+    
+                            @if (sc_config('customer_country'))
+                            @php
+                            $country = (old('country'))?old('country'):$customer['country'];
+                            @endphp
+    
+                            <div class="form-group row {{ $errors->has('country') ? ' has-error' : '' }}">
+                                <label for="country"
+                                    class="col-sm-2 col-form-label text-md-right">{{ trans('account.country') }}</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control country" style="width: 100%;" name="country">
+                                        <option>__{{ trans('account.country') }}__</option>
                                         @foreach ($countries as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('country',$customer['country']??'') ==$k) ? 'selected':'' }}>{{ $v->name }}</option>
+                                        <option value="{{ $k }}" {{ ($country ==$k) ? 'selected':'' }}>{{ $v }}</option>
                                         @endforeach
                                     </select>
-                                        @if ($errors->has('country'))
-                                            <span class="help-block">
-                                                {{ $errors->first('country') }}
-                                            </span>
-                                        @endif
+                                    @if ($errors->has('country'))
+                                    <span class="help-block">
+                                        {{ $errors->first('country') }}
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
+                            @endif
+    
+                            @if (sc_config('customer_sex'))
+                            @php
+                            $sex = old('sex')?old('sex'):$customer['sex'];
+                            @endphp
+                            <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                                <label
+                                    class="col-sm-2 validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
+                                </label>
+                                <div class="col-sm-8">
+                                <label class="radio-inline"><input value="0" type="radio" name="sex"
+                                        {{ ($sex == 0)?'checked':'' }}> {{ trans('account.sex_women') }}</label>
+                                <label class="radio-inline"><input value="1" type="radio" name="sex"
+                                        {{ ($sex == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
+                                </div>
+                                @if ($errors->has('sex'))
+                                <span class="help-block">
+                                    {{ $errors->first('sex') }}
+                                </span>
+                                @endif
+                            </div>
+                            @endif
+    
+                            @if (sc_config('customer_birthday'))
+                            <div class="form-group row {{ $errors->has('birthday') ? ' has-error' : '' }}">
+                                <label for="birthday"
+                                    class="col-sm-2 col-form-label text-md-right">
+                                    {{ trans('account.birthday') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
+                                        name="birthday" required
+                                        value="{{ (old('birthday'))?old('birthday'):$customer['birthday']}}">
+                                    </div>
+                                    @if($errors->has('birthday'))
+                                    <span class="help-block">{{ $errors->first('birthday') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @endif
 
-                            <div class="form-group   {{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-sm-2  control-label">{{ trans('customer.password') }}</label>
+                            <div class="form-group  row {{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password" class="col-sm-2  col-form-label text-md-right">{{ trans('customer.password') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -150,7 +272,7 @@
                             </div>
 
                             <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('customer.status') }}</label>
+                                <label for="status" class="col-sm-2  col-form-label">{{ trans('customer.status') }}</label>
                                 <div class="col-sm-8">
                                     <input class="input" type="checkbox" name="status"  {{ old('status',(empty($customer['status'])?0:1))?'checked':''}}>
 
@@ -166,10 +288,10 @@
 
                     <div class="box-footer">
                             @csrf
-                        <div class="col-md-2">
+                        <div class="col-sm-2">
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-sm-8">
                             <div class="btn-group pull-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>

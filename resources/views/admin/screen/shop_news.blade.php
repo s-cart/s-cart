@@ -33,7 +33,7 @@
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.title') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__title"
-                                class="col-sm-2  control-label">{{ trans('news.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('news.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -56,7 +56,7 @@
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.keyword') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__keyword"
-                                class="col-sm-2  control-label">{{ trans('news.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('news.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -80,7 +80,7 @@
                         <div
                             class="form-group   {{ $errors->has('descriptions.'.$code.'.description') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__description"
-                                class="col-sm-2  control-label">{{ trans('news.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('news.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                     <textarea  id="{{ $code }}__description"
                                         name="descriptions[{{ $code }}][description]"
@@ -120,7 +120,7 @@
 
                         <div class="form-group   {{ $errors->has('alias') ? ' has-error' : '' }}">
                             <label for="alias"
-                                class="col-sm-2  control-label">{!! trans('news.alias') !!}</label>
+                                class="col-sm-2 col-form-label">{!! trans('news.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -137,7 +137,7 @@
 
 
                         <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
-                            <label for="image" class="col-sm-2  control-label">{{ trans('news.image') }}</label>
+                            <label for="image" class="col-sm-2 col-form-label">{{ trans('news.image') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input type="text" id="image" name="image"
@@ -165,7 +165,7 @@
                         </div>
 
                         <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                            <label for="sort" class="col-sm-2  control-label">{{ trans('news.sort') }}</label>
+                            <label for="sort" class="col-sm-2 col-form-label">{{ trans('news.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -182,7 +182,7 @@
                         </div>
 
                         <div class="form-group  ">
-                            <label for="status" class="col-sm-2  control-label">{{ trans('news.status') }}</label>
+                            <label for="status" class="col-sm-2 col-form-label">{{ trans('news.status') }}</label>
                             <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"
                                     {{ old('status',(empty($shopNews['status'])?0:1))?'checked':''}}>

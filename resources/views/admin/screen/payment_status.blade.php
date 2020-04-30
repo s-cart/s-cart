@@ -20,7 +20,7 @@
                         <div class="fields-group">
 
                             <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ trans('payment_status.name') }}</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ trans('payment_status.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
