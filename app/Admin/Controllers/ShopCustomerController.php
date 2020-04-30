@@ -197,7 +197,7 @@ class ShopCustomerController extends Controller
             'addresses' => $customer->addresses,
             'url_action' => route('admin_customer.edit', ['id' => $customer['id']]),
         ];
-        return view('admin.screen.customer')
+        return view('admin.screen.customer_edit')
             ->with($data);
     }
 
