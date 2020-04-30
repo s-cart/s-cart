@@ -28,6 +28,8 @@ return [
     'Api_plugin' => 'Module Api',
     'Block' => 'Module Block <span class="badge label label-primary">' . count(sc_get_all_plugin('Block')) . '</span>',
     'Block_plugin' => 'Module Block',
+    'only_version_current' => 'Chỉ phiên bản này',
+    'compatible' => 'Tương thích',
     'code'        => 'Mã code',
     'name'        => 'Tên chức năng',
     'sort'        => 'Thứ tự',

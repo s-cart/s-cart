@@ -25,9 +25,14 @@ class AdminPluginsOnlineController extends Controller
     protected function pluginCode($code)
     {
         $arrPluginLibrary = [];
+        $sc_version = config('scart.version');
+        $only_version = request('only_version', 0);
         $page = request('page') ?? 1;
 
         $url = config('scart.api_link').'/plugins/'.$code.'?page[size]=20&page[number]='.$page;
+        if($only_version) {
+            $url .='&sc='.$sc_version;
+        }
         $ch            = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -69,6 +74,7 @@ class AdminPluginsOnlineController extends Controller
                 "title" => $title,
                 "arrPluginLocal" => $arrPluginLocal,
                 "code" => $code,
+                "only_version" => $only_version,
                 "arrPluginLibrary" => $arrPluginLibrary,
                 "resultItems" => $resultItems,
                 "dataApi" => $dataApi,

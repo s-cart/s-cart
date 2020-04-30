@@ -28,6 +28,8 @@ return [
     'Api_plugin' => 'Api plugins',
     'Block' => 'Block plugins <span class="badge label label-primary">' . count(sc_get_all_plugin('Block')) . '</span>',
     'Block_plugin' => 'Block plugins',
+    'only_version_current' => 'Only this version',
+    'compatible' => 'Compatible',
     'code'        => 'Code',
     'name'        => 'Name',
     'sort'        => 'Sort',

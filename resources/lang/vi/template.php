@@ -44,6 +44,8 @@ return [
     'code' => 'Mã code',
     'click_here' => 'Bấm vào đây',
     'image_demo' => 'Hình mẫu',
+    'only_version_current' => 'Chỉ phiên bản này',
+    'compatible' => 'Tương thích',
     'admin'      => [
         'list'  => 'Danh sách giao diện',
         'title' => 'Quan lý giao diện',

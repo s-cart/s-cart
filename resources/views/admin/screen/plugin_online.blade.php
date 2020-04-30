@@ -9,6 +9,9 @@
           <li class="active"><a href="#">{{ trans('plugin.online') }}</a></li>
           <li>{!! trans('plugin.plugin_import') !!}</li>
           <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
+          <li class="pull-right" >
+            <a>{{ trans('plugin.only_version_current') }}: <input  class="only_version" name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}></a>
+          </li>
         </ul>
             <!-- /.box-header -->
           <section id="pjax-container" class="table-list">
@@ -20,6 +23,7 @@
                   <th>{{ trans('plugin.code') }}</th>
                   <th>{{ trans('plugin.name') }}</th>
                   <th>{{ trans('plugin.version') }}</th>
+                  <th>{{ trans('plugin.compatible') }}</th>
                   <th>{{ trans('plugin.auth') }}</th>
                   <th>{{ trans('plugin.price') }}</th>
                   <th>{{ trans('plugin.rated') }}</th>
@@ -48,12 +52,20 @@
                         }
                       }
                     @endphp
-
+  @php
+      $scVersion = explode(',', $plugin['scart_version']);
+      $scVersion = implode(' ',array_map(
+        function($version){
+        return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
+        },$scVersion)
+      );
+  @endphp
                       <tr>
                         <td>{!! sc_image_render($plugin['image'],'50px', '', $plugin['name']) !!}</td>
                         <td>{{ $plugin['key'] }}</td>
                         <td>{{ $plugin['name'] }} <span data-toggle="tooltip" title="{!! $plugin['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $plugin['version']??'' }}</td>
+                        <td><b>SC:</b> {!! $scVersion !!}</td>
                         <td>{{ $plugin['username']??'' }}</td>
                         <td>
                           @if ($plugin['is_free'] || $plugin['price_final'] == 0)
@@ -195,4 +207,20 @@
     $('[data-toggle="tooltip"]').tooltip();
 </script>
 
+<script>
+  $('.only_version').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' /* optional */
+  }).on('ifChanged', function(e) {
+  var isChecked = e.currentTarget.checked;
+  isChecked = (isChecked == false)?0:1;
+  if(isChecked) {
+    var url = '{{ route('admin_plugin_online', ['code' => $code]) }}?only_version=1';
+  } else {
+    var url = '{{ route('admin_plugin_online', ['code' => $code]) }}';
+  }
+  window.location.href = url;
+    });
+</script>
 @endpush

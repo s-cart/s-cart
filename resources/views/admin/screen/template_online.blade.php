@@ -9,6 +9,9 @@
             <li class="active"><a href="#">{{ trans('template.online') }}</a></li>
             <li>{!! trans('template.template_import') !!}</li>
             <li class="pull-right">{!! trans('template.template_more') !!}</li>
+            <li class="pull-right" >
+              <a>{{ trans('template.only_version_current') }}: <input  class="only_version" name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}></a>
+            </li>
           </ul>
             <!-- /.box-header -->
           <section id="pjax-container" class="table-list">
@@ -20,6 +23,7 @@
                   <th>{{ trans('template.code') }}</th>
                   <th>{{ trans('template.name') }}</th>
                   <th>{{ trans('template.version') }}</th>
+                  <th>{{ trans('template.compatible') }}</th>
                   <th>{{ trans('template.auth') }}</th>
                   <th>{{ trans('template.image_demo') }}</th>
                   <th>{{ trans('template.price') }}</th>
@@ -50,11 +54,20 @@
                       }
                     @endphp
 
+  @php
+  $scVersion = explode(',', $template['scart_version']);
+  $scVersion = implode(' ',array_map(
+    function($version){
+    return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
+    },$scVersion)
+  );
+@endphp
                       <tr>
                         <td>{!! sc_image_render($template['image'],'50px', '', $template['name']) !!}</td>
                         <td>{{ $template['key'] }}</td>
                         <td>{{ $template['name'] }} <span data-toggle="tooltip" title="{!! $template['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $template['version']??'' }}</td>
+                        <td><b>SC:</b> {!! $scVersion !!}</td>
                         <td>{{ $template['username']??'' }}</td>
                         <td onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
                         <td>
@@ -206,6 +219,23 @@
       })
     }
 
+</script>
+
+<script>
+  $('.only_version').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' /* optional */
+  }).on('ifChanged', function(e) {
+  var isChecked = e.currentTarget.checked;
+  isChecked = (isChecked == false)?0:1;
+  if(isChecked) {
+    var url = '{{ route('admin_template_online.index') }}?only_version=1';
+  } else {
+    var url = '{{ route('admin_template_online.index') }}';
+  }
+  window.location.href = url;
+    });
 </script>
 
 @endpush

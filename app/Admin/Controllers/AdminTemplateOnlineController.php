@@ -10,8 +10,13 @@ class AdminTemplateOnlineController extends Controller
     public function index()
     {
         $arrTemplateLibrary = [];
+        $sc_version = config('scart.version');
+        $only_version = request('only_version', 0);
         $page = request('page') ?? 1;
         $url = config('scart.api_link').'/templates/?page[size]=20&page[number]='.$page;
+        if($only_version) {
+            $url .='&sc='.$sc_version;
+        }
         $ch            = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -54,6 +59,7 @@ class AdminTemplateOnlineController extends Controller
                     "title" => $title,
                     "arrTemplateLocal" => sc_get_all_template(),
                     "arrTemplateLibrary" => $arrTemplateLibrary,
+                    "only_version" => $only_version,
                     "resultItems" => $resultItems,
                     "dataApi" => $dataApi,
                 ]);
