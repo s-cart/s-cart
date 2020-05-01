@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('symbol_first') ? ' has-error' : '' }}">
-                                <label for="symbol_first" class="col-sm-2 control-label">{{ trans('currency.symbol_first') }}</label>
+                                <label for="symbol_first" class="col-sm-2 col-form-label">{{ trans('currency.symbol_first') }}</label>
                                 <div class="col-sm-8">
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="1" {!! (old('symbol_first',$currency['symbol_first']??1) =='1')?'checked':'' !!}>Yes</label>
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="0" {!! (old('symbol_first',$currency['symbol_first']??0) =='0')?'checked':'' !!}>No</label>

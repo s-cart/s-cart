@@ -597,7 +597,7 @@
                         {{-- List product in groups --}}
                         <div class="form-group  kind kind2 {{ $errors->has('productInGroup') ? ' has-error' : '' }}">
                             
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8"><label>{{ trans('product.admin.select_product_in_group') }}</label>
                             </div>
                         </div>
@@ -631,7 +631,7 @@
                         <hr class="kind kind2">
                         {{-- List product build --}}
                         <div class="form-group  kind kind1 {{ $errors->has('productBuild') ? ' has-error' : '' }}">
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.admin.select_product_in_build') }}</label>
                             </div>
@@ -678,7 +678,7 @@
                         @if (!empty($attributeGroup))
                         <hr class="kind kind0">
                         <div class="form-group kind kind0">
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.attribute') }}</label>
                             </div>

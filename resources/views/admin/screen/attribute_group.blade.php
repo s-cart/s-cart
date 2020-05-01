@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('type') ? ' has-error' : '' }}">
-                                <label for="type" class="col-sm-2 control-label">{{ trans('attribute_group.type') }}</label>
+                                <label for="type" class="col-sm-2 col-form-label">{{ trans('attribute_group.type') }}</label>
                                 <div class="col-sm-8">
                                     <label class="radio-inline"><input type="radio" name="type" value="radio" {{ (old('type',($obj['type']??'')) =='radio')?'checked':'' }}>Radio</label>
                                     <label class="radio-inline"><input type="radio" name="type" value="select" {{ (old('type',($obj['type']??'')) =='select')?'checked':'' }}>Select</label>

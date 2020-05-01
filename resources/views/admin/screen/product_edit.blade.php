@@ -125,7 +125,7 @@
                         <div
                             class="form-group {{ $errors->has('descriptions.'.$code.'.content') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__content"
-                                class="col-sm-2 control-label">{{ trans('product.content') }}</label>
+                                class="col-sm-2 col-form-label">{{ trans('product.content') }}</label>
                             <div class="col-sm-8">
                                 <textarea id="{{ $code }}__content" class="editor"
                                     name="descriptions[{{ $code }}][content]">
@@ -159,7 +159,7 @@
 
                         <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
                             <label for="category"
-                                class="col-sm-2 control-label">{{ trans('product.admin.select_category') }}</label>
+                                class="col-sm-2 col-form-label">{{ trans('product.admin.select_category') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm category select2" multiple="multiple"
                                     data-placeholder="{{ trans('product.admin.select_category') }}" style="width: 100%;"
@@ -242,7 +242,7 @@
 
                         {{-- Sku --}}
                         <div class="form-group {{ $errors->has('sku') ? ' has-error' : '' }}">
-                            <label for="sku" class="col-sm-2 control-label">{{ trans('product.sku') }}</label>
+                            <label for="sku" class="col-sm-2 col-form-label">{{ trans('product.sku') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -266,7 +266,7 @@
 
                         {{-- Alias --}}
                         <div class="form-group {{ $errors->has('alias') ? ' has-error' : '' }}">
-                            <label for="alias" class="col-sm-2 control-label">{!! trans('product.alias') !!}</label>
+                            <label for="alias" class="col-sm-2 col-form-label">{!! trans('product.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
@@ -290,7 +290,7 @@
 @if (sc_config('product_brand'))
                         {{-- Brand --}}
                         <div class="form-group  {{ $errors->has('brand_id') ? ' has-error' : '' }}">
-                            <label for="brand_id" class="col-sm-2 control-label">{{ trans('product.brand') }}</label>
+                            <label for="brand_id" class="col-sm-2 col-form-label">{{ trans('product.brand') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm brand_id select2" style="width: 100%;"
                                     name="brand_id">
@@ -323,7 +323,7 @@
                                 }
                             }
                             @endphp
-                            <label for="supplier_id" class="col-sm-2 control-label">{{ trans('product.supplier') }}</label>
+                            <label for="supplier_id" class="col-sm-2 col-form-label">{{ trans('product.supplier') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm supplier_id select2" multiple="multiple"
                                     data-placeholder="{{ trans('product.admin.select_supplier') }}" style="width: 100%;"
@@ -394,7 +394,7 @@
                     @if ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD)
                         {{-- Tax --}}
                         <div class="form-group  {{ $errors->has('tax_id') ? ' has-error' : '' }}">
-                            <label for="tax_id" class="col-sm-2 control-label">{{ trans('product.tax') }}</label>
+                            <label for="tax_id" class="col-sm-2 col-form-label">{{ trans('product.tax') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm tax_id select2" style="width: 100%;"
                                     name="tax_id">
@@ -611,7 +611,7 @@
                         {{-- List product in groups --}}
                         <hr>
                         <div class="form-group {{ $errors->has('productInGroup') ? ' has-error' : '' }}">
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8"><label>{{ trans('product.admin.select_product_in_group') }}</label>
                             </div>
                         </div>
@@ -665,7 +665,7 @@
                         <hr>
                         {{-- List product build --}}
                         <div class="form-group {{ $errors->has('productBuild') ? ' has-error' : '' }}">
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.admin.select_product_in_build') }}</label>
                             </div>
@@ -730,7 +730,7 @@
                         <hr>
                         @if (!empty($attributeGroup))
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"></label>
+                            <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.attribute') }}</label>
                             </div>

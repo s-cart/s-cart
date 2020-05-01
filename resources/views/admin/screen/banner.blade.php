@@ -62,7 +62,7 @@
 
 
                             <div class="form-group  {{ $errors->has('target') ? ' has-error' : '' }}">
-                                    <label for="target" class="col-sm-2 control-label">{{ trans('banner.admin.select_target') }}</label>
+                                    <label for="target" class="col-sm-2 col-form-label">{{ trans('banner.admin.select_target') }}</label>
                                     <div class="col-sm-8">
                                         <select class="form-control target select2" style="width: 100%;" name="target" >
                                             <option value=""></option>

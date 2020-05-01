@@ -39,7 +39,7 @@
                         <div
                             class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_content') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__maintain_content"
-                                class="col-sm-2 control-label">{{ trans('maintain.admin.description') }}</label>
+                                class="col-sm-2 col-form-label">{{ trans('maintain.admin.description') }}</label>
                             <div class="col-sm-8">
                                 <textarea id="{{ $code }}__maintain_content" class="editor"
                                     name="descriptions[{{ $code }}][maintain_content]">

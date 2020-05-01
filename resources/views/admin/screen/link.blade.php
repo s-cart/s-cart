@@ -57,7 +57,7 @@
 
 
                             <div class="form-group  {{ $errors->has('target') ? ' has-error' : '' }}">
-                                <label for="target" class="col-sm-2 control-label">{{ trans('link.admin.select_target') }}</label>
+                                <label for="target" class="col-sm-2 col-form-label">{{ trans('link.admin.select_target') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control target select2" style="width: 100%;" name="target" >
                                         <option value=""></option>
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="form-group  {{ $errors->has('group') ? ' has-error' : '' }}">
-                                <label for="group" class="col-sm-2 control-label">{{ trans('link.admin.select_group') }}</label>
+                                <label for="group" class="col-sm-2 col-form-label">{{ trans('link.admin.select_group') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control group select2" style="width: 100%;" name="group" >
                                         <option value=""></option>
