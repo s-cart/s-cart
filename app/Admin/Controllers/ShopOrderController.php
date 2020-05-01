@@ -21,7 +21,15 @@ use Validator;
 
 class ShopOrderController extends Controller
 {
-    public $statusPayment, $statusOrder, $statusShipping, $statusOrderMap, $statusShippingMap, $currency, $country, $countryMap;
+    public $statusPayment, 
+    $statusOrder, 
+    $statusShipping, 
+    $statusOrderMap, 
+    $statusShippingMap, 
+    $statusPaymentMap, 
+    $currency, 
+    $country, 
+    $countryMap;
 
     public function __construct()
     {
@@ -32,7 +40,9 @@ class ShopOrderController extends Controller
         $this->countryMap = ShopCountry::mapValue();
         $this->statusPayment = ShopPaymentStatus::getListStatus();
         $this->statusShipping = ShopShippingStatus::getListStatus();
+        $this->statusPayment = ShopPaymentStatus::getListStatus();
         $this->statusShippingMap = ShopShippingStatus::mapValue();
+        $this->statusPaymentMap = ShopPaymentStatus::mapValue();
 
     }
 
@@ -354,6 +364,7 @@ class ShopOrderController extends Controller
                 "statusShipping" => $this->statusShipping,
                 "statusOrderMap" => $this->statusOrderMap,
                 "statusShippingMap" => $this->statusShippingMap,
+                "statusPaymentMap" => $this->statusPaymentMap,
                 'dataTotal' => ShopOrderTotal::getTotal($id),
                 'attributesGroup' => ShopAttributeGroup::pluck('name', 'id')->all(),
                 'paymentMethod' => $paymentMethod,
@@ -443,6 +454,7 @@ class ShopOrderController extends Controller
             [
                 'total' => sc_currency_format($orderUpdated->total),
                 'subtotal' => sc_currency_format($orderUpdated->subtotal),
+                'tax' => sc_currency_format($orderUpdated->tax),
                 'shipping' => sc_currency_format($orderUpdated->shipping),
                 'discount' => sc_currency_format($orderUpdated->discount),
                 'received' => sc_currency_format($orderUpdated->received),
