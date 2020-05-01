@@ -202,7 +202,7 @@ $attributesGroup: array
                                         <label for="country" class="control-label"><i class="fas fa-globe"></i>
                                             {{ trans('cart.country') }}:</label>
                                         @php
-                                        $ct = old('country',$shippingAddress['company']);
+                                        $ct = old('country',$shippingAddress['country']);
                                         @endphp
                                         <select class="form-control country " style="width: 100%;" name="country">
                                             <option value="">__{{ trans('cart.country') }}__</option>
