@@ -121,7 +121,7 @@ return [
         'cost'                    => 'Sử dụng GIÁ GỐC',
         'stock'                    => 'Sử dụng SỐ LƯỢNG',
         'type'                    => 'Sử dụng PHÂN LOẠI TÌNH TRẠNG(mới, hot,...)',
-        'kind'                    => 'Sử dụng KIỂU (sản phẩm đơn, nhóm, bộ)',
+        'kind'                    => 'Sử dụng PHÂN LOẠI THEO CẤU TRÚC (sản phẩm đơn, nhóm, bộ)',
         'virtual'                    => 'Sử dụng PHÂN LOẠI ĐẶC TÍNH: download, vật lý, dịch vụ,..',
         'attribute'                    => 'Sử dụng THUỘC TÍNH (màu sắc, kích thước,...)',
         'promotion'                    => 'Sử dụng GIÁ KHUYẾN MÃI',

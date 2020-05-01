@@ -119,7 +119,7 @@ return [
         'stock'                    => 'Use STOCK',
         'cost'                    => 'Use COST PRICE',
         'type'                    => 'Use TYPE (new, hot,...)',
-        'kind'                    => 'Use KIND (single, group, bundle)',
+        'kind'                    => 'Use STRUCTURE TYPE (single, group, bundle)',
         'virtual'                    => 'Use Product type: download, virtual, physical',
         'attribute'                    => 'Use ATTRIBUTE (color, size,...)',
         'promotion'                    => 'Use PROMOTION PRICE',
