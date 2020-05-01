@@ -251,10 +251,8 @@
 @endpush
 
 @push('scripts')
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-3d.js"></script>
-  <script src="{{ asset('admin/plugin/chartjs/dist/Chart.bundle.min.js') }}"></script>
+  <script src="{{ asset('admin/plugin/chartjs/highcharts.js') }}"></script>
+  <script src="{{ asset('admin/plugin/chartjs/highcharts-3d.js') }}"></script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function () {
       var myChart = Highcharts.chart('chart-days', {
