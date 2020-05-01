@@ -41,31 +41,33 @@
                     </tr>
                   @else
                     @foreach ($arrPluginLibrary as  $plugin)
-                    @php
-                      if (array_key_exists($plugin['key'], $arrPluginLocal)) {
-                        $pluginAction = '<span class="btn btn-flat btn-default" type="button">'.trans('plugin.located').'</span>';
-                      } else {
-                        if(($plugin['is_free'] || $plugin['price_final'] == 0)) {
-                          $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('plugin.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
-                        } else {
-                          $pluginAction = '';
-                        }
-                      }
-                    @endphp
   @php
-      $scVersion = explode(',', $plugin['scart_version']);
-      $scVersion = implode(' ',array_map(
-        function($version){
-        return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
-        },$scVersion)
-      );
-  @endphp
+    $scVersion = explode(',', $plugin['scart_version']);
+    $scRenderVersion = implode(' ',array_map(
+      function($version){
+      return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
+      },$scVersion)
+    );
+
+    if (array_key_exists($plugin['key'], $arrPluginLocal)) 
+    {
+      $pluginAction = '<span class="btn btn-flat btn-default" type="button">'.trans('plugin.located').'</span>';
+    } elseif(!in_array(config('scart.version'), $scVersion)) {
+      $pluginAction = '';
+    } else {
+      if(($plugin['is_free'] || $plugin['price_final'] == 0)) {
+        $pluginAction = '<span onClick="installPlugin($(this),\''.$plugin['key'].'\', \''.$plugin['file'].'\');" title="'.trans('plugin.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+      } else {
+        $pluginAction = '';
+      }
+    }
+@endphp
                       <tr>
                         <td>{!! sc_image_render($plugin['image'],'50px', '', $plugin['name']) !!}</td>
                         <td>{{ $plugin['key'] }}</td>
                         <td>{{ $plugin['name'] }} <span data-toggle="tooltip" title="{!! $plugin['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $plugin['version']??'' }}</td>
-                        <td><b>SC:</b> {!! $scVersion !!}</td>
+                        <td><b>SC:</b> {!! $scRenderVersion !!}</td>
                         <td>{{ $plugin['username']??'' }}</td>
                         <td>
                           @if ($plugin['is_free'] || $plugin['price_final'] == 0)

@@ -42,32 +42,33 @@
                     </tr>
                   @else
                     @foreach ($arrTemplateLibrary as  $template)
-                    @php
-                      if (array_key_exists($template['key'], $arrTemplateLocal)) {
-                        $templateAction = trans('template.located');
-                      } else {
-                        if(($template['is_free'] || $template['price_final'] == 0)) {
-                          $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['file'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
-                        } else {
-                          $templateAction = '';
-                        }
-                      }
-                    @endphp
-
-  @php
+@php
   $scVersion = explode(',', $template['scart_version']);
-  $scVersion = implode(' ',array_map(
+  $scRenderVersion = implode(' ',array_map(
     function($version){
     return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
     },$scVersion)
   );
+
+  if (array_key_exists($template['key'], $arrTemplateLocal)) 
+  {
+    $templateAction = trans('template.located');
+  } elseif(!in_array(config('scart.version'), $scVersion)) {
+    $templateAction = '';
+  } else {
+    if(($template['is_free'] || $template['price_final'] == 0)) {
+      $templateAction = '<span onClick="installTemplate($(this),\''.$template['key'].'\', \''.$template['file'].'\');" title="'.trans('template.install').'" type="button" class="btn btn-flat btn-success"><i class="fa fa-plus-circle"></i></span>';
+    } else {
+      $templateAction = '';
+    }
+  }
 @endphp
                       <tr>
                         <td>{!! sc_image_render($template['image'],'50px', '', $template['name']) !!}</td>
                         <td>{{ $template['key'] }}</td>
                         <td>{{ $template['name'] }} <span data-toggle="tooltip" title="{!! $template['description'] !!}"><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
                         <td>{{ $template['version']??'' }}</td>
-                        <td><b>SC:</b> {!! $scVersion !!}</td>
+                        <td><b>SC:</b> {!! $scRenderVersion !!}</td>
                         <td>{{ $template['username']??'' }}</td>
                         <td onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
                         <td>
