@@ -40,7 +40,6 @@ class ShopOrderController extends Controller
         $this->countryMap = ShopCountry::mapValue();
         $this->statusPayment = ShopPaymentStatus::getListStatus();
         $this->statusShipping = ShopShippingStatus::getListStatus();
-        $this->statusPayment = ShopPaymentStatus::getListStatus();
         $this->statusShippingMap = ShopShippingStatus::mapValue();
         $this->statusPaymentMap = ShopPaymentStatus::mapValue();
 

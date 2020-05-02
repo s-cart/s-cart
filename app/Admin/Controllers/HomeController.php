@@ -60,12 +60,10 @@ class HomeController extends Controller
         );
         $orderInMonth  = [];
         $amountInMonth  = [];
-        $sum = 0;
         foreach ($rangDays as $i => $day) {
             $date = $day->format('m-d');
             $orderInMonth[$date] = $totalsInMonth[$date]['total_order'] ?? '';
-            $amountInMonth[$date] = $sum + ($totalsInMonth[$date]['total_amount'] ?? 0);
-            $sum = $amountInMonth[$date];
+            $amountInMonth[$date] = ($totalsInMonth[$date]['total_amount'] ?? 0);
         }
         $data['orderInMonth'] = $orderInMonth;
         $data['amountInMonth'] = $amountInMonth;
