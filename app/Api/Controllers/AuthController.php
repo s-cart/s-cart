@@ -66,7 +66,7 @@ class AuthController extends GeneralController
     public function create(Request $request)
     {
         $data = $request->all();
-        $data['country'] = strtoupper($data['country'] ?? '');
+        $data['reg_country'] = strtoupper($data['reg_country'] ?? '');
         $v = $this->validator($data);
         if ($v->fails()) {
             $msg = '';
