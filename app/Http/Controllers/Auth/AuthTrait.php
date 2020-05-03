@@ -195,20 +195,39 @@ trait AuthTrait
      * @return  [type]         [return description]
      */
     public function mappDataInsert($data) {
-        return  
-        [
+
+        $dataInsert = [
             'first_name' => $data['reg_first_name'],
-            'last_name' => $data['reg_last_name']??'',
             'email' => $data['reg_email'],
             'password' => bcrypt($data['reg_password']),
-            'phone' => $data['reg_phone']??null,
-            'address1' => $data['reg_address1'],
-            'address2' => $data['reg_address2']??'',
-            'country' => $data['reg_country']??'VN',
-            'group' => $data['reg_group']??1,
-            'sex' => $data['reg_sex']??0,
-            'postcode' => $data['reg_postcode']??null,
-            'birthday' => $data['reg_birthday']??null,
         ];
+        if(sc_config('customer_lastname')) {
+            $dataInsert['last_name'] = $data['reg_last_name'] ?? '';
+        }
+        if(sc_config('customer_address2')) {
+            $dataInsert['address2'] = $data['reg_address2'] ?? '';
+        }
+        if(sc_config('customer_phone')) {
+            $dataInsert['phone'] =  $dataInsert['reg_phone'] ?? '';
+        }
+        if(sc_config('customer_country')) {
+            $dataInsert['country'] = $data['reg_country'] ?? '';
+        }
+        if(sc_config('customer_postcode')) {
+            $dataInsert['postcode'] = $data['reg_postcode'] ?? '';
+        }
+        if(sc_config('customer_company')) {
+            $dataInsert['company'] = $data['reg_company'] ?? '';
+        }   
+        if(sc_config('customer_sex')) {
+            $dataInsert['sex'] = $data['reg_sex'] ?? 0;
+        }   
+        if(sc_config('customer_birthday')) {
+            $dataInsert['birthday'] =  $dataInsert['reg_birthday'] ?? '';
+        } 
+        if(sc_config('customer_group')) {
+            $dataInsert['group'] = $data['reg_group'] ?? 1;
+        }
+        return $dataInsert;
     }
 }
