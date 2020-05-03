@@ -38,11 +38,11 @@ trait AuthTrait
         unset($data['id']);
 
         if(sc_config('customer_lastname')) {
-            $validate['last_name'] = 'required|max:100';
+            $validate['last_name'] = 'required|string|max:100';
             $dataUpdate['last_name'] = $data['last_name']??'';
         }
         if(sc_config('customer_address2')) {
-            $validate['address2'] = 'required|max:100';
+            $validate['address2'] = 'required|string|max:100';
             $dataUpdate['address2'] = $data['address2']??'';
         }
         if(sc_config('customer_phone')) {
@@ -51,7 +51,7 @@ trait AuthTrait
         }
         if(sc_config('customer_country')) {
             $arraycountry = (new ShopCountry)->pluck('code')->toArray();
-            $validate['country'] = 'required|min:2|in:'. implode(',', $arraycountry);
+            $validate['country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
             $dataUpdate['country'] = $data['country']??'';
         }
         if(sc_config('customer_postcode')) {
@@ -125,26 +125,26 @@ trait AuthTrait
             'reg_address1' => 'required|string|max:255',
         ];
         if(sc_config('customer_lastname')) {
-            $validate['reg_last_name'] = 'required|max:100';
+            $validate['reg_last_name'] = 'required|string|max:100';
         }
         if(sc_config('customer_address2')) {
-            $validate['reg_address2'] = 'required|max:100';
+            $validate['reg_address2'] = 'required|string|max:100';
         }
         if(sc_config('customer_phone')) {
             $validate['reg_phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
         }
         if(sc_config('customer_country')) {
             $arraycountry = (new ShopCountry)->pluck('code')->toArray();
-            $validate['reg_country'] = 'required|min:2|in:'. implode(',', $arraycountry);
+            $validate['reg_country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
         }
         if(sc_config('customer_postcode')) {
-            $validate['reg_postcode'] = 'nullable|min:5';
+            $validate['reg_postcode'] = 'nullable|string|min:5';
         }
         if(sc_config('customer_company')) {
-            $validate['reg_company'] = 'nullable';
+            $validate['reg_company'] = 'nullable|string|min:100';
         }   
         if(sc_config('customer_sex')) {
-            $validate['reg_sex'] = 'required';
+            $validate['reg_sex'] = 'required|integer';
         }   
         if(sc_config('customer_birthday')) {
             $validate['reg_birthday'] = 'nullable|date|date_format:Y-m-d';
