@@ -89,12 +89,9 @@ class ShopProduct extends Model
 
     /**
      * [showPrice description]
-     * @param  [type] $classNew [description]
-     * @param  [type] $classOld [description]
-     * @param  [type] $divWrap  [description]
      * @return [type]           [description]
      */
-    public function showPrice($classNew = null, $classOld = null, $divWrap = null)
+    public function showPrice()
     {
         if (!sc_config('product_price')) {
             return false;
@@ -107,19 +104,16 @@ class ShopProduct extends Model
                 'price' => $price,
                 'priceFinal' => $priceFinal,
                 'kind' => $this->kind,
-            ]);
+            ])->render();
     }
 
     /**
      * [showPriceDetail description]
      *
-     * @param   [type]  $classNew  [$classNew description]
-     * @param   [type]  $classOld  [$classOld description]
-     * @param   [type]  $divWrap   [$divWrap description]
      *
      * @return  [type]             [return description]
      */
-    public function showPriceDetail($classNew = null, $classOld = null, $divWrap = null)
+    public function showPriceDetail()
     {
         if (!sc_config('product_price')) {
             return false;
@@ -132,7 +126,7 @@ class ShopProduct extends Model
             'price' => $price,
             'priceFinal' => $priceFinal,
             'kind' => $this->kind,
-        ]);
+        ])->render();
     }
 
     /**

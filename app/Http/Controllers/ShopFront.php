@@ -226,8 +226,10 @@ class ShopFront extends GeneralController
     {
         $id = request('id') ?? 0;
         $product = (new ShopProduct)->getDetail($id);
-        $product['showPrice'] = $product->showPrice();
+        $product['showPrice'] = $product->showPriceDetail();
         $product['brand_name'] = $product->brand->name;
+        //Hidden cost
+        unset($product['cost']);
         $product['image'] = asset($product->getImage());
         $subImages = [];
         if ($product->images->count()) {
