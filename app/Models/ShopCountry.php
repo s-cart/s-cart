@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cache;
 
 class ShopCountry extends Model
 {
     public $table = SC_DB_PREFIX.'shop_country';
     public $timestamps               = false;
-    private static $getCountries     = null;
     private static $getListCountries = null;
     protected $connection = SC_CONNECTION;
 
@@ -22,10 +22,10 @@ class ShopCountry extends Model
 
     public static function getArray()
     {
-        if (self::$getCountries == null) {
-            self::$getCountries = self::pluck('name', 'code')->all();
+        if (!Cache::has('cache_country')) {
+            Cache::put('cache_country', self::pluck('name', 'code')->all(), $seconds = sc_config('cache_time', 0)?:600);
         }
-        return self::$getCountries;
+        return Cache::get('cache_country');
     }
 
     public static function mapValue()

@@ -216,7 +216,7 @@ trait AuthTrait
             $dataInsert['address2'] = $data['reg_address2'] ?? '';
         }
         if(sc_config('customer_phone')) {
-            $dataInsert['phone'] =  $dataInsert['reg_phone'] ?? '';
+            $dataInsert['phone'] =  $data['reg_phone'] ?? '';
         }
         if(sc_config('customer_country')) {
             $dataInsert['country'] = $data['reg_country'] ?? '';
