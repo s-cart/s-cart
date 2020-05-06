@@ -19,11 +19,9 @@ trait AuthTrait
     public function mappingValidatorEdit($data) {
         $dataUpdate = [
             'first_name' => $data['first_name'],
-            'address1' => $data['address1'],
         ];
         $validate = [
             'first_name' => 'required|string|max:100',
-            'address1' => 'required|string|max:255',
             'password' => 'nullable|string|min:6',
         ];
 
@@ -41,6 +39,11 @@ trait AuthTrait
             $validate['last_name'] = 'required|string|max:100';
             $dataUpdate['last_name'] = $data['last_name']??'';
         }
+        if(sc_config('customer_address1')) {
+            $validate['address1'] = 'required|string|max:100';
+            $dataUpdate['address1'] = $data['address1']??'';
+        }
+
         if(sc_config('customer_address2')) {
             $validate['address2'] = 'required|string|max:100';
             $dataUpdate['address2'] = $data['address2']??'';
@@ -122,10 +125,12 @@ trait AuthTrait
             'reg_first_name' => 'required|string|max:100',
             'reg_email' => 'required|string|email|max:255|unique:' . (new ShopUser)->getTable() . ',email',
             'reg_password' => 'required|string|min:6',
-            'reg_address1' => 'required|string|max:255',
         ];
         if(sc_config('customer_lastname')) {
             $validate['reg_last_name'] = 'required|string|max:100';
+        }
+        if(sc_config('customer_address1')) {
+            $validate['reg_address1'] = 'required|string|max:100';
         }
         if(sc_config('customer_address2')) {
             $validate['reg_address2'] = 'required|string|max:100';
@@ -203,6 +208,9 @@ trait AuthTrait
         ];
         if(sc_config('customer_lastname')) {
             $dataInsert['last_name'] = $data['reg_last_name'] ?? '';
+        }
+        if(sc_config('customer_address1')) {
+            $dataInsert['address1'] = $data['reg_address1'] ?? '';
         }
         if(sc_config('customer_address2')) {
             $dataInsert['address2'] = $data['reg_address2'] ?? '';
