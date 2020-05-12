@@ -48,7 +48,11 @@ class Permission
             ) {
                 return $next($request);
             } else {
-                return Checker::error();
+                if (!request()->ajax()) {
+                    return redirect()->route('admin.deny')->with(['url' => $request->url(), 'method' => $request->method()]);
+                } else {
+                    return Checker::error();
+                }
             }
         }
 
@@ -56,7 +60,11 @@ class Permission
             //Method shouldPassThrough in \App\Admin\Models\AdminPermission ->shouldPassThrough
             return $permission->shouldPassThrough($request);
         })) {
-            return Checker::error();
+            if (!request()->ajax()) {
+                return redirect()->route('admin.deny')->with(['url' => $request->url(), 'method' => $request->method()]);
+            } else {
+                return Checker::error();
+            }
         }
         return $next($request);
     }
