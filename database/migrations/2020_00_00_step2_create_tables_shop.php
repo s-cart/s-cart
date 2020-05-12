@@ -27,7 +27,7 @@ class CreateTablesShop extends Migration
             $table->text('html')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('sort')->default(0);
-            $table->tinyInteger('click')->default(0);
+            $table->integer('click')->default(0);
             $table->tinyInteger('type')->default(0);
             $table->timestamps();
         });
