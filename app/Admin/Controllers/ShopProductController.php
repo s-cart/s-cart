@@ -8,6 +8,8 @@ use App\Models\ShopBrand;
 use App\Models\ShopTax;
 use App\Models\ShopCategory;
 use App\Models\ShopLanguage;
+use App\Models\ShopWeight;
+use App\Models\ShopLength;
 use App\Models\ShopProduct;
 use App\Models\ShopProductAttribute;
 use App\Models\ShopProductBuild;
@@ -19,17 +21,14 @@ use Validator;
 
 class ShopProductController extends Controller
 {
-    public $languages, $types, $kinds, $virtuals, $attributeGroup;
+    public $languages, $kinds, $virtuals, $attributeGroup, $listWeight, $listLength;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getList();
+        $this->listWeight = ShopWeight::getList();
+        $this->listLength = ShopLength::getList();
         $this->attributeGroup = ShopAttributeGroup::getList();
-        $this->types = [
-            SC_PRODUCT_NORMAL => trans('product.types.normal'),
-            SC_PRODUCT_NEW => trans('product.types.new'),
-            SC_PRODUCT_HOT => trans('product.types.hot'),
-        ];
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
@@ -74,9 +73,6 @@ class ShopProductController extends Controller
         }
         if(sc_config('product_price')){
             $listTh['price'] = trans('product.price');
-        }
-        if(sc_config('product_type')){
-            $listTh['type'] = trans('product.type');
         }
         if(sc_config('product_kind')){
             $listTh['kind'] = trans('product.kind');
@@ -132,12 +128,6 @@ class ShopProductController extends Controller
             } elseif ($row['kind'] == SC_PRODUCT_GROUP) {
                 $kind = '<span class="label label-danger">' . $kind . '</span>';
             }
-            $type = $this->types[$row['type']] ?? $row['type'];
-            if ($row['type'] == SC_PRODUCT_NEW) {
-                $type = '<span class="label label-success">' . $type . '</span>';
-            } elseif ($row['type'] == SC_PRODUCT_HOT) {
-                $type = '<span class="label label-danger">' . $type . '</span>';
-            }
             $arrName = [];
             foreach ($row->categories as $category) {
                 
@@ -156,9 +146,6 @@ class ShopProductController extends Controller
             }
             if(sc_config('product_price')){
                 $dataMap['price'] = $row['price'];
-            }
-            if(sc_config('product_type')){
-                $dataMap['type'] = $type;
             }
             if(sc_config('product_kind')){
                 $dataMap['kind'] = $kind;
@@ -274,7 +261,6 @@ class ShopProductController extends Controller
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
             'taxs' => (new ShopTax)->getList(),
-            'types' => $this->types,
             'virtuals' => $this->virtuals,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,
@@ -283,6 +269,8 @@ class ShopProductController extends Controller
             'listProductSingle' => $listProductSingle,
             'htmlProductAtrribute' => $htmlProductAtrribute,
             'htmlMoreImage' => $htmlMoreImage,
+            'listWeight' => $this->listWeight,
+            'listLength' => $this->listLength, 
         ];
 
         return view('admin.screen.product_add')
@@ -308,6 +296,12 @@ class ShopProductController extends Controller
                 $arrValidation = [
                     'kind' => 'required',
                     'sort' => 'numeric|min:0',
+                    'weight_class' => 'nullable|string|max:100',
+                    'length_class' => 'nullable|string|max:100',
+                    'weight' => 'numeric|min:0',
+                    'height' => 'numeric|min:0',
+                    'length' => 'numeric|min:0',
+                    'width' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:100',
                     'descriptions.*.keyword' => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
@@ -329,6 +323,12 @@ class ShopProductController extends Controller
                 $arrValidation = [
                     'kind' => 'required',
                     'sort' => 'numeric|min:0',
+                    'weight_class' => 'nullable|string|max:100',
+                    'length_class' => 'nullable|string|max:100',
+                    'weight' => 'numeric|min:0',
+                    'height' => 'numeric|min:0',
+                    'length' => 'numeric|min:0',
+                    'width' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:100',
                     'descriptions.*.keyword' => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
@@ -395,7 +395,12 @@ class ShopProductController extends Controller
             'sku' => $data['sku'],
             'cost' => $data['cost']??0,
             'stock' => $data['stock']??0,
-            'type' => $data['type'] ?? SC_PRODUCT_NORMAL,
+            'weight_class' => $data['weight_class'] ?? '',
+            'length_class' => $data['length_class'] ?? '',
+            'weight' => $data['weight'] ?? 0,
+            'height' => $data['height'] ?? 0,
+            'length' => $data['length'] ?? 0,
+            'width' => $data['width'] ?? 0,
             'kind' => $data['kind']??SC_PRODUCT_SINGLE,
             'alias' => $data['alias'],
             'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
@@ -539,7 +544,6 @@ class ShopProductController extends Controller
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
             'taxs' => (new ShopTax)->getList(),
-            'types' => $this->types,
             'virtuals' => $this->virtuals,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,
@@ -547,7 +551,8 @@ class ShopProductController extends Controller
             'htmlSelectBuild' => $htmlSelectBuild,
             'listProductSingle' => $listProductSingle,
             'htmlProductAtrribute' => $htmlProductAtrribute,
-        ];
+            'listWeight' => $this->listWeight,
+            'listLength' => $this->listLength,        ];
         return view('admin.screen.product_edit')
             ->with($data);
     }
@@ -568,6 +573,12 @@ class ShopProductController extends Controller
             case SC_PRODUCT_SINGLE: // product single
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
+                    'weight_class' => 'nullable|string|max:100',
+                    'length_class' => 'nullable|string|max:100',
+                    'weight' => 'numeric|min:0',
+                    'height' => 'numeric|min:0',
+                    'length' => 'numeric|min:0',
+                    'width' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -587,6 +598,12 @@ class ShopProductController extends Controller
             case SC_PRODUCT_BUILD: //product build
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
+                    'weight_class' => 'nullable|string|max:100',
+                    'length_class' => 'nullable|string|max:100',
+                    'weight' => 'numeric|min:0',
+                    'height' => 'numeric|min:0',
+                    'length' => 'numeric|min:0',
+                    'width' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -649,7 +666,12 @@ class ShopProductController extends Controller
             'price' => $data['price'] ?? 0,
             'cost' => $data['cost'] ?? 0,
             'stock' => $data['stock'] ?? 0,
-            'type' => $data['type'] ?? SC_PRODUCT_NORMAL,
+            'weight_class' => $data['weight_class'] ?? '',
+            'length_class' => $data['length_class'] ?? '',
+            'weight' => $data['weight'] ?? 0,
+            'height' => $data['height'] ?? 0,
+            'length' => $data['length'] ?? 0,
+            'width' => $data['width'] ?? 0,
             'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
             'sku' => $data['sku'],

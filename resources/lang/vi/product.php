@@ -47,7 +47,14 @@ return [
     'price_group_chose'     => 'Chọn sản phẩm',
     'groups'                => 'Nhóm sản phẩm',
     'builds'                => 'Bộ sản phẩm',
-
+    'length_class'          => 'Đơn vị chiều dài',
+    'length'                => 'Chiều dài',
+    'width'                 => 'Chiều rộng',
+    'height'                => 'Chiều cao',
+    'weight_class'          => 'Đơn vị khối lượng',
+    'weight'                => 'Trọng lượng',
+    'select_weight'         => 'Chọn đơn vị khối lượng',
+    'select_length'         => 'Chọn đơn vị chiều dài',
     'admin'                 => [
         'title'                   => 'Quản lý sản phẩm',
         'create_success'          => 'Tạo item thành công!',
@@ -128,5 +135,7 @@ return [
         'available'                    => 'Sử dụng THỜI GIAN MỞ BÁN',
         'tax'                    => 'Cấu hình thuế',
         'product_display_price_include_tax'   => 'Hiển thị giá bao gồm thuế',
+        'weight'   => 'Sử dụng Khối lượng',
+        'length'   => 'Use Kích thước',
     ]
 ];

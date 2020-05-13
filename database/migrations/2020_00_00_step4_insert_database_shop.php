@@ -285,8 +285,10 @@ class InsertDatabaseShop extends Migration
         ]);
 
         DB::table(SC_DB_PREFIX.'shop_product_promotion')->insert([
-            ['product_id' => '11', 'price_promotion' => '5000'],
             ['product_id' => '1', 'price_promotion' => '5000'],
+            ['product_id' => '2', 'price_promotion' => '3000'],
+            ['product_id' => '13', 'price_promotion' => '4000'],
+            ['product_id' => '11', 'price_promotion' => '600'],
         ]);
         DB::table(SC_DB_PREFIX.'shop_attribute_group')->insert([
             ['name' => 'Color', 'status' => '1', 'sort' => '1', 'type' => 'radio'],
@@ -627,6 +629,24 @@ class InsertDatabaseShop extends Migration
             ['id' => '1','name' => 'Tax default (10%)', 'value' => 10],
             ]
         );
+
+        DB::table(SC_DB_PREFIX.'shop_weight')->insert([
+            ['id' => '1','name' => 'g', 'description' => 'Gram'],
+            ['id' => '2','name' => 'kg', 'description' => 'Kilogram'],
+            ['id' => '3','name' => 'lb', 'description' => 'Pound '],
+            ['id' => '4','name' => 'oz', 'description' => 'Ounce '],
+            ]
+        );
+
+        DB::table(SC_DB_PREFIX.'shop_length')->insert([
+            ['id' => '1','name' => 'mm', 'description' => 'Millimeter'],
+            ['id' => '2','name' => 'cm', 'description' => 'Centimeter'],
+            ['id' => '3','name' => 'm', 'description' => 'Meter'],
+            ['id' => '4','name' => 'in', 'description' => 'Inch'],
+            ]
+        );
+
+
     }
 
     /**

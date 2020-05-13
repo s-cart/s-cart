@@ -253,7 +253,12 @@ class CreateTablesShop extends Migration
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);
             $table->integer('sold')->nullable()->default(0);
-            $table->tinyInteger('type')->nullable()->default(0)->index();
+            $table->string('weight_class')->nullable();
+            $table->integer('weight')->nullable()->default(0);
+            $table->string('length_class')->nullable();
+            $table->integer('length')->nullable()->default(0);
+            $table->integer('width')->nullable()->default(0);
+            $table->integer('height')->nullable()->default(0);
             $table->tinyInteger('kind')->nullable()->default(0)->comment('0:single, 1:bundle, 2:group')->index();
             $table->tinyInteger('virtual')->nullable()->default(0)->comment('0:physical, 1:download, 2:only view, 3: Service')->index();
             $table->string('tax_id', 50)->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
@@ -494,6 +499,20 @@ class CreateTablesShop extends Migration
             $table->integer('value')->default(0);
         });
 
+        Schema::create(SC_DB_PREFIX.'shop_weight', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50)->unique();
+            $table->string('description', 100);
+
+        });
+
+        Schema::create(SC_DB_PREFIX.'shop_length', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50)->unique();
+            $table->string('description', 100);
+
+        });
+
     }
 
     /**
@@ -546,6 +565,8 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news_description');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_sessions');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_tax');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_weight');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_length');
         //Passport
         Schema::dropIfExists('oauth_auth_codes');
         Schema::dropIfExists('oauth_access_tokens');

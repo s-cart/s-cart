@@ -47,10 +47,6 @@ $productRelation: no paginate
                     <!--/product-information-->
                     @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
                     <img src="{{ asset($templateFile.'/images/home/sale2.png') }}" class="newarrival" alt="" />
-                    @elseif($product->type == SC_PRODUCT_NEW)
-                    <img src="{{ asset($templateFile.'/images/home/new2.png') }}" class="newarrival" alt="" />
-                    @elseif($product->type == SC_PRODUCT_HOT)
-                    <img src="{{ asset($templateFile.'/images/home/hot2.png') }}" class="newarrival" alt="" />
                     @elseif($product->kind == SC_PRODUCT_BUILD)
                     <img src="{{ asset($templateFile.'/images/home/bundle2.png') }}" class="newarrival" alt="" />
                     @elseif($product->kind == SC_PRODUCT_GROUP)
@@ -195,10 +191,6 @@ $productRelation: no paginate
                     @if ($product_rel->price != $product_rel->getFinalPrice() && $product_rel->kind !=
                     SC_PRODUCT_GROUP)
                     <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                    @elseif($product_rel->type == SC_PRODUCT_NEW)
-                    <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                    @elseif($product_rel->type == SC_PRODUCT_HOT)
-                    <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                     @elseif($product_rel->kind == SC_PRODUCT_BUILD)
                     <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                     @elseif($product_rel->kind == SC_PRODUCT_GROUP)

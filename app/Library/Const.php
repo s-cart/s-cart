@@ -9,10 +9,6 @@ define('SC_VIRTUAL_PHYSICAL', 0);
 define('SC_VIRTUAL_DOWNLOAD', 1);
 define('SC_VIRTUAL_ONLY_VIEW', 2);
 define('SC_VIRTUAL_SERVICE', 3);
-//Product type
-define('SC_PRODUCT_NORMAL', 0);
-define('SC_PRODUCT_NEW', 1);
-define('SC_PRODUCT_HOT', 2);
 // list ID admin guard
 define('SC_GUARD_ADMIN', ['1']); // admin
 // list ID language guard

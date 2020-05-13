@@ -21,8 +21,6 @@ $productPromotion = $modelProduct->getProductPromotion()->setRandom()->setLimit(
             </div>
             @if ($product->price != $product->getFinalPrice())
             <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-            @elseif($product->type == SC_PRODUCT_NEW)
-            <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
             @endif
           </div>
         </div>

@@ -27,10 +27,6 @@ $productsGroup = $modelProduct->start()->getProductGroup()->getData();
                             @if ($product_new->price != $product_new->getFinalPrice() && $product_new->kind !=
                             SC_PRODUCT_GROUP)
                             <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                            @elseif($product_new->type == SC_PRODUCT_NEW)
-                            <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                            @elseif($product_new->type == SC_PRODUCT_HOT)
-                            <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                             @elseif($product_new->kind == SC_PRODUCT_BUILD)
                             <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                             @elseif($product_new->kind == SC_PRODUCT_GROUP)
@@ -85,7 +81,7 @@ $productsGroup = $modelProduct->start()->getProductGroup()->getData();
             <a href="" class="">Xem thêm</a>
         </div> --}}
 </div>
-<div class="container-sm container product-list bkg-blue new">
+<div class="container-sm container product-list1 bkg-blue new">
     <div class="product-list-title">
         {{ trans('front.products_hot') }}
         <div class="arrow-slider-custom">

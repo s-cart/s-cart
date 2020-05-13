@@ -23,7 +23,6 @@ class ShopProduct extends Model
 
     protected  $sc_kind = 'all'; // 0:single, 1:bundle, 2:group
     protected  $sc_virtual = 'all'; // 0:physical, 1:download, 2:only view, 3: Service
-    protected  $sc_type = 'all'; // 0:nomal, 1:new, 2:hot
     protected  $sc_promotion = 0; // 1: only produc promotion,
     protected  $sc_array_ID = []; // array ID product
     protected  $sc_category = []; // array category id
@@ -389,18 +388,6 @@ class ShopProduct extends Model
     }
     
     /**
-     * Set product type
-     */
-    private function setType($type) {
-        if ($type === 'all') {
-            $this->sc_type = $type;
-        } else {
-            $this->sc_type = (int)$type;
-        }
-        return $this;
-    }
-
-    /**
      * Set product kind
      */
     private function setKind($kind) {
@@ -495,21 +482,10 @@ class ShopProduct extends Model
     }
 
     /**
-     * Product new
-     */
-    public function getProductNew() {
-        $this->setStatus(1);
-        $this->setType(SC_PRODUCT_NEW);
-        return $this;
-    }
-
-    /**
      * Product hot
      */
     public function getProductHot() {
-        $this->setStatus(1);
-        $this->setType(SC_PRODUCT_HOT);
-        return $this;
+        return $this->getProductPromotion();
     }
 
     /**
@@ -683,9 +659,6 @@ class ShopProduct extends Model
             $query = $query->where('kind', $this->sc_kind);
         }
 
-        if ($this->sc_type !== 'all') {
-            $query = $query->where('type', $this->sc_type);
-        }
         
         if ($this->sc_virtual !== 'all') {
             $query = $query->where('virtual', $this->sc_virtual);

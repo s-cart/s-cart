@@ -505,27 +505,133 @@
                         {{-- //Stock --}}
 @endif
 
-@if (sc_config('product_type'))
-                        {{-- Type --}}
+@if (sc_config('product_weight'))
+                        {{-- weight --}}
                         @if ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD)
-                        <hr>
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('type') ? ' has-error' : '' }}">
-                            <label for="type" class="col-sm-2 col-form-label">{{ trans('product.type') }}</label>
+
+                        <div class="form-group  {{ $errors->has('weight_class') ? ' has-error' : '' }}">
+                            <label for="weight_class" class="col-sm-2 col-form-label">{{ trans('product.weight_class') }}</label>
                             <div class="col-sm-8">
-                                @foreach ( $types as $key => $type)
-                                <label class="radio-inline"><input type="radio" name="type" value="{!! $key !!}"
-                                        {{ (old('type',$product->type) == $key)?'checked':'' }}>{{ $type }}</label>
-                                @endforeach
-                                @if ($errors->has('type'))
+                                <select class="form-control input-sm weight_class select2" style="width: 100%;"
+                                    name="weight_class">
+                                    <option value="">{{ trans('product.select_weight') }}<option>
+                                    @foreach ($listWeight as $k => $v)
+                                    <option value="{{ $k }}"
+                                        {{ (old('weight_class') == $k || (!old() && $product->weight_class ==$k) ) ? 'selected':'' }}>
+                                        {{ $v }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('weight_class'))
                                 <span class="help-block">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('weight_class') }}
                                 </span>
                                 @endif
                             </div>
                         </div>
+
+
+                        <div class="form-group  {{ $errors->has('weight') ? ' has-error' : '' }}">
+                            <label for="weight" class="col-sm-2 col-form-label">{{ trans('product.weight') }}</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="number" style="width: 100px;" id="weight" name="weight"
+                                        value="{!! old('weight',$product->weight) !!}" class="form-control input-sm weight"
+                                        placeholder="" />
+                                </div>
+                                @if ($errors->has('weight'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('weight') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
                         @endif
-                        {{-- //Type --}}
+                        {{-- //weight --}}
 @endif
+
+
+@if (sc_config('product_length'))
+                        {{-- length --}}
+                        @if ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD)
+
+                        <div class="form-group  {{ $errors->has('length_class') ? ' has-error' : '' }}">
+                            <label for="length_class" class="col-sm-2 col-form-label">{{ trans('product.length_class') }}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm length_class select2" style="width: 100%;"
+                                    name="length_class">
+                                    <option value="">{{ trans('product.select_length') }}<option>
+                                    @foreach ($listLength as $k => $v)
+                                    <option value="{{ $k }}"
+                                        {{ (old('length_class') == $k || (!old() && $product->length_class ==$k) ) ? 'selected':'' }}>
+                                        {{ $v }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('length_class'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('length_class') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group  {{ $errors->has('length') ? ' has-error' : '' }}">
+                            <label for="length" class="col-sm-2 col-form-label">{{ trans('product.length') }}</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="number" style="width: 100px;" id="length" name="length"
+                                        value="{!! old('length',$product->length) !!}" class="form-control input-sm length"
+                                        placeholder="" />
+                                </div>
+                                @if ($errors->has('length'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('length') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group  {{ $errors->has('height') ? ' has-error' : '' }}">
+                            <label for="height" class="col-sm-2 col-form-label">{{ trans('product.height') }}</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="number" style="width: 100px;" id="height" name="height"
+                                        value="{!! old('height',$product->height) !!}" class="form-control input-sm height"
+                                        placeholder="" />
+                                </div>
+                                @if ($errors->has('height'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('height') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group  {{ $errors->has('width') ? ' has-error' : '' }}">
+                            <label for="width" class="col-sm-2 col-form-label">{{ trans('product.width') }}</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="number" style="width: 100px;" id="width" name="width"
+                                        value="{!! old('width',$product->width) !!}" class="form-control input-sm width"
+                                        placeholder="" />
+                                </div>
+                                @if ($errors->has('width'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('width') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>                        
+
+                        @endif
+                        {{-- //length --}}
+@endif
+
 
 @if (sc_config('product_virtual'))
                         {{-- Virtual --}}

@@ -48,6 +48,14 @@ return [
     'price_group_chose'     => 'Please chose product',
     'groups'                => 'Products group',
     'builds'                => 'Products build',
+    'length_class'          => 'Length unit',
+    'length'                => 'Length',
+    'width'                 => 'Width',
+    'height'                => 'Height',
+    'weight_class'          => 'Weight unit',
+    'weight'                => 'Weight',
+    'select_weight'         => 'Select weight unit',
+    'select_length'         => 'Select length unit',
     'admin'                 => [
         'title'                   => 'Product manager',
         'create_success'          => 'Create new item success!',
@@ -126,6 +134,8 @@ return [
         'available'                    => 'Use Time to start selling',
         'tax'                    => 'Tax configuration',
         'product_display_price_include_tax'   => 'Display price include tax',
+        'weight'   => 'Use Weight',
+        'length'   => 'Use Length',
     ]
 
 ];
