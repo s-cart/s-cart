@@ -836,53 +836,49 @@
                         <hr>
                         @if (!empty($attributeGroup))
                         <div class="form-group">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-8">
-                                <label>{{ trans('product.attribute') }}</label>
+                            <div class="col-sm-2">
+                                <label>{{ trans('product.attribute') }}
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-2"></div>
                             <div class="col-sm-8">
 
                                 @php
-                                $dataAtt = [];
-                                if(old('attribute')){
-                                    $dataAtt = old('attribute');
-                                } else {
-                                    $getDataAtt = $product->attributes->groupBy('attribute_group_id')->toArray();
-                                    if(count($getDataAtt)) {
-                                        foreach ($getDataAtt as $groupKey => $row) {
-                                        $dataAtt[$groupKey] = array_column($row, 'name');
-                                        }
+                                $getDataAtt = $product->attributes->groupBy('attribute_group_id')->toArray();
+                                $arrAtt = [];
+                                foreach ($getDataAtt as $groupId => $row) {
+                                    foreach ($row as $key => $value) {
+                                        $arrAtt[$groupId]['name'][] = $value['name'];
+                                        $arrAtt[$groupId]['add_price'][] = $value['add_price'];
                                     }
                                 }
+                                $dataAtt = old('attribute', $arrAtt);
                                 @endphp
 
                                 @foreach ($attributeGroup as $attGroupId => $attName)
                                     <table width="100%">
                                         <tr>
-                                            <td colspan="2"><b>{{ $attName }}:</b><br></td>
+                                            <td colspan="3"><p><b>{{ $attName }}:</b></p></td>
                                         </tr>
-                                    @if (!empty($dataAtt[$attGroupId]))
-                                        @foreach ($dataAtt[$attGroupId] as $attValue)
-                                            @if ($attValue)
-                                                @php
-                                                $newHtml = str_replace('attribute_group', $attGroupId, $htmlProductAtrribute);
-                                                $newHtml = str_replace('attribute_value', $attValue, $newHtml);
-                                                @endphp
-                                                {!! $newHtml !!}
-                                            @endif
+                                        <tr>
+                                            <td>{{ trans('product.admin.add_attribute_place') }}</td>
+                                            <td>{{ trans('product.admin.add_price_place') }}</td>
+                                        </tr>
+                                    @if (!empty($dataAtt[$attGroupId]['name']))
+                                        @foreach ($dataAtt[$attGroupId]['name'] as $key => $attValue)
+                                            @php
+                                            $newHtml = str_replace('attribute_group', $attGroupId, $htmlProductAtrribute);
+                                            $newHtml = str_replace('attribute_value', $attValue, $newHtml);
+                                            $newHtml = str_replace('add_price_value', $dataAtt[$attGroupId]['add_price'][$key], $newHtml);
+                                            @endphp
+                                            {!! $newHtml !!}
                                         @endforeach
                                     @endif
                                         <tr>
-                                            <td colspan="2"><br><button type="button"
-                                                    class="btn btn-flat btn-success add-attribute"
+                                            <td colspan="3"><br><button type="button"
+                                                    class="btn btn-flat btn-success add_attribute"
                                                     data-id="{{ $attGroupId }}">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                     {{ trans('product.admin.add_attribute') }}
-                                                </button><br></td>
+                                                </button><br><br></td>
                                         </tr>
                                     </table>
                                 @endforeach
@@ -1009,11 +1005,12 @@ $('.removeproductBuild').click(function(event) {
 
 
 // Select product attributes
-$('.add-attribute').click(function(event) {
+$('.add_attribute').click(function(event) {
     var htmlProductAtrribute = '{!! $htmlProductAtrribute??'' !!}';
     var attGroup = $(this).attr("data-id");
-    htmlProductAtrribute = htmlProductAtrribute.replace("attribute_group", attGroup);
+    htmlProductAtrribute = htmlProductAtrribute.replace(/attribute_group/gi, attGroup);
     htmlProductAtrribute = htmlProductAtrribute.replace("attribute_value", "");
+    htmlProductAtrribute = htmlProductAtrribute.replace("add_price_value", "0");
     $(this).closest('tr').before(htmlProductAtrribute);
     $('.removeAttribute').click(function(event) {
         $(this).closest('tr').remove();

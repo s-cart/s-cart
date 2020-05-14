@@ -527,7 +527,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input type="number" style="width: 100px;" id="weight" name="weight"
-                                        value="{!! old('weight') !!}" class="form-control input-sm weight"
+                                        value="{!! old('weight', 0) !!}" class="form-control input-sm weight"
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('weight'))
@@ -570,7 +570,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input type="number" style="width: 100px;" id="length" name="length"
-                                        value="{!! old('length') !!}" class="form-control input-sm length"
+                                        value="{!! old('length', 0) !!}" class="form-control input-sm length"
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('length'))
@@ -587,7 +587,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input type="number" style="width: 100px;" id="height" name="height"
-                                        value="{!! old('height') !!}" class="form-control input-sm height"
+                                        value="{!! old('height', 0) !!}" class="form-control input-sm height"
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('height'))
@@ -604,7 +604,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                     <input type="number" style="width: 100px;" id="width" name="width"
-                                        value="{!! old('width') !!}" class="form-control input-sm width"
+                                        value="{!! old('width', 0) !!}" class="form-control input-sm width"
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('width'))
@@ -779,42 +779,44 @@
                         {{-- List product attributes --}}
 
                         @if (!empty($attributeGroup))
+
+                        @php
+                        $dataAtt = old('attribute');
+                        @endphp
+
+
                         <hr class="kind kind0">
                         <div class="form-group kind kind0">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-8">
-                                <label>{{ trans('product.attribute') }}</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group kind kind0">
                             <div class="col-sm-2">
+                                <label>{{ trans('product.attribute') }}</label>
                             </div>
                             <div class="col-sm-8">
                                 @foreach ($attributeGroup as $attGroupId => $attName)
                                 <table width="100%">
                                     <tr>
-                                        <td colspan="2"><b>{{ $attName }}:</b><br></td>
+                                        <td colspan="3"><p><b>{{ $attName }}:</b></p></td>
                                     </tr>
-                                    @if (!empty(old('attribute')[$attGroupId]))
-                                    @foreach (old('attribute')[$attGroupId] as $attValue)
-                                    @if ($attValue)
-                                    @php
-                                    $newHtml = str_replace('attribute_group', $attGroupId, $htmlProductAtrribute);
-                                    $newHtml = str_replace('attribute_value', $attValue, $newHtml);
-                                    @endphp
-                                    {!! $newHtml !!}
-                                    @endif
-                                    @endforeach
-                                    @endif
                                     <tr>
-                                        <td colspan="2"><br><button type="button"
+                                        <td>{{ trans('product.admin.add_attribute_place') }}</td>
+                                        <td>{{ trans('product.admin.add_price_place') }}</td>
+                                    </tr>
+                                @if (!empty($dataAtt[$attGroupId]['name']))
+                                    @foreach ($dataAtt[$attGroupId]['name'] as $key => $attValue)
+                                        @php
+                                        $newHtml = str_replace('attribute_group', $attGroupId, $htmlProductAtrribute);
+                                        $newHtml = str_replace('attribute_value', $attValue, $newHtml);
+                                        $newHtml = str_replace('add_price_value', $dataAtt[$attGroupId]['add_price'][$key], $newHtml);
+                                        @endphp
+                                        {!! $newHtml !!}
+                                    @endforeach
+                                @endif
+                                    <tr>
+                                        <td colspan="3"><br><button type="button"
                                                 class="btn btn-flat btn-success add_attribute"
                                                 data-id="{{ $attGroupId }}">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                                 {{ trans('product.admin.add_attribute') }}
-                                            </button><br>
-                                        </td>
+                                            </button><br><br></td>
                                     </tr>
                                 </table>
                                 @endforeach
@@ -823,7 +825,6 @@
                         @endif
                         {{-- //end List product attributes --}}
 @endif
-
 
                     </div>
                 </div>
@@ -956,8 +957,9 @@ $('.removeproductBuild').click(function(event) {
 $('.add_attribute').click(function(event) {
     var htmlProductAtrribute = '{!! $htmlProductAtrribute??'' !!}';
     var attGroup = $(this).attr("data-id");
-    htmlProductAtrribute = htmlProductAtrribute.replace("attribute_group", attGroup);
+    htmlProductAtrribute = htmlProductAtrribute.replace(/attribute_group/gi, attGroup);
     htmlProductAtrribute = htmlProductAtrribute.replace("attribute_value", "");
+    htmlProductAtrribute = htmlProductAtrribute.replace("add_price_value", "0");
     $(this).closest('tr').before(htmlProductAtrribute);
     $('.removeAttribute').click(function(event) {
         $(this).closest('tr').remove();

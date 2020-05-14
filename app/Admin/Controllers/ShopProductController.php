@@ -244,7 +244,7 @@ class ShopProductController extends Controller
         //end select product build
 
         // html select attribute
-        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][]" value="attribute_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_attribute_place') . '" /></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
+        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
         //end select attribute
 
         // html add more images
@@ -298,10 +298,10 @@ class ShopProductController extends Controller
                     'sort' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
-                    'weight' => 'numeric|min:0',
-                    'height' => 'numeric|min:0',
-                    'length' => 'numeric|min:0',
-                    'width' => 'numeric|min:0',
+                    'weight' => 'nullable|numeric|min:0',
+                    'height' => 'nullable|numeric|min:0',
+                    'length' => 'nullable|numeric|min:0',
+                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:100',
                     'descriptions.*.keyword' => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
@@ -325,10 +325,10 @@ class ShopProductController extends Controller
                     'sort' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
-                    'weight' => 'numeric|min:0',
-                    'height' => 'numeric|min:0',
-                    'length' => 'numeric|min:0',
-                    'width' => 'numeric|min:0',
+                    'weight' => 'nullable|numeric|min:0',
+                    'height' => 'nullable|numeric|min:0',
+                    'length' => 'nullable|numeric|min:0',
+                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:100',
                     'descriptions.*.keyword' => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
@@ -387,7 +387,7 @@ class ShopProductController extends Controller
         $productBuild = $data['productBuild'] ?? [];
         $productBuildQty = $data['productBuildQty'] ?? [];
         $subImages = $data['sub_image'] ?? [];
-        $supplier_id = $data['supplier_id']?? '';
+        $supplier_id = $data['supplier_id']?? [];
         $dataInsert = [
             'brand_id' => $data['brand_id']??0,
             'supplier_id' => implode(',', $supplier_id ),
@@ -452,9 +452,9 @@ class ShopProductController extends Controller
             $arrDataAtt = [];
             foreach ($attribute as $group => $rowGroup) {
                 if (count($rowGroup)) {
-                    foreach ($rowGroup as $key => $nameAtt) {
+                    foreach ($rowGroup['name'] as $key => $nameAtt) {
                         if ($nameAtt) {
-                            $arrDataAtt[] = new ShopProductAttribute(['name' => $nameAtt, 'attribute_group_id' => $group]);
+                            $arrDataAtt[] = new ShopProductAttribute(['name' => $nameAtt, 'add_price' => $rowGroup['add_price'][$key],  'attribute_group_id' => $group]);
                         }
                     }
                 }
@@ -530,7 +530,7 @@ class ShopProductController extends Controller
         //end select product build
 
         // html select attribute
-        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][]" value="attribute_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_attribute_place') . '" /></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
+        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control input-sm" placeholder="' . trans('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
         //end select attribute
 
         $data = [
@@ -575,10 +575,10 @@ class ShopProductController extends Controller
                     'sort' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
-                    'weight' => 'numeric|min:0',
-                    'height' => 'numeric|min:0',
-                    'length' => 'numeric|min:0',
-                    'width' => 'numeric|min:0',
+                    'weight' => 'nullable|numeric|min:0',
+                    'height' => 'nullable|numeric|min:0',
+                    'length' => 'nullable|numeric|min:0',
+                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -600,10 +600,10 @@ class ShopProductController extends Controller
                     'sort' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
-                    'weight' => 'numeric|min:0',
-                    'height' => 'numeric|min:0',
-                    'length' => 'numeric|min:0',
-                    'width' => 'numeric|min:0',
+                    'weight' => 'nullable|numeric|min:0',
+                    'height' => 'nullable|numeric|min:0',
+                    'length' => 'nullable|numeric|min:0',
+                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -657,12 +657,12 @@ class ShopProductController extends Controller
         $productBuild = $data['productBuild'] ?? [];
         $productBuildQty = $data['productBuildQty'] ?? [];
         $subImages = $data['sub_image'] ?? [];
-        $supplier_id = $data['supplier_id']?? '';
+        $supplier_id = $data['supplier_id']?? [];
         $dataUpdate = [
             'image' => $data['image'] ?? '',
             'tax_id' => $data['tax_id'] ?? 0,
             'brand_id' => $data['brand_id'] ?? 0,
-            'supplier_id' => implode(',', $supplier_id  ),
+            'supplier_id' => implode(',', $supplier_id ),
             'price' => $data['price'] ?? 0,
             'cost' => $data['cost'] ?? 0,
             'stock' => $data['stock'] ?? 0,
@@ -751,9 +751,9 @@ class ShopProductController extends Controller
                 $arrDataAtt = [];
                 foreach ($attribute as $group => $rowGroup) {
                     if (count($rowGroup)) {
-                        foreach ($rowGroup as $key => $nameAtt) {
+                        foreach ($rowGroup['name'] as $key => $nameAtt) {
                             if ($nameAtt) {
-                                $arrDataAtt[] = new ShopProductAttribute(['name' => $nameAtt, 'attribute_group_id' => $group]);
+                                $arrDataAtt[] = new ShopProductAttribute(['name' => $nameAtt, 'add_price' => $rowGroup['add_price'][$key], 'attribute_group_id' => $group]);
                             }
                         }
                     }

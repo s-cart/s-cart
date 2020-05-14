@@ -70,6 +70,7 @@ return [
         'export'                  => 'Export',
         'refresh'                 => 'Refresh',
         'select_kind'             => 'Select product kind',
+        'select_supplier'         => 'Select supplier',
         'result_item'             => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
         'sort'                    => 'Sort',
 
@@ -82,6 +83,7 @@ return [
         'add_sub_image'           => 'Add more images',
         'add_product_promotion'   => 'Add promotion price',
         'choose_image'            => 'Choose',
+        'add_price_place'         => 'Add price',
 
         'sort_order'              => [
             'id_asc'     => 'ID asc',

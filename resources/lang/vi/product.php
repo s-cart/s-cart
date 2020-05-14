@@ -69,6 +69,7 @@ return [
         'export'                  => 'Xuất',
         'refresh'                 => 'Làm mới',
         'select_kind'             => 'Chọn loại sản phẩm',
+        'select_supplier'         => 'Chọn nhà cung cấp',
         'result_item'             => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
         'sort'                    => 'Sắp xếp',
         'select_category'         => 'Chọn danh mục',
@@ -80,6 +81,7 @@ return [
         'add_sub_image'           => 'Thêm ảnh',
         'add_product_promotion'   => 'Thêm giá khuyến mãi',
         'choose_image'            => 'Chọn hình',
+        'add_price_place'         => 'Thêm tiền',
 
         'sort_order'              => [
             'id_asc'     => 'ID asc',
@@ -136,6 +138,6 @@ return [
         'tax'                    => 'Cấu hình thuế',
         'product_display_price_include_tax'   => 'Hiển thị giá bao gồm thuế',
         'weight'   => 'Sử dụng Khối lượng',
-        'length'   => 'Use Kích thước',
+        'length'   => 'Sử dụng Kích thước',
     ]
 ];
