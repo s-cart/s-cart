@@ -10,17 +10,12 @@ use Illuminate\Http\Request;
 
 class AdminReportController extends Controller
 {
-    public $languages, $types, $kinds, $virtuals, $attributeGroup;
+    public $languages, $kinds, $virtuals, $attributeGroup;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getList();
         $this->attributeGroup = ShopAttributeGroup::getList();
-        $this->types = [
-            SC_PRODUCT_NORMAL => trans('product.types.normal'),
-            SC_PRODUCT_NEW => trans('product.types.new'),
-            SC_PRODUCT_HOT => trans('product.types.hot'),
-        ];
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
@@ -103,12 +98,6 @@ class AdminReportController extends Controller
                 $kind = '<span class="label label-success">' . $kind . '</span>';
             } elseif ($row['kind'] == SC_PRODUCT_GROUP) {
                 $kind = '<span class="label label-danger">' . $kind . '</span>';
-            }
-            $type = $this->types[$row['type']] ?? $row['type'];
-            if ($row['type'] == SC_PRODUCT_NEW) {
-                $type = '<span class="label label-success">' . $type . '</span>';
-            } elseif ($row['type'] == SC_PRODUCT_HOT) {
-                $type = '<span class="label label-danger">' . $type . '</span>';
             }
 
             $dataTr[] = [
