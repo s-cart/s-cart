@@ -58,7 +58,6 @@ class AdminReportController extends Controller
             'sold' => trans('product.sold'),
             'view' => trans('product.view'),
             'kind' => trans('product.kind'),
-            'type' => trans('product.type'),
             'status' => trans('product.status'),
         ];
         $sort_order = request('sort_order') ?? 'id_desc';
@@ -110,7 +109,6 @@ class AdminReportController extends Controller
                 'sold' => $row['sold'],
                 'view' => $row['view'],
                 'kind' => $kind,
-                'type' => $type,
                 'status' => $row['status'] ? '<span class="label label-success">ON</span>' : '<span class="label label-danger">OFF</span>',
             ];
         }
