@@ -679,6 +679,29 @@
                         {{-- //Date vailalable --}}
 @endif
 
+                        {{-- minimum --}}
+                        <div class="form-group   {{ $errors->has('minimum') ? ' has-error' : '' }}">
+                            <label for="minimum" class="col-sm-2 col-form-label">{{ trans('product.minimum') }}</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <input type="number" style="width: 100px;" id="minimum" name="minimum"
+                                        value="{!! old('minimum',$product['minimum']) !!}" class="form-control minimum"
+                                        placeholder="" />
+                                </div>
+                                @if ($errors->has('minimum'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('minimum') }}
+                                </span>
+                                @else
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ trans('product.minimum_help') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        {{-- //minimum --}}
+
                         {{-- Sort --}}
                         <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
                             <label for="sort" class="col-sm-2 col-form-label">{{ trans('product.sort') }}</label>

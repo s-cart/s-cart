@@ -296,6 +296,7 @@ class ShopProductController extends Controller
                 $arrValidation = [
                     'kind' => 'required',
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
                     'weight' => 'nullable|numeric|min:0',
@@ -323,6 +324,7 @@ class ShopProductController extends Controller
                 $arrValidation = [
                     'kind' => 'required',
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
                     'weight' => 'nullable|numeric|min:0',
@@ -354,6 +356,7 @@ class ShopProductController extends Controller
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_product,sku',
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_product,alias|string|max:100',
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -409,6 +412,7 @@ class ShopProductController extends Controller
             'tax_id' => $data['tax_id']??0,
             'status' => (!empty($data['status']) ? 1 : 0),
             'sort' => (int) $data['sort'],
+            'minimum' => (int) $data['minimum'],
         ];
         //insert product
         $product = ShopProduct::create($dataInsert);
@@ -573,6 +577,7 @@ class ShopProductController extends Controller
             case SC_PRODUCT_SINGLE: // product single
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
                     'weight' => 'nullable|numeric|min:0',
@@ -598,6 +603,7 @@ class ShopProductController extends Controller
             case SC_PRODUCT_BUILD: //product build
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'weight_class' => 'nullable|string|max:100',
                     'length_class' => 'nullable|string|max:100',
                     'weight' => 'nullable|numeric|min:0',
@@ -627,6 +633,7 @@ class ShopProductController extends Controller
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_product,alias,' . $product->id . ',id|string|max:100',
                     'productInGroup' => 'required',
                     'sort' => 'numeric|min:0',
+                    'minimum' => 'numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -678,6 +685,7 @@ class ShopProductController extends Controller
             'alias' => $data['alias'],
             'status' => (!empty($data['status']) ? 1 : 0),
             'sort' => (int) $data['sort'],
+            'minimum' => (int) $data['minimum'],
         ];
 
         $product->update($dataUpdate);

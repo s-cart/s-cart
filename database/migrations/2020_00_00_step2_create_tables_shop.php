@@ -253,6 +253,7 @@ class CreateTablesShop extends Migration
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);
             $table->integer('sold')->nullable()->default(0);
+            $table->integer('minimum')->nullable()->default(0);
             $table->string('weight_class')->nullable();
             $table->integer('weight')->nullable()->default(0);
             $table->string('length_class')->nullable();

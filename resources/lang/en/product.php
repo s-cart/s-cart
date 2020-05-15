@@ -56,6 +56,8 @@ return [
     'weight'                => 'Weight',
     'select_weight'         => 'Select weight unit',
     'select_length'         => 'Select length unit',
+    'minimum'               => 'Minimum',
+    'minimum_help'          => 'Minimum quantity in one order. 0 is unlimited',
     'admin'                 => [
         'title'                   => 'Product manager',
         'create_success'          => 'Create new item success!',

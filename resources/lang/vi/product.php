@@ -55,6 +55,8 @@ return [
     'weight'                => 'Trọng lượng',
     'select_weight'         => 'Chọn đơn vị khối lượng',
     'select_length'         => 'Chọn đơn vị chiều dài',
+    'minimum'               => 'Số lượng tối thiểu',
+    'minimum_help'          => 'Số lượng tối thiểu trong một đơn hàng. 0 là không giới hạn',
     'admin'                 => [
         'title'                   => 'Quản lý sản phẩm',
         'create_success'          => 'Tạo item thành công!',
