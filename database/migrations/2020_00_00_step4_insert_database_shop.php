@@ -265,14 +265,14 @@ class InsertDatabaseShop extends Migration
         ]);
 
         DB::table(SC_DB_PREFIX.'shop_product_attribute')->insert([
-            ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0'],
-            ['name' => 'White', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0'],
-            ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0'],
-            ['name' => 'XL', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0'],
-            ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0'],
-            ['name' => 'Red', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0'],
-            ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0'],
-            ['name' => 'M', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0'],
+            ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0', 'add_price' => '50'],
+            ['name' => 'White', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0', 'add_price' => '0'],
+            ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0', 'add_price' => '20'],
+            ['name' => 'XL', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0', 'add_price' => '30'],
+            ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0', 'add_price' => '150'],
+            ['name' => 'Red', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
+            ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
+            ['name' => 'M', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
         ]);
         DB::table(SC_DB_PREFIX.'shop_product_build')->insert([
             ['build_id' => '15', 'product_id' => '6', 'quantity' => '1'],

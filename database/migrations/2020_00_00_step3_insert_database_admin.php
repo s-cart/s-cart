@@ -35,8 +35,8 @@ class InsertDatabaseAdmin extends Migration
             ['id' => 12, 'parent_id' => 1, 'sort' => 3, 'title' => 'lang::order.admin.title', 'icon' => 'fa-shopping-cart', 'uri' => 'admin::order', 'key' => null, 'type' => 0],
             ['id' => 13, 'parent_id' => 1, 'sort' => 4, 'title' => 'lang::order_status.admin.title', 'icon' => 'fa-asterisk', 'uri' => 'admin::order_status', 'key' => null, 'type' => 0],
             ['id' => 14, 'parent_id' => 1, 'sort' => 5, 'title' => 'lang::payment_status.admin.title', 'icon' => 'fa-recycle', 'uri' => 'admin::payment_status', 'key' => null, 'type' => 0],
-            ['id' => 15, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::category.admin.title', 'icon' => 'fa-folder-open-o', 'uri' => 'admin::category', 'key' => null, 'type' => 0],
-            ['id' => 16, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::product.admin.title', 'icon' => 'fa-file-photo-o', 'uri' => 'admin::product', 'key' => null, 'type' => 0],
+            ['id' => 15, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::product.admin.title', 'icon' => 'fa-file-photo-o', 'uri' => 'admin::product', 'key' => null, 'type' => 0],
+            ['id' => 16, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::category.admin.title', 'icon' => 'fa-folder-open-o', 'uri' => 'admin::category', 'key' => null, 'type' => 0],
             ['id' => 17, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::supplier.admin.title', 'icon' => 'fa-user-secret', 'uri' => 'admin::supplier', 'key' => null, 'type' => 0],
             ['id' => 18, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::brand.admin.title', 'icon' => 'fa-bank', 'uri' => 'admin::brand', 'key' => null, 'type' => 0],
             ['id' => 19, 'parent_id' => 2, 'sort' => 0, 'title' => 'lang::attribute_group.admin.title', 'icon' => 'fa-bars', 'uri' => 'admin::attribute_group', 'key' => null, 'type' => 0],
@@ -77,6 +77,9 @@ class InsertDatabaseAdmin extends Migration
             ['id' => 59, 'parent_id' => 9, 'sort' => 303, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fa-plug', 'uri' => 'admin::api_connection', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 5, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fa-flag', 'uri' => 'admin::maintain', 'key' => null, 'type' => 0],
             ['id' => 61, 'parent_id' => 2, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
+            ['id' => 62, 'parent_id' => 2, 'sort' => 5, 'title' => 'lang::weight.admin.title', 'icon' => 'fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
+            ['id' => 63, 'parent_id' => 2, 'sort' => 6, 'title' => 'lang::length.admin.title', 'icon' => 'fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
+            
 
         ]
         );
@@ -100,7 +103,7 @@ class InsertDatabaseAdmin extends Migration
                     ANY::'.SC_ADMIN_PREFIX.'/backup/*,
                     ANY::'.SC_ADMIN_PREFIX.'/api_connection/*,
                     ANY::'.SC_ADMIN_PREFIX.'/maintain/*,
-                    ANY::'.SC_ADMIN_PREFIX.'/tax/*,
+                    ANY::'.SC_ADMIN_PREFIX.'/tax/*
                 ',
                 'created_at' => date('Y-m-d H:i:s')
             ],
@@ -112,7 +115,18 @@ class InsertDatabaseAdmin extends Migration
             ['id' => '15', 'name' => 'Payment  status', 'slug' => 'payment_status.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/payment_status/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '17', 'name' => 'Customer manager', 'slug' => 'customer.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/customer/*,ANY::'.SC_ADMIN_PREFIX.'/subscribe/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '18', 'name' => 'Order status', 'slug' => 'order_status.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '19', 'name' => 'Product manager', 'slug' => 'product.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/category/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/product/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '19', 'name' => 'Product manager', 'slug' => 'product.full', 
+                'http_uri' => '
+                ANY::'.SC_ADMIN_PREFIX.'/category/*,
+                ANY::'.SC_ADMIN_PREFIX.'/supplier/*,
+                ANY::'.SC_ADMIN_PREFIX.'/brand/*,
+                ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,
+                ANY::'.SC_ADMIN_PREFIX.'/product/,
+                ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,
+                ANY::'.SC_ADMIN_PREFIX.'/length_unit/*
+                ', 
+                'created_at' => date('Y-m-d H:i:s')
+            ],
             ['id' => '20', 'name' => 'Order Manager', 'slug' => 'order.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '21', 'name' => 'Report manager', 'slug' => 'report.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/report/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '22', 'name' => 'Template manager', 'slug' => 'template.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/block_content/*,ANY::'.SC_ADMIN_PREFIX.'/link/*,ANY::'.SC_ADMIN_PREFIX.'/template/*', 'created_at' => date('Y-m-d H:i:s')],
