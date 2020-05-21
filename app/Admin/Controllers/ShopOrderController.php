@@ -390,14 +390,15 @@ class ShopOrderController extends Controller
     public function getInfoProduct()
     {
         $id = request('id');
-        $sku = request('sku');
+        $order_id = request('order_id');
+        $oder = ShopOrder::find($order_id);
         if ($id) {
             $product = (new ShopProduct)->getDetail($id);
         } else {
             $product = (new ShopProduct)->getDetail('sku', $type = 'sku');
         }
         $arrayReturn = $product->toArray();
-        $arrayReturn['renderAttDetails'] = $product->renderAttributeDetailsAdmin();
+        $arrayReturn['renderAttDetails'] = $product->renderAttributeDetailsAdmin($oder->currency, $oder->exchange_rate);
         $arrayReturn['price_final'] = $product->getFinalPrice();
         return response()->json($arrayReturn);
     }

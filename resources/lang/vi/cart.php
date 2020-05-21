@@ -33,6 +33,7 @@ return [
     'postcode'         => 'Mã bưu chính',
     'cart_empty'       => 'Giỏ hàng trống',
     'change_address'   => 'Thay đổi địa chỉ giao hàng',
+    'minimum_value'    => 'Tối thiểu :value item',
     'add_new_address'  => '+ Thêm mới địa chỉ',
     'validation' => [
         'shippingMethod_required' => 'Bạn chưa chọn phương thức giao hàng',

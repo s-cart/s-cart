@@ -117,15 +117,15 @@ class AppConfig extends ConfigDefault
                 'point' => 'Point',
                 'percent' => '%',
             ];
-            $subtotal = \Cart::subtotal();
-            $value = ($check['content']['type'] == 'percent') ? floor($subtotal * $check['content']['reward'] / 100) : $check['content']['reward'];
+            $subtotalWithTax = \App\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
+            $value = ($check['content']['type'] == 'percent') ? floor($subtotalWithTax * $check['content']['reward'] / 100) : $check['content']['reward'];
             $arrData = array(
                 'title' => '<b>' . $this->title . ':</b> ' . $discount . '',
                 'code' => $this->configCode,
                 'key' => $this->configKey,
                 'image' => $this->image,
                 'permission' => self::ALLOW,
-                'value' => ($value > $subtotal) ? -$subtotal : -$value,
+                'value' => ($value > $subtotalWithTax) ? -$subtotalWithTax : -$value,
                 'version' => $this->version,
                 'auth' => $this->auth,
                 'link' => $this->link,

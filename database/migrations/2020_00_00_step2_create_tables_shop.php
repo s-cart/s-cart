@@ -320,7 +320,9 @@ class CreateTablesShop extends Migration
             $table->string('name', 100);
             $table->integer('attribute_group_id');
             $table->integer('product_id');
+            $table->integer('add_price')->default(0);
             $table->tinyInteger('sort')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->index(['product_id', 'attribute_group_id']);
         });
 

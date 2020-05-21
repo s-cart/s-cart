@@ -57,7 +57,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     @if ($item->options->count())
                                     (
                                     @foreach ($item->options as $keyAtt => $att)
-                                    <b>{{ $attributesGroup[$keyAtt] }}</b>: <i>{{ $att }}</i> ;
+                                    <b>{{ $attributesGroup[$keyAtt] }}</b>: {!! sc_render_option_price($att) !!}
                                     @endforeach
                                     )<br>
                                     @endif

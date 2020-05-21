@@ -32,6 +32,7 @@ return [
     'company'          => 'Company',
     'postcode'         => 'Postcode',
     'cart_empty'       => 'Cart empty',
+    'minimum_value'    => 'Minimum :value items',
     'change_address'   => 'Change shipping address',
     'add_new_address'  => '+ Add new address',
     'validation' => [

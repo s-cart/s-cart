@@ -135,7 +135,7 @@
                                 if($item->attribute && is_array(json_decode($item->attribute,true))){
                                   $array = json_decode($item->attribute,true);
                                       foreach ($array as $key => $element){
-                                        $html .= '<br><b>'.$attributesGroup[$key].'</b> : <i>'.$element.'</i>';
+                                        $html .= '<br><b>'.$attributesGroup[$key].'</b> : <i>'.sc_render_option_price($element, $order->currency, $order->exchange_rate).'</i>';
                                       }
                                 }
                               @endphp
@@ -352,7 +352,8 @@ function update_total(e){
                 type : "get",
                 dateType:"application/json; charset=utf-8",
                 data : {
-                     id : id
+                     id : id,
+                     order_id : {{ $order->id }},
                 },
             beforeSend: function(){
                 $('#loading').show();

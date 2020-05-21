@@ -150,6 +150,7 @@ class ShopCart extends GeneralController
             return redirect()->route('login');
         }
 
+
         $validate = [
             'first_name' => 'required|max:100',
             'address1' => 'required|max:100',
@@ -237,6 +238,25 @@ class ShopCart extends GeneralController
                 ],
             ]
         );
+
+        //Check minimum
+        $arrCheckQty = [];
+        $cart = Cart::instance('default')->content()->toArray();
+        foreach ($cart as $key => $row) {
+            $arrCheckQty[$row['id']] = ($arrCheckQty[$row['id']] ?? 0) + $row['qty'];
+        }
+        $arrProductMinimum = ShopProduct::whereIn('id', array_keys($arrCheckQty))->pluck('minimum', 'id')->all();
+        $arrErrorQty = [];
+        foreach ($arrProductMinimum as $pId => $min) {
+            if($arrCheckQty[$pId] < $min) {
+                $arrErrorQty[$pId] = $min;
+            }
+        }
+        if(count($arrErrorQty)) {
+            return redirect()->route('cart')->with('arrErrorQty', $arrErrorQty);
+        }
+        //End check minimum
+
         return redirect()->route('checkout');
     }
 
@@ -295,7 +315,17 @@ class ShopCart extends GeneralController
     {
         $data = request()->all();
         $product_id = $data['product_id'];
+
+        //Process attribute price
         $form_attr = $data['form_attr'] ?? null;
+        $optionPrice  = 0;
+        if($form_attr) {
+            foreach ($form_attr as $key => $attr) {
+                $optionPrice += explode('__',$attr)[1] ??0;
+            }
+        }
+        //End addtribute price
+
         $qty = $data['qty'];
         $product = (new ShopProduct)->getDetail($product_id);
         if ($product->allowSale()) {
@@ -305,7 +335,7 @@ class ShopCart extends GeneralController
                 'id' => $product_id,
                 'name' => $product->name,
                 'qty' => $qty,
-                'price' => $product->getFinalPrice(),
+                'price' => $product->getFinalPrice() + $optionPrice,
                 'tax' => $product->getTaxValue(),
             );
             if ($options) {

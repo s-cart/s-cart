@@ -47,7 +47,7 @@ $attributesGroup: array
                             $n++;
                             $product = $modelProduct->start()->getDetail($item->id);
                             @endphp
-                            <tr class="row_cart">
+                            <tr class="row_cart form-group {{ session('arrErrorQty')[$product->id] ?? '' }}{{ (session('arrErrorQty')[$product->id] ?? 0) ? ' has-error' : '' }}">
                                 <td>{{ $n }}</td>
                                 <td>{{ $product->sku }}</td>
                                 <td>
@@ -58,11 +58,9 @@ $attributesGroup: array
                                             {{ $product->name }}<br />
                                             {{-- Process attributes --}}
                                             @if ($item->options->count())
-                                            (
-                                            @foreach ($item->options as $keyAtt => $att)
-                                            <b>{{ $attributesGroup[$keyAtt] }}</b>: <i>{{ $att }}</i> ;
+                                            @foreach ($item->options as $groupAtt => $att)
+                                            <b>{{ $attributesGroup[$groupAtt] }}</b>: {!! sc_render_option_price($att) !!}
                                             @endforeach
-                                            )<br>
                                             @endif
                                             {{-- //end Process attributes --}}
                                         </span>
@@ -78,6 +76,11 @@ $attributesGroup: array
                                         <button type="button" onclick="buttonQty($(this), 'increase');">+</button>
                                     </div>
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
+                                    @if (session('arrErrorQty')[$product->id] ?? 0)
+                                    <span class="help-block">
+                                        <br>{{ trans('cart.minimum_value', ['value' => session('arrErrorQty')[$product->id]]) }}
+                                    </span>
+                                    @endif
                                 </td>
                                 <td align="right">{{sc_currency_render($item->subtotal)}}
                                 </td>

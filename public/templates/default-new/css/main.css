@@ -1982,6 +1982,11 @@ a#scrollUp i {
     margin-bottom: 5px;
     font-weight: bold;
 }
-
+.option_price{
+    font-size: 13px;
+      color: #d22f2f;
+      font-style: italic;
+      display: inline !important;
+  }
 
 /*# sourceMappingURL=main.css.map */
