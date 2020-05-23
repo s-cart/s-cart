@@ -4,7 +4,7 @@
  *
  */
 return [
-    'id'                    => 'ID',
+    'id'                    => 'Order ID',
     'title'                 => 'Order',
     'customer_name'         => 'Customer name',
     'email'                 => 'Email',
@@ -51,8 +51,10 @@ return [
     'payment_method'        => 'Payment method',
     'shipping_method'       => 'Shipping method',
     'date'                  => 'Date',
+    'date_export'           => 'Date export',
     'created_at'            => 'Date',
     'qty'                   => 'Quantity',
+    'amount'                => 'Amount',
     'search'                => 'Search order',
     'success'               => [
         'title' =>'Order success',
@@ -66,6 +68,7 @@ return [
 
     'totals'                => [
         'sub_total' => 'Sub Total',
+        'subtotal' => 'Sub Total',
         'total'     => 'Total',
         'shipping'  => 'Shipping Fee',
         'discount'  => 'Discount',

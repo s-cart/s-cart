@@ -666,6 +666,7 @@ Export order detail order
             $data['currency'] = $order['currency'];
             $data['exchange_rate'] = $order['exchange_rate'];
             $data['subtotal'] = $order['subtotal'];
+            $data['tax'] = $order['tax'];
             $data['shipping'] = $order['shipping'];
             $data['discount'] = $order['discount'];
             $data['total'] = $order['total'];
@@ -673,10 +674,23 @@ Export order detail order
             $data['balance'] = $order['balance'];
             $data['id'] = $order->id;
             $data['details'] = [];
+
+            $attributesGroup =  ShopAttributeGroup::pluck('name', 'id')->all();
+
             if ($order->details) {
                 foreach ($order->details as $key => $detail) {
+                    $arrAtt = json_decode($detail->attribute, true);
+                    if($arrAtt) {
+                        $htmlAtt = '';
+                        foreach ($arrAtt as $groupAtt => $att) {
+                            $htmlAtt .= $attributesGroup[$groupAtt] .':'.sc_render_option_price($att, $order['currency'], $order['exchange_rate']);
+                        }
+                        $name = $detail->name.'('.strip_tags($htmlAtt).')';
+                    } else {
+                        $name = $detail->name;
+                    }
                     $data['details'][] = [
-                        $key + 1, $detail->sku, $detail->name, $detail->qty, $detail->price, $detail->total_price,
+                        $key + 1, $detail->sku, $name, $detail->qty, $detail->price, $detail->total_price,
                     ];
                 }
             }
