@@ -65,7 +65,7 @@ class ShopOrderStatusController extends Controller
 
 //menuRight
         $data['menuRight'][] = '<a href="' . route('admin_order_status.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('order_status.admin.add_new') . '</span>
+        <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
 

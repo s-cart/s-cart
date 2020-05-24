@@ -61,7 +61,7 @@ class ShopEmailTemplateController extends Controller
 
 //menuRight
         $data['menuRight'][] = '<a href="' . route('admin_email_template.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('email_template.admin.add_new') . '</span>
+                           <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
 
