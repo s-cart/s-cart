@@ -86,6 +86,10 @@ class ShopApiConnectionController extends Controller
                            </a>';
 //=menuRight
 
+//topMenuRight
+$data['topMenuRight'][] ='<a href="https://s-cart.org/docs/master/api-shop-info.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true"></i> '.trans('admin.more_info').'</a>';
+//=topMenuRight
+
 //menuSearch        
         $optionSort = '';
         foreach ($arrSort as $key => $status) {

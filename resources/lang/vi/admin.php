@@ -66,6 +66,7 @@ return [
     'choose_image' => 'Chọn hình',
 
     'more' => 'Nhiều hơn',
+    'more_info'  => 'Xem đầy đủ thông tin',
     'deny' => 'Truy cập từ chối',
     'deny_content' => 'Bạn không có đủ quyền hạn!',
 

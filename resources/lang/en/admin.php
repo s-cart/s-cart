@@ -65,6 +65,7 @@ return [
       'choose_image'                      => 'Select image',
 
       'more'                              => 'More',
+      'more_info'                         => 'See full information',
       'deny'                              => 'Access denied',
       'deny_content'                      => 'Permission denied!',
 
