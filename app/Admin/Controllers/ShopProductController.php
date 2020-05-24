@@ -174,7 +174,7 @@ class ShopProductController extends Controller
 
 //menuRight
         $data['menuRight'][] = '<a href="' . route('admin_product.create') . '" class="btn btn-success btn-flat" title="New" id="button_create_new">
-        <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('admin.add_new') . '</span>
+        <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
         </a>';
         if(sc_config('ImportProduct')) {
             $data['menuRight'][] = '<a href="' . route('admin_import_product.index') . '" class="btn  btn-success  btn-flat" title="New">
@@ -198,7 +198,7 @@ class ShopProductController extends Controller
                    <div onclick="$(this).submit();" class="btn-group pull-right">
                            <a class="btn btn-flat btn-primary" title="Refresh">
                               <i class="fa  fa-search"></i>
-                              <span class="hidden-xs"> ' . trans('admin.search') . '</span>
+                              
                            </a>
                    </div>
                    <div class="btn-group pull-right">

@@ -42,13 +42,13 @@
               <button type="button" class="btn btn-default grid-select-all"><i class="fa fa-square-o"></i></button>
             </div>
             <div class="menu-left">
-              <a class="btn btn-flat btn-danger grid-trash" title="Delete"><i class="fa fa-trash-o"></i><span class="hidden-xs"> {{ trans('admin.delete') }}</span></a>
+              <a class="btn btn-flat btn-danger grid-trash" title="{{ trans('admin.delete') }}"><i class="fa fa-trash-o"></i></a>
             </div>
           @endif
 
           @if (!empty($buttonRefresh))
             <div class="menu-left">
-              <a class="btn btn-flat btn-primary grid-refresh" title="Refresh"><i class="fa fa-refresh"></i><span class="hidden-xs"> {{ trans('admin.refresh') }}</span></a>
+              <a class="btn btn-flat btn-primary grid-refresh" title="{{ trans('admin.refresh') }}"><i class="fa fa-refresh"></i></a>
             </div>
           @endif
 
@@ -60,8 +60,8 @@
           @if (!empty($buttonSort))
           <div class="menu-left">
             <div class="btn-group pull-right">
-              <a class="btn btn-flat btn-primary" title="Sort" id="button_sort">
-                <i class="fa fa-sort-amount-asc"></i><span class="hidden-xs"> {{ trans('admin.sort') }}</span>
+              <a class="btn btn-flat btn-primary" title="{{ trans('admin.sort') }}" id="button_sort">
+                <i class="fa fa-sort-amount-asc"></i>
               </a>
             </div>
             <div class="btn-group pull-right">

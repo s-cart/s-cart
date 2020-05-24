@@ -111,7 +111,7 @@ class ShopSupplierController extends Controller
                 <form action="' . route('admin_supplier.index') . '" id="button_search">
                    <div onclick="$(this).submit();" class="btn-group pull-right">
                            <a class="btn btn-flat btn-primary" title="Refresh">
-                              <i class="fa  fa-search"></i><span class="hidden-xs"> ' . trans('admin.search') . '</span>
+                              <i class="fa  fa-search"></i>
                            </a>
                    </div>
                    <div class="btn-group pull-right">

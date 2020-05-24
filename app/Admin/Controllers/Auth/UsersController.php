@@ -99,7 +99,7 @@ class UsersController extends Controller
 
 //menuRight
         $data['menuRight'][] = '<a href="' . route('admin_user.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('admin.add_new') . '</span>
+                           <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
 
@@ -118,7 +118,7 @@ class UsersController extends Controller
                 <form action="' . route('admin_user.index') . '" id="button_search">
                    <div onclick="$(this).submit();" class="btn-group pull-right">
                            <a class="btn btn-flat btn-primary" title="Refresh">
-                              <i class="fa  fa-search"></i><span class="hidden-xs"> ' . trans('admin.search') . '</span>
+                              <i class="fa  fa-search"></i>
                            </a>
                    </div>
                    <div class="btn-group pull-right">
