@@ -63,7 +63,7 @@ class AdminPluginsController extends Controller
         $code = request('code');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->install();
-        return json_encode($response);
+        return response()->json($response);
     }
 
     /**
@@ -79,7 +79,7 @@ class AdminPluginsController extends Controller
         $response = (new $namespace)->uninstall();
         File::deleteDirectory(app_path('Plugins/'.$code.'/'.$key));
         File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
-        return json_encode($response);
+        return response()->json($response);
     }
 
     /**
@@ -93,7 +93,7 @@ class AdminPluginsController extends Controller
         $code = request('code');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->enable();
-        return json_encode($response);
+        return response()->json($response);
     }
 
     /**
@@ -107,7 +107,7 @@ class AdminPluginsController extends Controller
         $code = request('code');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->disable();
-        return json_encode($response);
+        return response()->json($response);
     }
 
     /**
@@ -123,7 +123,7 @@ class AdminPluginsController extends Controller
         $data = request()->all();
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->process($data);
-        return json_encode($response);
+        return response()->json($response);
     }
 
     /**
