@@ -159,7 +159,19 @@ class MakePlugin extends Command
 
 
             $appConfig = file_get_contents(storage_path($tmp.'/AppConfig.php'));
+            $appConfig      = str_replace('Plugin_Code', $pluginCode, $appConfig);
+            $appConfig      = str_replace('Plugin_Key', $pluginKey, $appConfig);
             file_put_contents(storage_path($tmp.'/AppConfig.php'), $appConfig);
+
+            $langen = file_get_contents(storage_path($tmp.'/Lang/en/lang.php'));
+            $langen      = str_replace('Plugin_Code', $pluginCode, $langen);
+            $langen      = str_replace('Plugin_Key', $pluginKey, $langen);
+            file_put_contents(storage_path($tmp.'/Lang/en/lang.php'), $langen);
+
+            $langvi = file_get_contents(storage_path($tmp.'/Lang/vi/lang.php'));
+            $langvi      = str_replace('Plugin_Code', $pluginCode, $langvi);
+            $langvi      = str_replace('Plugin_Key', $pluginKey, $langvi);
+            file_put_contents(storage_path($tmp.'/Lang/vi/lang.php'), $langvi);
 
             $provider = file_get_contents(storage_path($tmp.'/Provider.php'));
             $provider      = str_replace('Plugin_Code', $pluginCode, $provider);
