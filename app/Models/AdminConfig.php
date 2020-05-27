@@ -46,7 +46,7 @@ class AdminConfig extends Model
         }
         $return =  self::where('group', $group);
         if($suffix) {
-            $return = $return->orWhere('group', $group.'_'.$suffix);
+            $return = $return->orWhere('group', $group.'__'.$suffix);
         }
         $return = $return->orderBy('sort','desc')->pluck('value')->toArray();
         if($return) {

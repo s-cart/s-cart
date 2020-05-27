@@ -1,6 +1,9 @@
 @extends('admin.layout')
 
 @section('main')
+<div class="row">
+  <div class="col-md-12">
+     <div class="box">
           <div class="box-header with-border">
               <h2 class="box-title">{{ $title_description??'' }}</h2>
 
@@ -48,6 +51,9 @@
               </table>
             </div>
             <!-- /.box-body -->
+     </div>
+  </div>
+</div>
 @endsection
 
 @push('styles')
