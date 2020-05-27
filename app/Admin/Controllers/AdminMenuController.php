@@ -17,8 +17,7 @@ class AdminMenuController extends Controller
         $data = [
             'title' => trans('menu.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-            'menu' => [],
+            'icon' => 'fa fa-indent',            'menu' => [],
             'treeMenu' => (new AdminMenu)->getTree(),
             'roles' => (new AdminRole)->pluck('name', 'id')->all(),
             'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),

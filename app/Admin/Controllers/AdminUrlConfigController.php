@@ -13,8 +13,7 @@ class AdminUrlConfigController extends Controller
         $data = [
             'title' => trans('url.config_manager.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $obj = (new AdminConfig)->where('code', 'env')
             ->orderBy('sort', 'desc')

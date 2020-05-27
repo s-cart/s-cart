@@ -25,10 +25,6 @@ class ShopBannerController extends Controller
             'title' => trans('banner.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'menuRight' => [],
-            'menuLeft' => [],
-            'topMenuRight' => [],
-            'topMenuLeft' => [],
             'urlDeleteItem' => route('admin_banner.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
@@ -36,6 +32,12 @@ class ShopBannerController extends Controller
             'css' => '', 
             'js' => '',
         ];
+        //Process add content
+        $data['menuRight'] = sc_config_group('menuRight', \Request::route()->getName());
+        $data['menuLeft'] = sc_config_group('menuLeft', \Request::route()->getName());
+        $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
+        $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
+        $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
         $listTh = [
             'image' => trans('banner.image'),

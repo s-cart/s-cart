@@ -14,8 +14,7 @@ class AdminTemplateController extends Controller
         $data = [
             'title' => trans('template.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $data["templates"] = sc_get_all_template();
         $data["templateCurrent"] = sc_store('template');

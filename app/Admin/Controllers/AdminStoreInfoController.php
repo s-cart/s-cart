@@ -17,8 +17,7 @@ class AdminStoreInfoController extends Controller
         $data = [
             'title' => trans('store_info.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $infosDescription = [];
         foreach ($languages as $code => $lang) {

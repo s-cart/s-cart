@@ -16,8 +16,7 @@ class AdminProductConfigController extends Controller
         $data = [
             'title' => trans('product.config_manager.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $obj = (new AdminConfig)
             ->where('code', 'product')
