@@ -15,8 +15,7 @@ class ShopEmailController extends Controller
         $data = [
             'title' => trans('email.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $obj = (new AdminConfig)
             ->whereIn('code', ['email_action', 'smtp'])

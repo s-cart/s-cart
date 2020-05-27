@@ -33,6 +33,30 @@ class AdminConfig extends Model
         return $return;
     }
 
+    /**
+     * get Group
+     * @param  [string]  $group
+     * @param  [string]  $suffix
+     * @return [type]              [description]
+     */
+    public static function getGroup($group = null, $suffix = null)
+    {
+        if($group == null) {
+            return [];
+        }
+        $return =  self::where('group', $group);
+        if($suffix) {
+            $return = $return->orWhere('group', $group.'_'.$suffix);
+        }
+        $return = $return->orderBy('sort','desc')->pluck('value')->toArray();
+        if($return) {
+            return $return;
+        } else {
+            return [];
+        }
+    }
+
+
     public static function getAll()
     {
         if (self::$getAll == null) {

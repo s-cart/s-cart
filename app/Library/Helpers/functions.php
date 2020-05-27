@@ -83,6 +83,18 @@ if (!function_exists('sc_config')) {
     }
 }
 
+
+/*
+Group Config info
+ */
+if (!function_exists('sc_config_group')) {
+    function sc_config_group($group = null, $suffix = null)
+    {
+        $groupData = AdminConfig::getGroup($group, $suffix);
+        return $groupData;
+    }
+}
+
 /*
 Store info
  */
@@ -167,6 +179,7 @@ if (!function_exists('sc_language_render')) {
         }
     }
 }
+
 /*
 Html render
  */

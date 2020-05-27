@@ -49,7 +49,7 @@
   font-size: 10px;
   color: #ad3419;
 }
-.menu-left{
+.menu-left, .menu-right{
   display: inline;
 }
 .sc-old-price {

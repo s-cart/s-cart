@@ -25,8 +25,7 @@ class AdminMaintainController extends Controller
         $data = [
             'title' => trans('maintain.admin.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
+            'icon' => 'fa fa-indent',        ];
 
         $obj = (new AdminStore)->with('descriptions')->first();
         $data['obj'] = $obj;

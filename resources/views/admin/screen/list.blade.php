@@ -7,17 +7,37 @@
       <div class="box-header with-border">
         <div class="pull-right">
           @if (!empty($topMenuRight) && count($topMenuRight))
-          <div class="btn-group pull-right" style="margin-right: 10px">
             @foreach ($topMenuRight as $item)
-                <div class="menu-right">{!! $item !!}</div>
+                <div class="menu-right">
+                  @php
+                      $arrCheck = explode('view::', $item);
+                  @endphp
+                  @if (count($arrCheck) == 2)
+                    @if (view()->exists($arrCheck[1]))
+                      @include($arrCheck[1])
+                    @endif
+                  @else
+                    {!! trim($item) !!}
+                  @endif
+                </div>
             @endforeach
-          </div>
           @endif
         </div>
         <div class="pull-left">
           @if (!empty($topMenuLeft) && count($topMenuLeft))
             @foreach ($topMenuLeft as $item)
-                <div class="menu-left">{!! $item !!}</div>
+                <div class="menu-left">
+                  @php
+                  $arrCheck = explode('view::', $item);
+                  @endphp
+                  @if (count($arrCheck) == 2)
+                    @if (view()->exists($arrCheck[1]))
+                      @include($arrCheck[1])
+                    @endif
+                  @else
+                    {!! trim($item) !!}
+                  @endif
+                </div>
             @endforeach
           @endif
          </div>
@@ -27,11 +47,20 @@
       <div class="box-header with-border">
          <div class="pull-right">
            @if (!empty($menuRight) && count($menuRight))
-           <div class="btn-group pull-right" style="margin-right: 10px">
              @foreach ($menuRight as $item)
-                 <div class="menu-right">{!! $item !!}</div>
+                 <div class="menu-right">
+                  @php
+                      $arrCheck = explode('view::', $item);
+                  @endphp
+                  @if (count($arrCheck) == 2)
+                    @if (view()->exists($arrCheck[1]))
+                      @include($arrCheck[1])
+                    @endif
+                  @else
+                    {!! trim($item) !!}
+                  @endif
+                 </div>
              @endforeach
-           </div>
            @endif
          </div>
 
@@ -52,27 +81,38 @@
             </div>
           @endif
 
-          @if (!empty($menuLeft) && count($menuLeft))
-            @foreach ($menuLeft as $item)
-                <div class="menu-left">{!! $item !!}</div>
-            @endforeach
-          @endif
           @if (!empty($buttonSort))
           <div class="menu-left">
-            <div class="btn-group pull-right">
+            <div class="btn-group">
+                  <select class="form-control" id="order_sort">
+                  {!! $optionSort??'' !!}
+                  </select>
+            </div>
+            <div class="btn-group">
               <a class="btn btn-flat btn-primary" title="{{ trans('admin.sort') }}" id="button_sort">
                 <i class="fa fa-sort-amount-asc"></i>
               </a>
             </div>
-            <div class="btn-group pull-right">
-              <div class="form-group">
-                  <select class="form-control" id="order_sort">
-                  {!! $optionSort??'' !!}
-                  </select>
-              </div>
-            </div>
           </div>
           @endif
+
+          @if (!empty($menuLeft) && count($menuLeft))
+            @foreach ($menuLeft as $item)
+                <div class="menu-left">
+                  @php
+                      $arrCheck = explode('view::', $item);
+                  @endphp
+                  @if (count($arrCheck) == 2)
+                    @if (view()->exists($arrCheck[1]))
+                      @include($arrCheck[1])
+                    @endif
+                  @else
+                    {!! trim($item) !!}
+                  @endif
+                </div>
+            @endforeach
+          @endif
+
         </div>
 
       </div>
@@ -110,6 +150,24 @@
          {!! $resultItems??'' !!}
          {!! $pagination??'' !!}
       </div>
+
+      @if (!empty($blockBottom) && count($blockBottom))
+        @foreach ($blockBottom as $item)
+          <div class="clearfix">
+            @php
+            $arrCheck = explode('view::', $item);
+            @endphp
+            @if (count($arrCheck) == 2)
+                                    @if (view()->exists($arrCheck[1]))
+                      @include($arrCheck[1])
+                    @endif
+            @else
+              {!! trim($item) !!}
+            @endif
+          </div>    
+        @endforeach
+      @endif
+      
     </section>
       <!-- /.box-body -->
     </div>
