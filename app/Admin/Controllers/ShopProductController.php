@@ -178,11 +178,6 @@ class ShopProductController extends Controller
         $data['menuRight'][] = '<a href="' . route('admin_product.create') . '" class="btn btn-success btn-flat" title="New" id="button_create_new">
         <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
         </a>';
-        if(sc_config('ImportProduct')) {
-            $data['menuRight'][] = '<a href="' . route('admin_import_product.index') . '" class="btn  btn-success  btn-flat" title="New">
-            <i class="fa fa fa-floppy-o"></i> <span class="hidden-xs">' . trans('admin.add_new_multi') . '</span>
-            </a>';
-        }
 //=menuRight
 
 //menuSort        

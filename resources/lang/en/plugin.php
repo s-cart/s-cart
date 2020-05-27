@@ -11,7 +11,7 @@ return [
     'error_config_format' => 'The config file is not in the right format',
     'import_success' => 'Import success!',
     'error_exist' => 'Plugin exist!',
-    'plugin_import' => '<a href="'.route('admin_plugin.import').'" target=_new><span class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>',
+    'plugin_import' => '<a href="'.route('admin_plugin.import').'" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>',
     'plugin_more' => '<a href="https://s-cart.org/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>',
     'manager'     => 'Plugins manager',
     'Shipping'    => 'Shipping <span class="badge label label-primary">' . count(sc_get_all_plugin('Shipping')) . '</span>',

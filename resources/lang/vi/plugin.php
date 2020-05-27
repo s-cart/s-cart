@@ -11,7 +11,7 @@ return [
     'error_config_format' => 'File config không đúng định dạng',
     'import_success' => 'Import thành công!',
     'error_exist' => 'Plugin đã tồn tại!',
-    'plugin_import' => '<a href="'.route('admin_plugin.import').'" target=_new><span class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>',
+    'plugin_import' => '<a href="'.route('admin_plugin.import').'" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>',
     'plugin_more' => '<a href="https://s-cart.org/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download đầy đủ Ở ĐÂY</a>',
     'manager'     => 'Quản lý phần mở rộng',
     'Shipping'    => 'Vận chuyển <span class="badge label label-primary">' . count(sc_get_all_plugin('Shipping')) . '</span>',
