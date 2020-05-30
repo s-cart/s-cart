@@ -33,10 +33,6 @@ $layout_page = shop_home
                           </div>
                       @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind != SC_PRODUCT_GROUP)
                       <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                      @elseif($productNew->type == SC_PRODUCT_NEW)
-                      <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                      @elseif($productNew->type == SC_PRODUCT_HOT)
-                      <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                       @elseif($productNew->kind == SC_PRODUCT_BUILD)
                       <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                       @elseif($productNew->kind == SC_PRODUCT_GROUP)
@@ -79,10 +75,6 @@ $layout_page = shop_home
 
                       @if ($productHot->price != $productHot->getFinalPrice() && $productHot->kind != SC_PRODUCT_GROUP)
                       <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                      @elseif($productHot->type == SC_PRODUCT_NEW)
-                      <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                      @elseif($productHot->type == SC_PRODUCT_HOT)
-                      <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                       @elseif($productHot->kind == SC_PRODUCT_BUILD)
                       <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                       @elseif($productHot->kind == SC_PRODUCT_GROUP)
@@ -140,10 +132,6 @@ $layout_page = shop_home
 
                       @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
                       <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                      @elseif($product->type == SC_PRODUCT_NEW)
-                      <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                      @elseif($product->type == SC_PRODUCT_HOT)
-                      <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_BUILD)
                       <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_GROUP)
@@ -172,10 +160,6 @@ $layout_page = shop_home
 
                       @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
                       <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
-                      @elseif($product->type == SC_PRODUCT_NEW)
-                      <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
-                      @elseif($product->type == SC_PRODUCT_HOT)
-                      <img src="{{ asset($templateFile.'/images/home/hot.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_BUILD)
                       <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_GROUP)

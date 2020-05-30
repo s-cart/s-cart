@@ -122,6 +122,7 @@ class MakePlugin extends Command
             $pluginCode = 'Other';
         }
         $pluginUrlKey = sc_word_format_url($key);
+        $pluginUrlKey = str_replace('-','_',$pluginUrlKey);
 
         $source = "format/plugin/src";
         $sourcePublic = "format/plugin/public";

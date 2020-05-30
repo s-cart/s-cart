@@ -11,7 +11,7 @@ return [
     'error_config_format' => 'The config file is not in the right format',
     'import_success' => 'Import success!',
     'error_exist' => 'Template exist!',
-    'template_import' => '<a href="'.route('admin_template.import').'" target=_new><span class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Template</span></a>',
+    'template_import' => '<a href="'.route('admin_template.import').'" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Template</span></a>',
     'template_more' => '<a href="https://s-cart.org/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>',
     'manager'    => 'Template management',
     'title'      => 'Template list',

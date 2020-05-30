@@ -117,6 +117,7 @@ class AppConfig extends ConfigDefault
 
     public function config()
     {
+        //redirect to url config of plugin
         return;
     }
 
