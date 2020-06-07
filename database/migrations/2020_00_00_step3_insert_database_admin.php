@@ -260,9 +260,9 @@ class InsertDatabaseAdmin extends Migration
             ['group' => '', 'code' => 'env', 'key' => 'APP_DEBUG', 'value' => 'off', 'sort' => '0', 'detail' => 'lang::env.APP_DEBUG', 'store_id' => '1'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOG', 'value' => 'on', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG', 'store_id' => '1'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOG_EXP', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG_EXP', 'store_id' => '1'],
-            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_NAME', 'value' => 'S-Cart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => '1'],
-            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_TITLE', 'value' => 'S-Cart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => '1'],
-            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOGO', 'value' => 'S-Cart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => '1'],
+            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_NAME', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => '1'],
+            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_TITLE', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => '1'],
+            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOGO', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => '1'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOGO_MINI', 'value' => '<i class="fa fa-map-o" aria-hidden="true"></i>', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO_MINI', 'store_id' => '1'],
             ['group' => '', 'code' => 'env', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.LOG_SLACK_WEBHOOK_URL', 'store_id' => '1'],
 
@@ -316,14 +316,14 @@ class InsertDatabaseAdmin extends Migration
 
         ]);
         DB::table(SC_DB_PREFIX.'admin_store')->insert(
-            ['logo' => '/data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => 'admin-demo@s-cart.org', 'time_active' => '', 'address' => '123st - abc - xyz']
+            ['logo' => '/data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => 'admin-demo@SCart.org', 'time_active' => '', 'address' => '123st - abc - xyz']
         );
 
         DB::table(SC_DB_PREFIX.'admin_store_description')->insert([
-            ['config_id' => '1', 'lang' => 'en', 'title' => 'Demo S-cart : Free Laravel eCommerce for Business', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+            ['config_id' => '1', 'lang' => 'en', 'title' => 'Demo SCart : Free Laravel eCommerce for Business', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
 <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>
 </center>'],
-            ['config_id' => '1', 'lang' => 'vi', 'title' => 'Demo S-cart: Mã nguồn website thương mại điện tử miễn phí cho doanh nghiệp', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+            ['config_id' => '1', 'lang' => 'vi', 'title' => 'Demo SCart: Mã nguồn website thương mại điện tử miễn phí cho doanh nghiệp', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
 <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
 </center>'],
         ]);
