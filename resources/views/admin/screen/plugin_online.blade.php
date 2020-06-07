@@ -45,7 +45,7 @@
     $scVersion = explode(',', $plugin['scart_version']);
     $scRenderVersion = implode(' ',array_map(
       function($version){
-      return '<span title="S-Cart version '.$version.'" class="label label-primary">'.$version.'</span>';
+      return '<span title="SCart version '.$version.'" class="label label-primary">'.$version.'</span>';
       },$scVersion)
     );
 

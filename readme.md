@@ -13,7 +13,7 @@
 </p>
 
 ## About S-cart
-S-Cart is a free e-commerce website project for businesses, built on the Laravel framework.
+SCart e-commerce: Free open source for businesses, built on the Laravel framework.
 Our highest goals are aimed at general users:
 - Customers do not need to know much about technology.
 - Powerful system, many useful functions.
@@ -25,7 +25,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
     <a href="https://www.paypal.me/LeLanh" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" data-origin="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal Me"></a>
 </p>
 
-## S-Cart functions:
+## SCart functions:
 
 <pre>
 ======= FRONT-END =======
@@ -156,7 +156,7 @@ DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
 
 ## License:
 
-`S-Cart` is licensed under [The MIT License (MIT)](LICENSE).
+`SCart` is licensed under [The MIT License (MIT)](LICENSE).
 
 ## Demo:
 
