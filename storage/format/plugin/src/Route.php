@@ -9,7 +9,7 @@ Route::group(
         'namespace' => 'App\Plugins\Plugin_Code\Plugin_Key\Controllers',
     ],
     function () {
-        Route::get('paypal', 'FrontController@index')
+        Route::get('index', 'FrontController@index')
         ->name('PluginUrlKey.index');
     }
 );
