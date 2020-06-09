@@ -1,9 +1,9 @@
 <?php
 return [
     'info' => [
-        'about' => 'S-Cart là một dự án website thương mại điện tử miễn phí cho doanh nghiệp, được xây dựng trên nền tảng Laravel framework (PHP & Mysql).',
+        'about' => 'SCart là một dự án website thương mại điện tử miễn phí cho doanh nghiệp, được xây dựng trên nền tảng Laravel framework (PHP & Mysql).',
         'about_pro' => 'Mã nguồn website thương mại điện tử doành cho doanh nghiệp!',
-        'about_us' => '- Để hiểu thêm về chúng tôi, hãy ghé thăm <a target="_new" href="https://s-cart.org/">Trang chủ của S-Cart</a>',
+        'about_us' => '- Để hiểu thêm về chúng tôi, hãy ghé thăm <a target="_new" href="https://s-cart.org/">Trang chủ của SCart</a>',
         'document' => '- Tài liệu hướng dẫn cài đặt <a target="_new" href="https://s-cart.org/docs/master/installation.html">TẠI ĐÂY</a>',
         'version' => 'Phiên bản',
         'terms' => '<span style="color:red">*</span> Vui lòng đọc điều kiện trước khi cài đặt <a target="_new" href="https://s-cart.org/license.html">Ở ĐÂY</a>.',
@@ -62,7 +62,7 @@ return [
         'timezone_default_required' => 'Múi giờ bắt buộc',
         'language_default_required' => 'Ngôn ngữ mặc định bắt buộc',
     ],
-    'installing_button' => 'Đang cài đặt S-Cart',
+    'installing_button' => 'Đang cài đặt SCart',
     'database_host' => 'Máy chủ dữ liệu',
     'database_port' => 'Port dữ liệu',
     'database_name' => 'Tên dữ liệu',
@@ -76,7 +76,7 @@ return [
     'admin_email' => 'Email admin',
     'language_default' => 'Ngôn ngữ',
     'timezone_default' => 'Múi giờ',
-    'title' => 'Cài đặt S-Cart',
+    'title' => 'Cài đặt SCart',
     'installing' => 'Bắt đầu cài đặt',
     'rename_error' => 'Không thể đổi tên tập tin install.php. Vui lòng xóa hoặc đổi tên nó thủ công!',
     'terms' => '<span style="color:red">*</span> Đồng ý với quy định cài đặt',

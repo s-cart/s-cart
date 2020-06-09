@@ -30,7 +30,10 @@
                 <tbody>
                   @foreach ($templates as $key => $template)
                     <tr>
-                     <td>{!!sc_image_render(asset('templates/'.$key.'/'.$template['config']['image'])??'','50px','', $template['config']['name']??'')!!}</td>
+                      @php
+                          $pathImage = $template['config']['image'] ?? '';
+                      @endphp
+                     <td>{!!sc_image_render(asset('templates/'.$key.'/'.$pathImage)??'','50px','', $template['config']['name']??'')!!}</td>
                      <td>{{ $template['config']['name']??'' }}</td>
                      <td>{{ $key??'' }}</td>
                      <td onclick="imagedemo('{{ asset('templates/'.$key.'/images/demo.jpg') }}')"><a>{{ trans('template.click_here') }}</a></td>

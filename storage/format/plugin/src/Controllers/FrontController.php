@@ -10,13 +10,14 @@ class FrontController extends GeneralController
 
     public function __construct()
     {
+        parent::__construct();
         $this->plugin = new AppConfig;
     }
 
     public function index() {
         return view($this->plugin->pathPlugin.'::Front',
             [
-                
+                //
             ]
         );
     }
