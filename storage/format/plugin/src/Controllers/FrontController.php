@@ -21,4 +21,8 @@ class FrontController extends GeneralController
             ]
         );
     }
+
+    public function processOrder(){
+        // Function require if plugin is payment method
+    }
 }
