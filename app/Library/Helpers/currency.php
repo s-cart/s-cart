@@ -7,7 +7,7 @@ use App\Models\ShopCurrency;
 
 if (!function_exists('sc_currency_render')) {
     /**
-     * Render currency
+     * Render currency: format number, change amount, add symbol
      *
      * @param   float  $money                 [$money description]
      * @param   [type] $currency              [$currency description]
@@ -45,16 +45,16 @@ if (!function_exists('sc_currency_render_symbol')) {
 
 
 if (!function_exists('sc_currency_value')) {
-    /**
-     * Get value of amount with specify exchange rate
-     * if dont specify rate, will use exchange rate default
-     *
-     * @param   float  $money  [$money description]
-     * @param   [type] $rate   [$rate description]
-     * @param   null           [ description]
-     *
-     * @return  [type]         [return description]
-     */
+/**
+ * Get value of amount with specify exchange rate
+ * if dont specify rate, will use exchange rate default
+ *
+ * @param   float  $money  [$money description]
+ * @param   float  $rate   [$rate description]
+ * @param   null           [ description]
+ *
+ * @return  [type]         [return description]
+ */
     function sc_currency_value(float $money, float $rate = null)
     {
         return ShopCurrency::getValue($money, $rate);

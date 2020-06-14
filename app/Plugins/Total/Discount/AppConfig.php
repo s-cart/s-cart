@@ -113,12 +113,12 @@ class AppConfig extends ConfigDefault
 
         $check = json_decode((new FrontController)->check($discount, $uID), true);
         if (!empty($discount) && !$check['error']) {
-            $arrType = [
-                'point' => 'Point',
-                'percent' => '%',
-            ];
             $subtotalWithTax = \App\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
-            $value = ($check['content']['type'] == 'percent') ? floor($subtotalWithTax * $check['content']['reward'] / 100) : $check['content']['reward'];
+            if ($check['content']['type'] == 'percent') {
+                $value = floor($subtotalWithTax * $check['content']['reward'] / 100);
+            } else {
+                $value = sc_currency_value($check['content']['reward']);
+            }
             $arrData = array(
                 'title' => '<b>' . $this->title . ':</b> ' . $discount . '',
                 'code' => $this->configCode,
