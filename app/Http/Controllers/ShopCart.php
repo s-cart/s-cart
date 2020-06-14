@@ -32,6 +32,7 @@ class ShopCart extends GeneralController
     {
         session()->forget('paymentMethod'); //destroy paymentMethod
         session()->forget('shippingMethod'); //destroy shippingMethod
+        session()->forget('orderID'); //destroy orderID
         
         //Shipping
         $moduleShipping = sc_get_plugin_installed('shipping');
