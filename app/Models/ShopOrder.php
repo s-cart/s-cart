@@ -75,24 +75,23 @@ class ShopOrder extends Model
 
 /**
  * Update status order
- * @param  [type]  $order_id
+ * @param  [type]  $orderId
  * @param  integer $status
  * @param  string  $msg
  */
-    public function updateStatus($order_id, $status = 0, $msg = '')
+    public function updateStatus($orderId, $status = 0, $msg = '')
     {
         $uID = auth()->user()->id ?? 0;
-        $order = $this->find($order_id);
+        $order = $this->find($orderId);
         if ($order) {
             //Update status
             $order->update(['status' => (int) $status]);
 
             //Add history
             $dataHistory = [
-                'order_id' => $order_id,
+                'order_id' => $orderId,
                 'content' => $msg,
                 'user_id' => $uID,
-                'admin_id' => 0,
                 'order_status_id' => $status,
             ];
             $this->addOrderHistory($dataHistory);
@@ -239,6 +238,7 @@ class ShopOrder extends Model
  */
     public function addOrderHistory($dataHistory)
     {
+        $dataHistory['admin_id'] = (\App\Admin\Admin::user())?\App\Admin\Admin::user()->id:0;
         return ShopOrderHistory::create($dataHistory);
     }
 
