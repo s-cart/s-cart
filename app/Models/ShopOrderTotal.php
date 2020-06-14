@@ -40,7 +40,7 @@ class ShopOrderTotal extends Model
             'title' => trans('order.totals.sub_total'),
             'code' => 'subtotal',
             'value' => $subtotal,
-            'text' => sc_currency_render_symbol($subtotal, sc_currency_code()),
+            'text' => sc_currency_render_symbol($subtotal),
             'sort' => self::POSITION_SUBTOTAL,
         ];
 
@@ -49,7 +49,7 @@ class ShopOrderTotal extends Model
             'title' => trans('order.totals.tax'),
             'code' => 'tax',
             'value' => $tax,
-            'text' => sc_currency_render_symbol($tax, sc_currency_code()),
+            'text' => sc_currency_render_symbol($tax),
             'sort' => self::POSITION_TAX,
         ];
 
@@ -70,7 +70,7 @@ class ShopOrderTotal extends Model
             'title' => trans('order.totals.total'),
             'code' => 'total',
             'value' => $total,
-            'text' => sc_currency_render_symbol($total, sc_currency_code()),
+            'text' => sc_currency_render_symbol($total),
             'sort' => self::POSITION_TOTAL,
         );
         //End total value
@@ -158,8 +158,8 @@ class ShopOrderTotal extends Model
                 $totalMethod[] = [
                     'title' => $returnModuleTotal['title'],
                     'code' => 'discount',
-                    'value' => sc_currency_value($returnModuleTotal['value']),
-                    'text' => sc_currency_render($returnModuleTotal['value']),
+                    'value' => $returnModuleTotal['value'],
+                    'text' => sc_currency_render_symbol($returnModuleTotal['value']),
                     'sort' => self::POSITION_TOTAL_METHOD,
                 ];
             }

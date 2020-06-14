@@ -1,31 +1,61 @@
 <?php
 /**
  * File function process currency
- * @author Lanh Le <lanhktc@gmail.com>
- * From version: S-cart 3.0
+ * @author Naruto <lanhktc@gmail.com>
  */
 use App\Models\ShopCurrency;
 
-//Render currency
 if (!function_exists('sc_currency_render')) {
+    /**
+     * Render currency: format number, change amount, add symbol
+     *
+     * @param   float  $money                 [$money description]
+     * @param   [type] $currency              [$currency description]
+     * @param   null   $rate                  [$rate description]
+     * @param   null   $space_between_symbol  [$space_between_symbol description]
+     * @param   false  $useSymbol             [$useSymbol description]
+     * @param   true                          [ description]
+     *
+     * @return  [type]                        [return description]
+     */
     function sc_currency_render(float $money, $currency = null, $rate = null, $space_between_symbol = false, $useSymbol = true)
     {
         return ShopCurrency::render($money, $currency, $rate, $space_between_symbol, $useSymbol);
     }
 }
 
-//Only render symbol, dont change value of mount
 if (!function_exists('sc_currency_render_symbol')) {
-    function sc_currency_render_symbol(float $money, $currency, $space_between_symbol = false, $include_symbol = true)
+    /**
+     * Only render symbol, dont change amount
+     *
+     * @param   float  $money                 [$money description]
+     * @param   [type] $currency              [$currency description]
+     * @param   null   $space_between_symbol  [$space_between_symbol description]
+     * @param   false  $include_symbol        [$include_symbol description]
+     * @param   true                          [ description]
+     *
+     * @return  [type]                        [return description]
+     */
+    function sc_currency_render_symbol(float $money, $currency = null, $space_between_symbol = false, $include_symbol = true)
     {
+        $currency = $currency ? $currency : sc_currency_code();
         return ShopCurrency::onlyRender($money, $currency, $space_between_symbol, $include_symbol);
     }
 }
 
 
-//Get value after apply currency
 if (!function_exists('sc_currency_value')) {
-    function sc_currency_value(float $money, $rate = null)
+/**
+ * Get value of amount with specify exchange rate
+ * if dont specify rate, will use exchange rate default
+ *
+ * @param   float  $money  [$money description]
+ * @param   float  $rate   [$rate description]
+ * @param   null           [ description]
+ *
+ * @return  [type]         [return description]
+ */
+    function sc_currency_value(float $money, float $rate = null)
     {
         return ShopCurrency::getValue($money, $rate);
     }
