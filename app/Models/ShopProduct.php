@@ -217,7 +217,7 @@ class ShopProduct extends Model
         $products = self::select('id', 'sku')->get();
         $arrProduct = [];
         foreach ($products as $key => $product) {
-            $arrProduct[$product->id] = $product->getFull()->name . ' (' . $product->sku . ')';
+            $arrProduct[$product->id] = $product->getFull()['name'] . ' (' . $product->sku . ')';
         }
         return $arrProduct;
     }
