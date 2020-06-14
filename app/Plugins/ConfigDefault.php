@@ -42,14 +42,6 @@ abstract class  ConfigDefault
      * Get data app
      */
     abstract public function getData();
-
-    /**
-     * Process other
-     */
-    public function process($data)
-    {
-        return null;
-    }
         
     /**
      * Config app

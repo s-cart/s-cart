@@ -4,7 +4,6 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;  
-
 class AdminPluginsController extends Controller
 {
 
@@ -107,22 +106,6 @@ class AdminPluginsController extends Controller
         $code = request('code');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->disable();
-        return response()->json($response);
-    }
-
-    /**
-     * Process plugin
-     *
-     * @param   [type]  $code  [$code description]
-     * @param   [type]  $key   [$key description]
-     *
-     * @return  [type]         [return description]
-     */
-    public function process($code, $key)
-    {
-        $data = request()->all();
-        $namespace = sc_get_class_plugin_config($code, $key);
-        $response = (new $namespace)->process($data);
         return response()->json($response);
     }
 

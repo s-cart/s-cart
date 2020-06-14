@@ -17,8 +17,6 @@ $router->group(['prefix' => 'plugin'], function ($router) {
         ->name('admin_plugin.enable');
     $router->post('/disable', 'AdminPluginsController@disable')
         ->name('admin_plugin.disable');
-    $router->match(['put', 'post'], '/process/{code}/{key}', 'AdminPluginsController@process')
-        ->name('admin_plugin.process');
 
     if(config('scart.settings.api_plugin')) {
         $router->get('/{code}/online', 'AdminPluginsOnlineController@index')
