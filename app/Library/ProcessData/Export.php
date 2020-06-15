@@ -36,7 +36,7 @@ class Export
         $row = empty($title) ? 1 : 2;
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
-        $worksheet->setTitle(self::$sheetname);
+        $worksheet->setTitle($sheetname);
         if ($row == 2) {
             $worksheet->getCell('A1')->setValue($title);
         }
@@ -56,10 +56,10 @@ class Export
         $title = $options['title'] ?? self::$title;
         $row = empty($title) ? 1 : 2;
         $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader("Xlsx");
-        $spreadsheet = $reader->load(public_path('admin/format/export/invoice.xlsx'));
+        $spreadsheet = $reader->load(resource_path('views/admin/format/export/invoice.xlsx'));
         $worksheet = $spreadsheet->getActiveSheet();
         // $worksheet->getDefaultColumnDimension()->setWidth(100);
-        $worksheet->setTitle(self::$sheetname);
+        $worksheet->setTitle($sheetname);
         $worksheet->getCell('E1')->setValue(trans('order.date_export'));
         $worksheet->getCell('E2')->setValue(date('Y-m-d'));
         $worksheet->getCell('F1')->setValue(trans('order.id'));

@@ -1,3 +1,4 @@
+<style>
   a {
     font-size: 14px;
     line-height: 1.7;
@@ -322,3 +323,4 @@
     padding-top: 10px;
     padding-bottom: 20px;
 }
+</style>
