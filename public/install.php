@@ -112,7 +112,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         case 'step2-3':
             session(['infoInstall'=> request('infoInstall')]);
             try {
-                Artisan::call('migrate --path=/database/migrations/2020_00_00_step3_insert_database_admin.php');
+                Artisan::call('db:seed --class=DataAdminSeeder');
             } catch(\Exception $e) {
                 echo json_encode([
                     'error' => '1',
@@ -130,7 +130,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             case 'step2-4':
                 session(['infoInstall'=> request('infoInstall')]);
                 try {
-                    Artisan::call('migrate --path=/database/migrations/2020_00_00_step4_insert_database_shop.php');
+                    Artisan::call('db:seed --class=DataShopSeeder');
                 } catch(\Exception $e) {
                     echo json_encode([
                         'error' => '1',
@@ -148,7 +148,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 case 'step2-5':
                     session(['infoInstall'=> request('infoInstall')]);
                     try {
-                        Artisan::call('migrate --path=/database/migrations/2020_00_00_step5_insert_database_product.php');
+                        Artisan::call('db:seed --class=DataProductSeeder');
                         Artisan::call('passport:install');
                     } catch(\Exception $e) {
                         echo json_encode([

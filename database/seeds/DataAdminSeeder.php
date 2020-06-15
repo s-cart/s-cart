@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class InsertDatabaseAdmin extends Migration
+class DataAdminSeeder extends Seeder
 {
     public $adminUser = 'admin';
     //admin
@@ -14,12 +13,13 @@ class InsertDatabaseAdmin extends Migration
     public $language_default = 'en';
 
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
+
         DB::table(SC_DB_PREFIX.'admin_menu')->insert([
             ['id' => 1, 'parent_id' => 6, 'sort' => 11, 'title' => 'lang::admin.menu_titles.order_manager', 'icon' => 'fa-cart-arrow-down', 'uri' => '', 'key' => 'ORDER_MANAGER', 'type' => 0],
             ['id' => 2, 'parent_id' => 6, 'sort' => 12, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
@@ -298,18 +298,5 @@ class InsertDatabaseAdmin extends Migration
 <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
 </center>'],
         ]);
-
-
-
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-//
     }
 }

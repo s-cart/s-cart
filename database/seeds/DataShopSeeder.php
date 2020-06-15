@@ -1,18 +1,18 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class InsertDatabaseShop extends Migration
+class DataShopSeeder extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
+
         DB::table(SC_DB_PREFIX.'shop_banner')->insert([
             ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
             ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
@@ -645,18 +645,5 @@ class InsertDatabaseShop extends Migration
             ['id' => '4','name' => 'in', 'description' => 'Inch'],
             ]
         );
-
-
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-//
-    }
-
 }
