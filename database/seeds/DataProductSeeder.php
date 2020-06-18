@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class InsertDatabaseProduct extends Migration
+class DataProductSeeder extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
         DB::table(SC_DB_PREFIX.'shop_product')->insert([
             ['id' => 1, 'sku' => 'ABCZZ','alias' => 'demo-alias-name-product-1', 'image' => '/data/product/img-1.jpg', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '99',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => date("Y-m-d", strtotime("+1 month")), 'sold' => '1', 'minimum' => '0'],
@@ -146,17 +147,5 @@ class InsertDatabaseProduct extends Migration
             ['category_id' => '12', 'lang' => 'vi', 'title' => 'Phụ kiện nữ', 'keyword' => '', 'description' => ''],
             ['category_id' => '13', 'lang' => 'vi', 'title' => 'Phụ kiện nam', 'keyword' => '', 'description' => ''],
         ]);
-
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-//
-    }
-
 }

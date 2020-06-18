@@ -1,8 +1,7 @@
 @extends('admin.layout')
 
 @section('main')
-<link rel="stylesheet" href="{{asset('admin/css/login.css')}}">
-
+@include('admin.component.login_css')
 <body class="hold-transition login-page">
   <div class="limiter">
     <div class="container-login100">

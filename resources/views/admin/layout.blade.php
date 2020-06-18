@@ -25,8 +25,7 @@
   <link rel="stylesheet" href="{{ asset('admin/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('admin/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('admin/css/css.css')}}?v={{ filemtime('admin/css/css.css') }}">
-
+  @include('admin.component.css')
 @endif
 
 
