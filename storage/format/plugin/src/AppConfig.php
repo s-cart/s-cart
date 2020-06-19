@@ -39,7 +39,7 @@ class AppConfig extends ConfigDefault
             $return = ['error' => 1, 'msg' => 'Plugin exist'];
         } else {
             //Insert plugin to config
-            $process = AdminConfig::insert(
+            $dataInsert = [
                 [
                     'group' => $this->configGroup,
                     'code' => $this->configCode,
@@ -47,7 +47,10 @@ class AppConfig extends ConfigDefault
                     'sort' => 0,
                     'value' => self::ON, //Enable extension
                     'detail' => $this->pathPlugin.'::lang.title',
-                ]
+                ],
+            ];
+            $process = AdminConfig::insert(
+                $dataInsert
             );
 
             /*Insert plugin's html elements into index of admin pages*/

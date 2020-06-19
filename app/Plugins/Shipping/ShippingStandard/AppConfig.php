@@ -89,7 +89,7 @@ class AppConfig extends ConfigDefault
             ]);
     }
 
-    public function process($data)
+    public function updateConfig($data)
     {
         $return = ['error' => 0, 'msg' => ''];
         $process = PluginModel::where('id', $data['pk'])
@@ -97,7 +97,7 @@ class AppConfig extends ConfigDefault
         if (!$process) {
             $return = ['error' => 1, 'msg' => 'Error update'];
         }
-        return $return;
+        return json_encode($return);
     }
 
 

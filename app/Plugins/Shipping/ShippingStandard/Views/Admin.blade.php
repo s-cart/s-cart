@@ -25,21 +25,21 @@
                 <tbody>
                     <tr>
                       <td>
-                        <a href="#" class="updateData_num" 
+                        <a href="#" class="update-num" 
                         data-name="fee" 
                         data-type="text" 
                         data-pk="{{ $data['id'] }}" 
-                        data-url="{{ route('admin_plugin.process',['code'=>$code,'key'=>$key]) }}" 
+                        data-url="{{ route('shippingstandard.updateConfig') }}" 
                         data-title="{{ trans($pathPlugin.'::lang.fee') }}">
                           {{ $data['fee'] }}
                         </a>
                     </td>
                       <td>
-                            <a href="#" class="updateData_num" 
+                            <a href="#" class="update-num" 
                             data-name="shipping_free" 
                             data-type="text" 
                             data-pk="{{ $data['id'] }}" 
-                            data-url="{{ route('admin_plugin.process',['code'=> $code,'key'=>$key]) }}" 
+                            data-url="{{ route('shippingstandard.updateConfig') }}" 
                             data-title="{{ trans($pathPlugin.'::lang.shipping_free') }}">
                             {{ $data['shipping_free'] }}
                             </a>
@@ -72,9 +72,9 @@ $(document).ready(function() {
       return params;
     };
 
-    $('.updateData_num').editable({
+    $('.update-num').editable({
     ajaxOptions: {
-    type: 'put',
+    type: 'post',
     dataType: 'json'
     },
     validate: function(value) {
@@ -84,25 +84,6 @@ $(document).ready(function() {
         if (!$.isNumeric(value)) {
             return '{{  trans('admin.only_numeric') }}';
         }
-    }
-    });
-
-    $('.updateData').editable({
-    ajaxOptions: {
-    type: 'put',
-    dataType: 'json'
-    },
-    validate: function(value) {
-        if (value == '') {
-            return '{{  trans('admin.not_empty') }}';
-        }
-    }
-    });
-
-    $('.updateData_can_empty').editable({
-    ajaxOptions: {
-    type: 'put',
-    dataType: 'json'
     }
     });
 });

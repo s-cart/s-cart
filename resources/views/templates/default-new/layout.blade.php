@@ -51,7 +51,7 @@
         href="{{ asset($templateFile.'/css/main.css')}}?v={{ filemtime(public_path($templateFile.'/css/main.css')) }}" />
     <link rel="stylesheet"
         href="{{ asset($templateFile.'/css/main-rtl.css')}}?v={{ filemtime(public_path($templateFile.'/css/main-rtl.css')) }}" />
-
+    @stack('styles')
 <body>
 
     @include($templatePath.'.header')
