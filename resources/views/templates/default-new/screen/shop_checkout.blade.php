@@ -143,6 +143,13 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                                 {{$element['text'] }}
                                             </td>
                                         </tr>
+                                        @elseif($element['code'] =='shipping')
+                                        <tr class="showTotal">
+                                            <th>{!! $element['title'] !!}</th>
+                                            <td style="text-align: right" id="{{ $element['code'] }}">
+                                                {{$element['text'] }}
+                                            </td>
+                                        </tr>
                                         @endif
                                         @endforeach
                                     </table>
