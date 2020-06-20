@@ -70,6 +70,7 @@ class AdminTemplateOnlineController extends Controller
     {
         $response = ['error' => 0, 'msg' => 'Install success'];
         $key = request('key');
+        $key = str_replace('.','-', $key);
         $path = request('path');
         try {
             $data = file_get_contents($path);
