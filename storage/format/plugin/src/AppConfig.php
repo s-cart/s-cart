@@ -135,6 +135,7 @@ class AppConfig extends ConfigDefault
             'version' => $this->version,
             'auth' => $this->auth,
             'link' => $this->link,
+            'value' => 0, // this return need for plugin shipping
             'pathPlugin' => $this->pathPlugin
         ];
 

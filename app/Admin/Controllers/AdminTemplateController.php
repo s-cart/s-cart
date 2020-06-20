@@ -92,6 +92,7 @@ class AdminTemplateController extends Controller
                     $folderName = end($folderName);
                     $config = json_decode(file_get_contents($checkConfig[0]), true);
                     $configKey = $config['configKey'] ?? '';
+                    $configKey = str_replace('.','-', $configKey);
                     if (!$configKey) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         return redirect()->back()->with('error', trans('template.error_config'));
