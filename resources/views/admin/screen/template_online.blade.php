@@ -70,7 +70,7 @@
                         <td>{{ $template['version']??'' }}</td>
                         <td><b>SC:</b> {!! $scRenderVersion !!}</td>
                         <td>{{ $template['username']??'' }}</td>
-                        <td onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
+                        <td class="pointer" onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ trans('template.click_here') }}</a></td>
                         <td>
                           @if ($template['is_free'] || $template['price_final'] == 0)
                             <span class="label label-success">{{ trans('template.free') }}</span>

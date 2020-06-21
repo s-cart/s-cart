@@ -70,4 +70,5 @@
     height: 1px;
     margin-bottom: 40px !important;
   }
+  .pointer {cursor: pointer;}
 </style>
