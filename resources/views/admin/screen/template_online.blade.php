@@ -7,7 +7,7 @@
           <ul class="nav nav-tabs">
             <li class=""><a href="{{ route('admin_template.index') }}">{{ trans('template.local') }}</a></li>
             <li class="active"><a href="#">{{ trans('template.online') }}</a></li>
-            <li>{!! trans('template.template_import') !!}</li>
+            <li class="btn-import"><a href="{{ route('admin_template.import') }}" target=_new><span><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_data', ['data' => 'template']) }}</span></a></li>
             <li class="pull-right">{!! trans('template.template_more') !!}</li>
             <li class="pull-right" >
               <a>{{ trans('template.only_version_current') }}: <input  class="only_version" name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}></a>

@@ -71,4 +71,8 @@
     margin-bottom: 40px !important;
   }
   .pointer {cursor: pointer;}
+  .btn-import{
+    border-top: 3px solid #00a65a !important;
+    font-weight: bold  !important;
+  }
 </style>

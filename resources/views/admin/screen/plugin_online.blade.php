@@ -7,7 +7,7 @@
         <ul class="nav nav-tabs">
           <li class=""><a href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}">{{ trans('plugin.local') }}</a></li>
           <li class="active"><a href="#">{{ trans('plugin.online') }}</a></li>
-          <li>{!! trans('plugin.plugin_import') !!}</li>
+          <li class="btn-import"><a href="{{ route('admin_plugin.import') }}" target=_new><span><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_data', ['data' => 'plugin']) }}</span></a></li>
           <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
           <li class="pull-right" >
             <a>{{ trans('plugin.only_version_current') }}: <input  class="only_version" name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}></a>

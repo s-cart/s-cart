@@ -4,6 +4,7 @@ return [
     'file_format' => 'File format',
     'choose_file' => 'Choose File',
     'import_submit' => 'Import',
+    'import_data' => 'Import :data',
     'import_note' => 'File <span style="color:red">.zip</span>, max size is <span style="color:red">50MB</span>',
     'error_unzip' => 'Error while unzip',
     'error_upload' => 'Error while uploading file',

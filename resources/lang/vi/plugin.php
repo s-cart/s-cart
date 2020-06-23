@@ -4,6 +4,7 @@ return [
     'file_format' => 'File mẫu',
     'choose_file' => 'Chọn file',
     'import_submit' => 'Import',
+    'import_data' => 'Import :data',
     'import_note' => 'Là file <span style="color:red">.zip</span>, dung lượng tối đa <span style="color:red">50MB</span>',
     'error_unzip' => 'Lỗi trong khi unzip',
     'error_upload' => 'Lỗi trong khi upload file',
