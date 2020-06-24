@@ -89,9 +89,9 @@
             success: function (response) {
                 console.log(response);
               if(parseInt(response.error) ==0){
-                  alertMsg(response.msg, '', 'success');
+                  alertMsg(success, response.msg);
               }else{
-                  alertMsg(response.msg, '', 'error');
+                  alertMsg('error', response.msg);
               }
               $('#loading').hide();
             }

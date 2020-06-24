@@ -224,11 +224,7 @@ $('.grid-trash').on('click', function() {
 
   }).then((result) => {
     if (result.value) {
-      swalWithBootstrapButtons.fire(
-        '{{ trans('admin.confirm_delete_deleted') }}',
-        '{{ trans('admin.confirm_delete_deleted_msg') }}',
-        'success'
-      )
+      alertMsg('success', '{{ trans('admin.confirm_delete_deleted_msg') }}', '{{ trans('admin.confirm_delete_deleted') }}');
     } else if (
       // Read more about handling dismissals
       result.dismiss === Swal.DismissReason.cancel
@@ -269,17 +265,9 @@ $('.grid-trash').on('click', function() {
           }else if(isChecked == 0 && name == 'email_action_smtp_mode'){
             $('.config_smtp').hide();
           }
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-          });
-
-          Toast.fire({
-            type: 'success',
-            title: '{{ trans('admin.msg_change_success') }}'
-          })
+          alertJs('success', '{{ trans('admin.msg_change_success') }}');
+        } else {
+          alertMsg('error', '', data.msg);
         }
       });
 

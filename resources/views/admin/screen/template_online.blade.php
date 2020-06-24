@@ -171,13 +171,10 @@
         success: function (response) {
           console.log(response);
               if(parseInt(response.error) ==0){
+                alertJs('success', response.msg);
               location.reload();
               }else{
-                Swal.fire(
-                  response.msg,
-                  'You clicked the button!',
-                  'error'
-                  )
+                alertMsg('error', response.msg, 'You clicked the button!');
               }
               $('#loading').hide();
               obj.button('reset');

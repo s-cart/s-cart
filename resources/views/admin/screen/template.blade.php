@@ -82,10 +82,10 @@
             },
             success: function (response) {
               if(parseInt(response.error) ==0){
-                alertMsg(response.msg, '', 'success');
+                alertMsg('success', response.msg);
                 location.reload();
               }else{
-                alertMsg(response.msg, '', 'error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
             }
@@ -118,9 +118,10 @@
                 success: function (response) {
                   console.log(response);
                 if(parseInt(response.error) ==0){
+                  alertMsg('success', response.msg);
                 location.reload();
                 }else{
-                  alertMsg(response.msg,'','error');
+                  alertMsg('error', response.msg);
                 }
                 $('#loading').hide();
                 obj.button('reset');

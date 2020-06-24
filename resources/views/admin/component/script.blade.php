@@ -1,5 +1,13 @@
 {{-- image file manager --}}
 <script type="text/javascript">
+  $(function () {
+    $('.input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+  
 (function( $ ){
 
       $.fn.filemanager = function(type, options) {
@@ -94,7 +102,7 @@ $(function(){
     function LA() {}
     LA.token = "{{ csrf_token() }}";
 
-    function alertJs(type,msg) {
+    function alertJs(type = 'error', msg = '') {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -107,7 +115,7 @@ $(function(){
       })
     }
 
-    function alertMsg(title, msg, type) {
+    function alertMsg(type = 'error', msg = '', note = '') {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-success',
@@ -116,13 +124,13 @@ $(function(){
         buttonsStyling: true,
       });
       swalWithBootstrapButtons.fire(
-        title,
         msg,
+        note,
         type
       )
     }
 
-    function alertConfirm(type,msg) {
+    function alertConfirm(type = 'warning', msg = '') {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

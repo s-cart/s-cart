@@ -571,7 +571,7 @@ function deleteItem(id){
 
   }).then((result) => {
     if (result.value) {
-      alertMsg('{{ trans('admin.confirm_delete_deleted') }}', '{{ trans('admin.confirm_delete_deleted_msg') }}', 'success');
+      alertMsg('success', '{{ trans('admin.confirm_delete_deleted_msg') }}', '{{ trans('admin.confirm_delete_deleted') }}' );
     } else if (
       // Read more about handling dismissals
       result.dismiss === Swal.DismissReason.cancel

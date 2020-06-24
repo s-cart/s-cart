@@ -271,7 +271,6 @@
 {{-- //select permission --}}
 
 
-
                           </div>
                         </div>
 
@@ -296,20 +295,6 @@
                     <!-- /.box-footer -->
 
                       </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
   </div>
@@ -377,13 +362,10 @@ $('.remove_menu').click(function(event) {
                 },
                 success: function (data) {
                     if(data.error == 1){
-                      swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        data.msg,
-                        'error'
-                      )
+                      alertMsg('error', 'Cancelled', data.msg);
                       return;
                     }else{
+                      alertMsg('success', 'Success');
                       location.reload();
                     }
 
@@ -394,11 +376,7 @@ $('.remove_menu').click(function(event) {
 
   }).then((result) => {
     if (result.value) {
-      swalWithBootstrapButtons.fire(
-        '{{ trans('admin.confirm_delete_deleted') }}',
-        '{{ trans('admin.confirm_delete_deleted_msg') }}',
-        'success'
-      )
+      alertMsg('success', '{{ trans('admin.confirm_delete_deleted_msg') }}', '{{ trans('admin.confirm_delete_deleted') }}');
     } else if (
       // Read more about handling dismissals
       result.dismiss === Swal.DismissReason.cancel
@@ -433,11 +411,7 @@ $('.menu-sort-save').click(function () {
       if(data.error == 0){
         location.reload();
       }else{
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            data.msg,
-            'error'
-          )
+        alertMsg('error', data.msg, 'Cancelled');
       }
       //console.log(data);
     });

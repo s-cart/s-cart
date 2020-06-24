@@ -84,20 +84,12 @@
               "action":action,
             },
             success: function (response) {
-              console.log(response);
+              // console.log(response);
               if(parseInt(response.error) ==0){
                   $.pjax.reload({container:'#pjax-container'});
-                  Swal.fire(
-                  'Success!',
-                  '',
-                  'success'
-                  )
+                  alertJs('success', response.msg);
               }else{
-                Swal.fire(
-                  response.msg,
-                  'You clicked the button!',
-                  'error'
-                  )
+                alertJs('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');

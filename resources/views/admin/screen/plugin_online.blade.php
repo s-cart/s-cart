@@ -172,11 +172,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                Swal.fire(
-                  response.msg,
-                  'You clicked the button!',
-                  'error'
-                  )
+                alertMsg('error', data.msg, 'You clicked the button!');
               }
               $('#loading').hide();
               obj.button('reset');
@@ -218,7 +214,7 @@
   var isChecked = e.currentTarget.checked;
   isChecked = (isChecked == false)?0:1;
   if(isChecked) {
-    var url = '{{ route('admin_plugin_online', ['code' => $code]) }}?only_version=1';
+    var url = '{{ route('admin_plugin_online', ['code' => $code, 'only_version' => 1]) }}';
   } else {
     var url = '{{ route('admin_plugin_online', ['code' => $code]) }}';
   }

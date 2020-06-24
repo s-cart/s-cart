@@ -119,9 +119,9 @@
           console.log(response);
               if(parseInt(response.error) ==0){
                   $.pjax.reload({container:'#pjax-container'});
-                  alertMsg('{{ trans('admin.msg_change_success') }}', '', 'success');
+                  alertMsg('success', '{{ trans('admin.msg_change_success') }}');
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -147,7 +147,7 @@
                   $.pjax.reload({container:'#pjax-container'});
                   alertMsg('success', '{{ trans('admin.msg_change_success') }}');
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -171,7 +171,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -206,7 +206,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');

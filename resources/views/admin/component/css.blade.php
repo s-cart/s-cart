@@ -72,7 +72,9 @@
   }
   .pointer {cursor: pointer;}
   .btn-import{
-    border-top: 3px solid #00a65a !important;
-    font-weight: bold  !important;
+    font-weight: bold !important;
+    border-right: 1px solid #e1eae6;
+    border-left: 1px solid #e1eae6;
+    box-shadow: -1px -2px 0px 0px #e1eae6;
   }
 </style>
