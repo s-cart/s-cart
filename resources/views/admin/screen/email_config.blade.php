@@ -56,26 +56,32 @@
          </thead>
          <tbody>
            @foreach ($configs['smtp'] as $config)
-           @if ($config->key == 'smtp_security')
+
+           @if ($config->key == 'smtp_load_config')
               <tr>
                 <td>{{ sc_language_render($config->detail) }}</td>
-                <td><a href="#" class="no-required editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
+                <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source='{"database":"{{ trans('email.smtp_load_config_database') }}", "file_config":"{{ trans('email.smtp_load_config_file') }}"}' data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
               </tr>
+            @elseif($config->key == 'smtp_security')
+            <tr>
+              <td>{{ sc_language_render($config->detail) }}</td>
+              <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
+            </tr>             
            @elseif($config->key == 'smtp_port')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
              </tr>
            @elseif($config->key == 'smtp_password')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">****</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">****</a></td>
              </tr>
 
           @else
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
              </tr>
            @endif
 
@@ -106,28 +112,20 @@
   // Editable
 $(document).ready(function() {
 
-       $.fn.editable.defaults.mode = 'inline';
+      $.fn.editable.defaults.mode = 'inline';
       $.fn.editable.defaults.params = function (params) {
         params._token = "{{ csrf_token() }}";
         return params;
       };
-       $('.no-required').editable({});
-        $('.fied-required').editable({
+
+        $('.editable').editable({
         validate: function(value) {
         },
         success: function(data) {
           if(data.error == 0){
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000
-            });
-
-            Toast.fire({
-              type: 'success',
-              title: '{{ trans('admin.msg_change_success') }}'
-            })
+            alertJs('success', '{{ trans('admin.msg_change_success') }}');
+          } else {
+            alertMsg('error', data.msg);
           }
       }
     });

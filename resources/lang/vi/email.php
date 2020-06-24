@@ -9,6 +9,9 @@ return [
     'smtp_password'    => 'Mật khẩu SMTP',
     'smtp_security'    => 'Bảo mật SMTP',
     'smtp_port'        => 'Cổng kết nối SMTP',
+    'smtp_load_config' => 'Tải thông tin cấu hình',
+    'smtp_load_config_file' => 'Sử dụng file cấu hình',
+    'smtp_load_config_database' => 'Sử dụng database',
     'admin'            => [
         'title'          => 'Cấu hình email',
         'create_success' => 'Tạo mới thành công!',

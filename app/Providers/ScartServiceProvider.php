@@ -53,16 +53,18 @@ class ScartServiceProvider extends ServiceProvider
             $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
             config(['mail.driver' => $smtpMode]);
             if ($smtpMode == 'smtp') {
-                $smtpHost = empty(sc_config('smtp_host')) ? config('const.MAIL_HOST') : sc_config('smtp_host');
-                $smtpPort = empty(sc_config('smtp_port')) ? config('const.MAIL_PORT') : sc_config('smtp_port');
-                $smtpSecurity = empty(sc_config('smtp_security')) ? config('const.MAIL_ENCRYPTION') : sc_config('smtp_security');
-                $smtpUser = empty(sc_config('smtp_user')) ? config('const.MAIL_USERNAME') : sc_config('smtp_user');
-                $smtpPassword = empty(sc_config('smtp_password')) ? config('const.MAIL_PASSWORD') : sc_config('smtp_password');
-                config(['mail.host' => $smtpHost]);
-                config(['mail.port' => $smtpPort]);
-                config(['mail.encryption' => $smtpSecurity]);
-                config(['mail.username' => $smtpUser]);
-                config(['mail.password' => $smtpPassword]);
+                if(sc_config('smtp_load_config') == 'database') {
+                    $smtpHost = sc_config('smtp_host');
+                    $smtpPort = sc_config('smtp_port');
+                    $smtpSecurity = sc_config('smtp_security');
+                    $smtpUser = sc_config('smtp_user');
+                    $smtpPassword = sc_config('smtp_password');
+                    config(['mail.host' => $smtpHost]);
+                    config(['mail.port' => $smtpPort]);
+                    config(['mail.encryption' => $smtpSecurity]);
+                    config(['mail.username' => $smtpUser]);
+                    config(['mail.password' => $smtpPassword]);
+                }
             }
 
             config(
