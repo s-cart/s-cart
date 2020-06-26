@@ -1,7 +1,7 @@
 {
     "name": "s-cart/s-cart",
     "description": "Free Laravel e-commerce for business: shopping cart, cms content, and more...",
-    "keywords": ["Open source","E-commerce", "Ecommerce", "Shopping cart",  "CMS", "framework", "laravel","shop", "store","business"],
+    "keywords": ["Laravel ecommerce","SCart ecommerce", "SCart open source", "Free Shopping cart",  "S-Cart", "Wensite ecommerce"],
     "homepage": "https://s-cart.org",
     "license": "MIT",
     "authors": [
