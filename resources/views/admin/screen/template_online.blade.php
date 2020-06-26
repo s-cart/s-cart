@@ -291,14 +291,10 @@
     if(search_keyword){
       urlString +="&search_keyword="+search_keyword;
     }
-    if(urlString == "") {
-
-    } else {
       urlString = urlString.substr(1);
       urlNext = urlNext+"?"+urlString;
       $('.link-filter').attr('href', urlNext);
       $('.link-filter').trigger('click');
-    }
   });
 </script>
 

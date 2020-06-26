@@ -251,7 +251,6 @@
     var sort_price_desc = $('[name="sort_price_desc"]:checked').val();
     var sort_download = $('[name="sort_download"]:checked').val();
     var search_keyword = $('[name="search_keyword"]').val();
-
     var urlString = "";
     if(only_version) {
       urlString +="&only_version=1";
@@ -275,14 +274,10 @@
     if(search_keyword){
       urlString +="&search_keyword="+search_keyword;
     }
-    if(urlString == "") {
-
-    } else {
       urlString = urlString.substr(1);
       urlNext = urlNext+"?"+urlString;
       $('.link-filter').attr('href', urlNext);
       $('.link-filter').trigger('click');
-    }
   });
 </script>
 @endpush
