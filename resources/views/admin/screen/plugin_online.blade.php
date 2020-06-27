@@ -7,13 +7,43 @@
         <ul class="nav nav-tabs">
           <li class=""><a href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}">{{ trans('plugin.local') }}</a></li>
           <li class="active"><a href="#">{{ trans('plugin.online') }}</a></li>
-          <li>{!! trans('plugin.plugin_import') !!}</li>
+          <li class="btn-import"><a href="{{ route('admin_plugin.import') }}" target=_new><span><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_data', ['data' => 'plugin']) }}</span></a></li>
           <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
+        </ul>
+
+        <ul class="nav nav-tabs">
           <li class="pull-right" >
-            <a>{{ trans('plugin.only_version_current') }}: <input  class="only_version" name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}></a>
+            <label class="checkbox-inline">
+              <input name="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }}>
+              {{ trans('plugin.libraries.sort_download') }}
+            </label>
+            <label class="checkbox-inline">
+              <input name="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }}>
+              {{ trans('plugin.libraries.sort_rating') }}
+            </label>
+            <label class="checkbox-inline">
+              <input name="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }}>
+              {{ trans('plugin.libraries.sort_price_asc') }}
+            </label>
+            <label class="checkbox-inline">
+              <input name="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }}>
+              {{ trans('plugin.libraries.sort_price_desc') }}
+            </label>
+            <label class="checkbox-inline">
+              <input name="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }}>
+              {{ trans('plugin.libraries.only_free') }}
+            </label>  
+            <label class="checkbox-inline">
+              <input name="only_version" data-name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}>
+              {{ trans('plugin.libraries.only_version') }}
+            </label>    
+            <input class="input-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
+            <button title="Filter" class="btn btn-flat btn-sm filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
           </li>
         </ul>
-            <!-- /.box-header -->
+        <a class="link-filter" href=""></a>
+
+          <!-- /.box-header -->
           <section id="pjax-container" class="table-list">
             <div class="box-body table-responsive no-padding">
               <table id="plugin" class="table table-bordered table-hover">
@@ -85,20 +115,22 @@
                           @php
                           $vote = $plugin['points'];
                           $vote_times = $plugin['times'];
-                          $cal_vote = $vote_times?round($vote/$vote_times,1):0;
+                          $cal_vote = number_format($plugin['rated'], 1);
                           @endphp
                           <span title="{{ $cal_vote }}" style="color:#e66c16">
                             @for ($i = 1; $i <= $cal_vote; $i++) 
                             <i class="fa fa-star voted" aria-hidden="true"></i>
                             @endfor
-                            @if ($cal_vote * $vote_times == $vote)
-                               <i class="fa fa-star-o" aria-hidden="true"></i>
+                            @if ($cal_vote == round($cal_vote))
+                              @for ($k = 1; $k <= (5-$cal_vote); $k++) 
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                              @endfor
                             @else
                                <i class="fa fa-star-half-o voted" aria-hidden="true"></i>
+                               @for ($k = 1; $k <= (5-$cal_vote); $k++) 
+                               <i class="fa fa-star-o" aria-hidden="true"></i>
+                               @endfor
                             @endif
-                            @for ($k = 1; $k < (5-$cal_vote); $k++) 
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            @endfor
                          </span>
                          <span class="sum_vote">
                           ({{ $vote }}/{{ $vote_times }})
@@ -172,11 +204,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                Swal.fire(
-                  response.msg,
-                  'You clicked the button!',
-                  'error'
-                  )
+                alertMsg('error', data.msg, 'You clicked the button!');
               }
               $('#loading').hide();
               obj.button('reset');
@@ -199,7 +227,7 @@
     });
     // tag a
     $(function(){
-     $(document).pjax('a.page-link', '#pjax-container')
+     $(document).pjax('a.page-link, a.link-filter', '#pjax-container')
     })
 
     $(document).on('ready pjax:end', function(event) {
@@ -210,19 +238,48 @@
 </script>
 
 <script>
-  $('.only_version').iCheck({
+  $('.input-check').iCheck({
     checkboxClass: 'icheckbox_square-blue',
     radioClass: 'iradio_square-blue',
     increaseArea: '20%' /* optional */
-  }).on('ifChanged', function(e) {
-  var isChecked = e.currentTarget.checked;
-  isChecked = (isChecked == false)?0:1;
-  if(isChecked) {
-    var url = '{{ route('admin_plugin_online', ['code' => $code]) }}?only_version=1';
-  } else {
-    var url = '{{ route('admin_plugin_online', ['code' => $code]) }}';
-  }
-  window.location.href = url;
-    });
+  });
+
+  $('#filter-button').click(function(){
+    var urlNext = '{{ url()->current() }}';
+    var only_version = $('[name="only_version"]:checked').val();
+    var only_free = $('[name="only_free"]:checked').val();
+    var sort_rating = $('[name="sort_rating"]:checked').val();
+    var sort_price_asc = $('[name="sort_price_asc"]:checked').val();
+    var sort_price_desc = $('[name="sort_price_desc"]:checked').val();
+    var sort_download = $('[name="sort_download"]:checked').val();
+    var search_keyword = $('[name="search_keyword"]').val();
+    var urlString = "";
+    if(only_version) {
+      urlString +="&only_version=1";
+    }
+    if(only_free) {
+      urlString +="&only_free=1";
+    }
+    if(sort_rating) {
+      urlString +="&sort_rating=1";
+    }
+    if(sort_price_asc) {
+      urlString +="&sort_price_asc=1";
+      $('[name="sort_price_desc"]').prop("checked", false);
+    }
+    if(sort_price_desc && !sort_price_asc) {
+      urlString +="&sort_price_desc=1";
+    }
+    if(sort_download) {
+      urlString +="&sort_download=1";
+    }
+    if(search_keyword){
+      urlString +="&search_keyword="+search_keyword;
+    }
+      urlString = urlString.substr(1);
+      urlNext = urlNext+"?"+urlString;
+      $('.link-filter').attr('href', urlNext);
+      $('.link-filter').trigger('click');
+  });
 </script>
 @endpush

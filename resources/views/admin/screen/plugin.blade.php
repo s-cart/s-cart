@@ -9,7 +9,7 @@
           @if (config('scart.settings.api_plugin'))
           <li class=""><a href="{{  route('admin_plugin_online', ['code' => strtolower($code)]) }}">{{ trans('plugin.online') }}</a></li>
           @endif
-          <li>{!! trans('plugin.plugin_import') !!}</li>
+          <li class="btn-import"><a href="{{ route('admin_plugin.import') }}" target=_new><span><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_data', ['data' => 'plugin']) }}</span></a></li>
           <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
         </ul>
 
@@ -119,9 +119,9 @@
           console.log(response);
               if(parseInt(response.error) ==0){
                   $.pjax.reload({container:'#pjax-container'});
-                  alertMsg('{{ trans('admin.msg_change_success') }}', '', 'success');
+                  alertMsg('success', '{{ trans('admin.msg_change_success') }}');
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -147,7 +147,7 @@
                   $.pjax.reload({container:'#pjax-container'});
                   alertMsg('success', '{{ trans('admin.msg_change_success') }}');
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -171,7 +171,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');
@@ -206,7 +206,7 @@
               if(parseInt(response.error) ==0){
               location.reload();
               }else{
-                alertMsg(response.msg,'','error');
+                alertMsg('error', response.msg);
               }
               $('#loading').hide();
               obj.button('reset');

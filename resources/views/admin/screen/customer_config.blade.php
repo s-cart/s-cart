@@ -106,79 +106,6 @@ $(document).ready(function() {
   </script>
     {{-- //End pjax --}}
 
-
-<script type="text/javascript">
-{{-- sweetalert2 --}}
-var selectedRows = function () {
-    var selected = [];
-    $('.grid-row-checkbox:checked').each(function(){
-        selected.push($(this).data('id'));
-    });
-
-    return selected;
-}
-
-$('.grid-trash').on('click', function() {
-  var ids = selectedRows().join();
-  deleteItem(ids);
-});
-
-  function deleteItem(ids){
-  Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: true,
-  }).fire({
-    title: '{{ trans('admin.confirm_delete') }}',
-    text: "",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: '{{ trans('admin.confirm_delete_yes') }}',
-    confirmButtonColor: "#DD6B55",
-    cancelButtonText: '{{ trans('admin.confirm_delete_no') }}',
-    reverseButtons: true,
-
-    preConfirm: function() {
-        return new Promise(function(resolve) {
-            $.ajax({
-                method: 'post',
-                url: '{{ $urlDeleteItem ?? '' }}',
-                data: {
-                  ids:ids,
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function (data) {
-                    $.pjax.reload('#pjax-container');
-                    resolve(data);
-                }
-            });
-        });
-    }
-
-  }).then((result) => {
-    if (result.value) {
-      alertMsg(
-        '{{ trans('admin.confirm_delete_deleted') }}',
-        '{{ trans('admin.confirm_delete_deleted_msg') }}',
-        'success'
-      )
-    } else if (
-      // Read more about handling dismissals
-      result.dismiss === Swal.DismissReason.cancel
-    ) {
-      // swalWithBootstrapButtons.fire(
-      //   'Cancelled',
-      //   'Your imaginary file is safe :)',
-      //   'error'
-      // )
-    }
-  })
-}
-{{--/ sweetalert2 --}}
-
-</script>
 <script>
 
   // Update config
@@ -201,7 +128,7 @@ $('.grid-trash').on('click', function() {
         if(data.error == 0){
           alertJs('success', '{{ trans('admin.msg_change_success') }}');
         } else {
-          alertJs('error', data.msg);
+          alertMsg('error', '', data.msg);
         }
       });
 

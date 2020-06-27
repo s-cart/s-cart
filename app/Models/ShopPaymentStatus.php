@@ -18,13 +18,4 @@ class ShopPaymentStatus extends Model
         }
         return self::$listStatus;
     }
-    public static function mapValue()
-    {
-        $listStatus = self::getListStatus();
-        $new_arr    = [];
-        foreach ($listStatus as $key => $value) {
-            $new_arr[] = ['value' => $key, 'text' => $value];
-        }
-        return $new_arr;
-    }
 }

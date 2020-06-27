@@ -69,7 +69,7 @@ if (!function_exists('sc_config')) {
         $allConfig = [];
         try {
             $allConfig = AdminConfig::getAll();
-        } catch(\Exception $e) {
+        } catch(\Throwable $e) {
             //
         }
         if ($key == null) {
@@ -134,14 +134,14 @@ if (!function_exists('sc_url_render')) {
             if (isset($arrRoute[2])) {
                 try {
                     return route($arrRoute[1], $arrRoute[2]);
-                } catch(\Exception $e) {
+                } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
                 }  
             } else {
                 try {
                     return route($arrRoute[1]);
-                } catch(\Exception $e) {
+                } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
                 }                
@@ -269,9 +269,7 @@ if (!function_exists('sc_report')) {
     {
         $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;
         try{
-            if (sc_config('LOG_SLACK_WEBHOOK_URL') || config('const.LOG_SLACK_WEBHOOK_URL')) {
-                \Log::channel('slack')->error($msg);
-            }
+            \Log::channel('slack')->error($msg);
         }catch(\Exception $e){
             //
         }

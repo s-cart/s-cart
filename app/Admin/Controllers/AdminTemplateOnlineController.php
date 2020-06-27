@@ -12,10 +12,34 @@ class AdminTemplateOnlineController extends Controller
         $arrTemplateLibrary = [];
         $sc_version = config('scart.version');
         $only_version = request('only_version', 0);
+        $only_free = request('only_free', 0);
+        $sort_download = request('sort_download', 0);
+        $sort_rating = request('sort_rating', 0);
+        $sort_price_asc = request('sort_price_asc', 0);
+        $sort_price_desc = request('sort_price_desc', 0);
+        $search_keyword = request('search_keyword', '');
         $page = request('page') ?? 1;
         $url = config('scart.api_link').'/templates/?page[size]=20&page[number]='.$page;
         if($only_version) {
             $url .='&sc='.$sc_version;
+        }
+        if($only_free) {
+            $url .='&free=1';
+        }
+        if($sort_download) {
+            $url .='&sort_download=1';
+        }
+        if($sort_rating) {
+            $url .='&sort_rating=1';
+        }
+        if($sort_price_asc) {
+            $url .='&sort_price_asc=1';
+        }
+        if($sort_price_desc && !$sort_price_asc) {
+            $url .='&sort_price_desc=1';
+        }
+        if($search_keyword) {
+            $url .='&search_keyword='.$search_keyword;
         }
         $ch            = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -44,6 +68,7 @@ class AdminTemplateOnlineController extends Controller
                     'username' =>  $data['username'] ?? '',
                     'times' =>  $data['times'] ?? 0,
                     'points' =>  $data['points'] ?? 0,
+                    'rated' =>  $data['rated'] ?? 0,
                     'date' =>  $data['date'] ?? '',
                     'link' =>  $data['link'] ?? '',
                 ];
@@ -60,6 +85,12 @@ class AdminTemplateOnlineController extends Controller
                     "arrTemplateLocal" => sc_get_all_template(),
                     "arrTemplateLibrary" => $arrTemplateLibrary,
                     "only_version" => $only_version,
+                    "only_free" => $only_free,
+                    "search_keyword" => $search_keyword ?? '',
+                    "sort_price_asc" => $sort_price_asc ?? 0,
+                    "sort_price_desc" => $sort_price_desc ?? 0,
+                    "sort_rating" => $sort_rating ?? 0,
+                    "sort_download" => $sort_download ?? 0,
                     "resultItems" => $resultItems,
                     "dataApi" => $dataApi,
                 ]);

@@ -283,10 +283,11 @@ $('.grid-trash').on('click', function() {
                 },
                 success: function (data) {
                     if(data.error == 1){
-                      alertMsg('{{ trans('admin.warning') }}', data.msg, 'error');
+                      alertMsg('error', data.msg, '{{ trans('admin.warning') }}');
                       $.pjax.reload('#pjax-container');
                       return;
                     }else{
+                      alertMsg('success', data.msg);
                       $.pjax.reload('#pjax-container');
                       resolve(data);
                     }
@@ -298,7 +299,7 @@ $('.grid-trash').on('click', function() {
 
   }).then((result) => {
     if (result.value) {
-      alertMsg('{{ trans('admin.confirm_delete_deleted') }}', '{{ trans('admin.confirm_delete_deleted_msg') }}', 'success');
+      alertMsg('success', '{{ trans('admin.confirm_delete_deleted_msg') }}', '{{ trans('admin.confirm_delete_deleted') }}');
     } else if (
       // Read more about handling dismissals
       result.dismiss === Swal.DismissReason.cancel

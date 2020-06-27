@@ -70,4 +70,18 @@
     height: 1px;
     margin-bottom: 40px !important;
   }
+  .pointer {cursor: pointer;}
+  .btn-import{
+    font-weight: bold !important;
+    border-right: 1px solid #e1eae6;
+    border-left: 1px solid #e1eae6;
+    box-shadow: -1px -2px 0px 0px #e1eae6;
+  }
+  .filter-search {
+    border: 1px solid #c5c5c5 !important;
+  }
+  .filter-button{
+    border: 1px solid #c5c5c5 !important;
+    background: #d2d6de;
+  }
 </style>
