@@ -117,22 +117,24 @@
                         </td>
                         <td>
                           @php
-                          $vote = $template['points'];
-                          $vote_times = $template['times'];
-                          $cal_vote = round($plugin['rated']);
+                          $vote = $plugin['points'];
+                          $vote_times = $plugin['times'];
+                          $cal_vote = number_format($plugin['rated'], 1);
                           @endphp
                           <span title="{{ $cal_vote }}" style="color:#e66c16">
                             @for ($i = 1; $i <= $cal_vote; $i++) 
                             <i class="fa fa-star voted" aria-hidden="true"></i>
                             @endfor
-                            @if ($cal_vote * $vote_times == $vote)
-                               <i class="fa fa-star-o" aria-hidden="true"></i>
+                            @if ($cal_vote == round($cal_vote))
+                              @for ($k = 1; $k <= (5-$cal_vote); $k++) 
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                              @endfor
                             @else
                                <i class="fa fa-star-half-o voted" aria-hidden="true"></i>
+                               @for ($k = 1; $k <= (5-$cal_vote); $k++) 
+                               <i class="fa fa-star-o" aria-hidden="true"></i>
+                               @endfor
                             @endif
-                            @for ($k = 1; $k < (5-$cal_vote); $k++) 
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            @endfor
                          </span>
                          <span class="sum_vote">
                           ({{ $vote }}/{{ $vote_times }})
