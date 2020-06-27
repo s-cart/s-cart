@@ -185,7 +185,6 @@ class ShopAccount extends GeneralController
     {
         $statusOrder = ShopOrderStatus::getListStatus();
         $statusShipping = ShopShippingStatus::getListStatus();
-        $countryMap = ShopCountry::mapValue();
         $attributesGroup = ShopAttributeGroup::pluck('name', 'id')->all();
         $order = ShopOrder::where('id', $id) ->where('user_id', auth()->user()->id)->first();
         if($order) {

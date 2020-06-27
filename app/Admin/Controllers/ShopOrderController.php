@@ -34,14 +34,10 @@ class ShopOrderController extends Controller
     public function __construct()
     {
         $this->statusOrder = ShopOrderStatus::getListStatus();
-        $this->statusOrderMap = ShopOrderStatus::mapValue();
         $this->currency = ShopCurrency::getList();
         $this->country = ShopCountry::getArray();
-        $this->countryMap = ShopCountry::mapValue();
         $this->statusPayment = ShopPaymentStatus::getListStatus();
         $this->statusShipping = ShopShippingStatus::getListStatus();
-        $this->statusShippingMap = ShopShippingStatus::mapValue();
-        $this->statusPaymentMap = ShopPaymentStatus::mapValue();
 
     }
 
@@ -363,14 +359,11 @@ class ShopOrderController extends Controller
                 "statusOrder" => $this->statusOrder,
                 "statusPayment" => $this->statusPayment,
                 "statusShipping" => $this->statusShipping,
-                "statusOrderMap" => $this->statusOrderMap,
-                "statusShippingMap" => $this->statusShippingMap,
-                "statusPaymentMap" => $this->statusPaymentMap,
                 'dataTotal' => ShopOrderTotal::getTotal($id),
                 'attributesGroup' => ShopAttributeGroup::pluck('name', 'id')->all(),
                 'paymentMethod' => $paymentMethod,
                 'shippingMethod' => $shippingMethod,
-                'countryMap' => $this->countryMap,
+                'country' => $this->country,
             ]);
     }
 
