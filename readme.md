@@ -163,6 +163,6 @@ DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
 - Font-end : http://demo.s-cart.org
 - Back-end: http://demo.s-cart.org/sc_admin   <code>User/pass: test/123456</code>
 
-## 
+## Donate me
 
 VPS SSD $5/mo, gets $50 in credit over 30 days. [DigitalOcean](https://m.do.co/c/450877e92a78).
