@@ -117,9 +117,9 @@
                         </td>
                         <td>
                           @php
-                          $vote = $plugin['points'];
-                          $vote_times = $plugin['times'];
-                          $cal_vote = number_format($plugin['rated'], 1);
+                          $vote = $template['points'];
+                          $vote_times = $template['times'];
+                          $cal_vote = number_format($template['rated'], 1);
                           @endphp
                           <span title="{{ $cal_vote }}" style="color:#e66c16">
                             @for ($i = 1; $i <= $cal_vote; $i++) 
