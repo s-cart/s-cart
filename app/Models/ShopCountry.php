@@ -27,4 +27,14 @@ class ShopCountry extends Model
         }
         return Cache::get('cache_country');
     }
+
+    public static function mapValue()
+    {
+        $listCountry = self::getArray();
+        $new_arr     = [];
+        foreach ($listCountry as $key => $value) {
+            $new_arr[] = ['value' => $key, 'text' => $value];
+        }
+        return $new_arr;
+    }
 }
