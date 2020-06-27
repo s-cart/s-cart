@@ -68,6 +68,7 @@ class AdminTemplateOnlineController extends Controller
                     'username' =>  $data['username'] ?? '',
                     'times' =>  $data['times'] ?? 0,
                     'points' =>  $data['points'] ?? 0,
+                    'rated' =>  $data['rated'] ?? 0,
                     'date' =>  $data['date'] ?? '',
                     'link' =>  $data['link'] ?? '',
                 ];

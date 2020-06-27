@@ -119,7 +119,7 @@
                           @php
                           $vote = $template['points'];
                           $vote_times = $template['times'];
-                          $cal_vote = $vote_times?round($vote/$vote_times,1):0;
+                          $cal_vote = round($plugin['rated']);
                           @endphp
                           <span title="{{ $cal_vote }}" style="color:#e66c16">
                             @for ($i = 1; $i <= $cal_vote; $i++) 
