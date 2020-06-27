@@ -37,8 +37,8 @@
                 <input name="only_version" data-name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}>
                 {{ trans('plugin.libraries.only_version') }}
               </label>    
-              <input class="input-sm" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
-              <button style="border:1px solid #3c8dbc" class="btn btn-flat btn-sm"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
+              <input class="input-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
+              <button title="Filter" class="btn btn-flat btn-sm filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
             </li>
           </ul>
           <a class="link-filter" href=""></a>
