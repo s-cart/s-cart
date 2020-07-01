@@ -162,7 +162,7 @@ class ShopCurrencyController extends Controller
             'thousands' => 'required',
             'sort' => 'numeric|min:0',
             'name' => 'required|string|max:100',
-            'code' => 'required|unique:'.SC_DB_PREFIX.'shop_currency,code',
+            'code' => 'required|unique:"'.ShopCurrency::class.'",code',
         ]);
 
         if ($validator->fails()) {
@@ -225,7 +225,7 @@ class ShopCurrencyController extends Controller
             'thousands' => 'required',
             'sort' => 'numeric|min:0',
             'name' => 'required|string|max:100',
-            'code' => 'required|unique:'.SC_DB_PREFIX.'shop_currency,code,' . $currency->id . ',id',
+            'code' => 'required|unique:"'.ShopCurrency::class.'",code,' . $currency->id . ',id',
         ]);
 
         if ($validator->fails()) {

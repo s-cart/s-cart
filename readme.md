@@ -165,4 +165,4 @@ DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
 
 ## 
 
-VPS SSD $5/mo, gets $50 in credit over 30 days. [DigitalOcean](https://m.do.co/c/450877e92a78).
+VPS SSD $5/mo, gets $100 in credit over 60 days. [DigitalOcean](https://m.do.co/c/84e350ce07c4).

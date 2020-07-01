@@ -30,7 +30,7 @@ trait AuthTrait
         }
         if (!empty($data['email'])) {
             $dataUpdate['email'] = $data['email'];
-            $validate['email'] = 'required|string|email|max:255|unique:' . (new ShopUser)->getTable() . ',email, '.$data['id'].',id';
+            $validate['email'] = 'required|string|email|max:255|unique:"'.ShopUser::class.'",email, '.$data['id'].',id';
         }
         //Dont update id
         unset($data['id']);
@@ -123,7 +123,7 @@ trait AuthTrait
         $dataInsert = $this->mappDataInsert($data);
         $validate = [
             'reg_first_name' => 'required|string|max:100',
-            'reg_email' => 'required|string|email|max:255|unique:' . (new ShopUser)->getTable() . ',email',
+            'reg_email' => 'required|string|email|max:255|unique:"'.ShopUser::class.'",email',
             'reg_password' => 'required|string|min:6',
         ];
         if(sc_config('customer_lastname')) {

@@ -168,10 +168,10 @@ class UsersController extends Controller
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
             'name' => 'required|string|max:100',
-            'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:'.SC_DB_PREFIX.'admin_user,username|string|max:100|min:3',
+            'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:"'.AdminUser::class.'",username|string|max:100|min:3',
             'avatar' => 'nullable|string|max:255',
             'password' => 'required|string|max:60|min:6|confirmed',
-            'email' => 'required|string|email|max:255|unique:'.SC_DB_PREFIX.'admin_user,email',
+            'email' => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email',
         ], [
             'username.regex' => trans('user.username_validate'),
         ]);
@@ -240,10 +240,10 @@ class UsersController extends Controller
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
             'name' => 'required|string|max:100',
-            'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:'.SC_DB_PREFIX.'admin_user,username,' . $user->id . '|string|max:100|min:3',
+            'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:"'.AdminUser::class.'",username,' . $user->id . '|string|max:100|min:3',
             'avatar' => 'nullable|string|max:255',
             'password' => 'nullable|string|max:60|min:6|confirmed',
-            'email' => 'required|string|email|max:255|unique:'.SC_DB_PREFIX.'admin_user,email,' . $user->id,
+            'email' => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email,' . $user->id,
         ], [
             'username.regex' => trans('user.username_validate'),
         ]);

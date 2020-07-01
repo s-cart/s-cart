@@ -172,7 +172,7 @@ JS;
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
             'description' => 'string|required',
-            'apiconnection' => 'string|required|regex:/(^([0-9a-z]+)$)/|unique:'.SC_DB_PREFIX.'api_connection,apiconnection',
+            'apiconnection' => 'string|required|regex:/(^([0-9a-z]+)$)/|unique:"'.ShopApiConnection::class.'",apiconnection',
             'apikey' => 'string|regex:/(^([0-9a-z]+)$)/',
         ], [
             'apiconnection.regex' => trans('api_connection.validate_regex'),
@@ -229,7 +229,7 @@ JS;
         $obj = ShopApiConnection::find($id);
         $validator = Validator::make($dataOrigin, [
             'description' => 'string|required',
-            'apiconnection' => 'string|required|regex:/(^([0-9a-z]+)$)/|unique:'.SC_DB_PREFIX.'api_connection,apiconnection,' . $obj->id . ',id',
+            'apiconnection' => 'string|required|regex:/(^([0-9a-z]+)$)/|unique:"'.ShopApiConnection::class.'",apiconnection,' . $obj->id . ',id',
             'apikey' => 'string|regex:/(^([0-9a-z]+)$)/',
         ],[
             'apiconnection.regex' => trans('api_connection.validate_regex'),

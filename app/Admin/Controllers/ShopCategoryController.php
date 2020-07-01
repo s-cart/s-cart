@@ -63,7 +63,7 @@ class ShopCategoryController extends Controller
             ->leftJoin(SC_DB_PREFIX.'shop_category_description', SC_DB_PREFIX.'shop_category_description.category_id', SC_DB_PREFIX.'shop_category.id')
             ->where(SC_DB_PREFIX.'shop_category_description.lang', sc_get_locale());
         if ($keyword) {
-            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR '.SC_DB_PREFIX.'shop_category_description.title like "%' . $keyword . '%" )');
+            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR "'.ShopCategory::class.'"_description.title like "%' . $keyword . '%" )');
         }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
@@ -174,7 +174,7 @@ class ShopCategoryController extends Controller
             'image' => 'required',
             'parent' => 'required',
             'sort' => 'numeric|min:0',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_category,alias|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias|string|max:100',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
@@ -255,7 +255,7 @@ class ShopCategoryController extends Controller
             'image' => 'required',
             'parent' => 'required',
             'sort' => 'numeric|min:0',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_category,alias,' . $category->id . ',id|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias,' . $category->id . ',id|string|max:100',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',

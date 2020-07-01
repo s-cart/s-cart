@@ -61,7 +61,7 @@ class ShopNewsController extends Controller
             ->leftJoin(SC_DB_PREFIX.'shop_news_description', SC_DB_PREFIX.'shop_news_description.shop_news_id', SC_DB_PREFIX.'shop_news.id')
             ->where(SC_DB_PREFIX.'shop_news_description.lang', sc_get_locale());
         if ($keyword) {
-            $obj = $obj->whereRaw('('.SC_DB_PREFIX.'shop_news_description.title like "%' . $keyword . '%" )');
+            $obj = $obj->whereRaw('("'.ShopNews::class.'"_description.title like "%' . $keyword . '%" )');
         }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
@@ -169,7 +169,7 @@ class ShopNewsController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_news,alias|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopNews::class.'",alias|string|max:100',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
@@ -248,7 +248,7 @@ class ShopNewsController extends Controller
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_news,alias,' . $shopNews->id . ',id|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopNews::class.'",alias,' . $shopNews->id . ',id|string|max:100',
         ], [
             'alias.regex' => trans('news.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('news.title')]),
