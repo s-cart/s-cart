@@ -150,7 +150,7 @@ class ShopSubscribeController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'email' => 'required|email|unique:'.SC_DB_PREFIX.'shop_subscribe,email',
+            'email' => 'required|email|unique:"'.ShopSubscribe::class.'",email',
         ]);
 
         if ($validator->fails()) {
@@ -199,7 +199,7 @@ class ShopSubscribeController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'email' => 'required|email|unique:'.SC_DB_PREFIX.'shop_subscribe,email,' . $subscribe->id . ',id',
+            'email' => 'required|email|unique:"'.ShopSubscribe::class.'",email,' . $subscribe->id . ',id',
         ]);
 
         if ($validator->fails()) {

@@ -154,7 +154,7 @@ class ShopLanguageController extends Controller
             'icon' => 'required',
             'sort' => 'numeric|min:0',
             'name' => 'required|string|max:100',
-            'code' => 'required|unique:'.SC_DB_PREFIX.'shop_language,code',
+            'code' => 'required|unique:"'.ShopLanguage::class.'",code',
         ]);
 
         if ($validator->fails()) {
@@ -210,7 +210,7 @@ class ShopLanguageController extends Controller
             'icon' => 'required',
             'name' => 'required',
             'sort' => 'numeric|min:0',
-            'code' => 'required|unique:'.SC_DB_PREFIX.'shop_language,code,' . $language->id . ',id',
+            'code' => 'required|unique:"'.ShopLanguage::class.'",code,' . $language->id . ',id',
         ]);
 
         if ($validator->fails()) {
