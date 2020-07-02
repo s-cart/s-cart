@@ -86,6 +86,8 @@ return [
         'add_product_promotion'   => 'Add promotion price',
         'choose_image'            => 'Choose',
         'add_price_place'         => 'Add price',
+        'setting_info'            => 'Setting product',
+        'config_info'             => 'Config info product',
 
         'sort_order'              => [
             'id_asc'     => 'ID asc',

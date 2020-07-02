@@ -3,7 +3,6 @@
 @section('main')
 
 <div class="row">
-
   <div class="col-md-6">
 
     <div class="box box-primary">
@@ -77,41 +76,44 @@
 
 
 
+@if (!empty($configs['config']))
+<div class="col-md-6">
 
-  <div class="col-md-6">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{ trans('setting.admin.setting_shop') }}</h3>
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('setting.admin.setting_shop') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-       <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('setting.admin.field') }}</th>
-             <th>{{ trans('setting.admin.value') }}</th>
-           </tr>
-         </thead>
-         <tbody>
-           @foreach ($configs['config'] as $config)
-             <tr>
-               <td>{{ sc_language_render($config->detail) }}</td>
-               <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
-             </tr>
-           @endforeach
-         </tbody>
-       </table>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
     </div>
-  </div>
 
+    <div class="box-body table-responsive no-padding box-primary">
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th>{{ trans('setting.admin.field') }}</th>
+           <th>{{ trans('setting.admin.value') }}</th>
+         </tr>
+       </thead>
+       <tbody>
+         @foreach ($configs['config'] as $config)
+           <tr>
+             <td>{{ sc_language_render($config->detail) }}</td>
+             <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+           </tr>
+         @endforeach
+       </tbody>
+     </table>
+    </div>
+  </div>
+</div>
+@endif
+
+
+@if (!empty($configs['display']))
   <div class="col-md-6">
 
     <div class="box box-primary">
@@ -145,6 +147,8 @@
       </div>
     </div>
   </div>
+@endif
+
 </div>
 
 @endsection
