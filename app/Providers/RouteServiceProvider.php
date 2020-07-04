@@ -36,9 +36,9 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
         if(!file_exists(public_path('install.php'))) {
             $this->mapPluginsRoutes();
+            $this->mapFrontRoutes();
+            $this->mapWebRoutes();
         }
-        $this->mapFrontRoutes();
-        $this->mapWebRoutes();
     }
 
     /**
