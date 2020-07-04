@@ -476,7 +476,7 @@ class ShopCart extends GeneralController
             return redirect()->route('cart');
         }
         $instance = request('instance') ?? 'default';
-        $cart = \Cart::instance($instance);
+        $cart = Cart::instance($instance);
 
         $id = request('id');
         $product = (new ShopProduct)->getDetail($id);
@@ -549,7 +549,7 @@ class ShopCart extends GeneralController
                 break;
         }
 
-        $carts = \Cart::getListCart($instance);
+        $carts = Cart::getListCart($instance);
 
         return response()->json(
             [

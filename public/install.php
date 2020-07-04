@@ -1,6 +1,5 @@
 <?php
 /**
- * This file auto install s-cart, using for S-cart from version 2.1.1
  * @author Naruto <lanhktc@gmail.com>
  */
 
@@ -51,7 +50,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             fwrite($env, $getEnv);
             fclose($env);
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             echo json_encode(['error' => 1, 'msg' => $e->getMessage()]);
             exit();
         }
@@ -72,12 +71,12 @@ if (request()->method() == 'POST' && request()->ajax()) {
     case 'step2-1':
         session(['infoInstall'=> request('infoInstall')]);
         //Drop table migrations if exist
-        if(!empty(session('infoInstall')['dropdb'])) {
-            \Schema::dropIfExists('migrations');
-        }
         try {
+            if(!empty(session('infoInstall')['dropdb'])) {
+                \Schema::dropIfExists('migrations');
+            }
             Artisan::call('migrate --path=/database/migrations/2020_00_00_step1_create_tables_admin.php');
-        } catch(\Exception $e) {
+        } catch(\Throwable $e) {
             echo json_encode([
                 'error' => '1',
                 'msg' => $e->getMessage(),
@@ -95,7 +94,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             session(['infoInstall'=> request('infoInstall')]);
             try {
                 Artisan::call('migrate --path=/database/migrations/2020_00_00_step2_create_tables_shop.php');
-            } catch(\Exception $e) {
+            } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
                     'msg' => $e->getMessage(),
@@ -113,7 +112,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             session(['infoInstall'=> request('infoInstall')]);
             try {
                 Artisan::call('db:seed --class=DataAdminSeeder');
-            } catch(\Exception $e) {
+            } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
                     'msg' => $e->getMessage(),
@@ -131,7 +130,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 session(['infoInstall'=> request('infoInstall')]);
                 try {
                     Artisan::call('db:seed --class=DataShopSeeder');
-                } catch(\Exception $e) {
+                } catch(\Throwable $e) {
                     echo json_encode([
                         'error' => '1',
                         'msg' => $e->getMessage(),
@@ -150,7 +149,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                     try {
                         Artisan::call('db:seed --class=DataProductSeeder');
                         Artisan::call('passport:install');
-                    } catch(\Exception $e) {
+                    } catch(\Throwable $e) {
                         echo json_encode([
                             'error' => '1',
                             'msg' => $e->getMessage(),
@@ -168,7 +167,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
     case 'step3':
         try {
             rename(base_path() . '/public/install.php', base_path() . '/public/install.scart');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             echo json_encode([
                 'error' => '1',
                 'msg' => trans('install.rename_error'),

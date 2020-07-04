@@ -79,6 +79,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 61, 'parent_id' => 2, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
             ['id' => 62, 'parent_id' => 2, 'sort' => 5, 'title' => 'lang::weight.admin.title', 'icon' => 'fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
             ['id' => 63, 'parent_id' => 2, 'sort' => 6, 'title' => 'lang::length.admin.title', 'icon' => 'fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
+            ['id' => 64, 'parent_id' => 1, 'sort' => 100, 'title' => 'lang::order.admin.config_title', 'icon' => 'fa fa-cog', 'uri' => 'admin::order_config', 'key' => null, 'type' => 0],
             
 
         ]
@@ -88,7 +89,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '1', 'name' => 'Admin manager', 'slug' => 'admin.manager', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'/user,GET::'.SC_ADMIN_PREFIX.'/role,GET::'.SC_ADMIN_PREFIX.'/permission,ANY::'.SC_ADMIN_PREFIX.'/log/*,ANY::'.SC_ADMIN_PREFIX.'/menu/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '3', 'name' => 'Auth manager', 'slug' => 'auth.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/auth/*', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '4', 'name' => 'Setting manager', 'slug' => 'setting.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/setting/*,ANY::'.SC_ADMIN_PREFIX.'/url_config/*,ANY::'.SC_ADMIN_PREFIX.'/product_config/*,ANY::'.SC_ADMIN_PREFIX.'/customer_config/*,ANY::'.SC_ADMIN_PREFIX.'/cache_config/*,ANY::'.SC_ADMIN_PREFIX.'/email/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/language/*,ANY::'.SC_ADMIN_PREFIX.'/currency/*,ANY::'.SC_ADMIN_PREFIX.'/backup/*,ANY::'.SC_ADMIN_PREFIX.'/api_connection/*,ANY::'.SC_ADMIN_PREFIX.'/maintain/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*','created_at' => date('Y-m-d H:i:s')],
+            ['id' => '4', 'name' => 'Setting manager', 'slug' => 'setting.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/setting/*,ANY::'.SC_ADMIN_PREFIX.'/url_config/*,ANY::'.SC_ADMIN_PREFIX.'/product_config/*,ANY::'.SC_ADMIN_PREFIX.'/order_config/*,ANY::'.SC_ADMIN_PREFIX.'/customer_config/*,ANY::'.SC_ADMIN_PREFIX.'/cache_config/*,ANY::'.SC_ADMIN_PREFIX.'/email/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/language/*,ANY::'.SC_ADMIN_PREFIX.'/currency/*,ANY::'.SC_ADMIN_PREFIX.'/backup/*,ANY::'.SC_ADMIN_PREFIX.'/api_connection/*,ANY::'.SC_ADMIN_PREFIX.'/maintain/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '5', 'name' => 'Upload management', 'slug' => 'upload.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/uploads/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Plugin manager', 'slug' => 'plugin.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/plugin/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '8', 'name' => 'CMS manager', 'slug' => 'cms.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/page/*,ANY::'.SC_ADMIN_PREFIX.'/banner/*,ANY::'.SC_ADMIN_PREFIX.'/cms_category/*,ANY::'.SC_ADMIN_PREFIX.'/cms_content/*,ANY::'.SC_ADMIN_PREFIX.'/news/*', 'created_at' => date('Y-m-d H:i:s')],
@@ -183,11 +184,11 @@ class DataAdminSeeder extends Seeder
             $this->language_default = session('infoInstall')['language_default'];
         }
         DB::table(SC_DB_PREFIX.'admin_config')->insert([
-            ['group' => '', 'code' => 'config', 'key' => 'shop_allow_guest', 'value' => '1', 'sort' => '11', 'detail' => 'lang::admin.shop_allow_guest', 'store_id' => '1'],
-            ['group' => '', 'code' => 'config', 'key' => 'product_preorder', 'value' => '1', 'sort' => '18', 'detail' => 'lang::admin.product_preorder', 'store_id' => '1'],
-            ['group' => '', 'code' => 'config', 'key' => 'product_display_out_of_stock', 'value' => '1', 'sort' => '19', 'detail' => 'lang::admin.product_display_out_of_stock', 'store_id' => '1'],
-            ['group' => '', 'code' => 'config', 'key' => 'product_buy_out_of_stock', 'value' => '1', 'sort' => '20', 'detail' => 'lang::admin.product_buy_out_of_stock', 'store_id' => '1'],
-            ['group' => '', 'code' => 'config', 'key' => 'show_date_available', 'value' => '1', 'sort' => '21', 'detail' => 'lang::admin.show_date_available', 'store_id' => '1'],
+            ['group' => '', 'code' => 'order_config', 'key' => 'shop_allow_guest', 'value' => '1', 'sort' => '11', 'detail' => 'lang::admin.shop_allow_guest', 'store_id' => '1'],
+            ['group' => '', 'code' => 'order_config', 'key' => 'product_preorder', 'value' => '1', 'sort' => '18', 'detail' => 'lang::admin.product_preorder', 'store_id' => '1'],
+            ['group' => '', 'code' => 'product_setting', 'key' => 'product_display_out_of_stock', 'value' => '1', 'sort' => '19', 'detail' => 'lang::admin.product_display_out_of_stock', 'store_id' => '1'],
+            ['group' => '', 'code' => 'order_config', 'key' => 'product_buy_out_of_stock', 'value' => '1', 'sort' => '20', 'detail' => 'lang::admin.product_buy_out_of_stock', 'store_id' => '1'],
+            ['group' => '', 'code' => 'product_setting', 'key' => 'show_date_available', 'value' => '1', 'sort' => '21', 'detail' => 'lang::admin.show_date_available', 'store_id' => '1'],
             ['group' => '', 'code' => 'display', 'key' => 'product_hot', 'value' => '6', 'sort' => '0', 'detail' => 'lang::admin.hot_product', 'store_id' => '1'],
             ['group' => '', 'code' => 'display', 'key' => 'product_new', 'value' => '6', 'sort' => '0', 'detail' => 'lang::admin.new_product', 'store_id' => '1'],
             ['group' => '', 'code' => 'display', 'key' => 'product_list', 'value' => '18', 'sort' => '0', 'detail' => 'lang::admin.list_product', 'store_id' => '1'],
@@ -271,7 +272,7 @@ class DataAdminSeeder extends Seeder
             ['group' => '', 'code' => 'product', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_weight', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.weight', 'store_id' => '1'],
             ['group' => '', 'code' => 'product', 'key' => 'product_length', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.length', 'store_id' => '1'],
-            ['group' => '', 'code' => 'env', 'key' => 'product_tax', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
+            ['group' => '', 'code' => 'product_setting', 'key' => 'product_tax', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => '1'],
 
             ['group' => '', 'code' => 'customer', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => '1'],
             ['group' => '', 'code' => 'customer', 'key' => 'customer_address1', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address1', 'store_id' => '1'],
