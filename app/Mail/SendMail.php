@@ -96,9 +96,9 @@ class SendMail extends Mailable
             // ->attachData($this->pdf, 'name.pdf', [
             //     'mime' => 'application/pdf',
             // ]);
-            foreach ($this->fileAttachData as $attachment) {
-                if(!empty($attachment['file_path'])) {
-                    $this->attachData($attachment['file_path'], $attachment['file_name'] ?? '');
+            foreach ($this->fileAttachData as $k => $attachment) {
+                if(!empty($attachment['file_data'])) {
+                    $this->attachData($attachment['file_data'], $attachment['file_name'] ?? 'File data '.$k);
                 }
             }
 

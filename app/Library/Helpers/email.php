@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Mail;
 function sc_send_mail($view, array $dataView = [], array $emailConfig = [], array $attach = [])
 {
     if (!empty(sc_config('email_action_mode'))) {
-        try {
-            Mail::send(new SendMail($view, $dataView, $emailConfig, $attach));
-        } catch (\Throwable $e) {
-            sc_report("Sendmail view:" . $view . PHP_EOL . $e->getMessage());
-        }
-
+        Mail::send(new SendMail($view, $dataView, $emailConfig, $attach));
+        // try {
+        //     Mail::send(new SendMail($view, $dataView, $emailConfig, $attach));
+        // } catch (\Throwable $e) {
+        //     sc_report("Sendmail view:" . $view . PHP_EOL . $e->getMessage());
+        // }
     } else {
         return false;
     }
