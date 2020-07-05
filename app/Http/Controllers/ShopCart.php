@@ -803,19 +803,19 @@ class ShopCart extends GeneralController
                 if (sc_config('order_success_to_admin') && $checkContent) {
                     $content = $checkContent->text;
                     $content = preg_replace($dataFind, $dataReplace, $content);
-                    $data_mail = [
+                    $dataView = [
                         'content' => $content,
                     ];
                     $config = [
                         'to' => sc_store('email'),
                         'subject' => trans('order.send_mail.new_title') . '#' . $orderID,
                     ];
-                    sc_send_mail($this->templatePath . '.mail.order_success_to_admin', $data_mail, $config, []);
+                    sc_send_mail($this->templatePath . '.mail.order_success_to_admin', $dataView, $config, []);
                 }
                 if (sc_config('order_success_to_customer') && $checkContentCustomer) {
                     $contentCustomer = $checkContentCustomer->text;
                     $contentCustomer = preg_replace($dataFind, $dataReplace, $contentCustomer);
-                    $data_mail_customer = [
+                    $dataView = [
                         'content' => $contentCustomer,
                     ];
                     $config = [
@@ -823,7 +823,7 @@ class ShopCart extends GeneralController
                         'replyTo' => sc_store('email'),
                         'subject' => trans('order.send_mail.new_title'),
                     ];
-                    sc_send_mail($this->templatePath . '.mail.order_success_to_customer', $data_mail_customer, $config, []);
+                    sc_send_mail($this->templatePath . '.mail.order_success_to_customer', $dataView, $config, []);
                 }
             }
 

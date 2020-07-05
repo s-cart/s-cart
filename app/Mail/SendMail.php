@@ -16,17 +16,19 @@ class SendMail extends Mailable
      * @return void
      */
     public $view;
-    public $data;
+    public $dataView;
     public $config;
     public $fileAttach;
     public $fileAttachData;
-    public function __construct($view, $data = array(), $config = array(), $fileAttach = array(), $fileAttachData = array())
+    public $attachFromStorage;
+    public function __construct($view, $dataView = array(), $config = array(), $attach = array())
     {
         $this->view = $view;
-        $this->data = $data;
+        $this->dataView = $dataView;
         $this->config = $config;
-        $this->fileAttach = $fileAttach;
-        $this->fileAttachData = $fileAttachData;
+        $this->fileAttach = $attach['fileAttach'] ?? [];
+        $this->fileAttachData = $attach['fileAttachData'] ?? [];
+        $this->attachFromStorage = $attach['attachFromStorage'] ?? [];
     }
 
     /**
@@ -50,18 +52,57 @@ class SendMail extends Mailable
         if (!empty($this->config['subject'])) {
             $this->subject($this->config['subject']);
         }
+
         if (!empty($this->fileAttach)) {
-            foreach ($this->fileAttach as $key => $attachment) {
-                $this->attach($attachment);
+            //->attach('/path/to/file');
+
+            // ->attach('/path/to/file', [
+            //     'as' => 'name.pdf',
+            //     'mime' => 'application/pdf',
+            // ]);
+
+            foreach ($this->fileAttach as  $attachment) {
+                if(!empty($attachment['file_path'])) {
+                    if(!empty($attachment['file_name'])) {
+                        $this->attach($attachment['file_path'], [
+                            'as' => $attachment['file_name']
+                        ]);
+                    } else {
+                        $this->attach($attachment['file_path']);
+                    }
+                }
+            }
+
+        }
+
+        if (!empty($this->attachFromStorage)) {
+            //->attachFromStorageDisk('s3', '/path/to/file');
+
+            // ->attachFromStorage('/path/to/file', 'name.pdf', [
+            //     'mime' => 'application/pdf'
+            // ]);
+            foreach ($this->attachFromStorage as  $attachment) {
+                if(!empty($attachment['file_path'])) {
+                    if(!empty($attachment['file_storage'])) {
+                        $this->attachFromStorageDisk($attachment['file_storage'], $attachment['file_path']);
+                    } else {
+                        $this->attachFromStorageDisk($attachment['file_path'], $attachment['file_name'] ?? '');
+                    }
+                }
             }
 
         }
         if (!empty($this->fileAttachData)) {
-            foreach ($this->fileAttachData as $key => $attachmentData) {
-                $this->attachData($attachmentData);
+            // ->attachData($this->pdf, 'name.pdf', [
+            //     'mime' => 'application/pdf',
+            // ]);
+            foreach ($this->fileAttachData as $k => $attachment) {
+                if(!empty($attachment['file_data'])) {
+                    $this->attachData($attachment['file_data'], $attachment['file_name'] ?? 'File data '.$k);
+                }
             }
 
         }
-        return $this->view($this->view)->with($this->data);
+        return $this->view($this->view)->with($this->dataView);
     }
 }
