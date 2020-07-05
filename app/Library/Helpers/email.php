@@ -2,12 +2,22 @@
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 
-function sc_send_mail($view, $data = [], $config = [], $fileAttach = [], $fileAttachData = [])
+/**
+ * Function send mail
+ *
+ * @param   [string]  $view            Path to view
+ * @param   array     $dataView        Content send to view
+ * @param   array     $emailConfig     to, cc, bbc, subject..
+ * @param   array     $attach      Attach file
+ *
+ * @return  mixed
+ */
+function sc_send_mail($view, array $dataView = [], array $emailConfig = [], array $attach = [])
 {
     if (!empty(sc_config('email_action_mode'))) {
         try {
-            Mail::send(new SendMail($view, $data, $config, $fileAttach, $fileAttachData));
-        } catch (\Exception $e) {
+            Mail::send(new SendMail($view, $dataView, $emailConfig, $attach));
+        } catch (\Throwable $e) {
             sc_report("Sendmail view:" . $view . PHP_EOL . $e->getMessage());
         }
 

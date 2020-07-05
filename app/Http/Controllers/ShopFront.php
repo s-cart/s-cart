@@ -552,7 +552,7 @@ class ShopFront extends GeneralController
                     $data['content'],
                 ];
                 $content = preg_replace($dataFind, $dataReplace, $content);
-                $data_email = [
+                $dataView = [
                     'content' => $content,
                 ];
 
@@ -561,7 +561,7 @@ class ShopFront extends GeneralController
                     'replyTo' => $data['email'],
                     'subject' => $data['title'],
                 ];
-                sc_send_mail($this->templatePath . '.mail.contact_to_admin', $data_email, $config, []);
+                sc_send_mail($this->templatePath . '.mail.contact_to_admin', $dataView, $config, []);
             }
         }
 

@@ -78,7 +78,7 @@ class ShopUser extends Authenticatable
                 trans('email.forgot_password.reset_button'),
             ];
             $content = preg_replace($dataFind, $dataReplace, $content);
-            $data = [
+            $dataView = [
                 'content' => $content,
             ];
 
@@ -87,7 +87,7 @@ class ShopUser extends Authenticatable
                 'subject' => trans('email.forgot_password.reset_button'),
             ];
 
-            sc_send_mail('templates.' . sc_store('template') . '.mail.forgot_password', $data, $config, []);
+            sc_send_mail('templates.' . sc_store('template') . '.mail.forgot_password', $dataView, $config, []);
         }
 
     }
