@@ -103,7 +103,7 @@ if (!function_exists('sc_store')) {
     {
         $allStoreInfo = AdminStore::getData() ? AdminStore::getData()->toArray() : [];
         $lang = app()->getLocale();
-        $descriptions = $allStoreInfo['descriptions'];
+        $descriptions = $allStoreInfo['descriptions'] ?? [];
         foreach ($descriptions as $row) {
             if ($lang == $row['lang']) {
                 $allStoreInfo += $row;
@@ -267,17 +267,11 @@ Handle report
 if (!function_exists('sc_report')) {
     function sc_report($msg)
     {
-        $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;
-        try{
+        $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;       
+        if(config('logging.channels.slack.url')) {
             \Log::channel('slack')->error($msg);
-        } catch(\Throwable $e){
-            //
         }
-
-        // $pathLog = storage_path('logs/handle/'.date('Y-m-d').'.txt');
-        // $logFile = fopen($pathLog, "a+") or die("Unable to open file!");
-        // fwrite($logFile, $msg);
-        // fclose($logFile);
+        \Log::channel('handle')->error($msg);
     }
 }
 
