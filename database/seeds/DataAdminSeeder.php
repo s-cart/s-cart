@@ -197,6 +197,7 @@ class DataAdminSeeder extends Seeder
             ['group' => '', 'code' => 'display', 'key' => 'item_list', 'value' => '12', 'sort' => '0', 'detail' => 'lang::admin.item_list', 'store_id' => '1'],
             ['group' => '', 'code' => 'display', 'key' => 'news_list', 'value' => '16', 'sort' => '0', 'detail' => 'lang::admin.news_list', 'store_id' => '1'],
             ['group' => '', 'code' => 'email_action', 'key' => 'email_action_mode', 'value' => '1', 'sort' => '0', 'detail' => 'lang::email.email_action.email_action_mode', 'store_id' => '1'],
+            ['group' => '', 'code' => 'email_action', 'key' => 'email_action_queue', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.email_action_queue', 'store_id' => '1'],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_admin', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.order_success_to_admin', 'store_id' => '1'],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_customer', 'value' => '0', 'sort' => '2', 'detail' => 'lang::email.email_action.order_success_to_cutomer', 'store_id' => '1'],
             ['group' => '', 'code' => 'email_action', 'key' => 'welcome_customer', 'value' => '0', 'sort' => '4', 'detail' => 'lang::email.email_action.welcome_customer', 'store_id' => '1'],
@@ -289,7 +290,7 @@ class DataAdminSeeder extends Seeder
 
         ]);
         DB::table(SC_DB_PREFIX.'admin_store')->insert(
-            ['logo' => '/data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => 'admin-demo@SCart.org', 'time_active' => '', 'address' => '123st - abc - xyz']
+            ['logo' => '/data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => $this->adminEmail, 'time_active' => '', 'address' => '123st - abc - xyz']
         );
 
         DB::table(SC_DB_PREFIX.'admin_store_description')->insert([
