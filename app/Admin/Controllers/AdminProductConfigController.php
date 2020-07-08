@@ -18,10 +18,14 @@ class AdminProductConfigController extends Controller
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
 
-        $obj = (new AdminConfig)
+        $productConfig = (new AdminConfig)
             ->where('code', 'product')
             ->orderBy('sort', 'desc')->get();
-        $data['configs'] = $obj;
+        $productSetting = (new AdminConfig)
+            ->where('code', 'product_setting')
+            ->orderBy('sort', 'desc')->get();
+        $data['configs'] = $productConfig;
+        $data['productSetting'] = $productSetting;
         $data['taxs'] = $taxs;
 
         return view('admin.screen.product_config')

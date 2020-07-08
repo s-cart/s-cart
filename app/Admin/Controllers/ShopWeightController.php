@@ -103,7 +103,7 @@ class ShopWeightController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|unique:'.SC_DB_PREFIX.'shop_weight,name',
+            'name' => 'required|unique:"'.ShopWeight::class.'",name',
             'description' => 'required',
         ], [
             'name.required' => trans('validation.required'),
@@ -156,7 +156,7 @@ class ShopWeightController extends Controller
         $dataOrigin = request()->all();
         $obj = ShopWeight::find($id);
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|unique:'.SC_DB_PREFIX.'shop_weight,name,' . $obj->id . ',id',
+            'name' => 'required|unique:"'.ShopWeight::class.'",name,' . $obj->id . ',id',
             'description' => 'required',
         ], [
             'name.required' => trans('validation.required'),

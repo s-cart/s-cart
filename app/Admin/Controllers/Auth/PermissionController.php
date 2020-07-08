@@ -175,8 +175,8 @@ class PermissionController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|string|max:50|unique:'.SC_DB_PREFIX.'admin_permission,name',
-            'slug' => 'required|regex:/(^([0-9A-Za-z\._\-]+)$)/|unique:'.SC_DB_PREFIX.'admin_permission,slug|string|max:50|min:3',
+            'name' => 'required|string|max:50|unique:"'.AdminPermission::class.'",name',
+            'slug' => 'required|regex:/(^([0-9A-Za-z\._\-]+)$)/|unique:"'.AdminPermission::class.'",slug|string|max:50|min:3',
         ], [
             'slug.regex' => trans('permission.slug_validate'),
         ]);
@@ -230,8 +230,8 @@ class PermissionController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|string|max:50|unique:'.SC_DB_PREFIX.'admin_permission,name,' . $permission->id . '',
-            'slug' => 'required|regex:/(^([0-9A-Za-z\._\-]+)$)/|unique:'.SC_DB_PREFIX.'admin_permission,slug,' . $permission->id . '|string|max:50|min:3',
+            'name' => 'required|string|max:50|unique:"'.AdminPermission::class.'",name,' . $permission->id . '',
+            'slug' => 'required|regex:/(^([0-9A-Za-z\._\-]+)$)/|unique:"'.AdminPermission::class.'",slug,' . $permission->id . '|string|max:50|min:3',
         ], [
             'slug.regex' => trans('permission.slug_validate'),
         ]);

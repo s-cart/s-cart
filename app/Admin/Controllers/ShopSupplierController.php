@@ -162,7 +162,7 @@ class ShopSupplierController extends Controller
             'image' => 'required',
             'sort' => 'numeric|min:0',
             'name' => 'required|string|max:100',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_supplier,alias|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopSupplier::class.'",alias|string|max:100',
             'url' => 'url|nullable',
             'email' => 'email|nullable',
         ],[
@@ -229,7 +229,7 @@ class ShopSupplierController extends Controller
             'image' => 'required',
             'sort' => 'numeric|min:0',
             'name' => 'required|string|max:100',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:'.SC_DB_PREFIX.'shop_supplier,alias,' . $supplier->id . ',id|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopSupplier::class.'",alias,' . $supplier->id . ',id|string|max:100',
             'url' => 'url|nullable',
             'email' => 'email|nullable',
         ],[

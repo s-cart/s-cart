@@ -162,7 +162,7 @@ class AdminController extends Controller
     {
         $data = request()->all();
         $validator = Validator::make($data, [
-            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:'.SC_DB_PREFIX.'shop_discount,code|string|max:50',
+            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code|string|max:50',
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
             'type' => 'required',
@@ -220,7 +220,7 @@ class AdminController extends Controller
         $discount = PluginModel::find($id);
         $data = request()->all();
         $validator = Validator::make($data, [
-            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:'.SC_DB_PREFIX.'shop_discount,code,' . $discount->id . ',id|string|max:50',
+            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code,' . $discount->id . ',id|string|max:50',
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
             'type' => 'required',

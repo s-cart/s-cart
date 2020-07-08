@@ -129,7 +129,7 @@ class AuthController extends GeneralController
                         $dataMap['country'],
                     ];
                     $content = preg_replace($dataFind, $dataReplace, $content);
-                    $data_mail = [
+                    $dataView = [
                         'content' => $content,
                     ];
 
@@ -138,12 +138,10 @@ class AuthController extends GeneralController
                         'subject' => trans('email.welcome_customer.title'),
                     ];
 
-                    sc_send_mail($this->templatePath . '.mail.welcome_customer', $data_mail, $config, []);
+                    sc_send_mail($this->templatePath . '.mail.welcome_customer', $dataView, $config, []);
                 }
 
             }
-        } else {
-
         }
         return $user;
     }

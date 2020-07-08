@@ -8,7 +8,7 @@
 
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.config_info') }}</h3>
+        <h3 class="box-title">{{ trans('order.admin.config_info') }}</h3>
       </div>
 
       <div class="box-body table-responsive no-padding box-primary">
@@ -31,43 +31,6 @@
       </div>
     </div>
   </div>
-
-  <div class="col-md-6">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.setting_info') }}</h3>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-       <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('setting.admin.field') }}</th>
-             <th>{{ trans('setting.admin.value') }}</th>
-           </tr>
-         </thead>
-         <tbody>
-           @foreach ($productSetting as $config)
-           @if ($config->key == 'product_tax')
-           <tr>
-            <td>{{ trans('product.config_manager.tax') }}</td>
-            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title=""></a></td>
-          </tr>
-           @else
-           <tr>
-            <td>{{ sc_language_render($config->detail) }}</td>
-            <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
-          </tr>
-           @endif
-
-           @endforeach
-         </tbody>
-       </table>
-      </div>
-    </div>
-  </div>
-
 
 
 </div>

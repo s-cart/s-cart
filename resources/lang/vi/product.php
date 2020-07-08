@@ -84,6 +84,8 @@ return [
         'add_product_promotion'   => 'Thêm giá khuyến mãi',
         'choose_image'            => 'Chọn hình',
         'add_price_place'         => 'Thêm tiền',
+        'setting_info'            => 'Thiết lập sản phẩm',
+        'config_info'             => 'Cấu hình thông tin',
 
         'sort_order'              => [
             'id_asc'     => 'ID asc',

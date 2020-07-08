@@ -16,15 +16,13 @@ class ScartServiceProvider extends ServiceProvider
         foreach (glob(app_path() . '/Library/Helpers/*.php') as $filename) {
             require_once $filename;
         }
-        if(!file_exists(public_path('install.php'))) {
-            foreach (glob(app_path() . '/Plugins/*/*/Provider.php') as $filename) {
-                require_once $filename;
-            }
-            if(sc_config()) {
-                $this->bootScart();
-            }
-        }
 
+        foreach (glob(app_path() . '/Plugins/*/*/Provider.php') as $filename) {
+            require_once $filename;
+        }
+        if(sc_config()) {
+            $this->bootScart();
+        }
     }
 
     /**
@@ -51,7 +49,7 @@ class ScartServiceProvider extends ServiceProvider
 
             //Config for  email
             $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
-            config(['mail.driver' => $smtpMode]);
+            config(['mail.default' => $smtpMode]);
             if ($smtpMode == 'smtp') {
                 if(sc_config('smtp_load_config') == 'database') {
                     $smtpHost = sc_config('smtp_host');
@@ -59,11 +57,11 @@ class ScartServiceProvider extends ServiceProvider
                     $smtpSecurity = sc_config('smtp_security');
                     $smtpUser = sc_config('smtp_user');
                     $smtpPassword = sc_config('smtp_password');
-                    config(['mail.host' => $smtpHost]);
-                    config(['mail.port' => $smtpPort]);
-                    config(['mail.encryption' => $smtpSecurity]);
-                    config(['mail.username' => $smtpUser]);
-                    config(['mail.password' => $smtpPassword]);
+                    config(['mail.mailers.smtp.host' => $smtpHost]);
+                    config(['mail.mailers.smtp.port' => $smtpPort]);
+                    config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
+                    config(['mail.mailers.smtp.username' => $smtpUser]);
+                    config(['mail.mailers.smtp.password' => $smtpPassword]);
                 }
             }
 

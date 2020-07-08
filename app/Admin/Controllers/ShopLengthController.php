@@ -103,7 +103,7 @@ class ShopLengthController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|unique:'.SC_DB_PREFIX.'shop_length,name',
+            'name' => 'required|unique:"'.ShopLength::class.'",name',
             'description' => 'required',
         ], [
             'name.required' => trans('validation.required'),
@@ -156,7 +156,7 @@ class ShopLengthController extends Controller
         $dataOrigin = request()->all();
         $obj = ShopLength::find($id);
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|unique:'.SC_DB_PREFIX.'shop_length,name,' . $obj->id . ',id',
+            'name' => 'required|unique:"'.ShopLength::class.'",name,' . $obj->id . ',id',
             'description' => 'required',
         ], [
             'name.required' => trans('validation.required'),

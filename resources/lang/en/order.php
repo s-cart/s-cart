@@ -78,6 +78,7 @@ return [
     ],
     'admin'                 => [
         'title'                => 'Order manager',
+        'config_title'         => 'Config info order',
         'create_success'       => 'Create new order success!',
         'list'                 => 'Order list',
         'id'                   => 'ID',
@@ -102,6 +103,7 @@ return [
         'add_new_des'          => 'Create a new order',
         'export_batch'         => 'Export',
         'update_success'         => 'Update success!',
+        'config_info'         => 'Config order',
         'export_batch_group'   => [
             'all'          => 'All',
             'current_page' => 'Current page',

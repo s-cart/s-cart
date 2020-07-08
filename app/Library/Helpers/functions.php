@@ -270,7 +270,7 @@ if (!function_exists('sc_report')) {
         $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;
         try{
             \Log::channel('slack')->error($msg);
-        }catch(\Exception $e){
+        } catch(\Throwable $e){
             //
         }
 
