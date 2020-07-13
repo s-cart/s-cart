@@ -25,6 +25,7 @@ class AdminMenuController extends Controller
             'urlDeleteItem' => route('admin_menu.delete'),
             'title_form' => '<i class="fa fa-floppy-o" aria-hidden="true"></i> ' . trans('menu.admin.create'),
         ];
+        $data['layout'] = 'index';
         return view('admin.screen.list_menu')
             ->with($data);
     }
@@ -94,6 +95,7 @@ class AdminMenuController extends Controller
         ];
         $data['urlDeleteItem'] = route('admin_menu.delete');
         $data['id'] = $id;
+        $data['layout'] = 'edit';
         return view('admin.screen.list_menu')
             ->with($data);
     }

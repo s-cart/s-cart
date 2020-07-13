@@ -15,8 +15,7 @@
           <div class="btn-group">
             <a class="btn btn-warning btn-flat btn-sm menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
           </div>
-      </h3>
-
+        </h3>
       </div>
 
       <div class="box-body table-responsive box-primary">
@@ -137,15 +136,19 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{!! $title_form !!}</h3>
-
-      </div>
-
-
+    <div class="box box-primary">   
+              <div class="box-header with-border">
+                <h3 class="box-title">{!! $title_form !!}</h3>
+                @if ($layout == 'edit')
+                <div class="box-tools">
+                    <div class="btn-group pull-right" style="margin-right: 5px">
+                        <a href="{{ route('admin_menu.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                    </div>
+                </div>
+                @endif
+              </div>
+   
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
-
 
                     <div class="box-body">
                         <div class="fields-group">
@@ -223,17 +226,17 @@
                                 </div>
                             </div>
 
-{{-- select permission --}}
+{{-- select role --}}
                             <div class="form-group  {{ $errors->has('roles') ? ' has-error' : '' }}">
-        @php
-        $listRoles = [];
-        $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
-            if(is_array($old_roles)){
-                foreach($old_roles as $value){
-                    $listRoles[] = (int)$value;
-                }
-            }
-        @endphp
+                              @php
+                              $listRoles = [];
+                              $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
+                                  if(is_array($old_roles)){
+                                      foreach($old_roles as $value){
+                                          $listRoles[] = (int)$value;
+                                      }
+                                  }
+                              @endphp
                                 <label for="roles" class="col-sm-2 col-form-label">{{ trans('menu.admin.roles') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm roles select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="roles[]" >
@@ -249,20 +252,20 @@
                                         @endif
                                 </div>
                             </div>
-{{-- //select permission --}}
+{{-- //select role --}}
 
 
 {{-- select permission --}}
                             <div class="form-group  {{ $errors->has('permissions') ? ' has-error' : '' }}">
-        @php
-        $listPermission = [];
-        $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
-            if(is_array($old_permission)){
-                foreach($old_permission as $value){
-                    $listPermission[] = (int)$value;
-                }
-            }
-        @endphp
+                              @php
+                              $listPermission = [];
+                              $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
+                                  if(is_array($old_permission)){
+                                      foreach($old_permission as $value){
+                                          $listPermission[] = (int)$value;
+                                      }
+                                  }
+                              @endphp
                                 <label for="permissions" class="col-sm-2 col-form-label">{{ trans('menu.admin.permissions') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm permissions select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permissions[]" >
