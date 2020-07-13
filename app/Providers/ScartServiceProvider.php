@@ -27,8 +27,11 @@ class ScartServiceProvider extends ServiceProvider
         foreach (glob(app_path() . '/Plugins/*/*/Provider.php') as $filename) {
             require_once $filename;
         }
-        
-        $this->bootScart();
+
+        if(!file_exists(public_path('install.php'))) {
+            $this->bootScart();
+        }
+
     }
 
     /**
@@ -43,9 +46,7 @@ class ScartServiceProvider extends ServiceProvider
         }
         $this->app->bind('cart', 'App\Library\ShoppingCart\Cart');
         
-        if(!file_exists(public_path('install.php'))) {
-            $this->registerRouteMiddleware();
-        }
+        $this->registerRouteMiddleware();
     }
 
     public function bootScart()
