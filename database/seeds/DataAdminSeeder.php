@@ -26,10 +26,10 @@ class DataAdminSeeder extends Seeder
             ['id' => 3, 'parent_id' => 6, 'sort' => 13, 'title' => 'lang::admin.menu_titles.customer_manager', 'icon' => 'fa-group', 'uri' => '', 'key' => 'CUSTOMER_MANAGER', 'type' => 0],
             ['id' => 4, 'parent_id' => 8, 'sort' => 201, 'title' => 'lang::admin.menu_titles.template_layout', 'icon' => 'fa-object-ungroup', 'uri' => '', 'key' => 'TEMPLATE', 'type' => 0],
             ['id' => 5, 'parent_id' => 9, 'sort' => 301, 'title' => 'lang::admin.menu_titles.config_manager', 'icon' => 'fa-cogs', 'uri' => '', 'key' => 'CONFIG_MANAGER', 'type' => 0],
-            ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::ADMIN SHOP', 'icon' => 'fa-minus', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
-            ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::ADMIN CONTENT', 'icon' => 'fa-minus', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
-            ['id' => 8, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::ADMIN EXTENSION', 'icon' => 'fa-minus', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],
-            ['id' => 9, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::ADMIN SYSTEM', 'icon' => 'fa-minus', 'uri' => '', 'key' => 'ADMIN_SYSTEM', 'type' => 0],
+            ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::ADMIN SHOP', 'icon' => 'fa-flag-o', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
+            ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::ADMIN CONTENT', 'icon' => 'fa-flag-o', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
+            ['id' => 8, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::ADMIN EXTENSION', 'icon' => 'fa-flag-o', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],
+            ['id' => 9, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::ADMIN SYSTEM', 'icon' => 'fa-flag-o', 'uri' => '', 'key' => 'ADMIN_SYSTEM', 'type' => 0],
             ['id' => 10, 'parent_id' => 7, 'sort' => 102, 'title' => 'lang::page.admin.title', 'icon' => 'fa-clone', 'uri' => 'admin::page', 'key' => null, 'type' => 0],
             ['id' => 11, 'parent_id' => 1, 'sort' => 6, 'title' => 'lang::shipping_status.admin.title', 'icon' => 'fa-truck', 'uri' => 'admin::shipping_status', 'key' => null, 'type' => 0],
             ['id' => 12, 'parent_id' => 1, 'sort' => 3, 'title' => 'lang::order.admin.title', 'icon' => 'fa-shopping-cart', 'uri' => 'admin::order', 'key' => null, 'type' => 0],
@@ -78,7 +78,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 60, 'parent_id' => 5, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fa-flag', 'uri' => 'admin::maintain', 'key' => null, 'type' => 0],
             ['id' => 61, 'parent_id' => 2, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'fa-calendar-minus-o', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
             ['id' => 62, 'parent_id' => 2, 'sort' => 5, 'title' => 'lang::weight.admin.title', 'icon' => 'fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
-            ['id' => 63, 'parent_id' => 2, 'sort' => 6, 'title' => 'lang::length.admin.title', 'icon' => 'fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
+            ['id' => 63, 'parent_id' => 2, 'sort' => 6, 'title' => 'lang::length.admin.title', 'icon' => 'fa-flag-o', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
             ['id' => 64, 'parent_id' => 1, 'sort' => 100, 'title' => 'lang::order.admin.config_title', 'icon' => 'fa fa-cog', 'uri' => 'admin::order_config', 'key' => null, 'type' => 0],
             
 
