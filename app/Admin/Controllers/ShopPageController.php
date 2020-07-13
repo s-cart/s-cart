@@ -60,7 +60,8 @@ class ShopPageController extends Controller
             ->leftJoin(SC_DB_PREFIX.'shop_page_description', SC_DB_PREFIX.'shop_page_description.page_id', SC_DB_PREFIX.'shop_page.id')
             ->where(SC_DB_PREFIX.'shop_page_description.lang', sc_get_locale());
         if ($keyword) {
-            $obj = $obj->whereRaw('("'.ShopPage::class.'"_description.title like "%' . $keyword . '%" )');
+            $tableDescription = (new ShopPageDescription)->getTable();
+            $obj = $obj->whereRaw('('.$tableDescription.'.title like "%' . $keyword . '%" )');
         }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
