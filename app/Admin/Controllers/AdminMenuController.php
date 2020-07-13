@@ -23,7 +23,7 @@ class AdminMenuController extends Controller
             'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
             'url_action' => route('admin_menu.create'),
             'urlDeleteItem' => route('admin_menu.delete'),
-            'title_form' => '<i class="fa fa-floppy-o" aria-hidden="true"></i> ' . trans('menu.admin.create'),
+            'title_form' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('menu.admin.create'),
         ];
         $data['layout'] = 'index';
         return view('admin.screen.list_menu')
