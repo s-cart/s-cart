@@ -76,9 +76,6 @@
                             <i class="fa fa-angle-left pull-right"></i>
                           </span>
                         </a>
-          
-          
-                        
                         </li>
                       @endif
                     @endforeach
