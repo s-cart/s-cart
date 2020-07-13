@@ -42,8 +42,10 @@ class ScartServiceProvider extends ServiceProvider
             require_once (app_path().'/Library/Const.php');
         }
         $this->app->bind('cart', 'App\Library\ShoppingCart\Cart');
-
-        $this->registerRouteMiddleware();
+        
+        if(!file_exists(public_path('install.php'))) {
+            $this->registerRouteMiddleware();
+        }
     }
 
     public function bootScart()
