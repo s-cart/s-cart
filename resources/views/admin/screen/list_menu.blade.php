@@ -31,7 +31,7 @@
         @foreach ($menus[0] as $level0)
           @if ($level0->type ==1)
             <li class="dd-item " data-id="{{ $level0->id }}">
-                <div class="dd-handle header-fix  {{ ($level0->id == $id)? 'active' : '' }}">
+                <div class="dd-handle header-fix  {{ ($level0->id == $id)? 'active-item' : '' }}">
                   {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
                       <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-2x"></i></a>
@@ -42,7 +42,7 @@
             </li>
           @elseif($level0->uri)
             <li class="dd-item" data-id="{{ $level0->id }}">
-                <div class="dd-handle {{ ($level0->id == $id)? 'active' : '' }}">
+                <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                   <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
                       <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -53,7 +53,7 @@
             </li>
           @else
             <li class="dd-item " data-id="{{ $level0->id }}">
-              <div class="dd-handle {{ ($level0->id == $id)? 'active' : '' }}">
+              <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                 <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
                       <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -67,7 +67,7 @@
                 @foreach ($menus[$level0->id] as $level1)
                   @if($level1->uri)
                     <li class="dd-item" data-id="{{ $level1->id }}">
-                        <div class="dd-handle {{ ($level1->id == $id)? 'active' : '' }}">
+                        <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                           <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                           <span class="pull-right dd-nodrag">
                               <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -78,7 +78,7 @@
                     </li>
                   @else
                   <li class="dd-item" data-id="{{ $level1->id }}">
-                    <div class="dd-handle {{ ($level1->id == $id)? 'active' : '' }}">
+                    <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                       <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                       <span class="pull-right dd-nodrag">
                           <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -92,7 +92,7 @@
                             @foreach ($menus[$level1->id] as $level2)
                               @if($level2->uri)
                                 <li class="dd-item" data-id="{{ $level2->id }}">
-                                    <div class="dd-handle {{ ($level2->id == $id)? 'active' : '' }}">
+                                    <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                       <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                       <span class="pull-right dd-nodrag">
                                           <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -103,7 +103,7 @@
                                 </li>
                               @else
                               <li class="dd-item" data-id="{{ $level2->id }}">
-                                <div class="dd-handle {{ ($level2->id == $id)? 'active' : '' }}">
+                                <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                   <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                   <span class="pull-right dd-nodrag">
                                       <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
@@ -330,7 +330,7 @@
   .remove_menu{
     cursor: pointer;
   }
-  .dd-handle:hover, .active{
+  .dd-handle:hover, .active-item{
     background: #c9d3d8;
   }
 </style>
@@ -432,7 +432,7 @@ $('.menu-sort-save').click(function () {
 
 
 $(document).ready(function() {
-    $('.active').parents('li').removeClass('dd-collapsed');
+    $('.active-item').parents('li').removeClass('dd-collapsed');
 
     $('.select2').select2();
       //icon picker
