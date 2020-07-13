@@ -61,7 +61,8 @@ class ShopNewsController extends Controller
             ->leftJoin(SC_DB_PREFIX.'shop_news_description', SC_DB_PREFIX.'shop_news_description.shop_news_id', SC_DB_PREFIX.'shop_news.id')
             ->where(SC_DB_PREFIX.'shop_news_description.lang', sc_get_locale());
         if ($keyword) {
-            $obj = $obj->whereRaw('("'.ShopNews::class.'"_description.title like "%' . $keyword . '%" )');
+            $tableDescription = (new ShopNewsDescription)->getTable();
+            $obj = $obj->whereRaw('('.$tableDescription.'.title like "%' . $keyword . '%" )');
         }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
