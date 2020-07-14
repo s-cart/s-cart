@@ -1,0 +1,9 @@
+{
+    "name": "Scart default",
+    "image": "images/scart-min.png",
+    "auth": "Naruto",
+    "email": "lanhktc@gmail.com",
+    "website": "https://S-Cart.Org",
+    "configKey": "ScartDefault",
+    "version": "1.3.1"
+}

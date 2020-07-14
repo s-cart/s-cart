@@ -1,0 +1,22 @@
+/* ------------------------------------------------
+  Project:   Ekocart - Multi-purpose E-commerce Html5 Template
+  Author:    ThemeHt
+------------------------------------------------ */
+
+/* ------------------------
+    Table of Css
+
+  1. Bootstrap
+  2. Animate
+  3. Line Awesome
+  4. Owl Carousel
+  5. Lightslider  
+  6. Spacing
+ ------------------------ */
+
+@import 'bootstrap.min.css';
+@import 'animate.css';
+@import 'line-awesome.min.css';
+@import 'owl.carousel.css';
+@import 'lightslider.min.css';
+@import 'spacing.css';
