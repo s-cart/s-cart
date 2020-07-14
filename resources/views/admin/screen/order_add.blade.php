@@ -20,7 +20,7 @@
                     <div class="box-body">
                         <div class="fields-group">
                             <div class="form-group  {{ $errors->has('user_id') ? ' has-error' : '' }}">
-                                <label for="user_id" class="col-sm-2 asterisk control-label">{{ trans('order.select_customer') }}</label>
+                                <label for="user_id" class="col-sm-2 asterisk col-form-label">{{ trans('order.select_customer') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control user_id select2" style="width: 100%;" name="user_id" >
                                         <option value=""></option>
@@ -138,7 +138,7 @@
 
                         @if (sc_config('customer_country'))
                             <div class="form-group  {{ $errors->has('country') ? ' has-error' : '' }}">
-                                <label for="country" class="col-sm-2 asterisk control-label">{{ trans('order.country') }}</label>
+                                <label for="country" class="col-sm-2 asterisk col-form-label">{{ trans('order.country') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control country select2" style="width: 100%;" name="country" >
                                         <option value=""></option>
@@ -173,7 +173,7 @@
                         @endif
 
                             <div class="form-group   {{ $errors->has('currency') ? ' has-error' : '' }}">
-                                <label for="currency" class="col-sm-2 asterisk control-label">{{ trans('order.currency') }}</label>
+                                <label for="currency" class="col-sm-2 asterisk col-form-label">{{ trans('order.currency') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control currency select2" style="width: 100%;" name="currency" >
                                         <option value=""></option>
