@@ -115,13 +115,14 @@ return [
     */
 
     'hosts' => [
-        'shops25.com' => [
+        'shops25' => [
             'deploy_path'   => '/var/www/html/shops25',
             'user'          => 'root',
-            'http_group'    => 'www-data',
-            'writable_mode' => 'chmod',
             'stage'         => 'prod',
+            'writable_mode' => 'chmod',
             'branch'        => 'master',
+            //'configFile'    => '~/.ssh/config',
+            //'identityFile'  => '~/.ssh/id_rsa_vultr',
         ],
     ],
 
