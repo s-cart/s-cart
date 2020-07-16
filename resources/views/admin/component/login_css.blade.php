@@ -70,13 +70,13 @@
     float: right;
     margin-top: 20px;
   }
-.remember{
-  margin-top: 20px;
-  float: left;
-  font-size: 14px;
-  color: #424242;
-  line-height: 1.4;
-}
+  .remember{
+    margin-top: 20px;
+    float: left;
+    font-size: 14px;
+    color: #424242;
+    line-height: 1.4;
+  }
   .logo{
     max-width: 150px;
   }
@@ -121,9 +121,7 @@
     width: 350px;
     border-radius: 10px;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, .6);
-    opacity: 0.9;
-    border: 1px solid #809fff;
+    background: #fff;
   }
   
   .login {
@@ -136,7 +134,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  
+  .input100 {
+    padding-left: 50px;
+  }
   .login-title-des a {
     font-size: 25px;
     color: #042efb;
@@ -164,32 +164,6 @@
     z-index: 1;
   }
   
-  .input100 {
-    font-size: 15px;
-    line-height: 1.2;
-    color: black;
-    border:2px solid #f39c12;
-    display: block;
-    width: 100%;
-    background: #fff;
-    height: 50px;
-    border-radius: 7px;
-    padding: 0 30px 0 53px;
-  }
-  
-  .focus-input100 {
-    display: block;
-    position: absolute;
-    border-radius: 7px;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 0px 0px 0px;
-    color: #f39c12;
-  }
-  
   .input100:focus + .focus-input100 {
     -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
     animation: anim-shadow 0.5s ease-in-out forwards;
@@ -212,7 +186,7 @@
   .symbol-input100 {
     font-size: 15px;
     color: #999999;
-  
+
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -227,7 +201,7 @@
     height: 100%;
     padding-left: 30px;
     pointer-events: none;
-  
+
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -251,28 +225,14 @@
   }
   
   .login-btn {
-    font-size: 15px;
-    line-height: 1.5;
-    color: white;
-    width: 50%;
-    height: 50px;
-    border-radius: 7px;
-    background: #f9710c;
-    border: 2px solid #FFFFFF;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 25px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-    position: relative;
-    z-index: 1;
+    padding: .54rem 1.2rem!important;
+    height: 36px;
+    line-height: 1.2;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.05), 0 2px 2px 0 rgba(0,0,0,.05), 0 1px 5px 1px rgba(0,0,0,.05);
+    cursor: pointer;
+    color: #fff;
+    background-color: #495abf;
+    border-color: #495abf;
   }
   
   .login-btn::before {
@@ -297,11 +257,6 @@
     opacity: 0;
   }
   
-  .login-btn:hover {
-    background: transparent;
-    color: #fff;
-  }
-  
   .login-btn:hover:before {
     opacity: 1;
   }
@@ -320,7 +275,19 @@
   }
 
   .main-login {
-    padding-top: 10px;
-    padding-bottom: 20px;
-}
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 3px 5px 3px #000000;
+    box-shadow: 0px 5px 5px 3px rgba(0, 0, 0, 0.15);
+    background: rgb(245,245,245);
+    background: -moz-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,245,245,1)), color-stop(100%,rgba(235,235,235,1)));
+    background: -webkit-linear-gradient(top, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ebebeb',GradientType=0 );
+  }
+  .container-login100 {
+    background: #42464F;
+  }
 </style>

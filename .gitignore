@@ -10,3 +10,6 @@ npm-debug.log
 yarn-error.log
 .env
 public/storage/.gitignore
+/storage/logs/*
+/public/install.scart
+/public/install.php

@@ -46,7 +46,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('admin/AdminLTE/plugins/iCheck/square/blue.css')}}">
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="{{ asset('admin/custom.css')}}">
 </head>
 @php
   $mode = (sc_config('APP_DEBUG') === 'on')?'red':'blue';

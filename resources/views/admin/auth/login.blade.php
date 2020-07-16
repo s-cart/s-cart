@@ -72,15 +72,6 @@
 
     @endsection
 
-
-    @push('styles')
-    <style type="text/css">
-      .container-login100 {
-        background-image: url({!! asset('images/bg-system.jpg') !!});
-      }
-    </style>
-    @endpush
-
     @push('scripts')
     <script>
       $(function () {

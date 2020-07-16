@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'product_info'          => 'Thông tin sản phẩm',
+    'product_data'          => 'Dữ liệu sản phẩm',
+    'product_attribute'     => 'Thuộc tính sản phẩm',
+    'product_image'         => 'Hình ảnh sản phẩm',
     'id'                    => 'ID',
     'sku'                   => 'Mã hàng',
     'alias'                 => 'URL tùy chỉnh <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span>',
