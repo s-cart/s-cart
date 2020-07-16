@@ -98,8 +98,7 @@ return [
 
     'options' => [
         'application' => env('APP_NAME', 'Shops25'),
-        'repository' => 'git@gitlab.com:g2dev/backend.git',
-        'local_path_project' => base_path(),
+        'repository' => 'git@github.com:reksmeysrey/s-cart.git',
         'keep_releases' => 3,
         'php_fpm_service' => 'php7.4-fpm',
     ],
@@ -117,8 +116,12 @@ return [
 
     'hosts' => [
         'shops25.com' => [
-            'deploy_path' => '/var/www/html/shops25',
-            'user' => 'root',
+            'deploy_path'   => '/var/www/html/shops25',
+            'user'          => 'root',
+            'http_group'    => 'www-data',
+            'writable_mode' => 'chmod',
+            'stage'         => 'prod',
+            'branch'        => 'master',
         ],
     ],
 
