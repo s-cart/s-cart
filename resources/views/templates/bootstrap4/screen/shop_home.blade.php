@@ -13,23 +13,6 @@ $layout_page = shop_home
       $productsBuild = $modelProduct->start()->getProductBuild()->getData();
       $productsGroup = $modelProduct->start()->getProductGroup()->getData();
   @endphp
-      <div class="row mb-4 align-items-center">
-      <div class="col-md-5 mb-3 mb-md-0"> <span class="text-muted"></span>
-      </div>
-      <div class="col-md-7 d-flex align-items-center justify-content-md-end">
-        <div class="view-filter"> <a class="active" href="shop-grid-left-sidebar.html"><i class="lab la-buromobelexperte"></i></a>
-          <a href="shop-list-left-sidebar.html"><i class="las la-list"></i></a>
-        </div>
-        <div class="sort-filter ml-2 d-flex align-items-center">
-          <select class="custom-select" id="inputGroupSelect02">
-            <option selected>Sort By</option>
-            <option value="1">Newest Item</option>
-            <option value="2">Populer</option>
-            <option value="3">Best Match</option>
-          </select>
-        </div>
-      </div>
-    </div>
     <div class="row">
       @foreach($productsNew as  $key => $productNew)
         <div class="col-lg-4 col-md-6">
@@ -63,12 +46,16 @@ $layout_page = shop_home
                   <button class="btn btn-compare" data-toggle="tooltip" data-placement="top" title="Compare" type="button">
                     <i class="las la-random"></i>
                   </button>
-                  <button onClick="addToCartAjax('{{ $productNew->id }}','wishlist')" class="btn-cart btn btn-primary btn-animated mx-2" type="button">
-                    <i class="las la-shopping-basket mr-1"></i>
+                  <button onClick="addToCartAjax('{{ $productNew->id }}','wishlist')" class="btn-cart btn btn-primary btn-animated mx-2" type="button"
+                    data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Add to Wishlist"
+                    >
+                    <i class="las la-cart-arrow-down mr-1"></i>
                   </button>
                   @if ($productNew->allowSale())
-                    <button onClick="addToCartAjax('{{ $productNew->id }}','default')" class="btn-cart btn btn-primary btn-animated mx-2" type="button">
-                      <i class="las la-shopping-cart mr-1"></i>
+                    <button onClick="addToCartAjax('{{ $productNew->id }}','default')" class="btn-cart btn btn-primary btn-animated mx-2" type="button"
+                      data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Add to Cart"
+                    >
+                      <i class="las la-cart-plus mr-1"></i>
                     </button>
                   @else
                     &nbsp;
@@ -138,20 +125,28 @@ $layout_page = shop_home
             </div>
             <div class="card-footer bg-transparent border-0">
               <div class="product-link d-flex align-items-center justify-content-center">
-                <button class="btn btn-compare p-1" data-toggle="tooltip" data-placement="top" title="Compare" type="button">
+                <button class="btn btn-compare p-1" data-toggle="tooltip" data-placement="top" title="Compare" type="button"
+                  data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Compare"
+                  >
                   <i class="las la-random"></i> 
                 </button>
+                
+                <button onClick="addToCartAjax('{{ $productHot->id }}','wishlist')" class="btn-cart btn btn-primary p-1 btn-animated mx-1" type="button"
+                  data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Add to Wishlist"
+                  >
+                  <i class="las la-cart-arrow-down mr-1"></i>
+                </button>
                 @if ($productHot->allowSale())
-                  <button onClick="addToCartAjax('{{ $productNew->id }}','default')" class="btn-cart btn btn-primary p-1 btn-animated mx-1" type="button">
-                    <i class="las la-shopping-cart mr-1"></i>
+                  <button onClick="addToCartAjax('{{ $productNew->id }}','default')" class="btn-cart btn btn-primary p-1 btn-animated mx-1" type="button"
+                    data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Add to Cart"
+                    >
+                    <i class="las la-cart-plus mr-1"></i>
                   </button>
                 @else
                   &nbsp;
                 @endif
-                <button onClick="addToCartAjax('{{ $productHot->id }}','compare')" class="btn-cart btn btn-primary p-1 btn-animated mx-1" type="button">
-                  <i class="las la-shopping-basket mr-1"></i>
-                </button>
-                <button class="btn btn-view p-1" data-toggle="tooltip" data-placement="top" title="Quick View"><span data-target="#quick-view" data-toggle="modal"><i class="las la-eye"></i></span>
+                <button class="btn btn-view p-1" data-toggle="tooltip" data-placement="top" title="Quick View">
+                  <span data-target="#quick-view" data-toggle="modal"><i class="las la-eye"></i></span>
                 </button>
               </div>
             </div>

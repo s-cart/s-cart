@@ -21,6 +21,7 @@
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
+        "lorisleiva/laravel-deployer": "^0.3.2",
         "paypal/rest-api-sdk-php": "^1.13",
         "phpoffice/phpspreadsheet": "^1.8",
         "spatie/laravel-json-api-paginate": "^1.7",

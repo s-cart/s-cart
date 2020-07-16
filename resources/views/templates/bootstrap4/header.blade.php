@@ -177,7 +177,7 @@
               <div>
                 <a class="d-flex align-items-center" href="#" id="shopping-cart" data-toggle="modal" data-target="#shoppingCart"> 
                   <span class="bg-white px-2 py-1 shadow-sm rounded" data-cart-items="{{Cart::instance('default')->count()}}">
-                  <i class="las la-shopping-cart"></i>
+                  <i class="las la-cart-plus"></i>
                 </span>
                   <div class="ml-4 d-none d-md-block"> 
                     <small class="d-block text-muted">My Cart</small>
@@ -257,7 +257,7 @@
         </div>
         <hr class="my-5">
         <div class="d-flex justify-content-between align-items-center mb-8"> <span class="text-muted">Subtotal:</span>  <span class="text-dark">$52.00</span> 
-        </div> <a href="product-cart.html" class="btn btn-primary btn-animated mr-2"><i class="las la-shopping-cart mr-1"></i>View Cart</a>
+        </div> <a href="product-cart.html" class="btn btn-primary btn-animated mr-2"><i class="las la-cart-plus mr-1"></i>View Cart</a>
         <a href="product-checkout.html" class="btn btn-dark"><i class="las la-money-check mr-1"></i>Continue To Checkout</a>
       </div>
     </div>
@@ -320,7 +320,7 @@
         </div>
         <hr class="my-5">
         <div class="d-flex justify-content-between align-items-center mb-8"> <span class="text-muted">Subtotal:</span>  <span class="text-dark">$52.00</span> 
-        </div> <a href="product-cart.html" class="btn btn-primary btn-animated mr-2"><i class="las la-shopping-cart mr-1"></i>View Cart</a>
+        </div> <a href="product-cart.html" class="btn btn-primary btn-animated mr-2"><i class="las la-cart-plus mr-1"></i>View Cart</a>
         <a href="product-checkout.html" class="btn btn-dark"><i class="las la-money-check mr-1"></i>Continue To Checkout</a>
       </div>
     </div>

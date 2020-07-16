@@ -117,13 +117,15 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-sm-12" id="breadcrumb">
+        <div class="col-md-12 mt-3 mt-md-0">
           <!--breadcrumb-->
-          @yield('breadcrumb')
+          <div class="bg-light mt-n9 p-1">
+            @yield('breadcrumb')
+          </div>
           <!--//breadcrumb-->
 
           <!--fillter-->
-          @yield('filter')
+            @yield('filter')
           <!--//fillter-->
         </div>
 

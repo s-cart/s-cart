@@ -39,7 +39,7 @@
               <i class="las la-random"></i> 
             </button>
             <button class="btn-cart btn btn-primary btn-animated mx-3" type="button">
-              <i class="las la-shopping-cart mr-1"></i>
+              <i class="las la-cart-plus mr-1"></i>
             </button>
             <button class="btn btn-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View">
               <span data-target="#quick-view" data-toggle="modal">
