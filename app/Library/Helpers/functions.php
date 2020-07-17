@@ -394,3 +394,21 @@ if (!function_exists('sc_render_option_price')) {
         return $html;
     }
 }
+
+if (!function_exists('sc_check_url_is_child')) {
+    /**
+     * Check url is child of other url
+     *
+     * @param   [type]  $urlParent  [$urlParent description]
+     * @param   [type]  $urlChild   [$urlChild description]
+     *
+     * @return  [type]              [return description]
+     */
+    function sc_check_url_is_child($urlParent, $urlChild) {
+        $check = false;
+        if($urlChild) {
+            $check = (strpos($urlParent, $urlChild) !== false);
+        }
+        return $check;
+    }
+}
