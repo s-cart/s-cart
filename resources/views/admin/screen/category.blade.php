@@ -99,7 +99,7 @@
 
                         <div class="form-group  {{ $errors->has('parent') ? ' has-error' : '' }}">
                             <label for="parent"
-                                class="col-sm-2 asterisk control-label">{{ trans('category.admin.select_category') }}</label>
+                                class="col-sm-2 col-form-label">{{ trans('category.admin.select_category') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control parent select2" style="width: 100%;" name="parent">
                                     <option value=""></option>
@@ -185,7 +185,7 @@
                         <div class="form-group  ">
                             <label for="top" class="col-sm-2 col-form-label">{{ trans('category.top') }}</label>
                             <div class="col-sm-8">
-                                <input type="checkbox" name="top"
+                                <input class="input" type="checkbox" name="top"
                                     {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
                             </div>
                         </div>

@@ -84,7 +84,7 @@
     border: 1px solid #c5c5c5 !important;
     background: #d2d6de;
   }
-  li.active > a:last-child {
+  .treeview-menu li.active > a:last-child {
     background: #3c5863 !important;
   }
 </style>
