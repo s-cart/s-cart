@@ -79,21 +79,7 @@
   }
 
 // active tree menu
-$(function(){
-    // var route_name = '{{ request()->route()->getName() }}';
-    // var route_name = route_name.replace(".","_");
-    // var obj = $('.'+route_name);
-    // obj.addClass('active');
-    // obj.parents('.treeview').addClass('active');
-    var url = window.location.pathname,
-        urlRegExp = new RegExp(url.replace(/\/$/,'') + "$"); // create regexp to match current url pathname and remove trailing
-        $('.treeview-menu > li > a').each(function(){
-            if(urlRegExp.test(this.href.replace(/\/$/,''))){
-                $(this).parent().addClass('active');
-                $(this).parents('.treeview').addClass('active');
-            }
-        });
-});
+$('.treeview-menu > li.active').parents('.treeview').addClass('active');
 // ==end active tree menu
 
 </script>

@@ -38,11 +38,11 @@
         @if (!empty($menus[$level0->id]))
           @foreach ($menus[$level0->id] as $level1)
             @if($level1->uri)
-              <li class=""><a href="{{ $level1->uri?sc_url_render($level1->uri):'#' }}"><i class="fa {{ $level1->icon }}"></i> <span>{!! sc_language_render($level1->title) !!}</span></a></li>
+              <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level1->uri)) ? 'active' : '' }}"><a href="{{ $level1->uri?sc_url_render($level1->uri):'#' }}"><i class="fa {{ $level1->icon }}"></i> <span>{!! sc_language_render($level1->title) !!}</span></a></li>
             @else
             <li class="treeview">
               <a href="#">
-                <i class="fa {{ $level1->icon }}"></i> <span>{!! sc_language_render($level1->title) !!}</span>
+                <i class="fa {{ $level1->icon }} "></i> <span>{!! sc_language_render($level1->title) !!}</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -52,7 +52,7 @@
                 @if (isset($menus[$level1->id]))
                 @foreach ($menus[$level1->id] as $level2)
                   @if($level2->uri)
-                    <li class=""><a href="{{ $level2->uri?sc_url_render($level2->uri):'#' }}"><i class="fa {{ $level2->icon }}"></i> <span>{!! sc_language_render($level2->title) !!}</span></a></li>
+                    <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level2->uri)) ? 'active' : '' }}"><a href="{{ $level2->uri?sc_url_render($level2->uri):'#' }}"><i class="fa {{ $level2->icon }}"></i> <span>{!! sc_language_render($level2->title) !!}</span></a></li>
                   @else
                   <li class="treeview">
                     <a href="#">
@@ -67,7 +67,7 @@
                     @if (isset($menus[$level2->id]))
                     @foreach ($menus[$level2->id] as $level3)
                       @if($level3->uri)
-                        <li class=""><a href="{{ $level3->uri?sc_url_render($level3->uri):'#' }}"><i class="fa {{ $level3->icon }}"></i> <span>{{ sc_language_render($level3->title) }}</span></a></li>
+                        <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level3->uri)) ? 'active' : '' }}"><a href="{{ $level3->uri?sc_url_render($level3->uri):'#' }}"><i class="fa {{ $level3->icon }}"></i> <span>{{ sc_language_render($level3->title) }}</span></a></li>
                       @else
                       <li class="treeview">
                         <a href="#">
