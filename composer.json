@@ -1,16 +1,14 @@
 {
-    "name": "s-cart/s-cart",
-    "description": "Free Laravel e-commerce for business: shopping cart, cms content, and more...",
-    "keywords": ["Laravel ecommerce","SCart ecommerce", "SCart open source", "Free Shopping cart",  "S-Cart", "Website ecommerce"],
-    "homepage": "https://s-cart.org",
+    "name": "shops25/shops25",
+    "description": "Camboida e-commerce on shopping everywhere you wanted",
+    "keywords": ["Ecommerce", "Cambodia shopping", "Website ecommerce"],
+    "homepage": "http://shops25.com",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Lanh Le",
-            "email": "lanhktc@gmail.com"
-        }
-    ],
-    "type" : "project",
+    "authors": [{
+        "name": "Reksmey SREY",
+        "email": "reksmeysrey@gmail.com"
+    }],
+    "type": "project",
     "require": {
         "php": "^7.2.5",
         "aws/aws-sdk-php": "^3.0",
@@ -53,8 +51,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
@@ -71,6 +68,7 @@
     },
 
     "config": {
+        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },

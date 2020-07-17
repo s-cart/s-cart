@@ -119,6 +119,7 @@ return [
             'deploy_path'   => '/var/www/html/shops25',
             'user'          => 'root',
             'stage'         => 'prod',
+            'http_group'    => 'www-data',
             'writable_mode' => 'chmod',
             'branch'        => 'master',
             //'configFile'    => '~/.ssh/config',
