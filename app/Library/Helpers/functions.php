@@ -406,8 +406,14 @@ if (!function_exists('sc_check_url_is_child')) {
      */
     function sc_check_url_is_child($urlParent, $urlChild) {
         $check = false;
+        $urlParent = strtolower($urlParent);
+        $urlChild = strtolower($urlChild);
         if($urlChild) {
-            $check = (strpos($urlParent, $urlChild) !== false);
+            if(strpos($urlParent, $urlChild.'/') !== false 
+                || strpos($urlParent, $urlChild.'?') !== false
+                || $urlParent == $urlChild) {
+                $check = true;
+            }
         }
         return $check;
     }
