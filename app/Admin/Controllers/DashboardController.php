@@ -11,11 +11,17 @@ use App\Models\ShopUser;
 use DB;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
 
     public function index(Request $request)
     {
+        if(!\Admin::user()->checkUrlAllowAccess(route('admin.home')))
+        {
+            $data['title'] = trans('admin.dashboard');
+            return view('admin.default', $data);
+        }
+
         $data = [];
         $data['title'] = trans('admin.dashboard');
         $data['users'] = new ShopUser;
@@ -81,9 +87,14 @@ class HomeController extends Controller
         $data['dataInYear'] = $dataInYear;
         //End order in 12 months
 
-        return view('admin.home', $data);
+        return view('admin.dashboard', $data);
     }
 
+    /**
+     * Page deny
+     *
+     * @return  [type]  [return description]
+     */
     public function deny()
     {
         $data = [

@@ -19,8 +19,6 @@ class AdminMenuController extends Controller
             'subTitle' => '',
             'icon' => 'fa fa-indent',            'menu' => [],
             'treeMenu' => (new AdminMenu)->getTree(),
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
             'url_action' => route('admin_menu.create'),
             'urlDeleteItem' => route('admin_menu.delete'),
             'title_form' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('menu.admin.create'),
@@ -56,18 +54,7 @@ class AdminMenuController extends Controller
             'sort' => $data['sort'],
         ];
 
-        $menu = AdminMenu::createMenu($dataInsert);
-        $permissions = $data['permissions'] ?? [];
-        $roles = $data['roles'] ?? [];
-        //Insert permission
-        if ($permissions) {
-            $menu->permissions()->attach($permissions);
-        }
-        $roles = $data['roles'] ?? [];
-        //Insert roles
-        if ($roles) {
-            $menu->roles()->attach($roles);
-        }
+        AdminMenu::createMenu($dataInsert);
         return redirect()->route('admin_menu.index')->with('success', trans('menu.admin.create_success'));
 
     }
@@ -88,8 +75,6 @@ class AdminMenuController extends Controller
             'icon' => 'fa fa-pencil-square-o',
             'menu' => $menu,
             'treeMenu' => (new AdminMenu)->getTree(),
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
             'url_action' => route('admin_menu.edit', ['id' => $menu['id']]),
             'title_form' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
         ];
@@ -128,20 +113,6 @@ class AdminMenuController extends Controller
         ];
 
         AdminMenu::updateInfo($dataUpdate, $id);
-        $permissions = $data['permissions'] ?? [];
-        $menu->permissions()->detach();
-        //Insert permission
-        if ($permissions) {
-            $menu->permissions()->attach($permissions);
-        }
-        $roles = $data['roles'] ?? [];
-        $menu->roles()->detach();
-        //Insert permission
-        if ($roles) {
-            $menu->roles()->attach($roles);
-        }
-
-//
         return redirect()->back()->with('success', trans('menu.admin.edit_success'));
 
     }

@@ -11,31 +11,10 @@ class AdminMenu extends Model
     protected $guarded = [];
     private static $getList = null;
 
-    /**
-     * A menu has and belongs to many roles.
-     *
-     * @return BelongsToMany
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(AdminRole::class, SC_DB_PREFIX . 'admin_role_menu', 'menu_id', 'role_id');
-    }
-
-    /**
-     * A Menu has and belongs to many permissions.
-     *
-     * @return BelongsToMany
-     */
-    public function permissions()
-    {
-        return $this->belongsToMany(AdminPermission::class, SC_DB_PREFIX . 'admin_menu_permission', 'menu_id', 'permission_id');
-    }
-
     public static function getList()
     {
         if (self::$getList == null) {
-            self::$getList = self::with('permissions', 'roles')
-                ->orderBy('sort', 'asc')->get();
+            self::$getList = self::orderBy('sort', 'asc')->get();
         }
         return self::$getList;
     }
@@ -49,21 +28,55 @@ class AdminMenu extends Model
     {
         $list = self::getList();
         $listVisible = [];
-        $admin = \Admin::user();
-        $userPermission = $admin->allPermissions()->pluck('slug')->toArray();
         foreach ($list as  $menu) {
-            $allPermissionsMenuAllow       = $menu->allPermissions();
-            if ((!count($allPermissionsMenuAllow))
-                || $admin->isAdministrator()
-                || $admin->isViewAll()
-                || array_diff($allPermissionsMenuAllow, $userPermission) != $allPermissionsMenuAllow
-            ) {
+            if (!$menu->uri) {
                 $listVisible[] = $menu;
+            } else {
+                $url = sc_url_render($menu->uri);
+                if (\Admin::user()->checkUrlAllowAccess($url)) {
+                    $listVisible[] = $menu;
+                }
             }
         }
-        $listVisible = collect($listVisible)->groupBy('parent_id');
+        $listVisible = collect($listVisible);
+        $groupVisible = $listVisible->groupBy('parent_id');
+        foreach ($listVisible as $key => $value) {
+            if ((isset($groupVisible[$value->id]) && count($groupVisible[$value->id]) == 0)
+                || (!isset($groupVisible[$value->id]) && !$value->uri)
+            ) {
+                unset($listVisible[$key]);
+                continue;
+            }
+        }
+        $listVisible = $listVisible->groupBy('parent_id');
         return $listVisible;
     }
+
+    /**
+     * Check url is child of other url
+     *
+     * @param   [type]  $urlParent  [$urlParent description]
+     * @param   [type]  $urlChild   [$urlChild description]
+     *
+     * @return  [type]              [return description]
+     */
+    public static function  checkUrlIsChild($urlParent, $urlChild)
+    {
+        $check = false;
+        $urlParent = strtolower($urlParent);
+        $urlChild = strtolower($urlChild);
+        if ($urlChild) {
+            if (
+                strpos($urlParent, $urlChild . '/') !== false
+                || strpos($urlParent, $urlChild . '?') !== false
+                || $urlParent == $urlChild
+            ) {
+                $check = true;
+            }
+        }
+        return $check;
+    }
+
 
     public function getTree($parent = 0, &$tree = null, $menus = null, &$st = '')
     {
@@ -92,12 +105,11 @@ class AdminMenu extends Model
         parent::boot();
 
         static::deleting(function ($model) {
-            $model->roles()->detach();
-            $model->permissions()->detach();
+            //
         });
     }
 
-    /*
+/*
 Re-sort menu
  */
     public function reSort(array $data)
@@ -109,7 +121,7 @@ Re-sort menu
             }
             DB::connection(SC_CONNECTION)->commit();
             $return = ['error' => 0, 'msg' => ""];
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::connection(SC_CONNECTION)->rollBack();
             $return = ['error' => 1, 'msg' => $e->getMessage()];
         }
@@ -130,19 +142,8 @@ Re-sort menu
      */
     public static function createMenu($dataInsert)
     {
-        $dataUpdate = sc_clean($dataInsert, 'password');
+        $dataUpdate = sc_clean($dataInsert);
         return self::create($dataUpdate);
     }
 
-    /**
-     * Get all permissions use menu.
-     *
-     * @return mixed
-     */
-    public function allPermissions()
-    {
-        return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()
-            ->merge($this->permissions)
-            ->pluck('slug')->toArray();
-    }
 }

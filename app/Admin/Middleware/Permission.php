@@ -120,7 +120,7 @@ Check route defualt allow access
     public function routeDefaultPass($request)
     {
         $routeName = $request->route()->getName();
-        $allowRoute = ['admin.deny', 'admin.locale'];
+        $allowRoute = ['admin.deny', 'admin.locale', 'admin.home'];
         return in_array($routeName, $allowRoute);
     }
 

@@ -16,6 +16,7 @@ class AdminUser extends Model implements AuthenticatableContract
         'password', 'remember_token',
     ];
     protected static $allPermissions = null;
+    protected static $allViewPermissions = null;
 
     /**
      * A user has and belongs to many roles.
@@ -86,10 +87,69 @@ class AdminUser extends Model implements AuthenticatableContract
     {
         if (self::$allPermissions === null) {
             $user                 = \Admin::user();
-            self::$allPermissions = $user->roles()->with('permissions')->get()->pluck('permissions')->flatten()->merge($user->permissions);
+            self::$allPermissions = $user->roles()->with('permissions')
+                ->get()->pluck('permissions')->flatten()
+                ->merge($user->permissions);
         }
         return self::$allPermissions;
     }
+
+    /**
+     * Get all view permissions of user.
+     *
+     * @return mixed
+     */
+    protected static function allViewPermissions()
+    {
+        if (self::$allViewPermissions === null) {
+            $arrView = [];
+            $allPermissionTmp = self::allPermissions();
+            $allPermissionTmp = $allPermissionTmp->pluck('http_uri')->toArray();
+            if($allPermissionTmp) {
+                foreach ($allPermissionTmp as  $actionList) {
+                    foreach (explode(',', $actionList) as  $action) {
+                        if(strpos($action, 'ANY::') === 0 || strpos($action, 'GET::') === 0){
+                            $arrPrefix = ['ANY::', 'GET::'];
+                            $arrScheme = ['https://', 'http://'];
+                            $arrView[] = str_replace($arrScheme,'', url(str_replace($arrPrefix,'',$action)));
+                        }
+                    }
+                }
+            }
+            self::$allViewPermissions = $arrView;
+        }
+        return self::$allViewPermissions;
+    }
+
+    /**
+     * Check url menu can display
+     *
+     * @param   [type]  $url  [$url description]
+     *
+     * @return  [type]        [return description]
+     */
+    public  function checkUrlAllowAccess($url) {
+
+        if($this->isAdministrator() || $this->isViewAll()) {
+            return true;
+        }
+        $listUrlAllowAccess = self::allViewPermissions();
+        $arrScheme = ['https://', 'http://'];
+        $path = strtolower(str_replace($arrScheme,'',$url));
+        if($listUrlAllowAccess) {
+            foreach ($listUrlAllowAccess as  $pathAction) {
+                $pathActionTmp = explode('/', $pathAction);
+                if($pathAction === $path || $pathAction.'/' === $path 
+                    || (end($pathActionTmp) === '*' && strpos($path, str_replace('/*','',$pathAction)) === 0) 
+                    || (end($pathActionTmp) === '{id}' && strpos($path, str_replace('/{id}','',$pathAction)) === 0) 
+                    ) {
+                        return true;
+                    }
+            }
+        }
+        return false;
+    } 
+
 
     /**
      * Check if user has permission.
@@ -166,52 +226,6 @@ class AdminUser extends Model implements AuthenticatableContract
     public function inRoles(array $roles = []): bool
     {
         return $this->roles->pluck('slug')->intersect($roles)->isNotEmpty();
-    }
-
-     /**
-      * Check user can visile menu.
-      * Allow: is isAdministrator, is viewAll group, 
-      * or menu not yet require psermission, or require permission same user
-      *
-      *
-      * @param  \App\Admin\Models\AdminMenu  $menu 
-      *
-      * @return bool                                
-      */
-    public function visible(\App\Admin\Models\AdminMenu $menu): bool
-    {
-        $allPermissionsMenuAllow = $menu->permissions()
-            ->pluck('slug')->flatten()->toArray();
-        $allRolesMenuAllow       = $menu->roles()
-            ->pluck('slug')->flatten()->toArray();
-        /*
-            Allow if: user is administrator, is isViewAll
-            or 
-            menu not specify permission and role
-         */
-        if ((!count($allPermissionsMenuAllow) 
-            && !count($allRolesMenuAllow))
-            || $this->isAdministrator() 
-            || $this->isViewAll()){
-            return true;
-        }
-
-        /*
-            Allow if: user contains  role menu
-        */
-        if ($allRolesMenuAllow) {
-            return $this->inRoles($allRolesMenuAllow);
-        }
-        /*
-            Allow if: user contains  permission menu
-        */        
-        if ($allPermissionsMenuAllow) {
-            return $this->permissions
-                ->pluck('slug')->intersect($allPermissionsMenuAllow)
-                ->isNotEmpty();
-        }
-
-        return false;
     }
 
 }

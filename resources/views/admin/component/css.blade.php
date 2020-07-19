@@ -87,4 +87,8 @@
   .treeview-menu li.active > a:last-child {
     background: #3c5863 !important;
   }
+  li > a:hover {
+    background: #4e4eaddb !important;
+    color: #fff !important;
+  }
 </style>

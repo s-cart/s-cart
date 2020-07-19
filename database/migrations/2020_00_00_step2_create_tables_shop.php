@@ -357,18 +357,21 @@ class CreateTablesShop extends Migration
             $table->string('email', 150)->unique();
             $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
-            $table->string('password', 100);
+            $table->string('password', 100)->nullable();;
             $table->integer('address_id')->default(0)->index();
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
             $table->string('company', 100)->nullable();
-            $table->string('country', 10)->default('VN');
-            $table->string('phone', 20);
+            $table->string('country', 10)->nullable()->default('VN');
+            $table->string('phone', 20)->nullable();;
             $table->string('remember_token', 100)->nullable();
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('group')->default(1);
             $table->timestamps();
+            //Login social
+            $table->string('provider', 50)->nullable();
+            $table->string('provider_id', 50)->nullable();
         });
 
         Schema::create(SC_DB_PREFIX.'shop_user_address', function (Blueprint $table) {

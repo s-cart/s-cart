@@ -225,65 +225,6 @@
                                         @endif
                                 </div>
                             </div>
-
-{{-- select role --}}
-                            <div class="form-group  {{ $errors->has('roles') ? ' has-error' : '' }}">
-                              @php
-                              $listRoles = [];
-                              $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
-                                  if(is_array($old_roles)){
-                                      foreach($old_roles as $value){
-                                          $listRoles[] = (int)$value;
-                                      }
-                                  }
-                              @endphp
-                                <label for="roles" class="col-sm-2 col-form-label">{{ trans('menu.admin.roles') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control input-sm roles select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="roles[]" >
-                                        <option value=""></option>
-                                        @foreach ($roles as $k => $v)
-                                            <option value="{{ $k }}"  {{ (count($listRoles) && in_array($k, $listRoles))?'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('roles'))
-                                            <span class="help-block">
-                                                {{ $errors->first('roles') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-{{-- //select role --}}
-
-
-{{-- select permission --}}
-                            <div class="form-group  {{ $errors->has('permissions') ? ' has-error' : '' }}">
-                              @php
-                              $listPermission = [];
-                              $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
-                                  if(is_array($old_permission)){
-                                      foreach($old_permission as $value){
-                                          $listPermission[] = (int)$value;
-                                      }
-                                  }
-                              @endphp
-                                <label for="permissions" class="col-sm-2 col-form-label">{{ trans('menu.admin.permissions') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control input-sm permissions select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permissions[]" >
-                                        <option value=""></option>
-                                        @foreach ($permissions as $k => $v)
-                                            <option value="{{ $k }}"  {{ (count($listPermission) && in_array($k, $listPermission))?'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('permissions'))
-                                            <span class="help-block">
-                                                {{ $errors->first('permissions') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-{{-- //select permission --}}
-
-
                           </div>
                         </div>
 
@@ -333,9 +274,14 @@
   .remove_menu{
     cursor: pointer;
   }
-  .dd-handle:hover, .active-item{
+  .active-item{
     background: #c9d3d8;
   }
+  .dd-handle:hover{
+    background: #4e4eaddb;
+    color:#fff;
+  }
+  
 </style>
 @endpush
 

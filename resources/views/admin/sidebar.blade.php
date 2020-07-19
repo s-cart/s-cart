@@ -13,6 +13,7 @@
         </div>
       </div>
 
+@if (\Admin::user()->checkUrlAllowAccess(route('admin_order.index')))
       <!-- search form -->
       <form action="{{ route('admin_order.index') }}" method="get" class="sidebar-form">
         <div class="input-group">
@@ -24,22 +25,33 @@
         </div>
       </form>
       <!-- /.search form -->
+@endif
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
 @php
   $menus = Admin::getMenuVisible();
 @endphp
+
+@if (count($menus))
 {{-- Level 0 --}}
-        @foreach ($menus[0] as $level0)
+      @foreach ($menus[0] as $level0)
+        {{-- LEvel 1  --}}
+        @if (!empty($menus[$level0->id]))
         <li class="header">
           {!! sc_language_render($level0->title) !!}
         </li>
-        {{-- LEvel 1  --}}
-        @if (!empty($menus[$level0->id]))
           @foreach ($menus[$level0->id] as $level1)
             @if($level1->uri)
-              <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level1->uri)) ? 'active menu-open' : '' }}"><a href="{{ $level1->uri?sc_url_render($level1->uri):'#' }}"><i class="fa {{ $level1->icon }}"></i> <span>{!! sc_language_render($level1->title) !!}</span></a></li>
+              <li class="{{ \Admin::checkUrlIsChild(url()->current(), sc_url_render($level1->uri)) ? 'active menu-open' : '' }}">
+                <a href="{{ $level1->uri?sc_url_render($level1->uri):'#' }}">
+                  <i class="fa {{ $level1->icon }}"></i> <span>{!! sc_language_render($level1->title) !!}</span>
+                </a>
+              </li>
             @else
+
+          {{-- LEvel 2  --}}
+          @if (!empty($menus[$level1->id]))
             <li class="treeview">
               <a href="#">
                 <i class="fa {{ $level1->icon }} "></i> <span>{!! sc_language_render($level1->title) !!}</span>
@@ -47,13 +59,19 @@
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
-            {{-- LEvel 2  --}}
+
               <ul class="treeview-menu">
-                @if (isset($menus[$level1->id]))
                 @foreach ($menus[$level1->id] as $level2)
                   @if($level2->uri)
-                    <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level2->uri)) ? 'active menu-open' : '' }}"><a href="{{ $level2->uri?sc_url_render($level2->uri):'#' }}"><i class="fa {{ $level2->icon }}"></i> <span>{!! sc_language_render($level2->title) !!}</span></a></li>
+                    <li class="{{ \Admin::checkUrlIsChild(url()->current(), sc_url_render($level2->uri)) ? 'active menu-open' : '' }}">
+                      <a href="{{ $level2->uri?sc_url_render($level2->uri):'#' }}">
+                        <i class="fa {{ $level2->icon }}"></i> <span>{!! sc_language_render($level2->title) !!}</span>
+                      </a>
+                    </li>
                   @else
+
+                {{-- LEvel 3  --}}
+                @if (!empty($menus[$level2->id]))
                   <li class="treeview">
                     <a href="#">
                       <i class="fa {{ $level2->icon }}"></i> <span>{!! sc_language_render($level2->title) !!}</span>
@@ -61,13 +79,14 @@
                         <i class="fa fa-angle-left pull-right"></i>
                       </span>
                     </a>
-      
-                  {{-- LEvel 3  --}}
                   <ul class="treeview-menu">
-                    @if (isset($menus[$level2->id]))
                     @foreach ($menus[$level2->id] as $level3)
                       @if($level3->uri)
-                        <li class="{{ sc_check_url_is_child(url()->current(), sc_url_render($level3->uri)) ? 'active menu-open' : '' }}"><a href="{{ $level3->uri?sc_url_render($level3->uri):'#' }}"><i class="fa {{ $level3->icon }}"></i> <span>{{ sc_language_render($level3->title) }}</span></a></li>
+                        <li class="{{ \Admin::checkUrlIsChild(url()->current(), sc_url_render($level3->uri)) ? 'active menu-open' : '' }}">
+                          <a href="{{ $level3->uri?sc_url_render($level3->uri):'#' }}">
+                            <i class="fa {{ $level3->icon }}"></i> <span>{{ sc_language_render($level3->title) }}</span>
+                          </a>
+                        </li>
                       @else
                       <li class="treeview">
                         <a href="#">
@@ -79,30 +98,30 @@
                         </li>
                       @endif
                     @endforeach
-                    @endif
-    
-                  </ul>
+                  </ul>                    
+                  </li>
+                  @endif
                   {{-- end level 3 --}}
-                    
-                    </li>
+
                   @endif
                 @endforeach
-                @endif
-
               </ul>
-              {{-- end level 2 --}}
               </li>
             @endif
+            {{-- end level 2 --}}
+
+            @endif
           @endforeach
-      {{--  end level 1 --}}
-      @endif
+        {{--  end level 1 --}}
+
+          @endif
         @endforeach
       {{-- end level 0 --}}
-
-      </ul>
-
-@include('admin.component.sidebar_bottom')
-
+      @endif
+    </ul>
+    @if (\Admin::user()->checkUrlAllowAccess(route('admin_order.index')))
+      @include('admin.component.sidebar_bottom')
+    @endif
     </section>
     <!-- /.sidebar -->
   </aside>

@@ -33,4 +33,9 @@ class Admin
     {
         return AdminMenu::getListVisible();
     }   
+    public static function checkUrlIsChild($urlParent, $urlChild)
+    {
+        return AdminMenu::checkUrlIsChild($urlParent, $urlChild);
+    }   
+    
 }

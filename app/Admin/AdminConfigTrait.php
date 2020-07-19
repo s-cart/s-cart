@@ -24,7 +24,7 @@ trait AdminConfigTrait
                 ->update(['value' => $value]);
             $error = 0;
             $msg = trans('admin.update_success');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $error = 1;
             $msg = $e->getMessage();
         }
@@ -53,7 +53,7 @@ trait AdminConfigTrait
                 AdminConfig::destroy($arrID);
                 $error = 0;
                 $msg = '';
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 $error = 1;
                 $msg = $e->getMessage();
             }

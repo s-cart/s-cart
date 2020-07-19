@@ -2,6 +2,7 @@
 
 return [
       'home'                              => 'Home',
+      'welcome_dasdboard'                 => 'Welcome to admin system!',
       'online'                            => 'Online',
       'login'                             => 'Login',
       'logout'                            => 'Logout',
@@ -67,6 +68,7 @@ return [
       'more'                              => 'More',
       'more_info'                         => 'See full information',
       'deny'                              => 'Access denied',
+      'deny_msg'                          => 'You need permission to access the system!',
       'deny_content'                      => 'Permission denied!',
 
       'administrator'                     => 'Administrator',

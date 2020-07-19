@@ -12,8 +12,8 @@ Route::group(
     foreach (glob(__DIR__ . '/Routes/*.php') as $filename) {
         require_once $filename;
     }
-    $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->get('deny', 'HomeController@deny')->name('admin.deny');
+    $router->get('/', 'DashboardController@index')->name('admin.home');
+    $router->get('deny', 'DashboardController@deny')->name('admin.deny');
 
     //Language
     $router->get('locale/{code}', function ($code) {

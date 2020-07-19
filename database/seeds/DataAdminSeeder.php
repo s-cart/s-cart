@@ -19,7 +19,6 @@ class DataAdminSeeder extends Seeder
      */
     public function run()
     {
-
         DB::table(SC_DB_PREFIX.'admin_menu')->insert([
             ['id' => 1, 'parent_id' => 6, 'sort' => 11, 'title' => 'lang::admin.menu_titles.order_manager', 'icon' => 'fa-cart-arrow-down', 'uri' => '', 'key' => 'ORDER_MANAGER', 'type' => 0],
             ['id' => 2, 'parent_id' => 6, 'sort' => 12, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
@@ -112,13 +111,6 @@ class DataAdminSeeder extends Seeder
             ['id' => '4', 'name' => 'Cms manager', 'slug' => 'cms', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '5', 'name' => 'Accountant', 'slug' => 'accountant', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Marketing', 'slug' => 'maketing', 'created_at' => date('Y-m-d H:i:s')]]
-        );
-
-        DB::table(SC_DB_PREFIX.'admin_role_menu')->insert([
-            ['menu_id' => '38', 'role_id' => '1', 'created_at' => date('Y-m-d H:i:s')],
-            ['menu_id' => '38', 'role_id' => '2', 'created_at' => date('Y-m-d H:i:s')],
-            ['menu_id' => '38', 'role_id' => '3', 'created_at' => date('Y-m-d H:i:s')],
-        ]
         );
 
         DB::table(SC_DB_PREFIX.'admin_role_permission')->insert([

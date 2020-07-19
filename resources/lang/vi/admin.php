@@ -2,6 +2,7 @@
 
 return [
     'home' => 'Trang chủ',
+    'welcome_dasdboard' => 'Chào mừng đến trang quản trị!',
     'online' => 'Online',
     'login' => 'Đăng nhập',
     'logout' => 'Đăng xuất',
@@ -68,6 +69,7 @@ return [
     'more' => 'Nhiều hơn',
     'more_info'  => 'Xem đầy đủ thông tin',
     'deny' => 'Truy cập từ chối',
+    'deny_msg'  => 'Bạn cần thêm quyền hạn để truy cập hệ thống!',
     'deny_content' => 'Bạn không có đủ quyền hạn!',
 
     'administrator' => 'Administrator',
