@@ -17,9 +17,9 @@ class ShopPaymentStatusController extends Controller
      */
     public function index()
     {
-
         $data = [
             'title' => trans('payment_status.admin.list'),
+            'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('payment_status.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
             'urlDeleteItem' => route('admin_payment_status.delete'),
@@ -28,22 +28,17 @@ class ShopPaymentStatusController extends Controller
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
+            'url_action' => route('admin_payment_status.create'),
         ];
-        //Process add content
-        $data['menuRight'] = sc_config_group('menuRight', \Request::route()->getName());
-        $data['menuLeft'] = sc_config_group('menuLeft', \Request::route()->getName());
-        $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
-        $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
-        $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
         $listTh = [
             'id' => trans('payment_status.admin.id'),
             'name' => trans('payment_status.admin.name'),
             'action' => trans('payment_status.admin.action'),
         ];
-        $objOrder = new ShopPaymentStatus;
-        $objOrder = $objOrder->orderBy('id', 'desc');
-        $dataTmp = $objOrder->paginate(20);
+        $obj = new ShopPaymentStatus;
+        $obj = $obj->orderBy('id', 'desc');
+        $dataTmp = $obj->paginate(20);
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
@@ -63,31 +58,7 @@ class ShopPaymentStatusController extends Controller
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
         $data['resultItems'] = trans('payment_status.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
-//menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_payment_status.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-        <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
-                           </a>';
-//=menuRight
-
-
-        return view('admin.screen.list')
-            ->with($data);
-    }
-
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
-    public function create()
-    {
-        $data = [
-            'title' => trans('payment_status.admin.add_new_title'),
-            'subTitle' => '',
-            'title_description' => trans('payment_status.admin.add_new_des'),
-            'icon' => 'fa fa-plus',
-            'obj' => [],
-            'url_action' => route('admin_payment_status.create'),
-        ];
+        $data['layout'] = 'index';
         return view('admin.screen.payment_status')
             ->with($data);
     }
@@ -115,32 +86,67 @@ class ShopPaymentStatusController extends Controller
         $dataInsert = [
             'name' => $data['name'],
         ];
-        ShopPaymentStatus::create($dataInsert);
+        $obj = ShopPaymentStatus::create($dataInsert);
 //
-        return redirect()->route('admin_payment_status.index')->with('success', trans('payment_status.admin.create_success'));
+        return redirect()->route('admin_payment_status.edit', ['id' => $obj['id']])->with('success', trans('payment_status.admin.create_success'));
 
     }
 
 /**
  * Form edit
  */
-    public function edit($id)
-    {
-        $obj = ShopPaymentStatus::find($id);
-        if ($obj === null) {
-            return 'no data';
-        }
-        $data = [
-            'title' => trans('payment_status.admin.edit'),
-            'subTitle' => '',
-            'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
-            'obj' => $obj,
-            'url_action' => route('admin_payment_status.edit', ['id' => $obj['id']]),
-        ];
-        return view('admin.screen.payment_status')
-            ->with($data);
+public function edit($id)
+{
+    $payment_status = ShopPaymentStatus::find($id);
+    if(!$payment_status) {
+        return 'No data';
     }
+    $data = [
+        'title' => trans('payment_status.admin.list'),
+        'title_action' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('payment_status.admin.edit'),
+        'subTitle' => '',
+        'icon' => 'fa fa-indent',
+        'urlDeleteItem' => route('admin_payment_status.delete'),
+        'removeList' => 0, // 1 - Enable function delete list item
+        'buttonRefresh' => 0, // 1 - Enable button refresh
+        'buttonSort' => 0, // 1 - Enable button sort
+        'css' => '', 
+        'js' => '',
+        'url_action' => route('admin_payment_status.edit', ['id' => $payment_status['id']]),
+        'payment_status' => $payment_status,
+    ];
+
+    $listTh = [
+        'id' => trans('payment_status.admin.id'),
+        'name' => trans('payment_status.admin.name'),
+        'action' => trans('payment_status.admin.action'),
+    ];
+    $obj = new ShopPaymentStatus;
+    $obj = $obj->orderBy('id', 'desc');
+    $dataTmp = $obj->paginate(20);
+
+    $dataTr = [];
+    foreach ($dataTmp as $key => $row) {
+        $dataTr[] = [
+            'id' => $row['id'],
+            'name' => $row['name'] ?? 'N/A',
+            'action' => '
+                <a href="' . route('admin_payment_status.edit', ['id' => $row['id']]) . '"><span title="' . trans('payment_status.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+
+              <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('payment_status.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
+              ',
+        ];
+    }
+
+    $data['listTh'] = $listTh;
+    $data['dataTr'] = $dataTr;
+    $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
+    $data['resultItems'] = trans('payment_status.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
+
+    $data['layout'] = 'edit';
+    return view('admin.screen.payment_status')
+        ->with($data);
+}
 
 /**
  * update status
@@ -168,7 +174,7 @@ class ShopPaymentStatusController extends Controller
         $obj = ShopPaymentStatus::find($id);
         $obj->update($dataUpdate);
 //
-        return redirect()->route('admin_payment_status.index')->with('success', trans('payment_status.admin.edit_success'));
+        return redirect()->back()->with('success', trans('payment_status.admin.edit_success'));
 
     }
 

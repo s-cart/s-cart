@@ -27,25 +27,24 @@
                 <div class="col-xs-12" id="start-add">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 form-group  {{ $errors->has('kind') ? ' has-error' : '' }} ">
-                        <div class="input-group input-group-sm" style="width: 300px;text-align: center;">
+                        <div class="input-group" style="width: 300px;text-align: center; z-index:999">
                             @if (sc_config('product_kind'))
                             <select class="form-control" style="width: 100%;" name="kind">
                                 <option value="">{{ trans('product.admin.select_kind') }}</option>
                                 @foreach ($kinds as $key => $kind)
                                 <option value="{{ $key }}" {{ (old() && (int)old('kind') === $key)?'selected':'' }}>
-                                    {{ $kind }}</option>
+                                    {{ $kind }}
+                                </option>
                                 @endforeach
                             </select>          
-                            <span class="input-group-addon" id="apply-add">
+                            <span class="input-group-addon input-group">
                                 <i class="fa fa-hand-o-left"></i> {{ trans('product.kind') }}
                             </span>                                                  
                             @else
                                 <select class="form-control" style="display:none" name="kind">
                                     <option value="0" selected="selected">{{ $kinds[0] }}</option>
-                                </select>   
+                                </select>
                             @endif
-
-
                         </div>
                         @if ($errors->has('kind'))
                         <span class="help-block">
@@ -61,7 +60,18 @@
 
                         {{-- descriptions --}}
                         @foreach ($languages as $code => $language)
-                        <legend>{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</legend>
+                        <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                    
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-body">
+
                         <div
                             class="form-group  {{ $errors->has('descriptions.'.$code.'.name') ? ' has-error' : '' }}">
                             <label for="{{ $code }}__name"
@@ -149,7 +159,8 @@
                                 @endif
                             </div>
                         </div>
-
+                            </div>
+                        </div>
                         @endforeach
                         {{-- //descriptions --}}
 

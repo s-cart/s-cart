@@ -49,7 +49,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 28, 'parent_id' => 27, 'sort' => 0, 'title' => 'lang::email.admin.title', 'icon' => 'fa-cog', 'uri' => 'admin::email', 'key' => null, 'type' => 0],
             ['id' => 29, 'parent_id' => 27, 'sort' => 0, 'title' => 'lang::email_template.admin.title', 'icon' => 'fa-bars', 'uri' => 'admin::email_template', 'key' => null, 'type' => 0],
             ['id' => 30, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.localisation', 'icon' => 'fa-shirtsinbulk', 'uri' => '', 'key' => null, 'type' => 0],
-            ['id' => 31, 'parent_id' => 30, 'sort' => 0, 'title' => 'lang::language.admin.title', 'icon' => 'fa-pagelines', 'uri' => 'admin::language', 'key' => null, 'type' => 0],
+            ['id' => 31, 'parent_id' => 30, 'sort' => 0, 'title' => 'lang::language.admin.title', 'icon' => 'fa-language', 'uri' => 'admin::language', 'key' => null, 'type' => 0],
             ['id' => 32, 'parent_id' => 30, 'sort' => 0, 'title' => 'lang::currency.admin.title', 'icon' => 'fa-dollar', 'uri' => 'admin::currency', 'key' => null, 'type' => 0],
             ['id' => 33, 'parent_id' => 7, 'sort' => 101, 'title' => 'lang::banner.admin.title', 'icon' => 'fa-image', 'uri' => 'admin::banner', 'key' => null, 'type' => 0],
             ['id' => 34, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::backup.admin.title', 'icon' => 'fa-save', 'uri' => 'admin::backup', 'key' => null, 'type' => 0],

@@ -84,11 +84,30 @@
     border: 1px solid #c5c5c5 !important;
     background: #d2d6de;
   }
-  .treeview-menu li.active > a:last-child {
+  .treeview-menu li.active > a:last-child, .sidebar-menu > .active.menu-open > a:last-child {
     background: #3c5863 !important;
   }
   li > a:hover {
     background: #4e4eaddb !important;
     color: #fff !important;
+  }
+
+  .header-fix,.header-fix:hover{
+    background: #8cc1dc;
+    border-radius: 0px;
+    color:#424242;
+  }
+  .dd-handle{
+    border-radius: 0px;
+  }
+  .remove_menu{
+    cursor: pointer;
+  }
+  .active-item{
+    background: #c9d3d8 !important;
+  }
+  .dd-handle:hover{
+    background: #4e4eaddb !important;
+    color:#fff !important;
   }
 </style>

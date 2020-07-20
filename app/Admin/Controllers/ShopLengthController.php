@@ -17,9 +17,9 @@ class ShopLengthController extends Controller
      */
     public function index()
     {
-
         $data = [
             'title' => trans('length.admin.list'),
+            'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('length.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
             'urlDeleteItem' => route('admin_length_unit.delete'),
@@ -28,13 +28,8 @@ class ShopLengthController extends Controller
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
+            'url_action' => route('admin_length_unit.create'),
         ];
-        //Process add content
-        $data['menuRight'] = sc_config_group('menuRight', \Request::route()->getName());
-        $data['menuLeft'] = sc_config_group('menuLeft', \Request::route()->getName());
-        $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
-        $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
-        $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
         $listTh = [
             'id' => trans('length.id'),
@@ -54,7 +49,6 @@ class ShopLengthController extends Controller
                 'description' => $row['description'],
                 'action' => '
                     <a href="' . route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('length.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                   ',
             ];
@@ -65,34 +59,11 @@ class ShopLengthController extends Controller
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
         $data['resultItems'] = trans('length.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
-//menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_length_unit.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-        <i class="fa fa-plus" title="' . trans('length.admin.add_new') . '"></i>
-        </a>';
-//=menuRight
-
-        return view('admin.screen.list')
-            ->with($data);
-    }
-
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
-    public function create()
-    {
-        $obj = [];
-        $data = [
-            'title' => trans('length.admin.add_new_title'),
-            'subTitle' => '',
-            'title_description' => trans('length.admin.add_new_des'),
-            'icon' => 'fa fa-plus',
-            'obj' => $obj,
-            'url_action' => route('admin_length_unit.create'),
-        ];
+        $data['layout'] = 'index';
         return view('admin.screen.length')
             ->with($data);
     }
+
 
 /**
  * Post create new order in admin
@@ -120,32 +91,70 @@ class ShopLengthController extends Controller
             'name' => $data['name'],
             'description' => $data['description'],
         ];
-        ShopLength::create($dataInsert);
+        $obj = ShopLength::create($dataInsert);
 //
-        return redirect()->route('admin_length_unit.index')->with('success', trans('length.admin.create_success'));
+        return redirect()->route('admin_length_unit.edit', ['id' => $obj['id']])->with('success', trans('length.admin.create_success'));
 
     }
 
-/**
- * Form edit
- */
+    /**
+     * Form edit
+     */
+
     public function edit($id)
     {
         $obj = ShopLength::find($id);
-        if ($obj === null) {
-            return 'no data';
+        if(!$obj) {
+            return 'No data';
         }
         $data = [
-            'title' => trans('length.admin.edit'),
+            'title' => trans('length.admin.list'),
+            'title_action' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('length.admin.edit'),
             'subTitle' => '',
-            'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
-            'obj' => $obj,
+            'icon' => 'fa fa-indent',
+            'urlDeleteItem' => route('admin_length_unit.delete'),
+            'removeList' => 0, // 1 - Enable function delete list item
+            'buttonRefresh' => 0, // 1 - Enable button refresh
+            'buttonSort' => 0, // 1 - Enable button sort
+            'css' => '', 
+            'js' => '',
             'url_action' => route('admin_length_unit.edit', ['id' => $obj['id']]),
+            'obj' => $obj,
         ];
+
+        $listTh = [
+            'id' => trans('length.id'),
+            'name' => trans('length.name'),
+            'description' => trans('length.description'),
+            'action' => trans('length.admin.action'),
+        ];
+        $obj = new ShopLength;
+        $obj = $obj->orderBy('id', 'desc');
+        $dataTmp = $obj->paginate(20);
+
+        $dataTr = [];
+        foreach ($dataTmp as $key => $row) {
+            $dataTr[] = [
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'description' => $row['description'],
+                'action' => '
+                    <a href="' . route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('length.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
+                ',
+            ];
+        }
+
+        $data['listTh'] = $listTh;
+        $data['dataTr'] = $dataTr;
+        $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
+        $data['resultItems'] = trans('length.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
+
+        $data['layout'] = 'edit';
         return view('admin.screen.length')
             ->with($data);
     }
+
 
 /**
  * update status
@@ -176,7 +185,7 @@ class ShopLengthController extends Controller
         $obj->update($dataUpdate);
 
 //
-        return redirect()->route('admin_length_unit.index')->with('success', trans('length.admin.edit_success'));
+        return redirect()->back()->with('success', trans('length.admin.edit_success'));
 
     }
 

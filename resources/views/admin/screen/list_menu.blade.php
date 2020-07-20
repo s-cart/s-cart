@@ -261,28 +261,6 @@
 <!-- Ediable -->
 <link rel="stylesheet" href="{{ asset('admin/plugin/nestable/jquery.nestable.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.css')}}">
-
-<style type="text/css">
-  .header-fix,.header-fix:hover{
-    background: #8cc1dc;
-    border-radius: 0px;
-    color:#424242;
-  }
-  .dd-handle{
-    border-radius: 0px;
-  }
-  .remove_menu{
-    cursor: pointer;
-  }
-  .active-item{
-    background: #c9d3d8;
-  }
-  .dd-handle:hover{
-    background: #4e4eaddb;
-    color:#fff;
-  }
-  
-</style>
 @endpush
 
 @push('scripts')
@@ -328,7 +306,7 @@ $('.remove_menu').click(function(event) {
                       return;
                     }else{
                       alertMsg('success', 'Success');
-                      location.reload();
+                      window.location.replace('{{ route('admin_menu.index') }}');
                     }
 
                 }

@@ -158,9 +158,9 @@
             $arrCheck = explode('view::', $item);
             @endphp
             @if (count($arrCheck) == 2)
-                                    @if (view()->exists($arrCheck[1]))
-                      @include($arrCheck[1])
-                    @endif
+              @if (view()->exists($arrCheck[1]))
+                @include($arrCheck[1])
+              @endif
             @else
               {!! trim($item) !!}
             @endif

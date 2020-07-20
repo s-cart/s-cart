@@ -3,34 +3,19 @@
 @section('main')
 
 <div class="row">
+<div class="col-md-12">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{ trans('store_info.admin.title') }}</h3>
+    </div>
 
-  <div class="col-md-12">
+  <div class="row">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('store_info.admin.title') }}</h3>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-       <table class="table table-hover table-bordered">
-         <thead>
-           <tr>
-             <th>{{ trans('store_info.admin.field') }}</th>
-             <th>{{ trans('store_info.admin.value') }}</th>
-           </tr>
-         </thead>
-         <tbody>
-
-
+  <div class="col-md-6">
+    <table class="table table-hover table-bordered">
+    <tbody>
       <tr>
-        <td>{{ trans('store_info.logo') }}
-               <span class="input-group-btn">
-                 <a data-input="image" data-preview="preview_image" data-type="logo" class="btn btn-sm btn-flat btn-primary lfm">
-                   <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
-                 </a>
-               </span>
-
-        </td>
+        <td>{{ trans('store_info.logo') }}</td>
         <td>
             <div class="input-group">
                 <input type="hidden" id="image" name="logo" value="{{ $infos->logo }}" class="form-control input-sm image" placeholder=""  />
@@ -41,7 +26,9 @@
                   </span>
               @endif
             <div id="preview_image" class="img_holder">{!! sc_image_render($infos->logo,'100px', '', 'Logo') !!}</div>
-
+              <a data-input="image" data-preview="preview_image" data-type="logo" class="lfm pointer">
+                <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+              </a>
         </td>
       </tr>
 
@@ -81,26 +68,36 @@
     </td>
   </tr>
 
-@foreach ($infosDescription as $obj => $infoDescription)
-  @if ($obj !='maintain_content')
-  <tr>
-    <td>{{ trans('store_info.'.$obj) }}</td>
-    <td>
-      @foreach ($infoDescription as $codeLanguage => $des)
-        {{ $languages[$codeLanguage] }}:<br>
-        <i><a href="#" class="fied-required editable editable-click" data-name="{{ $obj.'__'.$codeLanguage }}" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.'.$obj) }}" data-value="{{ $des }}" data-original-title="" title="">{{ $des }}</a></i><br>
-        <br>
-      @endforeach
-    </td>
-  </tr>
-  @endif
-@endforeach
-
     </tbody>
        </table>
-      </div>
-    </div>
   </div>
+
+
+  <div class="col-md-6">
+    <table class="table table-hover table-bordered">
+      <tbody>
+      @foreach ($infosDescription as $obj => $infoDescription)
+        @if ($obj !='maintain_content')
+        <tr>
+          <td>{{ trans('store_info.'.$obj) }}</td>
+          <td>
+            @foreach ($infoDescription as $codeLanguage => $des)
+              {{ $languages[$codeLanguage] }}:<br>
+              <i><a href="#" class="fied-required editable editable-click" data-name="{{ $obj.'__'.$codeLanguage }}" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.'.$obj) }}" data-value="{{ $des }}" data-original-title="" title="">{{ $des }}</a></i><br>
+              <br>
+            @endforeach
+          </td>
+        </tr>
+        @endif
+      @endforeach
+    </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+</div>
+
 
 </div>
 
@@ -126,7 +123,7 @@
   // Editable
 $(document).ready(function() {
 
-       $.fn.editable.defaults.mode = 'inline';
+      //  $.fn.editable.defaults.mode = 'inline';
       $.fn.editable.defaults.params = function (params) {
         params._token = "{{ csrf_token() }}";
         return params;

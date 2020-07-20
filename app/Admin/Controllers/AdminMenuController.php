@@ -17,7 +17,8 @@ class AdminMenuController extends Controller
         $data = [
             'title' => trans('menu.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',            'menu' => [],
+            'icon' => 'fa fa-indent',            
+            'menu' => [],
             'treeMenu' => (new AdminMenu)->getTree(),
             'url_action' => route('admin_menu.create'),
             'urlDeleteItem' => route('admin_menu.delete'),

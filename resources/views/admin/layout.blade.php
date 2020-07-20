@@ -28,7 +28,6 @@
   @include('admin.component.css')
 @endif
 
-
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ asset('admin/AdminLTE/bower_components/select2/dist/css/select2.min.css')}}">
 {{-- switch --}}

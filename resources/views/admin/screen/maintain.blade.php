@@ -15,7 +15,9 @@
         </div>
         <div class="pull-left">
           <input id="maintain_mode" data-on-text="{{ trans('admin.maintain_enable') }}" data-off-text="{{ trans('admin.maintain_disable') }}" type="checkbox"  {{ (sc_config('SITE_STATUS') == 'off'?'checked':'') }}>
+          <br><span>{!! trans('admin.maintain_help') !!}</span>
          </div>
+         
         <!-- /.box-tools -->
       </div>
 
@@ -89,7 +91,7 @@
             success: function (response) {
                 console.log(response);
               if(parseInt(response.error) ==0){
-                  alertMsg(success, response.msg);
+                  alertMsg('success', response.msg);
               }else{
                   alertMsg('error', response.msg);
               }

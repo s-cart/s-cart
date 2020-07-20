@@ -88,8 +88,9 @@ return [
 
     'operation_log' => 'Log admin',
     'parent_select_error' => 'Parent select error',
-    'maintain_enable'                   => 'BẬT bảo trì',
-    'maintain_disable'                  => 'TẮT bảo trì',
+    'maintain_enable'                   => 'BẬT',
+    'maintain_disable'                  => 'TẮT',
+    'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Bật chế độ bảo trì sẽ làm ảnh hưởng tới hoạt động của website!',
     'pagination' => [
         'range' => 'Showing :first to :last of :total entries',
     ],
@@ -223,6 +224,7 @@ return [
     'access_denied' => 'Hành động từ chối!',
     'access_denied_msg' => 'Bạn không thể khóa ngôn ngữ này vì nó đang là mặc định. Phải thay đổi ngôn ngữ mặc định trước.',
     'import_data'                       => 'Import dữ liệu',
+    'config_url'                       => 'Cấu hình URL',
 
     'menu_titles' => [
         'admin' => 'Admin',

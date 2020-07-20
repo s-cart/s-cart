@@ -87,8 +87,9 @@ return [
 
       'operation_log'                     => 'Operation log',
       'parent_select_error'               => 'Parent select error',
-      'maintain_enable'                   => 'ON maintain',
-      'maintain_disable'                  => 'OFF maintain',
+      'maintain_enable'                   => 'ON',
+      'maintain_disable'                  => 'OFF',
+      'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Turning on maintenance mode will affect the operation of the website!',
       'parent_select_error'               => 'Parent select error',
 
       'pagination'                        => [
@@ -223,6 +224,7 @@ return [
       'access_denied'                     => 'Access denied!',
       'access_denied_msg'                 => 'Can\'t disable this language. Please change default language before do that.',
       'import_data'                       => 'Import data',
+      'config_url'                       => 'Config URL',
 
       'menu_titles'                       => [
             'admin'             => 'Admin',
