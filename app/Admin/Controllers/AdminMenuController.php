@@ -23,9 +23,10 @@ class AdminMenuController extends Controller
             'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
             'url_action' => route('admin_menu.create'),
             'urlDeleteItem' => route('admin_menu.delete'),
-            'title_form' => '<i class="fa fa-floppy-o" aria-hidden="true"></i> ' . trans('menu.admin.create'),
+            'title_form' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('menu.admin.create'),
         ];
-        return view('admin.screen.list-menu')
+        $data['layout'] = 'index';
+        return view('admin.screen.list_menu')
             ->with($data);
     }
 
@@ -93,7 +94,9 @@ class AdminMenuController extends Controller
             'title_form' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
         ];
         $data['urlDeleteItem'] = route('admin_menu.delete');
-        return view('admin.screen.list-menu')
+        $data['id'] = $id;
+        $data['layout'] = 'edit';
+        return view('admin.screen.list_menu')
             ->with($data);
     }
 
@@ -139,7 +142,7 @@ class AdminMenuController extends Controller
         }
 
 //
-        return redirect()->route('admin_menu.index')->with('success', trans('menu.admin.edit_success'));
+        return redirect()->back()->with('success', trans('menu.admin.edit_success'));
 
     }
 

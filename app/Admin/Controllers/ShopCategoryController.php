@@ -63,7 +63,8 @@ class ShopCategoryController extends Controller
             ->leftJoin(SC_DB_PREFIX.'shop_category_description', SC_DB_PREFIX.'shop_category_description.category_id', SC_DB_PREFIX.'shop_category.id')
             ->where(SC_DB_PREFIX.'shop_category_description.lang', sc_get_locale());
         if ($keyword) {
-            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR "'.ShopCategory::class.'"_description.title like "%' . $keyword . '%" )');
+            $tableDescription = (new ShopCategoryDescription)->getTable();
+            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR '.$tableDescription.'.title like "%' . $keyword . '%" )');
         }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];

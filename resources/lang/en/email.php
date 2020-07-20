@@ -53,6 +53,7 @@ return [
         'contact_to_customer'      => 'Send email contact to customer',
         'contact_to_admin'         => 'Send email contact to admin',
         'email_action_mode'        => 'ON/OFF send mail',
+        'email_action_queue'       => 'Use send mail queue',
         'email_action_smtp_mode'   => 'SMTP mode',
         'config_smtp'              => 'Config SMTP',
         'other'                    => 'Other',

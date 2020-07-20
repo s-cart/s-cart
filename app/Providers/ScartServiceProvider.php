@@ -3,6 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\ShopProduct;
+use App\Models\ShopCategory;
+use App\Models\ShopBanner;
+use App\Models\ShopBrand;
+use App\Models\ShopSupplier;
+use App\Models\ShopNews;
+use App\Models\ShopPage;
 
 class ScartServiceProvider extends ServiceProvider
 {
@@ -20,9 +27,11 @@ class ScartServiceProvider extends ServiceProvider
         foreach (glob(app_path() . '/Plugins/*/*/Provider.php') as $filename) {
             require_once $filename;
         }
-        if(sc_config()) {
+
+        if(!file_exists(public_path('install.php'))) {
             $this->bootScart();
         }
+
     }
 
     /**
@@ -36,7 +45,7 @@ class ScartServiceProvider extends ServiceProvider
             require_once (app_path().'/Library/Const.php');
         }
         $this->app->bind('cart', 'App\Library\ShoppingCart\Cart');
-
+        
         $this->registerRouteMiddleware();
     }
 
@@ -82,6 +91,22 @@ class ScartServiceProvider extends ServiceProvider
             //Debug mode
             config(['app.debug' => env('APP_DEBUG') ? true : ((sc_config('APP_DEBUG') === 'on') ? true : false)]);
             //End debug mode
+
+            //Share variable for view
+            view()->share('languages', sc_language_all());
+            view()->share('currencies', sc_currency_all());
+            view()->share('blocksContent', sc_block_content());
+            view()->share('layoutsUrl', sc_link());
+            view()->share('templatePath', 'templates.' . sc_store('template'));
+            view()->share('templateFile', 'templates/' . sc_store('template'));
+            //variable model
+            view()->share('modelProduct', (new ShopProduct));
+            view()->share('modelCategory', (new ShopCategory));
+            view()->share('modelBanner', (new ShopBanner));
+            view()->share('modelBrand', (new ShopBrand));
+            view()->share('modelSupplier', (new ShopSupplier));
+            view()->share('modelNews', (new ShopNews));
+            view()->share('modelPage', (new ShopPage));
     }
 
     /**

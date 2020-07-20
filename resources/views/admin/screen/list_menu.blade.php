@@ -1,6 +1,9 @@
 @extends('admin.layout')
 
 @section('main')
+@php
+    $id = empty($id) ? 0 : $id;
+@endphp
 
 <div class="row">
 
@@ -12,11 +15,10 @@
           <div class="btn-group">
             <a class="btn btn-warning btn-flat btn-sm menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
           </div>
-      </h3>
-
+        </h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="box-body table-responsive box-primary">
 
 <div class="dd" id="menu-sort">
     <ol class="dd-list">
@@ -27,32 +29,35 @@
 {{-- Level 0 --}}
         @foreach ($menus[0] as $level0)
           @if ($level0->type ==1)
-            <li class="dd-item" data-id="{{ $level0->id }}">
-                <div class="dd-handle header-fix">
+            <li class="dd-item " data-id="{{ $level0->id }}">
+                <div class="dd-handle header-fix  {{ ($level0->id == $id)? 'active-item' : '' }}">
                   {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit"></i></a>
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-2x"></i></a>
+                      &nbsp; 
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-2x"></i></a>
                   </span>
                 </div>
             </li>
           @elseif($level0->uri)
             <li class="dd-item" data-id="{{ $level0->id }}">
-                <div class="dd-handle">
+                <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                   <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit"></i></a>
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                      &nbsp; 
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                   </span>
                 </div>
             </li>
           @else
-            <li class="dd-item" data-id="{{ $level0->id }}">
-              <div class="dd-handle">
+            <li class="dd-item " data-id="{{ $level0->id }}">
+              <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                 <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit"></i></a>
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                      &nbsp; 
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                   </span>
               </div>
     {{-- Level 1 --}}
@@ -61,44 +66,48 @@
                 @foreach ($menus[$level0->id] as $level1)
                   @if($level1->uri)
                     <li class="dd-item" data-id="{{ $level1->id }}">
-                        <div class="dd-handle">
+                        <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                           <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                           <span class="pull-right dd-nodrag">
-                              <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit"></i></a>
-                              <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                              <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                              &nbsp; 
+                              <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                           </span>
                         </div>
                     </li>
                   @else
                   <li class="dd-item" data-id="{{ $level1->id }}">
-                    <div class="dd-handle">
+                    <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                       <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                       <span class="pull-right dd-nodrag">
-                          <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit"></i></a>
-                          <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                          <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                          &nbsp; 
+                          <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                       </span>
                     </div>
             {{-- LEvel 2  --}}
                         @if (isset($menus[$level1->id]) && count($menus[$level1->id]))
-                          <ol class="dd-list">
+                          <ol class="dd-list dd-collapsed">
                             @foreach ($menus[$level1->id] as $level2)
                               @if($level2->uri)
                                 <li class="dd-item" data-id="{{ $level2->id }}">
-                                    <div class="dd-handle">
+                                    <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                       <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                       <span class="pull-right dd-nodrag">
-                                          <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit"></i></a>
-                                          <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                                          <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                                          &nbsp; 
+                                          <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                                       </span>
                                     </div>
                                 </li>
                               @else
                               <li class="dd-item" data-id="{{ $level2->id }}">
-                                <div class="dd-handle">
+                                <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                   <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                   <span class="pull-right dd-nodrag">
-                                      <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit"></i></a>
-                                      <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
+                                      <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                                      &nbsp; 
+                                      <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
                                   </span>
                                 </li>
                               @endif
@@ -127,15 +136,19 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{!! $title_form !!}</h3>
-
-      </div>
-
-
+    <div class="box box-primary">   
+              <div class="box-header with-border">
+                <h3 class="box-title">{!! $title_form !!}</h3>
+                @if ($layout == 'edit')
+                <div class="box-tools">
+                    <div class="btn-group pull-right" style="margin-right: 5px">
+                        <a href="{{ route('admin_menu.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                    </div>
+                </div>
+                @endif
+              </div>
+   
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
-
 
                     <div class="box-body">
                         <div class="fields-group">
@@ -213,17 +226,17 @@
                                 </div>
                             </div>
 
-{{-- select permission --}}
+{{-- select role --}}
                             <div class="form-group  {{ $errors->has('roles') ? ' has-error' : '' }}">
-        @php
-        $listRoles = [];
-        $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
-            if(is_array($old_roles)){
-                foreach($old_roles as $value){
-                    $listRoles[] = (int)$value;
-                }
-            }
-        @endphp
+                              @php
+                              $listRoles = [];
+                              $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
+                                  if(is_array($old_roles)){
+                                      foreach($old_roles as $value){
+                                          $listRoles[] = (int)$value;
+                                      }
+                                  }
+                              @endphp
                                 <label for="roles" class="col-sm-2 col-form-label">{{ trans('menu.admin.roles') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm roles select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="roles[]" >
@@ -239,20 +252,20 @@
                                         @endif
                                 </div>
                             </div>
-{{-- //select permission --}}
+{{-- //select role --}}
 
 
 {{-- select permission --}}
                             <div class="form-group  {{ $errors->has('permissions') ? ' has-error' : '' }}">
-        @php
-        $listPermission = [];
-        $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
-            if(is_array($old_permission)){
-                foreach($old_permission as $value){
-                    $listPermission[] = (int)$value;
-                }
-            }
-        @endphp
+                              @php
+                              $listPermission = [];
+                              $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
+                                  if(is_array($old_permission)){
+                                      foreach($old_permission as $value){
+                                          $listPermission[] = (int)$value;
+                                      }
+                                  }
+                              @endphp
                                 <label for="permissions" class="col-sm-2 col-form-label">{{ trans('menu.admin.permissions') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm permissions select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permissions[]" >
@@ -319,6 +332,9 @@
   }
   .remove_menu{
     cursor: pointer;
+  }
+  .dd-handle:hover, .active-item{
+    background: #c9d3d8;
   }
 </style>
 @endpush
@@ -419,6 +435,8 @@ $('.menu-sort-save').click(function () {
 
 
 $(document).ready(function() {
+    $('.active-item').parents('li').removeClass('dd-collapsed');
+
     $('.select2').select2();
       //icon picker
     $('.icon').iconpicker({placement:'bottomLeft'});

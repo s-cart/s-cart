@@ -516,6 +516,25 @@ class CreateTablesShop extends Migration
 
         });
 
+        Schema::create('jobs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('queue')->index();
+            $table->longText('payload');
+            $table->unsignedTinyInteger('attempts');
+            $table->unsignedInteger('reserved_at')->nullable();
+            $table->unsignedInteger('available_at');
+            $table->unsignedInteger('created_at');
+        });
+
+        Schema::create('failed_jobs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
+        });
+
     }
 
     /**
@@ -578,6 +597,9 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists('oauth_personal_access_clients');
         //Api connection
         Schema::dropIfExists(SC_DB_PREFIX.'api_connection');
+        //Job
+        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('failed_jobs');
     }
 
 }
