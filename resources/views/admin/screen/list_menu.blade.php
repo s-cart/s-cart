@@ -368,7 +368,3 @@ $(document).ready(function() {
 
 </script>
 @endpush
-
-{{-- @section('version-jquery')
-  <script src="{{ asset('admin/AdminLTE/bower_components/jquery/dist/jQuery-2.1.4.min.js')}}"></script>
-@endsection --}}
