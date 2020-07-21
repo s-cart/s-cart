@@ -25,7 +25,7 @@
                                 <label for="email" class="col-sm-2 col-form-label">{{ trans('subscribe.email') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="email" id="email" name="email" value="{!! old()?old('email'):$subscribe['email']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))

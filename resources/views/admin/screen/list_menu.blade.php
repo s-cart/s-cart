@@ -42,7 +42,7 @@
           @elseif($level0->uri)
             <li class="dd-item" data-id="{{ $level0->id }}">
                 <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
-                  <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
+                  <i class="{{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
                       <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                       &nbsp; 
@@ -53,7 +53,7 @@
           @else
             <li class="dd-item " data-id="{{ $level0->id }}">
               <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
-                <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
+                <i class="{{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
                   <span class="pull-right dd-nodrag">
                       <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                       &nbsp; 
@@ -67,7 +67,7 @@
                   @if($level1->uri)
                     <li class="dd-item" data-id="{{ $level1->id }}">
                         <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
-                          <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
+                          <i class="{{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                           <span class="pull-right dd-nodrag">
                               <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                               &nbsp; 
@@ -78,7 +78,7 @@
                   @else
                   <li class="dd-item" data-id="{{ $level1->id }}">
                     <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
-                      <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
+                      <i class="{{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
                       <span class="pull-right dd-nodrag">
                           <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                           &nbsp; 
@@ -92,7 +92,7 @@
                               @if($level2->uri)
                                 <li class="dd-item" data-id="{{ $level2->id }}">
                                     <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
-                                      <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
+                                      <i class="{{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                       <span class="pull-right dd-nodrag">
                                           <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                                           &nbsp; 
@@ -103,7 +103,7 @@
                               @else
                               <li class="dd-item" data-id="{{ $level2->id }}">
                                 <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
-                                  <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
+                                  <i class="{{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
                                   <span class="pull-right dd-nodrag">
                                       <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
                                       &nbsp; 
@@ -175,7 +175,7 @@
                                 <label for="title" class="col-sm-2 col-form-label">{{ trans('menu.admin.title') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="title" name="title" value="{{ old('title',$menu['title']??'') }}" class="form-control title" placeholder="" />
                                     </div>
                                         @if ($errors->has('title'))
@@ -190,8 +190,8 @@
                               <label for="icon" class="col-sm-2 col-form-label">{{ trans('menu.admin.icon') }}</label>
                               <div class="col-sm-8">
                                   <div class="input-group">
-                                      <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                      <input required="1" style="width: 140px" type="text" id="icon" name="icon" value="{{ old('icon',$menu['icon']??'fa-bars') }}" class="form-control icon" placeholder="Input Icon" />
+                                      <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                      <input required="1" style="width: 140px" type="text" id="icon" name="icon" value="{{ old('icon',$menu['icon']??'fas fa-bars') }}" class="form-control icon" placeholder="Input Icon" />
                                   </div>
                               </div>
                           </div>
@@ -200,7 +200,7 @@
                                 <label for="uri" class="col-sm-2 col-form-label">{{ trans('menu.admin.uri') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="uri" name="uri" value="{{ old('uri',$menu['uri']??'') }}" class="form-control uri" placeholder="" />
                                     </div>
                                         @if ($errors->has('uri'))
@@ -215,7 +215,7 @@
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('menu.admin.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" style="width: 100px;"  id="sort" name="sort" value="{!! old('sort',$menu['sort']??0)??0 !!}" class="form-control input-sm sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
@@ -260,14 +260,14 @@
 @push('styles')
 <!-- Ediable -->
 <link rel="stylesheet" href="{{ asset('admin/plugin/nestable/jquery.nestable.min.css')}}">
-<link rel="stylesheet" href="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.css')}}">
+<link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.css')}}">
 @endpush
 
 @push('scripts')
 <!-- Ediable -->
 
 <script src="{{ asset('admin/plugin/nestable/jquery.nestable.min.js')}}"></script>
-<script src="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.js')}}"></script>
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.js')}}"></script>
 
 
 <script type="text/javascript">
@@ -369,6 +369,6 @@ $(document).ready(function() {
 </script>
 @endpush
 
-@section('version-jquery')
+{{-- @section('version-jquery')
   <script src="{{ asset('admin/AdminLTE/bower_components/jquery/dist/jQuery-2.1.4.min.js')}}"></script>
-@endsection
+@endsection --}}

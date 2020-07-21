@@ -23,7 +23,7 @@
                       <label for="name" class="col-sm-2 col-form-label">{{ trans('payment_status.name') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="name" name="name" value="{!! old()?old('name'):$payment_status['name']??'' !!}" class="form-control name" placeholder="" />
                           </div>
                               @if ($errors->has('name'))

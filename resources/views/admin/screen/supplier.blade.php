@@ -23,7 +23,7 @@
                       <label for="name" class="col-sm-2 col-form-label">{{ trans('supplier.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="name" name="name"
                                   value="{!! old()?old('name'):$supplier['name']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -44,7 +44,7 @@
                       <label for="alias" class="col-sm-2 col-form-label">{!! trans('supplier.alias') !!}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="alias" name="alias"
                                   value="{!! old()?old('alias'):$supplier['alias']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -62,7 +62,7 @@
                           class="col-sm-2 col-form-label">{{ trans('supplier.email') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="email" id="email" name="email"
                                   value="{!! old()?old('email'):$supplier['email']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -81,7 +81,7 @@
                           class="col-sm-2 col-form-label">{{ trans('supplier.phone') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="phone" name="phone"
                                   value="{!! old()?old('phone'):$supplier['phone']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -99,7 +99,7 @@
                       <label for="url" class="col-sm-2 col-form-label">{{ trans('supplier.url') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="url" name="url"
                                   value="{!! old()?old('url'):$supplier['url']??'' !!}" class="form-control"
                                   placeholder="" />
@@ -119,7 +119,7 @@
                           class="col-sm-2 col-form-label">{{ trans('supplier.address') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="address" name="address"
                                   value="{!! old()?old('address'):$supplier['address']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -144,7 +144,7 @@
                               <span class="input-group-btn">
                                   <a data-input="image" data-preview="preview_image" data-type="supplier"
                                       class="btn btn-sm btn-primary lfm">
-                                      <i class="fa fa-picture-o"></i>
+                                      <i class="fa fa-image"></i>
                                       {{trans('product.admin.choose_image')}}
                                   </a>
                               </span>
@@ -166,7 +166,7 @@
                       <label for="sort" class="col-sm-2 col-form-label">{{ trans('supplier.sort') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="number" style="width: 100px;" min=0 id="sort" name="sort"
                                   value="{!! old()?old('sort'):$supplier['sort']??0 !!}"
                                   class="form-control sort" placeholder="" />

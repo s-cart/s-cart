@@ -25,7 +25,7 @@
                                 <label for="name" class="col-sm-2  control-label">{{ trans('permission.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="name" name="name" value="{{ old('name',$permission['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
@@ -40,7 +40,7 @@
                                 <label for="slug" class="col-sm-2  control-label">{{ trans('permission.slug') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="slug" name="slug" value="{{ old('slug',$permission['slug']??'') }}" class="form-control slug" placeholder="" />
                                     </div>
                                         @if ($errors->has('slug'))

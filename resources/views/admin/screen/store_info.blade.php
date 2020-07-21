@@ -27,7 +27,7 @@
               @endif
             <div id="preview_image" class="img_holder">{!! sc_image_render($infos->logo,'100px', '', 'Logo') !!}</div>
               <a data-input="image" data-preview="preview_image" data-type="logo" class="lfm pointer">
-                <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+                <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
               </a>
         </td>
       </tr>

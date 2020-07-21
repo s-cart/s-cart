@@ -25,7 +25,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('link.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="name" name="name" value="{!! old()?old('name'):$link['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
@@ -40,7 +40,7 @@
                                 <label for="url" class="col-sm-2 col-form-label">{{ trans('link.url') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="url" name="url" value="{!! old()?old('url'):$link['url']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('url'))
@@ -96,7 +96,7 @@
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('link.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{!! old()?old('sort'):$link['sort']??0 !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))

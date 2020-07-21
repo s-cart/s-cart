@@ -45,7 +45,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('news.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
                                         value="{{ old()? old('descriptions.'.$code.'.title'):($descriptions[$code]['title']??'') }}"
                                         class="form-control {{ $code.'__title' }}" placeholder="" />
@@ -68,7 +68,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('news.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__keyword"
                                         name="descriptions[{{ $code }}][keyword]"
                                         value="{{ old()?old('descriptions.'.$code.'.keyword'):($descriptions[$code]['keyword']??'') }}"
@@ -134,7 +134,7 @@
                                 class="col-sm-2 col-form-label">{!! trans('news.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="alias" name="alias" value="{!! old('alias',($shopNews['alias']??'')) !!}"
                                         class="form-control alias" placeholder="" />
                                 </div>
@@ -157,7 +157,7 @@
                                     <span class="input-group-btn">
                                         <a data-input="image" data-preview="preview_image" data-type="content"
                                             class="btn btn-sm btn-primary lfm">
-                                            <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+                                            <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                         </a>
                                     </span>
                                 </div>
@@ -179,7 +179,7 @@
                             <label for="sort" class="col-sm-2 col-form-label">{{ trans('news.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="sort" name="sort"
                                         value="{{ old()?old('sort'):$shopNews['sort']??0 }}" class="form-control sort"
                                         placeholder="" />

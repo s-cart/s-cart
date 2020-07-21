@@ -25,7 +25,7 @@
                                 <label for="name" class="col-sm-2  control-label">{{ trans('user.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="name" name="name" value="{{ old('name',$user['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
@@ -40,7 +40,7 @@
                                 <label for="username" class="col-sm-2  control-label">{{ trans('user.user_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" disabled=""  id="username"  value="{{ old('username',$user['username']??'') }}" class="form-control username" placeholder="" />
                                     </div>
                                         @if ($errors->has('username'))
@@ -55,7 +55,7 @@
                                 <label for="email" class="col-sm-2  control-label">{{ trans('user.email') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" disabled=""  id="email"  value="{{ old('email',$user['email']??'') }}" class="form-control email" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))
@@ -73,7 +73,7 @@
                                         <input type="text" id="avatar" name="avatar" value="{{ old('avatar',$user['avatar']??'') }}" class="form-control input-sm avatar" placeholder=""  />
                                        <span class="input-group-btn">
                                          <a data-input="avatar" data-preview="preview_avatar" data-type="avatar" class="btn btn-sm btn-primary lfm">
-                                           <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+                                           <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                          </a>
                                        </span>
                                     </div>
@@ -90,7 +90,7 @@
                                 <label for="password" class="col-sm-2  control-label">{{ trans('user.password') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="password"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
                                     </div>
                                         @if ($errors->has('password'))
@@ -111,7 +111,7 @@
                                 <label for="password" class="col-sm-2  control-label">{{ trans('user.password_confirmation') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="password"   id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')??'' }}" class="form-control password_confirmation" placeholder="" />
                                     </div>
                                         @if ($errors->has('password_confirmation'))

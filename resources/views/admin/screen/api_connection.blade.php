@@ -26,7 +26,7 @@
                       <label for="description" class="col-sm-2 col-form-label">{{ trans('api_connection.description') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="description" name="description" value="{!! old()?old('description'):$api_connection['description']??'' !!}" class="form-control" placeholder="" />
                           </div>
                               @if ($errors->has('description'))
@@ -41,7 +41,7 @@
                       <label for="apiconnection" class="col-sm-2 col-form-label">{{ trans('api_connection.apiconnection') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="apiconnection" name="apiconnection" value="{!! old()?old('apiconnection'):$api_connection['apiconnection']??'' !!}" class="form-control" placeholder="" />
                           </div>
                               @if ($errors->has('apiconnection'))
@@ -56,7 +56,7 @@
                       <label for="apikey" class="col-sm-2 col-form-label">{{ trans('api_connection.apikey') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input style="max-width: 300px;" type="text" id="apikey" name="apikey" value="{!! old()?old('apikey'):$api_connection['apikey']??'' !!}" class="form-control" placeholder="" />
                               <div class="input-group-btn">
                                   <button class="btn btn-default" id="refreshkey" type="button">

@@ -42,7 +42,7 @@
                                 <label for="first_name" class="col-sm-2 col-form-label">{{ trans('order.shipping_first_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="first_name" name="first_name" value="{!! old('first_name') !!}" class="form-control first_name" placeholder="" />
                                     </div>
                                         @if ($errors->has('first_name'))
@@ -58,7 +58,7 @@
                                 <label for="last_name" class="col-sm-2 col-form-label">{{ trans('order.shipping_last_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="last_name" name="last_name" value="{!! old('last_name') !!}" class="form-control last_name" placeholder="" />
                                     </div>
                                         @if ($errors->has('last_name'))
@@ -75,7 +75,7 @@
                                 <label for="company" class="col-sm-2 col-form-label">{{ trans('order.company') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="company" name="company" value="{!! old('company') !!}" class="form-control company" placeholder="" />
                                     </div>
                                         @if ($errors->has('company'))
@@ -92,7 +92,7 @@
                                 <label for="postcode" class="col-sm-2 col-form-label">{{ trans('order.postcode') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="postcode" name="postcode" value="{!! old('postcode') !!}" class="form-control postcode" placeholder="" />
                                     </div>
                                         @if ($errors->has('postcode'))
@@ -108,7 +108,7 @@
                                 <label for="address1" class="col-sm-2 col-form-label">{{ trans('order.shipping_address1') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="address1" name="address1" value="{!! old('address1') !!}" class="form-control address1" placeholder="" />
                                     </div>
                                     @if ($errors->has('address1'))
@@ -124,7 +124,7 @@
                                 <label for="address2" class="col-sm-2 col-form-label">{{ trans('order.shipping_address2') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="address2" name="address2" value="{!! old('address2') !!}" class="form-control address2" placeholder="" />
                                     </div>
                                         @if ($errors->has('address2'))

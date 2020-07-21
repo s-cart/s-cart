@@ -24,7 +24,7 @@
                           class="col-sm-2 col-form-label">{{ trans('language.name') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="name" name="name"
                                   value="{!! old()?old('name'):$language['name']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -42,7 +42,7 @@
                           class="col-sm-2 col-form-label">{{ trans('language.code') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               @if (!empty($language['code']) && in_array($language['code'], ['vi','en']))
                               <input type="hidden" id="code" name="code" value="{!! $language['code'] !!}"
                                   placeholder="" />
@@ -75,7 +75,7 @@
                               <span class="input-group-btn">
                                   <a data-input="icon" data-preview="preview_icon" data-type="language"
                                       class="btn btn-sm btn-primary lfm">
-                                      <i class="fa fa-picture-o"></i>
+                                      <i class="fa fa-image"></i>
                                       {{trans('admin.choose_icon')}}
                                   </a>
                               </span>
@@ -105,7 +105,7 @@
                           class="col-sm-2 col-form-label">{{ trans('language.sort') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="number" style="width: 100px;" min=0 id="sort" name="sort"
                                   value="{!! old()?old('sort'):$language['sort']??0 !!}"
                                   class="form-control sort" placeholder="" />

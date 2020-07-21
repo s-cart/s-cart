@@ -25,7 +25,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('currency.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="name" name="name" value="{!! old()?old('name'):$currency['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
@@ -40,7 +40,7 @@
                                 <label for="code" class="col-sm-2 col-form-label">{{ trans('currency.code') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         @if (!empty($currency['code']) && in_array($currency['code'], ['VND','USD']))
                                         <input type="hidden" id="code" name="code" value="{!! $currency['code'] !!}" placeholder="" />
                                         <input type="text" disabled="disabled" value="{!! $currency['code'] !!}" class="form-control" placeholder="" />
@@ -63,7 +63,7 @@
                                 <label for="symbol" class="col-sm-2 col-form-label">{{ trans('currency.symbol') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="symbol" name="symbol" value="{!! old()?old('symbol'):$currency['symbol']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('symbol'))
@@ -78,7 +78,7 @@
                                 <label for="exchange_rate" class="col-sm-2 col-form-label">{{ trans('currency.exchange_rate') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" step="0.01" id="exchange_rate" name="exchange_rate" value="{!! old()?old('exchange_rate'):$currency['exchange_rate']??1 !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('exchange_rate'))
@@ -93,7 +93,7 @@
                                 <label for="precision" class="col-sm-2 col-form-label">{{ trans('currency.precision') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" id="precision" name="precision" type="" value="{!! old()?old('precision'):$currency['precision']??0 !!}" class="form-control" placeholder="" min = 0 />
                                     </div>
                                         @if ($errors->has('precision'))
@@ -122,7 +122,7 @@
                                 <label for="thousands" class="col-sm-2 col-form-label">{{ trans('currency.thousands') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="thousands" name="thousands" type="text" value="{!! old('thousands',$currency['thousands']??',') !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('thousands'))
@@ -137,7 +137,7 @@
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('currency.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{!! old('sort',$currency['sort']??0) !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))

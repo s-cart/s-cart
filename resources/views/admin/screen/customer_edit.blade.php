@@ -28,7 +28,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="first_name" type="text" class="form-control" name="first_name" required
                                         value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
@@ -44,7 +44,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="last_name" type="text" class="form-control" name="last_name" required
                                         value="{{ (old('last_name', $customer['last_name'] ?? ''))}}">
                                     </div>
@@ -61,7 +61,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="first_name" type="text" class="form-control" name="first_name" required
                                         value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
@@ -81,7 +81,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="phone" type="text" class="form-control" name="phone" required
                                         value="{{ (old('phone', $customer['phone'] ?? ''))}}">
                                     </div>
@@ -100,7 +100,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="postcode" type="text" class="form-control" name="postcode" required
                                         value="{{ (old('postcode', $customer['postcode'] ?? ''))}}">
                                     </div>
@@ -119,7 +119,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="email" type="text" class="form-control" name="email" required
                                         value="{{ (old('email',$customer['email'] ?? ''))}}">
                                     </div>
@@ -138,7 +138,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="address1" type="text" class="form-control" name="address1" required
                                         value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
@@ -154,7 +154,7 @@
                                     class="col-sm-2 col-form-label text-md-right">{{ trans('account.address2') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="address2" type="text" class="form-control" name="address2" required
                                         value="{{ (old('address2', $customer['address2'] ?? ''))}}">
                                     </div>
@@ -171,7 +171,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="address1" type="text" class="form-control" name="address1" required
                                         value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
@@ -237,7 +237,7 @@
                                     {{ trans('account.birthday') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
                                         name="birthday" required
                                         value="{{ (old('birthday', $customer['birthday'] ?? ''))}}">
@@ -257,7 +257,7 @@
     
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input id="group" type="number" class="form-control" name="group" required
                                         value="{{ (old('group', $customer['group'] ?? ''))}}">
                                     </div>
@@ -275,7 +275,7 @@
                                 <label for="password" class="col-sm-2  col-form-label text-md-right">{{ trans('customer.password') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
                                     </div>
                                         @if ($errors->has('password'))

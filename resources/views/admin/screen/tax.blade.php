@@ -22,7 +22,7 @@
                       <label for="name" class="col-sm-2 col-form-label">{{ trans('tax.name') }} </label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="text" id="name" name="name"
                                   value="{!! old()?old('name'):$tax['name']??'' !!}"
                                   class="form-control" placeholder="" />
@@ -43,7 +43,7 @@
                       <label for="value" class="col-sm-2 col-form-label">{{ trans('tax.value') }}</label>
                       <div class="col-sm-8">
                           <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                               <input type="number" style="width: 100px;" min=0 id="value" name="value"
                                   value="{!! old()?old('value'):$tax['value']??0 !!}"
                                   class="form-control value" placeholder="" />

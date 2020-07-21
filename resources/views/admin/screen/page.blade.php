@@ -45,7 +45,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('page.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
                                         value="{!! old('descriptions.'.$code.'.title',($descriptions[$code]['title']??'')) !!}"
                                         class="form-control {{ $code.'__title' }}" placeholder="" />
@@ -68,7 +68,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('page.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__keyword"
                                         name="descriptions[{{ $code }}][keyword]"
                                         value="{!! old('descriptions.'.$code.'.keyword',($descriptions[$code]['keyword']??'')) !!}"
@@ -141,7 +141,7 @@
                                     <span class="input-group-btn">
                                         <a data-input="image" data-preview="preview_image" data-type="page"
                                             class="btn btn-sm btn-primary lfm">
-                                            <i class="fa fa-picture-o"></i> {{trans('page.admin.choose_image')}}
+                                            <i class="fa fa-image"></i> {{trans('page.admin.choose_image')}}
                                         </a>
                                     </span>
                                 </div>
@@ -165,7 +165,7 @@
                                 class="col-sm-2 col-form-label">{!! trans('page.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     @if (!in_array($page['id']??'', SC_GUARD_PAGES))
                                     <input type="text" id="alias" name="alias" value="{!! old('alias',($page['alias']??'')) !!}"
                                         class="form-control alias" placeholder="" />

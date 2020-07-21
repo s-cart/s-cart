@@ -28,7 +28,7 @@
                                         <input type="text" id="image" name="image" value="{{ old('image',$banner['image']??'') }}" class="form-control input-sm image" placeholder=""  />
                                        <span class="input-group-btn">
                                          <a data-input="image" data-preview="preview_image" data-type="banner" class="btn btn-sm btn-primary lfm">
-                                           <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+                                           <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                          </a>
                                        </span>
                                     </div>
@@ -49,7 +49,7 @@
                                 <label for="url" class="col-sm-2 col-form-label">{{ trans('banner.url') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="text" id="url" name="url" value="{{ old()?old('url'):$banner['url']??'' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('url'))
@@ -113,7 +113,7 @@
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('banner.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{{ old()?old('sort'):$banner['sort']??0 }}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))

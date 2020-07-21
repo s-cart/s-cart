@@ -22,7 +22,7 @@
                           <label for="name" class="col-sm-2 col-form-label">{{ trans('length.name') }}</label>
                           <div class="col-sm-8">
                               <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                  <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                   <input type="text" id="name" name="name" value="{!! old('name',($obj['name']??'')) !!}" class="form-control name" placeholder="" />
                               </div>
                                   @if ($errors->has('name'))
@@ -37,7 +37,7 @@
                           <label for="description" class="col-sm-2 col-form-label">{{ trans('length.description') }}</label>
                           <div class="col-sm-8">
                               <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                  <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                   <input type="text" id="description" name="description" value="{!! old('description',($obj['description']??'')) !!}" class="form-control description" placeholder="" />
                               </div>
                                   @if ($errors->has('description'))

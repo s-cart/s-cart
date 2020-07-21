@@ -78,7 +78,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('product.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__name" name="descriptions[{{ $code }}][name]"
                                         value="{!! old('descriptions.'.$code.'.name') !!}"
                                         class="form-control input-sm {{ $code.'__name' }}" placeholder="" />
@@ -102,7 +102,7 @@
                                 class="col-sm-2 col-form-label">{{ trans('product.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" id="{{ $code }}__keyword"
                                         name="descriptions[{{ $code }}][keyword]"
                                         value="{!! old('descriptions.'.$code.'.keyword') !!}"
@@ -209,7 +209,7 @@
                                     <span class="input-group-btn">
                                         <a data-input="image" data-preview="preview_image" data-type="product"
                                             class="btn btn-sm btn-flat btn-primary lfm">
-                                            <i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}
+                                            <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                         </a>
                                     </span>
                                 </div>
@@ -235,7 +235,7 @@
                                             class="input-group-btn"><span><a data-input="sub_image_{{ $key }}"
                                                     data-preview="preview_sub_image_{{ $key }}" data-type="product"
                                                     class="btn btn-sm btn-flat btn-primary lfm"><i
-                                                        class="fa fa-picture-o"></i>
+                                                        class="fa fa-image"></i>
                                                     {{trans('product.admin.choose_image')}}</a></span><span
                                                 title="Remove" class="btn btn-flat btn-sm btn-danger removeImage"><i
                                                     class="fa fa-times"></i></span></span></div>
@@ -261,7 +261,7 @@
                             <label for="sku" class="col-sm-2 col-form-label">{{ trans('product.sku') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text" style="width: 100px;" id="sku" name="sku"
                                         value="{!! old('sku')??'' !!}" class="form-control input-sm sku"
                                         placeholder="" />
@@ -285,7 +285,7 @@
                             <label for="alias" class="col-sm-2 col-form-label">{!! trans('product.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="text"  id="alias" name="alias"
                                         value="{!! old('alias')??'' !!}" class="form-control input-sm alias"
                                         placeholder="" />
@@ -368,7 +368,7 @@
                             <label for="cost" class="col-sm-2 col-form-label">{{ trans('product.cost') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="cost" name="cost"
                                         value="{!! old('cost')??0 !!}" class="form-control input-sm cost"
                                         placeholder="" />
@@ -389,7 +389,7 @@
                             <label for="price" class="col-sm-2 col-form-label">{{ trans('product.price') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="price" name="price"
                                         value="{!! old('price')??0 !!}" class="form-control input-sm price"
                                         placeholder="" />
@@ -439,7 +439,7 @@
                                 @if (old('price_promotion'))
                                 <div class="price_promotion">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                         <input type="number" style="width: 100px;" id="price_promotion"
                                             name="price_promotion" value="{!! old('price_promotion')??0 !!}"
                                             class="form-control input-sm price" placeholder="" />
@@ -492,7 +492,7 @@
                             <label for="stock" class="col-sm-2 col-form-label">{{ trans('product.stock') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="stock" name="stock"
                                         value="{!! old('stock')??0 !!}" class="form-control input-sm stock"
                                         placeholder="" />
@@ -536,7 +536,7 @@
                             <label for="weight" class="col-sm-2 col-form-label">{{ trans('product.weight') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="weight" name="weight"
                                         value="{!! old('weight', 0) !!}" class="form-control input-sm weight"
                                         placeholder="" />
@@ -579,7 +579,7 @@
                             <label for="length" class="col-sm-2 col-form-label">{{ trans('product.length') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="length" name="length"
                                         value="{!! old('length', 0) !!}" class="form-control input-sm length"
                                         placeholder="" />
@@ -596,7 +596,7 @@
                             <label for="height" class="col-sm-2 col-form-label">{{ trans('product.height') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="height" name="height"
                                         value="{!! old('height', 0) !!}" class="form-control input-sm height"
                                         placeholder="" />
@@ -613,7 +613,7 @@
                             <label for="width" class="col-sm-2 col-form-label">{{ trans('product.width') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="width" name="width"
                                         value="{!! old('width', 0) !!}" class="form-control input-sm width"
                                         placeholder="" />
@@ -677,7 +677,7 @@
                             <label for="minimum" class="col-sm-2 col-form-label">{{ trans('product.minimum') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="minimum" name="minimum"
                                         value="{!! old('minimum')??0 !!}" class="form-control input-sm minimum"
                                         placeholder="" />
@@ -700,7 +700,7 @@
                             <label for="sort" class="col-sm-2 col-form-label">{{ trans('product.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
                                     <input type="number" style="width: 100px;" id="sort" name="sort"
                                         value="{!! old('sort')??0 !!}" class="form-control input-sm sort"
                                         placeholder="" />
@@ -926,7 +926,7 @@
 <script type="text/javascript">
     // Promotion
 $('#add_product_promotion').click(function(event) {
-    $(this).before('<div class="price_promotion"><div class="input-group"><span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span><input type="number" style="width: 100px;"  id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" /><span title="Remove" class="btn btn-flat btn-sm btn-danger removePromotion"><i class="fa fa-times"></i></span></div><div class="form-inline"><div class="input-group">{{ trans('product.price_promotion_start') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control input-sm price_promotion_start date_time" placeholder="" /></div></div><div class="input-group">{{ trans('product.price_promotion_end') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control input-sm price_promotion_end date_time" placeholder="" /></div></div></div></div>');
+    $(this).before('<div class="price_promotion"><div class="input-group"><span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span><input type="number" style="width: 100px;"  id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" /><span title="Remove" class="btn btn-flat btn-sm btn-danger removePromotion"><i class="fa fa-times"></i></span></div><div class="form-inline"><div class="input-group">{{ trans('product.price_promotion_start') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control input-sm price_promotion_start date_time" placeholder="" /></div></div><div class="input-group">{{ trans('product.price_promotion_end') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control input-sm price_promotion_end date_time" placeholder="" /></div></div></div></div>');
     $(this).hide();
     $('.removePromotion').click(function(event) {
         $(this).closest('.price_promotion').remove();
@@ -947,7 +947,7 @@ $('.removePromotion').click(function(event) {
 var id_sub_image = {{ old('sub_image')?count(old('sub_image')):0 }};
 $('#add_sub_image').click(function(event) {
     id_sub_image +=1;
-    $(this).before('<div class="group-image"><div class="input-group"><input type="text" id="sub_image_'+id_sub_image+'" name="sub_image[]" value="" class="form-control input-sm sub_image" placeholder=""  /><span class="input-group-btn"><span><a data-input="sub_image_'+id_sub_image+'" data-preview="preview_sub_image_'+id_sub_image+'" data-type="product" class="btn btn-sm btn-flat btn-primary lfm"><i class="fa fa-picture-o"></i> {{trans('product.admin.choose_image')}}</a></span><span title="Remove" class="btn btn-flat btn-sm btn-danger removeImage"><i class="fa fa-times"></i></span></span></div><div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div></div>');
+    $(this).before('<div class="group-image"><div class="input-group"><input type="text" id="sub_image_'+id_sub_image+'" name="sub_image[]" value="" class="form-control input-sm sub_image" placeholder=""  /><span class="input-group-btn"><span><a data-input="sub_image_'+id_sub_image+'" data-preview="preview_sub_image_'+id_sub_image+'" data-type="product" class="btn btn-sm btn-flat btn-primary lfm"><i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}</a></span><span title="Remove" class="btn btn-flat btn-sm btn-danger removeImage"><i class="fa fa-times"></i></span></span></div><div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div></div>');
     $('.removeImage').click(function(event) {
         $(this).closest('div').remove();
     });
