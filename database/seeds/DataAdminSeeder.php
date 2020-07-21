@@ -56,7 +56,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 35, 'parent_id' => 8, 'sort' => 202, 'title' => 'lang::admin.menu_titles.plugins', 'icon' => 'fas fa-puzzle-piece', 'uri' => '', 'key' => 'PLUGIN', 'type' => 0],
             ['id' => 37, 'parent_id' => 9, 'sort' => 302, 'title' => 'lang::admin.menu_titles.report_manager', 'icon' => 'fas fa-chart-pie', 'uri' => '', 'key' => 'REPORT_MANAGER', 'type' => 0],
             ['id' => 38, 'parent_id' => 9, 'sort' => 0, 'title' => 'lang::admin.menu_titles.admin', 'icon' => 'fas fa-sitemap', 'uri' => '', 'key' => 'ADMIN', 'type' => 0],
-            ['id' => 39, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Payment', 'icon' => 'fas fa-money', 'uri' => 'admin::plugin/payment', 'key' => null, 'type' => 0],
+            ['id' => 39, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Payment', 'icon' => 'fas fa-money-bill-alt', 'uri' => 'admin::plugin/payment', 'key' => null, 'type' => 0],
             ['id' => 40, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Shipping', 'icon' => 'fas fa-ambulance', 'uri' => 'admin::plugin/shipping', 'key' => null, 'type' => 0],
             ['id' => 41, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Total', 'icon' => 'fas fa-cog', 'uri' => 'admin::plugin/total', 'key' => null, 'type' => 0],
             ['id' => 42, 'parent_id' => 35, 'sort' => 100, 'title' => 'plugin.Other', 'icon' => 'far fa-circle', 'uri' => 'admin::plugin/other', 'key' => null, 'type' => 0],

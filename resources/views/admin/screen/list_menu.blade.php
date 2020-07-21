@@ -260,15 +260,14 @@
 @push('styles')
 <!-- Ediable -->
 <link rel="stylesheet" href="{{ asset('admin/plugin/nestable/jquery.nestable.min.css')}}">
-<link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/css/fontawesome-iconpicker.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.css')}}">
 @endpush
 
 @push('scripts')
 <!-- Ediable -->
 
 <script src="{{ asset('admin/plugin/nestable/jquery.nestable.min.js')}}"></script>
-<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.js')}}"></script>
-
+<script src="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.js')}}"></script>
 
 <script type="text/javascript">
 $('.remove_menu').click(function(event) {
