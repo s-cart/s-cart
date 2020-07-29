@@ -3,12 +3,12 @@
 @section('main')
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">{{ $title }}</h3>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ $title }}</h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body"  id="pjax-container">
+            <!-- /.card-header -->
+            <div class="card-body"  id="pjax-container">
               <div><button id="generate" onClick="generateBackup($(this));" class="btn btn-success btn-flat" data-loading-text="{{ trans('backup.processing') }}"><span class="glyphicon glyphicon-plus"></span>{{ trans('backup.generate_now') }}</button></div>
              <table id="main-table" class="table table-bordered table-hover">
                 <thead>
@@ -37,9 +37,9 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
         <!-- /.col -->
       </div>

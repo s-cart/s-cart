@@ -8,7 +8,7 @@
                     <h2 class="box-title">{{ $title_description??'' }}</h2>
 
                     <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_currency.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('currency.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -30,13 +30,13 @@
                                     </div>
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                                {{ $errors->first('name') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('code') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('code') ? ' text-red' : '' }}">
                                 <label for="code" class="col-sm-2 col-form-label">{{ trans('currency.code') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -51,7 +51,7 @@
                                     </div>
                                         @if ($errors->has('code'))
                                             <span class="help-block">
-                                                {{ $errors->first('code') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('code') }}
                                             </span>
                                         @endif
                                 </div>
@@ -59,7 +59,7 @@
 
 
 
-                            <div class="form-group   {{ $errors->has('symbol') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('symbol') ? ' text-red' : '' }}">
                                 <label for="symbol" class="col-sm-2 col-form-label">{{ trans('currency.symbol') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -68,13 +68,13 @@
                                     </div>
                                         @if ($errors->has('symbol'))
                                             <span class="help-block">
-                                                {{ $errors->first('symbol') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('symbol') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('exchange_rate') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('exchange_rate') ? ' text-red' : '' }}">
                                 <label for="exchange_rate" class="col-sm-2 col-form-label">{{ trans('currency.exchange_rate') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -83,13 +83,13 @@
                                     </div>
                                         @if ($errors->has('exchange_rate'))
                                             <span class="help-block">
-                                                {{ $errors->first('exchange_rate') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('exchange_rate') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('precision') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('precision') ? ' text-red' : '' }}">
                                 <label for="precision" class="col-sm-2 col-form-label">{{ trans('currency.precision') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -98,27 +98,27 @@
                                     </div>
                                         @if ($errors->has('precision'))
                                             <span class="help-block">
-                                                {{ $errors->first('precision') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('precision') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('symbol_first') ? ' has-error' : '' }}">
+                            <div class="form-group  {{ $errors->has('symbol_first') ? ' text-red' : '' }}">
                                 <label for="symbol_first" class="col-sm-2 col-form-label">{{ trans('currency.symbol_first') }}</label>
                                 <div class="col-sm-8">
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="1" {!! (old('symbol_first',$currency['symbol_first']??1) =='1')?'checked':'' !!}>Yes</label>
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="0" {!! (old('symbol_first',$currency['symbol_first']??0) =='0')?'checked':'' !!}>No</label>
                                         @if ($errors->has('symbol_first'))
                                             <span class="help-block">
-                                                {{ $errors->first('symbol_first') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('symbol_first') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
 
-                            <div class="form-group   {{ $errors->has('thousands') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('thousands') ? ' text-red' : '' }}">
                                 <label for="thousands" class="col-sm-2 col-form-label">{{ trans('currency.thousands') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -127,13 +127,13 @@
                                     </div>
                                         @if ($errors->has('thousands'))
                                             <span class="help-block">
-                                                {{ $errors->first('thousands') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('thousands') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('sort') ? ' text-red' : '' }}">
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('currency.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -142,7 +142,7 @@
                                     </div>
                                         @if ($errors->has('sort'))
                                             <span class="help-block">
-                                                {{ $errors->first('sort') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif
                                 </div>

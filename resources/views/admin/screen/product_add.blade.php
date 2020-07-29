@@ -2,83 +2,81 @@
 
 @section('main')
 @php
-    $kindOpt = old('kind')
+    $kindOpt = old('kind', '')
 @endphp
-
 <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h2 class="box-title">{{ $title_description??'' }}</h2>
-                <div class="box-tools">
-                    <div class="btn-group pull-right" style="margin-right: 5px">
-                        <a href="{{ route('admin_product.index') }}" class="btn  btn-flat btn-default" title="List"><i
-                                class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+        <div class="card">
+            <div class="card-header with-border">
+                <h2 class="card-title">{{ $title_description??'' }}</h2>
+                <div class="card-tools">
+                    <div class="btn-group float-right mr-5">
+                        <a href="{{ route('admin_product.index') }}" class="btn  btn-flat btn-default" title="List">
+                            <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
 
 
             <!-- form start -->
             <form action="{{ route('admin_product.create') }}" method="post" name="form_name" accept-charset="UTF-8" 
                 class="form-horizontal" id="form-main" enctype="multipart/form-data">
 
-                <div class="col-xs-12" id="start-add">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 form-group  {{ $errors->has('kind') ? ' has-error' : '' }} ">
-                        <div class="input-group" style="width: 300px;text-align: center; z-index:999">
-                            @if (sc_config('product_kind'))
-                            <select class="form-control" style="width: 100%;" name="kind">
-                                <option value="">{{ trans('product.admin.select_kind') }}</option>
-                                @foreach ($kinds as $key => $kind)
-                                <option value="{{ $key }}" {{ (old() && (int)old('kind') === $key)?'selected':'' }}>
-                                    {{ $kind }}
-                                </option>
-                                @endforeach
-                            </select>          
-                            <span class="input-group-addon input-group">
-                                <i class="fa fa-hand-o-left"></i> {{ trans('product.kind') }}
-                            </span>                                                  
-                            @else
-                                <select class="form-control" style="display:none" name="kind">
-                                    <option value="0" selected="selected">{{ $kinds[0] }}</option>
-                                </select>
-                            @endif
-                        </div>
-                        @if ($errors->has('kind'))
-                        <span class="help-block">
-                            <i class="fa fa-info-circle"></i> {{ $errors->first('kind') }}
-                        </span>
+                <div class="d-flex d-flex justify-content-center mb-3 {{ $errors->has('kind') ? ' text-red' : '' }}"  id="start-add">
+                    <div class="input-group" style="width: 300px; z-index:999">
+                        @if (sc_config('product_kind'))
+                        <select class="form-control" style="width: 100%;" name="kind">
+                            <option value="">{{ trans('product.admin.select_kind') }}</option>
+                            @foreach ($kinds as $key => $kind)
+                            <option value="{{ $key }}" {{ (old() && (int)old('kind') === $key)?'selected':'' }}>
+                                {!! $kind !!}
+                            </option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <span class="input-group">
+                                &nbsp; <i class="far fa-hand-point-left fa-2x"></i>
+                            </span>
+                        </div>                                                
+                        @else
+                            <select class="form-control" style="display:none" name="kind">
+                                <option value="0" selected="selected">{{ $kinds[0] }}</option>
+                            </select>
                         @endif
                     </div>
+                    @if ($errors->has('kind'))
+                    <span class="text-sm">
+                        <i class="fa fa-info-circle"></i> {{ $errors->first('kind') }}
+                    </span>
+                    @endif
                 </div>
 
-
-                <div class="box-body" id="main-add">
-                    <div class="fields-group">
-
+                <div id="main-add" class="card-body {{ 'kind'.$kindOpt }}">
                         {{-- descriptions --}}
                         @foreach ($languages as $code => $language)
-                        <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
-                    
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <div class="card">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                  <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
+                              </div>
                         </div>
                     
-                        <div class="box-body">
-
+                        <div class="card-body">
                         <div
-                            class="form-group  {{ $errors->has('descriptions.'.$code.'.name') ? ' has-error' : '' }}">
+                            class="form-group row {{ $errors->has('descriptions.'.$code.'.name') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__name"
-                                class="col-sm-2 col-form-label">{{ trans('product.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
+                                class="col-sm-2 col-form-label">{{ trans('product.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span>
+                            </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" id="{{ $code }}__name" name="descriptions[{{ $code }}][name]"
                                         value="{!! old('descriptions.'.$code.'.name') !!}"
                                         class="form-control input-sm {{ $code.'__name' }}" placeholder="" />
@@ -97,12 +95,14 @@
                         </div>
 
                         <div
-                            class="form-group    {{ $errors->has('descriptions.'.$code.'.keyword') ? ' has-error' : '' }}">
+                            class="form-group row   {{ $errors->has('descriptions.'.$code.'.keyword') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__keyword"
                                 class="col-sm-2 col-form-label">{{ trans('product.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" id="{{ $code }}__keyword"
                                         name="descriptions[{{ $code }}][keyword]"
                                         value="{!! old('descriptions.'.$code.'.keyword') !!}"
@@ -122,7 +122,7 @@
                         </div>
 
                         <div
-                            class="form-group  {{ $errors->has('descriptions.'.$code.'.description') ? ' has-error' : '' }}">
+                            class="form-group row {{ $errors->has('descriptions.'.$code.'.description') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__description"
                                 class="col-sm-2 col-form-label">{{ trans('product.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
@@ -142,10 +142,10 @@
                             </div>
                         </div>
 
-                        <div
-                            class="form-group   kind kind0  {{ $errors->has('descriptions.'.$code.'.content') ? ' has-error' : '' }}">
-                            <label for="{{ $code }}__content"
-                                class="col-sm-2 col-form-label">{{ trans('product.content') }}</label>
+                        <div class="form-group row kind kind0 {{ $errors->has('descriptions.'.$code.'.content') ? ' text-red' : '' }}">
+                            <label for="{{ $code }}__content" class="col-sm-2 col-form-label">
+                                {{ trans('product.content') }}
+                            </label>
                             <div class="col-sm-8">
                                 <textarea id="{{ $code }}__content" class="editor"
                                     name="descriptions[{{ $code }}][content]">
@@ -164,10 +164,9 @@
                         @endforeach
                         {{-- //descriptions --}}
 
-                        <hr>
 
                         {{-- select category --}}
-                        <div class="form-group  kind kind0 kind1 {{ $errors->has('category') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1 {{ $errors->has('category') ? ' text-red' : '' }}">
                             @php
                             $listCate = [];
                             if(is_array(old('category'))){
@@ -176,8 +175,9 @@
                             }
                             }
                             @endphp
-                            <label for="category"
-                                class="col-sm-2 col-form-label">{{ trans('product.admin.select_category') }}</label>
+                            <label for="category" class="col-sm-2 col-form-label">
+                                {{ trans('product.admin.select_category') }}
+                            </label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm category select2" multiple="multiple"
                                     data-placeholder="{{ trans('product.admin.select_category') }}" style="width: 100%;"
@@ -199,19 +199,19 @@
                         {{-- //select category --}}
 
                         {{-- images --}}
-                        <div class="form-group  kind kind0 kind1 {{ $errors->has('image') ? ' has-error' : '' }}">
-                            <label for="image"
-                                class="col-sm-2 col-form-label">{{ trans('product.image') }}</label>
+                        <div class="form-group row kind kind0 kind1 {{ $errors->has('image') ? ' text-red' : '' }}">
+                            <label for="image" class="col-sm-2 col-form-label">
+                                {{ trans('product.image') }}
+                            </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input type="text" id="image" name="image" value="{!! old('image') !!}"
                                         class="form-control input-sm image" placeholder="" />
-                                    <span class="input-group-btn">
-                                        <a data-input="image" data-preview="preview_image" data-type="product"
-                                            class="btn btn-sm btn-flat btn-primary lfm">
-                                            <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
-                                        </a>
-                                    </span>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text btn btn-primary lfm" data-input="image" data-preview="preview_image" data-type="product">
+                                            <i class="fas fa-image"></i> {{trans('product.admin.choose_image')}}
+                                        </span>
+                                    </div>
                                 </div>
                                 @if ($errors->has('image'))
                                 <span class="help-block">
@@ -257,11 +257,13 @@
                         {{-- //images --}}
 
                         {{-- sku --}}
-                        <div class="form-group  kind kind0 kind1 kind2 {{ $errors->has('sku') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1 kind2 {{ $errors->has('sku') ? ' text-red' : '' }}">
                             <label for="sku" class="col-sm-2 col-form-label">{{ trans('product.sku') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" style="width: 100px;" id="sku" name="sku"
                                         value="{!! old('sku')??'' !!}" class="form-control input-sm sku"
                                         placeholder="" />
@@ -281,11 +283,13 @@
 
 
                         {{-- alias --}}
-                        <div class="form-group  kind kind0 kind1 kind2 {{ $errors->has('alias') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1 kind2 {{ $errors->has('alias') ? ' text-red' : '' }}">
                             <label for="alias" class="col-sm-2 col-form-label">{!! trans('product.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text"  id="alias" name="alias"
                                         value="{!! old('alias')??'' !!}" class="form-control input-sm alias"
                                         placeholder="" />
@@ -305,7 +309,7 @@
 
 @if (sc_config('product_brand'))
                         {{-- select brand --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('brand_id') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('brand_id') ? ' text-red' : '' }}">
                             <label for="brand_id"
                                 class="col-sm-2 col-form-label">{{ trans('product.brand') }}</label>
                             <div class="col-sm-8">
@@ -330,7 +334,7 @@
 
 @if (sc_config('product_supplier'))
                         {{-- select supplier --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('supplier_id') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('supplier_id') ? ' text-red' : '' }}">
                             @php
                             $listSupplier = [];
                             if(is_array(old('supplier_id'))){
@@ -364,11 +368,13 @@
 
 @if (sc_config('product_cost'))
                         {{-- cost --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('cost') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('cost') ? ' text-red' : '' }}">
                             <label for="cost" class="col-sm-2 col-form-label">{{ trans('product.cost') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="cost" name="cost"
                                         value="{!! old('cost')??0 !!}" class="form-control input-sm cost"
                                         placeholder="" />
@@ -385,11 +391,13 @@
 
 @if (sc_config('product_price'))
                         {{-- price --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('price') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('price') ? ' text-red' : '' }}">
                             <label for="price" class="col-sm-2 col-form-label">{{ trans('product.price') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="price" name="price"
                                         value="{!! old('price')??0 !!}" class="form-control input-sm price"
                                         placeholder="" />
@@ -407,7 +415,7 @@
 
 @if (sc_config('product_tax'))
                         {{-- select tax --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('tax_id') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('tax_id') ? ' text-red' : '' }}">
                             <label for="tax_id"
                                 class="col-sm-2 col-form-label">{{ trans('product.tax') }}</label>
                             <div class="col-sm-8">
@@ -432,14 +440,16 @@
 
 @if (sc_config('product_promotion'))
                         {{-- price promotion --}}
-                        <div class="form-group  kind kind0 kind1">
+                        <div class="form-group row kind kind0 kind1">
                             <label for="price"
                                 class="col-sm-2 col-form-label">{{ trans('product.price_promotion') }}</label>
                             <div class="col-sm-8">
                                 @if (old('price_promotion'))
                                 <div class="price_promotion">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="number" style="width: 100px;" id="price_promotion"
                                             name="price_promotion" value="{!! old('price_promotion')??0 !!}"
                                             class="form-control input-sm price" placeholder="" />
@@ -451,9 +461,10 @@
                                         <div class="input-group">
                                             {{ trans('product.price_promotion_start') }}<br>
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-calendar fa-fw"></i></span>
-                                                <input type="text" style="width: 100px;" id="price_promotion_start"
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
+                                                </div>
+                                                <input type="date" style="width: 100px;" id="price_promotion_start"
                                                     name="price_promotion_start"
                                                     value="{!!old('price_promotion_start')!!}"
                                                     class="form-control input-sm price_promotion_start date_time"
@@ -464,9 +475,10 @@
                                         <div class="input-group">
                                             {{ trans('product.price_promotion_end') }}<br>
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-calendar fa-fw"></i></span>
-                                                <input type="text" style="width: 100px;" id="price_promotion_end"
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
+                                                </div>
+                                                <input type="date" style="width: 100px;" id="price_promotion_end"
                                                     name="price_promotion_end" value="{!!old('price_promotion_end')!!}"
                                                     class="form-control input-sm price_promotion_end date_time"
                                                     placeholder="" />
@@ -488,11 +500,13 @@
 
 @if (sc_config('product_stock'))
                         {{-- stock --}}
-                        <div class="form-group  kind kind0  kind1 {{ $errors->has('stock') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1 {{ $errors->has('stock') ? ' text-red' : '' }}">
                             <label for="stock" class="col-sm-2 col-form-label">{{ trans('product.stock') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="stock" name="stock"
                                         value="{!! old('stock')??0 !!}" class="form-control input-sm stock"
                                         placeholder="" />
@@ -511,7 +525,7 @@
 
 @if (sc_config('product_weight'))
                         {{-- weight --}}
-                        <div class="form-group  kind kind0  kind1  {{ $errors->has('weight_class') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1  {{ $errors->has('weight_class') ? ' text-red' : '' }}">
                             <label for="weight_class" class="col-sm-2 col-form-label">{{ trans('product.weight_class') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm weight_class select2" style="width: 100%;"
@@ -532,11 +546,13 @@
                         </div>
 
 
-                        <div class="form-group  kind kind0  kind1 {{ $errors->has('weight') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1 {{ $errors->has('weight') ? ' text-red' : '' }}">
                             <label for="weight" class="col-sm-2 col-form-label">{{ trans('product.weight') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="weight" name="weight"
                                         value="{!! old('weight', 0) !!}" class="form-control input-sm weight"
                                         placeholder="" />
@@ -554,7 +570,7 @@
 
 @if (sc_config('product_length'))
                         {{-- length --}}
-                        <div class="form-group  kind kind0  kind1  {{ $errors->has('length_class') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1  {{ $errors->has('length_class') ? ' text-red' : '' }}">
                             <label for="length_class" class="col-sm-2 col-form-label">{{ trans('product.length_class') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm length_class select2" style="width: 100%;"
@@ -575,11 +591,13 @@
                         </div>
 
 
-                        <div class="form-group  kind kind0  kind1 {{ $errors->has('length') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1 {{ $errors->has('length') ? ' text-red' : '' }}">
                             <label for="length" class="col-sm-2 col-form-label">{{ trans('product.length') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="length" name="length"
                                         value="{!! old('length', 0) !!}" class="form-control input-sm length"
                                         placeholder="" />
@@ -592,11 +610,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group  kind kind0  kind1 {{ $errors->has('height') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1 {{ $errors->has('height') ? ' text-red' : '' }}">
                             <label for="height" class="col-sm-2 col-form-label">{{ trans('product.height') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="height" name="height"
                                         value="{!! old('height', 0) !!}" class="form-control input-sm height"
                                         placeholder="" />
@@ -609,11 +629,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group  kind kind0  kind1 {{ $errors->has('width') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0  kind1 {{ $errors->has('width') ? ' text-red' : '' }}">
                             <label for="width" class="col-sm-2 col-form-label">{{ trans('product.width') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="width" name="width"
                                         value="{!! old('width', 0) !!}" class="form-control input-sm width"
                                         placeholder="" />
@@ -631,7 +653,7 @@
 
 @if (sc_config('product_virtual'))
                         {{-- virtual --}}
-                        <div class="form-group  kind kind0 kind1  {{ $errors->has('virtual') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('virtual') ? ' text-red' : '' }}">
                             <label for="virtual" class="col-sm-2 col-form-label">{{ trans('product.virtual') }}</label>
                             <div class="col-sm-8">
                                 @foreach ( $virtuals as $key => $virtual)
@@ -652,13 +674,15 @@
 @if (sc_config('product_available'))
                         {{-- date available --}}
                         <div
-                            class="form-group  kind kind0 kind1  {{ $errors->has('date_available') ? ' has-error' : '' }}">
+                            class="form-group row kind kind0 kind1  {{ $errors->has('date_available') ? ' text-red' : '' }}">
                             <label for="date_available"
                                 class="col-sm-2 col-form-label">{{ trans('product.date_available') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-                                    <input type="text" style="width: 100px;" id="date_available" name="date_available"
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
+                                    </div>
+                                    <input type="date" data-date-format="yyyy-mm-dd" style="width: 100px;" id="date_available" name="date_available"
                                         value="{!!old('date_available')!!}"
                                         class="form-control input-sm date_available date_time" placeholder="" />
                                 </div>
@@ -673,11 +697,13 @@
 @endif
 
                         {{-- minimum --}}
-                        <div class="form-group    {{ $errors->has('minimum') ? ' has-error' : '' }}">
+                        <div class="form-group row   {{ $errors->has('minimum') ? ' text-red' : '' }}">
                             <label for="minimum" class="col-sm-2 col-form-label">{{ trans('product.minimum') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="minimum" name="minimum"
                                         value="{!! old('minimum')??0 !!}" class="form-control input-sm minimum"
                                         placeholder="" />
@@ -696,11 +722,13 @@
                         {{-- //minimum --}}
 
                         {{-- sort --}}
-                        <div class="form-group    {{ $errors->has('sort') ? ' has-error' : '' }}">
+                        <div class="form-group row   {{ $errors->has('sort') ? ' text-red' : '' }}">
                             <label for="sort" class="col-sm-2 col-form-label">{{ trans('product.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="sort" name="sort"
                                         value="{!! old('sort')??0 !!}" class="form-control input-sm sort"
                                         placeholder="" />
@@ -716,7 +744,7 @@
 
 
                         {{-- status --}}
-                        <div class="form-group  ">
+                        <div class="form-group row ">
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('product.status') }}</label>
                             <div class="col-sm-8">
                                 @if (old())
@@ -732,13 +760,13 @@
 @if (sc_config('product_kind'))
                         <hr class="kind kind2">
                         {{-- List product in groups --}}
-                        <div class="form-group  kind kind2 {{ $errors->has('productInGroup') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind2 {{ $errors->has('productInGroup') ? ' text-red' : '' }}">
                             
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8"><label>{{ trans('product.admin.select_product_in_group') }}</label>
                             </div>
                         </div>
-                        <div class="form-group  kind kind2 {{ $errors->has('productInGroup') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind2 {{ $errors->has('productInGroup') ? ' text-red' : '' }}">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-8">
                                 @if (old('productInGroup'))
@@ -767,7 +795,7 @@
 
                         <hr class="kind kind2">
                         {{-- List product build --}}
-                        <div class="form-group  kind kind1 {{ $errors->has('productBuild') ? ' has-error' : '' }}">
+                        <div class="form-group row kind kind1 {{ $errors->has('productBuild') ? ' text-red' : '' }}">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.admin.select_product_in_build') }}</label>
@@ -775,7 +803,7 @@
                         </div>
 
                         <div
-                            class="form-group  kind kind1 {{ ($errors->has('productBuild') || $errors->has('productBuildQty'))? ' has-error' : '' }}">
+                            class="form-group row kind kind1 {{ ($errors->has('productBuild') || $errors->has('productBuildQty'))? ' text-red' : '' }}">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-8">
@@ -860,30 +888,29 @@
                         {{-- //end List product attributes --}}
 @endif
 
-                    </div>
                 </div>
 
 
 
-                <!-- /.box-body -->
+                <!-- /.card-body -->
 
-                <div class="box-footer kind kind0  kind1 kind2" id="box-footer">
+                <div class="card-footer kind kind0  kind1 kind2" id="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>
 
                     <div class="col-md-8">
-                        <div class="btn-group pull-right">
+                        <div class="btn-group float-right">
                             <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                         </div>
 
-                        <div class="btn-group pull-left">
+                        <div class="btn-group float-left">
                             <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- /.box-footer -->
+                <!-- /.card-footer -->
             </form>
         </div>
     </div>
@@ -897,25 +924,17 @@
     #start-add {
         margin: 20px;
     }
-
-    @if($kindOpt == '') 
-    
-        #main-add, #box-footer {
+    #main-add.kind0 .kind:not(.kind0),
+    #main-add.kind1 .kind:not(.kind1),
+    #main-add.kind2 .kind:not(.kind2)
+    {
+        display: none;
+    }
+    @if($kindOpt == '')
+        #main-add, #card-footer {
             display: none;
-        }
-    @else 
-        .kind {
-            display: none;
-        }
-        .kind{{ $kindOpt }}
-        {
-            display: block;
         }
     @endif 
-
-    .select-product {
-        margin: 10px 0;
-    }
 </style>
 
 @endpush
@@ -926,16 +945,37 @@
 <script type="text/javascript">
     // Promotion
 $('#add_product_promotion').click(function(event) {
-    $(this).before('<div class="price_promotion"><div class="input-group"><span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span><input type="number" style="width: 100px;"  id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" /><span title="Remove" class="btn btn-flat btn-sm btn-danger removePromotion"><i class="fa fa-times"></i></span></div><div class="form-inline"><div class="input-group">{{ trans('product.price_promotion_start') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control input-sm price_promotion_start date_time" placeholder="" /></div></div><div class="input-group">{{ trans('product.price_promotion_end') }}<br><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span><input type="text" style="width: 100px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control input-sm price_promotion_end date_time" placeholder="" /></div></div></div></div>');
+    $(this).before(
+        '<div class="price_promotion">'
+        +'<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-pencil-alt"></i></span></div>'
+        +'  <input type="number"  id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" />'
+        +'  <span title="Remove" class="btn btn-flat btn-danger removePromotion"><i class="fa fa-times"></i></span>'
+        +'</div>'
+        +'<div class="form-inline">'
+        +'  <div class="input-group">'
+        +'  {{ trans('product.price_promotion_start') }}<br>'
+        +'      <div class="input-group">'
+        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span></div>'
+        +'          <input type="date" style="width: 150px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control input-sm price_promotion_start date_time" placeholder="" />'
+        +'      </div>'
+        +'  </div>'
+        +'  <div class="input-group">{{ trans('product.price_promotion_end') }}<br>'
+        +'      <div class="input-group">'
+        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span></div>'
+        +'          <input type="date" style="width: 150px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control input-sm price_promotion_end date_time" placeholder="" />'
+        +'      </div>'
+        +'  </div>'
+        +'  </div>'
+        +'</div>');
     $(this).hide();
     $('.removePromotion').click(function(event) {
         $(this).closest('.price_promotion').remove();
         $('#add_product_promotion').show();
     });
-    $('.date_time').datepicker({
+    /* $('.date_time').datepicker({
       autoclose: true,
       format: 'yyyy-mm-dd'
-    })
+    }) */
 });
 $('.removePromotion').click(function(event) {
     $('#add_product_promotion').show();
@@ -947,7 +987,19 @@ $('.removePromotion').click(function(event) {
 var id_sub_image = {{ old('sub_image')?count(old('sub_image')):0 }};
 $('#add_sub_image').click(function(event) {
     id_sub_image +=1;
-    $(this).before('<div class="group-image"><div class="input-group"><input type="text" id="sub_image_'+id_sub_image+'" name="sub_image[]" value="" class="form-control input-sm sub_image" placeholder=""  /><span class="input-group-btn"><span><a data-input="sub_image_'+id_sub_image+'" data-preview="preview_sub_image_'+id_sub_image+'" data-type="product" class="btn btn-sm btn-flat btn-primary lfm"><i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}</a></span><span title="Remove" class="btn btn-flat btn-sm btn-danger removeImage"><i class="fa fa-times"></i></span></span></div><div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div></div>');
+    $(this).before(
+    '<div class="group-image">'
+    +'<div class="input-group">'
+    +'  <input type="text" id="sub_image_'+id_sub_image+'" name="sub_image[]" value="" class="form-control input-sm sub_image" placeholder=""  />'
+    +'  <div class="input-group-append">'
+    +'  <span data-input="sub_image_'+id_sub_image+'" data-preview="preview_sub_image_'+id_sub_image+'" data-type="product" class="btn btn-flat btn-primary lfm">'
+    +'      <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}'
+    +'  </span>'
+    +' </div>'
+    +'<span title="Remove" class="btn btn-flat btn-danger removeImage"><i class="fa fa-times"></i></span>'
+    +'</div>'
+    +'<div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div>'
+    +'</div>');
     $('.removeImage').click(function(event) {
         $(this).closest('div').remove();
     });
@@ -1023,12 +1075,16 @@ function process_form(){
         $('#loading').show();
         setTimeout(
             function(){
-                $('.kind').hide();
-                $('.kind'+kind).show();
+                $('#main-add').removeClass('kind');
+                $('#main-add').removeClass('kind0');
+                $('#main-add').removeClass('kind1');
+                $('#main-add').removeClass('kind2');
+                $('#main-add').addClass('kind'+kind);
                 $('#main-add').show();
                  $('#loading').hide();
                   }
             , 500);
+        $('#card-footer').show();
     }else{
         Swal.fire(
           '{{ trans('product.admin.select_kind') }}',
@@ -1036,15 +1092,15 @@ function process_form(){
           'error'
         );
         $('#main-add').hide();
-        $('#box-footer').hide();
+        $('#card-footer').hide();
     }
 }
 
 //Date picker
-$('.date_time').datepicker({
+/* $('.date_time').datepicker({
   autoclose: true,
   format: 'yyyy-mm-dd'
-})
+}) */
 
 
 $('textarea.editor').ckeditor(

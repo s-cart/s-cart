@@ -6,19 +6,13 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.config_info') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('product.admin.config_info') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('product.config_manager.field') }}</th>
-             <th>{{ trans('product.config_manager.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
            @foreach ($configs as $config)
              <tr>
@@ -34,25 +28,19 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.setting_info') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('product.admin.setting_info') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('setting.admin.field') }}</th>
-             <th>{{ trans('setting.admin.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
            @foreach ($productSetting as $config)
            @if ($config->key == 'product_tax')
            <tr>
             <td>{{ trans('product.config_manager.tax') }}</td>
-            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title="" data-placement="left"></a></td>
           </tr>
            @else
            <tr>

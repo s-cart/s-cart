@@ -3,31 +3,28 @@
 @section('main')
 <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="col-md-12">
-                <div class="process-alert">
-                    {!! $title !!}
-                </div>
-                <hr>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{!! $title!!}</h3>
             </div>
 
             <form action="{{ route('admin_plugin.process_import') }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="import-product" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
                     <div class="fields-group">
-                        <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }}">
+                        <div class="form-group {{ $errors->has('file') ? ' text-red' : '' }}">
                             <label for="image" class="col-sm-2 col-form-label">
                             </label>
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" type="file" required="required" name="file" class="form-control" placeholder="" >
-                                    <div class="btn input-group-addon button-upload">
-                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_submit') }}
-                                    </div>
-                                </div>
+                                    <input accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" type="file" required="required" name="file" class="form-control">
+                                   <div class="input-group-append">
+                                     <span class="input-group-text button-upload pointer" id=""><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('template.import_submit') }}</span>
+                                   </div>
+                                 </div>
                                 <div>
                                     @if ($errors->has('file'))
-                                    <span class="help-block">
+                                    <span class="help-block text-red">
                                         <i class="fa fa-info-circle"></i> {{ $errors->first('file') }}
                                     </span>
                                     @else

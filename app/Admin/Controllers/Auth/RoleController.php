@@ -19,7 +19,7 @@ class RoleController extends Controller
             'subTitle' => '',
             'icon' => 'fa fa-indent',
             'urlDeleteItem' => route('admin_role.delete'),
-            'removeList' => 1, // 1 - Enable function delete list item
+            'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
             'css' => '', 
@@ -65,7 +65,7 @@ class RoleController extends Controller
             $showPermission = '';
             if ($row['permissions']->count()) {
                 foreach ($row['permissions'] as $key => $p) {
-                    $showPermission .= '<span class="label label-success">' . $p->name . '</span> ';
+                    $showPermission .= '<span class="badge badge-success"">' . $p->name . '</span> ';
                 }
             }
 
@@ -78,7 +78,7 @@ class RoleController extends Controller
                 'updated_at' => $row['updated_at'],
                 'action' => (in_array($row['id'], SC_GUARD_ROLES) ? '' : '
                     <a href="' . route('admin_role.edit', ['id' => $row['id']]) . '"><span title="' . trans('role.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-                    ') . ((in_array($row['id'], SC_GUARD_ROLES)) ? '' : '<span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>')
+                    ') . ((in_array($row['id'], SC_GUARD_ROLES)) ? '' : '<span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>')
                 ,
             ];
         }
@@ -184,7 +184,7 @@ class RoleController extends Controller
             'title' => trans('role.admin.edit'),
             'subTitle' => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
+            'icon' => 'fa fa-edit',
             'role' => $role,
             'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
             'userList' => (new AdminUser)->pluck('name', 'id')->all(),

@@ -3,34 +3,36 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                    <div class="card-tools">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_subscribe.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('email') ? ' text-red' : '' }}">
                                 <label for="email" class="col-sm-2 col-form-label">{{ trans('subscribe.email') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="email" id="email" name="email" value="{!! old()?old('email'):$subscribe['email']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))
                                             <span class="help-block">
-                                                {{ $errors->first('email') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
                                             </span>
                                         @endif
                                 </div>
@@ -38,32 +40,32 @@
 
 
 
-                            <div class="form-group  ">
+                            <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('subscribe.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {{ old('status',(empty($subscribe['status'])?0:1))?'checked':''}}>
 
                                 </div>
                             </div>
-                    <!-- /.box-body -->
+                    <!-- /.card-body -->
 
-                    <div class="box-footer">
-                            @csrf
+                    <div class="card-footer">
+                        @csrf
                         <div class="col-md-2">
                         </div>
-
+    
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
-
-                            <div class="btn-group pull-left">
+    
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
             </div>
         </div>

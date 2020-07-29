@@ -3,40 +3,40 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                    <div class="card-tools">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_email_template.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
-                        <div class="fields-group">
-
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                    <div class="card-body">
+                            <div class="form-group row  {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('email_template.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="name" id="name" name="name" value="{!! old()?old('name'):$obj['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                                {{ $errors->first('name') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('group') ? ' has-error' : '' }}">
+                            <div class="form-group row  {{ $errors->has('group') ? ' text-red' : '' }}">
                                 <label for="group" class="col-sm-2 col-form-label">{{ trans('email_template.group') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control group select2" style="width: 100%;" name="group" >
@@ -47,25 +47,25 @@
                                     </select>
                                         @if ($errors->has('group'))
                                             <span class="help-block">
-                                                {{ $errors->first('group') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('group') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('text') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('text') ? ' text-red' : '' }}">
                                 <label for="text" class="col-sm-2 col-form-label">{{ trans('email_template.text') }}</label>
                                 <div class="col-sm-8">
                                         <textarea class="form-control" rows="10" id="text" name="text">{!! old('text',$obj['text']??'') !!}</textarea>
                                         @if ($errors->has('text'))
                                             <span class="help-block">
-                                                {{ $errors->first('text') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('text') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  ">
+                            <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('email_template.status') }}</label>
                                 <div class="col-sm-8">
                                     <input class="input" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
@@ -80,27 +80,27 @@
                                     </div>                                   
                                 </div>
                             </div>
+                    </div>
 
+                    <!-- /.card-body -->
 
-                    <!-- /.box-body -->
-
-                    <div class="box-footer">
+                    <div class="card-footer">
                             @csrf
                         <div class="col-md-2">
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
 
-                            <div class="btn-group pull-left">
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
         </div>
     </div>

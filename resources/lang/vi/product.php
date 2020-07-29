@@ -25,7 +25,7 @@ return [
     'content'               => 'Chi tiết',
     'type'                  => 'Loại',
     'kind'                  => 'Kiểu',
-    'virtual'               => 'Sản phẩm ảo',
+    'virtual'               => 'Loại',
     'view'                  => 'Lượt xem',
     'sold'                  => 'Đã bán',
     'image'                 => 'Hình ảnh',

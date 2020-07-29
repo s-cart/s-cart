@@ -275,7 +275,7 @@ return [
             'other_extension'   => 'Other extension',
             'modules'           => 'Modules',
             'cms'               => 'Cms',
-            'template_manager' => 'Template manager <span class="badge label label-primary">' . count(sc_get_all_template()) . '</span>',
+            'template_manager' => 'Template manager <span class="right badge badge-warning">' . count(sc_get_all_template()) . '</span>',
             'backup_restore'    => 'Backup & Restore',
             'subscribe_manager' => 'Subscribe manager',
             'CMS_manager'       => 'CMS Manager',

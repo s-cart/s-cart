@@ -3,81 +3,80 @@
 @section('main')
 <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h2 class="box-title">{{ $title_description??'' }}</h2>
+        <div class="card">
+            <div class="card-header with-border">
+                <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                <div class="box-tools">
-                    <div class="btn-group pull-right" style="margin-right: 5px">
+                <div class="card-tools">
+                    <div class="btn-group float-right mr-5">
                         <a href="{{ route('admin_maintain.index') }}" class="btn  btn-flat btn-default" title="List"><i
                                 class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <!-- form start -->
             <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"
                 enctype="multipart/form-data">
 
 
-                <div class="box-body">
-                    <div class="fields-group">
+                <div class="card-body">
                         @php
                         $descriptions = $maintain->descriptions->keyBy('lang')->toArray();
                         @endphp
 
                         @foreach ($languages as $code => $language)
-
-                        <div class="form-group">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-8">
-                                <b>{{ $language->name }}</b>
-                                {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}
+                        <div class="card">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                      <i class="fas fa-minus"></i>
+                                    </button>
+                                  </div>
+                            </div>
+                            <div class="card-body">
+                                <div
+                                    class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_content') ? ' text-red' : '' }}">
+                                    <label for="{{ $code }}__maintain_content"
+                                        class="col-sm-2 col-form-label">{{ trans('maintain.admin.description') }}</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="{{ $code }}__maintain_content" class="editor"
+                                            name="descriptions[{{ $code }}][maintain_content]">
+                                                {{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}
+                                            </textarea>
+                                        @if ($errors->has('descriptions.'.$code.'.maintain_content'))
+                                        <span class="help-block">
+                                            <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_content') }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div
-                            class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_content') ? ' has-error' : '' }}">
-                            <label for="{{ $code }}__maintain_content"
-                                class="col-sm-2 col-form-label">{{ trans('maintain.admin.description') }}</label>
-                            <div class="col-sm-8">
-                                <textarea id="{{ $code }}__maintain_content" class="editor"
-                                    name="descriptions[{{ $code }}][maintain_content]">
-                                        {{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}
-                                    </textarea>
-                                @if ($errors->has('descriptions.'.$code.'.maintain_content'))
-                                <span class="help-block">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_content') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
                         @endforeach
-
-                    </div>
                 </div>
 
 
-                <!-- /.box-body -->
+                <!-- /.card-body -->
 
-                <div class="box-footer">
+                <div class="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>
 
                     <div class="col-md-8">
-                        <div class="btn-group pull-right">
+                        <div class="btn-group float-right">
                             <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                         </div>
 
-                        <div class="btn-group pull-left">
+                        <div class="btn-group float-left">
                             <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- /.box-footer -->
+                <!-- /.card-footer -->
             </form>
         </div>
     </div>

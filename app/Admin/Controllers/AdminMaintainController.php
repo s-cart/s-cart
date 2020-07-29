@@ -47,7 +47,7 @@ class AdminMaintainController extends Controller
             'title' => trans('maintain.admin.title'),
             'subTitle' => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
+            'icon' => 'fa fa-edit',
             'languages' => $this->languages,
             'maintain' => $maintain,
             'url_action' => route('admin_maintain.edit'),

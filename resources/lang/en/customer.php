@@ -37,7 +37,7 @@ return [
         'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
         'sort'           => 'Sort',
         'select_country' => 'Select country',
-        'keep_password'  => 'Leave blank if you don\'t want to change the password',
+        'keep_password'  => '<i class="fa fa-info-circle"></i> Leave blank if you don\'t want to change the password',
 
         'sort_order'     => [
             'id_asc'          => 'ID asc',

@@ -3,29 +3,31 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                    <div class="card-tools">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_role.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2  control-label">{{ trans('role.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="text"   id="name" name="name" value="{{ old('name',$role['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
@@ -36,11 +38,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('slug') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('slug') ? ' text-red' : '' }}">
                                 <label for="slug" class="col-sm-2  control-label">{{ trans('role.slug') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="text"   id="slug" name="slug" value="{{ old('slug',$role['slug']??'') }}" class="form-control slug" placeholder="" />
                                     </div>
                                         @if ($errors->has('slug'))
@@ -61,7 +65,7 @@ $old_permission = old('permission',($role?$role->permissions->pluck('id')->toArr
         }
     }
 @endphp
-                            <div class="form-group  {{ $errors->has('permission') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('permission') ? ' text-red' : '' }}">
                                 <label for="permission" class="col-sm-2  control-label">{{ trans('role.admin.select_permission') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control input-sm permission select2"  multiple="multiple" data-placeholder="{{ trans('role.admin.select_permission') }}" style="width: 100%;" name="permission[]" >
@@ -72,7 +76,7 @@ $old_permission = old('permission',($role?$role->permissions->pluck('id')->toArr
                                     </select>
                                         @if ($errors->has('permission'))
                                             <span class="help-block">
-                                                {{ $errors->first('permission') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('permission') }}
                                             </span>
                                         @endif
                                 </div>
@@ -86,7 +90,7 @@ $listadministrators = [];
 $roleCheck = $role ? $role->administrators->pluck('name', 'id')->all():[];
 $old_administrators = old('administrators',array_keys($roleCheck));
 @endphp
-                        <div class="form-group  {{ $errors->has('administrators') ? ' has-error' : '' }}">
+                        <div class="form-group row {{ $errors->has('administrators') ? ' text-red' : '' }}">
                             <label for="administrators" class="col-sm-2  control-label">{{ trans('role.admin.select_user') }}</label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm administrators select2"  multiple="multiple" data-placeholder="{{ trans('role.admin.select_user') }}" style="width: 100%;" name="administrators[]" >
@@ -110,25 +114,25 @@ $old_administrators = old('administrators',array_keys($roleCheck));
 
 
 
-                    <!-- /.box-body -->
+                    <!-- /.card-body -->
 
-                    <div class="box-footer">
+                    <div class="card-footer">
                             @csrf
                         <div class="col-md-2">
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
 
-                            <div class="btn-group pull-left">
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
 
             </div>

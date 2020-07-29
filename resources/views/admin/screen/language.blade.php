@@ -7,171 +7,173 @@
 <div class="row">
 
   <div class="col-md-6">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{!! $title_action !!}</h3>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{!! $title_action !!}</h3>
+        @if ($layout == 'edit')
+        <div class="btn-group float-right" style="margin-right: 5px">
+            <a href="{{ route('admin_language.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+        </div>
+      @endif
       </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
+        <div class="card-body">
 
-      <div class="box-body table-responsive box-primary">
-        <div class="box-header with-border">
-          <div class="box-body no-padding" >
-            <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
-                  <div class="fields-group">
-                    
-                    <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
-                      <label for="name"
-                          class="col-sm-2 col-form-label">{{ trans('language.name') }}</label>
-                      <div class="col-sm-8">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
-                              <input type="text" id="name" name="name"
-                                  value="{!! old()?old('name'):$language['name']??'' !!}"
-                                  class="form-control" placeholder="" />
-                          </div>
-                          @if ($errors->has('name'))
-                          <span class="help-block">
-                              {{ $errors->first('name') }}
-                          </span>
-                          @endif
-                      </div>
-                  </div>
-
-                  <div class="form-group   {{ $errors->has('code') ? ' has-error' : '' }}">
-                      <label for="code"
-                          class="col-sm-2 col-form-label">{{ trans('language.code') }}</label>
-                      <div class="col-sm-8">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
-                              @if (!empty($language['code']) && in_array($language['code'], ['vi','en']))
-                              <input type="hidden" id="code" name="code" value="{!! $language['code'] !!}"
-                                  placeholder="" />
-                              <input type="text" disabled="disabled" value="{!! $language['code'] !!}"
-                                  class="form-control" placeholder="" />
-                              @else
-                              <input type="text" id="code" name="code"
-                                  value="{!! old()?old('code'):$language['code']??'' !!}"
-                                  class="form-control" placeholder="" />
-                              @endif
-                          </div>
-                          @if ($errors->has('code'))
-                          <span class="help-block">
-                              {{ $errors->first('code') }}
-                          </span>
-                          @endif
-                      </div>
-                  </div>
-
-
-
-                  <div class="form-group   {{ $errors->has('icon') ? ' has-error' : '' }}">
-                      <label for="icon"
-                          class="col-sm-2 col-form-label">{{ trans('language.icon') }}</label>
-                      <div class="col-sm-8">
-                          <div class="input-group">
-                              <input type="text" id="icon" name="icon"
-                                  value="{!! old('icon',$language['icon']??'') !!}"
-                                  class="form-control input-sm icon" placeholder="" />
-                              <span class="input-group-btn">
-                                  <a data-input="icon" data-preview="preview_icon" data-type="language"
-                                      class="btn btn-sm btn-primary lfm">
-                                      <i class="fa fa-image"></i>
-                                      {{trans('admin.choose_icon')}}
-                                  </a>
-                              </span>
-                          </div>
-                          @if ($errors->has('icon'))
-                          <span class="help-block">
-                              {{ $errors->first('icon') }}
-                          </span>
-                          @endif
-                          <div id="preview_icon" class="img_holder"><img
-                                  src="{{ asset(old('icon',$language['icon']??'')) }}"></div>
-                      </div>
-                  </div>
-
-                  <div class="form-group   {{ $errors->has('rtl') ? ' has-error' : '' }}">
-                      <label for="rtl"
-                          class="col-sm-2 col-form-label">{{ trans('language.layout_rtl') }}</label>
-                          <div class="col-sm-8">
-                              <input type="checkbox" name="rtl" {!!
-                                  old('rtl',(empty($language['rtl'])?0:1))?'checked':''!!}>
-
-                          </div>
-                  </div>
-
-                  <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
-                      <label for="sort"
-                          class="col-sm-2 col-form-label">{{ trans('language.sort') }}</label>
-                      <div class="col-sm-8">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
-                              <input type="number" style="width: 100px;" min=0 id="sort" name="sort"
-                                  value="{!! old()?old('sort'):$language['sort']??0 !!}"
-                                  class="form-control sort" placeholder="" />
-                          </div>
-                          @if ($errors->has('sort'))
-                          <span class="help-block">
-                              {{ $errors->first('sort') }}
-                          </span>
-                          @endif
-                      </div>
-                  </div>
-
-
-                  <div class="form-group  ">
-                      <label for="status"
-                          class="col-sm-2 col-form-label">{{ trans('language.status') }}</label>
-                      <div class="col-sm-8">
-                          <input class="input" type="checkbox" name="status" {!!
-                              old('status',(empty($language['status'])?0:1))?'checked':''!!}>
-
-                      </div>
-                  </div>
-
-                  </div>
+          <div class="form-group row {{ $errors->has('name') ? ' text-red' : '' }}">
+            <label for="name" class="col-sm-2 col-form-label">{{ trans('language.name') }}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="text" id="name" name="name" value="{!! old()?old('name'):$language['name']??'' !!}" class="form-control name {{ $errors->has('name') ? ' is-invalid' : '' }}">
               </div>
-              <!-- /.box-body -->
-    
-              <div class="box-footer">
-                      @csrf
-                  <div class="col-md-2"></div>
-                  <div class="col-md-8">
-                      <div class="btn-group pull-right">
-                          <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
-                      </div>
-                      <div class="btn-group pull-left">
-                          <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
-                      </div>
-                  </div>   
-              <!-- /.box-footer -->
+
+              @if ($errors->has('name'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
+          <div class="form-group row {{ $errors->has('code') ? ' text-red' : '' }}">
+            <label for="code" class="col-sm-2 col-form-label">{!! trans('language.code') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                @if (!empty($language['code']) && in_array($language['code'], ['vi','en']))
+                <input type="hidden" id="code" name="code" value="{!! $language['code'] !!}"
+                    placeholder="" />
+                <input type="text" disabled="disabled" value="{!! $language['code'] !!}"
+                    class="form-control" placeholder="" />
+                @else
+                <input type="text" id="code" name="code"
+                    value="{!! old()?old('code'):$language['code']??'' !!}"
+                    class="form-control {{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="" />
+                @endif
               </div>
-        </form>
-          <!-- /.box-body -->
-      </div>
-      </div>
+
+              @if ($errors->has('code'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('code') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
+
+          <div class="form-group row {{ $errors->has('icon') ? ' text-red' : '' }}">
+            <label for="icon" class="col-sm-2 col-form-label">{!! trans('language.icon') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="text" id="icon" name="icon" value="{!! old()?old('icon'):$language['icon']??'' !!}" class="form-control icon {{ $errors->has('icon') ? ' is-invalid' : '' }}">
+                <div class="input-group-append">
+                  <span data-input="icon" data-preview="preview_icon" data-type="language"
+                      class="input-group-text btn btn-primary lfm"><i class="fa fa-icon"></i>  {{trans('admin.choose_icon')}}</span>
+                </div>
+              </div>
+
+              @if ($errors->has('icon'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('icon') }}
+              </span>
+              @endif
+              <div id="preview_icon" class="img_holder"><img
+                src="{{ asset(old('icon',$language['icon']??'images/no-image.jpg')) }}">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row {{ $errors->has('rtl') ? ' text-red' : '' }}">
+            <label for="rtl" class="col-sm-2 col-form-label">{!! trans('language.layout_rtl') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <input type="checkbox" id="rtl" name="rtl"
+                    class="form-control input {{ $errors->has('rtl') ? ' is-invalid' : '' }}" placeholder=""  {!!
+                      old('rtl',(empty($language['rtl'])?0:1))?'checked':''!!}/>
+              </div>
+
+              @if ($errors->has('rtl'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('rtl') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
+          <div class="form-group row {{ $errors->has('sort') ? ' text-red' : '' }}">
+            <label for="sort" class="col-sm-2 col-form-label">{!! trans('language.sort') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <input type="number" id="sort" name="sort"
+                    value="{!! old()?old('sort'):$language['sort']??'' !!}"
+                    class="form-control {{ $errors->has('sort') ? ' is-invalid' : '' }}" placeholder=""/>
+              </div>
+
+              @if ($errors->has('sort'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
+
+          <div class="form-group row {{ $errors->has('status') ? ' text-red' : '' }}">
+            <label for="status" class="col-sm-2 col-form-label">{!! trans('language.status') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <input type="checkbox" id="status" name="status"
+                    class="form-control input {{ $errors->has('status') ? ' is-invalid' : '' }}" placeholder="" {!!
+                      old('status',(empty($language['status'])?0:1))?'checked':''!!}/>
+              </div>
+
+              @if ($errors->has('status'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('status') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.card-body -->
+        @csrf
+        <div class="card-footer">
+          <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
+          <button type="submit" class="btn btn-primary float-right">{{ trans('admin.submit') }}</button>
+        </div>
+        <!-- /.card-footer -->
+      </form>
     </div>
   </div>
 
+
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{!! $title ?? '' !!}</h3>
-        @if ($layout == 'edit')
-        <div class="box-tools">
-            <div class="btn-group pull-right" style="margin-right: 5px">
-                <a href="{{ route('admin_language.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
-            </div>
-        </div>
-        @endif
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-th-list"></i> {!! $title ?? '' !!}</h3>
       </div>
 
-      <div class="box-body table-responsive box-primary">
-        <div class="box-header with-border">
-          <div class="box-body no-padding" >
+      <div class="card-body p-0">
             <section id="pjax-container" class="table-list">
-              <div class="box-body table-responsive no-padding" >
+              <div class="box-body table-responsivep-0" >
                  <table class="table table-hover">
                     <thead>
                        <tr>
@@ -185,7 +187,7 @@
                     </thead>
                     <tbody>
                         @foreach ($dataTr as $keyRow => $tr)
-                            <tr>
+                            <tr class="{{ ($id == $tr['id']) ? 'active': '' }}">
                                 @if (!empty($removeList))
                                 <td>
                                   <input class="input" type="checkbox" class="grid-row-checkbox" data-id="{{ $tr['id']??'' }}">
@@ -198,14 +200,23 @@
                         @endforeach
                     </tbody>
                  </table>
-              </div>
-              <div class="box-footer clearfix">
-                 {!! $resultItems??'' !!}
-                 {!! $pagination??'' !!}
+
+                 <div class="block-pagination clearfix m-10">
+                  <div class="ml-3 float-left">
+                    {!! $resultItems??'' !!}
+                  </div>
+                  <div class="pagination pagination-sm mr-3 float-right">
+                    {!! $pagination??'' !!}
+                  </div>
+                </div>
+
+
               </div>
              </section>
-      </div>
-      </div>
+    </div>
+
+
+
     </div>
   </div>
 
@@ -215,11 +226,6 @@
 
 
 @push('styles')
-<style type="text/css">
-  .box-body td,.box-body th{
-  max-width:150px;word-break:break-all;
-}
-</style>
 {!! $css ?? '' !!}
 @endpush
 
@@ -259,14 +265,14 @@
 
     @if ($buttonSort)
       $('#button_sort').click(function(event) {
-        var url = '{{ $urlSort??'' }}?sort_order='+$('#order_sort option:selected').val();
+        var url = '{{ $urlSort??'' }}?sort_shipping='+$('#shipping_sort option:selected').val();
         $.pjax({url: url, container: '#pjax-container'})
       });
     @endif
     
 
     $(document).on('ready pjax:end', function(event) {
-      $('.table-list input').iCheck({
+      $('.input').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' /* optional */

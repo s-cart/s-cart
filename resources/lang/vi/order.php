@@ -78,7 +78,7 @@ return [
     ],
     'admin'                 => [
         'title'                => 'Quản lý đơn hàng',
-        'config_title'         => 'Cấu hình thông tin đơn hàng',
+        'config_title'         => 'Cấu hình đơn hàng',
         'create_success'       => 'Tạo đơn hàng thành công!',
         'list'                 => 'Danh sách đơn hàng',
         'id'                   => 'ID',

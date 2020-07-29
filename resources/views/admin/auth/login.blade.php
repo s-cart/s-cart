@@ -13,7 +13,7 @@
           <div class="login-title-des col-md-12 p-b-41">
             <a><b>{{sc_config('ADMIN_NAME')}}</b></a>
           </div>
-          <div class="col-md-12 form-group has-feedback {!! !$errors->has('username') ?: 'has-error' !!}">
+          <div class="col-md-12 form-group has-feedback {!! !$errors->has('username') ?: 'text-red' !!}">
             <div class="wrap-input100 validate-input form-group ">
               <input class="input100 form-control" type="text" placeholder="{{ trans('admin.username') }}"
                 name="username" value="{{ old('username') }}">
@@ -28,7 +28,7 @@
               @endif
             </div>
           </div>
-          <div class="col-md-12 form-group has-feedback {!! !$errors->has('password') ?: 'has-error' !!}">
+          <div class="col-md-12 form-group has-feedback {!! !$errors->has('password') ?: 'text-red' !!}">
             <div class="wrap-input100 validate-input form-group ">
               <input class="input100 form-control" type="password" placeholder="{{ trans('admin.password') }}"
                 name="password">

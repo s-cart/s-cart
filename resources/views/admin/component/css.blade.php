@@ -1,4 +1,52 @@
 <style>
+#summary ul, #summary li {
+    padding: 5px;
+    margin: 0;
+    list-style: none;
+    font-size: 11px;
+    color: #fff;
+    padding: 5px 10px;
+}
+#summary {
+    border-radius: 2px;
+    margin: 5px 0;
+    padding: 5px 0;
+}
+#summary div:first-child {
+    margin-bottom: 4px;
+}
+
+#summary .progress {
+    height: 3px;
+    margin-bottom: 0;
+}
+
+.progress {
+    overflow: hidden;
+    height: 18px;
+    margin-bottom: 18px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+.progress-bar {
+  height: 50px;
+}
+.progress-bar-default {
+    background-color: #000;
+}
+
+@media (min-width: 768px) {
+    .sidebar-collapse #summary {
+        display: none !important;
+        -webkit-transform: translateZ(0);
+    }
+    .box-body td,.box-body th{
+    max-width:150px;word-break:break-all;
+    }
+}
+
     .overlay {
     position: fixed;
     top: 50%;
@@ -84,21 +132,31 @@
     border: 1px solid #c5c5c5 !important;
     background: #d2d6de;
   }
-  .treeview-menu li.active > a:last-child, .sidebar-menu > .active.menu-open > a:last-child {
-    background: #3c5863 !important;
+  .has-treeview li.active > a:last-child,
+  .sidebar-menu > .active.menu-open > a:last-child,
+  li.nav-item.active > a:last-child,
+  .table-list tr.active {
+    background: #c1d2ff !important;
   }
-  li > a:hover {
-    background: #4e4eaddb !important;
-    color: #fff !important;
+  .has-treeview.active.menu-open > a {
+    font-weight: bold;
   }
 
+ .nav-treeview {
+   background: #fff !important;
+ }
+ .btn-primary {
+    color: #fff;
+    background-color: #3c8dbc !important;
+    border-color: #3c8dbc !important;
+ }
   .header-fix,.header-fix:hover{
     background: #8cc1dc;
     border-radius: 0px;
     color:#424242;
   }
   .dd-handle{
-    border-radius: 0px;
+    border-radius: 0px !important;
   }
   .remove_menu{
     cursor: pointer;
@@ -107,7 +165,67 @@
     background: #c9d3d8 !important;
   }
   .dd-handle:hover{
-    background: #4e4eaddb !important;
-    color:#fff !important;
+    background: rgba(0,0,0,.1) !important;
   }
+
+  /* .layout-fixed .main-sidebar{
+    background-color: #222d32 !important;
+  }
+ */
+ .layout-fixed .main-sidebar  li.header{
+  color: #ffffff !important;
+    background: #4da0f1 !important;
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+  }
+  .brand-link.navbar-secondary {
+    background-color: #c7626c !important;
+    text-align: center;
+    color: #fff !important;
+  }
+  .sidebar-form{
+    background-color: #f4f6f9 !important;
+  }
+  .sidebar-form .form-control {
+    border: 1px solid transparent !important;
+  }
+
+  /* .sidebar-form > .input-group:focus{
+    background-color: #fff !important;
+    color: #666 !important;
+  } */
+
+  .sidebar-form  input {
+    background-color: transparent !important;
+  }
+  .tab-action > .nav-item {
+    border-right: 1px solid #4da0f1;
+  }
+  .tab-action > .nav-item:last-child {
+    border-right: 0px;
+  }
+  .tab-action > .nav-item.active {
+    background: #e4ebff;
+    border-bottom: 2px solid #b72020 80%;
+    border: 1px dotted #f00;
+    font-weight: bold;
+  }
+  .nav-item.has-treeview > a {
+    color: #3b8ab8 !important;
+  }
+  .card-primary.card-outline-tabs>.card-header a.active {
+    border-top: 3px solid #4da0f1 !important;
+  }
+  /* .navbar-primary {
+    background: #386c84 !important;
+  } */
+
+  .icheckbox_square-blue {
+    vertical-align: inherit !important;
+  }
+  .footer-static{
+    background: #6c757d !important;
+  }
+  
+
 </style>

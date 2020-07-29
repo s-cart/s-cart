@@ -38,7 +38,7 @@ return [
         'result_item'    => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
         'sort'           => 'Sắp xếp',
         'select_country' => 'Chọn quốc gia',
-        'keep_password'  => 'Để trống nếu không muốn thay đổi mật khẩu',
+        'keep_password'  => '<i class="fa fa-info-circle"></i> Để trống nếu không muốn thay đổi mật khẩu',
 
         'sort_order'     => [
             'id_asc'          => 'ID asc',

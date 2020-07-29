@@ -3,247 +3,317 @@
 
 
 @section('main')
+        <div class="row">
 
-<div class="row">
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">{{ trans('admin.total_order') }}</span>
-              <span class="info-box-number">{{ number_format($orders->count()) }}</span>
-              <a href="{{ route('admin_order.index') }}" class="small-box-footer">
-                  {{ trans('admin.more') }}&nbsp;
-                  <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-tags"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">{{ trans('admin.total_product') }}</span>
-              <span class="info-box-number">{{ number_format($products->count()) }}</span>
-              <a href="{{ route('admin_product.index') }}" class="small-box-footer">
-                  {{ trans('admin.more') }}&nbsp;
-                  <i class="fa fa-arrow-circle-right"></i>
-              </a>
-
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-
-
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">{{ trans('admin.total_customer') }}</span>
-              <span class="info-box-number">{{ number_format($users->count()) }}</span>
-              <a href="{{ route('admin_customer.index') }}" class="small-box-footer">
-                  {{ trans('admin.more') }}&nbsp;
-                  <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-
-
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-map-signs"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">{{ trans('admin.total_blogs') }}</span>
-              <span class="info-box-number">{{ number_format($blogs->count()) }}</span>
-              <a href="{{ route('admin_news.index') }}" class="small-box-footer">
-                  {{ trans('admin.more') }}&nbsp;
-                  <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-
-      </div>
-
-
-{{-- Chart --}}
-<div class="row">
-
-  <div class="col-md-12">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('admin.order_month') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-        <div class="box">
-          <div id="chart-days" style="width:100%; height:auto;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-md-12">
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('admin.order_year') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-          <div class="box">
-            {{-- <div class="row"> --}}
-              <div class="col-md-4">
-                <div id="chart-pie" style="width:100%; height:auto;"></div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">{{ trans('admin.total_order') }}</span>
+                <span class="info-box-number">{{ number_format($orders->count()) }}</span>
+                <a href="{{ route('admin_order.index') }}" class="small-box-footer">
+                    {{ trans('admin.more') }}&nbsp;
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
               </div>
-              <div class="col-md-8">
-                <div id="chart-month" style="width:100%; height:auto;"></div>
-              </div>
-            {{-- </div> --}}
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
-      </div>
-    </div>
-  </div>
-  </div>
-{{-- //End chart --}}
-
-
-<div class="row">
-
-{{-- Top order --}}
-@php
-  $topOrder = $orders->with('orderStatus')->orderBy('id','desc')->limit(10)->get();
-@endphp
-
-  <div class="col-md-6">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('admin.top_order_new') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+  
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-aqua"><i class="fa fa-tags"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">{{ trans('admin.total_product') }}</span>
+                <span class="info-box-number">{{ number_format($products->count()) }}</span>
+                <a href="{{ route('admin_product.index') }}" class="small-box-footer">
+                    {{ trans('admin.more') }}&nbsp;
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+  
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+  
+  
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">{{ trans('admin.total_customer') }}</span>
+                <span class="info-box-number">{{ number_format($users->count()) }}</span>
+                <a href="{{ route('admin_customer.index') }}" class="small-box-footer">
+                    {{ trans('admin.more') }}&nbsp;
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+  
+  
+  
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-red"><i class="fa fa-map-signs"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">{{ trans('admin.total_blogs') }}</span>
+                <span class="info-box-number">{{ number_format($blogs->count()) }}</span>
+                <a href="{{ route('admin_news.index') }}" class="small-box-footer">
+                    {{ trans('admin.more') }}&nbsp;
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
         </div>
-      </div>
+        <!-- /.row -->
 
-      <div class="box-body table-responsive no-padding box-primary">
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>{{ trans('order.id') }}</th>
-                    <th>{{ trans('order.email') }}</th>
-                    <th>{{ trans('order.status') }}</th>
-                    <th>{{ trans('order.created_at') }}</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-@if (count($topOrder))
-  @foreach ($topOrder as $order)
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">{{ trans('admin.order_month') }}</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div id="chart-days" style="width:100%; height:auto;"></div>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                      <h5 class="description-header">$35,210.43</h5>
+                      <span class="description-text">TOTAL REVENUE</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                      <h5 class="description-header">$10,390.90</h5>
+                      <span class="description-text">TOTAL COST</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                      <h5 class="description-header">$24,813.53</h5>
+                      <span class="description-text">TOTAL PROFIT</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block">
+                      <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                      <h5 class="description-header">1200</h5>
+                      <span class="description-text">GOAL COMPLETIONS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">{{ trans('admin.order_year') }}</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div id="chart-pie" style="width:100%; height:auto;"></div>
+                  </div>
+                  <div class="col-md-8">
+                    <div id="chart-month" style="width:100%; height:auto;"></div>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <!-- Main row -->
+        <div class="row">
+
+          <!-- Left col -->
+          <div class="col-md-6">
+            @php
+            $topOrder = $orders->with('orderStatus')->orderBy('id','desc')->limit(10)->get();
+            @endphp
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">{{ trans('admin.top_order_new') }}</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                      <tr>
+                        <th>{{ trans('order.id') }}</th>
+                        <th>{{ trans('order.email') }}</th>
+                        <th>{{ trans('order.status') }}</th>
+                        <th>{{ trans('order.created_at') }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @if (count($topOrder))
+                      @foreach ($topOrder as $order)
+                            <tr>
+                              <td><a href="{{ route('admin_order.detail',['id'=>$order->id]) }}">Order#{{ $order->id }}</a></td>
+                              <td>{{ $order->email }}</td>
+                              <td><span class="badge badge-{{ $mapStyleStatus[$order->status]??'' }}">{{ $order->orderStatus->name }}</span></td>
+                              <td>{{ $order->created_at }}</td>
+                            </tr>
+                      @endforeach
+                    @endif
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <!-- Left col -->
+          <div class="col-md-6">
+            @php
+            $topCustomer = $users->orderBy('id','desc')->limit(10)->get();
+            @endphp
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">{{ trans('admin.top_customer_new') }}</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
                     <tr>
-                      <td><a href="{{ route('admin_order.detail',['id'=>$order->id]) }}">Order#{{ $order->id }}</a></td>
-                      <td>{{ $order->email }}</td>
-                      <td><span class="label label-{{ $mapStyleStatus[$order->status]??'' }}">{{ $order->orderStatus->name }}</span></td>
-                      <td>{{ $order->created_at }}</td>
+                      <th>{{ trans('customer.id') }}</th>
+                      <th>{{ trans('customer.email') }}</th>
+                      <th>{{ trans('customer.name') }}</th>
+                      <th>{{ trans('customer.created_at') }}</th>
                     </tr>
-  @endforeach
-@endif
-                  </tbody>
-                </table>
+                    <tbody>
+                      @if (count($topCustomer))
+                      @foreach ($topCustomer as $customer)
+                        <tr>
+                          <td><a href="{{ route('admin_customer.edit',['id'=>$customer->id]) }}">ID#{{ $customer->id }}</a></td>
+                          <td>{{ $customer->email }}</td>
+                          <td>{{ $customer->name }}</td>
+                          <td>{{ $customer->created_at }}</td>
+                        </tr>
+                      @endforeach
+                    @endif
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
               </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                
+              </div>
+              <!-- /.card-footer -->
             </div>
-      </div>
-    </div>
-  </div>
-{{-- //End top order --}}
+            <!-- /.card -->
 
-{{-- Top customer --}}
-@php
-  $topCustomer = $users->orderBy('id','desc')->limit(10)->get();
-@endphp
-  <div class="col-md-6">
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('admin.top_customer_new') }}</h3>
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+          <!-- /.col -->
+
+
         </div>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>{{ trans('customer.id') }}</th>
-                    <th>{{ trans('customer.email') }}</th>
-                    <th>{{ trans('customer.name') }}</th>
-                    <th>{{ trans('customer.created_at') }}</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-@if (count($topCustomer))
-  @foreach ($topCustomer as $customer)
-                    <tr>
-                      <td><a href="{{ route('admin_customer.edit',['id'=>$customer->id]) }}">ID#{{ $customer->id }}</a></td>
-                      <td>{{ $customer->email }}</td>
-                      <td>{{ $customer->name }}</td>
-                      <td>{{ $customer->created_at }}</td>
-                    </tr>
-  @endforeach
-@endif
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.table-responsive -->
-            </div>
-            <!-- /.box-body -->
-      </div>
-    </div>
-  </div>
-  {{-- //End customer --}}
-  </div>
-
+        <!-- /.row -->
 @endsection
 
 

@@ -3,64 +3,74 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-        <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-          <li class=""><a href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}">{{ trans('plugin.local') }}</a></li>
-          <li class="active"><a href="#">{{ trans('plugin.online') }}</a></li>
-          <li class="btn-import"><a href="{{ route('admin_plugin.import') }}" target=_new><span><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('plugin.import_data', ['data' => 'plugin']) }}</span></a></li>
-          <li class="pull-right">{!! trans('plugin.plugin_more') !!}</li>
-        </ul>
 
-        <ul class="nav nav-tabs">
-          <li class="pull-right" >
-            <label class="checkbox-inline">
-              <input name="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }}>
-              {{ trans('plugin.libraries.sort_download') }}
-            </label>
-            <label class="checkbox-inline">
-              <input name="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }}>
-              {{ trans('plugin.libraries.sort_rating') }}
-            </label>
-            <label class="checkbox-inline">
-              <input name="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }}>
-              {{ trans('plugin.libraries.sort_price_asc') }}
-            </label>
-            <label class="checkbox-inline">
-              <input name="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }}>
-              {{ trans('plugin.libraries.sort_price_desc') }}
-            </label>
-            <label class="checkbox-inline">
-              <input name="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }}>
-              {{ trans('plugin.libraries.only_free') }}
-            </label>  
-            <label class="checkbox-inline">
-              <input name="only_version" data-name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }}>
-              {{ trans('plugin.libraries.only_version') }}
-            </label>    
-            <input class="input-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
-            <button title="Filter" class="btn btn-flat btn-sm filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
-          </li>
-        </ul>
-        <a class="link-filter" href=""></a>
-
-          <!-- /.box-header -->
-          <section id="pjax-container" class="table-list">
-            <div class="box-body table-responsive no-padding">
-              <table id="plugin" class="table table-bordered table-hover">
+        <div class="card card-primary card-outline card-outline-tabs">
+          <div class="card-header p-0 border-bottom-0">
+            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin_plugin', ['code' => strtolower($code)]) }}" >{{ trans('plugin.local') }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#" >{{ trans('plugin.online') }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" target=_new  href="{{ route('admin_plugin.import') }}" ><span><i class="fas fa-save"></i> {{ trans('plugin.import_data', ['data' => 'plugin']) }}</span></a>
+              </li>
+              <li class="btn-group float-right m-2">
+                {!! trans('plugin.plugin_more') !!}
+              </li>
+            </ul>
+          </div>
+    
+          <div class="card-header">
+            <div class="float-right" >
+              <input name="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="sort_download">
+                {{ trans('plugin.libraries.sort_download') }}
+              </label>
+              <input name="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="sort_rating">
+                {{ trans('plugin.libraries.sort_rating') }}
+              </label>
+              <input name="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="sort_price_asc">
+                {{ trans('plugin.libraries.sort_price_asc') }}
+              </label>
+              <input name="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="sort_price_desc">
+                {{ trans('plugin.libraries.sort_price_desc') }}
+              </label>
+              <input name="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="only_free">
+                {{ trans('plugin.libraries.only_free') }}
+              </label>  
+              <input name="only_version" data-name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }} class="input">
+              <label class="checkbox-inline  form-check-label"  for="only_version">
+                {{ trans('plugin.libraries.only_version') }}
+              </label>    
+              <input class="form-control-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
+              <button title="Filter" class="btn btn-flat btn-sm filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
+            </div>
+            <a class="link-filter" href=""></a>
+          </div>
+    
+          <div class="card-body" id="pjax-container">
+            <div class="tab-content" id="custom-tabs-four-tabContent">
+              <table class="table table-hover text-nowrap table-bordered">
                 <thead>
-                <tr>
-                  <th>{{ trans('plugin.image') }}</th>
-                  <th>{{ trans('plugin.code') }}</th>
-                  <th>{{ trans('plugin.name') }}</th>
-                  <th>{{ trans('plugin.version') }}</th>
-                  <th>{{ trans('plugin.compatible') }}</th>
-                  <th>{{ trans('plugin.auth') }}</th>
-                  <th>{{ trans('plugin.price') }}</th>
-                  <th>{{ trans('plugin.rated') }}</th>
-                  <th><i class="fa fa-download" aria-hidden="true"></i></th>
-                  <th>{{ trans('plugin.date') }}</th>
-                  <th>{{ trans('plugin.action') }}</th>
-                </tr>
+                  <tr>
+                    <th>{{ trans('plugin.image') }}</th>
+                    <th>{{ trans('plugin.code') }}</th>
+                    <th>{{ trans('plugin.name') }}</th>
+                    <th>{{ trans('plugin.version') }}</th>
+                    <th>{{ trans('plugin.compatible') }}</th>
+                    <th>{{ trans('plugin.auth') }}</th>
+                    <th>{{ trans('plugin.price') }}</th>
+                    <th>{{ trans('plugin.rated') }}</th>
+                    <th><i class="fa fa-download" aria-hidden="true"></i></th>
+                    <th>{{ trans('plugin.date') }}</th>
+                    <th>{{ trans('plugin.action') }}</th>
+                  </tr>
                 </thead>
                 <tbody>
                   @if (!$arrPluginLibrary)
@@ -75,7 +85,7 @@
     $scVersion = explode(',', $plugin['scart_version']);
     $scRenderVersion = implode(' ',array_map(
       function($version){
-      return '<span title="SCart version '.$version.'" class="label label-primary">'.$version.'</span>';
+      return '<span title="SCart version '.$version.'" class="badge badge-primary">'.$version.'</span>';
       },$scVersion)
     );
 
@@ -101,7 +111,7 @@
                         <td>{{ $plugin['username']??'' }}</td>
                         <td>
                           @if ($plugin['is_free'] || $plugin['price_final'] == 0)
-                            <span class="label label-success">{{ trans('plugin.free') }}</span>
+                            <span class="badge badge-success">{{ trans('plugin.free') }}</span>
                           @else
                               @if ($plugin['price_final'] != $plugin['price'])
                                   <span class="sc-old-price">{{ number_format($plugin['price']) }}</span><br>
@@ -143,7 +153,7 @@
                           {!! $pluginAction ?? '' !!}
                           <a href="{{ $plugin['link'] }}" title="Link home">
                             <span class="btn btn-flat btn-default" type="button">
-                              <i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('template.link') !!}
+                              <i class="fa fa-chain-broken" aria-hidden="true"></i> {!! trans('plugin.link') !!}
                             </span>
                           </a>
                         </td>  
@@ -152,9 +162,13 @@
                   @endif
                 </tbody>
               </table>
+    
             </div>
-            <div class="box-footer clearfix">
-              {!! $resultItems??'' !!}
+    
+            <div class="block-pagination clearfix m-10">
+              <div class="ml-3 float-left">
+                {!! $resultItems??'' !!}
+              </div>
               <ul class="pagination pagination-sm no-margin pull-right">
                 <!-- Previous Page Link -->
                     @if ($dataApi['current_page'] > 1)
@@ -172,10 +186,9 @@
 
                     @endif
                 </ul>
-           </div>
-          </section>
-            <!-- /.box-body -->
+            </div>
           </div>
+        </div>
         </div>
       </div>
 @endsection

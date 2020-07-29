@@ -6,9 +6,9 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
+    <div class="card">
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
          <thead>
            <tr>

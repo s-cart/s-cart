@@ -5,19 +5,13 @@
 <div class="row">
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('setting.admin.setting_website') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('setting.admin.setting_website') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('env.field') }}</th>
-             <th>{{ trans('env.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
 
         <tr>
@@ -79,25 +73,13 @@
 @if (!empty($configs['config']))
 <div class="col-md-6">
 
-  <div class="box box-primary">
-    <div class="box-header with-border">
-      <h3 class="box-title">{{ trans('setting.admin.setting_shop') }}</h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
+  <div class="card">
+    <div class="card-header with-border">
+      <h3 class="card-title">{{ trans('setting.admin.setting_shop') }}</h3>
     </div>
 
-    <div class="box-body table-responsive no-padding box-primary">
+    <div class="card-body table-responsivep-0">
      <table class="table table-hover">
-       <thead>
-         <tr>
-           <th>{{ trans('setting.admin.field') }}</th>
-           <th>{{ trans('setting.admin.value') }}</th>
-         </tr>
-       </thead>
        <tbody>
          @foreach ($configs['config'] as $config)
            <tr>
@@ -116,25 +98,13 @@
 @if (!empty($configs['display']))
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('setting.admin.setting_display') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('setting.admin.setting_display') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th width="40%">{{ trans('setting.admin.field') }}</th>
-             <th>{{ trans('setting.admin.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
            @foreach ($configs['display'] as $config)
              <tr>

@@ -538,6 +538,37 @@ class CreateTablesShop extends Migration
             $table->timestamp('failed_at')->useCurrent();
         });
 
+        Schema::create(SC_DB_PREFIX.'shop_product_store', function (Blueprint $table) {
+            $table->integer('product_id');
+            $table->integer('store_id');
+            $table->primary(['product_id', 'store_id']);
+        });
+
+        Schema::create(SC_DB_PREFIX.'shop_category_store', function (Blueprint $table) {
+            $table->integer('category_id');
+            $table->integer('store_id');
+            $table->primary(['category_id', 'store_id']);
+        });
+
+        Schema::create(SC_DB_PREFIX.'shop_news_store', function (Blueprint $table) {
+            $table->integer('news_id');
+            $table->integer('store_id');
+            $table->primary(['news_id', 'store_id']);
+        });
+
+        Schema::create(SC_DB_PREFIX.'shop_page_store', function (Blueprint $table) {
+            $table->integer('page_id');
+            $table->integer('store_id');
+            $table->primary(['page_id', 'store_id']);
+        });
+
+        Schema::create(SC_DB_PREFIX.'shop_brand_store', function (Blueprint $table) {
+            $table->integer('brand_id');
+            $table->integer('store_id');
+            $table->primary(['brand_id', 'store_id']);
+        });
+
+
     }
 
     /**
@@ -603,6 +634,12 @@ class CreateTablesShop extends Migration
         //Job
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('failed_jobs');
+        //Multi vendor
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_product_store');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_category_store');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_news_store');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_page_store');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_brand_store');
     }
 
 }

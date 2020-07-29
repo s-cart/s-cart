@@ -3,21 +3,21 @@
 @section('main')
  <div class="row">
     <div class="col-md-12">
-       <div class="box">
+       <div class="card">
 
-          <div class="box-header with-border">
-              <h3 class="box-title">{{ trans('order.order_detail') }} #{{ $order->id }}</h3>
-              <div class="box-tools not-print">
-                  <div class="btn-group pull-right" style="margin-right: 0px">
+          <div class="card-header with-border">
+              <h3 class="card-title">{{ trans('order.order_detail') }} #{{ $order->id }}</h3>
+              <div class="card-tools not-print">
+                  <div class="btn-group float-right" style="margin-right: 0px">
                       <a href="{{ route('admin_order.index') }}" class="btn btn-sm btn-flat btn-default"><i class="fa fa-list"></i>&nbsp;{{ trans('admin.list') }}</a>
                   </div>
-                  <div class="btn-group pull-right" style="margin-right: 10px">
-                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=invoice' }}" class="btn btn-sm btn-flat btn-twitter" title="Export"><i class="fa fa-file-excel-o"></i><span class="hidden-xs"> Excel</span></a>
+                  <div class="btn-group float-right" style="margin-right: 10px">
+                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=invoice' }}" class="btn btn-sm btn-flat btn-twitter" title="Export"><i class="fas fa-file-excel"></i><span class="hidden-xs"> Excel</span></a>
                   </div>
-{{--                   <div class="btn-group pull-right" style="margin-right: 10px">
+{{--                   <div class="btn-group float-right" style="margin-right: 10px">
                       <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=pdf' }}" class="btn btn-sm btn-flat btn-warning" title="Export"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs"> PDF</span></a>
                   </div> --}}
-                  <div class="btn-group pull-right" style="margin-right: 10px;border:1px solid #c5b5b5;">
+                  <div class="btn-group float-right" style="margin-right: 10px;border:1px solid #c5b5b5;">
                       <a class="btn btn-sm btn-flat" title="Export" onclick="order_print()"><i class="fa fa-print"></i><span class="hidden-xs"> Print</span></a>
                   </div>
               </div>
@@ -112,7 +112,7 @@
       <input type="hidden" name="order_id"  value="{{ $order->id }}">
       <div class="row">
         <div class="col-sm-12">
-          <div class="box collapsed-box">
+          <div class="card collapsed-card">
           <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -170,7 +170,7 @@
       <div class="row">
         {{-- Total --}}
           <div class="col-sm-6">
-            <div class="box collapsed-box">
+            <div class="card collapsed-card">
                 <table   class="table table-bordered">
                   @foreach ($dataTotal as $element)
                     @if ($element['code'] =='subtotal')
@@ -206,45 +206,51 @@
 
           {{-- History --}}
           <div class="col-sm-6">
-            <div class="box collapsed-box">
-              <table class="table box table-bordered">
+            <div class="card">
+              <table class="table table-bordered">
                 <tr>
                   <td  class="td-title">{{ trans('order.order_note') }}:</td>
                   <td>
-                    <a href="#" class="updateInfo" data-name="comment" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="" >{{ $order->comment }}
+                    <a href="#" class="updateInfo" data-name="comment" data-type="text" data-pk="{{ $order->id }}" data-url="{{ route("admin_order.update") }}" data-title="" >
+                      {{ $order->comment }}
                     </a>
                 </td>
                 </tr>
               </table>
             </div>
 
-            <div class="box collapsed-box">
-              <div class="box-header with-border">
-                <h3 class="box-title">{{ trans('order.order_history') }}</h3>
 
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            <div class="card collapsed-card"">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">{{ trans('order.order_history') }}</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-plus"></i>
                   </button>
-                  </div>
+                </div>
               </div>
-
-              <div class="box-body table-responsive no-padding box-primary">
-                    @if (count($order->history))
-                      <table  class="table table-bordered" id="history">
-                        <tr>
-                          <th>{{ trans('order.history_staff') }}</th>
-                          <th>{{ trans('order.history_content') }}</th>
-                          <th>{{ trans('order.history_time') }}</th>
-                        </tr>
-                      @foreach ($order->history->sortKeysDesc()->all() as $history)
-                        <tr>
-                          <td>{{ \App\Admin\Models\AdminUser::find($history['admin_id'])->name??'' }}</td>
-                          <td><div class="history">{!! $history['content'] !!}</div></td>
-                          <td>{{ $history['add_date'] }}</td>
-                        </tr>
-                      @endforeach
-                      </table>
-                    @endif
+              <!-- /.card-header -->
+              <div class="card-body p-0 out">
+                <div class="table-responsive">
+                  @if (count($order->history))
+                  <table  class="table m-0" id="history">
+                    <tr>
+                      <th>{{ trans('order.history_staff') }}</th>
+                      <th>{{ trans('order.history_content') }}</th>
+                      <th>{{ trans('order.history_time') }}</th>
+                    </tr>
+                  @foreach ($order->history->sortKeysDesc()->all() as $history)
+                    <tr>
+                      <td>{{ \App\Admin\Models\AdminUser::find($history['admin_id'])->name??'' }}</td>
+                      <td><div class="history">{!! $history['content'] !!}</div></td>
+                      <td>{{ $history['add_date'] }}</td>
+                    </tr>
+                  @endforeach
+                  </table>
+                @endif
+                </div>
+                <!-- /.table-responsive -->
               </div>
             </div>
 
@@ -254,7 +260,7 @@
 @php
   $htmlSelectProduct = '<tr>
               <td>
-                <select onChange="selectProduct($(this));"  class="add_id form-control select2" name="add_id[]" style="width:100% !important;">
+                <select onChange="selectProduct($(this));"  class="add_id form-control" name="add_id[]" style="width:100% !important;">
                 <option value="0">'.trans('order.select_product').'</option>';
                 if(count($products)){
                   foreach ($products as $pId => $productName){

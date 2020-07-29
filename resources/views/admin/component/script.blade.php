@@ -1,5 +1,6 @@
-{{-- image file manager --}}
+
 <script type="text/javascript">
+
   $(function () {
     $('.input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
@@ -7,7 +8,11 @@
       increaseArea: '20%' /* optional */
     });
   });
-  
+
+</script>
+
+{{-- image file manager --}}
+<script type="text/javascript">
 (function( $ ){
 
       $.fn.filemanager = function(type, options) {
@@ -50,8 +55,8 @@
 </script>
 {{-- //image file manager --}}
 
-<script>
 
+<script type="text/javascript">
 // Select row
   $(function () {
     //Enable check and uncheck all functionality
@@ -60,11 +65,11 @@
       if (clicks) {
         //Uncheck all checkboxes
         $(".box-body input[type='checkbox']").iCheck("uncheck");
-        $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+        $(".far", this).removeClass("fa-check-square").addClass('fa-square');
       } else {
         //Check all checkboxes
         $(".box-body input[type='checkbox']").iCheck("check");
-        $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+        $(".far", this).removeClass("fa-square").addClass('fa-check-square');
       }
       $(this).data("clicks", !clicks);
     });
@@ -79,7 +84,7 @@
   }
 
 // active tree menu
-$('.treeview-menu > li.active').parents('.treeview').addClass('active');
+$('.nav-treeview > li.active').parents('.has-treeview').addClass('active menu-open');
 // ==end active tree menu
 
 </script>

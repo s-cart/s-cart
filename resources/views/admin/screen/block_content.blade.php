@@ -3,39 +3,39 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                    <div class="card-tools">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_block_content.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
-                        <div class="fields-group">
-
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                    <div class="card-body">
+                            <div class="form-group row  {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('block_content.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="text" id="name" name="name" value="{!! old('name',$layout['name']??'') !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                                {{ $errors->first('name') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
-                            <div class="form-group  {{ $errors->has('position') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('position') ? ' text-red' : '' }}">
                                 <label for="position" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_position') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control position select2" style="width: 100%;" name="position" >
@@ -46,13 +46,13 @@
                                     </select>
                                         @if ($errors->has('position'))
                                             <span class="help-block">
-                                                {{ $errors->first('position') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('position') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('page') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('page') ? ' text-red' : '' }}">
                                 <label for="page" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_page') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control page select2" multiple="multiple" style="width: 100%;" name="page[]" >
@@ -67,13 +67,13 @@
                                     </select>
                                         @if ($errors->has('page'))
                                             <span class="help-block">
-                                                {{ $errors->first('page') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('page') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('type') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
                                 <label for="type" class="col-sm-2 col-form-label">{{ trans('block_content.type') }}</label>
                                 <div class="col-sm-8">
                             @if ($layout)
@@ -85,13 +85,13 @@
                             @endif
                                         @if ($errors->has('type'))
                                             <span class="help-block">
-                                                {{ $errors->first('type') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('text') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('text') ? ' text-red' : '' }}">
                                 <label for="text" class="col-sm-2 col-form-label">{{ trans('block_content.text') }}</label>
                                 <div class="col-sm-8">
                                     @php
@@ -125,54 +125,54 @@
                             </div>
 
 
-                            <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
+                            <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('block_content.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="number" style="width: 100px;"  id="sort" name="sort" value="{!! old()?old('sort'):$layout['sort']??0 !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
                                             <span class="help-block">
-                                                {{ $errors->first('sort') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
 
-                            <div class="form-group  ">
+                            <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('block_content.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {!! old('status',(empty($layout['status'])?0:1))?'checked':''!!}>
 
                                 </div>
                             </div>
-
-                        </div>
                     </div>
 
 
 
-                    <!-- /.box-body -->
+                    <!-- /.card-body -->
 
-                    <div class="box-footer">
+                    <div class="card-footer">
                             @csrf
                         <div class="col-md-2">
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
 
-                            <div class="btn-group pull-left">
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
             </div>
         </div>

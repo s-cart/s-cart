@@ -44,7 +44,6 @@ class AdminLogController extends Controller
         ];
 
         $sort_order = request('sort_order') ?? 'id_desc';
-        $keyword = request('keyword') ?? '';
         $arrSort = [
             'id__desc' => trans('log.admin.sort_order.id_desc'),
             'id__asc' => trans('log.admin.sort_order.id_asc'),
@@ -84,7 +83,7 @@ class AdminLogController extends Controller
                 'input' => $row['input'],
                 'created_at' => $row['created_at'],
                 'action' => '
-                  <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('log.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
+                  <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('log.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
             ];
         }

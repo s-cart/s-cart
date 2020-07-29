@@ -73,11 +73,11 @@ class AdminMenuController extends Controller
             'title' => trans('menu.admin.list'),
             'subTitle' => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
+            'icon' => 'fa fa-edit',
             'menu' => $menu,
             'treeMenu' => (new AdminMenu)->getTree(),
             'url_action' => route('admin_menu.edit', ['id' => $menu['id']]),
-            'title_form' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
+            'title_form' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
         ];
         $data['urlDeleteItem'] = route('admin_menu.delete');
         $data['id'] = $id;

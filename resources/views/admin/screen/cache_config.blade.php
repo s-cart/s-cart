@@ -6,21 +6,15 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
+    <div class="card">
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('cache.config_manager.field') }}</th>
-             <th>{{ trans('cache.config_manager.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
           <tr>
             <td colspan="3">
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear_processing')}}" class="btn btn-flat btn-success clear-cache" data-clear="cache_all">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear_all') }}
+                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear_all') }}
               </button>
             </td>
             
@@ -47,11 +41,11 @@
             <td>
               @if (\Cache::has($config->key))
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear') }}
+                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
               </button>
               @else
               <button type="button" disabled data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear') }}
+                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
               </button>
               @endif        
             </td>

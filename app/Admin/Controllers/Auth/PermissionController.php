@@ -96,12 +96,12 @@ class PermissionController extends Controller
                     $route = explode('::', $value);
                     $methodStyle = '';
                     if ($route[0] == 'ANY') {
-                        $methodStyle = '<span class="label label-info">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-info">' . $route[0] . '</span>';
                     } else
                     if ($route[0] == 'POST') {
-                        $methodStyle = '<span class="label label-warning">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-warning">' . $route[0] . '</span>';
                     } else {
-                        $methodStyle = '<span class="label label-primary">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-primary">' . $route[0] . '</span>';
                     }
                     return $methodStyle . ' <code>' . $route[1] . '</code>';
                 }, explode(',', $row['http_uri']));
@@ -115,7 +115,7 @@ class PermissionController extends Controller
                 'updated_at' => $row['updated_at'],
                 'action' => '
                     <a href="' . route('admin_permission.edit', ['id' => $row['id']]) . '"><span title="' . trans('permission.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-                    <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>'
+                    <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
                 ,
             ];
         }
@@ -212,7 +212,7 @@ class PermissionController extends Controller
             'title' => trans('permission.admin.edit'),
             'subTitle' => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
+            'icon' => 'fa fa-edit',
             'permission' => $permission,
             'routeAdmin' => $this->routeAdmin,
             'url_action' => route('admin_permission.edit', ['id' => $permission['id']]),

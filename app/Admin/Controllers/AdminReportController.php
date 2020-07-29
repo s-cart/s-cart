@@ -96,9 +96,9 @@ class AdminReportController extends Controller
         foreach ($dataTmp as $key => $row) {
             $kind = $this->kinds[$row['kind']] ?? $row['kind'];
             if ($row['kind'] == SC_PRODUCT_BUILD) {
-                $kind = '<span class="label label-success">' . $kind . '</span>';
+                $kind = '<span class="badge badge-success">' . $kind . '</span>';
             } elseif ($row['kind'] == SC_PRODUCT_GROUP) {
-                $kind = '<span class="label label-danger">' . $kind . '</span>';
+                $kind = '<span class="badge badge-danger">' . $kind . '</span>';
             }
 
             $dataTr[] = [
@@ -111,7 +111,7 @@ class AdminReportController extends Controller
                 'sold' => $row['sold'],
                 'view' => $row['view'],
                 'kind' => $kind,
-                'status' => $row['status'] ? '<span class="label label-success">ON</span>' : '<span class="label label-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
             ];
         }
 
@@ -123,7 +123,7 @@ class AdminReportController extends Controller
 //menu_left
         $data['menu_left'] = '<div class="pull-left">
 
-                    <a class="btn   btn-flat btn-primary grid-refresh" title="Refresh"><i class="fa fa-refresh"></i><span class="hidden-xs"> ' . trans('admin.refresh') . '</span></a> &nbsp;</div>
+                    <a class="btn   btn-flat btn-primary grid-refresh" title="Refresh"><i class="fas fa-sync-alt"></i><span class="hidden-xs"> ' . trans('admin.refresh') . '</span></a> &nbsp;</div>
                     ';
 //=menu_left
 
@@ -140,16 +140,12 @@ class AdminReportController extends Controller
 //menuSearch
         $data['topMenuRight'][] = '
                 <form action="' . route('admin_report.product') . '" id="button_search">
-                   <div onclick="$(this).submit();" class="btn-group pull-right">
-                           <a class="btn btn-flat btn-primary" title="Refresh">
-                              <i class="fa  fa-search"></i>
-                           </a>
-                   </div>
-                   <div class="btn-group pull-right">
-                         <div class="form-group">
-                           <input type="text" name="keyword" class="form-control" placeholder="' . trans('product.admin.search_place') . '" value="' . $keyword . '">
-                         </div>
-                   </div>
+                <div class="input-group input-group" style="width: 250px;">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('product.admin.search_place') . '" value="' . $keyword . '">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
                 </form>';
 //=menuSearch
 

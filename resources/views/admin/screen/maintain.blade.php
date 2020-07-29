@@ -7,29 +7,30 @@
   $infosDescription = $obj->descriptions;
 @endphp
   <div class="col-md-12">
-    <div class="box box-primary">
+    <div class="card">
 
-      <div class="box-header with-border">
-        <div class="pull-right">
-        <h3><a href="{{ route('admin_maintain.edit') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>{{ trans('admin.edit') }}</a></h3>
+      <div class="card-header with-border">
+        <div class="float-right">
+        <h3><a href="{{ route('admin_maintain.edit') }}"><i class="fa fa-edit" aria-hidden="true"></i>{{ trans('admin.edit') }}</a></h3>
         </div>
-        <div class="pull-left">
+        <div class="float-left">
           <input id="maintain_mode" data-on-text="{{ trans('admin.maintain_enable') }}" data-off-text="{{ trans('admin.maintain_disable') }}" type="checkbox"  {{ (sc_config('SITE_STATUS') == 'off'?'checked':'') }}>
-          <br><span>{!! trans('admin.maintain_help') !!}</span>
-         </div>
+          <br><span><i class="fa fa-info-circle"></i>{!! trans('admin.maintain_help') !!}</span>
+        </div>
          
-        <!-- /.box-tools -->
+        <!-- /.card-tools -->
       </div>
 
-
+      <div class="card-body table-responsivep-0">
         @foreach ($infosDescription as  $infoDescription)
-              <div class="box-header with-border">
-                <h3 class="box-title">{{ trans('store_info.maintain_content') }} {{ $languages[$infoDescription['lang']] }}</h3>
+              <div class="card-header with-border">
+                <h3 class="card-title">{{ trans('store_info.maintain_content') }} {{ $languages[$infoDescription['lang']] }}</h3>
               </div>
-              <div class="box-body table-responsive no-padding box-primary">
+              <div class="table-responsivep-0">
                 {!! sc_html_render($infoDescription['maintain_content']) !!}
               </div>
         @endforeach
+      </div>
     </div>
   </div>
 

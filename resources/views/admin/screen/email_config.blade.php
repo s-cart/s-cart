@@ -6,12 +6,12 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('email.admin.config_mode') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('email.admin.config_mode') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
          <table class="table table-hover">
            <thead>
              <tr>
@@ -35,18 +35,12 @@
 
   <div class="col-md-6 config_smtp" {!! sc_config('email_action_smtp_mode')?'':'style="display:none"' !!}>
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('email.admin.config_smtp') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('email.admin.config_smtp') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
          <table class="table table-hover">
          <thead>
            <tr>

@@ -6,8 +6,8 @@
 
   <div class="col-md-12">
 
-    <div class="box box-primary">
-      <div class="box-body table-responsive no-padding box-primary">
+    <div class="card">
+      <div class="card-body table-responsive">
        <table class="table table-hover">
          <thead>
            <tr>

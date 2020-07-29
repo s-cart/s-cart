@@ -26,6 +26,7 @@ class CreateTablesAdmin extends Migration
             $table->string('email', 150)->unique();
             $table->string('avatar', 255)->nullable();
             $table->string('remember_token', 100)->nullable();
+            $table->string('style', 100)->nullable();
             $table->timestamps();
         });
 
@@ -115,6 +116,7 @@ class CreateTablesAdmin extends Migration
             $table->string('office', 300)->nullable();
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
+            $table->string('style', 100)->nullable();
         });
 
         Schema::create(SC_DB_PREFIX.'admin_store_description', function (Blueprint $table) {

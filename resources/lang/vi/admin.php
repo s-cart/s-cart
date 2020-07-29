@@ -273,7 +273,7 @@ return [
         'other_extension' => 'Khác',
         'modules' => 'Modules',
         'cms' => 'Cms',
-        'template_manager' => 'Quản lý giao diện <span class="badge label label-primary">' . count(sc_get_all_template()) . '</span>',
+        'template_manager' => 'Quản lý giao diện <span class="right badge badge-warning">' . count(sc_get_all_template()) . '</span>',
         'backup_restore' => 'Sao lưu & Phục hồi',
         'subscribe_manager' => 'Quản lý đăng ký',
         'CMS_manager' => 'Quản lý CMS',

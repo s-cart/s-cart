@@ -8,7 +8,7 @@
                     <h2 class="box-title">{{ $title_description??'' }}</h2>
 
                     <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_user.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                     <div class="box-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2  control-label">{{ trans('user.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -30,13 +30,13 @@
                                     </div>
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                                {{ $errors->first('name') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('username') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('username') ? ' text-red' : '' }}">
                                 <label for="username" class="col-sm-2  control-label">{{ trans('user.user_name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -45,13 +45,13 @@
                                     </div>
                                         @if ($errors->has('username'))
                                             <span class="help-block">
-                                                {{ $errors->first('username') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('username') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('email') ? ' text-red' : '' }}">
                                 <label for="email" class="col-sm-2  control-label">{{ trans('user.email') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -60,13 +60,13 @@
                                     </div>
                                         @if ($errors->has('email'))
                                             <span class="help-block">
-                                                {{ $errors->first('email') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('avatar') ? ' text-red' : '' }}">
                                 <label for="avatar" class="col-sm-2  control-label">{{ trans('user.avatar') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -79,14 +79,14 @@
                                     </div>
                                         @if ($errors->has('avatar'))
                                             <span class="help-block">
-                                                {{ $errors->first('avatar') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('avatar') }}
                                             </span>
                                         @endif
                                     <div id="preview_avatar" class="img_holder"><img src="{{ asset(old('avatar',$user['avatar']??'')) }}"></div>
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('password') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('password') ? ' text-red' : '' }}">
                                 <label for="password" class="col-sm-2  control-label">{{ trans('user.password') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -95,7 +95,7 @@
                                     </div>
                                         @if ($errors->has('password'))
                                             <span class="help-block">
-                                                {{ $errors->first('password') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password') }}
                                             </span>
                                         @else
                                             @if ($user)
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <div class="form-group   {{ $errors->has('password_confirmation') ? ' text-red' : '' }}">
                                 <label for="password" class="col-sm-2  control-label">{{ trans('user.password_confirmation') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
@@ -116,7 +116,7 @@
                                     </div>
                                         @if ($errors->has('password_confirmation'))
                                             <span class="help-block">
-                                                {{ $errors->first('password_confirmation') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password_confirmation') }}
                                             </span>
                                         @else
                                             @if ($user)
@@ -129,7 +129,7 @@
                             </div>
 
 {{-- select roles --}}
-                            <div class="form-group  {{ $errors->has('roles') ? ' has-error' : '' }}">
+                            <div class="form-group  {{ $errors->has('roles') ? ' text-red' : '' }}">
         @php
         $listRoles = [];
             $old_roles = old('roles',($user)?$user->roles->pluck('id')->toArray():'');
@@ -143,7 +143,7 @@
                                 <div class="col-sm-8">
                                     @if (count($listRoles))
                                         @foreach ($listRoles as $role)
-                                            {!! '<span class="label label-primary">'.($roles[$role]??'').'</span>' !!}
+                                            {!! '<span class="badge badge-primary">'.($roles[$role]??'').'</span>' !!}
                                         @endforeach
                                     @endif
                                 </div>
@@ -151,7 +151,7 @@
 {{-- //select roles --}}
 
 {{-- select permission --}}
-                            <div class="form-group  {{ $errors->has('permission') ? ' has-error' : '' }}">
+                            <div class="form-group  {{ $errors->has('permission') ? ' text-red' : '' }}">
         @php
         $listPermission = [];
         $old_permission = old('permission',($user?$user->permissions->pluck('id')->toArray():''));
@@ -165,7 +165,7 @@
                                 <div class="col-sm-8">
                                     @if (count($listPermission))
                                         @foreach ($listPermission as $p)
-                                            {!! '<span class="label label-primary">'.($permission[$p]??'').'</span>' !!}
+                                            {!! '<span class="badge badge-primary">'.($permission[$p]??'').'</span>' !!}
                                         @endforeach
                                     @endif
                                 </div>

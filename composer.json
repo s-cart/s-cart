@@ -19,6 +19,7 @@
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.1",
         "laravel/passport": "^8.4",
+        "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
         "paypal/rest-api-sdk-php": "^1.13",

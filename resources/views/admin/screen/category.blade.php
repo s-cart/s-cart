@@ -3,49 +3,50 @@
 @section('main')
 <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h2 class="box-title">{{ $title_description??'' }}</h2>
+        <div class="card">
+            <div class="card-header with-border">
+                <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                <div class="box-tools">
-                    <div class="btn-group pull-right" style="margin-right: 5px">
+                <div class="card-tools">
+                    <div class="btn-group float-right mr-5">
                         <a href="{{ route('admin_category.index') }}" class="btn  btn-flat btn-default" title="List"><i
                                 class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <!-- form start -->
             <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"
                 enctype="multipart/form-data">
 
 
-                <div class="box-body">
-                    <div class="fields-group">
-                        @php
-                        $descriptions = $category?$category->descriptions->keyBy('lang')->toArray():[];
-                        @endphp
+                <div class="card-body">
+                    @php
+                    $descriptions = $category?$category->descriptions->keyBy('lang')->toArray():[];
+                    @endphp
 
-                        @foreach ($languages as $code => $language)
-                        
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                            <h3 class="box-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                    @foreach ($languages as $code => $language)
                     
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <div class="card">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">{{ $language->name }} {!! sc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
-                            </div>
-                    
-                            <div class="box-body">
+                                </div>
+                        </div>
+                
+                        <div class="card-body">
 
-                        <div class="form-group   {{ $errors->has('descriptions.'.$code.'.title') ? ' has-error' : '' }}">
+                        <div class="form-group row  {{ $errors->has('descriptions.'.$code.'.title') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__title"
                                 class="col-sm-2 col-form-label">{{ trans('category.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
                                         value="{!! old()? old('descriptions.'.$code.'.title'):($descriptions[$code]['title']??'') !!}"
                                         class="form-control {{ $code.'__title' }}" placeholder="" />
@@ -63,12 +64,14 @@
                         </div>
 
                         <div
-                            class="form-group   {{ $errors->has('descriptions.'.$code.'.keyword') ? ' has-error' : '' }}">
+                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.keyword') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__keyword"
                                 class="col-sm-2 col-form-label">{{ trans('category.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" id="{{ $code }}__keyword"
                                         name="descriptions[{{ $code }}][keyword]"
                                         value="{!! old()?old('descriptions.'.$code.'.keyword'):($descriptions[$code]['keyword']??'') !!}"
@@ -87,7 +90,7 @@
                         </div>
 
                         <div
-                            class="form-group   {{ $errors->has('descriptions.'.$code.'.description') ? ' has-error' : '' }}">
+                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.description') ? ' text-red' : '' }}">
                             <label for="{{ $code }}__description"
                                 class="col-sm-2 col-form-label">{{ trans('category.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
                             <div class="col-sm-8">
@@ -109,9 +112,8 @@
                         </div>
                         @endforeach
 
-                        <hr>
 
-                        <div class="form-group  {{ $errors->has('parent') ? ' has-error' : '' }}">
+                        <div class="form-group row {{ $errors->has('parent') ? ' text-red' : '' }}">
                             <label for="parent"
                                 class="col-sm-2 col-form-label">{{ trans('category.admin.select_category') }}</label>
                             <div class="col-sm-8">
@@ -134,11 +136,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group   {{ $errors->has('alias') ? ' has-error' : '' }}">
+                        <div class="form-group row  {{ $errors->has('alias') ? ' text-red' : '' }}">
                             <label for="alias" class="col-sm-2 col-form-label">{!! trans('category.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="text" id="alias" name="alias"
                                         value="{!! old('alias',($category['alias']??'')) !!}" class="form-control"
                                         placeholder="" />
@@ -151,16 +155,16 @@
                             </div>
                         </div>                        
 
-                        <div class="form-group   {{ $errors->has('image') ? ' has-error' : '' }}">
+                        <div class="form-group row  {{ $errors->has('image') ? ' text-red' : '' }}">
                             <label for="image" class="col-sm-2 col-form-label">{{ trans('category.image') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input type="text" id="image" name="image"
                                         value="{!! old('image',$category['image']??'') !!}"
-                                        class="form-control input-sm image" placeholder="" />
+                                        class="form-control input image" placeholder="" />
                                     <span class="input-group-btn">
                                         <a data-input="image" data-preview="preview_image" data-type="category"
-                                            class="btn btn-sm btn-primary lfm">
+                                            class="btn btn-primary lfm">
                                             <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                         </a>
                                     </span>
@@ -179,11 +183,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
+                        <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
                             <label for="sort" class="col-sm-2 col-form-label">{{ trans('category.sort') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                    </div>
                                     <input type="number" style="width: 100px;" id="sort" name="sort"
                                         value="{!! old()?old('sort'):$category['sort']??0 !!}" class="form-control sort"
                                         placeholder="" />
@@ -196,15 +202,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group  ">
+                        <div class="form-group  row">
                             <label for="top" class="col-sm-2 col-form-label">{{ trans('category.top') }}</label>
                             <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="top"
                                     {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
                             </div>
+                            <span class="help-block">
+                                <i class="fa fa-info-circle"></i> {{ trans('category.top_help') }}
+                            </span>
                         </div>
 
-                        <div class="form-group  ">
+                        <div class="form-group  row">
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('category.status') }}</label>
                             <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"
@@ -212,31 +221,29 @@
 
                             </div>
                         </div>
-
-                    </div>
                 </div>
 
 
 
-                <!-- /.box-body -->
+                <!-- /.card-body -->
 
-                <div class="box-footer">
+                <div class="card-footer" id="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>
 
                     <div class="col-md-8">
-                        <div class="btn-group pull-right">
+                        <div class="btn-group float-right">
                             <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                         </div>
 
-                        <div class="btn-group pull-left">
+                        <div class="btn-group float-left">
                             <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- /.box-footer -->
+                <!-- /.card-footer -->
             </form>
 
         </div>
