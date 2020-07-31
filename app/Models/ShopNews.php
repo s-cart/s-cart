@@ -122,7 +122,7 @@ class ShopNews extends Model
     {
         if(sc_config('cache_status') && sc_config('cache_news')) {
             if (!Cache::has('cache_news')) {
-                Cache::put('cache_news', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time', 0)?:600);
+                Cache::put('cache_news', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time')?:600);
             }
             return Cache::get('cache_news');
         } else {

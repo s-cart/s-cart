@@ -60,23 +60,42 @@ if (!function_exists('sc_word_format_url')) {
     }
 }
 
-/*
-Config info
- */
 if (!function_exists('sc_config')) {
-    function sc_config($key = null, $default = null)
+    /**
+     * Get value config from table sc_config
+     *
+     * @param   [string|array] $key      [$key description]
+     * @param   [null|int]  $store    Store id.
+     *
+     * @return  [type]          [return description]
+     */
+    function sc_config($key = null, $store = null)
     {
+        $store = ($store === null) ? config('app.storeId') : $store;
+
+        //Update config
+        if(is_array($key)) {
+            if(count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminConfig::where('store_id', $store)->where('key', $k)->update(['value' => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+
         $allConfig = [];
         try {
-            $allConfig = AdminConfig::getAll();
+            $allConfig = AdminConfig::getAll()[$store]->pluck('value','key')->all() ?? [];
         } catch(\Throwable $e) {
             //
         }
-        if ($key == null) {
+        if ($key === null) {
             return $allConfig;
         }
         if (!array_key_exists($key, $allConfig)) {
-            return $default;
+            return null;
         } else {
             return trim($allConfig[$key]);
         }
@@ -95,13 +114,39 @@ if (!function_exists('sc_config_group')) {
     }
 }
 
-/*
-Store info
- */
+
 if (!function_exists('sc_store')) {
-    function sc_store($key = null, $default = null)
+    /**
+     * Get info store
+     *
+     * @param   [string] $key      [$key description]
+     * @param   [null|int]  $store    store id
+     *
+     * @return  [mix] 
+     */
+    function sc_store($key = null, $store = null)
     {
-        $allStoreInfo = AdminStore::getData() ? AdminStore::getData()->toArray() : [];
+        $store = ($store == null) ? config('app.storeId') : $store;
+
+        //Update store info
+        if(is_array($key)) {
+            if(count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminStore::where('store_id', $store)->update([$k => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+
+        $allStoreInfo = [];
+        try {
+            $allStoreInfo = AdminStore::getAll()[$store]->first()->toArray() ?? [];
+        } catch(\Throwable $e) {
+            //
+        }
+
         $lang = app()->getLocale();
         $descriptions = $allStoreInfo['descriptions'] ?? [];
         foreach ($descriptions as $row) {
@@ -113,7 +158,7 @@ if (!function_exists('sc_store')) {
             return $allStoreInfo;
         }
         if (!array_key_exists($key, $allStoreInfo)) {
-            return $default;
+            return null;
         } else {
             return is_array($allStoreInfo[$key]) ?: trim($allStoreInfo[$key]);
         }

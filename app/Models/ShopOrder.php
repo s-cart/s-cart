@@ -122,6 +122,8 @@ class ShopOrder extends Model
 
             //Insert order
             $dataOrder['user_id'] = sc_clean($dataOrder['user_id']);
+            $dataOrder['store_id'] = config('app.storeId');
+            $dataOrder['domain'] = url('/');
             $dataOrder['subtotal'] = sc_clean($dataOrder['subtotal']);
             $dataOrder['shipping'] = sc_clean($dataOrder['shipping']);
             $dataOrder['discount'] = sc_clean($dataOrder['discount']);

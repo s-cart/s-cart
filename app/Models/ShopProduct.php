@@ -380,7 +380,7 @@ class ShopProduct extends Model
     {
         if(sc_config('cache_status') && sc_config('cache_product')) {
             if (!Cache::has('cache_product')) {
-                Cache::put('cache_product', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time', 0)?:600);
+                Cache::put('cache_product', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time')?:600);
             }
             return Cache::get('cache_product');
         } else {

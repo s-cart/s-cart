@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Cache;
 class AdminConfig extends Model
 {
     public $timestamps = false;
@@ -41,28 +41,44 @@ class AdminConfig extends Model
      */
     public static function getGroup($group = null, $suffix = null)
     {
-        if($group == null) {
+        if ($group == null) {
             return [];
         }
         $return =  self::where('group', $group);
-        if($suffix) {
+        if ($suffix) {
             $return = $return->orWhere('group', $group.'__'.$suffix);
         }
-        $return = $return->orderBy('sort','desc')->pluck('value')->toArray();
-        if($return) {
+        $return = $return->orderBy('sort','desc')->pluck('value')->all();
+        if ($return) {
             return $return;
         } else {
             return [];
         }
     }
 
-
+/**
+ * [getAll description]
+ *
+ * @param[int] $store  [$store description]
+ *
+ * @return [type]          [return description]
+ */
     public static function getAll()
     {
-        if (self::$getAll == null) {
-            self::$getAll = self::pluck('value', 'key')->all();
+        if (sc_config('cache_status', 0) && sc_config('cache_config', 0)) {
+            if (!Cache::has('cache_config')) {
+                if (self::$getAll == null) {
+                    self::$getAll = self::all()->groupBy('store_id');
+                }
+                Cache::put('cache_config', self::$getAll, $seconds = sc_config('cache_time', 0)?:600);
+            }
+            return Cache::get('cache_config');
+        } else {
+            if (self::$getAll == null) {
+                self::$getAll = self::all()->groupBy('store_id');
+            }
+            return self::$getAll;
         }
-        return self::$getAll;
     }
 
 }

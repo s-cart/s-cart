@@ -24,6 +24,9 @@ $styleDefault = 1;
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/iCheck/square/blue.css')}}">
+  <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   @if (!Admin::isLoginPage() && !Admin::isLogoutPage())
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/select2/css/select2.min.css')}}">
@@ -31,9 +34,6 @@ $styleDefault = 1;
   {{-- <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/daterangepicker/daterangepicker.css')}}"> --}}
   <!-- Tempusdominus Bbootstrap 4 -->
   {{-- <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"> --}}
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/iCheck/square/blue.css')}}">
-  <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('admin/LTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
@@ -151,10 +151,10 @@ $styleDefault = 1;
 <script src="{{ asset('admin/LTE/plugins/select2/js/select2.full.min.js')}}"></script>
 {{-- switch --}}
 <script src="{{ asset('admin/plugin/bootstrap-switch.min.js')}}"></script>
-<script src="{{ asset('admin/LTE/plugins/iCheck/icheck.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ asset('admin/LTE/dist/js/demo.js')}}"></script> --}}
 @endif
+<script src="{{ asset('admin/LTE/plugins/iCheck/icheck.min.js')}}"></script>
 
 @stack('scripts')
 

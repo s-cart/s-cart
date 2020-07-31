@@ -23,7 +23,7 @@ class ShopCountry extends Model
     public static function getArray()
     {
         if (!Cache::has('cache_country')) {
-            Cache::put('cache_country', self::pluck('name', 'code')->all(), $seconds = sc_config('cache_time', 0)?:600);
+            Cache::put('cache_country', self::pluck('name', 'code')->all(), $seconds = sc_config('cache_time')?:600);
         }
         return Cache::get('cache_country');
     }

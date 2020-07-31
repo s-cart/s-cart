@@ -10,6 +10,7 @@ use App\Models\ShopBrand;
 use App\Models\ShopSupplier;
 use App\Models\ShopNews;
 use App\Models\ShopPage;
+use App\Models\AdminStore;
 
 class ScartServiceProvider extends ServiceProvider
 {
@@ -51,62 +52,67 @@ class ScartServiceProvider extends ServiceProvider
 
     public function bootScart()
     {
-            if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
-                config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
+        $domain = str_replace(['http://','https://'], '', url('/'));
+        $arrDomain = AdminStore::getDomain();
+        $storeId = in_array($domain, $arrDomain) ? array_search($domain, $arrDomain) : min(array_keys($arrDomain));
+        config(['app.storeId' => $storeId]);
+
+        if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
+            config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
+        }
+        config(['app.name' => sc_store('title')]);
+
+        //Config for  email
+        $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
+        config(['mail.default' => $smtpMode]);
+        if ($smtpMode == 'smtp') {
+            if(sc_config('smtp_load_config') == 'database') {
+                $smtpHost = sc_config('smtp_host');
+                $smtpPort = sc_config('smtp_port');
+                $smtpSecurity = sc_config('smtp_security');
+                $smtpUser = sc_config('smtp_user');
+                $smtpPassword = sc_config('smtp_password');
+                config(['mail.mailers.smtp.host' => $smtpHost]);
+                config(['mail.mailers.smtp.port' => $smtpPort]);
+                config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
+                config(['mail.mailers.smtp.username' => $smtpUser]);
+                config(['mail.mailers.smtp.password' => $smtpPassword]);
             }
-            config(['app.name' => sc_store('title')]);
+        }
 
-            //Config for  email
-            $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
-            config(['mail.default' => $smtpMode]);
-            if ($smtpMode == 'smtp') {
-                if(sc_config('smtp_load_config') == 'database') {
-                    $smtpHost = sc_config('smtp_host');
-                    $smtpPort = sc_config('smtp_port');
-                    $smtpSecurity = sc_config('smtp_security');
-                    $smtpUser = sc_config('smtp_user');
-                    $smtpPassword = sc_config('smtp_password');
-                    config(['mail.mailers.smtp.host' => $smtpHost]);
-                    config(['mail.mailers.smtp.port' => $smtpPort]);
-                    config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
-                    config(['mail.mailers.smtp.username' => $smtpUser]);
-                    config(['mail.mailers.smtp.password' => $smtpPassword]);
-                }
-            }
+        config(
+            ['mail.from' =>
+                [
+                    'address' => sc_store('email'),
+                    'name' => sc_store('title'),
+                ],
+            ]
+        );
+        //email
 
-            config(
-                ['mail.from' =>
-                    [
-                        'address' => sc_store('email'),
-                        'name' => sc_store('title'),
-                    ],
-                ]
-            );
-            //email
+        // Time zone
+        config(['app.timezone' => (sc_config('SITE_TIMEZONE') ?? config('app.timezone'))]);
+        // End time zone
 
-            // Time zone
-            config(['app.timezone' => (sc_config('SITE_TIMEZONE') ?? config('app.timezone'))]);
-            // End time zone
+        //Debug mode
+        config(['app.debug' => env('APP_DEBUG') ? true : ((sc_config('APP_DEBUG') === 'on') ? true : false)]);
+        //End debug mode
 
-            //Debug mode
-            config(['app.debug' => env('APP_DEBUG') ? true : ((sc_config('APP_DEBUG') === 'on') ? true : false)]);
-            //End debug mode
-
-            //Share variable for view
-            view()->share('languages', sc_language_all());
-            view()->share('currencies', sc_currency_all());
-            view()->share('blocksContent', sc_block_content());
-            view()->share('layoutsUrl', sc_link());
-            view()->share('templatePath', 'templates.' . sc_store('template'));
-            view()->share('templateFile', 'templates/' . sc_store('template'));
-            //variable model
-            view()->share('modelProduct', (new ShopProduct));
-            view()->share('modelCategory', (new ShopCategory));
-            view()->share('modelBanner', (new ShopBanner));
-            view()->share('modelBrand', (new ShopBrand));
-            view()->share('modelSupplier', (new ShopSupplier));
-            view()->share('modelNews', (new ShopNews));
-            view()->share('modelPage', (new ShopPage));
+        //Share variable for view
+        view()->share('languages', sc_language_all());
+        view()->share('currencies', sc_currency_all());
+        view()->share('blocksContent', sc_block_content());
+        view()->share('layoutsUrl', sc_link());
+        view()->share('templatePath', 'templates.' . sc_store('template'));
+        view()->share('templateFile', 'templates/' . sc_store('template'));
+        //variable model
+        view()->share('modelProduct', (new ShopProduct));
+        view()->share('modelCategory', (new ShopCategory));
+        view()->share('modelBanner', (new ShopBanner));
+        view()->share('modelBrand', (new ShopBrand));
+        view()->share('modelSupplier', (new ShopSupplier));
+        view()->share('modelNews', (new ShopNews));
+        view()->share('modelPage', (new ShopPage));
     }
 
     /**

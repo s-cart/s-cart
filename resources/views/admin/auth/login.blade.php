@@ -56,7 +56,7 @@
               </a>
             </div> --}}
 
-            <div class="checkbox icheck text-center remember">
+            <div class="checkbox input text-center remember">
               <label>
                 <input type="checkbox" name="remember" value="1"
                   {{ (old('remember')) ? 'checked' : '' }}>
@@ -84,11 +84,11 @@
     @push('scripts')
     <script>
       $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
+        $('.input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' /* optional */
+        });
+      });
     </script>
     @endpush

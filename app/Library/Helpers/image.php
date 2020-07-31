@@ -123,7 +123,7 @@ function sc_image_insert_watermark($pathFile)
  */
 function sc_image_generate_thumb($pathFile, $widthThumb = null, $heightThumb = null, $disk = 'public')
 {
-    $widthThumb = $widthThumb ?? sc_config('upload_image_thumb_width', 250);
+    $widthThumb = $widthThumb ?? sc_config('upload_image_thumb_width');
     if (!Storage::disk($disk)->has('tmp')) {
         Storage::disk($disk)->makeDirectory('tmp');
     }
