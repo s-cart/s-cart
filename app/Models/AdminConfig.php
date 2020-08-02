@@ -9,6 +9,7 @@ class AdminConfig extends Model
     public $timestamps = false;
     public $table = SC_DB_PREFIX.'admin_config';
     protected static $getAll = null;
+    protected static $getAllGlobal = null;
     protected $connection = SC_CONNECTION;
 
     /**
@@ -65,20 +66,30 @@ class AdminConfig extends Model
  */
     public static function getAll()
     {
-        if (sc_config('cache_status', 0) && sc_config('cache_config', 0)) {
-            if (!Cache::has('cache_config')) {
-                if (self::$getAll == null) {
-                    self::$getAll = self::all()->groupBy('store_id');
-                }
-                Cache::put('cache_config', self::$getAll, $seconds = sc_config('cache_time', 0)?:600);
-            }
-            return Cache::get('cache_config');
-        } else {
-            if (self::$getAll == null) {
-                self::$getAll = self::all()->groupBy('store_id');
-            }
-            return self::$getAll;
+        if (self::$getAll == null) {
+            self::$getAll = self::where('store_id', '<>', 0)
+                ->get()
+                ->keyBy('store_id');
         }
+        return self::$getAll;
     }
+
+    /**
+     * [getAllGlobal description]
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getAllGlobal()
+
+    {
+        if (self::$getAllGlobal == null) {
+            self::$getAllGlobal = self::where('store_id', 0)
+                ->pluck('value', 'key')
+                ->all();
+        }
+        return self::$getAllGlobal;
+    }
+
+
 
 }

@@ -1,5 +1,5 @@
 <?php
-#app/Http/Admin/Controllers/AdminStoreInfoController.php
+#app/Http/Admin/Controllers/AdminStoreController.php
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -8,14 +8,14 @@ use App\Models\AdminStoreDescription;
 use App\Models\ShopLanguage;
 use Illuminate\Http\Request;
 
-class AdminStoreInfoController extends Controller
+class AdminStoreController extends Controller
 {
 
     public function index()
     {
         $languages = ShopLanguage::getCodeActive();
         $data = [
-            'title' => trans('store_info.admin.list'),
+            'title' => trans('store.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
 
@@ -33,7 +33,7 @@ class AdminStoreInfoController extends Controller
         $data['infosDescription'] = $infosDescription;
         $data['languages'] = $languages;
 
-        return view('admin.screen.store_info')
+        return view('admin.screen.store')
             ->with($data);
     }
 

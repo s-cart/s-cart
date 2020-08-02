@@ -20,6 +20,7 @@ return [
     'maintain_manager' => 'Maintain manager',
     'attribute_name' => 'Attribute name',
     'attribute_value' => 'Attribute value',
+    'all_stories' => 'All stories',
     'admin' => [
         'title' => 'Store infomation',
         'create_success' => 'Create new item success!',

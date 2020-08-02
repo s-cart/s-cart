@@ -16,6 +16,7 @@ return [
       'user_setting'                      => 'User setting',
       'avatar'                            => 'Avatar',
       'file_manager'                      => 'File manager',
+      'theme'                             => 'Theme',
 
       'back_list'                         => 'Back List',
       'list'                              => 'List',

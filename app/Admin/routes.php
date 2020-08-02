@@ -20,4 +20,13 @@ Route::group(
         session(['locale' => $code]);
         return back();
     })->name('admin.locale');
+
+    //theme
+    $router->get('theme/{theme}', function ($theme) {
+        session(['adminTheme' => $theme]);
+        if (!\Admin::user()->isViewAll()) {
+            \Admin::user()->update(['theme' => $theme]);
+        }
+        return back();
+    })->name('admin.theme');
 });

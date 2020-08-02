@@ -37,6 +37,10 @@ class ShopProduct extends Model
     {
         return $this->belongsToMany(ShopCategory::class, ShopProductCategory::class, 'product_id', 'category_id');
     }
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopProductStore::class, 'product_id', 'store_id');
+    }
     public function groups()
     {
         return $this->hasMany(ShopProductGroup::class, 'group_id', 'id');

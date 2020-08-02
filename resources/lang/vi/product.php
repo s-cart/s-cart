@@ -75,6 +75,7 @@ return [
         'result_item'             => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
         'sort'                    => 'Sắp xếp',
         'select_category'         => 'Chọn danh mục',
+        'select_store'         => 'Chọn cửa hàng',
         'select_product_in_group' => 'Chọn sản phẩm trong nhóm',
         'select_product_in_build' => 'Chọn sản phẩm trong bộ',
         'add_product'             => 'Thêm sản phẩm',

@@ -1,7 +1,6 @@
 @php
-$styleDefault = 1;    
+    $styleDefine = 'admin.theme_define.'.config('admin.theme_default');
 @endphp
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -48,7 +47,7 @@ $styleDefault = 1;
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed {{ ($styleDefault == 1)? 'accent-lightblue':'' }}">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed {{ config($styleDefine.'.body') }}">
 
 <div class="wrapper">
   @if ((Admin::isLoginPage() || Admin::isLogoutPage()))

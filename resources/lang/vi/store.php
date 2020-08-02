@@ -20,6 +20,7 @@ return [
     'template' => 'Giao diện',
     'attribute_name' => 'Tên thuộc tính',
     'attribute_value' => 'Giá trị',
+    'all_stories' => 'Mọi cửa hàng',
     'admin' => [
         'title' => 'Thông tin cửa hàng',
         'create_success' => 'Tạo mới thành công!',

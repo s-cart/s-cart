@@ -16,6 +16,7 @@ return [
     'user_setting' => 'Cài đặt người dùng',
     'avatar' => 'Hình đại diện',
     'file_manager' => 'Quản lý file',
+    'theme' => 'Giao diện',
 
     'back_list' => 'Trở lại danh sách',
     'list' => 'Danh sách',

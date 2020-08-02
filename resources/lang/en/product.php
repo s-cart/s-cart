@@ -77,6 +77,7 @@ return [
         'sort'                    => 'Sort',
 
         'select_category'         => 'Select category',
+        'select_store'         => 'Select store',
         'select_product_in_group' => 'Select products in group',
         'select_product_in_build' => 'Select products build',
         'add_product'             => 'Add product',

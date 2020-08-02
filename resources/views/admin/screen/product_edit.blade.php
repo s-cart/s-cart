@@ -156,7 +156,7 @@
 
                         @php
                         $listCate = [];
-                        $category = old('category',$product->categories->pluck('id')->toArray());
+                        $category = old('category', $product->categories->pluck('id')->toArray());
                         if(is_array($category)){
                             foreach($category as $value){
                                 $listCate[] = (int)$value;
@@ -187,6 +187,45 @@
                         </div>
                         @endif
                         {{-- //Category --}}
+
+                        {{-- select store --}}
+                        @if (count($stories))
+                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
+                            @php
+                            $listStore = [];
+                            $store = old('store', $product->stories->pluck('id')->toArray());
+                            if(is_array($store)){
+                                foreach($store as $value){
+                                    $listStore[] = (int)$value;
+                                }
+                            }
+                            @endphp
+                            <label for="store" class="col-sm-2 col-form-label">
+                                {{ trans('product.admin.select_store') }}
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm store select2" multiple="multiple"
+                                    data-placeholder="{{ trans('product.admin.select_store') }}" style="width: 100%;"
+                                    name="store[]">
+                                    <option value="0" {{ in_array(0, $listStore)? 'selected':'' }}>{{ trans('store.all_stories') }}</option>
+                                    @foreach ($stories as $id => $store)
+                                    <option value="{{ $id }}"
+                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('store'))
+                                <span class="help-block">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" name="store[]" value="0">
+                        @endif
+                        {{-- //select store --}}
+
 
                         {{-- Images --}}
                         <div class="form-group row  {{ $errors->has('image') ? ' text-red' : '' }}">

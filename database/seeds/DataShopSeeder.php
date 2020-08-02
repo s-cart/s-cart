@@ -241,6 +241,30 @@ class DataShopSeeder extends Seeder
             ['product_id' => '17', 'category_id' => '9'],
         ]);
 
+        DB::table(SC_DB_PREFIX.'shop_product_store')->insert([
+            ['product_id' => '1', 'store_id' => '0'],
+            ['product_id' => '2', 'store_id' => '0'],
+            ['product_id' => '1', 'store_id' => '0'],
+            ['product_id' => '1', 'store_id' => '0'],
+            ['product_id' => '3', 'store_id' => '0'],
+            ['product_id' => '4', 'store_id' => '0'],
+            ['product_id' => '5', 'store_id' => '0'],
+            ['product_id' => '6', 'store_id' => '0'],
+            ['product_id' => '7', 'store_id' => '0'],
+            ['product_id' => '8', 'store_id' => '0'],
+            ['product_id' => '9', 'store_id' => '0'],
+            ['product_id' => '10', 'store_id' => '0'],
+            ['product_id' => '11', 'store_id' => '0'],
+            ['product_id' => '12', 'store_id' => '0'],
+            ['product_id' => '13', 'store_id' => '0'],
+            ['product_id' => '14', 'store_id' => '0'],
+            ['product_id' => '15', 'store_id' => '0'],
+            ['product_id' => '16', 'store_id' => '0'],
+            ['product_id' => '17', 'store_id' => '0'],
+            ['product_id' => '18', 'store_id' => '0'],
+            ['product_id' => '19', 'store_id' => '0'],
+        ]);
+
         DB::table(SC_DB_PREFIX.'shop_product_image')->insert([
             ['image' => '/data/product/img-32.jpg', 'product_id' => '1'],
             ['image' => '/data/product/img-33.jpg', 'product_id' => '1'],

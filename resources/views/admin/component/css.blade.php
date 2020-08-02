@@ -1,24 +1,28 @@
 <style>
 #summary ul, #summary li {
-    padding: 5px;
     margin: 0;
     list-style: none;
     font-size: 11px;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px;
 }
 #summary {
-    border-radius: 2px;
-    margin: 5px 0;
-    padding: 5px 0;
+  border-radius: 3px;
+  border: 1px dashed #c7626c;
+  margin: 10px 2px;
+  background: #e9ecef;
 }
+.footer-static{
+  color: #343a40 !important;
+}
+
 #summary div:first-child {
     margin-bottom: 4px;
 }
-
 #summary .progress {
-    height: 3px;
-    margin-bottom: 0;
+  height: 3px;
+  margin-bottom: 0;
+  background: #fff;
 }
 
 .progress {
@@ -172,12 +176,67 @@
     background-color: #222d32 !important;
   }
  */
- .layout-fixed .main-sidebar  li.header{
+
+ /* lightblue */
+ .main-sidebar .sidebar-lightblue  li.header{
   color: #ffffff !important;
     background: #4da0f1 !important;
     padding: 10px 25px 10px 15px;
     font-size: 12px;
   }
+
+  .sidebar-lightblue .nav-item.has-treeview > a {
+    color: #3b8ab8 !important;
+  }
+
+  /* dark */
+  .main-sidebar .sidebar-gray-dark  li.header{
+  color: #ffffff !important;
+    background: #343a40 !important;
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+  }
+
+  .sidebar-gray-dark .nav-item.has-treeview > a {
+    color: #343a40 !important;
+  }
+
+  /* success */
+  .main-sidebar .sidebar-success  li.header{
+    color: #ffffff !important;
+    background: #28a745 !important;
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+  }
+
+  .sidebar-success .nav-item.has-treeview > a {
+    color: #28a745 !important;
+  }
+
+  /* white */
+  .main-sidebar .sidebar-white  li.header{
+    color: #000 !important;
+    background: #96a3ab !important;
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+  }
+
+  .sidebar-white .nav-item.has-treeview > a {
+    color: #000 !important;
+  }
+
+  /* pink */
+  .main-sidebar .sidebar-pink  li.header{
+  color: #ffffff !important;
+    background: #e83e8c !important;
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+  }
+
+  .sidebar-pink .nav-item.has-treeview > a {
+    color: #e83e8c !important;
+  }
+
   .brand-link.navbar-secondary {
     background-color: #c7626c !important;
     text-align: center;
@@ -210,9 +269,6 @@
     border: 1px dotted #f00;
     font-weight: bold;
   }
-  .nav-item.has-treeview > a {
-    color: #3b8ab8 !important;
-  }
   .card-primary.card-outline-tabs>.card-header a.active {
     border-top: 3px solid #4da0f1 !important;
   }
@@ -222,10 +278,6 @@
 
   .icheckbox_square-blue {
     vertical-align: inherit !important;
-  }
-  .footer-static{
-    background: #6c757d !important;
-  }
-  
+  }  
 
 </style>

@@ -24,7 +24,7 @@
       <div class="card-body table-responsivep-0">
         @foreach ($infosDescription as  $infoDescription)
               <div class="card-header with-border">
-                <h3 class="card-title">{{ trans('store_info.maintain_content') }} {{ $languages[$infoDescription['lang']] }}</h3>
+                <h3 class="card-title">{{ trans('store.maintain_content') }} {{ $languages[$infoDescription['lang']] }}</h3>
               </div>
               <div class="table-responsivep-0">
                 {!! sc_html_render($infoDescription['maintain_content']) !!}

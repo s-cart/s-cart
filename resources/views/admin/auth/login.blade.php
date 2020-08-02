@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('main')
-@include('admin.component.login_css')
+@include('admin.component.css_login')
 <body class="hold-transition login-page">
   <div class="limiter">
     <div class="container-login100">

@@ -29,7 +29,7 @@ class ScartServiceProvider extends ServiceProvider
             require_once $filename;
         }
 
-        if(!file_exists(public_path('install.php'))) {
+        if (!file_exists(public_path('install.php'))) {
             $this->bootScart();
         }
 
@@ -42,7 +42,7 @@ class ScartServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if(file_exists(app_path().'/Library/Const.php')) {
+        if (file_exists(app_path().'/Library/Const.php')) {
             require_once (app_path().'/Library/Const.php');
         }
         $this->app->bind('cart', 'App\Library\ShoppingCart\Cart');
@@ -54,30 +54,32 @@ class ScartServiceProvider extends ServiceProvider
     {
         $domain = str_replace(['http://','https://'], '', url('/'));
         $arrDomain = AdminStore::getDomain();
-        $storeId = in_array($domain, $arrDomain) ? array_search($domain, $arrDomain) : min(array_keys($arrDomain));
+        // $storeId = in_array($domain, $arrDomain) ? array_search($domain, $arrDomain) : min(array_keys($arrDomain));
+        if (in_array($domain, $arrDomain)) {
+            $storeId =  array_search($domain, $arrDomain);
+        } else {
+            echo view('deny_domain')->render();
+            exit();
+        }
         config(['app.storeId' => $storeId]);
-
         if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
             config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
         }
         config(['app.name' => sc_store('title')]);
 
         //Config for  email
-        $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
-        config(['mail.default' => $smtpMode]);
-        if ($smtpMode == 'smtp') {
-            if(sc_config('smtp_load_config') == 'database') {
-                $smtpHost = sc_config('smtp_host');
-                $smtpPort = sc_config('smtp_port');
-                $smtpSecurity = sc_config('smtp_security');
-                $smtpUser = sc_config('smtp_user');
-                $smtpPassword = sc_config('smtp_password');
-                config(['mail.mailers.smtp.host' => $smtpHost]);
-                config(['mail.mailers.smtp.port' => $smtpPort]);
-                config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
-                config(['mail.mailers.smtp.username' => $smtpUser]);
-                config(['mail.mailers.smtp.password' => $smtpPassword]);
-            }
+        config(['mail.default' => 'smtp']);
+        if (sc_config('smtp_load_config') == 'database') {
+            $smtpHost = sc_config('smtp_host');
+            $smtpPort = sc_config('smtp_port');
+            $smtpSecurity = sc_config('smtp_security');
+            $smtpUser = sc_config('smtp_user');
+            $smtpPassword = sc_config('smtp_password');
+            config(['mail.mailers.smtp.host' => $smtpHost]);
+            config(['mail.mailers.smtp.port' => $smtpPort]);
+            config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
+            config(['mail.mailers.smtp.username' => $smtpUser]);
+            config(['mail.mailers.smtp.password' => $smtpPassword]);
         }
 
         config(
@@ -94,10 +96,6 @@ class ScartServiceProvider extends ServiceProvider
         config(['app.timezone' => (sc_config('SITE_TIMEZONE') ?? config('app.timezone'))]);
         // End time zone
 
-        //Debug mode
-        config(['app.debug' => env('APP_DEBUG') ? true : ((sc_config('APP_DEBUG') === 'on') ? true : false)]);
-        //End debug mode
-
         //Share variable for view
         view()->share('languages', sc_language_all());
         view()->share('currencies', sc_currency_all());
@@ -113,6 +111,7 @@ class ScartServiceProvider extends ServiceProvider
         view()->share('modelSupplier', (new ShopSupplier));
         view()->share('modelNews', (new ShopNews));
         view()->share('modelPage', (new ShopPage));
+
     }
 
     /**

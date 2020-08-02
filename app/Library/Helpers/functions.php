@@ -72,10 +72,9 @@ if (!function_exists('sc_config')) {
     function sc_config($key = null, $store = null)
     {
         $store = ($store === null) ? config('app.storeId') : $store;
-
         //Update config
-        if(is_array($key)) {
-            if(count($key) == 1) {
+        if (is_array($key)) {
+            if (count($key) == 1) {
                 foreach ($key as $k => $v) {
                     return AdminConfig::where('store_id', $store)->where('key', $k)->update(['value' => $v]);
                 }
@@ -87,7 +86,47 @@ if (!function_exists('sc_config')) {
 
         $allConfig = [];
         try {
-            $allConfig = AdminConfig::getAll()[$store]->pluck('value','key')->all() ?? [];
+            $dataConfig = AdminConfig::getAll()[$store] ?? [];
+            if ($dataConfig) {
+                $allConfig = AdminConfig::getAll()[$store]->pluck('value', 'key')->all() ?? [];
+            }
+        } catch(\Throwable $e) {
+            //
+        }
+        if ($key === null) {
+            return $allConfig;
+        }
+        return $allConfig[$key] ?? (sc_config_global()[$key] ?? null);
+    }
+}
+
+
+if (!function_exists('sc_config_global')) {
+    /**
+     * Get value config from table sc_config for store_id 0
+     *
+     * @param   [string|array] $key      [$key description]
+     * @param   [null|int]  $store    Store id.
+     *
+     * @return  [type]          [return description]
+     */
+    function sc_config_global($key = null)
+    {
+        //Update config
+        if (is_array($key)) {
+            if (count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminConfig::where('store_id', 0)->where('key', $k)->update(['value' => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+        
+        $allConfig = [];
+        try {
+            $allConfig = AdminConfig::getAllGlobal();
         } catch(\Throwable $e) {
             //
         }
@@ -101,7 +140,6 @@ if (!function_exists('sc_config')) {
         }
     }
 }
-
 
 /*
 Group Config info
@@ -129,8 +167,8 @@ if (!function_exists('sc_store')) {
         $store = ($store == null) ? config('app.storeId') : $store;
 
         //Update store info
-        if(is_array($key)) {
-            if(count($key) == 1) {
+        if (is_array($key)) {
+            if (count($key) == 1) {
                 foreach ($key as $k => $v) {
                     return AdminStore::where('store_id', $store)->update([$k => $v]);
                 }
@@ -142,7 +180,7 @@ if (!function_exists('sc_store')) {
 
         $allStoreInfo = [];
         try {
-            $allStoreInfo = AdminStore::getAll()[$store]->first()->toArray() ?? [];
+            $allStoreInfo = AdminStore::getAll()[$store]->toArray() ?? [];
         } catch(\Throwable $e) {
             //
         }
@@ -157,11 +195,7 @@ if (!function_exists('sc_store')) {
         if ($key == null) {
             return $allStoreInfo;
         }
-        if (!array_key_exists($key, $allStoreInfo)) {
-            return null;
-        } else {
-            return is_array($allStoreInfo[$key]) ?: trim($allStoreInfo[$key]);
-        }
+        return $allStoreInfo[$key] ?? null;
     }
 }
 
@@ -313,7 +347,7 @@ if (!function_exists('sc_report')) {
     function sc_report($msg)
     {
         $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;       
-        if(config('logging.channels.slack.url')) {
+        if (config('logging.channels.slack.url')) {
             \Log::channel('slack')->error($msg);
         }
         \Log::channel('handle')->error($msg);
@@ -431,7 +465,7 @@ if (!function_exists('sc_render_option_price')) {
         $html = '';
         $tmpAtt = explode('__', $arrtribute);
         $add_price = $tmpAtt[1] ?? 0;
-        if($add_price) {
+        if ($add_price) {
             $html = $tmpAtt[0].'<span class="option_price">(+'.sc_currency_render($add_price,$currency, $rate).')</span>';
         } else {
             $html = $tmpAtt[0];

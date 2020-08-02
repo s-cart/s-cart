@@ -17,11 +17,12 @@ use App\Models\ShopProductDescription;
 use App\Models\ShopProductGroup;
 use App\Models\ShopProductImage;
 use App\Models\ShopSupplier;
+use App\Models\AdminStore;
 use Validator;
 
 class AdminProductController extends Controller
 {
-    public $languages, $kinds, $virtuals, $attributeGroup, $listWeight, $listLength;
+    public $languages, $kinds, $virtuals, $attributeGroup, $listWeight, $listLength, $stories;
 
     public function __construct()
     {
@@ -29,6 +30,7 @@ class AdminProductController extends Controller
         $this->listWeight = ShopWeight::getList();
         $this->listLength = ShopLength::getList();
         $this->attributeGroup = ShopAttributeGroup::getList();
+        $this->stories = AdminStore::getAll();
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
@@ -62,6 +64,8 @@ class AdminProductController extends Controller
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+
+        $data['stories'] = $this->stories;
 
         $listTh = [
             'id' => trans('product.id'),
@@ -264,6 +268,7 @@ class AdminProductController extends Controller
             'htmlMoreImage' => $htmlMoreImage,
             'listWeight' => $this->listWeight,
             'listLength' => $this->listLength, 
+            'stories' => $this->stories, 
         ];
 
         return view('admin.screen.product_add')
@@ -377,6 +382,7 @@ class AdminProductController extends Controller
         }
 
         $category = $data['category'] ?? [];
+        $store = $data['store'] ?? [];
         $attribute = $data['attribute'] ?? [];
         $descriptions = $data['descriptions'];
         $productInGroup = $data['productInGroup'] ?? [];
@@ -421,6 +427,10 @@ class AdminProductController extends Controller
         //Insert category
         if ($category && in_array($data['kind'], [SC_PRODUCT_SINGLE, SC_PRODUCT_BUILD])) {
             $product->categories()->attach($category);
+        }
+        //Insert store
+        if ($store) {
+            $product->stories()->attach($store);
         }
         //Insert group
         if ($productInGroup && $data['kind'] == SC_PRODUCT_GROUP) {
@@ -549,7 +559,9 @@ class AdminProductController extends Controller
             'listProductSingle' => $listProductSingle,
             'htmlProductAtrribute' => $htmlProductAtrribute,
             'listWeight' => $this->listWeight,
-            'listLength' => $this->listLength,        ];
+            'listLength' => $this->listLength,  
+            'stories' => $this->stories,  
+        ];
         return view('admin.screen.product_edit')
             ->with($data);
     }
@@ -652,6 +664,7 @@ class AdminProductController extends Controller
 //Edit
 
         $category = $data['category'] ?? [];
+        $store = $data['store'] ?? [];
         $attribute = $data['attribute'] ?? [];
         $productInGroup = $data['productInGroup'] ?? [];
         $productBuild = $data['productBuild'] ?? [];
@@ -713,6 +726,12 @@ class AdminProductController extends Controller
                 $product->categories()->attach($category);
             }
 
+        }
+
+        //Update store
+        $product->stories()->detach();
+        if (count($store)) {
+            $product->stories()->attach($store);
         }
 
         //Update group

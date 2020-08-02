@@ -106,12 +106,17 @@ class Permission
      */
     protected function shouldPassThrough($request)
     {
-        $routeName = $request->path();
-        $excepts = [
+        $routePath = $request->path();
+        $routeName = $request->route()->getName();
+        $exceptsPAth = [
             SC_ADMIN_PREFIX . '/auth/login',
             SC_ADMIN_PREFIX . '/auth/logout',
+            SC_ADMIN_PREFIX . '/theme/white',
         ];
-        return in_array($routeName, $excepts);
+        $exceptsName = [
+            'admin.theme'
+        ];
+        return in_array($routePath, $exceptsPAth) || in_array($routeName, $exceptsName);
     }
 
 /*

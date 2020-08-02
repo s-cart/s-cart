@@ -6,7 +6,7 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header with-border">
-      <h3 class="card-title">{{ trans('store_info.admin.title') }}</h3>
+      <h3 class="card-title">{{ trans('store.admin.title') }}</h3>
     </div>
 
   <div class="row">
@@ -15,7 +15,7 @@
     <table class="table table-hover table-bordered">
     <tbody>
       <tr>
-        <td>{{ trans('store_info.logo') }}</td>
+        <td>{{ trans('store.logo') }}</td>
         <td>
             <div class="input-group">
                 <input type="hidden" id="image" name="logo" value="{{ $infos->logo }}" class="form-control input-sm image" placeholder=""  />
@@ -33,36 +33,36 @@
       </tr>
 
       <tr>
-        <td>{{ trans('store_info.phone') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="phone" data-type="number" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.phone') }}" data-value="{{ $infos->phone }}" data-original-title="" title="">{{$infos->phone }}</a></td>
+        <td>{{ trans('store.phone') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="phone" data-type="number" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.phone') }}" data-value="{{ $infos->phone }}" data-original-title="" title="">{{$infos->phone }}</a></td>
       </tr>
 
       <tr>
-        <td>{{ trans('store_info.long_phone') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="long_phone" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.long_phone') }}" data-value="{{ $infos->long_phone }}" data-original-title="" title="">{{$infos->long_phone }}</a></td>
+        <td>{{ trans('store.long_phone') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="long_phone" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.long_phone') }}" data-value="{{ $infos->long_phone }}" data-original-title="" title="">{{$infos->long_phone }}</a></td>
       </tr>
 
       <tr>
-        <td>{{ trans('store_info.time_active') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="time_active" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.time_active') }}" data-value="{{ $infos->time_active }}" data-original-title="" title="">{{$infos->time_active }}</a></td>
+        <td>{{ trans('store.time_active') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="time_active" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.time_active') }}" data-value="{{ $infos->time_active }}" data-original-title="" title="">{{$infos->time_active }}</a></td>
       </tr>
 
       <tr>
-        <td>{{ trans('store_info.address') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="address" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.address') }}" data-value="{{ $infos->address }}" data-original-title="" title="">{{$infos->address }}</a></td>
+        <td>{{ trans('store.address') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="address" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.address') }}" data-value="{{ $infos->address }}" data-original-title="" title="">{{$infos->address }}</a></td>
       </tr>
       <tr>
-        <td>{{ trans('store_info.office') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="office" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.office') }}" data-value="{{ $infos->office }}" data-original-title="" title="">{{$infos->office }}</a></td>
+        <td>{{ trans('store.office') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="office" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.office') }}" data-value="{{ $infos->office }}" data-original-title="" title="">{{$infos->office }}</a></td>
       </tr>
       <tr>
-        <td>{{ trans('store_info.warehouse') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="warehouse" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.warehouse') }}" data-value="{{ $infos->warehouse }}" data-original-title="" title="">{{$infos->warehouse }}</a></td>
+        <td>{{ trans('store.warehouse') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="warehouse" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.warehouse') }}" data-value="{{ $infos->warehouse }}" data-original-title="" title="">{{$infos->warehouse }}</a></td>
       </tr>
 
       <tr>
-        <td>{{ trans('store_info.email') }}</td>
-        <td><a href="#" class="fied-required editable editable-click" data-name="email" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.email') }}" data-value="{{ $infos->email }}" data-original-title="" title="">{{$infos->email }}</a></td>
+        <td>{{ trans('store.email') }}</td>
+        <td><a href="#" class="fied-required editable editable-click" data-name="email" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.email') }}" data-value="{{ $infos->email }}" data-original-title="" title="">{{$infos->email }}</a></td>
       </tr>
 
     </td>
@@ -79,11 +79,11 @@
       @foreach ($infosDescription as $obj => $infoDescription)
         @if ($obj !='maintain_content')
         <tr>
-          <td>{{ trans('store_info.'.$obj) }}</td>
+          <td>{{ trans('store.'.$obj) }}</td>
           <td>
             @foreach ($infoDescription as $codeLanguage => $des)
               {{ $languages[$codeLanguage] }}:<br>
-              <i><a href="#" class="fied-required editable editable-click" data-name="{{ $obj.'__'.$codeLanguage }}" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store_info.update') }}" data-title="{{ trans('store_info.'.$obj) }}" data-value="{{ $des }}" data-original-title="" title="">{{ $des }}</a></i><br>
+              <i><a href="#" class="fied-required editable editable-click" data-name="{{ $obj.'__'.$codeLanguage }}" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.'.$obj) }}" data-value="{{ $des }}" data-original-title="" title="">{{ $des }}</a></i><br>
               <br>
             @endforeach
           </td>
@@ -170,7 +170,7 @@ var selectedRows = function () {
 //Logo
   $('[name="logo"]').change(function(event) {
           $.ajax({
-        url: '{{ route('admin_store_info.update') }}',
+        url: '{{ route('admin_store.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": 'logo',"value":$(this).val(),"_token": "{{ csrf_token() }}",},
@@ -196,7 +196,7 @@ var selectedRows = function () {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_store_info.update') }}',
+        url: '{{ route('admin_store.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},
