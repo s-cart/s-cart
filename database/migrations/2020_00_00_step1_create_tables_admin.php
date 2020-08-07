@@ -116,6 +116,9 @@ class CreateTablesAdmin extends Migration
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
             $table->string('domain', 100)->unique();
+            $table->string('language', 10);
+            $table->string('timezone', 20);
+            $table->string('currency', 10);
             $table->integer('status')->default(1)->comment('0:Lock, 1: unlock');
             $table->integer('active')->default(1)->comment('0:Maintain, 1: Active');
         });

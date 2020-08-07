@@ -214,15 +214,11 @@ class DataAdminSeeder extends Seeder
             ['group' => 'all', 'code' => 'config', 'key' => 'check_domain_exist', 'value' => '0', 'sort' => '1', 'detail' => 'lang::config.check_domain_exist'],
             ['group' => 'Plugins', 'code' => 'Payment', 'key' => 'Cash', 'value' => '1', 'sort' => '0', 'detail' => 'Plugins/Payment/Cash::lang.title'],
             ['group' => 'Plugins', 'code' => 'Shipping', 'key' => 'ShippingStandard', 'value' => '1', 'sort' => '0', 'detail' => 'lang::Shipping Standard'],
-            ['group' => '', 'code' => 'env', 'key' => 'SITE_TIMEZONE', 'value' => $this->timezone_default, 'sort' => '0', 'detail' => 'lang::env.SITE_TIMEZONE'],
-            ['group' => '', 'code' => 'env', 'key' => 'SITE_LANGUAGE', 'value' => $this->language_default, 'sort' => '0', 'detail' => 'lang::env.SITE_LANGUAGE'],
-            ['group' => '', 'code' => 'env', 'key' => 'SITE_CURRENCY', 'value' => 'USD', 'sort' => '0', 'detail' => 'lang::env.SITE_CURRENCY'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOG', 'value' => 'on', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOG_EXP', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG_EXP'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_NAME', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_TITLE', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE'],
             ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOGO', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO'],
-            ['group' => '', 'code' => 'env', 'key' => 'ADMIN_LOGO_MINI', 'value' => '<i class="fa fa-map-o" aria-hidden="true"></i>', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO_MINI'],
             ['group' => '', 'code' => 'env', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.LOG_SLACK_WEBHOOK_URL'],
             ['group' => '', 'code' => 'display', 'key' => 'product_hot', 'value' => '6', 'sort' => '0', 'detail' => 'lang::admin.hot_product'],
             ['group' => '', 'code' => 'display', 'key' => 'product_new', 'value' => '6', 'sort' => '0', 'detail' => 'lang::admin.new_product'],
@@ -275,7 +271,16 @@ class DataAdminSeeder extends Seeder
         );
         DB::table(SC_DB_PREFIX.'admin_store')->insert(
             [
-                'logo' => 'data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => $this->adminEmail, 'time_active' => '', 'address' => '123st - abc - xyz', 
+                'logo' => 'data/logo/scart-mid.png', 
+                'template' => 'default-new', 
+                'phone' => '0123456789', 
+                'long_phone' => 'Support: 0987654321', 
+                'email' => $this->adminEmail, 
+                'time_active' => '', 
+                'address' => '123st - abc - xyz', 
+                'timezone' => $this->timezone_default, 
+                'language' => $this->language_default, 
+                'currency' => 'USD', 
                 'domain' => str_replace(['http://','https://', '/install.php'], '', url('/'))
             ]
         );

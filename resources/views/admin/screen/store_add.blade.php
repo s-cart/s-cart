@@ -20,7 +20,7 @@
 
                         <div class="card-body">
 
-                            @foreach ($languages as $code => $language)
+                            @foreach ($allLanguages as $code => $language)
 
                             <div class="card">
 
@@ -44,7 +44,7 @@
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
                                         <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
-                                            value="{{ old()? old('descriptions.'.$code.'.title'):($descriptions[$code]['title']??'') }}"
+                                            value="{{ old('descriptions.'.$code.'.title') }}"
                                             class="form-control {{ $code.'__title' }}" placeholder="" />
                                     </div>
                                     @if ($errors->has('descriptions.'.$code.'.title'))
@@ -70,7 +70,7 @@
                                         </div>
                                         <input type="text" id="{{ $code }}__keyword"
                                             name="descriptions[{{ $code }}][keyword]"
-                                            value="{{ old()?old('descriptions.'.$code.'.keyword'):($descriptions[$code]['keyword']??'') }}"
+                                            value="{{ old('descriptions.'.$code.'.keyword') }}"
                                             class="form-control {{ $code.'__keyword' }}" placeholder="" />
                                     </div>
                                     @if ($errors->has('descriptions.'.$code.'.keyword'))
@@ -92,7 +92,7 @@
                                 <div class="col-sm-8">
                                         <textarea  id="{{ $code }}__description"
                                             name="descriptions[{{ $code }}][description]"
-                                            class="form-control {{ $code.'__description' }}" placeholder="" />{{ old()?old('descriptions.'.$code.'.description'):($descriptions[$code]['description']??'') }}</textarea>
+                                            class="form-control {{ $code.'__description' }}" placeholder="" >{{ old('descriptions.'.$code.'.description') }}</textarea>
                                     @if ($errors->has('descriptions.'.$code.'.description'))
                                     <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.description') }}
@@ -114,7 +114,7 @@
                                 <label for="logo" class="col-sm-2 col-form-label">{{ trans('store.logo') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input type="text" id="logo" name="logo" value="{{ old('logo',$store['logo']??'') }}" class="form-control logo" placeholder=""  />
+                                        <input type="text" id="logo" name="logo" value="{{ old('logo') }}" class="form-control logo" placeholder=""  />
                                         <div class="input-group-append">
                                          <a data-input="logo" data-preview="preview_image" data-type="logo" class="btn btn-primary lfm">
                                            <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
@@ -143,7 +143,7 @@
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="phone" name="phone" value="{{ old()?old('phone'):$store['phone']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('phone'))
                                             <span class="form-text">
@@ -163,7 +163,7 @@
                                         <span class="input-group-text"><i class="fas fa-phone-square"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="long_phone" name="long_phone" value="{{ old()?old('long_phone'):$store['long_phone']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="long_phone" name="long_phone" value="{{ old('long_phone') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('long_phone'))
                                             <span class="form-text">
@@ -183,7 +183,7 @@
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="time_active" name="time_active" value="{{ old()?old('time_active'):$store['time_active']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="time_active" name="time_active" value="{{ old('time_active') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('time_active'))
                                             <span class="form-text">
@@ -202,7 +202,7 @@
                                         <span class="input-group-text"><i class="fas fa-map-marked"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="address" name="address" value="{{ old()?old('address'):$store['address']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="address" name="address" value="{{ old('address') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('address'))
                                             <span class="form-text">
@@ -221,7 +221,7 @@
                                         <span class="input-group-text"><i class="fas fa-location-arrow"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="office" name="office" value="{{ old()?old('office'):$store['office']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="office" name="office" value="{{ old('office') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('office'))
                                             <span class="form-text">
@@ -240,7 +240,7 @@
                                         <span class="input-group-text"><i class="fas fa-warehouse"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="warehouse" name="warehouse" value="{{ old()?old('warehouse'):$store['warehouse']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="warehouse" name="warehouse" value="{{ old('warehouse') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('warehouse'))
                                             <span class="form-text">
@@ -259,7 +259,7 @@
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="email" name="email" value="{{ old()?old('email'):$store['email']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))
                                             <span class="form-text">
@@ -275,16 +275,81 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        <span class="input-group-text"><i class="fab fa-chrome"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="domain" name="domain" value="{{ old()?old('domain'):$store['domain']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="domain" name="domain" value="{{ old('domain') }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('domain'))
                                             <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('domain') }}
                                             </span>
                                         @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row {{ $errors->has('currency') ? ' text-red' : '' }}">
+                                <label class="col-sm-2 col-form-label">{{ trans('store.currency') }}</label>
+                                <div class="col-sm-8">
+                                <select class="form-control" name="currency">
+                                    @foreach ($currencies as $key => $name)
+                                    <option {{ (old('currency') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('currency'))
+                                <span class="form-text">
+                                    {{ $errors->first('currency') }}
+                                </span>
+                                @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('timezone') ? ' text-red' : '' }}">
+                                <label class="col-sm-2 col-form-label">{{ trans('store.timezone') }}</label>
+                                <div class="col-sm-8">
+                                <select class="form-control" name="timezone">
+                                    @foreach ($timezones as $key => $name)
+                                    <option {{ (old('timezone') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('timezone'))
+                                <span class="form-text">
+                                    {{ $errors->first('timezone') }}
+                                </span>
+                                @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('language') ? ' text-red' : '' }}">
+                                <label class="col-sm-2 col-form-label">{{ trans('store.language') }}</label>
+                                <div class="col-sm-8">
+                                <select class="form-control" name="language">
+                                    @foreach ($languages as $key => $name)
+                                    <option {{ (old('language') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('language'))
+                                <span class="form-text">
+                                    {{ $errors->first('language') }}
+                                </span>
+                                @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('template') ? ' text-red' : '' }}">
+                                <label class="col-sm-2 col-form-label">{{ trans('store.template') }}</label>
+                                <div class="col-sm-8">
+                                <select class="form-control" name="template">
+                                    @foreach ($templates as $key => $name)
+                                    <option {{ (old('template') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('template'))
+                                <span class="form-text">
+                                    {{ $errors->first('template') }}
+                                </span>
+                                @endif
                                 </div>
                             </div>
 

@@ -24,7 +24,7 @@ class Localization
             $detectLocale = $requestLocale;
         } else
         if (!Session::has('locale')) {
-            $detectLocale = sc_config('SITE_LANGUAGE') ?? config('app.locale');
+            $detectLocale = sc_store('language') ?? config('app.locale');
         } else {
             $detectLocale = session('locale');
         }

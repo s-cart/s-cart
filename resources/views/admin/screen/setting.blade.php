@@ -13,28 +13,6 @@
       <div class="card-body table-responsivep-0">
        <table class="table table-hover">
          <tbody>
-
-        <tr>
-          <td>{{ trans('env.SITE_TIMEZONE') }}</td>
-          <td><a href="#" class="fied-required editable editable-click" data-name="SITE_TIMEZONE" data-type="select" data-pk="" data-source="{{ json_encode($timezones) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.SITE_TIMEZONE') }}" data-value="{{ sc_config('SITE_TIMEZONE') }}" data-original-title="" title=""></a></td>
-        </tr>
-
-        <tr>
-          <td>{{ trans('env.SITE_LANGUAGE') }}</td>
-          <td><a href="#" class="fied-required editable editable-click" data-name="SITE_LANGUAGE" data-type="select" data-pk="" data-source="{{ json_encode($languages) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.SITE_LANGUAGE') }}" data-value="{{ sc_config('SITE_LANGUAGE') }}" data-original-title="" title=""></a></td>
-        </tr>
-
-        <tr>
-          <td>{{ trans('env.SITE_CURRENCY') }}</td>
-          <td><a href="#" class="fied-required editable editable-click" data-name="SITE_CURRENCY" data-type="select" data-pk="" data-source="{{ json_encode($currencies) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.SITE_CURRENCY') }}" data-value="{{ sc_config('SITE_CURRENCY') }}" data-original-title="" title=""></a></td>
-        </tr>
-
-          <tr>
-            <td>{{ trans('env.APP_DEBUG') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="APP_DEBUG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.APP_DEBUG') }}" data-value="{{ sc_config('APP_DEBUG') }}" data-original-title="{{ trans('env.APP_DEBUG') }}" title=""></a></td>
-          </tr>
-
-
           <tr>
             <td>{{ trans('env.ADMIN_LOG') }}</td>
             <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOG') }}" data-value="{{ sc_config('ADMIN_LOG') }}" data-original-title="{{ trans('env.ADMIN_LOG') }}" title=""></a></td>
@@ -51,10 +29,6 @@
           <tr>
             <td>{{ trans('env.ADMIN_LOGO') }}</td>
             <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOGO" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOGO') }}" data-value="{{ sc_config('ADMIN_LOGO') }}" data-original-title="" title=""></a></td>
-          </tr>
-          <tr>
-            <td>{{ trans('env.ADMIN_LOGO_MINI') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="ADMIN_LOGO_MINI" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOGO_MINI') }}" data-value="{{ sc_config('ADMIN_LOGO_MINI') }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('env.LOG_SLACK_WEBHOOK_URL') }}</td>

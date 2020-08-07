@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\AdminStore;
 use App\Models\AdminStoreDescription;
 use App\Models\ShopLanguage;
+use App\Models\ShopCurrency;
 use Validator;
 use Illuminate\Http\Request;
 
 class AdminStoreController extends Controller
 {
-    public $templates;
+    public $templates, $currencies, $languages, $allLanguages, $timezones;
 
     public function __construct()
     {
@@ -20,13 +21,26 @@ class AdminStoreController extends Controller
         foreach ($allTemplate as $key => $template) {
             $templates[$key] = empty($template['config']['name']) ? $key : $template['config']['name'];
         }
+        foreach (timezone_identifiers_list() as $key => $value) {
+            $timezones[$value] = $value;
+        }
         $this->templates = $templates;
+        $this->currencies = ShopCurrency::getCodeActive();
+        $this->languages = ShopLanguage::getCodeActive();
+        $this->allLanguages = ShopLanguage::getList();
+        $this->timezones = $timezones;
 
     }
 
     public function index()
     {
-        $languages = ShopLanguage::getList();
+        $data = [
+            'title' => trans('setting.admin.title'),
+            'subTitle' => '',
+            'icon' => 'fa fa-indent',
+        ];
+
+
         $data = [
             'title' => trans('store.admin.list'),
             'subTitle' => '',
@@ -35,7 +49,11 @@ class AdminStoreController extends Controller
         $stories = AdminStore::getAll();
         $data['stories'] = $stories;
         $data['templates'] = $this->templates;
-        $data['languages'] = $languages;
+        $data['allLanguages'] = $this->allLanguages;
+        $data['timezones'] = $this->timezones;
+        $data['languages'] = $this->languages;
+        $data['currencies'] =$this->currencies;
+
         $data['urlDeleteItem'] = route('admin_store.delete');
         return view('admin.screen.store')
             ->with($data);
@@ -54,10 +72,15 @@ class AdminStoreController extends Controller
             'title_description' => trans('store.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'store' => [],
-            'languages' => ShopLanguage::getList(),
+            'allLanguages' => $this->allLanguages,
             'url_action' => route('admin_store.create'),
             'templates' => $this->templates
         ];
+
+        $data['timezones'] = $this->timezones;
+        $data['languages'] = $this->languages;
+        $data['currencies'] =$this->currencies;
+
         return view('admin.screen.store_add')
             ->with($data);
     }
@@ -74,6 +97,9 @@ class AdminStoreController extends Controller
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
             'domain' => 'required|unique:"'.AdminStore::class.'",domain',
+            'timezone' => 'required',
+            'language' => 'required',
+            'currency' => 'required',
             ], [
                 'domain.required' => trans('validation.required', ['attribute' => trans('store.domain')]),
                 'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('store.title')]),
@@ -95,7 +121,9 @@ class AdminStoreController extends Controller
             'time_active' => $data['time_active'],
             'address' => $data['address'],
             'office' => $data['office'],
-            'warehouse' => $data['warehouse'],
+            'timezone' => $data['timezone'],
+            'language' => $data['language'],
+            'currency' => $data['currency'],
             'domain' => $domain,
             'status' => empty($data['status']) ? 0 : 1,
         ];
