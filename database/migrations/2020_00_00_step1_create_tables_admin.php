@@ -16,9 +16,8 @@ class CreateTablesAdmin extends Migration
     public function up()
     {
         //Drop table if exist
-        if (!empty(session('infoInstall')['dropdb'])) {
-            $this->down();
-        }
+        $this->down();
+        
         Schema::create(SC_DB_PREFIX . 'admin_user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username', 100)->unique();
@@ -117,17 +116,18 @@ class CreateTablesAdmin extends Migration
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
             $table->string('domain', 100)->unique();
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(1)->comment('0:Lock, 1: unlock');
+            $table->integer('active')->default(1)->comment('0:Maintain, 1: Active');
         });
 
         Schema::create(SC_DB_PREFIX . 'admin_store_description', function (Blueprint $table) {
-            $table->integer('config_id');
+            $table->integer('store_id');
             $table->string('lang', 10)->index();
             $table->string('title', 200)->nullable();
             $table->string('description', 300)->nullable();
             $table->string('keyword', 200)->nullable();
             $table->text('maintain_content')->nullable();
-            $table->primary(['config_id', 'lang']);
+            $table->primary(['store_id', 'lang']);
         });
     }
 

@@ -17,6 +17,7 @@ use App\Models\ShopProductDescription;
 use App\Models\ShopProductGroup;
 use App\Models\ShopProductImage;
 use App\Models\ShopSupplier;
+use App\Models\ShopProductStore;
 use App\Models\AdminStore;
 use Validator;
 
@@ -306,6 +307,7 @@ class AdminProductController extends Controller
                     'descriptions.*.description' => 'nullable|string|max:100',
                     'descriptions.*.content' => 'required|string',
                     'category' => 'required',
+                    'store' => 'required',
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
                 ];
@@ -337,6 +339,7 @@ class AdminProductController extends Controller
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
                     'productBuild' => 'required',
                     'productBuildQty' => 'required',
+                    'store' => 'required',
 
                 ];
                 $arrMsg = [
@@ -358,6 +361,7 @@ class AdminProductController extends Controller
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
+                    'store' => 'required',
                 ];
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
@@ -501,9 +505,9 @@ class AdminProductController extends Controller
 
     }
 
-/**
- * Form edit
- */
+    /*
+    * Form edit
+    */
     public function edit($id)
     {
         $product = ShopProduct::find($id);
@@ -560,15 +564,17 @@ class AdminProductController extends Controller
             'htmlProductAtrribute' => $htmlProductAtrribute,
             'listWeight' => $this->listWeight,
             'listLength' => $this->listLength,  
-            'stories' => $this->stories,  
+            'stories' => $this->stories,
+            'storiesPivot' => ShopProductStore::where('product_id', $id)->pluck('store_id')->all(),
+
         ];
         return view('admin.screen.product_edit')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /*
+    * update status
+    */
     public function postEdit($id)
     {
         $product = ShopProduct::find($id);
@@ -594,6 +600,7 @@ class AdminProductController extends Controller
                     'descriptions.*.description' => 'nullable|string|max:300',
                     'descriptions.*.content' => 'required|string',
                     'category' => 'required',
+                    'store' => 'required',
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku,' . $product->id . ',id',
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias,' . $product->id . ',id|string|max:100',
                 ];
@@ -623,6 +630,7 @@ class AdminProductController extends Controller
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias,' . $product->id . ',id|string|max:100',
                     'productBuild' => 'required',
                     'productBuildQty' => 'required',
+                    'store' => 'required',
                 ];
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
@@ -642,6 +650,7 @@ class AdminProductController extends Controller
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
+                    'store' => 'required',
                 ];
                 $arrMsg = [
                     'sku.regex' => trans('product.sku_validate'),
@@ -801,10 +810,10 @@ class AdminProductController extends Controller
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+        Delete list Item
+        Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {

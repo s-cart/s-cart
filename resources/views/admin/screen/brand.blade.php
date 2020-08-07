@@ -89,7 +89,7 @@
                 <input type="text" id="image" name="image" value="{!! old()?old('image'):$brand['image']??'' !!}" class="form-control image {{ $errors->has('image') ? ' is-invalid' : '' }}">
                 <div class="input-group-append">
                   <span data-input="image" data-preview="preview_image" data-type="brand"
-                      class="input-group-text btn btn-primary lfm"><i class="fa fa-image"></i>  {{trans('product.admin.choose_image')}}</span>
+                      class="btn btn-primary lfm"><i class="fa fa-image"></i>  {{trans('product.admin.choose_image')}}</span>
                 </div>
               </div>
               <div id="preview_image" class="img_holder"><img

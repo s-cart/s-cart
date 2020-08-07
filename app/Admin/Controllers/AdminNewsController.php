@@ -8,14 +8,17 @@ use App\Models\ShopNews;
 use App\Models\ShopNewsDescription;
 use Illuminate\Http\Request;
 use Validator;
+use App\Models\AdminStore;
+use App\Models\ShopNewsStore;
 
 class AdminNewsController extends Controller
 {
-    public $languages;
+    public $languages, $stories;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getList();
+        $this->stories = AdminStore::getAll();
 
     }
 
@@ -39,6 +42,8 @@ class AdminNewsController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
+        $data['stories'] = $this->stories;
+
         $listTh = [
             'id' => trans('news.id'),
             'title' => trans('news.title'),
@@ -58,7 +63,7 @@ class AdminNewsController extends Controller
         $obj = new ShopNews;
 
         $obj = $obj
-            ->leftJoin(SC_DB_PREFIX.'shop_news_description', SC_DB_PREFIX.'shop_news_description.shop_news_id', SC_DB_PREFIX.'shop_news.id')
+            ->leftJoin(SC_DB_PREFIX.'shop_news_description', SC_DB_PREFIX.'shop_news_description.news_id', SC_DB_PREFIX.'shop_news.id')
             ->where(SC_DB_PREFIX.'shop_news_description.lang', sc_get_locale());
         if ($keyword) {
             $tableDescription = (new ShopNewsDescription)->getTable();
@@ -115,12 +120,12 @@ class AdminNewsController extends Controller
 //menuSearch        
         $data['topMenuRight'][] = '
                 <form action="' . route('admin_news.index') . '" id="button_search">
-                <div class="input-group input-group" style="width: 250px;">
-                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('news.admin.search_place') . '" value="' . $keyword . '">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    <div class="input-group input-group" style="width: 250px;">
+                        <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('news.admin.search_place') . '" value="' . $keyword . '">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
                     </div>
-                </div>
                 </form>';
 //=menuSearch
 
@@ -129,25 +134,26 @@ class AdminNewsController extends Controller
             ->with($data);
     }
 
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
+    /**
+     * Form create new order in admin
+     * @return [type] [description]
+     */
     public function create()
     {
-        $shopNews = [];
+        $news = [];
         $data = [
             'title' => trans('news.admin.add_new_title'),
             'subTitle' => '',
             'title_description' => trans('news.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
-            'shopNews' => $shopNews,
+            'news' => $news,
             'url_action' => route('admin_news.create'),
+            'stories' => $this->stories,
 
         ];
 
-        return view('admin.screen.shop_news')
+        return view('admin.screen.news')
             ->with($data);
     }
 
@@ -166,19 +172,23 @@ class AdminNewsController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopNews::class.'",alias|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-        ], [
-            'alias.regex' => trans('news.alias_validate'),
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('news.title')]),
-        ]);
+            'store' => 'required',
+            ], [
+                'alias.regex' => trans('news.alias_validate'),
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('news.title')]),
+            ]
+        );
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput($data);
         }
+
+        $store = $data['store'] ?? [];
 
         $dataInsert = [
             'image' => $data['image'],
@@ -192,7 +202,7 @@ class AdminNewsController extends Controller
         $languages = $this->languages;
         foreach ($languages as $code => $value) {
             $dataDes[] = [
-                'shop_news_id' => $id,
+                'news_id' => $id,
                 'lang' => $code,
                 'title' => $data['descriptions'][$code]['title'],
                 'keyword' => $data['descriptions'][$code]['keyword'],
@@ -201,18 +211,22 @@ class AdminNewsController extends Controller
             ];
         }
         ShopNewsDescription::insert($dataDes);
+        //Insert store
+        if ($store) {
+            $news->stories()->attach($store);
+        }
 
         return redirect()->route('admin_news.index')->with('success', trans('news.admin.create_success'));
 
     }
 
-/**
- * Form edit
- */
+    /**
+     * Form edit
+     */
     public function edit($id)
     {
-        $shopNews = ShopNews::find($id);
-        if ($shopNews === null) {
+        $news = ShopNews::find($id);
+        if ($news === null) {
             return 'no data';
         }
         $data = [
@@ -221,19 +235,21 @@ class AdminNewsController extends Controller
             'title_description' => '',
             'icon' => 'fa fa-edit',
             'languages' => $this->languages,
-            'shopNews' => $shopNews,
-            'url_action' => route('admin_news.edit', ['id' => $shopNews['id']]),
+            'news' => $news,
+            'url_action' => route('admin_news.edit', ['id' => $news['id']]),
+            'stories' => $this->stories,
+            'storiesPivot' => ShopNewsStore::where('news_id', $id)->pluck('store_id')->all(),
         ];
-        return view('admin.screen.shop_news')
+        return view('admin.screen.news')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /**
+     * update status
+     */
     public function postEdit($id)
     {
-        $shopNews = ShopNews::find($id);
+        $news = ShopNews::find($id);
         $data = request()->all();
 
         $langFirst = array_key_first(sc_language_all()->toArray()); //get first code language active
@@ -245,11 +261,13 @@ class AdminNewsController extends Controller
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopNews::class.'",alias,' . $shopNews->id . ',id|string|max:100',
-        ], [
-            'alias.regex' => trans('news.alias_validate'),
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('news.title')]),
-        ]);
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'store' => 'required',
+            ], [
+                'alias.regex' => trans('news.alias_validate'),
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('news.title')]),
+            ]
+        );
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -257,7 +275,7 @@ class AdminNewsController extends Controller
                 ->withInput($data);
         }
 //Edit
-
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'image' => $data['image'],
             'alias' => $data['alias'],
@@ -265,12 +283,12 @@ class AdminNewsController extends Controller
             'status' => !empty($data['status']) ? 1 : 0,
         ];
 
-        $shopNews->update($dataUpdate);
-        $shopNews->descriptions()->delete();
+        $news->update($dataUpdate);
+        $news->descriptions()->delete();
         $dataDes = [];
         foreach ($data['descriptions'] as $code => $row) {
             $dataDes[] = [
-                'shop_news_id' => $id,
+                'news_id' => $id,
                 'lang' => $code,
                 'title' => $row['title'],
                 'keyword' => $row['keyword'],
@@ -279,16 +297,20 @@ class AdminNewsController extends Controller
             ];
         }
         ShopNewsDescription::insert($dataDes);
-
+        //Update store
+        $news->stories()->detach();
+        if (count($store)) {
+            $news->stories()->attach($store);
+        }
 //
         return redirect()->route('admin_news.index')->with('success', trans('news.admin.edit_success'));
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list Item
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {

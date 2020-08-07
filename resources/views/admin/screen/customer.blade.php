@@ -33,7 +33,7 @@
                                         value="{{ (old('reg_first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_first_name'))
-                                    <span class="help-block">{{ $errors->first('reg_first_name') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_first_name') }}</span>
                                     @endif
     
                                 </div>
@@ -51,7 +51,7 @@
                                         value="{{ (old('reg_last_name', $customer['last_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_last_name'))
-                                    <span class="help-block">{{ $errors->first('reg_last_name') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_last_name') }}</span>
                                     @endif
     
                                 </div>
@@ -70,7 +70,7 @@
                                         value="{{ (old('reg_first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_first_name'))
-                                    <span class="help-block">{{ $errors->first('reg_first_name') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_first_name') }}</span>
                                     @endif
     
                                 </div>
@@ -92,7 +92,7 @@
                                         value="{{ (old('reg_phone', $customer['phone'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_phone'))
-                                    <span class="help-block">{{ $errors->first('reg_phone') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_phone') }}</span>
                                     @endif
     
                                 </div>
@@ -114,7 +114,7 @@
                                     </div>
     
                                     @if($errors->has('reg_postcode'))
-                                    <span class="help-block">{{ $errors->first('reg_postcode') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_postcode') }}</span>
                                     @endif
     
                                 </div>
@@ -135,7 +135,7 @@
                                     </div>
     
                                     @if($errors->has('reg_email'))
-                                    <span class="help-block">{{ $errors->first('reg_email') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_email') }}</span>
                                     @endif
     
                                 </div>
@@ -155,7 +155,7 @@
                                         value="{{ (old('reg_address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_address1'))
-                                    <span class="help-block">{{ $errors->first('reg_address1') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_address1') }}</span>
                                     @endif
     
                                 </div>
@@ -173,7 +173,7 @@
                                         value="{{ (old('reg_address2', $customer['address2'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_address2'))
-                                    <span class="help-block">{{ $errors->first('reg_address2') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_address2') }}</span>
                                     @endif
     
                                 </div>
@@ -192,7 +192,7 @@
                                         value="{{ (old('reg_address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_address1'))
-                                    <span class="help-block">{{ $errors->first('reg_address1') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_address1') }}</span>
                                     @endif
     
                                 </div>
@@ -216,7 +216,7 @@
                                         @endforeach
                                     </select>
                                     @if ($errors->has('reg_country'))
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         {{ $errors->first('reg_country') }}
                                     </span>
                                     @endif
@@ -239,7 +239,7 @@
                                         {{ ($sex == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
                                 </div>
                                 @if ($errors->has('reg_sex'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     {{ $errors->first('reg_sex') }}
                                 </span>
                                 @endif
@@ -261,7 +261,7 @@
                                         value="{{ (old('reg_birthday', $customer['birthday'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('reg_birthday'))
-                                    <span class="help-block">{{ $errors->first('reg_birthday') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_birthday') }}</span>
                                     @endif
     
                                 </div>
@@ -283,7 +283,7 @@
                                     </div>
     
                                     @if($errors->has('reg_group'))
-                                    <span class="help-block">{{ $errors->first('reg_group') }}</span>
+                                    <span class="form-text">{{ $errors->first('reg_group') }}</span>
                                     @endif
     
                                 </div>
@@ -301,12 +301,12 @@
                                         <input type="text"   id="reg_password" name="reg_password" value="{{ old('reg_password')??'' }}" class="form-control reg_password" placeholder="" />
                                     </div>
                                         @if ($errors->has('reg_password'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('reg_password') }}
                                             </span>
                                         @else
                                             @if ($customer)
-                                                <span class="help-block">
+                                                <span class="form-text">
                                                      {{ trans('customer.admin.keep_password') }}
                                                  </span>
                                             @endif

@@ -31,7 +31,7 @@
                                         <input type="email" id="email" name="email" value="{!! old()?old('email'):$subscribe['email']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
                                             </span>
                                         @endif

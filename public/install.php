@@ -62,7 +62,6 @@ if (request()->method() == 'POST' && request()->ajax()) {
             'admin_password' => bcrypt(request('admin_password')),
             'admin_email' => request('admin_email'),
             'admin_url' => $admin_url,
-            'dropdb' => (request('dropdb') =='true')?1:0,
         ];
 
             echo json_encode(['error' => 0, 'msg' => trans('install.env.process_sucess'), 'infoInstall' => $infoInstall]);
@@ -72,9 +71,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         session(['infoInstall'=> request('infoInstall')]);
         //Drop table migrations if exist
         try {
-            if(!empty(session('infoInstall')['dropdb'])) {
-                \Schema::dropIfExists('migrations');
-            }
+            \Schema::dropIfExists('migrations');
             Artisan::call('migrate --path=/database/migrations/2020_00_00_step1_create_tables_admin.php');
         } catch(\Throwable $e) {
             echo json_encode([

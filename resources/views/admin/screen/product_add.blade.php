@@ -82,12 +82,12 @@
                                         class="form-control input-sm {{ $code.'__name' }}" placeholder="" />
                                 </div>
                                 @if ($errors->has('descriptions.'.$code.'.name'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i>
                                     {{ $errors->first('descriptions.'.$code.'.name') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>200]) }}
                                     </span>
                                 @endif
@@ -109,12 +109,12 @@
                                         class="form-control input-sm {{ $code.'__keyword' }}" placeholder="" />
                                 </div>
                                 @if ($errors->has('descriptions.'.$code.'.keyword'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i>
                                     {{ $errors->first('descriptions.'.$code.'.keyword') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>200]) }}
                                     </span>
                                 @endif
@@ -130,12 +130,12 @@
                                         name="descriptions[{{ $code }}][description]"
                                         class="form-control input-sm {{ $code.'__description' }}" placeholder="" />{{ old('descriptions.'.$code.'.description') }}</textarea>
                                 @if ($errors->has('descriptions.'.$code.'.description'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i>
                                     {{ $errors->first('descriptions.'.$code.'.description') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>300]) }}
                                     </span>
                                 @endif
@@ -152,7 +152,7 @@
                                         {!! old('descriptions.'.$code.'.content') !!}
                                     </textarea>
                                 @if ($errors->has('descriptions.'.$code.'.content'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i>
                                     {{ $errors->first('descriptions.'.$code.'.content') }}
                                 </span>
@@ -169,10 +169,10 @@
                         <div class="form-group row kind kind0 kind1 {{ $errors->has('category') ? ' text-red' : '' }}">
                             @php
                             $listCate = [];
-                            if(is_array(old('category'))){
-                            foreach(old('category') as $value){
-                            $listCate[] = (int)$value;
-                            }
+                            if (is_array(old('category'))) {
+                                foreach(old('category') as $value){
+                                    $listCate[] = (int)$value;
+                                }
                             }
                             @endphp
                             <label for="category" class="col-sm-2 col-form-label">
@@ -190,7 +190,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('category'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('category') }}
                                 </span>
                                 @endif
@@ -199,24 +199,24 @@
                         {{-- //select category --}}
 
                         {{-- select store --}}
-                        @if (count($stories))
+                        @if (count($stories) > 1)
                         <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
                             @php
                             $listStore = [];
-                            if(is_array(old('store'))){
-                            foreach(old('store') as $value){
-                            $listStore[] = (int)$value;
-                            }
+                            if (is_array(old('store'))) {
+                                foreach(old('store') as $value){
+                                    $listStore[] = (int)$value;
+                                }
                             }
                             @endphp
                             <label for="store" class="col-sm-2 col-form-label">
-                                {{ trans('product.admin.select_store') }}
+                                {{ trans('store.select_store') }}
                             </label>
                             <div class="col-sm-8">
                                 <select class="form-control input-sm store select2" multiple="multiple"
-                                    data-placeholder="{{ trans('product.admin.select_store') }}" style="width: 100%;"
+                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
                                     name="store[]">
-                                    <option value="0" selected>{{ trans('store.all_stories') }}</option>
+                                    <option value="0" {{ (in_array(0, $listStore) || !is_array(old('store'))) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
                                     @foreach ($stories as $id => $store)
                                     <option value="{{ $id }}"
                                         {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
@@ -224,7 +224,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('store'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
                                 </span>
                                 @endif
@@ -246,13 +246,13 @@
                                     <input type="text" id="image" name="image" value="{!! old('image') !!}"
                                         class="form-control input-sm image" placeholder="" />
                                     <div class="input-group-append">
-                                        <span class="input-group-text btn btn-primary lfm" data-input="image" data-preview="preview_image" data-type="product">
+                                        <span class="btn btn-primary lfm" data-input="image" data-preview="preview_image" data-type="product">
                                             <i class="fas fa-image"></i> {{trans('product.admin.choose_image')}}
                                         </span>
                                     </div>
                                 </div>
                                 @if ($errors->has('image'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
                                 </span>
                                 @endif
@@ -307,11 +307,11 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('sku'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('sku') }}
                                 </span>
                                 @else
-                                <span class="help-block">
+                                <span class="form-text">
                                     {{ trans('product.sku_validate') }}
                                 </span>
                                 @endif
@@ -333,11 +333,11 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('alias'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('alias') }}
                                 </span>
                                 @else
-                                <span class="help-block">
+                                <span class="form-text">
                                     {{ trans('product.alias_validate') }}
                                 </span>
                                 @endif
@@ -360,7 +360,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('brand_id'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('brand_id') }}
                                 </span>
                                 @endif
@@ -395,7 +395,7 @@
                                 @endforeach
                             </select>
                                 @if ($errors->has('supplier_id'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('supplier_id') }}
                                 </span>
                                 @endif
@@ -418,7 +418,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('cost'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('cost') }}
                                 </span>
                                 @endif
@@ -441,7 +441,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('price'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('price') }}
                                 </span>
                                 @endif
@@ -467,7 +467,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('tax_id'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('tax_id') }}
                                 </span>
                                 @endif
@@ -550,7 +550,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('stock'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('stock') }}
                                 </span>
                                 @endif
@@ -576,7 +576,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('weight_class'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('weight_class') }}
                                 </span>
                                 @endif
@@ -596,7 +596,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('weight'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('weight') }}
                                 </span>
                                 @endif
@@ -621,7 +621,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('length_class'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('length_class') }}
                                 </span>
                                 @endif
@@ -641,7 +641,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('length'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('length') }}
                                 </span>
                                 @endif
@@ -660,7 +660,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('height'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('height') }}
                                 </span>
                                 @endif
@@ -679,7 +679,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('width'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('width') }}
                                 </span>
                                 @endif
@@ -699,7 +699,7 @@
                                         {{ ((!old() && $key ==0) || old('virtual') == $key)?'checked':'' }}>{{ $virtual }}</label>
                                 @endforeach
                                 @if ($errors->has('virtual'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('virtual') }}
                                 </span>
                                 @endif
@@ -725,7 +725,7 @@
                                         class="form-control input-sm date_available date_time" placeholder="" />
                                 </div>
                                 @if ($errors->has('date_available'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('date_available') }}
                                 </span>
                                 @endif
@@ -747,11 +747,11 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('minimum'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('minimum') }}
                                 </span>
                                 @else
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ trans('product.minimum_help') }}
                                 </span>
                                 @endif
@@ -772,7 +772,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('sort'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                 </span>
                                 @endif
@@ -823,7 +823,7 @@
                                     {{ trans('product.admin.add_product') }}
                                 </button>
                                 @if ($errors->has('productInGroup'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('productInGroup') }}
                                 </span>
                                 @endif
@@ -864,7 +864,7 @@
                                     {{ trans('product.admin.add_product') }}
                                 </button>
                                 @if ($errors->has('productBuild') || $errors->has('productBuildQty'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('productBuild') }}
                                 </span>
                                 @endif

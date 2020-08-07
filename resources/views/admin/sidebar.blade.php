@@ -45,7 +45,7 @@
       @foreach ($menus[0] as $level0)
         {{-- LEvel 1  --}}
         @if (!empty($menus[$level0->id]))
-        <li class="header">
+        <li class="nav-link header">
           {!! sc_language_render($level0->title) !!}
         </li>
           @foreach ($menus[$level0->id] as $level1)

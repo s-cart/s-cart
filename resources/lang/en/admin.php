@@ -17,6 +17,8 @@ return [
       'avatar'                            => 'Avatar',
       'file_manager'                      => 'File manager',
       'theme'                             => 'Theme',
+      'lock'                              => 'Lock',
+      'unlock'                            => 'Unlock',
 
       'back_list'                         => 'Back List',
       'list'                              => 'List',
@@ -88,8 +90,8 @@ return [
 
       'operation_log'                     => 'Operation log',
       'parent_select_error'               => 'Parent select error',
-      'maintain_enable'                   => 'ON',
-      'maintain_disable'                  => 'OFF',
+      'maintain_enable'                   => 'Active',
+      'maintain_disable'                  => 'Maintenance',
       'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Turning on maintenance mode will affect the operation of the website!',
       'parent_select_error'               => 'Parent select error',
 
@@ -295,6 +297,8 @@ return [
             'email_template'    => 'Email template',
             'email_action'      => 'Email action',
             'cache_manager'     => 'Cache manager',
+            'store_manager'     => 'Store manager',
+            'store_config'     => 'Store config',
       ],
 
       'status'                            => 'Status',
@@ -321,7 +325,7 @@ return [
       'min_c' => 'Minimum :min characters',
       'min_v' => 'Greater than :value',
       'max_v' => 'Less than :value',
-      'confirm_delete' => 'Are you sure to delete this item?',
+      'store_confirm_delete' => 'Are you sure to delete this store',
       'confirm_delete_yes' => 'Yes, delete it!',
       'confirm_delete_no' => 'No, cancel!',
       'confirm_delete_deleted' => 'Deleted!',
@@ -332,4 +336,8 @@ return [
             'confirm_yes' => 'Yes, do it',
             'cancel' => 'Cancel',
         ],
+        'ADMIN_SHOP' => 'SHOP <p class="sub-header"> - ADMIN</p>',
+        'ADMIN_SYSTEM' => 'SYSTEM <p class="sub-header"> - ADMIN</p>',
+        'ADMIN_CONTENT' => 'CONTENT <p class="sub-header"> - ADMIN</p>',
+        'ADMIN_EXTENSION' => 'EXTENSION <p class="sub-header"> - ADMIN</p>',
 ];

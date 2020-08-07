@@ -1,5 +1,5 @@
 <?php
-#app/Http/Admin/Controllers/AdminMaintainController.php
+#app/Http/Admin/Controllers/AdminStoreMaintainController.php
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +9,7 @@ use App\Models\AdminStoreDescription;
 use Illuminate\Http\Request;
 use Validator;
 
-class AdminMaintainController extends Controller
+class AdminStoreMaintainController extends Controller
 {
     public $languages;
 
@@ -21,47 +21,45 @@ class AdminMaintainController extends Controller
     
     public function index()
     {
-        $languages = ShopLanguage::getCodeActive();
+        $languages = ShopLanguage::getList();
+        $stories = AdminStore::getAll();
         $data = [
-            'title' => trans('maintain.admin.title'),
+            'title' => trans('store_maintain.admin.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
-
-        $obj = (new AdminStore)->with('descriptions')->first();
-        $data['obj'] = $obj;
         $data['languages'] = $languages;
-        return view('admin.screen.maintain')
+        $data['stories'] = $stories;
+        return view('admin.screen.store_maintain')
             ->with($data);
     }
 
 /**
  * Form edit
  */
-    public function edit()
+    public function edit($id)
     {
-        $maintain = AdminStore::find(1);
+        $maintain = AdminStore::find($id);
         if ($maintain === null) {
             return 'no data';
         }
         $data = [
-            'title' => trans('maintain.admin.title'),
+            'title' => trans('store_maintain.admin.title'),
             'subTitle' => '',
             'title_description' => '',
             'icon' => 'fa fa-edit',
             'languages' => $this->languages,
             'maintain' => $maintain,
-            'url_action' => route('admin_maintain.edit'),
+            'url_action' => route('admin_store_maintain.edit', ['id' => $id]),
         ];
-        return view('admin.screen.maintain_edit')
+        return view('admin.screen.store_maintain_edit')
             ->with($data);
     }
 
 /**
  * update status
  */
-    public function postEdit()
+    public function postEdit($id)
     {
-        $id = 1;
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
@@ -75,11 +73,11 @@ class AdminMaintainController extends Controller
         }
         //Edit
         foreach ($data['descriptions'] as $code => $row) {
-            (new AdminStoreDescription)->where('config_id', $id)->where('lang', $code)
+            (new AdminStoreDescription)->where('store_id', $id)->where('lang', $code)
             ->update(['maintain_content' => $row['maintain_content']]);
         }
 //
-        return redirect()->route('admin_maintain.index')->with('success', trans('maintain.admin.edit_success'));
+        return redirect()->route('admin_store_maintain.index')->with('success', trans('store_maintain.admin.edit_success'));
 
     }
 }

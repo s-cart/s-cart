@@ -17,6 +17,8 @@ return [
     'avatar' => 'Hình đại diện',
     'file_manager' => 'Quản lý file',
     'theme' => 'Giao diện',
+    'lock' => 'Khóa',
+    'unlock' => 'Mở khóa',
 
     'back_list' => 'Trở lại danh sách',
     'list' => 'Danh sách',
@@ -89,8 +91,8 @@ return [
 
     'operation_log' => 'Log admin',
     'parent_select_error' => 'Parent select error',
-    'maintain_enable'                   => 'BẬT',
-    'maintain_disable'                  => 'TẮT',
+    'maintain_enable'                   => 'Hoạt động',
+    'maintain_disable'                  => 'Bảo trì',
     'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Bật chế độ bảo trì sẽ làm ảnh hưởng tới hoạt động của website!',
     'pagination' => [
         'range' => 'Showing :first to :last of :total entries',
@@ -293,6 +295,8 @@ return [
         'email_template' => 'Mẫu email',
         'email_action' => 'Tác vụ email',
         'cache_manager'     => 'Quản lý bộ nhớ Cache',
+        'store_manager'     => 'Quản lý cửa hàng',
+        'store_config'     => 'Cấu hình cửa hàng',
     ],
     //=======++===========
     'status' => 'Trạng thái',
@@ -319,6 +323,7 @@ return [
     'min_c' => 'Tối thiểu :min kí tự',
     'min_v' => 'Lớn hơn :value',
     'max_v' => 'Nhỏ hơn :value',
+    'store_confirm_delete' => 'Bạn có chắc chắn xóa cửa hàng',
     'confirm_delete' => 'Bạn có chắc chắn xóa nó?',
     'confirm_delete_yes' => 'Vâng, xóa nó!',
     'confirm_delete_no' => 'Không, hủy bỏ!',
@@ -330,4 +335,8 @@ return [
         'confirm_yes' => 'Vâng, tôi hiểu',
         'cancel' => 'Hủy bỏ',
     ],
+    'ADMIN_SHOP' => 'CỬA HÀNG <p class="sub-header">- QUẢN LÝ</p>',
+    'ADMIN_SYSTEM' => 'HỆ THỐNG <p class="sub-header">- QUẢN LÝ</p>',
+    'ADMIN_CONTENT' => 'NỘI DUNG <p class="sub-header">- QUẢN LÝ</p>',
+    'ADMIN_EXTENSION' => 'TIỆN ÍCH <p class="sub-header">- QUẢN LÝ</p>',
 ];

@@ -14,8 +14,22 @@ class AdminStore extends Model
     
     public function descriptions()
     {
-        return $this->hasMany(AdminStoreDescription::class, 'config_id', 'id');
+        return $this->hasMany(AdminStoreDescription::class, 'store_id', 'id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($store) {
+            if ($store->id == 1) {
+                return false;
+            }
+            //Delete store descrition
+            $store->descriptions()->delete();
+        });
+    }
+
 
     /**
      * [getAll description]

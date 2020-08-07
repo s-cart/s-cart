@@ -16,7 +16,12 @@ class ShopNews extends Model
 
     public function descriptions()
     {
-        return $this->hasMany(ShopNewsDescription::class, 'shop_news_id', 'id');
+        return $this->hasMany(ShopNewsDescription::class, 'news_id', 'id');
+    }
+
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopNewsStore::class, 'news_id', 'store_id');
     }
 
     /*
@@ -66,8 +71,15 @@ class ShopNews extends Model
         }
         $tableDescription = (new ShopNewsDescription)->getTable();
         $news = $this
-            ->leftJoin($tableDescription, $tableDescription . '.shop_news_id', $this->getTable() . '.id')
+            ->leftJoin($tableDescription, $tableDescription . '.news_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
+
+        //Get news active for store
+        $tableNTS = (new ShopNewsStore)->getTable();
+        $news = $news->leftJoin($tableNTS, $tableNTS . '.news_id', $this->getTable() . '.id');
+        $news = $news->whereIn($tableNTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
         if ($type == null) {
             $news = $news->where('id', (int) $key);
         } else {
@@ -79,8 +91,20 @@ class ShopNews extends Model
         return $news->first();
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($news) {
+            $news->descriptions()->delete();
+            $news->stories()->detach();
+            }
+        );
+    }
 
-/**
+
+
+    /**
      * Get list news
      *
      * @param   array  $arrOpt
@@ -147,7 +171,7 @@ class ShopNews extends Model
 
         //description
         $query = $this
-            ->leftJoin($tableDescription, $tableDescription . '.shop_news_id', $this->getTable() . '.id')
+            ->leftJoin($tableDescription, $tableDescription . '.news_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
         //search keyword
         if ($this->sc_keyword !='') {
@@ -157,6 +181,13 @@ class ShopNews extends Model
                 ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%');
             });
         }
+
+        //Get news active for store
+        $tableNTS = (new ShopNewsStore)->getTable();
+        $query = $query->leftJoin($tableNTS, $tableNTS . '.news_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tableNTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
         if ($this->sc_status !== 'all') {
             $query = $query->where('status', $this->sc_status);
         }

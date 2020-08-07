@@ -29,7 +29,7 @@
                                         <input type="name" id="name" name="name" value="{!! old()?old('name'):$obj['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -46,7 +46,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('group'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('group') }}
                                             </span>
                                         @endif
@@ -58,7 +58,7 @@
                                 <div class="col-sm-8">
                                         <textarea class="form-control" rows="10" id="text" name="text">{!! old('text',$obj['text']??'') !!}</textarea>
                                         @if ($errors->has('text'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('text') }}
                                             </span>
                                         @endif

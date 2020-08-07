@@ -19,16 +19,17 @@ class DataAdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table(SC_DB_PREFIX.'admin_menu')->insert([
+        DB::table(SC_DB_PREFIX.'admin_menu')->insert(
+            [
             ['id' => 1, 'parent_id' => 6, 'sort' => 11, 'title' => 'lang::admin.menu_titles.order_manager', 'icon' => 'fas fa-cart-arrow-down', 'uri' => '', 'key' => 'ORDER_MANAGER', 'type' => 0],
             ['id' => 2, 'parent_id' => 6, 'sort' => 12, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fas fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
             ['id' => 3, 'parent_id' => 6, 'sort' => 13, 'title' => 'lang::admin.menu_titles.customer_manager', 'icon' => 'fas fa-users', 'uri' => '', 'key' => 'CUSTOMER_MANAGER', 'type' => 0],
             ['id' => 4, 'parent_id' => 8, 'sort' => 201, 'title' => 'lang::admin.menu_titles.template_layout', 'icon' => 'fas fa-object-ungroup', 'uri' => '', 'key' => 'TEMPLATE', 'type' => 0],
-            ['id' => 5, 'parent_id' => 9, 'sort' => 301, 'title' => 'lang::admin.menu_titles.config_manager', 'icon' => 'fas fa-cogs', 'uri' => '', 'key' => 'CONFIG_MANAGER', 'type' => 0],
-            ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::ADMIN SHOP', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
-            ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::ADMIN CONTENT', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
-            ['id' => 8, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::ADMIN EXTENSION', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],
-            ['id' => 9, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::ADMIN SYSTEM', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_SYSTEM', 'type' => 0],
+            ['id' => 5, 'parent_id' => 9, 'sort' => 302, 'title' => 'lang::admin.menu_titles.config_manager', 'icon' => 'fas fa-cogs', 'uri' => '', 'key' => 'CONFIG_MANAGER', 'type' => 0],
+            ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::admin.ADMIN_SHOP', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
+            ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::admin.ADMIN_CONTENT', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
+            ['id' => 8, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::admin.ADMIN_EXTENSION', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],
+            ['id' => 9, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::admin.ADMIN_SYSTEM', 'icon' => 'fas fas fa-cog', 'uri' => '', 'key' => 'ADMIN_SYSTEM', 'type' => 0],
             ['id' => 10, 'parent_id' => 7, 'sort' => 102, 'title' => 'lang::page.admin.title', 'icon' => 'fas fa-clone', 'uri' => 'admin::page', 'key' => null, 'type' => 0],
             ['id' => 11, 'parent_id' => 1, 'sort' => 6, 'title' => 'lang::shipping_status.admin.title', 'icon' => 'fas fa-truck', 'uri' => 'admin::shipping_status', 'key' => null, 'type' => 0],
             ['id' => 12, 'parent_id' => 1, 'sort' => 3, 'title' => 'lang::order.admin.title', 'icon' => 'fas fa-shopping-cart', 'uri' => 'admin::order', 'key' => null, 'type' => 0],
@@ -44,7 +45,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 22, 'parent_id' => 4, 'sort' => 0, 'title' => 'lang::block_content.admin.title', 'icon' => 'far fa-newspaper', 'uri' => 'admin::block_content', 'key' => null, 'type' => 0],
             ['id' => 23, 'parent_id' => 4, 'sort' => 0, 'title' => 'lang::admin.menu_titles.block_link', 'icon' => 'fab fa-chrome', 'uri' => 'admin::link', 'key' => null, 'type' => 0],
             ['id' => 24, 'parent_id' => 4, 'sort' => 0, 'title' => 'lang::admin.menu_titles.template_manager', 'icon' => 'fas fa-columns', 'uri' => 'admin::template', 'key' => null, 'type' => 0],
-            ['id' => 26, 'parent_id' => 5, 'sort' => 1, 'title' => 'lang::store.admin.title', 'icon' => 'fas fa-h-square', 'uri' => 'admin::store', 'key' => null, 'type' => 0],
+            ['id' => 26, 'parent_id' => 65, 'sort' => 1, 'title' => 'lang::store.admin.title', 'icon' => 'fas fa-h-square', 'uri' => 'admin::store', 'key' => null, 'type' => 0],
             ['id' => 27, 'parent_id' => 5, 'sort' => 4, 'title' => 'lang::admin.menu_titles.email_setting', 'icon' => 'fas fa-envelope', 'uri' => '', 'key' => null, 'type' => 0],
             ['id' => 28, 'parent_id' => 27, 'sort' => 0, 'title' => 'lang::email.admin.title', 'icon' => 'fas fa-cog', 'uri' => 'admin::email', 'key' => null, 'type' => 0],
             ['id' => 29, 'parent_id' => 27, 'sort' => 0, 'title' => 'lang::email_template.admin.title', 'icon' => 'fas fa-bars', 'uri' => 'admin::email_template', 'key' => null, 'type' => 0],
@@ -74,17 +75,18 @@ class DataAdminSeeder extends Seeder
             ['id' => 57, 'parent_id' => 5, 'sort' => 2, 'title' => 'lang::link.config_manager.title', 'icon' => 'fab fa-gg', 'uri' => 'admin::url_config', 'key' => null, 'type' => 0],
             ['id' => 58, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.cache_manager', 'icon' => 'fab fa-tripadvisor', 'uri' => 'admin::cache_config', 'key' => null, 'type' => 0],
             ['id' => 59, 'parent_id' => 9, 'sort' => 303, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fas fa-plug', 'uri' => 'admin::api_connection', 'key' => 'API_MANAGER', 'type' => 0],
-            ['id' => 60, 'parent_id' => 5, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fas fa-flag', 'uri' => 'admin::maintain', 'key' => null, 'type' => 0],
+            ['id' => 60, 'parent_id' => 65, 'sort' => 3, 'title' => 'lang::maintain.config_manager.title', 'icon' => 'fas fa-flag', 'uri' => 'admin::store_maintain', 'key' => null, 'type' => 0],
             ['id' => 61, 'parent_id' => 2, 'sort' => 4, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'far fa-calendar-minus', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
             ['id' => 62, 'parent_id' => 2, 'sort' => 5, 'title' => 'lang::weight.admin.title', 'icon' => 'fas fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
             ['id' => 63, 'parent_id' => 2, 'sort' => 6, 'title' => 'lang::length.admin.title', 'icon' => 'fas fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
             ['id' => 64, 'parent_id' => 1, 'sort' => 100, 'title' => 'lang::order.admin.config_title', 'icon' => 'fas fa fa-cog', 'uri' => 'admin::order_config', 'key' => null, 'type' => 0],
-            
-
+            ['id' => 65, 'parent_id' => 9, 'sort' => 301, 'title' => 'lang::admin.menu_titles.store_manager', 'icon' => 'fas fa-store-alt', 'uri' => '', 'key' => 'STORE_MANAGER', 'type' => 0],
+            ['id' => 66, 'parent_id' => 65, 'sort' => 2, 'title' => 'lang::admin.menu_titles.store_config', 'icon' => 'fa fa-cog', 'uri' => 'admin::store_config', 'key' => null, 'type' => 0],
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_permission')->insert([
+        DB::table(SC_DB_PREFIX.'admin_permission')->insert(
+            [
             ['id' => '1', 'name' => 'Admin manager', 'slug' => 'admin.manager', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'/user,GET::'.SC_ADMIN_PREFIX.'/role,GET::'.SC_ADMIN_PREFIX.'/permission,ANY::'.SC_ADMIN_PREFIX.'/log/*,ANY::'.SC_ADMIN_PREFIX.'/menu/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '3', 'name' => 'Auth manager', 'slug' => 'auth.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/auth/*', 'created_at' => date('Y-m-d H:i:s')],
@@ -104,7 +106,8 @@ class DataAdminSeeder extends Seeder
              ]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_role')->insert([
+        DB::table(SC_DB_PREFIX.'admin_role')->insert(
+            [
             ['id' => '1', 'name' => 'Administrator', 'slug' => 'administrator', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Group only View', 'slug' => 'view.all', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '3', 'name' => 'Manager', 'slug' => 'manager', 'created_at' => date('Y-m-d H:i:s')],
@@ -113,7 +116,8 @@ class DataAdminSeeder extends Seeder
             ['id' => '6', 'name' => 'Marketing', 'slug' => 'maketing', 'created_at' => date('Y-m-d H:i:s')]]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_role_permission')->insert([
+        DB::table(SC_DB_PREFIX.'admin_role_permission')->insert(
+            [
             ['role_id' => 3, 'permission_id' => 5, 'created_at' => date('Y-m-d H:i:s')],
             ['role_id' => 3, 'permission_id' => 1, 'created_at' => date('Y-m-d H:i:s')],
             ['role_id' => 3, 'permission_id' => 3, 'created_at' => date('Y-m-d H:i:s')],
@@ -175,7 +179,8 @@ class DataAdminSeeder extends Seeder
         if (!empty(session('infoInstall')['language_default'])) {
             $this->language_default = session('infoInstall')['language_default'];
         }
-        DB::table(SC_DB_PREFIX.'admin_config')->insert([
+        DB::table(SC_DB_PREFIX.'admin_config')->insert(
+            [
             ['group' => 'all', 'code' => 'cache', 'key' => 'cache_status', 'value' => '0', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_status'],
             ['group' => 'all', 'code' => 'cache', 'key' => 'cache_time', 'value' => '600', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_time'],
             ['group' => 'all', 'code' => 'cache', 'key' => 'cache_category', 'value' => '0', 'sort' => '3', 'detail' => 'lang::cache.config_manager.cache_category'],
@@ -206,9 +211,9 @@ class DataAdminSeeder extends Seeder
             ['group' => 'all', 'code' => 'customer', 'key' => 'customer_birthday', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.birthday'],
             ['group' => 'all', 'code' => 'customer', 'key' => 'customer_sex', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.sex'],
             ['group' => 'all', 'code' => 'customer', 'key' => 'customer_phone', 'value' => '1', 'sort' => '1', 'detail' => 'lang::customer.config_manager.phone'],
+            ['group' => 'all', 'code' => 'config', 'key' => 'check_domain_exist', 'value' => '0', 'sort' => '1', 'detail' => 'lang::config.check_domain_exist'],
             ['group' => 'Plugins', 'code' => 'Payment', 'key' => 'Cash', 'value' => '1', 'sort' => '0', 'detail' => 'Plugins/Payment/Cash::lang.title'],
             ['group' => 'Plugins', 'code' => 'Shipping', 'key' => 'ShippingStandard', 'value' => '1', 'sort' => '0', 'detail' => 'lang::Shipping Standard'],
-            ['group' => '', 'code' => 'env', 'key' => 'SITE_STATUS', 'value' => 'on', 'sort' => '0', 'detail' => 'lang::env.SITE_STATUS'],
             ['group' => '', 'code' => 'env', 'key' => 'SITE_TIMEZONE', 'value' => $this->timezone_default, 'sort' => '0', 'detail' => 'lang::env.SITE_TIMEZONE'],
             ['group' => '', 'code' => 'env', 'key' => 'SITE_LANGUAGE', 'value' => $this->language_default, 'sort' => '0', 'detail' => 'lang::env.SITE_LANGUAGE'],
             ['group' => '', 'code' => 'env', 'key' => 'SITE_CURRENCY', 'value' => 'USD', 'sort' => '0', 'detail' => 'lang::env.SITE_CURRENCY'],
@@ -269,16 +274,20 @@ class DataAdminSeeder extends Seeder
             ]
         );
         DB::table(SC_DB_PREFIX.'admin_store')->insert(
-            ['logo' => 'data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => $this->adminEmail, 'time_active' => '', 'address' => '123st - abc - xyz', 'domain' => str_replace(['http://','https://', '/install.php'], '', url('/'))]
+            [
+                'logo' => 'data/logo/scart-mid.png', 'template' => 'default-new', 'phone' => '0123456789', 'long_phone' => 'Support: 0987654321', 'email' => $this->adminEmail, 'time_active' => '', 'address' => '123st - abc - xyz', 
+                'domain' => str_replace(['http://','https://', '/install.php'], '', url('/'))
+            ]
         );
         
-        DB::table(SC_DB_PREFIX.'admin_store_description')->insert([
-            ['config_id' => '1', 'lang' => 'en', 'title' => 'Demo SCart : Free Laravel eCommerce for Business', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
-<h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>
-</center>'],
-            ['config_id' => '1', 'lang' => 'vi', 'title' => 'Demo SCart: Mã nguồn website thương mại điện tử miễn phí cho doanh nghiệp', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
-<h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
-</center>'],
+        DB::table(SC_DB_PREFIX.'admin_store_description')->insert(
+            [
+                ['store_id' => '1', 'lang' => 'en', 'title' => 'Demo SCart : Free Laravel eCommerce for Business', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+    <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>
+    </center>'],
+                ['store_id' => '1', 'lang' => 'vi', 'title' => 'Demo SCart: Mã nguồn website thương mại điện tử miễn phí cho doanh nghiệp', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+    <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
+    </center>'],
             ]
         );
     }

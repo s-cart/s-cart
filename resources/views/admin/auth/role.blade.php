@@ -31,7 +31,7 @@
                                         <input type="text"   id="name" name="name" value="{{ old('name',$role['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -48,7 +48,7 @@
                                         <input type="text"   id="slug" name="slug" value="{{ old('slug',$role['slug']??'') }}" class="form-control slug" placeholder="" />
                                     </div>
                                         @if ($errors->has('slug'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('slug') }}
                                             </span>
                                         @endif
@@ -75,7 +75,7 @@ $old_permission = old('permission',($role?$role->permissions->pluck('id')->toArr
                                         @endforeach
                                     </select>
                                         @if ($errors->has('permission'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('permission') }}
                                             </span>
                                         @endif
@@ -100,7 +100,7 @@ $old_administrators = old('administrators',array_keys($roleCheck));
                                     @endforeach
                                 </select>
                                     @if ($errors->has('administrators'))
-                                        <span class="help-block">
+                                        <span class="form-text">
                                             {{ $errors->first('administrators') }}
                                         </span>
                                     @endif

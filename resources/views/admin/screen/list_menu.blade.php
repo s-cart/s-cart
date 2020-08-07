@@ -196,7 +196,11 @@
                         <div class="col-sm-10 ">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                              <span class="input-group-text input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                              <span class="input-group-text">
+                              <span class="input-group-addon">
+                                <i class="fas fa-pencil-alt"></i>
+                              </span>
+                              </span>
                             </div>
                             <input required="1" style="width: 140px" type="text" id="icon" name="icon" value="{!! old()?old('icon'):$menu['icon']??'fas fa-bars' !!}" class="form-control icon {{ $errors->has('icon') ? ' is-invalid' : '' }} " placeholder="Input Icon">
                           </div>

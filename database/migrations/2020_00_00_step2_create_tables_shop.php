@@ -15,9 +15,7 @@ class CreateTablesShop extends Migration
     public function up()
     {
         //Drop table if exist
-        if (!empty(session('infoInstall')['dropdb'])) {
-            $this->down();
-        }
+        $this->down();
 
         Schema::create(SC_DB_PREFIX.'shop_banner', function (Blueprint $table) {
             $table->increments('id');
@@ -30,6 +28,13 @@ class CreateTablesShop extends Migration
             $table->integer('click')->default(0);
             $table->tinyInteger('type')->default(0);
             $table->timestamps();
+            }
+        );
+
+        Schema::create(SC_DB_PREFIX.'shop_banner_store', function (Blueprint $table) {
+            $table->integer('banner_id');
+            $table->integer('store_id');
+            $table->primary(['banner_id', 'store_id']);
             }
         );
 
@@ -238,7 +243,7 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_page', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image', 255)->nullable();
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->integer('status')->default(0);
             }
         );
@@ -455,7 +460,7 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_news', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image', 200)->nullable();
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamp('created_at')->nullable();
@@ -464,13 +469,13 @@ class CreateTablesShop extends Migration
         );
 
         Schema::create(SC_DB_PREFIX.'shop_news_description', function (Blueprint $table) {
-            $table->integer('shop_news_id');
+            $table->integer('news_id');
             $table->string('lang', 10);
             $table->string('title', 200)->nullable();
             $table->string('keyword', 200)->nullable();
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
-            $table->primary(['shop_news_id', 'lang']);
+            $table->primary(['news_id', 'lang']);
             }
         );
 
@@ -619,14 +624,6 @@ class CreateTablesShop extends Migration
             }
         );
 
-        Schema::create(SC_DB_PREFIX.'shop_brand_store', function (Blueprint $table) {
-            $table->integer('brand_id');
-            $table->integer('store_id');
-            $table->primary(['brand_id', 'store_id']);
-            }
-        );
-
-
     }
 
     /**
@@ -637,6 +634,7 @@ class CreateTablesShop extends Migration
     public function down()
     {
         Schema::dropIfExists(SC_DB_PREFIX.'shop_banner');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_banner_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_email_template');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_language');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_block_content');
@@ -692,12 +690,11 @@ class CreateTablesShop extends Migration
         //Job
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('failed_jobs');
-        //Multi vendor
+        //Multi store
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_category_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_page_store');
-        Schema::dropIfExists(SC_DB_PREFIX.'shop_brand_store');
     }
 
 }

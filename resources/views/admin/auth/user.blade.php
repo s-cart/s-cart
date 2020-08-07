@@ -29,7 +29,7 @@
                                         <input type="text"   id="name" name="name" value="{{ old('name',$user['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -46,7 +46,7 @@
                                         <input type="text"   id="username" name="username" value="{{ old('username',$user['username']??'') }}" class="form-control username" placeholder="" />
                                     </div>
                                         @if ($errors->has('username'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('username') }}
                                             </span>
                                         @endif
@@ -63,7 +63,7 @@
                                         <input type="text"   id="email" name="email" value="{{ old('email',$user['email']??'') }}" class="form-control email" placeholder="" />
                                     </div>
                                         @if ($errors->has('email'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
                                             </span>
                                         @endif
@@ -82,7 +82,7 @@
                                        </span>
                                     </div>
                                         @if ($errors->has('avatar'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('avatar') }}
                                             </span>
                                         @endif
@@ -104,12 +104,12 @@
                                         <input type="password"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
                                     </div>
                                         @if ($errors->has('password'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('password') }}
                                             </span>
                                         @else
                                             @if ($user)
-                                                <span class="help-block">
+                                                <span class="form-text">
                                                      {{ trans('user.admin.keep_password') }}
                                                  </span>
                                             @endif
@@ -127,12 +127,12 @@
                                         <input type="password"   id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')??'' }}" class="form-control password_confirmation" placeholder="" />
                                     </div>
                                         @if ($errors->has('password_confirmation'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('password_confirmation') }}
                                             </span>
                                         @else
                                             @if ($user)
-                                                <span class="help-block">
+                                                <span class="form-text">
                                                      {{ trans('user.admin.keep_password') }}
                                                  </span>
                                             @endif
@@ -168,7 +168,7 @@
                                     @endforeach
                                 </select>
                                     @if ($errors->has('roles'))
-                                        <span class="help-block">
+                                        <span class="form-text">
                                             {{ $errors->first('roles') }}
                                         </span>
                                     @endif
@@ -204,7 +204,7 @@
                                             @endforeach
                                         </select>
                                             @if ($errors->has('permission'))
-                                                <span class="help-block">
+                                                <span class="form-text">
                                                     {{ $errors->first('permission') }}
                                                 </span>
                                             @endif

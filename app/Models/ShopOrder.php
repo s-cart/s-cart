@@ -399,8 +399,10 @@ class ShopOrder extends Model
     */
     public function getCountryInYear() {
         return $this->selectRaw('country, count(id) as count')
-        ->whereRaw('DATE(created_at) >=  DATE_SUB(DATE(NOW()), INTERVAL 12 MONTH)')
-        ->groupBy('country')->orderBy('count','desc')->get();
+            ->whereRaw('DATE(created_at) >=  DATE_SUB(DATE(NOW()), INTERVAL 12 MONTH)')
+            ->groupBy('country')
+            ->orderBy('count', 'desc')
+            ->get();
     }
     
     /**
@@ -409,10 +411,9 @@ class ShopOrder extends Model
      * @return  [type]  [return description]
      */
     public function getSumOrderTotalInYear() {
-        return $this->selectRaw('DATE_FORMAT(created_at, "%Y-%m") AS ym,
-        SUM(total/exchange_rate) AS total_amount')
-        ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 12 MONTH), "%Y-%m-00")')
-        ->groupBy('ym')->get();
+        return $this->selectRaw('DATE_FORMAT(created_at, "%Y-%m") AS ym, SUM(total/exchange_rate) AS total_amount')
+            ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 12 MONTH), "%Y-%m-00")')
+            ->groupBy('ym')->get();
     }
 
     /**
@@ -423,8 +424,8 @@ class ShopOrder extends Model
     public function getSumOrderTotalInMonth() {
         return $this->selectRaw('DATE_FORMAT(created_at, "%m-%d") AS md,
         SUM(total/exchange_rate) AS total_amount, count(id) AS total_order')
-        ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), "%Y-%m-%d 00:00")')
-        ->groupBy('md')->get();
+            ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), "%Y-%m-%d 00:00")')
+            ->groupBy('md')->get();
     }
 
 }

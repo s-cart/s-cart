@@ -29,7 +29,7 @@
                                         <input type="text" id="name" name="name" value="{!! old()?old('name'):$link['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -46,11 +46,11 @@
                                         <input type="text" id="url" name="url" value="{!! old()?old('url'):$link['url']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('url'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('url') }}
                                             </span>
                                         @else
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ trans('link.admin.helper_url') }}
                                             </span>
                                         @endif
@@ -68,7 +68,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('target'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('target') }}
                                             </span>
                                         @endif
@@ -85,7 +85,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('group'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('group') }}
                                             </span>
                                         @endif
@@ -104,7 +104,7 @@
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{!! old()?old('sort'):$link['sort']??0 !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif

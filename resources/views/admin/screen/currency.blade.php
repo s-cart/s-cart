@@ -29,7 +29,7 @@
                                         <input type="text" id="name" name="name" value="{!! old()?old('name'):$currency['name']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -50,7 +50,7 @@
 
                                     </div>
                                         @if ($errors->has('code'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('code') }}
                                             </span>
                                         @endif
@@ -67,7 +67,7 @@
                                         <input type="text" id="symbol" name="symbol" value="{!! old()?old('symbol'):$currency['symbol']??'' !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('symbol'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('symbol') }}
                                             </span>
                                         @endif
@@ -82,7 +82,7 @@
                                         <input type="number" step="0.01" id="exchange_rate" name="exchange_rate" value="{!! old()?old('exchange_rate'):$currency['exchange_rate']??1 !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('exchange_rate'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('exchange_rate') }}
                                             </span>
                                         @endif
@@ -97,7 +97,7 @@
                                         <input type="number" id="precision" name="precision" type="" value="{!! old()?old('precision'):$currency['precision']??0 !!}" class="form-control" placeholder="" min = 0 />
                                     </div>
                                         @if ($errors->has('precision'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('precision') }}
                                             </span>
                                         @endif
@@ -110,7 +110,7 @@
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="1" {!! (old('symbol_first',$currency['symbol_first']??1) =='1')?'checked':'' !!}>Yes</label>
                                     <label class="radio-inline"><input type="radio" name="symbol_first" value="0" {!! (old('symbol_first',$currency['symbol_first']??0) =='0')?'checked':'' !!}>No</label>
                                         @if ($errors->has('symbol_first'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('symbol_first') }}
                                             </span>
                                         @endif
@@ -126,7 +126,7 @@
                                         <input type="text" id="thousands" name="thousands" type="text" value="{!! old('thousands',$currency['thousands']??',') !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('thousands'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('thousands') }}
                                             </span>
                                         @endif
@@ -141,7 +141,7 @@
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{!! old('sort',$currency['sort']??0) !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif

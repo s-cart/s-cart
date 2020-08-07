@@ -1,12 +1,13 @@
 <?php
 return [
     'admin' => [
-        'title' => 'Bảo trì website',
+        'title' => 'Trang bảo trì',
+        'content' => 'Nội dung bảo trì',
         'edit_success' => 'Cập nhật thành công!',
         'description' => 'Nội dung',
     ],
 
     'config_manager' => [
-        'title' => 'Bảo trì website',
+        'title' => 'Trang bảo trì',
     ],
 ];

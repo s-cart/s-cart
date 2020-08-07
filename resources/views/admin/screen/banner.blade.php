@@ -26,14 +26,14 @@
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <input type="text" id="image" name="image" value="{{ old('image',$banner['image']??'') }}" class="form-control image" placeholder=""  />
-                                       <span class="input-group-btn">
+                                        <div class="input-group-append">
                                          <a data-input="image" data-preview="preview_image" data-type="banner" class="btn btn-primary lfm">
                                            <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                          </a>
-                                       </span>
+                                        </div>
                                     </div>
                                         @if ($errors->has('image'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
                                             </span>
                                         @endif
@@ -57,7 +57,7 @@
                                         <input type="text" id="url" name="url" value="{{ old()?old('url'):$banner['url']??'' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('url'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('url') }}
                                             </span>
                                         @endif
@@ -75,7 +75,7 @@
                                             @endforeach
                                         </select>
                                             @if ($errors->has('target'))
-                                                <span class="help-block">
+                                                <span class="form-text">
                                                     <i class="fa fa-info-circle"></i> {{ $errors->first('target') }}
                                                 </span>
                                             @endif
@@ -87,12 +87,51 @@
                                 <div class="col-sm-8">
                                         <textarea class="form-control" rows="10" id="html" name="html">{{ old('html',$banner['html']??'') }}</textarea>
                                         @if ($errors->has('html'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('html') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
+
+                        {{-- select store --}}
+                        @if (count($stories) > 1)
+                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
+                            @php
+                            $listStore = [];
+                            $store = old('store', ($storiesPivot ?? []));
+                            if(is_array($store)){
+                                foreach($store as $value){
+                                    $listStore[] = (int)$value;
+                                }
+                            }
+                            @endphp
+                            <label for="store" class="col-sm-2 col-form-label">
+                                {{ trans('store.select_store') }}
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm store select2" multiple="multiple"
+                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
+                                    name="store[]">
+                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
+                                    @foreach ($stories as $id => $store)
+                                    <option value="{{ $id }}"
+                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('store'))
+                                <span class="form-text">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" name="store[]" value="0">
+                        @endif
+                        {{-- //select store --}}
+
 
                             @if (!empty($dataType))
                             <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
@@ -104,7 +143,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('type'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     {{ $errors->first('type') }}
                                 </span>
                                 @endif
@@ -123,7 +162,7 @@
                                         <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{{ old()?old('sort'):$banner['sort']??0 }}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif

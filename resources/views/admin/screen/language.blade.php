@@ -79,7 +79,7 @@
                 <input type="text" id="icon" name="icon" value="{!! old()?old('icon'):$language['icon']??'' !!}" class="form-control icon {{ $errors->has('icon') ? ' is-invalid' : '' }}">
                 <div class="input-group-append">
                   <span data-input="icon" data-preview="preview_icon" data-type="language"
-                      class="input-group-text btn btn-primary lfm"><i class="fa fa-icon"></i>  {{trans('admin.choose_icon')}}</span>
+                      class="btn btn-primary lfm"><i class="fa fa-icon"></i>  {{trans('admin.choose_icon')}}</span>
                 </div>
               </div>
 

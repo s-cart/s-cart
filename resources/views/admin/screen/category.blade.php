@@ -52,11 +52,11 @@
                                         class="form-control {{ $code.'__title' }}" placeholder="" />
                                 </div>
                                 @if ($errors->has('descriptions.'.$code.'.title'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.title') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>200]) }}
                                     </span>
                                 @endif
@@ -78,11 +78,11 @@
                                         class="form-control {{ $code.'__keyword' }}" placeholder="" />
                                 </div>
                                 @if ($errors->has('descriptions.'.$code.'.keyword'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.keyword') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>200]) }}
                                     </span>
                                 @endif
@@ -98,11 +98,11 @@
                                         name="descriptions[{{ $code }}][description]"
                                         class="form-control {{ $code.'__description' }}" placeholder="" />{{  old()?old('descriptions.'.$code.'.description'):($descriptions[$code]['description']??'')  }}</textarea>
                                 @if ($errors->has('descriptions.'.$code.'.description'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.description') }}
                                 </span>
                                 @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {{ trans('admin.max_c',['max'=>300]) }}
                                     </span>
                                 @endif
@@ -112,6 +112,43 @@
                         </div>
                         @endforeach
 
+                        {{-- select store --}}
+                        @if (count($stories) > 1)
+                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
+                            @php
+                            $listStore = [];
+                            $store = old('store', ($storiesPivot ?? []));
+                            if(is_array($store)){
+                                foreach($store as $value){
+                                    $listStore[] = (int)$value;
+                                }
+                            }
+                            @endphp
+                            <label for="store" class="col-sm-2 col-form-label">
+                                {{ trans('store.select_store') }}
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm store select2" multiple="multiple"
+                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
+                                    name="store[]">
+                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
+                                    @foreach ($stories as $id => $store)
+                                    <option value="{{ $id }}"
+                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('store'))
+                                <span class="form-text">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" name="store[]" value="0">
+                        @endif
+                        {{-- //select store --}}
 
                         <div class="form-group row {{ $errors->has('parent') ? ' text-red' : '' }}">
                             <label for="parent"
@@ -129,7 +166,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('parent'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('parent') }}
                                 </span>
                                 @endif
@@ -148,7 +185,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('alias'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('alias') }}
                                 </span>
                                 @endif
@@ -162,15 +199,15 @@
                                     <input type="text" id="image" name="image"
                                         value="{!! old('image',$category['image']??'') !!}"
                                         class="form-control input image" placeholder="" />
-                                    <span class="input-group-btn">
+                                    <div class="input-group-append">
                                         <a data-input="image" data-preview="preview_image" data-type="category"
                                             class="btn btn-primary lfm">
                                             <i class="fa fa-image"></i> {{trans('product.admin.choose_image')}}
                                         </a>
-                                    </span>
+                                    </div>
                                 </div>
                                 @if ($errors->has('image'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
                                 </span>
                                 @endif
@@ -195,7 +232,7 @@
                                         placeholder="" />
                                 </div>
                                 @if ($errors->has('sort'))
-                                <span class="help-block">
+                                <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                 </span>
                                 @endif
@@ -208,7 +245,7 @@
                                 <input class="input" type="checkbox" name="top"
                                     {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
                             </div>
-                            <span class="help-block">
+                            <span class="form-text">
                                 <i class="fa fa-info-circle"></i> {{ trans('category.top_help') }}
                             </span>
                         </div>

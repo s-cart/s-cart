@@ -145,12 +145,6 @@
                                 <input class="input-md  textInput form-control" id="database_prefix"  name="database_prefix" placeholder="{{ trans('install.database_prefix_help') }}" style="margin-bottom: 10px" type="text"  value="sc_" />
                             </div>
                         </div>
-                        <div class="form-group info-install required">
-                            <div class="controls col-md-offset-4 col-md-8 ">
-                                <input  class="input-md checkboxinput" id="id_dropdb" name="dropdb" style="margin-bottom: 10px" type="checkbox" />
-                                         {!! trans('install.drop_db') !!}
-                            </div>
-                        </div>
                         <hr>
                         <div id="div_language_default" class="form-group info-install required">
                             <label for="language_default"  required class="control-label col-md-4  requiredField"> {{ trans('install.language_default') }} </label>
@@ -250,7 +244,6 @@ $('#submit-install').click(function(event) {
                     admin_email:$('#admin_email').val(),
                     admin_url:$('#admin_url').val(),
                     database_password:$('#database_password').val(),
-                    dropdb:$('#id_dropdb').is(':checked'),
                     step:'step1',
                 },
             })
@@ -261,6 +254,7 @@ $('#submit-install').click(function(event) {
                     $('#msg').removeClass('success');
                     $('#msg').addClass('error');
                     $('#msg').html(data);
+                    $('#submit-install').button('reset');
                 }
                 else if(error ===0)
                 {
@@ -275,12 +269,14 @@ $('#submit-install').click(function(event) {
                     $('#msg').removeClass('success');
                     $('#msg').addClass('error');
                     $('#msg').html(data.msg);
+                    $('#submit-install').button('reset');
                 }
             })
             .fail(function() {
                 $('#msg').removeClass('success');
                 $('#msg').addClass('error');
                 $('#msg').html('{{ trans('install.env.error') }}');
+                $('#submit-install').button('reset');
 
             })
     }
@@ -300,6 +296,7 @@ function installDatabaseStep1(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error === 0)
         {
@@ -313,6 +310,7 @@ function installDatabaseStep1(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
 
     })
@@ -320,6 +318,7 @@ function installDatabaseStep1(infoInstall){
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.database.error_1') }}');
+        $('#submit-install').button('reset');
     })
 }
 
@@ -338,6 +337,7 @@ function installDatabaseStep2(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error === 0)
         {
@@ -351,6 +351,7 @@ function installDatabaseStep2(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
 
     })
@@ -358,6 +359,7 @@ function installDatabaseStep2(infoInstall){
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.database.error_2') }}');
+        $('#submit-install').button('reset');
     })
 }
 
@@ -375,6 +377,7 @@ function installDatabaseStep3(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error === 0)
         {
@@ -388,6 +391,7 @@ function installDatabaseStep3(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
 
     })
@@ -395,6 +399,7 @@ function installDatabaseStep3(infoInstall){
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.database.error_3') }}');
+        $('#submit-install').button('reset');
     })
 }
 
@@ -412,6 +417,7 @@ function installDatabaseStep4(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error === 0)
         {
@@ -425,6 +431,7 @@ function installDatabaseStep4(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
 
     })
@@ -432,6 +439,7 @@ function installDatabaseStep4(infoInstall){
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.database.error_4') }}');
+        $('#submit-install').button('reset');
     })
 }
 
@@ -448,6 +456,7 @@ function installDatabaseStep5(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error === 0)
         {
@@ -460,6 +469,7 @@ function installDatabaseStep5(infoInstall){
             $('#msg').removeClass('success');
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
 
     })
@@ -467,6 +477,7 @@ function installDatabaseStep5(infoInstall){
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.database.error_5') }}');
+        $('#submit-install').button('reset');
     })
 }
 
@@ -482,6 +493,7 @@ function completeInstall() {
         if(error != 1 && error !=0){
             $('#msg').addClass('error');
             $('#msg').html(data);
+            $('#submit-install').button('reset');
         }
         else if(error ===0)
         {
@@ -494,12 +506,14 @@ function completeInstall() {
         }else{
             $('#msg').addClass('error');
             $('#msg').html(data.msg);
+            $('#submit-install').button('reset');
         }
     })
     .fail(function() {
         $('#msg').removeClass('success');
         $('#msg').addClass('error');
         $('#msg').html('{{ trans('install.complete.error') }}');
+        $('#submit-install').button('reset');
     })
 }
 

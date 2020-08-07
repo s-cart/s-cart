@@ -1,12 +1,13 @@
 <?php
 return [
     'admin' => [
-        'title' => 'Website maintenance',
+        'title' => 'Maintenance page',
+        'content' => 'Maintenance content',
         'edit_success' => 'Update success!',
         'description' => 'Description',
     ],
 
     'config_manager' => [
-        'title' => 'Website maintenance',
+        'title' => 'Maintenance page',
     ],
 ];

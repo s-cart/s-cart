@@ -6,16 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopBanner;
 use Illuminate\Http\Request;
 use Validator;
-
+use App\Models\AdminStore;
+use App\Models\ShopBannerStore;
 class AdminBannerController extends Controller
 {
     protected $arrTarget;
     protected $dataType;
-
+    public $stories;
     public function __construct()
     {
         $this->arrTarget = ['_blank' => '_blank', '_self' => '_self'];
-        $this->dataType = ['0' => 'Banner', '1' => 'Background'];
+        $this->dataType = ['0' => 'Banner', '1' => 'Background', '2' => 'Other'];
+        $this->stories = AdminStore::getAll();
     }
 
     public function index()
@@ -38,6 +40,8 @@ class AdminBannerController extends Controller
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+
+        $data['stories'] = $this->stories;
 
         $listTh = [
             'image' => trans('banner.image'),
@@ -129,6 +133,7 @@ class AdminBannerController extends Controller
             'arrTarget' => $this->arrTarget,
             'dataType' => $this->dataType,
             'url_action' => route('admin_banner.create'),
+            'stories' => $this->stories,
         ];
         return view('admin.screen.banner')
             ->with($data);
@@ -145,6 +150,7 @@ class AdminBannerController extends Controller
         $validator = Validator::make($dataOrigin, [
             'sort' => 'numeric|min:0',
             'email' => 'email|nullable',
+            'store' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -152,7 +158,7 @@ class AdminBannerController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
+        $store = $data['store'] ?? [];
         $dataInsert = [
             'image' => $data['image'],
             'url' => $data['url'],
@@ -162,8 +168,12 @@ class AdminBannerController extends Controller
             'status' => empty($data['status']) ? 0 : 1,
             'sort' => (int) $data['sort'],
         ];
-        ShopBanner::create($dataInsert);
+        $banner = ShopBanner::create($dataInsert);
 
+        //Insert store
+        if ($store) {
+            $banner->stories()->attach($store);
+        }
         return redirect()->route('admin_banner.index')->with('success', trans('banner.admin.create_success'));
 
     }
@@ -186,14 +196,16 @@ class AdminBannerController extends Controller
             'dataType' => $this->dataType,
             'banner' => $banner,
             'url_action' => route('admin_banner.edit', ['id' => $banner['id']]),
+            'stories' => $this->stories,
+            'storiesPivot' => ShopBannerStore::where('banner_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.banner')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /*
+     * update status
+     */
     public function postEdit($id)
     {
         $data = request()->all();
@@ -201,6 +213,7 @@ class AdminBannerController extends Controller
         $validator = Validator::make($dataOrigin, [
             'sort' => 'numeric|min:0',
             'email' => 'email|nullable',
+            'store' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -209,7 +222,7 @@ class AdminBannerController extends Controller
                 ->withInput();
         }
 //Edit
-
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'image' => $data['image'],
             'url' => $data['url'],
@@ -220,18 +233,24 @@ class AdminBannerController extends Controller
             'sort' => (int) $data['sort'],
 
         ];
-        $obj = ShopBanner::find($id);
-        $obj->update($dataUpdate);
+        $banner = ShopBanner::find($id);
+        $banner->update($dataUpdate);
+
+        //Update store
+        $banner->stories()->detach();
+        if (count($store)) {
+            $banner->stories()->attach($store);
+        }
 
 //
         return redirect()->route('admin_banner.index')->with('success', trans('banner.admin.edit_success'));
 
     }
 
-/*
-Delete list item
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list item
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {

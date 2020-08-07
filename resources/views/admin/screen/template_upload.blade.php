@@ -19,17 +19,17 @@
                                 <div class="input-group">
                                      <input accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" type="file" required="required" name="file" class="form-control">
                                     <div class="input-group-append">
-                                      <span class="input-group-text button-upload pointer" id=""><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('template.import_submit') }}</span>
+                                      <span class="button-upload pointer" id=""><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('template.import_submit') }}</span>
                                     </div>
                                   </div>
                                 <div>
 
                                     @if ($errors->has('file'))
-                                    <span class="help-block text-red">
+                                    <span class="form-text text-red">
                                         <i class="fa fa-info-circle"></i> {{ $errors->first('file') }}
                                     </span>
                                     @else
-                                    <span class="help-block">
+                                    <span class="form-text">
                                         <i class="fa fa-info-circle"></i> {!! trans('template.import_note') !!}
                                     </span>
                                     @endif

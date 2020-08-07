@@ -9,7 +9,7 @@
 
                 <div class="card-tools">
                     <div class="btn-group float-right mr-5">
-                        <a href="{{ route('admin_maintain.index') }}" class="btn  btn-flat btn-default" title="List"><i
+                        <a href="{{ route('admin_store_maintain.index') }}" class="btn  btn-flat btn-default" title="List"><i
                                 class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>
@@ -39,14 +39,14 @@
                                 <div
                                     class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_content') ? ' text-red' : '' }}">
                                     <label for="{{ $code }}__maintain_content"
-                                        class="col-sm-2 col-form-label">{{ trans('maintain.admin.description') }}</label>
+                                        class="col-sm-2 col-form-label">{{ trans('store_maintain.admin.description') }}</label>
                                     <div class="col-sm-8">
                                         <textarea id="{{ $code }}__maintain_content" class="editor"
                                             name="descriptions[{{ $code }}][maintain_content]">
                                                 {{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}
                                             </textarea>
                                         @if ($errors->has('descriptions.'.$code.'.maintain_content'))
-                                        <span class="help-block">
+                                        <span class="form-text">
                                             <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_content') }}
                                         </span>
                                         @endif

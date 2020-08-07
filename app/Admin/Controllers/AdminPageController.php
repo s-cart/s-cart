@@ -8,14 +8,17 @@ use App\Models\ShopPage;
 use App\Models\ShopPageDescription;
 use Illuminate\Http\Request;
 use Validator;
+use App\Models\AdminStore;
+use App\Models\ShopPageStore;
 
 class AdminPageController extends Controller
 {
-    public $languages;
+    public $languages, $stories;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getList();
+        $this->stories = AdminStore::getAll();
 
     }
 
@@ -38,6 +41,8 @@ class AdminPageController extends Controller
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+
+        $data['stories'] = $this->stories;
 
         $listTh = [
             'title' => trans('page.title'),
@@ -82,8 +87,7 @@ class AdminPageController extends Controller
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
                     <a href="' . route('admin_page.edit', ['id' => $row['id']]) . '"><span title="' . trans('page.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-
-                      <span ' . (in_array($row['id'], SC_GUARD_PAGES) ? "style='display:none'" : "") . ' onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('language.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
+                      <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('language.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
                 ,
             ];
         }
@@ -126,10 +130,10 @@ class AdminPageController extends Controller
             ->with($data);
     }
 
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
+    /*
+     * Form create new order in admin
+     * @return [type] [description]
+     */
     public function create()
     {
         $page = [];
@@ -141,6 +145,7 @@ class AdminPageController extends Controller
             'languages' => $this->languages,
             'page' => $page,
             'url_action' => route('admin_page.create'),
+            'stories' => $this->stories,
 
         ];
 
@@ -148,10 +153,10 @@ class AdminPageController extends Controller
             ->with($data);
     }
 
-/**
- * Post create new order in admin
- * @return [type] [description]
- */
+    /*
+     * Post create new order in admin
+     * @return [type] [description]
+     */
     public function postCreate()
     {
 
@@ -161,32 +166,34 @@ class AdminPageController extends Controller
         $data['alias'] = sc_word_format_url($data['alias']);
         $data['alias'] = sc_word_limit($data['alias'], 100);
         $validator = Validator::make($data, [
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopPage::class.'",alias|string|max:100',
-            'descriptions.*.title' => 'required|string|max:200',
-            'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
-        ], [
-            'alias.regex' => trans('page.alias_validate'),
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('page.title')]),
-        ]);
+                'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+                'store' => 'required',
+                'descriptions.*.title' => 'required|string|max:200',
+                'descriptions.*.keyword' => 'nullable|string|max:200',
+                'descriptions.*.description' => 'nullable|string|max:300',
+            ], [
+                'alias.regex' => trans('page.alias_validate'),
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('page.title')]),
+            ]
+        );
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput($data);
         }
-
+        $store = $data['store'] ?? [];
         $dataInsert = [
             'image' => $data['image'],
             'alias' => $data['alias'],
             'status' => !empty($data['status']) ? 1 : 0,
         ];
-        $id = ShopPage::insertGetId($dataInsert);
+        $page = ShopPage::create($dataInsert);
         $dataDes = [];
         $languages = $this->languages;
         foreach ($languages as $code => $value) {
             $dataDes[] = [
-                'page_id' => $id,
+                'page_id' => $page->id,
                 'lang' => $code,
                 'title' => $data['descriptions'][$code]['title'],
                 'keyword' => $data['descriptions'][$code]['keyword'],
@@ -195,14 +202,18 @@ class AdminPageController extends Controller
             ];
         }
         ShopPageDescription::insert($dataDes);
+        //Insert store
+        if ($store) {
+            $page->stories()->attach($store);
+        }
 
         return redirect()->route('admin_page.index')->with('success', trans('page.admin.create_success'));
 
     }
 
-/**
- * Form edit
- */
+    /*
+     * Form edit
+     */
     public function edit($id)
     {
         $page = ShopPage::find($id);
@@ -217,14 +228,16 @@ class AdminPageController extends Controller
             'languages' => $this->languages,
             'page' => $page,
             'url_action' => route('admin_page.edit', ['id' => $page['id']]),
+            'stories' => $this->stories,
+            'storiesPivot' => ShopPageStore::where('page_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.page')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /*
+     * update status
+     */
     public function postEdit($id)
     {
         $page = ShopPage::find($id);
@@ -235,14 +248,16 @@ class AdminPageController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'descriptions.*.title' => 'required|string|max:200',
-            'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopPage::class.'",alias,' . $page->id . ',id|string|max:100',
-        ], [
-            'alias.regex' => trans('page.alias_validate'),
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('page.title')]),
-        ]);
+                'descriptions.*.title' => 'required|string|max:200',
+                'descriptions.*.keyword' => 'nullable|string|max:200',
+                'descriptions.*.description' => 'nullable|string|max:300',
+                'store' => 'required',
+                'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            ], [
+                'alias.regex' => trans('page.alias_validate'),
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('page.title')]),
+            ]
+        );
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -250,7 +265,7 @@ class AdminPageController extends Controller
                 ->withInput($data);
         }
 //Edit
-
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'image' => $data['image'],
             'status' => empty($data['status']) ? 0 : 1,
@@ -258,9 +273,8 @@ class AdminPageController extends Controller
         if (!empty($data['alias'])) {
             $dataUpdate['alias'] = $data['alias'];
         }
-        $obj = ShopPage::find($id);
-        $obj->update($dataUpdate);
-        $obj->descriptions()->delete();
+        $page->update($dataUpdate);
+        $page->descriptions()->delete();
         $dataDes = [];
         foreach ($data['descriptions'] as $code => $row) {
             $dataDes[] = [
@@ -274,15 +288,21 @@ class AdminPageController extends Controller
         }
         ShopPageDescription::insert($dataDes);
 
+        //Update store
+        $page->stories()->detach();
+        if (count($store)) {
+            $page->stories()->attach($store);
+        }
+
 //
         return redirect()->route('admin_page.index')->with('success', trans('page.admin.edit_success'));
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+        Delete list Item
+        Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {

@@ -31,7 +31,7 @@
                                         <input type="text"   id="name" name="name" value="{{ old('name',$permission['name']??'')}}" class="form-control name" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -48,7 +48,7 @@
                                         <input type="text"   id="slug" name="slug" value="{{ old('slug',$permission['slug']??'') }}" class="form-control slug" placeholder="" />
                                     </div>
                                         @if ($errors->has('slug'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('slug') }}
                                             </span>
                                         @endif
@@ -72,7 +72,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('http_uri'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('http_uri') }}
                                             </span>
                                         @endif

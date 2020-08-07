@@ -8,15 +8,16 @@ use App\Models\ShopCategoryDescription;
 use App\Models\ShopLanguage;
 use Illuminate\Http\Request;
 use Validator;
-
+use App\Models\AdminStore;
+use App\Models\ShopCategoryStore;
 class AdminCategoryController extends Controller
 {
-    public $languages;
+    public $languages, $stories;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getList();
-
+        $this->stories = AdminStore::getAll();
     }
 
     public function index()
@@ -38,6 +39,8 @@ class AdminCategoryController extends Controller
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+
+        $data['stories'] = $this->stories;
 
         $listTh = [
             'id' => trans('category.id'),
@@ -132,10 +135,10 @@ class AdminCategoryController extends Controller
             ->with($data);
     }
 
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
+    /*
+     * Form create new order in admin
+     * @return [type] [description]
+     */
     public function create()
     {
         $data = [
@@ -147,17 +150,17 @@ class AdminCategoryController extends Controller
             'category' => [],
             'categories' => (new ShopCategory)->getTreeCategories(),
             'url_action' => route('admin_category.create'),
-
+            'stories' => $this->stories,
         ];
 
         return view('admin.screen.category')
             ->with($data);
     }
 
-/**
- * Post create new order in admin
- * @return [type] [description]
- */
+    /*
+     * Post create new order in admin
+     * @return [type] [description]
+     */
     public function postCreate()
     {
         $data = request()->all();
@@ -168,24 +171,26 @@ class AdminCategoryController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'image' => 'required',
-            'parent' => 'required',
-            'sort' => 'numeric|min:0',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias|string|max:100',
-            'descriptions.*.title' => 'required|string|max:200',
-            'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
-        ], [
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('category.title')]),
-            'alias.regex' => trans('category.alias_validate'),
-        ]);
+                'image' => 'required',
+                'parent' => 'required',
+                'sort' => 'numeric|min:0',
+                'store' => 'required',
+                'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias|string|max:100',
+                'descriptions.*.title' => 'required|string|max:200',
+                'descriptions.*.keyword' => 'nullable|string|max:200',
+                'descriptions.*.description' => 'nullable|string|max:300',
+            ], [
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('category.title')]),
+                'alias.regex' => trans('category.alias_validate'),
+            ]
+        );
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput($data);
         }
-
+        $store = $data['store'] ?? [];
         $dataInsert = [
             'image' => $data['image'],
             'alias' => $data['alias'],
@@ -194,12 +199,12 @@ class AdminCategoryController extends Controller
             'status' => !empty($data['status']) ? 1 : 0,
             'sort' => (int) $data['sort'],
         ];
-        $id = ShopCategory::insertGetId($dataInsert);
+        $category = ShopCategory::create($dataInsert);
         $dataDes = [];
         $languages = $this->languages;
         foreach ($languages as $code => $value) {
             $dataDes[] = [
-                'category_id' => $id,
+                'category_id' => $category->id,
                 'lang' => $code,
                 'title' => $data['descriptions'][$code]['title'],
                 'keyword' => $data['descriptions'][$code]['keyword'],
@@ -207,14 +212,18 @@ class AdminCategoryController extends Controller
             ];
         }
         ShopCategoryDescription::insert($dataDes);
+        //Insert store
+        if ($store) {
+            $category->stories()->attach($store);
+        }
 
         return redirect()->route('admin_category.index')->with('success', trans('category.admin.create_success'));
 
     }
 
-/**
- * Form edit
- */
+    /*
+     * Form edit
+     */
     public function edit($id)
     {
         $category = ShopCategory::find($id);
@@ -230,14 +239,16 @@ class AdminCategoryController extends Controller
             'category' => $category,
             'categories' => (new ShopCategory)->getTreeCategories(),
             'url_action' => route('admin_category.edit', ['id' => $category['id']]),
+            'stories' => $this->stories,
+            'storiesPivot' => ShopCategoryStore::where('category_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.category')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /*
+     * update status
+     */
     public function postEdit($id)
     {
         $category = ShopCategory::find($id);
@@ -252,14 +263,16 @@ class AdminCategoryController extends Controller
             'image' => 'required',
             'parent' => 'required',
             'sort' => 'numeric|min:0',
+            'store' => 'required',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias,' . $category->id . ',id|string|max:100',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-        ], [
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('category.title')]),
-            'alias.regex' => trans('category.alias_validate'),
-        ]);
+            ], [
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('category.title')]),
+                'alias.regex' => trans('category.alias_validate'),
+            ]
+        );
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -267,7 +280,7 @@ class AdminCategoryController extends Controller
                 ->withInput($data);
         }
 //Edit
-
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'image' => $data['image'],
             'alias' => $data['alias'],
@@ -291,15 +304,21 @@ class AdminCategoryController extends Controller
         }
         ShopCategoryDescription::insert($dataDes);
 
+        //Update store
+        $category->stories()->detach();
+        if (count($store)) {
+            $category->stories()->attach($store);
+        }
+
 //
         return redirect()->route('admin_category.index')->with('success', trans('category.admin.edit_success'));
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list Item
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {

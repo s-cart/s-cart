@@ -6,67 +6,192 @@ use App\Http\Controllers\Controller;
 use App\Models\AdminStore;
 use App\Models\AdminStoreDescription;
 use App\Models\ShopLanguage;
+use Validator;
 use Illuminate\Http\Request;
 
 class AdminStoreController extends Controller
 {
+    public $templates;
+
+    public function __construct()
+    {
+        $allTemplate = sc_get_all_template();
+        $templates = [];
+        foreach ($allTemplate as $key => $template) {
+            $templates[$key] = empty($template['config']['name']) ? $key : $template['config']['name'];
+        }
+        $this->templates = $templates;
+
+    }
 
     public function index()
     {
-        $languages = ShopLanguage::getCodeActive();
+        $languages = ShopLanguage::getList();
         $data = [
             'title' => trans('store.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
-
-        $infosDescription = [];
-        foreach ($languages as $code => $lang) {
-            $langDescriptions = AdminStoreDescription::where('lang', $code)->first();
-            $infosDescription['title'][$code] = $langDescriptions['title'];
-            $infosDescription['description'][$code] = $langDescriptions['description'];
-            $infosDescription['keyword'][$code] = $langDescriptions['keyword'];
-            $infosDescription['maintain_content'][$code] = $langDescriptions['maintain_content'];
-        }
-
-        $infos = AdminStore::first();
-        $data['infos'] = $infos;
-        $data['infosDescription'] = $infosDescription;
+            'icon' => 'fa fa-indent',        
+        ];
+        $stories = AdminStore::getAll();
+        $data['stories'] = $stories;
+        $data['templates'] = $this->templates;
         $data['languages'] = $languages;
-
+        $data['urlDeleteItem'] = route('admin_store.delete');
         return view('admin.screen.store')
             ->with($data);
     }
 
-/*
-Update value config
- */
+
+    /**
+     * Form create new order in admin
+     * @return [type] [description]
+     */
+    public function create()
+    {
+        $data = [
+            'title' => trans('store.admin.add_new_title'),
+            'subTitle' => '',
+            'title_description' => trans('store.admin.add_new_des'),
+            'icon' => 'fa fa-plus',
+            'store' => [],
+            'languages' => ShopLanguage::getList(),
+            'url_action' => route('admin_store.create'),
+            'templates' => $this->templates
+        ];
+        return view('admin.screen.store_add')
+            ->with($data);
+    }
+
+    /*
+    * Post create new order in admin
+    * @return [type] [description]
+    */
+    public function postCreate()
+    {
+        $data = request()->all();
+        $validator = Validator::make($data, [
+            'descriptions.*.title' => 'required|string|max:200',
+            'descriptions.*.keyword' => 'nullable|string|max:200',
+            'descriptions.*.description' => 'nullable|string|max:300',
+            'domain' => 'required|unique:"'.AdminStore::class.'",domain',
+            ], [
+                'domain.required' => trans('validation.required', ['attribute' => trans('store.domain')]),
+                'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('store.title')]),
+                'descriptions.*.keyword.required' => trans('validation.required', ['attribute' => trans('store.keyword')]),
+                'descriptions.*.description.required' => trans('validation.required', ['attribute' => trans('store.description')]),
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($data);
+        }
+        $domain = str_replace(['http://', 'https://'], '', $data['domain']);
+        $dataInsert = [
+            'logo' => $data['logo'],
+            'phone' => $data['phone'],
+            'long_phone' => $data['long_phone'],
+            'email' => $data['email'],
+            'time_active' => $data['time_active'],
+            'address' => $data['address'],
+            'office' => $data['office'],
+            'warehouse' => $data['warehouse'],
+            'domain' => $domain,
+            'status' => empty($data['status']) ? 0 : 1,
+        ];
+        $store = AdminStore::create($dataInsert);
+
+        $dataDes = [];
+        $languages = ShopLanguage::getList();
+        foreach ($languages as $code => $value) {
+            $dataDes[] = [
+                'store_id' => $store->id,
+                'lang' => $code,
+                'title' => $data['descriptions'][$code]['title'],
+                'keyword' => $data['descriptions'][$code]['keyword'],
+                'description' => $data['descriptions'][$code]['description'],
+            ];
+        }
+        AdminStoreDescription::insert($dataDes);
+
+        return redirect()->route('admin_store.index')->with('success', trans('store.admin.create_success'));
+
+    }
+
+    /*
+    Update value config
+    */
     public function updateInfo()
     {
         $data = request()->all();
-        $name = $data['name'];
+        $fieldName = $data['name'];
         $value = $data['value'];
-        $parseName = explode('__', $name);
-        if (!in_array($parseName[0], ['title', 'description', 'keyword', 'maintain_content'])) {
-            try {
-                AdminStore::first()->update([$name => $value]);
-                $error = 0;
-            } catch (\Exception $e) {
+        $parseName = explode('__', $fieldName);
+        $storeId = $parseName[0];
+        $name = $parseName[1];
+        $lang = $parseName[2] ?? '';
+        $msg = '';
+        if (!in_array($parseName[1], ['title', 'description', 'keyword', 'maintain_content'])) {
+            if (config('app.storeId') == $storeId && $name == 'status') {
                 $error = 1;
+                $msg = trans('store.cannot_disable');
+            } else {
+                try {
+                    if ($name == 'domain') {
+                        $value = str_replace(['http://', 'https://'], '', $value);
+                        if (AdminStore::where('domain', $value)->first()) {
+                            $error = 1;
+                            $msg = trans('store.domain_exist');
+                        } else {
+                            AdminStore::where('id', $storeId)->update([$name => $value]);
+                            $error = 0;
+                        }
+                    } else {
+                        AdminStore::where('id', $storeId)->update([$name => $value]);
+                        $error = 0;
+                    }
+
+                } catch (\Throwable $e) {
+                    $error = 1;
+                    $msg = $e->getMessage();
+                }
             }
+
             
         } else {
             try {
-                AdminStore::first()
-                ->descriptions()
-                ->where('lang', $parseName[1])->update([$parseName[0] => $value]);
+                AdminStoreDescription::where('store_id', $storeId)
+                    ->where('lang', $lang)
+                    ->update([$name => $value]);
                 $error = 0;
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 $error = 1;
+                $msg = $e->getMessage();
             }
             
         }
-        return response()->json(['error' => $error]);
+        return response()->json(['error' => $error, 'msg' => $msg]);
 
+    }
+
+    /*
+    Delete list item
+    Need mothod destroy to boot deleting in model
+    */
+    public function delete()
+    {
+        if (!request()->ajax()) {
+            return response()->json(['error' => 1, 'msg' => 'Method not allow!']);
+        } else {
+            $id = request('id');
+            if (config('app.storeId') == $id) {
+                return response()->json(['error' => 1, 'msg' => trans('store.cannot_delete')]);
+            }
+            if ($id != 1) {
+                AdminStore::destroy($id);
+            }
+            return response()->json(['error' => 0, 'msg' => '']);
+        }
     }
 
 }

@@ -29,7 +29,10 @@ class ShopCategory extends Model
     {
         return $this->hasMany(ShopCategoryDescription::class, 'category_id', 'id');
     }
-
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopCategoryStore::class, 'category_id', 'store_id');
+    }
     /**
      * Get category parent
      */
@@ -45,6 +48,7 @@ class ShopCategory extends Model
         static::deleting(function ($category) {
             //Delete category descrition
             $category->descriptions()->delete();
+            $category->stories()->delete();
         });
     }
 
@@ -201,6 +205,13 @@ class ShopCategory extends Model
         $category = $this
             ->leftJoin($tableDescription, $tableDescription . '.category_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
+
+        //Get category active for store
+        $tableCTS = (new ShopCategoryStore)->getTable();
+        $category = $category->leftJoin($tableCTS, $tableCTS . '.category_id', $this->getTable() . '.id');
+        $category = $category->whereIn($tableCTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
         if ($type == null) {
             $category = $category->where('id', (int) $key);
         } else {
@@ -278,6 +289,12 @@ class ShopCategory extends Model
                 ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%');
             });
         }
+
+        //Get category active for store
+        $tableCTS = (new ShopCategoryStore)->getTable();
+        $query = $query->leftJoin($tableCTS, $tableCTS . '.category_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tableCTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
 
         if ($this->sc_status !== 'all') {
             $query = $query->where('status', $this->sc_status);

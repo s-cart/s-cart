@@ -177,6 +177,15 @@
   }
  */
 
+.header {
+  border-radius: 0px !important;
+}
+.sub-header {
+  display: inline;
+}
+.help-block {
+  color:red;
+}
  /* lightblue */
  .main-sidebar .sidebar-lightblue  li.header{
   color: #ffffff !important;

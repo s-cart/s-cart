@@ -29,7 +29,7 @@
                                         <input type="text" id="name" name="name" value="{!! old('name',$layout['name']??'') !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
@@ -45,7 +45,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('position'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('position') }}
                                             </span>
                                         @endif
@@ -66,7 +66,7 @@
                                         @endforeach
                                     </select>
                                         @if ($errors->has('page'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('page') }}
                                             </span>
                                         @endif
@@ -84,7 +84,7 @@
                                 @endforeach
                             @endif
                                         @if ($errors->has('type'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
                                             </span>
                                         @endif
@@ -101,14 +101,14 @@
                                         <textarea name="text" class="form-control text" rows="5" placeholder="Layout text">
                                             {{ old('text',$layout['text']??'') }}
                                         </textarea>
-                                    <span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}</span>
+                                    <span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}</span>
                                     @elseif ($dataType =='view')
                                         <select name="text" class="form-control text">
                                             @foreach ($listViewBlock as $view)
                                                 <option value="{!! $view !!}" {{ (old('text',$layout['text']??'') == $view)?'selected':'' }} >{{ $view }}</option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>
+                                        <span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>
                                     @else
                                         <textarea name="text" class="form-control text" rows="5" placeholder="Layout text">
                                             {!! old('text',$layout['text']??'') !!}
@@ -117,7 +117,7 @@
 
 
                                     @if ($errors->has('text'))
-                                        <span class="help-block">
+                                        <span class="form-text">
                                             {{ $errors->first('text') }}
                                         </span>
                                     @endif
@@ -135,7 +135,7 @@
                                         <input type="number" style="width: 100px;"  id="sort" name="sort" value="{!! old()?old('sort'):$layout['sort']??0 !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
-                                            <span class="help-block">
+                                            <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif
@@ -201,12 +201,12 @@ $(function () {
     $('[name="type"]').change(function(){
     var type = $(this).val();
     var obj = $('[name="text"]');
-    obj.next('.help-block').remove();
+    obj.next('.form-text').remove();
     if(type =='html'){
-       obj.before('<textarea name="text" class="form-control text" rows="5" placeholder="Layout text"></textarea><span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}.</span>');
+       obj.before('<textarea name="text" class="form-control text" rows="5" placeholder="Layout text"></textarea><span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}.</span>');
        obj.remove();
     }else if(type =='view'){
-       obj.before('<select name="text" class="form-control text">@foreach ($listViewBlock as $view)<option value="{{ $view }}">{{ $view }}</option>@endforeach</select><span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>');
+       obj.before('<select name="text" class="form-control text">@foreach ($listViewBlock as $view)<option value="{{ $view }}">{{ $view }}</option>@endforeach</select><span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>');
        obj.remove();
     }
     });

@@ -1,4 +1,4 @@
-@if (sc_config('SITE_STATUS') == 'off')
+@if (sc_store('active') == '0')
     @include($templatePath . '.maintenance')
 @else 
 

@@ -150,6 +150,12 @@ class ShopProduct extends Model
             ->leftJoin($tableDescription, $tableDescription . '.product_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
 
+        //Get product active for store
+        $tablePTS = (new ShopProductStore)->getTable();
+        $product = $product->leftJoin($tablePTS, $tablePTS . '.product_id', $this->getTable() . '.id');
+        $product = $product->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
         if (empty($type)) {
             $product = $product->where('id', (int)$key);  
         } elseif ($type == 'alias') {
@@ -659,9 +665,16 @@ class ShopProduct extends Model
             
 
         if (count($this->sc_category)) {
-            $query = $query->leftJoin((new ShopProductCategory)->getTable(), (new ShopProductCategory)->getTable() . '.product_id', $this->getTable() . '.id');
-            $query = $query->whereIn((new ShopProductCategory)->getTable() . '.category_id', $this->sc_category);
+            $tablePTC = (new ShopProductCategory)->getTable();
+            $query = $query->leftJoin($tablePTC, $tablePTC . '.product_id', $this->getTable() . '.id');
+            $query = $query->whereIn($tablePTC . '.category_id', $this->sc_category);
         }
+
+        //Get product active for store
+        $tablePTS = (new ShopProductStore)->getTable();
+        $query = $query->leftJoin($tablePTS, $tablePTS . '.product_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
 
         if (count($this->sc_array_ID)) {
             $query = $query->whereIn('id', $this->sc_array_ID);

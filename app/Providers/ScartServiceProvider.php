@@ -52,19 +52,24 @@ class ScartServiceProvider extends ServiceProvider
 
     public function bootScart()
     {
+        //Check domain exist
         $domain = str_replace(['http://','https://'], '', url('/'));
         $arrDomain = AdminStore::getDomain();
-        // $storeId = in_array($domain, $arrDomain) ? array_search($domain, $arrDomain) : min(array_keys($arrDomain));
+        $storeId = 1;
         if (in_array($domain, $arrDomain)) {
             $storeId =  array_search($domain, $arrDomain);
         } else {
-            echo view('deny_domain')->render();
-            exit();
+            if (sc_config_global('check_domain_exist')) {
+                echo view('deny_domain')->render();
+                exit();
+            }
         }
+        //Get storeId
         config(['app.storeId' => $storeId]);
         if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
             config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
         }
+
         config(['app.name' => sc_store('title')]);
 
         //Config for  email

@@ -13,8 +13,12 @@ class ShopBanner extends Model
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
 
-    protected  $sc_type = 'all'; // all or interger,0 - banner, 1 - background
+    protected  $sc_type = 'all'; // all or interger,0 - banner, 1 - background, 2 - other
 
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopBannerStore::class, 'banner_id', 'store_id');
+    }
     /*
     Get thumb
     */
@@ -46,12 +50,28 @@ class ShopBanner extends Model
      *
      */
     public function getDetail($id, $status = 1) {
+        //Get banner active for store
+        $tableBTS = (new ShopBannerStore)->getTable();
+        $banner = $this->leftJoin($tableBTS, $tableBTS . '.banner_id', $this->getTable() . '.id');
+        $banner = $banner->whereIn($tableBTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
         if ($status) {
-            return $this->where('id', (int)$id)->where('status', 1)->first();
+            return $banner->where('id', (int)$id)->where('status', 1)->first();
         } else {
-            return $this->find((int)$id);
+            return $banner->find((int)$id);
         }
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($banner) {
+            //Delete banner descrition
+            $banner->stories()->delete();
+        });
+    }
+
 
     /**
      * Start new process get data
@@ -97,6 +117,11 @@ class ShopBanner extends Model
      */
     public function buildQuery() {
         $query = $this;
+        //Get banner active for store
+        $tableBTS = (new ShopBannerStore)->getTable();
+        $query = $query->leftJoin($tableBTS, $tableBTS . '.banner_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tableBTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
         if ($this->sc_status !== 'all') {
             $query = $query->where('status', $this->sc_status);
         }
