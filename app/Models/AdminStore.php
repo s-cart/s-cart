@@ -55,6 +55,15 @@ class AdminStore extends Model
     }
 
     /**
+     * Get all template used
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getAllTemplateUsed() {
+        return self::pluck('template')->all();
+    }
+
+    /**
      * Get all domain and id store
      *
      * @return  [array]  [return description]

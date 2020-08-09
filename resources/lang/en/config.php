@@ -1,5 +1,10 @@
-<?php
+<?php 
+
 return [
+    'domain_strict' => 'Strict domain name censorship',
+    'domain_strict_on' => 'STRICT ON',
+    'domain_strict_off' => 'STRICT OFF',
+    'domain_strict_help' => 'STRICT mode will strict domain censorship.',
     'APP_DEBUG' => 'DEBUG mode',
     'APP_URL' => 'URL app',
     'APP_ENV' => 'Environment mode',

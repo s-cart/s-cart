@@ -178,7 +178,7 @@
 
                     <!-- /.card-body -->
 
-                    <div class="card-footer">
+                    <div class="card-footer row">
                             @csrf
                         <div class="col-md-2">
                         </div>

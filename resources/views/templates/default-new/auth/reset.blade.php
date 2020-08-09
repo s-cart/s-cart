@@ -5,7 +5,7 @@ $email
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <div class="container">

@@ -5,13 +5,18 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card-header with-border">
+      <div class="float-left">
+        <input class="form-control form-control-lg domain-strict" name="domain_strict" data-on-text="{{ trans('config.domain_strict_on') }}" data-off-text="{{ trans('config.domain_strict_off') }}" type="checkbox"  {{ (sc_config_global('domain_strict') == '1'?'checked':'') }}>
+        <div class="form-text"><i class="fas fa-exclamation-triangle"></i> {{ trans('config.domain_strict_help') }}</div>
+      </div>
       <div class="card-tools">
         <div class="menu-right">
-            <a href="{{ route('admin_store.create') }}" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+            <a href="{{ route('admin_store.create') }}" class="btn btn-success btn-flat btn-sm" title="New" id="button_create_new">
             <i class="fa fa-plus" title="{{ trans('store.admin.add_new') }}"></i>
             </a>
         </div>
       </div>
+      
     </div>
     </div>
 </div>
@@ -29,22 +34,25 @@
           </button>
         </div>
       </div>
-      @if ($store->id != 1)
+      
       <div class="card-header with-border">
         <div class="float-left">
           <i class="fas fa-link"></i> <a target=_new href="//{{ $store->domain }}">{{ $store->domain }}</a>
         </div>
         <div class="card-tools">
           <div class="menu-right">
+            @if ($store->id != 1)
             <input class="store-status" name="{{ $store->id }}__status" data-on-text="{{ trans('admin.unlock') }}" data-off-text="{{ trans('admin.lock') }}" type="checkbox"  {{ ($store->status == '1'?'checked':'') }}>
+            @endif
             <input class="store-active" name="{{ $store->id }}__active" data-on-text="{{ trans('admin.maintain_enable') }}" data-off-text="{{ trans('admin.maintain_disable') }}" type="checkbox"  {{ ($store->active == '1'?'checked':'') }}>
-            <span onclick="deleteItem({{ $store->id }});" title="Delete" class="btn btn-sm btn-flat btn-danger">
+            @if ($store->id != 1)
+            <span onclick="deleteItem({{ $store->id }});" title="Delete" class="btn btn-flat btn-danger">
               <i class="fas fa-trash-alt"></i>
             </span>
+            @endif
           </div>
         </div>
       </div>
-      @endif
 
     <div class="card-body">
       <div class="row">
@@ -369,6 +377,36 @@ $(document).ready(function() {
         type: 'POST',
         dataType:'json',
         url: "{{ route('admin_store.update') }}",
+        data: {
+          "_token": "{{ csrf_token() }}",
+          "name": $(this).attr('name'),
+          "value": site_status
+        },
+        success: function (response) {
+            // console.log(site_status);
+          if(parseInt(response.error) ==0){
+            alertMsg('success', '{{ trans('admin.msg_change_success') }}');
+          }else{
+            alertMsg('error', response.msg);
+          }
+          $('#loading').hide();
+        }
+      });
+  }); 
+
+  $(".domain-strict").bootstrapSwitch().on('switchChange.bootstrapSwitch', function (event, state) {
+      var site_status;
+      if (state == true) {
+          site_status =  '1';
+      } else {
+          site_status = '0';
+      }
+      $('#loading').show();
+
+      $.ajax({
+        type: 'POST',
+        dataType:'json',
+        url: "{{ route('admin_config.update') }}",
         data: {
           "_token": "{{ csrf_token() }}",
           "name": $(this).attr('name'),

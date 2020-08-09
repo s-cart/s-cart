@@ -6,7 +6,7 @@ $statusShipping
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <div class="container">
@@ -15,7 +15,7 @@ $statusShipping
       <h2 class="title-page">{{ trans('account.my_profile') }}</h2>
     </div> --}}
     <div class="col-12 col-sm-12 col-md-3">
-      @include($templatePath.'.account.nav_customer')
+      @include($sc_templatePath.'.account.nav_customer')
     </div>
     <div class="col-12 col-sm-12 col-md-9 min-height-37vh">
       <h3 class="title-optoins-customer">{{ $title }}</h3>

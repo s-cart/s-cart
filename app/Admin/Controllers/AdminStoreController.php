@@ -35,7 +35,7 @@ class AdminStoreController extends Controller
     public function index()
     {
         $data = [
-            'title' => trans('setting.admin.title'),
+            'title' => trans('config.admin.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
         ];
@@ -91,7 +91,8 @@ class AdminStoreController extends Controller
     */
     public function postCreate()
     {
-        $data = request()->all();
+        $dataOrigin = $data = request()->all();
+        $data['domain'] = str_replace(['http://', 'https://'], '', $data['domain']);
         $validator = Validator::make($data, [
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
@@ -100,6 +101,7 @@ class AdminStoreController extends Controller
             'timezone' => 'required',
             'language' => 'required',
             'currency' => 'required',
+            'template' => 'required',
             ], [
                 'domain.required' => trans('validation.required', ['attribute' => trans('store.domain')]),
                 'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans('store.title')]),
@@ -110,9 +112,8 @@ class AdminStoreController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput($data);
+                ->withInput($dataOrigin);
         }
-        $domain = str_replace(['http://', 'https://'], '', $data['domain']);
         $dataInsert = [
             'logo' => $data['logo'],
             'phone' => $data['phone'],
@@ -124,7 +125,8 @@ class AdminStoreController extends Controller
             'timezone' => $data['timezone'],
             'language' => $data['language'],
             'currency' => $data['currency'],
-            'domain' => $domain,
+            'template' => $data['template'],
+            'domain' => $data['domain'],
             'status' => empty($data['status']) ? 0 : 1,
         ];
         $store = AdminStore::create($dataInsert);

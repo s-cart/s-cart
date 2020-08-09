@@ -287,6 +287,9 @@
 
   .icheckbox_square-blue {
     vertical-align: inherit !important;
-  }  
+  } 
+  .form-text {
+    font-size: 12px;
+  }
 
 </style>

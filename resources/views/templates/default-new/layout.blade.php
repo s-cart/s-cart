@@ -1,5 +1,5 @@
 @if (sc_store('active') == '0')
-    @include($templatePath . '.maintenance')
+    @include($sc_templatePath . '.maintenance')
 @else 
 
 <!DOCTYPE html>
@@ -20,12 +20,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- css default for item s-cart -->
-    @include($templatePath.'.common.css')
+    @include($sc_templatePath.'.common.css')
     <!--//end css defaut -->
 
     <!--Module meta -->
-    @isset ($blocksContent['meta'])
-    @foreach ( $blocksContent['meta'] as $layout)
+    @isset ($sc_blocksContent['meta'])
+    @foreach ( $sc_blocksContent['meta'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
@@ -42,23 +42,23 @@
 
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400|Rufina:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
-    <link rel="stylesheet" href="{{ asset($templateFile.'/lib/bootstrap/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/bootstrap/css/bootstrap.min.css')}}" />
     <!-- <link rel="stylesheet" href="//cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" > -->
-    <link rel="stylesheet" href="{{ asset($templateFile.'/lib/slick/slick-theme.css')}}" />
-    <link rel="stylesheet" href="{{ asset($templateFile.'/lib/slick/slick.css')}}">
-    <link rel="stylesheet" href="{{ asset($templateFile.'/lib/css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/slick/slick-theme.css')}}" />
+    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/css/animate.css')}}">
     <link rel="stylesheet"
-        href="{{ asset($templateFile.'/css/main.css')}}?v={{ filemtime(public_path($templateFile.'/css/main.css')) }}" />
+        href="{{ asset($sc_templateFile.'/css/main.css')}}?v={{ filemtime(public_path($sc_templateFile.'/css/main.css')) }}" />
     <link rel="stylesheet"
-        href="{{ asset($templateFile.'/css/main-rtl.css')}}?v={{ filemtime(public_path($templateFile.'/css/main-rtl.css')) }}" />
+        href="{{ asset($sc_templateFile.'/css/main-rtl.css')}}?v={{ filemtime(public_path($sc_templateFile.'/css/main-rtl.css')) }}" />
     @stack('styles')
 <body>
 
-    @include($templatePath.'.header')
+    @include($sc_templatePath.'.header')
 
     <!--Module banner -->
-    @isset ($blocksContent['banner_top'])
-    @foreach ( $blocksContent['banner_top'] as $layout)
+    @isset ($sc_blocksContent['banner_top'])
+    @foreach ( $sc_blocksContent['banner_top'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
@@ -66,8 +66,8 @@
     @if ($layout->type =='html')
     {!! $layout->text !!}
     @elseif($layout->type =='view')
-    @if (view()->exists($templatePath.'.block.'.$layout->text))
-    @include($templatePath.'.block.'.$layout->text)
+    @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+    @include($sc_templatePath.'.block.'.$layout->text)
     @endif
     @endif
     @endif
@@ -77,8 +77,8 @@
 
 
     <!--Module top -->
-    @isset ($blocksContent['top'])
-    @foreach ( $blocksContent['top'] as $layout)
+    @isset ($sc_blocksContent['top'])
+    @foreach ( $sc_blocksContent['top'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
@@ -86,8 +86,8 @@
     @if ($layout->type =='html')
     {!! $layout->text !!}
     @elseif($layout->type =='view')
-    @if (view()->exists($templatePath.'.block.'.$layout->text))
-    @include($templatePath.'.block.'.$layout->text)
+    @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+    @include($sc_templatePath.'.block.'.$layout->text)
     @endif
     @endif
     @endif
@@ -109,14 +109,14 @@
                 </div>
 
                 <!--Notice -->
-                @include($templatePath.'.common.notice')
+                @include($sc_templatePath.'.common.notice')
                 <!--//Notice -->
 
                 <!--body-->
                 @section('main')
-                @include($templatePath.'.left')
-                @include($templatePath.'.center')
-                @include($templatePath.'.right')
+                @include($sc_templatePath.'.left')
+                @include($sc_templatePath.'.center')
+                @include($sc_templatePath.'.right')
                 @show
                 <!--//body-->
 
@@ -124,22 +124,22 @@
         </div>
     </section>
 
-    @include($templatePath.'.footer')
-    <script src="{{ asset($templateFile.'/lib/js/jquery.js')}}"></script>
-    <script src="{{ asset($templateFile.'/lib/js/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset($templateFile.'/lib/js/jquery.scrollUp.min.js')}}"></script>
+    @include($sc_templatePath.'.footer')
+    <script src="{{ asset($sc_templateFile.'/lib/js/jquery.js')}}"></script>
+    <script src="{{ asset($sc_templateFile.'/lib/js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset($sc_templateFile.'/lib/js/jquery.scrollUp.min.js')}}"></script>
     <!-- js default for item s-cart -->
-    @include($templatePath.'.common.js')
+    @include($sc_templatePath.'.common.js')
     <!--//end js defaut -->
-    {{-- <script src="{{ asset($templateFile.'/lib/js/popper.min.js')}}"></script> --}}
-    <script src="{{ asset($templateFile.'/lib/bootstrap/js/bootstrap.min.js')}}">
+    {{-- <script src="{{ asset($sc_templateFile.'/lib/js/popper.min.js')}}"></script> --}}
+    <script src="{{ asset($sc_templateFile.'/lib/bootstrap/js/bootstrap.min.js')}}">
     </script>
-    <script src="{{ asset($templateFile.'/lib/slick/slick.min.js')}}"></script>
-    <script src="{{ asset($templateFile.'/js/main.js')}}?v={{ filemtime($templateFile.'/js/main.js') }}"></script>
+    <script src="{{ asset($sc_templateFile.'/lib/slick/slick.min.js')}}"></script>
+    <script src="{{ asset($sc_templateFile.'/js/main.js')}}?v={{ filemtime($sc_templateFile.'/js/main.js') }}"></script>
 
     <!--Module bottom -->
-    @isset ($blocksContent['bottom'])
-    @foreach ( $blocksContent['bottom'] as $layout)
+    @isset ($sc_blocksContent['bottom'])
+    @foreach ( $sc_blocksContent['bottom'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
@@ -147,8 +147,8 @@
     @if ($layout->type =='html')
     {!! $layout->text !!}
     @elseif($layout->type =='view')
-    @if (view()->exists($templatePath.'.block.'.$layout->text))
-    @include($templatePath.'.block.'.$layout->text)
+    @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+    @include($sc_templatePath.'.block.'.$layout->text)
     @endif
     @endif
     @endif

@@ -4,7 +4,7 @@ $layout_page = shop_profile
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <style>
@@ -16,7 +16,7 @@ $layout_page = shop_profile
 <div class="container">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-3">
-      @include($templatePath.'.account.nav_customer')
+      @include($sc_templatePath.'.account.nav_customer')
     </div>
     <div class="col-md-9 ">
       <h3 class="title-optoins-customer">{{ $title }}</h3>

@@ -19,7 +19,7 @@
                                 <div class="input-group">
                                     <input accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" type="file" required="required" name="file" class="form-control">
                                    <div class="input-group-append">
-                                     <span class="button-upload pointer" id=""><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('template.import_submit') }}</span>
+                                     <span class="btn btn-primary button-upload pointer" id=""><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ trans('template.import_submit') }}</span>
                                    </div>
                                  </div>
                                 <div>

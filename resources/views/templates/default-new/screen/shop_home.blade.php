@@ -4,7 +4,7 @@ $layout_page = shop_home
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 @php
 $productsNew = $modelProduct->start()->getProductLatest()->setlimit(8)->getData();
 $productsHot = $modelProduct->start()->getProductHot()->getData();
@@ -26,11 +26,11 @@ $productsGroup = $modelProduct->start()->getProductGroup()->getData();
                         <div class="product-group">
                             @if ($product_new->price != $product_new->getFinalPrice() && $product_new->kind !=
                             SC_PRODUCT_GROUP)
-                            <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                            <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                             @elseif($product_new->kind == SC_PRODUCT_BUILD)
-                            <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
+                            <img src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                             @elseif($product_new->kind == SC_PRODUCT_GROUP)
-                            <img src="{{ asset($templateFile.'/images/home/group.png') }}" class="new" alt="" />
+                            <img src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" />
                             @endif
                         </div>
                         <div class="product-photo">

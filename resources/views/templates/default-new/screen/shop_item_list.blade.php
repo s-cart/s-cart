@@ -6,7 +6,7 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 

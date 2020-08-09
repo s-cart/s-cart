@@ -278,7 +278,7 @@
                                         <span class="input-group-text"><i class="fab fa-chrome"></i></span>
                                             </div>
                                         </div>
-                                        <input type="text" id="domain" name="domain" value="{{ old('domain') }}" class="form-control" placeholder="" />
+                                        <input type="text" id="domain" name="domain" value="{{ old('domain') }}" class="form-control" placeholder="{{ trans('store.domain_help') }}" />
                                     </div>
                                         @if ($errors->has('domain'))
                                             <span class="form-text">
@@ -362,7 +362,7 @@
                         </div>
                     <!-- /.card-body -->
 
-                    <div class="card-footer">
+                    <div class="card-footer row">
                             @csrf
                         <div class="col-md-2">
                         </div>

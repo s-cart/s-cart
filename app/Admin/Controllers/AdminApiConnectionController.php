@@ -71,7 +71,7 @@ class AdminApiConnectionController extends Controller
         $data['urlSort'] = route('admin_api_connection.index');
         $data['optionSort'] = $optionSort;
 
-        $urlUpdate = route('admin_setting.update');
+        $urlUpdate = route('admin_config.update');
         $csrf_token = csrf_token();
         $data['js'] = <<< JS
         <script type="text/javascript">
@@ -220,7 +220,7 @@ public function edit($id)
     $data['urlSort'] = route('admin_api_connection.index');
     $data['optionSort'] = $optionSort;
 
-    $urlUpdate = route('admin_setting.update');
+    $urlUpdate = route('admin_config.update');
     $csrf_token = csrf_token();
     $data['js'] = <<< JS
     <script type="text/javascript">

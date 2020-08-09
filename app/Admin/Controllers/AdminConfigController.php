@@ -1,17 +1,17 @@
 <?php
-#app/Http/Admin/Controllers/AdminSettingController.php
+#app/Http/Admin/Controllers/AdminConfigController.php
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
 use App\Admin\AdminConfigTrait;
-class AdminSettingController extends Controller
+class AdminConfigController extends Controller
 {
     use AdminConfigTrait;
     public function index()
     {
         $data = [
-            'title' => trans('setting.admin.title'),
+            'title' => trans('config.admin.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
         $obj = (new AdminConfig)->whereIn('code', ['config', 'display', 'env'])
@@ -20,7 +20,7 @@ class AdminSettingController extends Controller
                 ->groupBy('code');
         $data['configs'] = $obj;
 
-        return view('admin.screen.setting')
+        return view('admin.screen.config')
             ->with($data);
     }
 

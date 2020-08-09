@@ -439,6 +439,7 @@ if (!function_exists('sc_get_all_template')) {
     }
 }
 
+
 /*
     Return price with tax
 */

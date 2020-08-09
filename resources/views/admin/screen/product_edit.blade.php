@@ -164,7 +164,7 @@
                         }
                         @endphp
 
-                        <div class="form-group row{{ $errors->has('category') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('category') ? ' text-red' : '' }}">
                             <label for="category"
                                 class="col-sm-2 col-form-label">{{ trans('product.admin.select_category') }}</label>
                             <div class="col-sm-8">
@@ -287,7 +287,7 @@
 
 
                         {{-- Sku --}}
-                        <div class="form-group row{{ $errors->has('sku') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('sku') ? ' text-red' : '' }}">
                             <label for="sku" class="col-sm-2 col-form-label">{{ trans('product.sku') }}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
@@ -313,7 +313,7 @@
 
 
                         {{-- Alias --}}
-                        <div class="form-group row{{ $errors->has('alias') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('alias') ? ' text-red' : '' }}">
                             <label for="alias" class="col-sm-2 col-form-label">{!! trans('product.alias') !!}</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
@@ -708,9 +708,14 @@
                             <label for="virtual" class="col-sm-2 col-form-label">{{ trans('product.virtual') }}</label>
                             <div class="col-sm-8">
                                 @foreach ( $virtuals as $key => $virtual)
-                                <label class="radio-inline"><input type="radio" name="virtual" value="{{ $key }}"
-                                        {{ (old('virtual',$product->virtual) == $key)?'checked':'' }}>{{ $virtual }}</label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary{{ $key }}" name="virtual" value="{{ $key }}"  {{ (old('virtual',$product->virtual) == $key)?'checked':'' }}>
+                                    <label for="radioPrimary{{ $key }}">
+                                        {{ $virtual }}
+                                    </label>
+                                </div>
                                 @endforeach
+
                                 @if ($errors->has('virtual'))
                                 <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('virtual') }}
@@ -813,12 +818,12 @@
                         @if ($product->kind == SC_PRODUCT_GROUP)
                         {{-- List product in groups --}}
                         <hr>
-                        <div class="form-group row{{ $errors->has('productInGroup') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('productInGroup') ? ' text-red' : '' }}">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8"><label>{{ trans('product.admin.select_product_in_group') }}</label>
                             </div>
                         </div>
-                        <div class="form-group row{{ $errors->has('productInGroup') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('productInGroup') ? ' text-red' : '' }}">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-8">
@@ -867,14 +872,14 @@
                         @if ($product->kind == SC_PRODUCT_BUILD)
                         <hr>
                         {{-- List product build --}}
-                        <div class="form-group row{{ $errors->has('productBuild') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('productBuild') ? ' text-red' : '' }}">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-8">
                                 <label>{{ trans('product.admin.select_product_in_build') }}</label>
                             </div>
                         </div>
 
-                        <div class="form-group row{{ $errors->has('productBuild') ? ' text-red' : '' }}">
+                        <div class="form-group row {{ $errors->has('productBuild') ? ' text-red' : '' }}">
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-8">
@@ -932,7 +937,7 @@
                         {{-- List product attributes --}}
                         <hr>
                         @if (!empty($attributeGroup))
-                        <div class="form-group">
+                        <div class="form-group row">
                             <div class="col-sm-2">
                                 <label>{{ trans('product.attribute') }}
                             </div>
@@ -992,7 +997,7 @@
 
                 <!-- /.card-body -->
 
-                <div class="card-footer kind kind0  kind1 kind2" id="card-footer">
+                <div class="card-footer kind kind0  kind1 kind2 row" id="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>

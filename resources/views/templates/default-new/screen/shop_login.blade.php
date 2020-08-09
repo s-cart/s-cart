@@ -1,4 +1,4 @@
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <!--form-->
@@ -20,14 +20,14 @@
                 <div class="col-12 col-sm-12 col-md-6 active" id="tab-login">
                     <div class="login-form">
                         <!--login form-->
-                        @include($templatePath.'.auth.login')
+                        @include($sc_templatePath.'.auth.login')
                     </div>
                     <!--/login form-->
                 </div>
                 <div class="col-12 col-sm-12 col-md-6" id="tab-signup">
                     <div class="signup-form">
                         <!--sign up form-->
-                        @include($templatePath.'.auth.register')
+                        @include($sc_templatePath.'.auth.register')
                     </div>
                     <!--/sign up form-->
                 </div>

@@ -13,7 +13,7 @@
       <div class="card-header with-border">
         <h3 class="card-title">
           <h3 class="card-title">
-            <a class="btn btn-warning btn-flat btn-sm menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
+            <a class="btn btn-warning btn-flat menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
           </h3>
         </h3>
       </div>
@@ -256,7 +256,7 @@
 
                     <!-- /.card-body -->
 
-                    <div class="card-footer">
+                    <div class="card-footer row">
                             @csrf
                         <div class="col-md-2">
                         </div>

@@ -85,8 +85,8 @@ return [
             ],
         ],
 
-        'vendor' => [
-            'folder_name' => 'vendor',
+        'supplier' => [
+            'folder_name' => 'supplier',
             'startup_view' => 'grid',
             'max_size' => 30000, // size in KB
             'valid_mime' => [

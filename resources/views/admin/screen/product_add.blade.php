@@ -272,10 +272,10 @@
                                             class="form-control input-sm sub_image" placeholder="" /><span
                                             class="input-group-btn"><span><a data-input="sub_image_{{ $key }}"
                                                     data-preview="preview_sub_image_{{ $key }}" data-type="product"
-                                                    class="btn btn-sm btn-flat btn-primary lfm"><i
+                                                    class="btn btn-flat btn-primary lfm"><i
                                                         class="fa fa-image"></i>
                                                     {{trans('product.admin.choose_image')}}</a></span><span
-                                                title="Remove" class="btn btn-flat btn-sm btn-danger removeImage"><i
+                                                title="Remove" class="btn btn-flat btn-danger removeImage"><i
                                                     class="fa fa-times"></i></span></span></div>
                                     <div id="preview_sub_image_{{ $key }}" class="img_holder"><img
                                             src="{{ asset($sub_image) }}"></div>
@@ -491,7 +491,7 @@
                                         <input type="number" style="width: 100px;" id="price_promotion"
                                             name="price_promotion" value="{!! old('price_promotion')??0 !!}"
                                             class="form-control input-sm price" placeholder="" />
-                                        <span title="Remove" class="btn btn-flat btn-sm btn-danger removePromotion"><i
+                                        <span title="Remove" class="btn btn-flat btn-danger removePromotion"><i
                                                 class="fa fa-times"></i></span>
                                     </div>
 
@@ -695,8 +695,12 @@
                             <label for="virtual" class="col-sm-2 col-form-label">{{ trans('product.virtual') }}</label>
                             <div class="col-sm-8">
                                 @foreach ( $virtuals as $key => $virtual)
-                                <label class="radio-inline"><input type="radio" name="virtual" value="{{ $key }}"
-                                        {{ ((!old() && $key ==0) || old('virtual') == $key)?'checked':'' }}>{{ $virtual }}</label>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary{{ $key }}" name="virtual" value="{{ $key }}" {{ ((!old() && $key ==0) || old('virtual') == $key)?'checked':'' }}>
+                                    <label for="radioPrimary{{ $key }}">
+                                        {{ $virtual }}
+                                    </label>
+                                </div>
                                 @endforeach
                                 @if ($errors->has('virtual'))
                                 <span class="form-text">
@@ -886,7 +890,7 @@
 
 
                         <hr class="kind kind0">
-                        <div class="form-group kind kind0">
+                        <div class="form-group kind kind0 row">
                             <div class="col-sm-2">
                                 <label>{{ trans('product.attribute') }}</label>
                             </div>
@@ -932,7 +936,8 @@
 
                 <!-- /.card-body -->
 
-                <div class="card-footer kind kind0  kind1 kind2" id="card-footer">
+
+                <div class="card-footer kind kind0  kind1 kind2 row" id="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>

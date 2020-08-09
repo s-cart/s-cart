@@ -4,7 +4,7 @@ $layout_page = shop_cart
 $wishlist: no paginate
 */
 @endphp
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('center')
 

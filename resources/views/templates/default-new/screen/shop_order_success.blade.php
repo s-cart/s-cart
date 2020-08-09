@@ -4,7 +4,7 @@ $layout_page = shop_cart
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <section>

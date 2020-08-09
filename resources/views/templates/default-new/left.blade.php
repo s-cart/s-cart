@@ -3,8 +3,8 @@
   @section('left')
   <div class="left-sidebar">
     <!--Module left -->
-    @isset ($blocksContent['left'])
-    @foreach ( $blocksContent['left'] as $layout)
+    @isset ($sc_blocksContent['left'])
+    @foreach ( $sc_blocksContent['left'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
@@ -12,8 +12,8 @@
     @if ($layout->type =='html')
     {!! $layout->text !!}
     @elseif($layout->type =='view')
-    @if (view()->exists($templatePath.'.block.'.$layout->text))
-    @include($templatePath.'.block.'.$layout->text)
+    @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+    @include($sc_templatePath.'.block.'.$layout->text)
     @endif
     @endif
     @endif

@@ -60,7 +60,7 @@
                       $pluginStatusTitle = trans('plugin.actived');
                       $pluginAction ='<span onClick="disablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.disable').'" type="button" class="btn btn-flat btn-warning btn-flat"><i class="fa fa-power-off"></i></span>&nbsp;';
                         if($pluginClass->config()){
-                          $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
+                          $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                         }
                         //You can not remove if plugin is default
                         if(!in_array($codePlugin, $arrDefault)) {
@@ -70,7 +70,7 @@
                       $pluginStatusTitle = trans('plugin.disabled');
                       $pluginAction = '<span onClick="enablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.enable').'" type="button" class="btn btn-flat btn-primary"><i class="fa fa-paper-plane"></i></span>&nbsp;';
                         if($pluginClass->config()){
-                          $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fa fa-gears"></i></span>&nbsp;</a>';
+                          $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                         }
 
                         //You can not remove if plugin is default

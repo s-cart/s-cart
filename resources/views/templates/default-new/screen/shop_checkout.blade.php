@@ -13,7 +13,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <section>

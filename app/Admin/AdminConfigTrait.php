@@ -15,12 +15,13 @@ trait AdminConfigTrait
     */
     public function updateInfo()
     {
-        
         $data = request()->all();
         $name = $data['name'];
         $value = $data['value'];
+        $storeId = $data['storeId'] ?? 0;
         try {
             AdminConfig::where('key', $name)
+                ->where('store_id', $storeId)
                 ->update(['value' => $value]);
             $error = 0;
             $msg = trans('admin.update_success');
@@ -30,10 +31,11 @@ trait AdminConfigTrait
         }
         return response()->json([
             'error' => $error,
-            'field' => $name,
-            'value' => $value,
-            'msg' => $msg,
-        ]);
+                'field' => $name,
+                'value' => $value,
+                'msg' => $msg,
+            ]
+        );
 
     }
 

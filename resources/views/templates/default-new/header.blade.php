@@ -20,12 +20,12 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 d-flex flex-row-reverse flex-space-between">
                     <ul class="d-flex flex-row-reverse header-top-right">
-                        @if (count($currencies)>1)
+                        @if (count($sc_currencies)>1)
                         <li>
                             <a>{{ sc_currency_info()['name'] }} <i class="fas fa-caret-down"></i></a>
                             <div class="header-top-popup-wrap">
                                 <ul>
-                                    @foreach ($currencies as $key => $currency)
+                                    @foreach ($sc_currencies as $key => $currency)
                                     <li>
                                         <a href="{{ url('currency/'.$currency->code) }}">{{ $currency->name }}</a>
                                     </li>
@@ -34,13 +34,13 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                             </div>
                         </li>
                         @endif
-                        @if (count($languages)>1)
+                        @if (count($sc_languages)>1)
                         <li>
-                            <a><img src="{{ asset($languages[app()->getLocale()]['icon']) }}" alt="lang">
-                                {{$languages[app()->getLocale()]['name']}} <i class="fas fa-caret-down"></i></a>
+                            <a><img src="{{ asset($sc_languages[app()->getLocale()]['icon']) }}" alt="lang">
+                                {{$sc_languages[app()->getLocale()]['name']}} <i class="fas fa-caret-down"></i></a>
                             <div class="header-top-popup-wrap">
                                 <ul>
-                                    @foreach ($languages as $key => $language)
+                                    @foreach ($sc_languages as $key => $language)
                                     <li>
                                         <a href="{{ url('locale/'.$key) }}"><img src="{{ asset($language['icon']) }}"
                                                 alt="{{ $language['name'] }}"> {{ $language['name'] }}</a>
@@ -112,7 +112,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     class="col-6 col-sm-8 col-md-3 clear-padding-right categories @if(Route::currentRouteName() == 'home') {{'active-home'}} @endif">
                     @if ($categoriesTop->count())
                     <div class="btn-categories">
-                        <img src="{{asset($templateFile.'/images/catalog.png')}}" alt="">
+                        <img src="{{asset($sc_templateFile.'/images/catalog.png')}}" alt="">
                         {{ trans('front.categories') }}
                     </div>
                     <ul>
@@ -207,8 +207,8 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                                     </div>
                                 </li>
                                 @endif
-                                @if (!empty($layoutsUrl['menu']))
-                                @foreach ($layoutsUrl['menu'] as $url)
+                                @if (!empty($sc_layoutsUrl['menu']))
+                                @foreach ($sc_layoutsUrl['menu'] as $url)
                                 <li class="nav-item">
                                     <a class="nav-link" {{ ($url->target =='_blank')?'target=_blank':''  }}
                                         href="{{ sc_url_render($url->url) }}">{{ sc_language_render($url->name) }}</a>

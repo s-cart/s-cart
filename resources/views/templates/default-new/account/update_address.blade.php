@@ -6,14 +6,14 @@ $countries
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <div class="container">
     <div class="row justify-content-center">
 
         <div class="col-12 col-sm-12 col-md-3">
-            @include($templatePath.'.account.nav_customer')
+            @include($sc_templatePath.'.account.nav_customer')
         </div>
         <div class="col-12 col-sm-12 col-md-9">
             <h3 class="title-optoins-customer">{{ $title }}</h3>

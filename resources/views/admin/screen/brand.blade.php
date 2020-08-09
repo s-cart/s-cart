@@ -127,7 +127,7 @@
         </div>
         <!-- /.card-body -->
         @csrf
-        <div class="card-footer">
+        <div class="card-footer row">
           <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
           <button type="submit" class="btn btn-primary float-right">{{ trans('admin.submit') }}</button>
         </div>

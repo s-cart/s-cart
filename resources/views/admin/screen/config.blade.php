@@ -7,7 +7,7 @@
 
     <div class="card">
       <div class="card-header with-border">
-        <h3 class="card-title">{{ trans('setting.admin.setting_website') }}</h3>
+        <h3 class="card-title">{{ trans('config.admin.setting_website') }}</h3>
       </div>
 
       <div class="card-body table-responsivep-0">
@@ -15,24 +15,24 @@
          <tbody>
           <tr>
             <td>{{ trans('env.ADMIN_LOG') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOG') }}" data-value="{{ sc_config('ADMIN_LOG') }}" data-original-title="{{ trans('env.ADMIN_LOG') }}" title=""></a></td>
+            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_LOG') }}" data-value="{{ sc_config('ADMIN_LOG') }}" data-original-title="{{ trans('env.ADMIN_LOG') }}" title=""></a></td>
           </tr>
           
           <tr>
             <td>{{ trans('env.ADMIN_NAME') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_NAME" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_NAME') }}" data-value="{{ sc_config('ADMIN_NAME') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_NAME" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_NAME') }}" data-value="{{ sc_config('ADMIN_NAME') }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('env.ADMIN_TITLE') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_TITLE" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_TITLE') }}" data-value="{{ sc_config('ADMIN_TITLE') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_TITLE" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_TITLE') }}" data-value="{{ sc_config('ADMIN_TITLE') }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('env.ADMIN_LOGO') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOGO" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.ADMIN_LOGO') }}" data-value="{{ sc_config('ADMIN_LOGO') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOGO" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_LOGO') }}" data-value="{{ sc_config('ADMIN_LOGO') }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('env.LOG_SLACK_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('env.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ sc_config('LOG_SLACK_WEBHOOK_URL') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ sc_config('LOG_SLACK_WEBHOOK_URL') }}" data-original-title="" title=""></a></td>
           </tr>
           
 
@@ -49,7 +49,7 @@
 
   <div class="card">
     <div class="card-header with-border">
-      <h3 class="card-title">{{ trans('setting.admin.setting_shop') }}</h3>
+      <h3 class="card-title">{{ trans('config.admin.setting_shop') }}</h3>
     </div>
 
     <div class="card-body table-responsivep-0">
@@ -74,7 +74,7 @@
 
     <div class="card">
       <div class="card-header with-border">
-        <h3 class="card-title">{{ trans('setting.admin.setting_display') }}</h3>
+        <h3 class="card-title">{{ trans('config.admin.setting_display') }}</h3>
       </div>
 
       <div class="card-body table-responsivep-0">
@@ -83,7 +83,7 @@
            @foreach ($configs['display'] as $config)
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title="">{{ $config->value }}</a></td>
+               <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title="">{{ $config->value }}</a></td>
              </tr>
            @endforeach
          </tbody>
@@ -253,7 +253,7 @@ $('.grid-trash').on('click', function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

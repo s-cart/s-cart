@@ -6,6 +6,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class AdminUser extends Model implements AuthenticatableContract
 {
@@ -105,13 +106,13 @@ class AdminUser extends Model implements AuthenticatableContract
             $arrView = [];
             $allPermissionTmp = self::allPermissions();
             $allPermissionTmp = $allPermissionTmp->pluck('http_uri')->toArray();
-            if($allPermissionTmp) {
+            if ($allPermissionTmp) {
                 foreach ($allPermissionTmp as  $actionList) {
                     foreach (explode(',', $actionList) as  $action) {
-                        if(strpos($action, 'ANY::') === 0 || strpos($action, 'GET::') === 0){
+                        if (strpos($action, 'ANY::') === 0 || strpos($action, 'GET::') === 0) {
                             $arrPrefix = ['ANY::', 'GET::'];
                             $arrScheme = ['https://', 'http://'];
-                            $arrView[] = str_replace($arrScheme,'', url(str_replace($arrPrefix,'',$action)));
+                            $arrView[] = str_replace($arrScheme, '', url(str_replace($arrPrefix, '', $action)));
                         }
                     }
                 }
@@ -130,18 +131,18 @@ class AdminUser extends Model implements AuthenticatableContract
      */
     public  function checkUrlAllowAccess($url) {
 
-        if($this->isAdministrator() || $this->isViewAll()) {
+        if ($this->isAdministrator() || $this->isViewAll()) {
             return true;
         }
         $listUrlAllowAccess = self::allViewPermissions();
         $arrScheme = ['https://', 'http://'];
-        $path = strtolower(str_replace($arrScheme,'',$url));
-        if($listUrlAllowAccess) {
-            foreach ($listUrlAllowAccess as  $pathAction) {
-                $pathActionTmp = explode('/', $pathAction);
-                if($pathAction === $path || $pathAction.'/' === $path 
-                    || (end($pathActionTmp) === '*' && strpos($path, str_replace('/*','',$pathAction)) === 0) 
-                    || (end($pathActionTmp) === '{id}' && strpos($path, str_replace('/{id}','',$pathAction)) === 0) 
+        $pathCheck = strtolower(str_replace($arrScheme, '', $url));
+        if ($listUrlAllowAccess) {
+            foreach ($listUrlAllowAccess as  $pathAllow) {
+                if ($pathCheck === $pathAllow   
+                    || $pathCheck  === $pathAllow.'/'
+                    || (Str::endsWith($pathAllow, '*') && ($pathCheck === str_replace('/*', '', $pathAllow) || strpos($pathCheck, str_replace('*', '', $pathAllow)) === 0)) 
+                    || (Str::endsWith($pathAllow, '{id}') && ($pathCheck === str_replace('/{id}', '', $pathAllow) || strpos($pathCheck, str_replace('{id}', '', $pathAllow)) === 0))
                     ) {
                         return true;
                     }

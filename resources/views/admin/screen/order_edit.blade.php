@@ -9,16 +9,16 @@
               <h3 class="card-title">{{ trans('order.order_detail') }} #{{ $order->id }}</h3>
               <div class="card-tools not-print">
                   <div class="btn-group float-right" style="margin-right: 0px">
-                      <a href="{{ route('admin_order.index') }}" class="btn btn-sm btn-flat btn-default"><i class="fa fa-list"></i>&nbsp;{{ trans('admin.list') }}</a>
+                      <a href="{{ route('admin_order.index') }}" class="btn btn-flat btn-default"><i class="fa fa-list"></i>&nbsp;{{ trans('admin.list') }}</a>
                   </div>
                   <div class="btn-group float-right" style="margin-right: 10px">
-                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=invoice' }}" class="btn btn-sm btn-flat btn-twitter" title="Export"><i class="fas fa-file-excel"></i><span class="hidden-xs"> Excel</span></a>
+                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=invoice' }}" class="btn btn-flat btn-twitter" title="Export"><i class="fas fa-file-excel"></i><span class="hidden-xs"> Excel</span></a>
                   </div>
 {{--                   <div class="btn-group float-right" style="margin-right: 10px">
-                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=pdf' }}" class="btn btn-sm btn-flat btn-warning" title="Export"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs"> PDF</span></a>
+                      <a href="{{ route('admin_order.export_detail').'?order_id='.$order->id.'&type=pdf' }}" class="btn btn-flat btn-warning" title="Export"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs"> PDF</span></a>
                   </div> --}}
                   <div class="btn-group float-right" style="margin-right: 10px;border:1px solid #c5b5b5;">
-                      <a class="btn btn-sm btn-flat" title="Export" onclick="order_print()"><i class="fa fa-print"></i><span class="hidden-xs"> Print</span></a>
+                      <a class="btn btn-flat" title="Export" onclick="order_print()"><i class="fa fa-print"></i><span class="hidden-xs"> Print</span></a>
                   </div>
               </div>
           </div>
@@ -154,8 +154,8 @@
 
                     <tr  id="add-item" class="not-print">
                       <td colspan="6">
-                        <button  type="button" class="btn btn-sm btn-flat btn-success" id="add-item-button"  title="{{trans('product.add_product') }}"><i class="fa fa-plus"></i> {{ trans('product.add_product') }}</button>
-                        &nbsp;&nbsp;&nbsp;<button style="display: none; margin-right: 50px" type="button" class="btn btn-sm btn-flat btn-warning" id="add-item-button-save"  title="Save"><i class="fa fa-save"></i> {{ trans('admin.save') }}</button>
+                        <button  type="button" class="btn btn-flat btn-success" id="add-item-button"  title="{{trans('product.add_product') }}"><i class="fa fa-plus"></i> {{ trans('product.add_product') }}</button>
+                        &nbsp;&nbsp;&nbsp;<button style="display: none; margin-right: 50px" type="button" class="btn btn-flat btn-warning" id="add-item-button-save"  title="Save"><i class="fa fa-save"></i> {{ trans('admin.save') }}</button>
                     </td>
                   </tr>
                 </tbody>

@@ -22,14 +22,14 @@
           <tr>
             <td>{{ trans('cache.config_manager.cache_status') }}</td>
             <td>
-              <a href="#" class="fied-required editable editable-click" data-name="cache_status" data-type="select" data-pk="" data-source="{{ json_encode(['1'=>'ON','0'=>'OFF']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('cache.config_manager.cache_status') }}" data-value="{{ sc_config('cache_status') }}" data-original-title="" title=""></a>
+              <a href="#" class="fied-required editable editable-click" data-name="cache_status" data-type="select" data-pk="" data-source="{{ json_encode(['1'=>'ON','0'=>'OFF']) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('cache.config_manager.cache_status') }}" data-value="{{ sc_config('cache_status') }}" data-original-title="" title=""></a>
             </td>
             <td></td>
           </tr>
           <tr>
             <td>{{ trans('cache.config_manager.cache_time') }}</td>
             <td>
-              <a href="#" class="cache-time data-cache_time"  data-name="cache_time" data-type="text" data-pk="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('cache.config_manager.cache_time') }}">{{ sc_config('cache_time') }}</a>
+              <a href="#" class="cache-time data-cache_time"  data-name="cache_time" data-type="text" data-pk="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('cache.config_manager.cache_time') }}">{{ sc_config('cache_time') }}</a>
             </td>
             <td></td>
           </tr>
@@ -135,7 +135,7 @@ $(document).ready(function() {
       isChecked = (isChecked == false)?0:1;
       var name = $(this).attr('name');
         $.ajax({
-          url: '{{ route('admin_setting.update') }}',
+          url: '{{ route('admin_config.update') }}',
           type: 'POST',
           dataType: 'JSON',
           data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

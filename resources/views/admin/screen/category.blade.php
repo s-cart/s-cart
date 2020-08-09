@@ -264,7 +264,7 @@
 
                 <!-- /.card-body -->
 
-                <div class="card-footer" id="card-footer">
+                <div class="card-footer row" id="card-footer">
                     @csrf
                     <div class="col-md-2">
                     </div>

@@ -4,7 +4,7 @@ $layout_page = shop_auth
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <div class="col-md-12 ">

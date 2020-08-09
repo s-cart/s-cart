@@ -1,5 +1,10 @@
 <?php
+
 return [
+    'domain_strict' => 'Kiểm duyệt tên miền nghiêm ngặt',
+    'domain_strict_on' => 'MỞ STRICT',
+    'domain_strict_off' => 'TẮT STRICT',
+    'domain_strict_help' => 'Chế độ STRICT sẽ Kiểm duyệt tên miền nghiêm ngặt.',
     'APP_DEBUG' => 'Chế độ Sửa lỗi',
     'APP_URL' => 'URL app',
     'APP_ENV' => 'Môi trường web',

@@ -6,7 +6,7 @@ $productRelation: no paginate
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('center')
 <div class="product-details">
@@ -46,11 +46,11 @@ $productRelation: no paginate
                 <div class="product-information">
                     <!--/product-information-->
                     @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                    <img src="{{ asset($templateFile.'/images/home/sale2.png') }}" class="newarrival" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/sale2.png') }}" class="newarrival" alt="" />
                     @elseif($product->kind == SC_PRODUCT_BUILD)
-                    <img src="{{ asset($templateFile.'/images/home/bundle2.png') }}" class="newarrival" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/bundle2.png') }}" class="newarrival" alt="" />
                     @elseif($product->kind == SC_PRODUCT_GROUP)
-                    <img src="{{ asset($templateFile.'/images/home/group2.png') }}" class="newarrival" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/group2.png') }}" class="newarrival" alt="" />
                     @endif
 
                     <h1 id="product-detail-name">{{ $product->name }}</h1>
@@ -190,11 +190,11 @@ $productRelation: no paginate
                 <div class="product-group">
                     @if ($product_rel->price != $product_rel->getFinalPrice() && $product_rel->kind !=
                     SC_PRODUCT_GROUP)
-                    <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                     @elseif($product_rel->kind == SC_PRODUCT_BUILD)
-                    <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                     @elseif($product_rel->kind == SC_PRODUCT_GROUP)
-                    <img src="{{ asset($templateFile.'/images/home/group.png') }}" class="new" alt="" />
+                    <img src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" />
                     @endif
                 </div>
                 <div class="product-photo">

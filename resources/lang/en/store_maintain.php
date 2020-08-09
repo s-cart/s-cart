@@ -2,7 +2,7 @@
 return [
     'admin' => [
         'title' => 'Maintenance page',
-        'content' => 'Maintenance content',
+        'content' => 'Maintenance content of the store',
         'edit_success' => 'Update success!',
         'description' => 'Description',
     ],

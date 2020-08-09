@@ -8,7 +8,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('center')
 <div class="features_items">
@@ -51,11 +51,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 <div class="product-main">
                     <div class="product-group">
                         @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                        <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                        <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                         @elseif($product->kind == SC_PRODUCT_BUILD)
-                        <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
+                        <img src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                         @elseif($product->kind == SC_PRODUCT_GROUP)
-                        <img src="{{ asset($templateFile.'/images/home/group.png') }}" class="new" alt="" />
+                        <img src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" />
                         @endif
                     </div>
                     <div class="product-photo">

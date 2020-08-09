@@ -40,7 +40,7 @@
            @if ($config->key == 'product_tax')
            <tr>
             <td>{{ trans('product.config_manager.tax') }}</td>
-            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title="" data-placement="left"></a></td>
+            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title="" data-placement="left"></a></td>
           </tr>
            @else
            <tr>
@@ -208,7 +208,7 @@ $('.grid-trash').on('click', function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

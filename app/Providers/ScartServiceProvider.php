@@ -59,7 +59,7 @@ class ScartServiceProvider extends ServiceProvider
         if (in_array($domain, $arrDomain)) {
             $storeId =  array_search($domain, $arrDomain);
         } else {
-            if (sc_config_global('check_domain_exist')) {
+            if (sc_config_global('domain_strict')) {
                 echo view('deny_domain')->render();
                 exit();
             }
@@ -74,18 +74,17 @@ class ScartServiceProvider extends ServiceProvider
 
         //Config for  email
         config(['mail.default' => 'smtp']);
-        if (sc_config('smtp_load_config') == 'database') {
-            $smtpHost = sc_config('smtp_host');
-            $smtpPort = sc_config('smtp_port');
-            $smtpSecurity = sc_config('smtp_security');
-            $smtpUser = sc_config('smtp_user');
-            $smtpPassword = sc_config('smtp_password');
-            config(['mail.mailers.smtp.host' => $smtpHost]);
-            config(['mail.mailers.smtp.port' => $smtpPort]);
-            config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
-            config(['mail.mailers.smtp.username' => $smtpUser]);
-            config(['mail.mailers.smtp.password' => $smtpPassword]);
-        }
+        
+        $smtpHost = sc_config('smtp_host');
+        $smtpPort = sc_config('smtp_port');
+        $smtpSecurity = sc_config('smtp_security');
+        $smtpUser = sc_config('smtp_user');
+        $smtpPassword = sc_config('smtp_password');
+        config(['mail.mailers.smtp.host' => $smtpHost]);
+        config(['mail.mailers.smtp.port' => $smtpPort]);
+        config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
+        config(['mail.mailers.smtp.username' => $smtpUser]);
+        config(['mail.mailers.smtp.password' => $smtpPassword]);
 
         config(
             ['mail.from' =>
@@ -98,16 +97,16 @@ class ScartServiceProvider extends ServiceProvider
         //email
 
         // Time zone
-        config(['app.timezone' => (sc_config('SITE_TIMEZONE') ?? config('app.timezone'))]);
+        config(['app.timezone' => (sc_store('timezone') ?? config('app.timezone'))]);
         // End time zone
 
         //Share variable for view
-        view()->share('languages', sc_language_all());
-        view()->share('currencies', sc_currency_all());
-        view()->share('blocksContent', sc_block_content());
-        view()->share('layoutsUrl', sc_link());
-        view()->share('templatePath', 'templates.' . sc_store('template'));
-        view()->share('templateFile', 'templates/' . sc_store('template'));
+        view()->share('sc_languages', sc_language_all());
+        view()->share('sc_currencies', sc_currency_all());
+        view()->share('sc_blocksContent', sc_block_content());
+        view()->share('sc_layoutsUrl', sc_link());
+        view()->share('sc_templatePath', 'templates.' . sc_store('template'));
+        view()->share('sc_templateFile', 'templates/' . sc_store('template'));
         //variable model
         view()->share('modelProduct', (new ShopProduct));
         view()->share('modelCategory', (new ShopCategory));

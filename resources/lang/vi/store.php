@@ -25,8 +25,12 @@ return [
     'select_store' => 'Chọn cửa hàng' ,
     'domain' => 'Tên miền',
     'domain_invalid' => 'Tên miền không hợp lệ',
+    'domain_help' => 'Ví dụ: https://abc.com',
     'cannot_disable' => 'Bạn không thể tắt cửa hàng mà bạn đang sử dụng. Hành động này cần xử lý trên tên miền khác.',
     'cannot_delete' => 'Bạn không thể xóa cửa hàng mà bạn đang sử dụng. Hành động này cần xử lý trên tên miền khác.',
+    'deny_help_1' => 'Xin lỗi, tên miền này không tồn tại trên hệ thống!',
+    'deny_help_2' => 'trở về trang chủ:',
+    'deny_help_3' => 'Bấm vào đây',
     'admin' => [
         'title' => 'Thông tin cửa hàng',
         'create_success' => 'Tạo mới thành công!',

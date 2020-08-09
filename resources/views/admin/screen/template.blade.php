@@ -52,8 +52,7 @@
                    <td><a href="{{ $template['config']['website']??'' }}" target=_new><i class="fa fa-link" aria-hidden="true"></i>Link</a></td>
                    <td>{{ $template['config']['version']??'' }}</td>
                     <td>
-                      <input data-id={{ $key }} type="checkbox" class="swith" {!! ($templateCurrent==$key)?'checked="checked" disabled="disabled"':'' !!}>
-                      @if ($templateCurrent != $key)
+                      @if (!in_array($key, $templatesUsed))
                         <span onClick="removeTemplate($(this), '{{ $key }}');" title="{{ trans('template.remove') }}" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash"></i></span>
                       @endif
                     </td>
@@ -81,31 +80,6 @@
 
     {{-- //End pjax --}}
     <script type="text/javascript">
-      $(".swith").bootstrapSwitch();
-      $('.swith').on('switchChange.bootstrapSwitch', function (event, state) {
-        if(state == true) {
-          $('#loading').show()
-          $.ajax({
-            type: 'POST',
-            dataType:'json',
-            url: '{{ route('admin_template.changeTemplate') }}',
-            data: {
-              "_token": "{{ csrf_token() }}",
-              "key":$(this).data('id'),
-            },
-            success: function (response) {
-              if(parseInt(response.error) ==0){
-                alertMsg('success', response.msg);
-                location.reload();
-              }else{
-                alertMsg('error', response.msg);
-              }
-              $('#loading').hide();
-            }
-          });
-        }
-      }); 
-
       function removeTemplate(obj,key) {
 
         Swal.fire({

@@ -34,8 +34,8 @@
                         {{ trans('front.my_account') }}
                     </div>
                     <ul>
-                        @if (!empty($layoutsUrl['footer']))
-                        @foreach ($layoutsUrl['footer'] as $url)
+                        @if (!empty($sc_layoutsUrl['footer']))
+                        @foreach ($sc_layoutsUrl['footer'] as $url)
                         <li>
                             <a {{ ($url->target =='_blank')?'target=_blank':''  }}
                                 href="{{ sc_url_render($url->url) }}">{{ sc_language_render($url->name) }}</a>
