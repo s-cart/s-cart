@@ -48,9 +48,9 @@
     <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/slick/slick.css')}}">
     <link rel="stylesheet" href="{{ asset($sc_templateFile.'/lib/css/animate.css')}}">
     <link rel="stylesheet"
-        href="{{ asset($sc_templateFile.'/css/main.css')}}?v={{ filemtime(public_path($sc_templateFile.'/css/main.css')) }}" />
+        href="{{ asset($sc_templateFile.'/css/main.css')}}" />
     <link rel="stylesheet"
-        href="{{ asset($sc_templateFile.'/css/main-rtl.css')}}?v={{ filemtime(public_path($sc_templateFile.'/css/main-rtl.css')) }}" />
+        href="{{ asset($sc_templateFile.'/css/main-rtl.css')}}" />
     @stack('styles')
 <body>
 
@@ -135,7 +135,7 @@
     <script src="{{ asset($sc_templateFile.'/lib/bootstrap/js/bootstrap.min.js')}}">
     </script>
     <script src="{{ asset($sc_templateFile.'/lib/slick/slick.min.js')}}"></script>
-    <script src="{{ asset($sc_templateFile.'/js/main.js')}}?v={{ filemtime($sc_templateFile.'/js/main.js') }}"></script>
+    <script src="{{ asset($sc_templateFile.'/js/main.js')}}"></script>
 
     <!--Module bottom -->
     @isset ($sc_blocksContent['bottom'])
