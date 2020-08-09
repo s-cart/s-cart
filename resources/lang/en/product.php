@@ -23,7 +23,7 @@ return [
     'content'               => 'Content',
     'type'                  => 'Type',
     'kind'                  => 'Kind',
-    'virtual'               => 'Virtual',
+    'property'               => 'Virtual',
     'cost'                  => 'Price cost',
     'stock'                 => 'Stock',
     'stock_status'          => 'Stock status',
@@ -118,7 +118,7 @@ return [
         'build'  => 'Build',
         'group'  => 'Group',
     ],
-    'virtuals'              => [
+    'propertys'              => [
         'physical'  => 'Physical',
         'download'  => 'Download',
         'only_view' => 'Only view',
@@ -135,7 +135,7 @@ return [
         'cost'                    => 'Use COST PRICE',
         'type'                    => 'Use TYPE (new, hot,...)',
         'kind'                    => 'Use STRUCTURE TYPE (single, group, bundle)',
-        'virtual'                    => 'Use Product type: download, virtual, physical',
+        'property'                    => 'Use Product Property: download, property, physical',
         'attribute'                    => 'Use ATTRIBUTE (color, size,...)',
         'promotion'                    => 'Use PROMOTION PRICE',
         'available'                    => 'Use Time to start selling',

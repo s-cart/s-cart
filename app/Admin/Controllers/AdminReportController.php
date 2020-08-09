@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class AdminReportController extends Controller
 {
-    public $languages, $kinds, $virtuals, $attributeGroup;
+    public $languages, $kinds, $propertys, $attributeGroup;
 
     public function __construct()
     {
@@ -21,11 +21,11 @@ class AdminReportController extends Controller
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
             SC_PRODUCT_GROUP => trans('product.kinds.group'),
         ];
-        $this->virtuals = [
-            SC_VIRTUAL_PHYSICAL => trans('product.virtuals.physical'),
-            SC_VIRTUAL_DOWNLOAD => trans('product.virtuals.download'),
-            SC_VIRTUAL_ONLY_VIEW => trans('product.virtuals.only_view'),
-            SC_VIRTUAL_SERVICE => trans('product.virtuals.service'),
+        $this->propertys = [
+            SC_PROPERTY_PHYSICAL => trans('product.propertys.physical'),
+            SC_PROPERTY_DOWNLOAD => trans('product.propertys.download'),
+            SC_PROPERTY_ONLY_VIEW => trans('product.propertys.only_view'),
+            SC_PROPERTY_SERVICE => trans('product.propertys.service'),
         ];
 
     }

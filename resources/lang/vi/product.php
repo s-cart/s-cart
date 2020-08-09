@@ -25,7 +25,7 @@ return [
     'content'               => 'Chi tiết',
     'type'                  => 'Loại',
     'kind'                  => 'Kiểu',
-    'virtual'               => 'Loại',
+    'property'               => 'Loại',
     'view'                  => 'Lượt xem',
     'sold'                  => 'Đã bán',
     'image'                 => 'Hình ảnh',
@@ -119,7 +119,7 @@ return [
         'build'  => 'Bộ sản phẩm',
         'group'  => 'Nhóm sản phẩm',
     ],
-    'virtuals'              => [
+    'propertys'              => [
         'physical'  => 'Vật lý',
         'download'  => 'Tải xuống',
         'only_view' => 'Chỉ xem',
@@ -136,7 +136,7 @@ return [
         'stock'                    => 'Sử dụng SỐ LƯỢNG',
         'type'                    => 'Sử dụng PHÂN LOẠI TÌNH TRẠNG(mới, hot,...)',
         'kind'                    => 'Sử dụng PHÂN LOẠI THEO CẤU TRÚC (sản phẩm đơn, nhóm, bộ)',
-        'virtual'                    => 'Sử dụng PHÂN LOẠI ĐẶC TÍNH: download, vật lý, dịch vụ,..',
+        'property'                    => 'Sử dụng PHÂN LOẠI ĐẶC TÍNH: download, vật lý, dịch vụ,..',
         'attribute'                    => 'Sử dụng THUỘC TÍNH (màu sắc, kích thước,...)',
         'promotion'                    => 'Sử dụng GIÁ KHUYẾN MÃI',
         'available'                    => 'Sử dụng THỜI GIAN MỞ BÁN',

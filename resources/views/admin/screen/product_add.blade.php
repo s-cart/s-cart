@@ -689,27 +689,27 @@
 @endif
 
 
-@if (sc_config('product_virtual'))
-                        {{-- virtual --}}
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('virtual') ? ' text-red' : '' }}">
-                            <label for="virtual" class="col-sm-2 col-form-label">{{ trans('product.virtual') }}</label>
+@if (sc_config('product_property'))
+                        {{-- property --}}
+                        <div class="form-group row kind kind0 kind1  {{ $errors->has('property') ? ' text-red' : '' }}">
+                            <label for="property" class="col-sm-2 col-form-label">{{ trans('product.property') }}</label>
                             <div class="col-sm-8">
-                                @foreach ( $virtuals as $key => $virtual)
+                                @foreach ( $propertys as $key => $property)
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary{{ $key }}" name="virtual" value="{{ $key }}" {{ ((!old() && $key ==0) || old('virtual') == $key)?'checked':'' }}>
+                                    <input type="radio" id="radioPrimary{{ $key }}" name="property" value="{{ $key }}" {{ ((!old() && $key ==0) || old('property') == $key)?'checked':'' }}>
                                     <label for="radioPrimary{{ $key }}">
-                                        {{ $virtual }}
+                                        {{ $property }}
                                     </label>
                                 </div>
                                 @endforeach
-                                @if ($errors->has('virtual'))
+                                @if ($errors->has('property'))
                                 <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('virtual') }}
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('property') }}
                                 </span>
                                 @endif
                             </div>
                         </div>
-                        {{-- //virtual --}}
+                        {{-- //property --}}
 @endif
 
 

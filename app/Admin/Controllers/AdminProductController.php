@@ -23,7 +23,7 @@ use Validator;
 
 class AdminProductController extends Controller
 {
-    public $languages, $kinds, $virtuals, $attributeGroup, $listWeight, $listLength, $stories;
+    public $languages, $kinds, $propertys, $attributeGroup, $listWeight, $listLength, $stories;
 
     public function __construct()
     {
@@ -37,11 +37,11 @@ class AdminProductController extends Controller
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
             SC_PRODUCT_GROUP => trans('product.kinds.group'),
         ];
-        $this->virtuals = [
-            SC_VIRTUAL_PHYSICAL => trans('product.virtuals.physical'),
-            SC_VIRTUAL_DOWNLOAD => trans('product.virtuals.download'),
-            SC_VIRTUAL_ONLY_VIEW => trans('product.virtuals.only_view'),
-            SC_VIRTUAL_SERVICE => trans('product.virtuals.service'),
+        $this->propertys = [
+            SC_PROPERTY_PHYSICAL => trans('product.propertys.physical'),
+            SC_PROPERTY_DOWNLOAD => trans('product.propertys.download'),
+            SC_PROPERTY_ONLY_VIEW => trans('product.propertys.only_view'),
+            SC_PROPERTY_SERVICE => trans('product.propertys.service'),
         ];
 
     }
@@ -84,8 +84,8 @@ class AdminProductController extends Controller
         if(sc_config('product_kind')){
             $listTh['kind'] = trans('product.kind');
         }
-        if(sc_config('product_virtual')){
-            $listTh['virtual'] = trans('product.virtual');
+        if(sc_config('product_property')){
+            $listTh['property'] = trans('product.property');
         }
         $listTh['status'] = trans('product.status');
         $listTh['action'] = trans('product.admin.action');
@@ -157,8 +157,8 @@ class AdminProductController extends Controller
             if(sc_config('product_kind')){
                 $dataMap['kind'] = $kind;
             }
-            if(sc_config('product_virtual')){
-                $dataMap['virtual'] = $this->virtuals[$row['virtual']] ?? $row['virtual'];
+            if(sc_config('product_property')){
+                $dataMap['property'] = $this->propertys[$row['property']] ?? $row['property'];
             }
             $dataMap['status'] = $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>';
             $dataMap['action'] = '
@@ -259,7 +259,7 @@ class AdminProductController extends Controller
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
             'taxs' => (new ShopTax)->getList(),
-            'virtuals' => $this->virtuals,
+            'propertys' => $this->propertys,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,
             'htmlSelectGroup' => $htmlSelectGroup,
@@ -409,7 +409,7 @@ class AdminProductController extends Controller
             'width' => $data['width'] ?? 0,
             'kind' => $data['kind']??SC_PRODUCT_SINGLE,
             'alias' => $data['alias'],
-            'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
+            'property' => $data['property'] ?? SC_PROPERTY_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
             'image' => $data['image']??'',
             'tax_id' => $data['tax_id']??0,
@@ -555,7 +555,7 @@ class AdminProductController extends Controller
             'brands' => (new ShopBrand)->getList(),
             'suppliers' => (new ShopSupplier)->getList(),
             'taxs' => (new ShopTax)->getList(),
-            'virtuals' => $this->virtuals,
+            'propertys' => $this->propertys,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,
             'htmlSelectGroup' => $htmlSelectGroup,
@@ -694,7 +694,7 @@ class AdminProductController extends Controller
             'height' => $data['height'] ?? 0,
             'length' => $data['length'] ?? 0,
             'width' => $data['width'] ?? 0,
-            'virtual' => $data['virtual'] ?? SC_VIRTUAL_PHYSICAL,
+            'property' => $data['property'] ?? SC_PROPERTY_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
             'sku' => $data['sku'],
             'alias' => $data['alias'],

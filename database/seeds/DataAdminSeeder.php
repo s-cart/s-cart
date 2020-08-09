@@ -196,7 +196,7 @@ class DataAdminSeeder extends Seeder
             ['group' => 'all', 'code' => 'product', 'key' => 'product_promotion', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.promotion'],
             ['group' => 'all', 'code' => 'product', 'key' => 'product_stock', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.stock'],
             ['group' => 'all', 'code' => 'product', 'key' => 'product_kind', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.kind'],
-            ['group' => 'all', 'code' => 'product', 'key' => 'product_virtual', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.virtual'],
+            ['group' => 'all', 'code' => 'product', 'key' => 'product_property', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.property'],
             ['group' => 'all', 'code' => 'product', 'key' => 'product_attribute', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.attribute'],
             ['group' => 'all', 'code' => 'product', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available'],
             ['group' => 'all', 'code' => 'product', 'key' => 'product_weight', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.weight'],

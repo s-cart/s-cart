@@ -22,7 +22,7 @@ class ShopProduct extends Model
     protected $connection = SC_CONNECTION;
 
     protected  $sc_kind = 'all'; // 0:single, 1:bundle, 2:group
-    protected  $sc_virtual = 'all'; // 0:physical, 1:download, 2:only view, 3: Service
+    protected  $sc_property = 'all'; // 0:physical, 1:download, 2:only view, 3: Service
     protected  $sc_promotion = 0; // 1: only produc promotion,
     protected  $sc_array_ID = []; // array ID product
     protected  $sc_category = []; // array category id
@@ -422,13 +422,13 @@ class ShopProduct extends Model
     }
 
     /**
-     * Set virtual product
+     * Set property product
      */
-    private function setVirtual($virtual) {
-        if ($virtual === 'all') {
-            $this->sc_virtual = $virtual;
+    private function setVirtual($property) {
+        if ($property === 'all') {
+            $this->sc_property = $property;
         } else {
-            $this->sc_virtual = (int)$virtual;
+            $this->sc_property = (int)$property;
         }
         return $this;
     }
@@ -689,8 +689,8 @@ class ShopProduct extends Model
         }
 
         
-        if ($this->sc_virtual !== 'all') {
-            $query = $query->where('virtual', $this->sc_virtual);
+        if ($this->sc_property !== 'all') {
+            $query = $query->where('property', $this->sc_property);
         }
 
         if (count($this->sc_brand)) {
