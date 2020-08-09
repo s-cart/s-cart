@@ -17,7 +17,7 @@ class AdminBannerController extends Controller
     {
         $this->arrTarget = ['_blank' => '_blank', '_self' => '_self'];
         $this->dataType = ['0' => 'Banner', '1' => 'Background', '2' => 'Other'];
-        $this->stories = AdminStore::getAll();
+        $this->stories = AdminStore::getListAll();
     }
 
     public function index()

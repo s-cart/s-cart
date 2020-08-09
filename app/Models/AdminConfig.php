@@ -64,7 +64,7 @@ class AdminConfig extends Model
  *
  * @return [type]          [return description]
  */
-    public static function getAll()
+    public static function getListAll()
     {
         if (self::$getAll == null) {
             self::$getAll = self::where('store_id', '<>', 0)

@@ -131,7 +131,7 @@ class ShopCart extends GeneralController
                 'dataTotal' => ShopOrderTotal::processDataTotal($objects),
                 'shippingAddress' => $shippingAddress,
                 'layout_page' => 'shop_cart',
-                'countries' => ShopCountry::getArray(),
+                'countries' => ShopCountry::getCodeAll(),
                 'attributesGroup' => ShopAttributeGroup::pluck('name', 'id')->all(),
             ]
         );
@@ -302,7 +302,7 @@ class ShopCart extends GeneralController
                 'paymentMethodData' => $paymentMethodData,
                 'shippingMethodData' => $shippingMethodData,
                 'shippingAddress' => $shippingAddress,
-                'attributesGroup' => ShopAttributeGroup::getList(),
+                'attributesGroup' => ShopAttributeGroup::getListAll(),
                 'layout_page' =>'shop_cart',
             ]
         );

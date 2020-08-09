@@ -65,7 +65,7 @@ class LoginController extends GeneralController
         return view($this->templatePath . '.screen.shop_login',
             array(
                 'title' => trans('front.login'),
-                'countries' => ShopCountry::getArray(),
+                'countries' => ShopCountry::getCodeAll(),
                 'layout_page' => 'shop_auth',
             )
         );

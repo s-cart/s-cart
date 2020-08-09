@@ -17,8 +17,8 @@ class AdminPageController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
-        $this->stories = AdminStore::getAll();
+        $this->languages = ShopLanguage::getListActive();
+        $this->stories = AdminStore::getListAll();
 
     }
 

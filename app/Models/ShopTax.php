@@ -21,7 +21,7 @@ class ShopTax extends Model
      *
      * @return  [type]  [return description]
      */
-    public static function getList()
+    public static function getListAll()
     {
         if (self::$getList == null) {
             self::$getList = self::get()->keyBy('id');

@@ -15,7 +15,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
+        $this->languages = ShopLanguage::getListActive();
         $this->plugin = new AppConfig;
 
     }

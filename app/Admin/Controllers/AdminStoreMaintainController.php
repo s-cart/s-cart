@@ -15,19 +15,19 @@ class AdminStoreMaintainController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
+        $this->languages = ShopLanguage::getListActive();
 
     }
     
     public function index()
     {
-        $languages = ShopLanguage::getList();
-        $stories = AdminStore::getAll();
+        $stories = AdminStore::getListAll();
         $data = [
             'title' => trans('store_maintain.admin.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
-        $data['languages'] = $languages;
+            'icon' => 'fa fa-indent',        
+        ];
+        $data['languages'] = $this->languages;
         $data['stories'] = $stories;
         return view('admin.screen.store_maintain')
             ->with($data);

@@ -86,9 +86,9 @@ if (!function_exists('sc_config')) {
 
         $allConfig = [];
         try {
-            $dataConfig = AdminConfig::getAll()[$store] ?? [];
+            $dataConfig = AdminConfig::getListAll()[$store] ?? [];
             if ($dataConfig) {
-                $allConfig = AdminConfig::getAll()[$store]->pluck('value', 'key')->all() ?? [];
+                $allConfig = AdminConfig::getListAll()[$store]->pluck('value', 'key')->all() ?? [];
             }
         } catch(\Throwable $e) {
             //
@@ -180,7 +180,7 @@ if (!function_exists('sc_store')) {
 
         $allStoreInfo = [];
         try {
-            $allStoreInfo = AdminStore::getAll()[$store]->toArray() ?? [];
+            $allStoreInfo = AdminStore::getListAll()[$store]->toArray() ?? [];
         } catch(\Throwable $e) {
             //
         }
@@ -240,7 +240,7 @@ if (!function_exists('sc_url_render')) {
 if (!function_exists('sc_language_all')) {
     function sc_language_all()
     {
-        return ShopLanguage::getList();
+        return ShopLanguage::getListActive();
     }
 }
 

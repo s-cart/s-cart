@@ -1,5 +1,5 @@
 @php
-$categories = $modelCategory->start()->getList(['status' => 1]);
+$categories = $modelCategory->start()->getListAll(['status' => 1]);
 $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
 @endphp
 @if ($categoriesTop->count())

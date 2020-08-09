@@ -62,7 +62,7 @@ class ShopCategory extends Model
      */
     public function getIdCategories($parent = 0, &$arrayID = [], $categories = [])
     {
-        $categories = $categories ?? $this->getList();
+        $categories = $categories ?? $this->getListAll();
         $arrayID = $arrayID ?? [];
         $lisCategory = $categories[$parent] ?? [];
         if (count($lisCategory)) {
@@ -88,7 +88,7 @@ class ShopCategory extends Model
      */
     public function getTreeCategories($parent = 0, &$tree = [], $categories = null, &$st = '')
     {
-        $categories = $categories ?? $this->getList();
+        $categories = $categories ?? $this->getListAll();
         $tree = $tree ?? [];
         $lisCategory = $categories[$parent] ?? [];
         if ($lisCategory) {
@@ -143,7 +143,7 @@ class ShopCategory extends Model
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $tableDescription = (new ShopCategoryDescription)->getTable();
 

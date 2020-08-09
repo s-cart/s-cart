@@ -248,7 +248,7 @@ class ShopProduct extends Model
         return  view('templates.'.sc_store('template').'.common.render_attribute', 
         [
             'details' => $this->attributes()->get()->groupBy('attribute_group_id'),
-            'groups' => ShopAttributeGroup::getList(),
+            'groups' => ShopAttributeGroup::getListAll(),
         ]);
     }
 
@@ -265,7 +265,7 @@ class ShopProduct extends Model
     {
         $html = '';
         $details = $this->attributes()->get()->groupBy('attribute_group_id');
-        $groups = ShopAttributeGroup::getList();
+        $groups = ShopAttributeGroup::getListAll();
         foreach ($details as $groupId => $detailsGroup) {
             $html .= '<br><b><label>' . $groups[$groupId] . '</label></b>: ';
             foreach ($detailsGroup as $k => $detail) {
@@ -360,7 +360,7 @@ class ShopProduct extends Model
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $sortBy = $arrSort['sortBy'] ?? 'sort';
         $sortOrder = $arrSort['sortOrder'] ?? 'asc';
@@ -749,7 +749,7 @@ class ShopProduct extends Model
         if ($this->tax_id == 'auto') {
             return ShopTax::checkStatus();
         } else {
-            $arrTaxList = ShopTax::getList();
+            $arrTaxList = ShopTax::getListAll();
             if ($this->tax_id == 0 || !$arrTaxList->has($this->tax_id)) {
                 return 0;
             }

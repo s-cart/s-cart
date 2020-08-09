@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AdminStoreController extends Controller
 {
-    public $templates, $currencies, $languages, $allLanguages, $timezones;
+    public $templates, $currencies, $languages, $timezones;
 
     public function __construct()
     {
@@ -26,8 +26,7 @@ class AdminStoreController extends Controller
         }
         $this->templates = $templates;
         $this->currencies = ShopCurrency::getCodeActive();
-        $this->languages = ShopLanguage::getCodeActive();
-        $this->allLanguages = ShopLanguage::getList();
+        $this->languages = ShopLanguage::getListActive();
         $this->timezones = $timezones;
 
     }
@@ -46,10 +45,9 @@ class AdminStoreController extends Controller
             'subTitle' => '',
             'icon' => 'fa fa-indent',        
         ];
-        $stories = AdminStore::getAll();
+        $stories = AdminStore::getListAll();
         $data['stories'] = $stories;
         $data['templates'] = $this->templates;
-        $data['allLanguages'] = $this->allLanguages;
         $data['timezones'] = $this->timezones;
         $data['languages'] = $this->languages;
         $data['currencies'] =$this->currencies;
@@ -72,13 +70,12 @@ class AdminStoreController extends Controller
             'title_description' => trans('store.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'store' => [],
-            'allLanguages' => $this->allLanguages,
+            'languages' => $this->languages,
             'url_action' => route('admin_store.create'),
             'templates' => $this->templates
         ];
 
         $data['timezones'] = $this->timezones;
-        $data['languages'] = $this->languages;
         $data['currencies'] =$this->currencies;
 
         return view('admin.screen.store_add')
@@ -132,7 +129,7 @@ class AdminStoreController extends Controller
         $store = AdminStore::create($dataInsert);
 
         $dataDes = [];
-        $languages = ShopLanguage::getList();
+        $languages = ShopLanguage::getListActive();
         foreach ($languages as $code => $value) {
             $dataDes[] = [
                 'store_id' => $store->id,

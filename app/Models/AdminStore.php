@@ -22,6 +22,7 @@ class AdminStore extends Model
         parent::boot();
         // before delete() method call this
         static::deleting(function ($store) {
+            //Store id 1 is default
             if ($store->id == 1) {
                 return false;
             }
@@ -36,19 +37,23 @@ class AdminStore extends Model
      *
      * @return  [type]  [return description]
      */
-    public static function getAll()
+    public static function getListAll()
     {
         if (sc_config_global('cache_status') && sc_config_global('cache_store')) {
             if (!Cache::has('cache_store')) {
                 if (self::$getAll == null) {
-                    self::$getAll = self::with('descriptions')->get()->groupBy('id');
+                    self::$getAll = self::with('descriptions')
+                        ->get()
+                        ->keyBy('id');
                 }
                 Cache::put('cache_store', self::$getAll, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_store');
         } else {
             if (self::$getAll == null) {
-                self::$getAll = self::with('descriptions')->get()->keyBy('id');
+                self::$getAll = self::with('descriptions')
+                    ->get()
+                    ->keyBy('id');
             }
             return self::$getAll;
         }
@@ -70,7 +75,9 @@ class AdminStore extends Model
      */
     public static function getDomain()
     {
-        return self::where('status', 1)->pluck('domain', 'id')->all();
+        return self::where('status', 1)
+            ->pluck('domain', 'id')
+            ->all();
     }
 
 }

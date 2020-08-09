@@ -11,10 +11,11 @@ class AdminMenu extends Model
     protected $guarded = [];
     private static $getList = null;
 
-    public static function getList()
+    public static function getListAll()
     {
         if (self::$getList == null) {
-            self::$getList = self::orderBy('sort', 'asc')->get();
+            self::$getList = self::orderBy('sort', 'asc')
+            ->get();
         }
         return self::$getList;
     }
@@ -26,7 +27,7 @@ class AdminMenu extends Model
      */
     public static function getListVisible()
     {
-        $list = self::getList();
+        $list = self::getListAll();
         $listVisible = [];
         foreach ($list as  $menu) {
             if (!$menu->uri) {
@@ -80,7 +81,7 @@ class AdminMenu extends Model
 
     public function getTree($parent = 0, &$tree = null, $menus = null, &$st = '')
     {
-        $menus = $menus ?? $this->getList()->groupBy('parent_id');
+        $menus = $menus ?? $this->getListAll()->groupBy('parent_id');
         $tree = $tree ?? [];
         $lisMenu = $menus[$parent] ?? [];
         foreach ($lisMenu as $menu) {

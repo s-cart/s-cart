@@ -27,11 +27,11 @@ class AdminProductController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
-        $this->listWeight = ShopWeight::getList();
-        $this->listLength = ShopLength::getList();
-        $this->attributeGroup = ShopAttributeGroup::getList();
-        $this->stories = AdminStore::getAll();
+        $this->languages = ShopLanguage::getListActive();
+        $this->listWeight = ShopWeight::getListAll();
+        $this->listLength = ShopLength::getListAll();
+        $this->attributeGroup = ShopAttributeGroup::getListAll();
+        $this->stories = AdminStore::getListAll();
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
@@ -256,9 +256,9 @@ class AdminProductController extends Controller
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
             'categories' => (new ShopCategory)->getTreeCategories(),
-            'brands' => (new ShopBrand)->getList(),
-            'suppliers' => (new ShopSupplier)->getList(),
-            'taxs' => (new ShopTax)->getList(),
+            'brands' => (new ShopBrand)->getListAll(),
+            'suppliers' => (new ShopSupplier)->getListAll(),
+            'taxs' => (new ShopTax)->getListAll(),
             'propertys' => $this->propertys,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,
@@ -552,9 +552,9 @@ class AdminProductController extends Controller
             'languages' => $this->languages,
             'product' => $product,
             'categories' => (new ShopCategory)->getTreeCategories(),
-            'brands' => (new ShopBrand)->getList(),
-            'suppliers' => (new ShopSupplier)->getList(),
-            'taxs' => (new ShopTax)->getList(),
+            'brands' => (new ShopBrand)->getListAll(),
+            'suppliers' => (new ShopSupplier)->getListAll(),
+            'taxs' => (new ShopTax)->getListAll(),
             'propertys' => $this->propertys,
             'kinds' => $this->kinds,
             'attributeGroup' => $this->attributeGroup,

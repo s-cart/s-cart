@@ -14,8 +14,8 @@ class AdminReportController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
-        $this->attributeGroup = ShopAttributeGroup::getList();
+        $this->languages = ShopLanguage::getListActive();
+        $this->attributeGroup = ShopAttributeGroup::getListAll();
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),

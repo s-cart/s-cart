@@ -18,7 +18,7 @@ class Localization
     public function handle($request, Closure $next)
     {
 //Set language
-        $languages = ShopLanguage::getList();
+        $languages = ShopLanguage::getListActive();
         $requestLocale = $request->get('lang');
         if ($requestLocale) {
             $detectLocale = $requestLocale;

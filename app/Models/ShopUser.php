@@ -43,7 +43,7 @@ class ShopUser extends Authenticatable
         return $this->hasMany(ShopUserAddress::class, 'user_id', 'id');
     }
 
-    public static function getList()
+    public static function getListAll()
     {
         if (self::$getList == null) {
             self::$getList = self::get()->keyBy('id');

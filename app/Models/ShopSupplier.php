@@ -15,7 +15,7 @@ class ShopSupplier extends Model
     private static $getList = null;
     protected $connection = SC_CONNECTION;
 
-    public static function getList()
+    public static function getListAll()
     {
         if (self::$getList == null) {
             self::$getList = self::get()->keyBy('id');

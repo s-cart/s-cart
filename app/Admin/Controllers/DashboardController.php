@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
         //Country statistics
         $dataCountries = (new ShopOrder)->getCountryInYear();
-        $arrCountry = ShopCountry::getArray();
+        $arrCountry = ShopCountry::getCodeAll();
         $arrCountryMap   = [];
         $ctTotal = 0;
         $ctTop = 0;

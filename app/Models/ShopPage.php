@@ -101,7 +101,7 @@ class ShopPage extends Model
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $sortBy = $arrSort['sortBy'] ?? null;
         $sortOrder = $arrSort['sortOrder'] ?? 'asc';

@@ -124,7 +124,7 @@ class ShopAccount extends GeneralController
                 [
                     'title' => trans('account.change_infomation'),
                     'user' => $user,
-                    'countries' => ShopCountry::getArray(),
+                    'countries' => ShopCountry::getCodeAll(),
                     'layout_page' => 'shop_profile',
                 ]
             );
@@ -165,7 +165,7 @@ class ShopAccount extends GeneralController
      */
     public function orderList()
     {
-        $statusOrder = ShopOrderStatus::getListStatus();
+        $statusOrder = ShopOrderStatus::getIdAll();
         return view($this->templatePath . '.account.order_list')
             ->with(
                 [
@@ -183,8 +183,8 @@ class ShopAccount extends GeneralController
      */
     public function orderDetail($id)
     {
-        $statusOrder = ShopOrderStatus::getListStatus();
-        $statusShipping = ShopShippingStatus::getListStatus();
+        $statusOrder = ShopOrderStatus::getIdAll();
+        $statusShipping = ShopShippingStatus::getIdAll();
         $attributesGroup = ShopAttributeGroup::pluck('name', 'id')->all();
         $order = ShopOrder::where('id', $id) ->where('user_id', auth()->user()->id)->first();
         if($order) {
@@ -198,7 +198,7 @@ class ShopAccount extends GeneralController
             'title' => $title,
             'statusOrder' => $statusOrder,
             'statusShipping' => $statusShipping,
-            'countries' => ShopCountry::getArray(),
+            'countries' => ShopCountry::getCodeAll(),
             'attributesGroup' => $attributesGroup,
             'order' => $order,
             'layout_page' => 'shop_profile',
@@ -219,7 +219,7 @@ class ShopAccount extends GeneralController
                 [
                 'title' => trans('account.address_list'),
                 'addresses' => auth()->user()->addresses,
-                'countries' => ShopCountry::getArray(),
+                'countries' => ShopCountry::getCodeAll(),
                 'layout_page' => 'shop_profile',
                 ]
             );
@@ -245,7 +245,7 @@ class ShopAccount extends GeneralController
             [
             'title' => $title,
             'address' => $address,
-            'countries' => ShopCountry::getArray(),
+            'countries' => ShopCountry::getCodeAll(),
             'layout_page' => 'shop_profile',
             ]
         );

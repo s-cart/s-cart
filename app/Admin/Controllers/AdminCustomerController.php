@@ -17,8 +17,8 @@ class AdminCustomerController extends Controller
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
-        $this->countries = ShopCountry::getList();
+        $this->languages = ShopLanguage::getListActive();
+        $this->countries = ShopCountry::getListAll();
 
     }
 
@@ -146,7 +146,7 @@ class AdminCustomerController extends Controller
             'subTitle' => '',
             'title_description' => trans('customer.admin.add_new_des'),
             'icon' => 'fa fa-plus',
-            'countries' => (new ShopCountry)->getArray(),
+            'countries' => (new ShopCountry)->getCodeAll(),
             'customer' => [],
             'url_action' => route('admin_customer.create'),
 
@@ -191,7 +191,7 @@ class AdminCustomerController extends Controller
             'title_description' => '',
             'icon' => 'fa fa-edit',
             'customer' => $customer,
-            'countries' => (new ShopCountry)->getArray(),
+            'countries' => (new ShopCountry)->getCodeAll(),
             'addresses' => $customer->addresses,
             'url_action' => route('admin_customer.edit', ['id' => $customer['id']]),
         ];
@@ -258,7 +258,7 @@ Need mothod destroy to boot deleting in model
             'title' => $title,
             'address' => $address,
             'customer' => ShopUser::find($address->user_id),
-            'countries' => ShopCountry::getArray(),
+            'countries' => ShopCountry::getCodeAll(),
             'layout_page' => 'shop_profile',
             'url_action' => route('admin_customer.update_address', ['id' => $id]),
             ]

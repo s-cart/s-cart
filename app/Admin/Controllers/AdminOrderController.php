@@ -33,11 +33,11 @@ class AdminOrderController extends Controller
 
     public function __construct()
     {
-        $this->statusOrder = ShopOrderStatus::getListStatus();
-        $this->currency = ShopCurrency::getList();
-        $this->country = ShopCountry::getArray();
-        $this->statusPayment = ShopPaymentStatus::getListStatus();
-        $this->statusShipping = ShopShippingStatus::getListStatus();
+        $this->statusOrder = ShopOrderStatus::getIdAll();
+        $this->currency = ShopCurrency::getListActive();
+        $this->country = ShopCountry::getCodeAll();
+        $this->statusPayment = ShopPaymentStatus::getIdAll();
+        $this->statusShipping = ShopShippingStatus::getIdAll();
 
     }
 
@@ -174,17 +174,17 @@ class AdminOrderController extends Controller
                     </div>
                 </div>
                 </form>';
-//=menuSearch
+    //=menuSearch
 
 
         return view('admin.screen.list')
             ->with($data);
     }
 
-/**
- * Form create new order in admin
- * @return [type] [description]
- */
+    /**
+     * Form create new order in admin
+     * @return [type] [description]
+     */
     public function create()
     {
         $data = [
@@ -205,7 +205,7 @@ class AdminOrderController extends Controller
         $currencies = $this->currency;
         $countries = $this->country;
         $currenciesRate = json_encode(ShopCurrency::getListRate());
-        $users = ShopUser::getList();
+        $users = ShopUser::getListAll();
         $data['users'] = $users;
         $data['currencies'] = $currencies;
         $data['countries'] = $countries;
@@ -218,13 +218,13 @@ class AdminOrderController extends Controller
             ->with($data);
     }
 
-/**
- * Post create new order in admin
- * @return [type] [description]
- */
+    /**
+     * Post create new order in admin
+     * @return [type] [description]
+     */
     public function postCreate()
     {
-        $users = ShopUser::getList();
+        $users = ShopUser::getListAll();
         $data = request()->all();
         $validate = [
             'first_name' => 'required|max:100',
@@ -287,7 +287,7 @@ class AdminOrderController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-//Create new order
+        //Create new order
         $dataInsert = [
             'user_id' => $data['user_id'],
             'first_name' => $data['first_name'],
@@ -315,16 +315,16 @@ class AdminOrderController extends Controller
             ['code' => 'total', 'value' => 0, 'title' => 'Total', 'sort' => 100, 'order_id' => $order->id],
             ['code' => 'received', 'value' => 0, 'title' => 'Received', 'sort' => 200, 'order_id' => $order->id],
         ]);
-//
+        //
         return redirect()->route('admin_order.index')->with('success', trans('order.admin.create_success'));
 
     }
 
-/**
- * Order detail
- * @param  [type] $id [description]
- * @return [type]     [description]
- */
+    /**
+     * Order detail
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function detail($id)
     {
 
@@ -359,21 +359,22 @@ class AdminOrderController extends Controller
             ]);
     }
 
-/**
- * [getInfoUser description]
- * @param   [description]
- * @return [type]           [description]
- */
+    /**
+     * [getInfoUser description]
+     * @param   [description]
+     * @return [type]           [description]
+     */
     public function getInfoUser()
     {
         $id = request('id');
         return ShopUser::find($id)->toJson();
     }
-/**
- * [getInfoProduct description]
- * @param   [description]
- * @return [type]           [description]
- */
+
+    /**
+     * [getInfoProduct description]
+     * @param   [description]
+     * @return [type]           [description]
+     */
     public function getInfoProduct()
     {
         $id = request('id');
@@ -451,11 +452,11 @@ class AdminOrderController extends Controller
         ]);
     }
 
-/**
- * [postAddItem description]
- * @param   [description]
- * @return [type]           [description]
- */
+    /**
+     * [postAddItem description]
+     * @param   [description]
+     * @return [type]           [description]
+     */
     public function postAddItem()
     {
         $data = request()->all();
@@ -511,11 +512,11 @@ class AdminOrderController extends Controller
         return response()->json(['error' => 0, 'msg' => trans('order.admin.update_success')]);
     }
 
-/**
- * [postEditItem description]
- * @param   [description]
- * @return [type]           [description]
- */
+    /**
+     * [postEditItem description]
+     * @param   [description]
+     * @return [type]           [description]
+     */
     public function postEditItem()
     {
         try {
@@ -580,11 +581,11 @@ class AdminOrderController extends Controller
         return response()->json($arrayReturn);
     }
 
-/**
- * [postDeleteItem description]
- * @param   [description]
- * @return [type]           [description]
- */
+    /**
+     * [postDeleteItem description]
+     * @param   [description]
+     * @return [type]           [description]
+     */
     public function postDeleteItem()
     {
         try {
@@ -616,10 +617,10 @@ class AdminOrderController extends Controller
         }
     }
 
-/*
-Delete list order ID
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list order ID
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {
@@ -632,9 +633,9 @@ Need mothod destroy to boot deleting in model
         }
     }
 
-/*
-Export order detail order
- */
+    /*
+    Export order detail order
+    */
     public function exportDetail()
     {
         $type = request('type');

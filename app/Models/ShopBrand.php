@@ -18,7 +18,7 @@ class ShopBrand extends Model
     protected $connection = SC_CONNECTION;
 
 
-    public static function getList()
+    public static function getListAll()
     {
         if (self::$getList == null) {
             self::$getList = self::get()->keyBy('id');

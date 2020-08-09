@@ -20,7 +20,7 @@
 
                         <div class="card-body">
 
-                            @foreach ($allLanguages as $code => $language)
+                            @foreach ($languages as $code => $language)
 
                             <div class="card">
 

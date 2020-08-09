@@ -25,15 +25,20 @@
       </div>
 
       @php
-        $descriptions = $store->descriptions;
+      $descriptions = $store->descriptions->keyBy('lang');
       @endphp
 
       <div class="card-body">
-        @foreach ($descriptions as  $infoDescription)
+        @foreach ($descriptions as  $codeLang => $infoDescription)
+        @php
+            if (!in_array($codeLang, array_keys($languages->toArray()))) {
+              continue;
+            }
+        @endphp
         <div class="row">
           <div class="col-md-12">
           <div class="card-header with-border">
-            <h3 class="card-title">{{ $languages[$infoDescription['lang']]['name'] }} <img src="{{ asset($languages[$infoDescription['lang']]->icon )}}" style="width:20px">:</h3>
+            <h3 class="card-title">{{ $languages[$codeLang]['name'] }} <img src="{{ asset($languages[$codeLang]->icon )}}" style="width:20px">:</h3>
           </div>
           <div class="table-responsivep-0">
             {!! sc_html_render($infoDescription['maintain_content']) !!}
