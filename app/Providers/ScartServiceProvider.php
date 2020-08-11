@@ -11,7 +11,8 @@ use App\Models\ShopSupplier;
 use App\Models\ShopNews;
 use App\Models\ShopPage;
 use App\Models\AdminStore;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class ScartServiceProvider extends ServiceProvider
 {
     /**
@@ -21,6 +22,7 @@ class ScartServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         foreach (glob(app_path() . '/Library/Helpers/*.php') as $filename) {
             require_once $filename;
         }
@@ -30,6 +32,11 @@ class ScartServiceProvider extends ServiceProvider
         }
 
         if (!file_exists(public_path('install.php'))) {
+            try {
+                DB::connection(SC_CONNECTION)->getPdo();
+            } catch(\Throwable $e) {
+                return;
+            }
             $this->bootScart();
         }
 
@@ -53,7 +60,7 @@ class ScartServiceProvider extends ServiceProvider
     public function bootScart()
     {
         //Check domain exist
-        $domain = str_replace(['http://','https://'], '', url('/'));
+        $domain = Str::finish(str_replace(['http://','https://'], '', url('/')), '/');
         $arrDomain = AdminStore::getDomain();
         $storeId = 1;
         if (in_array($domain, $arrDomain)) {

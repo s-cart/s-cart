@@ -40,15 +40,16 @@ class DashboardController extends Controller
             $ctTotal +=$country->count;
             if($key <= 3) {
                 $ctTop +=$country->count;
+                $countryName = $country->country ?? $key ;
                 if($key == 0) {
                     $arrCountryMap[] =  [
-                        'name' => $arrCountry[$country->country],
+                        'name' => $countryName,
                         'y' => $country->count,
                         'sliced' => true,
                         'selected' => true,
                     ];
                 } else {
-                    $arrCountryMap[] =  [$arrCountry[$country->country], $country->count];
+                    $arrCountryMap[] =  [$countryName, $country->count];
                 }
             }
         }

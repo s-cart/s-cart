@@ -9,6 +9,7 @@ use App\Models\ShopLanguage;
 use App\Models\ShopCurrency;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminStoreController extends Controller
 {
@@ -89,7 +90,7 @@ class AdminStoreController extends Controller
     public function postCreate()
     {
         $dataOrigin = $data = request()->all();
-        $data['domain'] = str_replace(['http://', 'https://'], '', $data['domain']);
+        $data['domain'] = Str::finish(str_replace(['http://', 'https://'], '', $data['domain']), '/');
         $validator = Validator::make($data, [
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
@@ -165,7 +166,7 @@ class AdminStoreController extends Controller
             } else {
                 try {
                     if ($name == 'domain') {
-                        $value = str_replace(['http://', 'https://'], '', $value);
+                        $value = Str::finish(str_replace(['http://', 'https://'], '', $value), '/');
                         if (AdminStore::where('domain', $value)->first()) {
                             $error = 1;
                             $msg = trans('store.domain_exist');

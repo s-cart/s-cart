@@ -16,7 +16,15 @@ class AdminLinkController extends Controller
     public function __construct()
     {
         $this->arrTarget = ['_blank' => '_blank', '_self' => '_self'];
-        $this->arrGroup = ['menu' => 'Menu', 'footer' => 'Footer'];
+        $this->arrGroup = [
+            'menu' => trans('link.link_position.menu'), 
+            'menu_left' => trans('link.link_position.menu_left'), 
+            'menu_right' => trans('link.link_position.menu_right'),
+            'footer' => trans('link.link_position.footer'),
+            'footer_right' => trans('link.link_position.footer_right'),
+            'footer_left' => trans('link.link_position.footer_left'),
+            'sidebar' => trans('link.link_position.sidebar'),
+        ];
     }
     public function index()
     {

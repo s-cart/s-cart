@@ -121,7 +121,7 @@
           <tr>
             <td><i class="fas fa-language nav-icon"></i> {{ trans('store.language') }}</td>
             <td>
-              <a href="#" class="fied-required editable editable-click" data-name="{{ $store->id }}__language" data-type="select" data-pk="" data-source="{{ json_encode($languages) }}" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.language') }}" data-value="{{ $store->language }}" data-original-title="" title=""></a>
+              <a href="#" class="fied-required editable editable-click" data-name="{{ $store->id }}__language" data-type="select" data-pk="" data-source="{{ json_encode($languages->pluck('name','code')->toArray()) }}" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.language') }}" data-value="{{ $store->language }}" data-original-title="" title=""></a>
              </td>
           </tr>
 

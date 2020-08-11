@@ -69,14 +69,14 @@ if (!function_exists('sc_config')) {
      *
      * @return  [type]          [return description]
      */
-    function sc_config($key = null, $store = null)
+    function sc_config($key = null, $storeId = null)
     {
-        $store = ($store === null) ? config('app.storeId') : $store;
+        $storeId = ($storeId === null) ? config('app.storeId') : $storeId;
         //Update config
         if (is_array($key)) {
             if (count($key) == 1) {
                 foreach ($key as $k => $v) {
-                    return AdminConfig::where('store_id', $store)->where('key', $k)->update(['value' => $v]);
+                    return AdminConfig::where('store_id', $storeId)->where('key', $k)->update(['value' => $v]);
                 }
             } else {
                 return false;
@@ -84,15 +84,8 @@ if (!function_exists('sc_config')) {
         }
         //End update
 
-        $allConfig = [];
-        try {
-            $dataConfig = AdminConfig::getListAll()[$store] ?? [];
-            if ($dataConfig) {
-                $allConfig = AdminConfig::getListAll()[$store]->pluck('value', 'key')->all() ?? [];
-            }
-        } catch(\Throwable $e) {
-            //
-        }
+        $allConfig = AdminConfig::getAllStore($storeId);
+
         if ($key === null) {
             return $allConfig;
         }

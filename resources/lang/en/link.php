@@ -7,6 +7,15 @@ return [
     'group' => 'Group',
     'status' => 'Status',
     'sort' => 'Sort',
+    'link_position' => [
+        'menu' => 'Menu',
+        'menu_left' => 'Menu left',
+        'menu_right' => 'Menu right',
+        'footer' => 'Footer',
+        'footer_left' => 'Footer left',
+        'footer_right' => 'Footer right',
+        'sidebar' => 'Sidebar',
+    ],
     'admin' => [
         'title' => 'Url manager',
         'create_success' => 'Create new item success!',

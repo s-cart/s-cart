@@ -10,6 +10,7 @@ class AdminConfig extends Model
     public $table = SC_DB_PREFIX.'admin_config';
     protected static $getAll = null;
     protected static $getAllGlobal = null;
+    protected static $getAllStore = null;
     protected $connection = SC_CONNECTION;
 
     /**
@@ -90,6 +91,21 @@ class AdminConfig extends Model
         return self::$getAllGlobal;
     }
 
+    /**
+     * [getAllStore description]
+     *
+     * @param   [type]  $storeId  [$storeId description]
+     *
+     * @return  [type]            [return description]
+     */
+    public static function getAllStore($storeId) {
+        if (self::$getAllStore == null) {
+            self::$getAllStore = self::where('store_id', $storeId)
+                ->pluck('value', 'key')
+                ->all();
+        }
+        return self::$getAllStore;
+    }
 
 
 }
