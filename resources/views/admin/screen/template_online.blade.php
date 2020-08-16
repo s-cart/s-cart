@@ -25,32 +25,47 @@
 
       <div class="card-header">
         <div class="float-right" >
+          <div class="filter-api">
           <input name="sort_download" id="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }} class="input">
           <label class="checkbox-inline form-check-label" for="sort_download">
             {{ trans('plugin.libraries.sort_download') }}
           </label>
+          </div>
+          <div class="filter-api">
           <input name="sort_rating" id="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }} class="input">
           <label class="checkbox-inline form-check-label" for="sort_rating">
             {{ trans('plugin.libraries.sort_rating') }}
           </label>
+          </div>
+          <div class="filter-api">
           <input name="sort_price_asc" id="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }} class="input">
           <label class="checkbox-inline form-check-label" for="sort_price_asc">
             {{ trans('plugin.libraries.sort_price_asc') }}
           </label>
+          </div>
+          <div class="filter-api">
           <input name="sort_price_desc" id="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }} class="input">
           <label class="checkbox-inline form-check-label" for="sort_price_desc">
             {{ trans('plugin.libraries.sort_price_desc') }}
           </label>
+          </div>
+
+          <div class="filter-api">
           <input name="only_free" id="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }} class="input">
           <label class="checkbox-inline form-check-label" for="only_free">
             {{ trans('plugin.libraries.only_free') }}
+          </label> 
+          </div>
+          <div class="filter-api">
+          <input name="all_version" id="all_version" data-name="all_version" type="checkbox"  {{ $all_version? 'checked':'' }} class="input">
+          <label class="checkbox-inline form-check-label" for="all_version">
+            {{ trans('plugin.libraries.all_version') }}
           </label>  
-          <input name="only_version" id="only_version" data-name="only_version" type="checkbox"  {{ $only_version? 'checked':'' }} class="input">
-          <label class="checkbox-inline form-check-label" for="only_version">
-            {{ trans('plugin.libraries.only_version') }}
-          </label>    
+          </div>  
           <input class="form-control-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
+          <div class="filter-api">
           <button title="Filter" class="btn btn-flat filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
+          </div>
         </div>
         <a class="link-filter" href=""></a>
       </div>
@@ -77,7 +92,7 @@
             <tbody>
               @if (!$arrTemplateLibrary)
                 <tr>
-                  <td colspan="5" style="text-align: center;color: red;">
+                  <td colspan="12" style="text-align: center;color: red;">
                     {{ trans('template.empty') }}
                   </td>
                 </tr>
@@ -274,7 +289,7 @@
 
   $('#filter-button').click(function(){
     var urlNext = '{{ url()->current() }}';
-    var only_version = $('[name="only_version"]:checked').val();
+    var all_version = $('[name="all_version"]:checked').val();
     var only_free = $('[name="only_free"]:checked').val();
     var sort_rating = $('[name="sort_rating"]:checked').val();
     var sort_price_asc = $('[name="sort_price_asc"]:checked').val();
@@ -283,8 +298,8 @@
     var search_keyword = $('[name="search_keyword"]').val();
 
     var urlString = "";
-    if(only_version) {
-      urlString +="&only_version=1";
+    if(all_version) {
+      urlString +="&all_version=1";
     }
     if(only_free) {
       urlString +="&only_free=1";

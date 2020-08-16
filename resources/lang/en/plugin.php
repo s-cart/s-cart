@@ -32,6 +32,7 @@ return [
     'libraries' => [
         'only_free' => 'Is free',
         'only_version' => 'Only version',
+        'all_version' => 'All version',
         'sort_price_asc' => 'Price asc',
         'sort_price_desc' => 'Price desc',
         'sort_rating' => 'Rating',

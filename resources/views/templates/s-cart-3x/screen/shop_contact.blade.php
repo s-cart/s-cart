@@ -22,9 +22,9 @@ $layout_page = shop_contact
         <div class="col-12 col-sm-12 col-md-6">
             <form method="post" action="{{ route('contact.post') }}" class="contact-form">
                 {{ csrf_field() }}
-                <div id="contactFormWrapper" style="margin: 30px;">
+                <div id="contactFormWrapper">
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-4 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label>{{ trans('front.contact_form.name') }}:</label>
                             <input type="text" class="form-control {{ ($errors->has('name'))?"input-error":"" }}"
                                 name="name" placeholder="{{ trans('front.contact_form.name') }}" value="{{ old('name') }}">
@@ -34,7 +34,7 @@ $layout_page = shop_contact
                             </span>
                             @endif
                         </div>
-                        <div class="col-12 col-sm-12 col-md-4 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                             <label>{{ trans('front.contact_form.email') }}:</label>
                             <input type="email" class="form-control {{ ($errors->has('email'))?"input-error":"" }}"
                                 name="email" placeholder="{{ trans('front.contact_form.email') }}" value="{{ old('email') }}">
@@ -44,7 +44,7 @@ $layout_page = shop_contact
                             </span>
                             @endif
                         </div>
-                        <div class="col-12 col-sm-12 col-md-4 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
+                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label>{{ trans('front.contact_form.phone') }}:</label>
                             <input type="telephone" class="form-control {{ ($errors->has('phone'))?"input-error":"" }}"
                                 name="phone" placeholder="{{ trans('front.contact_form.phone') }}" value="{{ old('phone') }}">

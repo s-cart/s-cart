@@ -291,5 +291,10 @@
   .form-text {
     font-size: 12px;
   }
+  .filter-api {
+    margin-right:5px; 
+    vertical-align: text-top !important; 
+    display:inline
+  }
 
 </style>

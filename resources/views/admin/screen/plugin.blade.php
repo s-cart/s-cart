@@ -41,7 +41,7 @@
               <tbody>
                 @if (!$plugins)
                   <tr>
-                    <td colspan="5" style="text-align: center;color: red;">
+                    <td colspan="8" style="text-align: center;color: red;">
                       {{ trans('plugin.empty') }}
                     </td>
                   </tr>

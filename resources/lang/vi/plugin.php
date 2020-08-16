@@ -32,6 +32,7 @@ return [
     'libraries' => [
         'only_free' => 'Là miễn phí',
         'only_version' => 'Cùng phiên bản',
+        'all_version' => 'Tất cả phiên bản',
         'sort_price_asc' => 'Giá tăng',
         'sort_price_desc' => 'Giá giảm',
         'sort_rating' => 'Bình chọn',
