@@ -27,18 +27,9 @@
     @foreach ($stories as $store)
     <div class="card collapsed-card">
       <div class="card-header with-border">
-        <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store.admin.title') }} #{{ $store->id }}</h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-      </div>
-      
-      <div class="card-header with-border">
-        <div class="float-left">
-          <i class="fas fa-link"></i> <a target=_new href="//{{ $store->domain }}">{{ $store->domain }}</a>
-        </div>
+        <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store.admin.title') }} #{{ $store->id }} 
+          (<i class="fas fa-link"></i> <a target=_new href="//{{ $store->domain }}">{{ $store->domain }}</a>)
+        </h3>
         <div class="card-tools">
           <div class="menu-right">
             @if ($store->id != 1)
@@ -53,6 +44,15 @@
           </div>
         </div>
       </div>
+      
+      <div class="card-header with-border">
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
 
     <div class="card-body">
       <div class="row">
