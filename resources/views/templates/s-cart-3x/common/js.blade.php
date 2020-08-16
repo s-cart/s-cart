@@ -7,8 +7,36 @@
   });
 </script>
 
+<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+<script>
+      function alertJs(type = 'error', msg = '') {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      Toast.fire({
+        type: type,
+        title: msg
+      })
+    }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.7/bootstrap-notify.min.js"></script>
+    function alertMsg(type = 'error', msg = '', note = '') {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: true,
+      });
+      swalWithBootstrapButtons.fire(
+        msg,
+        note,
+        type
+      )
+    }
+</script>
 
 <!--process cart-->
 <script type="text/javascript">
@@ -31,29 +59,13 @@
                   $('.sc-'+data.instance).html(data.count_cart);
                 }
               }, 1000);
-
-                $.notify({
-                  icon: 'fa fa-star',
-                  message: data.msg
-                },{
-                  type: 'success',
-                  z_index: 1080,
-                  offset: 30
-                },
-                );
+              alertJs('success', data.msg);
             }else{
               if(data.redirect){
                 window.location.replace(data.redirect);
                 return;
               }
-              $.notify({
-              icon: 'fa fa-exclamation-circle',
-                message: data.msg
-              },{
-                type: 'danger',
-                z_index: 1080,
-                offset: 30
-              });
+              alertJs('error', data.msg);
             }
 
             }
@@ -66,40 +78,19 @@
 <!--message-->
 @if(Session::has('success'))
 <script type="text/javascript">
-    $.notify({
-      icon: 'fa fa-star',
-      message: "{!! Session::get('success') !!}"
-    },{
-      type: 'success',
-      z_index: 1080,
-      offset: 30
-    });
+    alertJs('success', '{!! Session::get('success') !!}');
 </script>
 @endif
 
 @if(Session::has('error'))
 <script type="text/javascript">
-    $.notify({
-      icon: 'fa fa-exclamation-circle',
-      message: "{!! Session::get('error') !!}"
-    },{
-      type: 'danger',
-      z_index: 1080,
-      offset: 30
-    });
+  alertJs('error', '{!! Session::get('error') !!}');
 </script>
 @endif
 
 @if(Session::has('warning'))
 <script type="text/javascript">
-    $.notify({
-      icon: 'fa fa-exclamation-circle',
-      message: "{!! Session::get('warning') !!}"
-    },{
-      type: 'warning',
-      z_index: 1080,
-      offset: 30
-    });
+  alertJs('error', '{!! Session::get('warning') !!}');
 </script>
 @endif
 <!--//message-->
