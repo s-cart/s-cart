@@ -25,11 +25,15 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
     <a href="https://www.paypal.me/LeLanh" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" data-origin="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal Me"></a>
 </p>
 
+## IMAGES:
+<img src="https://s-cart.org/data/30/shop-list.jpg">
+<img src="https://s-cart.org/data/30/admin-dashboard.jpg">
+
 ## SCart functions:
 
 <pre>
 ======= FRONT-END =======
-
+- Multi-store, multi-domain (from V3)
 - Multi-language
 - Multi-currency
 - Multi-address
@@ -37,11 +41,11 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - Customer login
 - Product attributes: cost price, promotion price, stock, tax..
 - CMS content: category, news, content, web page
-- Module/Extension: Shipping, payment, discount, ...
+- Plugin: Shipping, payment, Discount, Total...
 - Upload manager: banner, images,..
-- SEO support: customer URL
+- SEO support: custome URL
 - API module
-- Support library plugin, template
+- Support library plugin, template online
 ...
 
 ======= ADMIN =======
@@ -51,7 +55,8 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - Order management
 - Customer management
 - Template manager
-- Module/Extension manager
+- Plugin manager
+- Store manager
 - System config: email setting, info shop, maintain status,...
 - Backup, restore data
 - Report: chart, statistics, export csv, pdf...
@@ -64,7 +69,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Requirements:
 
-Version 2.x
+Version 3.0
 
 > Core laravel framework 7.x Requirements::
 
