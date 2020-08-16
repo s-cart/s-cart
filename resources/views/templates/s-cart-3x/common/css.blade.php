@@ -106,11 +106,4 @@ img.new {
   color: red;
   font-style: italic;
 }
-
-.alert-danger {
-  color:sienna;
-}
-.alert-success {
-  color:green;
-}
 </style>
