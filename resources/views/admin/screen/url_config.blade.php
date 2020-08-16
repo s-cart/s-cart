@@ -23,6 +23,11 @@
           </tr>
 
           <tr>
+            <td>{{ trans('env.PREFIX_SHOP') }}</td>
+            <td>https://your-domain.com/<a href="#" class="fied-required editable editable-click" data-name="PREFIX_SHOP" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.PREFIX_SHOP') }}" data-value="{{ sc_config('PREFIX_SHOP') }}" data-original-title="" title=""></a></td>
+          </tr>
+
+          <tr>
             <td>{{ trans('env.PREFIX_PRODUCT') }}</td>
             <td>https://your-domain.com/<a href="#" class="fied-required editable editable-click" data-name="PREFIX_PRODUCT" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.PREFIX_PRODUCT') }}" data-value="{{ sc_config('PREFIX_PRODUCT') }}" data-original-title="" title=""></a>/name-of-product{{ sc_config('SUFFIX_URL') }}</td>
           </tr>

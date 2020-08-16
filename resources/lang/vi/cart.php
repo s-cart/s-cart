@@ -35,6 +35,8 @@ return [
     'change_address'   => 'Thay đổi địa chỉ giao hàng',
     'minimum_value'    => 'Tối thiểu :value item',
     'add_new_address'  => '+ Thêm mới địa chỉ',
+    'total_item'       => 'Tổng sản phẩm',
+    'total_price'      => 'Tổng tiền',
     'validation' => [
         'shippingMethod_required' => 'Bạn chưa chọn phương thức giao hàng',
         'paymentMethod_required' => 'Bạn chưa chọn phương thức thanh toán',

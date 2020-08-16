@@ -17,6 +17,7 @@ class DataShopSeeder extends Seeder
             [
                 ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
                 ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
+                ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 2],
             ]
         );
 
@@ -24,6 +25,7 @@ class DataShopSeeder extends Seeder
             [
                 ['banner_id' => '1', 'store_id' => '0'],
                 ['banner_id' => '2', 'store_id' => '0'],
+                ['banner_id' => '3', 'store_id' => '0'],
             ]
         );
 
@@ -190,10 +192,10 @@ class DataShopSeeder extends Seeder
     gtag(\'config\', \'UA-128658138-1\');
     </script>', 'status' => '1', 'sort' => '0'],
 
-                ['name' => 'Product special', 'position' => 'left', 'page' => 'shop_home,product_list', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1'],
-                ['name' => 'Brands', 'position' => 'left', 'page' => 'shop_home,item_list', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3'],
+                ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1'],
+                ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3'],
                 ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'shop_home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0'],
-                ['name' => 'Categories', 'position' => 'left', 'page' => 'shop_home,product_list,product_detail,shop_cart', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4'],
+                ['name' => 'Categories', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4'],
                 ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0'],
 
             ]
@@ -201,7 +203,7 @@ class DataShopSeeder extends Seeder
 
         DB::table(SC_DB_PREFIX . 'shop_layout_page')->insert(
             [
-                ['key' => 'shop_home', 'name' => 'Home page'],
+                ['key' => 'shop_home', 'name' => 'Home'],
                 ['key' => 'product_list', 'name' => 'Product list'],
                 ['key' => 'product_detail', 'name' => 'Product detail'],
                 ['key' => 'shop_cart', 'name' => 'Shop cart'],
@@ -289,26 +291,26 @@ class DataShopSeeder extends Seeder
 
         DB::table(SC_DB_PREFIX . 'shop_product_image')->insert(
             [
-                ['image' => '/data/product/img-32.jpg', 'product_id' => '1'],
-                ['image' => '/data/product/img-33.jpg', 'product_id' => '1'],
-                ['image' => '/data/product/img-22.jpg', 'product_id' => '11'],
-                ['image' => '/data/product/img-23.jpg', 'product_id' => '2'],
-                ['image' => '/data/product/img-14.jpg', 'product_id' => '11'],
-                ['image' => '/data/product/img-12.jpg', 'product_id' => '5'],
-                ['image' => '/data/product/img-11.jpg', 'product_id' => '5'],
-                ['image' => '/data/product/img-9.jpg', 'product_id' => '2'],
-                ['image' => '/data/product/img-19.jpg', 'product_id' => '2'],
-                ['image' => '/data/product/img-21.jpg', 'product_id' => '9'],
-                ['image' => '/data/product/img-22.jpg', 'product_id' => '8'],
-                ['image' => '/data/product/img-20.jpg', 'product_id' => '7'],
-                ['image' => '/data/product/img-26.jpg', 'product_id' => '7'],
-                ['image' => '/data/product/img-27.jpg', 'product_id' => '5'],
-                ['image' => '/data/product/img-40.jpg', 'product_id' => '4'],
-                ['image' => '/data/product/img-14.jpg', 'product_id' => '15'],
-                ['image' => '/data/product/img-23.jpg', 'product_id' => '15'],
-                ['image' => '/data/product/img-12.jpg', 'product_id' => '17'],
-                ['image' => '/data/product/img-11.jpg', 'product_id' => '17'],
-                ['image' => '/data/product/img-32.jpg', 'product_id' => '17'],
+                ['image' => '/data/product/product-2.png', 'product_id' => '1'],
+                ['image' => '/data/product/product-11.png', 'product_id' => '1'],
+                ['image' => '/data/product/product-8.png', 'product_id' => '11'],
+                ['image' => '/data/product/product-6.png', 'product_id' => '2'],
+                ['image' => '/data/product/product-13.png', 'product_id' => '11'],
+                ['image' => '/data/product/product-12.png', 'product_id' => '5'],
+                ['image' => '/data/product/product-6.png', 'product_id' => '5'],
+                ['image' => '/data/product/product-1.png', 'product_id' => '2'],
+                ['image' => '/data/product/product-15.png', 'product_id' => '2'],
+                ['image' => '/data/product/product-5.png', 'product_id' => '9'],
+                ['image' => '/data/product/product-8.png', 'product_id' => '8'],
+                ['image' => '/data/product/product-2.png', 'product_id' => '7'],
+                ['image' => '/data/product/product-6.png', 'product_id' => '7'],
+                ['image' => '/data/product/product-11.png', 'product_id' => '5'],
+                ['image' => '/data/product/product-13.png', 'product_id' => '4'],
+                ['image' => '/data/product/product-13.png', 'product_id' => '15'],
+                ['image' => '/data/product/product-6.png', 'product_id' => '15'],
+                ['image' => '/data/product/product-12.png', 'product_id' => '17'],
+                ['image' => '/data/product/product-6.png', 'product_id' => '17'],
+                ['image' => '/data/product/product-2.png', 'product_id' => '17'],
             ]
         );
 
@@ -389,10 +391,10 @@ class DataShopSeeder extends Seeder
         );
         DB::table(SC_DB_PREFIX . 'shop_page_description')->insert(
             [
-                ['page_id' => '1', 'lang' => 'en', 'title' => 'About', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/img-21.jpg" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+                ['page_id' => '1', 'lang' => 'en', 'title' => 'About', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-2.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     ',],
-                ['page_id' => '1', 'lang' => 'vi', 'title' => 'Giới thiệu', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/img-21.jpg" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+                ['page_id' => '1', 'lang' => 'vi', 'title' => 'Giới thiệu', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-2.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     ',],
             ]

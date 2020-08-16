@@ -115,7 +115,6 @@ class ShopCart extends GeneralController
         }
         $shippingAddress = session('shippingAddress') ?? $addressDefaul;
 
-
         $objects = ShopOrderTotal::getObjectOrderTotal();
         return view(
             $this->templatePath . '.screen.shop_cart',
@@ -494,7 +493,7 @@ class ShopCart extends GeneralController
                     );
                 }
 
-                //Check product allow fot sale
+                //Check product allow for sale
                 if ($product->allowSale()) {
                     $cart->add(
                         array(

@@ -35,6 +35,8 @@ return [
     'minimum_value'    => 'Minimum :value items',
     'change_address'   => 'Change shipping address',
     'add_new_address'  => '+ Add new address',
+    'total_item'       => 'Total item',
+    'total_price'      => 'Total price',
     'validation' => [
         'shippingMethod_required' => 'Shipping method is required',
         'paymentMethod_required' => 'Payment method is required',

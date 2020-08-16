@@ -84,7 +84,7 @@
     
           <tr>
             <td><i class="far fa-calendar-alt"></i> {{ trans('store.time_active') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="{{ $store->id }}__time_active" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.time_active') }}" data-value="{{ $store->time_active }}" data-original-title="" title="">{{$store->time_active }}</a></td>
+            <td><a href="#" class="fied-required editable editable-click" data-name="{{ $store->id }}__time_active" data-type="textarea" data-pk="" data-source="" data-url="{{ route('admin_store.update') }}" data-title="{{ trans('store.time_active') }}" data-value="{{ $store->time_active }}" data-original-title="" title="">{{$store->time_active }}</a></td>
           </tr>
     
           <tr>

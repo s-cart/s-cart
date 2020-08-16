@@ -17,6 +17,33 @@ class AdminStore extends Model
         return $this->hasMany(AdminStoreDescription::class, 'store_id', 'id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(ShopProduct::class, ShopProductStore::class, 'store_id', 'product_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(ShopCategory::class, ShopCategoryStore::class, 'store_id', 'category_id');
+    }
+
+
+    public function banners()
+    {
+        return $this->belongsToMany(ShopBanner::class, ShopBannerStore::class, 'store_id', 'banner_id');
+    }
+
+    public function news()
+    {
+        return $this->belongsToMany(ShopNews::class, ShopNewsStore::class, 'store_id', 'news_id');
+    }
+
+    public function pages()
+    {
+        return $this->belongsToMany(ShopPage::class, ShopPageStore::class, 'store_id', 'page_id');
+    }
+
+
     protected static function boot()
     {
         parent::boot();
@@ -28,6 +55,12 @@ class AdminStore extends Model
             }
             //Delete store descrition
             $store->descriptions()->delete();
+            $store->products()->delete();
+            $store->categories()->delete();
+            $store->banners()->delete();
+            $store->news()->delete();
+            $store->pages()->delete();
+            AdminConfig::where('store_id', $store->id)->delete();
         });
     }
 

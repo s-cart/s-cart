@@ -109,6 +109,17 @@ class ShopBanner extends Model
     public function getBackground() {
         $this->setType(1);
         $this->setStatus(1);
+        $this->setLimit(1);
+        return $this;
+    }
+
+    /**
+     * Get banner
+     */
+    public function getBannerBreadcrumb() {
+        $this->setType(2);
+        $this->setStatus(1);
+        $this->setLimit(1);
         return $this;
     }
 
