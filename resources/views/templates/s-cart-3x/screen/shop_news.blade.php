@@ -12,7 +12,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @extends($sc_templatePath.'.layout')
 
 @section('block_main')
-
 <section class="section section-xl bg-default">
     <div class="container">
       <div class="row row-30">

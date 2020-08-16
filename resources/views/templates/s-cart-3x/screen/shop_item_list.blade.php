@@ -8,44 +8,65 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 
 @extends($sc_templatePath.'.layout')
 
-@section('block_main')
-@if (!empty($itemsList))
-<div class="col-12">
-    <div class="row">
-        @foreach ($itemsList as $item)
-        <div class="col-sm-6 col-6 col-md-3">
-            <div class="product-image-wrapper product-single">
-                <div class="single-products">
-                    <div class="productinfo text-center product-box-{{ $item->id }}">
-                        <a href="{{ $item->getUrl() }}"><img src="{{ asset($item->getImage()) }}"
-                                alt="{{ $item->name }}" /></a>
-                        <a href="{{ $item->getUrl() }}">
-                            <p>{{ $item->name }}</p>
-                        </a>
-                    </div>
-                </div>
+@section('block_main_content_center')
+<div class="col-lg-8 col-xl-9">
+<h6 class="aside-title">{{ $title }}</h6>
+<section class="section section-xl bg-default">
+    <div class="container">
+      <div class="row row-30">
+        @if ($itemsList->count())
+            @foreach ($itemsList as $item)
+            <div class="col-sm-6 col-lg-4 text-center">
+                <!-- Post Classic-->
+                <article class="post post-classic box-md"><a class="post-classic-figure" href="{{ $item->getUrl() }}">
+                    <img src="{{ asset($item->getThumb()) }}" alt="" width="370" height="239"></a>
+                    <h5 class="post-classic-title"><a href="{{ $item->getUrl() }}">{{ $item->name }}</a></h5>
+                </article>
+              </div>
+            @endforeach
+
+            <div class="pagination-wrap">
+                <!-- Bootstrap Pagination-->
+                <nav aria-label="Page navigation">
+                    {{ $itemsList->links() }}
+                </nav>
             </div>
-        </div>
-        @endforeach
+
+        @else
+            {!! trans('front.no_data') !!}
+        @endif
+      </div>
     </div>
+  </section>
 </div>
-@endif
-<div style="clear: both; ">
-    <ul class="pagination">
-        {{ $itemsList->appends(request()->except(['page','_token']))->links() }}
-    </ul>
-</div>
-
 @endsection
 
+
+{{-- breadcrumb --}}
 @section('breadcrumb')
-<div class="breadcrumbs pull-left">
-    <ol class="breadcrumb">
+@php
+$bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->first();
+@endphp
+<section class="breadcrumbs-custom">
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="breadcrumbs-custom-body parallax-content context-dark">
+      <div class="container">
+        <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumbs-custom-footer">
+    <div class="container">
+      <ul class="breadcrumbs-custom-path">
         <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-        <li class="active">{{ $title }}</li>
-    </ol>
-</div>
+        <li class="active">{{ $title ?? '' }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
 @endsection
+{{-- //breadcrumb --}}
 
 
 @section('filter')
