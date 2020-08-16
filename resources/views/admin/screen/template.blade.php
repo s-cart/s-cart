@@ -47,13 +47,15 @@
                    <td>{!!sc_image_render(asset('templates/'.$key.'/'.$pathImage)??'','50px','', $template['config']['name']??'')!!}</td>
                    <td>{{ $template['config']['name']??'' }}</td>
                    <td>{{ $key??'' }}</td>
-                   <td onclick="imagedemo('{{ asset('templates/'.$key.'/images/demo.jpg') }}')"><a>{{ trans('template.click_here') }}</a></td>
+                   <td class="pointer" onclick="imagedemo('{{ asset('templates/'.$key.'/images/demo.jpg') }}')"><a>{{ trans('template.click_here') }}</a></td>
                    <td>{{ $template['config']['auth']??'' }}</td>
                    <td><a href="{{ $template['config']['website']??'' }}" target=_new><i class="fa fa-link" aria-hidden="true"></i>Link</a></td>
                    <td>{{ $template['config']['version']??'' }}</td>
                     <td>
                       @if (!in_array($key, $templatesUsed))
                         <span onClick="removeTemplate($(this), '{{ $key }}');" title="{{ trans('template.remove') }}" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash"></i></span>
+                      @else
+                          {{ trans('template.used') }}
                       @endif
                     </td>
                   </tr>
