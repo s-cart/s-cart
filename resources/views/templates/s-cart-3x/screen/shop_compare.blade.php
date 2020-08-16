@@ -9,7 +9,6 @@ $compare: no paginate
 
 @section('block_main_content_center')
 <div class="col-lg-8 col-xl-9">
-<section class="section section-xl bg-default text-md-left">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -60,7 +59,6 @@ $compare: no paginate
             @endif
         </div>
     </div>
-</section>
 </div>
 @endsection
 
