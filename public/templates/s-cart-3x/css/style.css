@@ -8354,8 +8354,8 @@ textarea.textarea-lg {
 	display: inline-block;
 	position: absolute;
 	text-align: center;
-	top: 25px;
-	right: 15px;
+	top: 0px;
+	right: 0px;
 	padding: 5px 12px;
 	font-size: 14px;
 	line-height: 1;

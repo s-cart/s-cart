@@ -108,7 +108,7 @@ class ShopAccount extends GeneralController
         $dataUser->save();
 
         return redirect()->route('member.index')
-            ->with(['message' => trans('account.update_success')]);
+            ->with(['success' => trans('account.update_success')]);
     }
 
     /**
@@ -156,7 +156,7 @@ class ShopAccount extends GeneralController
         ShopUser::updateInfo($dataMapping['dataUpdate'], $id);
 
         return redirect()->route('member.index')
-            ->with(['message' => trans('account.update_success')]);
+            ->with(['success' => trans('account.update_success')]);
     }
 
     /**
@@ -329,7 +329,7 @@ class ShopAccount extends GeneralController
             $user->save();
         }
         return redirect()->route('member.address_list')
-            ->with(['message' => trans('account.update_success')]);
+            ->with(['success' => trans('account.update_success')]);
     }
 
 

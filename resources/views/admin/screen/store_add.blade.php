@@ -325,8 +325,8 @@
                                 <label class="col-sm-2 col-form-label">{{ trans('store.language') }}</label>
                                 <div class="col-sm-8">
                                 <select class="form-control" name="language">
-                                    @foreach ($languages as $key => $name)
-                                    <option {{ (old('language') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
+                                    @foreach ($languages as $key => $language)
+                                    <option {{ (old('language') ==  $language['code'])?'selected':'' }} value="{{ $language['code'] }}">{{ $language['name'] }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('language'))

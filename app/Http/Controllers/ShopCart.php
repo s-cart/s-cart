@@ -344,7 +344,7 @@ class ShopCart extends GeneralController
             Cart::instance('default')->add($dataCart);
             return redirect()->route('cart')
                 ->with(
-                    ['message' => trans('cart.success', ['instance' => 'cart'])]
+                    ['success' => trans('cart.success', ['instance' => 'cart'])]
                 );
         } else {
             return redirect()->route('cart')
