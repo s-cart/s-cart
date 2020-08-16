@@ -49,7 +49,7 @@
            </tr>
          </thead>
          <tbody>
-           @foreach ($configs['smtp'] as $config)
+           @foreach ($configs['smtp_config'] as $config)
 
            @if($config->key == 'smtp_security')
             <tr>

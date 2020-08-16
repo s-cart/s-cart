@@ -26,8 +26,8 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 </p>
 
 ## IMAGES:
-<img src="https://s-cart.org/data/30/shop-list.jpg">
-<img src="https://s-cart.org/data/30/admin-dashboard.jpg">
+<img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
+<img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
 
 ## SCart functions:
 
