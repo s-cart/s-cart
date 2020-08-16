@@ -20,8 +20,8 @@ class AdminTemplateOnlineController extends Controller
         $search_keyword = request('search_keyword', '');
         $page = request('page') ?? 1;
         $url = config('scart.api_link').'/templates/?page[size]=20&page[number]='.$page;
-        if($all_version) {
-            $url .='&sc='.$sc_version;
+        if(!$all_version) {
+            $url .='&version='.$sc_version;
         }
         if($only_free) {
             $url .='&free=1';

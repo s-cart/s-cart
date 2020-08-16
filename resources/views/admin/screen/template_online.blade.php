@@ -63,9 +63,7 @@
           </label>  
           </div>  
           <input class="form-control-sm filter-search" name="search_keyword" data-name="search_keyword" type="text" value="{{ $search_keyword ?? '' }}" placeholder="{{ trans('plugin.libraries.enter_search_keyword') }}">
-          <div class="filter-api">
           <button title="Filter" class="btn btn-flat filter-button"  id="filter-button"><i class="fa fa-filter" aria-hidden="true"></i></button>
-          </div>
         </div>
         <a class="link-filter" href=""></a>
       </div>
