@@ -8,15 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
-
+use App\Models\AdminStore;
 class AdminController extends Controller
 {
     public $plugin;
+    public $stories;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
         $this->plugin = new AppConfig;
+        $this->stories = AdminStore::getListAll();
 
     }
     public function index()
@@ -39,8 +41,9 @@ class AdminController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
+        $data['stories'] = $this->stories;
+
         $listTh = [
-            'id' => trans($this->plugin->pathPlugin.'::lang.id'),
             'code' => trans($this->plugin->pathPlugin.'::lang.code'),
             'reward' => trans($this->plugin->pathPlugin.'::lang.reward'),
             'type' => trans($this->plugin->pathPlugin.'::lang.type'),
@@ -49,6 +52,7 @@ class AdminController extends Controller
             'used' => trans($this->plugin->pathPlugin.'::lang.used'),
             'status' => trans($this->plugin->pathPlugin.'::lang.status'),
             'login' => trans($this->plugin->pathPlugin.'::lang.login'),
+            'store' => trans('admin.store_apply'),
             'expires_at' => trans($this->plugin->pathPlugin.'::lang.expires_at'),
             'action' => trans($this->plugin->pathPlugin.'::lang.admin.action'),
         ];
@@ -60,7 +64,7 @@ class AdminController extends Controller
             'code__desc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_desc'),
             'code__asc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_asc'),
         ];
-        $obj = new PluginModel;
+        $obj = (new PluginModel);
         if ($keyword) {
             $obj = $obj->whereRaw('code like "%' . $keyword . '%" )');
         }
@@ -77,7 +81,6 @@ class AdminController extends Controller
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
             $dataTr[] = [
-                'id' => $row['id'],
                 'code' => $row['code'],
                 'reward' => $row['reward'],
                 'type' => ($row['type'] == 'point') ? 'Point' : '%',
@@ -149,6 +152,7 @@ class AdminController extends Controller
             'icon' => 'fa fa-plus',
             'discount' => [],
             'url_action' => route('admin_discount.create'),
+            'stories' => $this->stories,
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -165,6 +169,7 @@ class AdminController extends Controller
             'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code|string|max:50',
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
+            'store' => 'required',
             'type' => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
@@ -175,6 +180,7 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $store = $data['store'] ?? [];
         $dataInsert = [
             'code' => $data['code'],
             'reward' => (int)$data['reward'],
@@ -185,7 +191,11 @@ class AdminController extends Controller
             'expires_at' => $data['expires_at'],
             'status' => empty($data['status']) ? 0 : 1,
         ];
-        PluginModel::create($dataInsert);
+        $discount = PluginModel::create($dataInsert);
+        //Insert store
+        if ($store) {
+            $discount->stories()->attach($store);
+        }
 //
         return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
 
@@ -200,12 +210,15 @@ class AdminController extends Controller
         if ($discount === null) {
             return 'no data';
         }
+
         $data = [
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.edit'),
             'subTitle' => '',
             'title_description' => '',
             'icon' => 'fa fa-pencil-square-o',
             'discount' => $discount,
+            'stories' => $this->stories,
+            'storiesPivot' => \DB::connection(SC_CONNECTION)->table((new PluginModel)->table_store)->where((new PluginModel)->table.'_id', $id)->pluck('store_id')->all(),
             'url_action' => route('admin_discount.edit', ['id' => $discount['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
@@ -224,6 +237,7 @@ class AdminController extends Controller
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
             'type' => 'required',
+            'store' => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
         ]);
@@ -234,6 +248,7 @@ class AdminController extends Controller
                 ->withInput();
         }
 //Edit
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'code' => $data['code'],
             'reward' => (int)$data['reward'],
@@ -246,6 +261,12 @@ class AdminController extends Controller
         ];
 
         $discount->update($dataUpdate);
+        //Update store
+        $discount->stories()->detach();
+        if (count($store)) {
+            $discount->stories()->attach($store);
+        }
+
 //
         return redirect()->route('admin_discount.index')
             ->with('success', trans($this->plugin->pathPlugin.'::lang.admin.edit_success'));

@@ -341,4 +341,6 @@ return [
     'ADMIN_SYSTEM' => 'HỆ THỐNG <p class="sub-header">- QUẢN LÝ</p>',
     'ADMIN_CONTENT' => 'NỘI DUNG <p class="sub-header">- QUẢN LÝ</p>',
     'ADMIN_EXTENSION' => 'TIỆN ÍCH <p class="sub-header">- QUẢN LÝ</p>',
+    'store_all' => 'Tất cả cửa hàng',
+    'store_apply' => 'Cửa hàng',
 ];

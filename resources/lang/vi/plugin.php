@@ -68,4 +68,11 @@ return [
     'free'      => 'Miễn phí',
     'date'      => 'Ngày tạo',
     'located'      => 'Đã tải về',
+    'plugin_action' => [
+        'install_success' => 'Cài đặt thành công',
+        'install_faild' => 'Cài đặt thất bại',
+        'table_exist' => 'Bảng :table đã tồn tại rồi',
+        'plugin_exist' => 'Plugin này đã tồn tại rồi',
+        'action_error' => 'Có lỗi trong khi :action',
+    ],
 ];

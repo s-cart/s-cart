@@ -183,7 +183,7 @@
 .sub-header {
   display: inline;
 }
-.help-block {
+.invalid .help-block {
   color:red;
 }
  /* lightblue */

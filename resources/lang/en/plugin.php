@@ -68,4 +68,11 @@ return [
     'free'      => 'Free',
     'date'      => 'Date',
     'located'      => 'Located',
+    'plugin_action' => [
+        'install_success' => 'Installed successfully',
+        'install_faild' => 'Installation failed',
+        'table_exist' => 'Table :table already exists',
+        'plugin_exist' => 'This plugin already exists',
+        'action_error' => 'There was an error while :action',
+    ],
 ];

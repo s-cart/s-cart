@@ -122,13 +122,13 @@ $attributesGroup: array
                             @endif
 
                             @csrf
-                            <table class="table  table-bordered table-responsive">
-                                <tr>
+                            <table class="table table-borderless table-responsive">
+                                <tr width=100%>
                                     @if (sc_config('customer_lastname'))
                                     <td class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
                                             {{ trans('cart.first_name') }}:</label>
-                                        <input name="first_name" type="text"
+                                        <input class="form-control" name="first_name" type="text"
                                             placeholder="{{ trans('cart.first_name') }}"
                                             value="{{old('first_name', $shippingAddress['first_name'])}}">
                                         @if($errors->has('first_name'))
@@ -138,7 +138,7 @@ $attributesGroup: array
                                     <td class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
                                             {{ trans('cart.last_name') }}:</label>
-                                        <input name="last_name" type="text" placeholder="{{ trans('cart.last_name') }}"
+                                        <input class="form-control" name="last_name" type="text" placeholder="{{ trans('cart.last_name') }}"
                                             value="{{old('last_name',$shippingAddress['last_name'])}}">
                                         @if($errors->has('last_name'))
                                         <span class="help-block">{{ $errors->first('last_name') }}</span>
@@ -150,7 +150,7 @@ $attributesGroup: array
                                         class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
                                             {{ trans('cart.name') }}:</label>
-                                        <input name="first_name" type="text" placeholder="{{ trans('cart.name') }}"
+                                        <input class="form-control" name="first_name" type="text" placeholder="{{ trans('cart.name') }}"
                                             value="{{old('first_name',$shippingAddress['first_name'])}}">
                                         @if($errors->has('first_name'))
                                         <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -164,7 +164,7 @@ $attributesGroup: array
                                     <td class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="control-label"><i class="fa fa-envelope"></i>
                                             {{ trans('cart.email') }}:</label>
-                                        <input name="email" type="text" placeholder="{{ trans('cart.email') }}"
+                                        <input class="form-control" name="email" type="text" placeholder="{{ trans('cart.email') }}"
                                             value="{{old('email', $shippingAddress['email'])}}">
                                         @if($errors->has('email'))
                                         <span class="help-block">{{ $errors->first('email') }}</span>
@@ -173,7 +173,7 @@ $attributesGroup: array
                                     <td class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-phone"
                                                 aria-hidden="true"></i> {{ trans('cart.phone') }}:</label>
-                                        <input name="phone" type="text" placeholder="{{ trans('cart.phone') }}"
+                                        <input class="form-control" name="phone" type="text" placeholder="{{ trans('cart.phone') }}"
                                             value="{{old('phone',$shippingAddress['phone'])}}">
                                         @if($errors->has('phone'))
                                         <span class="help-block">{{ $errors->first('phone') }}</span>
@@ -183,7 +183,7 @@ $attributesGroup: array
                                     <td colspan="2" class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="control-label"><i class="fa fa-envelope"></i>
                                             {{ trans('cart.email') }}:</label>
-                                        <input name="email" type="text" placeholder="{{ trans('cart.email') }}"
+                                        <input class="form-control" name="email" type="text" placeholder="{{ trans('cart.email') }}"
                                             value="{{old('email',$shippingAddress['email'])}}">
                                         @if($errors->has('email'))
                                         <span class="help-block">{{ $errors->first('email') }}</span>
@@ -223,7 +223,7 @@ $attributesGroup: array
                                     <td class="form-group {{ $errors->has('postcode') ? ' has-error' : '' }}">
                                         <label for="postcode" class="control-label"><i class="fa fa-tablet"></i>
                                             {{ trans('cart.postcode') }}:</label>
-                                        <input name="postcode" type="text" placeholder="{{ trans('cart.postcode') }}"
+                                        <input class="form-control" name="postcode" type="text" placeholder="{{ trans('cart.postcode') }}"
                                             value="{{ old('postcode',$shippingAddress['postcode'])}}">
                                         @if($errors->has('postcode'))
                                         <span class="help-block">{{ $errors->first('postcode') }}</span>
@@ -235,7 +235,7 @@ $attributesGroup: array
                                     <td class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                                         <label for="company" class="control-label"><i class="fa fa-university"></i>
                                             {{ trans('cart.company') }}</label>
-                                        <input name="company" type="text" placeholder="{{ trans('cart.company') }}"
+                                        <input class="form-control" name="company" type="text" placeholder="{{ trans('cart.company') }}"
                                             value="{{ old('company',$shippingAddress['company'])}}">
                                         @if($errors->has('company'))
                                         <span class="help-block">{{ $errors->first('company') }}</span>
@@ -249,16 +249,16 @@ $attributesGroup: array
                                     <td class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address1') }}:</label>
-                                        <input name="address1" type="text" placeholder="{{ trans('cart.address1') }}"
+                                        <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address1') }}"
                                             value="{{ old('address1',$shippingAddress['address1'])}}">
                                         @if($errors->has('address1'))
                                         <span class="help-block">{{ $errors->first('address1') }}</span>
                                         @endif
                                     </td>
-                                    <td class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
+                                    <td class="form-group {{ $errors->has('address2') ? ' has-error' : '' }}">
                                         <label for="address2" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address2') }}</label>
-                                        <input name="address2" type="text" placeholder="{{ trans('cart.address2') }}"
+                                        <input class="form-control" name="address2" type="text" placeholder="{{ trans('cart.address2') }}"
                                             value="{{ old('address2',$shippingAddress['address2'])}}">
                                         @if($errors->has('address2'))
                                         <span class="help-block">{{ $errors->first('address2') }}</span>
@@ -269,7 +269,7 @@ $attributesGroup: array
                                         class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ trans('cart.address') }}:</label>
-                                        <input name="address1" type="text" placeholder="{{ trans('cart.address') }}"
+                                        <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address') }}"
                                             value="{{ old('address1',$shippingAddress['address1'])}}">
                                         @if($errors->has('address1'))
                                         <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -282,7 +282,7 @@ $attributesGroup: array
                                     <td colspan="2">
                                         <label class="control-label"><i class="fa fa-calendar-o"></i>
                                             {{ trans('cart.note') }}:</label>
-                                        <textarea rows="5" name="comment"
+                                        <textarea class="form-control" rows="5" name="comment"
                                             placeholder="{{ trans('cart.note') }}....">{{ old('comment','')}}</textarea>
                                     </td>
                                 </tr>

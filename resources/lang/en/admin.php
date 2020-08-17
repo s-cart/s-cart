@@ -343,4 +343,6 @@ return [
         'ADMIN_SYSTEM' => 'SYSTEM <p class="sub-header"> - ADMIN</p>',
         'ADMIN_CONTENT' => 'CONTENT <p class="sub-header"> - ADMIN</p>',
         'ADMIN_EXTENSION' => 'EXTENSION <p class="sub-header"> - ADMIN</p>',
+        'store_all' => 'All store',
+        'store_apply' => 'Store',
 ];
