@@ -73,7 +73,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
   <div class="owl-carousel owl-style-7" data-items="1" data-sm-items="2" data-xl-items="3" data-xxl-items="4" data-nav="true" data-dots="true" data-margin="30" data-autoplay="true">
     @foreach ($news as $blog)
     <!-- Post Creative-->
-    <article class="post post-creative"><a class="post-creative-figure" href="blog-post.html"><img src="{{ asset($blog->getThumb()) }}" alt="" width="420" height="368"/></a>
+    <article class="post post-creative"><a class="post-creative-figure" href="{{ $blog->getUrl() }}"><img src="{{ asset($blog->getThumb()) }}" alt="" width="420" height="368"/></a>
       <div class="post-creative-content">
         <h5 class="post-creative-title"><a href="{{ $blog->getUrl() }}">{{ $blog->title }}</a></h5>
         <div class="post-creative-time">
