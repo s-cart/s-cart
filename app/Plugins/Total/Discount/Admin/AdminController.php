@@ -121,17 +121,13 @@ class AdminController extends Controller
 
 //menuSearch
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_discount.index') . '" id="button_search">
-                   <div onclick="$(this).submit();" class="btn-group pull-right">
-                           <a class="btn btn-flat btn-primary" title="Refresh">
-                              <i class="fa  fa-search"></i><span class="hidden-xs"> ' . trans('admin.search') . '</span>
-                           </a>
-                   </div>
-                   <div class="btn-group pull-right">
-                         <div class="form-group">
-                           <input type="text" name="keyword" class="form-control" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
-                         </div>
-                   </div>
+              <form action="' . route('admin_discount.index') . '" id="button_search">
+                <div class="input-group input-group" style="width: 250px;">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
                 </form>';
 //=menuSearch
 
