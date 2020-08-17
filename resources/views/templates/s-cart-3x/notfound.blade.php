@@ -1,11 +1,9 @@
 @extends($sc_templatePath.'.layout')
 
-@section('main')
-<section>
+@section('block_main')
+<section class="section section-xl bg-default text-md-left">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-            </div>
             <div class="col-12">
                 {{ $msg??'' }}
             </div>
