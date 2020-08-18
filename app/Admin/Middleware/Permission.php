@@ -134,6 +134,13 @@ Check route defualt allow access
         return [
             SC_ADMIN_PREFIX . '/uploads/delete',
             SC_ADMIN_PREFIX . '/uploads/newfolder',
+            SC_ADMIN_PREFIX . '/uploads/domove',
+            SC_ADMIN_PREFIX . '/uploads/rename',
+            SC_ADMIN_PREFIX . '/uploads/resize',
+            SC_ADMIN_PREFIX . '/uploads/doresize',
+            SC_ADMIN_PREFIX . '/uploads/cropimage',
+            SC_ADMIN_PREFIX . '/uploads/crop',
+            SC_ADMIN_PREFIX . '/uploads/move',
         ];
     }
 
