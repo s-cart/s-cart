@@ -52,7 +52,6 @@ class AdminController extends Controller
             'used' => trans($this->plugin->pathPlugin.'::lang.used'),
             'status' => trans($this->plugin->pathPlugin.'::lang.status'),
             'login' => trans($this->plugin->pathPlugin.'::lang.login'),
-            'store' => trans('admin.store_apply'),
             'expires_at' => trans($this->plugin->pathPlugin.'::lang.expires_at'),
             'action' => trans($this->plugin->pathPlugin.'::lang.admin.action'),
         ];
