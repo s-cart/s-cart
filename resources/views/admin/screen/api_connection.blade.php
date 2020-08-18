@@ -12,7 +12,9 @@
             <h3 class="card-title">{!! $title_action !!}</h3>
             @if ($layout == 'edit')
             <div class="btn-group float-right" style="margin-right: 5px">
-                <a href="{{ route('admin_api_connection.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                <a href="{{ route('admin_api_connection.index') }}" class="btn btn-flat btn-default" title="List"><i class="fa fa-list"></i>
+                  <span class="hidden-xs"> {{trans('admin.back_list')}}</span>
+                </a>
             </div>
           @endif
           </div>
@@ -120,8 +122,14 @@
             <!-- /.card-body -->
             @csrf
             <div class="card-footer row">
+              <div class="col-md-12">
+              <div class=" float-left">
               <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
-              <button type="submit" class="btn btn-primary float-right">{{ trans('admin.submit') }}</button>
+              </div>
+              <div class=" float-right">
+              <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
+              </div>
+              </div>
             </div>
             <!-- /.card-footer -->
           </form>
