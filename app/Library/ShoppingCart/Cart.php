@@ -114,7 +114,10 @@ class Cart
     public function update($rowId, $qty)
     {
         $cartItem = $this->get($rowId);
-
+        if (!$cartItem) {
+            return;
+        }
+        
        if (is_array($qty)) {
             $cartItem->updateFromArray($qty);
         } else {
@@ -176,7 +179,7 @@ class Cart
         $content = $this->getContent();
 
         if (!$content->has($rowId)) {
-            throw new InvalidRowIDException("The cart does not contain rowId {$rowId}.");
+            return;
         }
 
         return $content->get($rowId);
