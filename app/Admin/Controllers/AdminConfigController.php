@@ -14,7 +14,7 @@ class AdminConfigController extends Controller
             'title' => trans('config.admin.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
-        $obj = (new AdminConfig)->whereIn('code', ['config', 'display', 'env'])
+        $obj = (new AdminConfig)->whereIn('code', ['admin_config', 'display_config', 'env_global'])
                 ->orderBy('sort', 'desc')
                 ->get()
                 ->groupBy('code');

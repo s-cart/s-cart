@@ -9,9 +9,9 @@ return [
     'setting' => 'Cài đặt',
     'setting_account' => 'Chỉnh sửa thông tin',
     'name' => 'Name',
-    'username' => 'Username',
-    'password' => 'Password',
-    'password_confirmation' => 'Password confirmation',
+    'username' => 'Tên đăng nhập',
+    'password' => 'Mật khẩu',
+    'password_confirmation' => 'Xác nhận mật khấu',
     'remember_me' => 'Ghi nhớ tài khoản',
     'user_setting' => 'Cài đặt người dùng',
     'avatar' => 'Hình đại diện',
@@ -41,8 +41,8 @@ return [
     'collapse' => 'Collapse',
     'filter' => 'Bộ lọc',
     'close' => 'Đóng lại',
-    'show' => 'Show',
-    'entries' => 'entries',
+    'show' => 'Hiển thị',
+    'entries' => 'Các bản ghi',
     'captcha' => 'Captcha',
 
     'action' => 'Thao tác',
@@ -51,7 +51,7 @@ return [
     'back' => 'Trở lại',
     'back_to_list' => 'Trở lại danh sách',
     'submit' => 'Hoàn thành',
-    'continue_editing' => 'Continuar editando',
+    'continue_editing' => 'Tiếp tục chỉnh sửa',
     'menu' => 'Menu',
     'input' => 'Nhập vào',
     'success' => 'Hoàn thành',
@@ -95,7 +95,7 @@ return [
     'maintain_disable'                  => 'Bảo trì',
     'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Bật chế độ bảo trì sẽ làm ảnh hưởng tới hoạt động của website!',
     'pagination' => [
-        'range' => 'Showing :first to :last of :total entries',
+        'range' => 'Hiển thị :first - :last của :total kết quả',
     ],
 
     'role' => 'Nhóm',
@@ -343,4 +343,7 @@ return [
     'ADMIN_EXTENSION' => 'TIỆN ÍCH <p class="sub-header">- QUẢN LÝ</p>',
     'store_all' => 'Tất cả cửa hàng',
     'store_apply' => 'Cửa hàng',
+
+    'item_top' => 'Top bài biết',
+    'product_top' => 'Top sản phẩm',
 ];

@@ -338,11 +338,14 @@ return [
             'delete_warning' => 'You won\'t be able to revert this!',
             'confirm_yes' => 'Yes, do it',
             'cancel' => 'Cancel',
-        ],
+      ],
         'ADMIN_SHOP' => 'SHOP <p class="sub-header"> - ADMIN</p>',
         'ADMIN_SYSTEM' => 'SYSTEM <p class="sub-header"> - ADMIN</p>',
         'ADMIN_CONTENT' => 'CONTENT <p class="sub-header"> - ADMIN</p>',
         'ADMIN_EXTENSION' => 'EXTENSION <p class="sub-header"> - ADMIN</p>',
         'store_all' => 'All store',
         'store_apply' => 'Store',
+
+        'item_top' => 'Top post',
+        'product_top' => 'Top product',
 ];

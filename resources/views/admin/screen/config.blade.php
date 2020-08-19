@@ -32,7 +32,7 @@
           </tr>
           <tr>
             <td>{{ trans('env.LOG_SLACK_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ sc_config('LOG_SLACK_WEBHOOK_URL') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('LOG_SLACK_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
           
 
@@ -43,33 +43,7 @@
   </div>
 
 
-
-@if (!empty($configs['config']))
-<div class="col-md-6">
-
-  <div class="card">
-    <div class="card-header with-border">
-      <h3 class="card-title">{{ trans('config.admin.setting_shop') }}</h3>
-    </div>
-
-    <div class="card-body table-responsivep-0">
-     <table class="table table-hover">
-       <tbody>
-         @foreach ($configs['config'] as $config)
-           <tr>
-             <td>{{ sc_language_render($config->detail) }}</td>
-             <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
-           </tr>
-         @endforeach
-       </tbody>
-     </table>
-    </div>
-  </div>
-</div>
-@endif
-
-
-@if (!empty($configs['display']))
+@if (!empty($configs['display_config']))
   <div class="col-md-6">
 
     <div class="card">
@@ -80,7 +54,7 @@
       <div class="card-body table-responsivep-0">
        <table class="table table-hover">
          <tbody>
-           @foreach ($configs['display'] as $config)
+           @foreach ($configs['display_config'] as $config)
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
                <td align="left"><a href="#" class="fied-required editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title="">{{ $config->value }}</a></td>
