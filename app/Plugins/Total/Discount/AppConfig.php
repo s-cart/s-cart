@@ -61,7 +61,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
         if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error when uninstall'];
+            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
         (new PluginModel)->uninstallExtension();
         return $return;

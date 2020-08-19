@@ -68,7 +68,7 @@ class ShopBanner extends Model
         // before delete() method call this
         static::deleting(function ($banner) {
             //Delete banner descrition
-            $banner->stories()->delete();
+            $banner->stories()->detach();
         });
     }
 

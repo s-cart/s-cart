@@ -48,7 +48,8 @@ class ShopCategory extends Model
         static::deleting(function ($category) {
             //Delete category descrition
             $category->descriptions()->delete();
-            $category->stories()->delete();
+            $category->products()->detach();
+            $category->stories()->detach();
         });
     }
 
