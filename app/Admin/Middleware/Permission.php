@@ -26,7 +26,7 @@ class Permission
      */
     public function handle(Request $request, \Closure $next, ...$args)
     {
-        if (!Admin::user() || !empty($args) || $this->shouldPassThrough($request) || Admin::user()->isAdministrator()) {
+        if (!empty($args) || $this->shouldPassThrough($request) || Admin::user()->isAdministrator()) {
             return $next($request);
         }
 
@@ -107,25 +107,20 @@ class Permission
     protected function shouldPassThrough($request)
     {
         $routePath = $request->path();
-        $routeName = $request->route()->getName();
         $exceptsPAth = [
             SC_ADMIN_PREFIX . '/auth/login',
             SC_ADMIN_PREFIX . '/auth/logout',
-            SC_ADMIN_PREFIX . '/theme/white',
         ];
-        $exceptsName = [
-            'admin.theme'
-        ];
-        return in_array($routePath, $exceptsPAth) || in_array($routeName, $exceptsName);
+        return in_array($routePath, $exceptsPAth);
     }
 
-/*
-Check route defualt allow access
- */
+    /*
+    Check route defualt allow access
+    */
     public function routeDefaultPass($request)
     {
         $routeName = $request->route()->getName();
-        $allowRoute = ['admin.deny', 'admin.locale', 'admin.home'];
+        $allowRoute = ['admin.deny', 'admin.locale', 'admin.home', 'admin.theme'];
         return in_array($routeName, $allowRoute);
     }
 
