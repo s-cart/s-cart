@@ -82,7 +82,7 @@ class Permission
     {
         $uriCurrent = request()->fullUrl();
         $methodCurrent = request()->method();
-        if(strtoupper($methodCurrent) ==='GET'){
+        if(strtoupper($methodCurrent) === 'GET' ){
             return redirect()->route('admin.deny')->with(['method' => $methodCurrent, 'url' => $uriCurrent]);
         } else {
             return response()->json([

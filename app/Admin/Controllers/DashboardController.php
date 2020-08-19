@@ -106,4 +106,18 @@ class DashboardController extends Controller
         ];
         return view('admin.deny', $data);
     }
+
+    /**
+     * [denySingle description]
+     *
+     * @return  [type]  [return description]
+     */
+    public function denySingle()
+    {
+        $data = [
+            'method' => session('method'),
+            'url' => session('url'),
+        ];
+        return view('admin.deny_single', $data);
+    }
 }

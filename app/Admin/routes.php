@@ -14,6 +14,7 @@ Route::group(
     }
     $router->get('/', 'DashboardController@index')->name('admin.home');
     $router->get('deny', 'DashboardController@deny')->name('admin.deny');
+    $router->get('deny_single', 'DashboardController@denySingle')->name('admin.deny_single');
 
     //Language
     $router->get('locale/{code}', function ($code) {

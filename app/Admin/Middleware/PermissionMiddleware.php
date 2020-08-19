@@ -3,11 +3,11 @@
 namespace App\Admin\Middleware;
 
 use App\Admin\Admin;
-use App\Admin\Permission as Checker;
+use App\Admin\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class Permission
+class PermissionMiddleware
 {
     /**
      * @var string
@@ -44,26 +44,32 @@ class Permission
         // this group can view all path, but cannot change data
         if (Admin::user()->isViewAll()) {
             if ($request->method() == 'GET'
+                && !collect($this->viewWithoutToMessage())->contains($request->path())
                 && !collect($this->viewWithout())->contains($request->path())
             ) {
                 return $next($request);
             } else {
                 if (!request()->ajax()) {
+                    if (collect($this->viewWithoutToMessage())->contains($request->path())) {
+                        return redirect()->route('admin.deny_single')->with(['url' => $request->url(), 'method' => $request->method()]);
+                    }
                     return redirect()->route('admin.deny')->with(['url' => $request->url(), 'method' => $request->method()]);
                 } else {
-                    return Checker::error();
+                    if (collect($this->viewWithoutToMessage())->contains($request->path())) {
+                        return redirect()->route('admin.deny_single')->with(['url' => $request->url(), 'method' => $request->method()]);
+                    }
+                    return Permission::error();
                 }
             }
         }
 
-        if (!Admin::user()->allPermissions()->first(function ($permission) use ($request) {
-            //Method shouldPassThrough in \App\Admin\Models\AdminPermission ->shouldPassThrough
-            return $permission->shouldPassThrough($request);
+        if (!Admin::user()->allPermissions()->first(function ($modelPermission) use ($request) {
+            return $modelPermission->passRequest($request);
         })) {
             if (!request()->ajax()) {
                 return redirect()->route('admin.deny')->with(['url' => $request->url(), 'method' => $request->method()]);
             } else {
-                return Checker::error();
+                return Permission::error();
             }
         }
         return $next($request);
@@ -88,11 +94,11 @@ class Permission
 
         $method = array_shift($args);
 
-        if (!method_exists(Checker::class, $method)) {
+        if (!method_exists(Permission::class, $method)) {
             throw new \InvalidArgumentException("Invalid permission method [$method].");
         }
 
-        call_user_func_array([Checker::class, $method], [$args]);
+        call_user_func_array([Permission::class, $method], [$args]);
 
         return true;
     }
@@ -120,11 +126,23 @@ class Permission
     public function routeDefaultPass($request)
     {
         $routeName = $request->route()->getName();
-        $allowRoute = ['admin.deny', 'admin.locale', 'admin.home', 'admin.theme'];
+        $allowRoute = ['admin.deny', 'admin.deny_single', 'admin.locale', 'admin.home', 'admin.theme'];
         return in_array($routeName, $allowRoute);
     }
 
     public function viewWithout()
+    {
+        return [
+            // Array item in here
+        ];
+    }
+
+    /**
+     * Send page deny as meeasge
+     *
+     * @return  [type]  [return description]
+     */
+    public function viewWithoutToMessage()
     {
         return [
             SC_ADMIN_PREFIX . '/uploads/delete',

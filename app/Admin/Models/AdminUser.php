@@ -18,6 +18,7 @@ class AdminUser extends Model implements AuthenticatableContract
     ];
     protected static $allPermissions = null;
     protected static $allViewPermissions = null;
+    protected static $canChangeConfig = null;
 
     /**
      * A user has and belongs to many roles.
@@ -218,15 +219,43 @@ class AdminUser extends Model implements AuthenticatableContract
     }
 
     /**
-     * Check if user in $roles.
+     * Check user can change config value
      *
-     * @param array $roles
-     *
-     * @return mixed
+     * @return  [type]  [return description]
      */
-    public function inRoles(array $roles = []): bool
+    public static function checkPermissionconfig()
     {
-        return $this->roles->pluck('slug')->intersect($roles)->isNotEmpty();
+        if (self::$canChangeConfig === null) {
+            if (\Admin::user()->isAdministrator()) {
+                return self::$canChangeConfig = true;
+            }
+
+            if (self::allPermissions()->first(function ($permission) {
+                if (!$permission->http_uri) {
+                    return false;
+                }
+                $actions = explode(',', $permission->http_uri);
+                    foreach ($actions as $key => $action) {
+                    $method = explode('::', $action);
+                    if (
+                        in_array($method[0], ['ANY', 'POST']) 
+                        && (
+                        SC_ADMIN_PREFIX . '/config/*' == $method[1] 
+                        || SC_ADMIN_PREFIX . '/config/update_info' == $method[1] 
+                        || SC_ADMIN_PREFIX . '/config' == $method[1]
+                        )
+                    ) {
+                        return true;
+                    }
+                }
+            })) {
+                return self::$canChangeConfig = true;
+            } else {
+                return self::$canChangeConfig = false;
+            }
+        } else {
+            return self::$canChangeConfig;
+        }
     }
 
 }

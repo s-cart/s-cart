@@ -16,7 +16,7 @@ class AdminServiceProvider extends ServiceProvider
     protected $routeMiddleware = [
         'admin.auth' => \App\Admin\Middleware\Authenticate::class,
         'admin.log' => \App\Admin\Middleware\LogOperation::class,
-        'admin.permission' => \App\Admin\Middleware\Permission::class,
+        'admin.permission' => \App\Admin\Middleware\PermissionMiddleware::class,
         'admin.theme' => \App\Admin\Middleware\AdminTheme::class,
         // 'admin.session' => \App\Admin\Middleware\Session::class,
     ];
