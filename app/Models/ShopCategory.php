@@ -173,6 +173,29 @@ class ShopCategory extends Model
     }
 
     /**
+     * Get array title category
+     * user for admin 
+     *
+     * @return  [type]  [return description]
+     */
+    public function getListTitle()
+    {
+        if(sc_config('cache_status') && sc_config('cache_category')) {
+            if (!Cache::has('cache_category_'.sc_get_locale())) {
+                $data = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+                ->pluck('title', 'category_id')->toArray();
+                Cache::put('cache_category_'.sc_get_locale(), $data, $seconds = sc_config('cache_time')?:600);
+            }
+            return Cache::get('cache_category_'.sc_get_locale());
+        } 
+
+        $data = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+            ->pluck('title', 'category_id')->toArray();
+        return $data;
+    }
+
+
+    /**
      * Process list full cactegory
      *
      * @return  [type]  [return description]

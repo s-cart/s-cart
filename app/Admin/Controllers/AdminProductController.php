@@ -32,6 +32,7 @@ class AdminProductController extends Controller
         $this->listLength = ShopLength::getListAll();
         $this->attributeGroup = ShopAttributeGroup::getListAll();
         $this->stories = AdminStore::getListAll();
+        $this->categoriesTitle = (new ShopCategory)->getListTitle();
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
             SC_PRODUCT_BUILD => trans('product.kinds.build'),
@@ -137,8 +138,7 @@ class AdminProductController extends Controller
             }
             $arrName = [];
             foreach ($row->categories as $category) {
-                
-                $arrName[] = $category->descriptions()->where('lang', sc_get_locale())->first()->title;
+                $arrName[] = $this->categoriesTitle[$category->id] ?? '';
             }
             $dataMap = [
                 'id' => $row['id'],
