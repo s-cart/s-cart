@@ -45,7 +45,7 @@ class ShopUser extends Authenticatable
 
     public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;

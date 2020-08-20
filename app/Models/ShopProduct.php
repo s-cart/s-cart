@@ -296,7 +296,7 @@ class ShopProduct extends Model
             return false;
         }
         if ($this->sc_status &&
-            (sc_config('product_preorder') == 1 || $this->date_available == null || date('Y-m-d H:i:s') >= $this->date_available) &&
+            (sc_config('product_preorder') == 1 || $this->date_available === null || date('Y-m-d H:i:s') >= $this->date_available) &&
             (sc_config('product_buy_out_of_stock') || $this->stock) &&
             $this->kind != SC_PRODUCT_GROUP
         ) {
@@ -313,8 +313,8 @@ class ShopProduct extends Model
     {
         $promotion = $this->promotionPrice;
         if ($promotion) {
-            if (($promotion['date_end'] >= date("Y-m-d") || $promotion['date_end'] == null)
-                && ($promotion['date_start'] <= date("Y-m-d") || $promotion['date_start'] == null)
+            if (($promotion['date_end'] >= date("Y-m-d") || $promotion['date_end'] === null)
+                && ($promotion['date_start'] <= date("Y-m-d") || $promotion['date_start'] === null)
                 && $promotion['status_promotion'] = 1) {
                 return $promotion['price_promotion'];
             }

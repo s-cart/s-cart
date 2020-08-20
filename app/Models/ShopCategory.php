@@ -213,7 +213,7 @@ class ShopCategory extends Model
         $category = $category->whereIn($tableCTS . '.store_id', [config('app.storeId'), 0]);
         //End store
 
-        if ($type == null) {
+        if ($type === null) {
             $category = $category->where('id', (int) $key);
         } else {
             $category = $category->where($type, $key);

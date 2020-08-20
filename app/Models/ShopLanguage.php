@@ -17,7 +17,7 @@ class ShopLanguage extends Model
 
     public static function getListAll()
     {
-        if (self::$getListAll == null) {
+        if (self::$getListAll === null) {
             self::$getListAll = self::get()
                 ->keyBy('code');
         }
@@ -26,7 +26,7 @@ class ShopLanguage extends Model
 
     public static function getListActive()
     {
-        if (self::$getListActive == null) {
+        if (self::$getListActive === null) {
             self::$getListActive = self::where('status', 1)
                 ->get()
                 ->keyBy('code');
@@ -36,7 +36,7 @@ class ShopLanguage extends Model
 
     public static function getCodeActive()
     {
-        if (self::$getCodeActive == null) {
+        if (self::$getCodeActive === null) {
             self::$getCodeActive = self::where('status', 1)
                 ->pluck('name', 'code')
                 ->all();
@@ -46,7 +46,7 @@ class ShopLanguage extends Model
 
     public static function getCodeAll()
     {
-        if (self::$getArrayLanguages == null) {
+        if (self::$getArrayLanguages === null) {
             self::$getArrayLanguages = self::pluck('name', 'code')->all();
         }
         return self::$getArrayLanguages;

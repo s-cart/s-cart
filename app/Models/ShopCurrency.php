@@ -38,7 +38,7 @@ class ShopCurrency extends Model
 
     public static function getCodeActive()
     {
-        if (self::$getCodeActive == null) {
+        if (self::$getCodeActive === null) {
             self::$getCodeActive = self::where('status', 1)
                 ->pluck('name', 'code')
                 ->all();
@@ -49,7 +49,7 @@ class ShopCurrency extends Model
 
     public static function getCodeAll()
     {
-        if (self::$getArray == null) {
+        if (self::$getArray === null) {
             self::$getArray = self::pluck('name', 'code')->all();
         }
         return self::$getArray;

@@ -20,7 +20,7 @@ class ShopBrand extends Model
 
     public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;
@@ -85,7 +85,7 @@ class ShopBrand extends Model
         if(empty($key)) {
             return null;
         }
-        if ($type == null) {
+        if ($type === null) {
             $data = $this->where('id', (int) $key);
         } else {
             $data = $this->where($type, $key);

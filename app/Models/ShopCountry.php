@@ -14,7 +14,7 @@ class ShopCountry extends Model
 
     public static function getListAll()
     {
-        if (self::$getListCountries == null) {
+        if (self::$getListCountries === null) {
             self::$getListCountries = self::get()->keyBy('code');
         }
         return self::$getListCountries;

@@ -67,7 +67,7 @@ class ShopPage extends Model
         $page = $page->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
         //End store
 
-        if ($type == null) {
+        if ($type === null) {
             $page = $page->where('id', (int) $key);
         } else {
             $page = $page->where($type, $key);

@@ -80,7 +80,7 @@ class ShopNews extends Model
         $news = $news->whereIn($tableNTS . '.store_id', [config('app.storeId'), 0]);
         //End store
 
-        if ($type == null) {
+        if ($type === null) {
             $news = $news->where('id', (int) $key);
         } else {
             $news = $news->where($type, $key);

@@ -14,7 +14,7 @@ class ShopBlockContent extends Model
 
     public static function getLayout()
     {
-        if (self::$getLayout == null) {
+        if (self::$getLayout === null) {
             self::$getLayout = self::where('status', 1)
                 ->orderBy('sort', 'desc')
                 ->get()

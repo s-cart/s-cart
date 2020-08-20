@@ -21,7 +21,7 @@ class AdminConfig extends Model
      */
     public static function getPluginCode($code = null, $onlyActive = true)
     {
-        if($code == null) {
+        if($code === null) {
             $query =  self::where('group', 'Plugins');
         } else {
             $code = sc_word_format_class($code);
@@ -43,7 +43,7 @@ class AdminConfig extends Model
      */
     public static function getGroup($group = null, $suffix = null)
     {
-        if ($group == null) {
+        if ($group === null) {
             return [];
         }
         $return =  self::where('group', $group);
@@ -67,7 +67,7 @@ class AdminConfig extends Model
  */
     public static function getListAll()
     {
-        if (self::$getAll == null) {
+        if (self::$getAll === null) {
             self::$getAll = self::where('store_id', '<>', 0)
                 ->get()
                 ->keyBy('store_id');
@@ -83,7 +83,7 @@ class AdminConfig extends Model
     public static function getAllGlobal()
 
     {
-        if (self::$getAllGlobal == null) {
+        if (self::$getAllGlobal === null) {
             self::$getAllGlobal = self::where('store_id', 0)
                 ->pluck('value', 'key')
                 ->all();
@@ -99,7 +99,7 @@ class AdminConfig extends Model
      * @return  [type]            [return description]
      */
     public static function getAllStore($storeId) {
-        if (self::$getAllStore == null) {
+        if (self::$getAllStore === null) {
             self::$getAllStore = self::where('store_id', $storeId)
                 ->pluck('value', 'key')
                 ->all();
