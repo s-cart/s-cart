@@ -1139,13 +1139,6 @@ function process_form(){
     }
 }
 
-//Date picker
-/* $('.date_time').datepicker({
-  autoclose: true,
-  format: 'yyyy-mm-dd'
-}) */
-
-
 $('textarea.editor').ckeditor(
     {
         filebrowserImageBrowseUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}?type=product',

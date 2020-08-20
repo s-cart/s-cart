@@ -282,11 +282,6 @@
 @include('admin.component.ckeditor_js')
 
 
-
-
-
-
-
 <script type="text/javascript">
     $(document).ready(function() {
     $('.select2').select2()
@@ -297,8 +292,8 @@
 <script type="text/javascript">
     $('textarea.editor').ckeditor(
     {
-        filebrowserImageBrowseUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}?type=news',
-        filebrowserImageUploadUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=news&_token={{csrf_token()}}',
+        filebrowserImageBrowseUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}?type=content',
+        filebrowserImageUploadUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=content&_token={{csrf_token()}}',
         filebrowserBrowseUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}?type=Files',
         filebrowserUploadUrl: '{{ route('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=file&_token={{csrf_token()}}',
         filebrowserWindowWidth: '900',

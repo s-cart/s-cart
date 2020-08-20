@@ -19,7 +19,7 @@ class DataAdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table(SC_DB_PREFIX.'admin_menu')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_menu')->insert(
             [
             ['id' => 1, 'parent_id' => 6, 'sort' => 1, 'title' => 'lang::admin.menu_titles.order_manager', 'icon' => 'fas fa-cart-arrow-down', 'uri' => '', 'key' => 'ORDER_MANAGER', 'type' => 0],
             ['id' => 2, 'parent_id' => 6, 'sort' => 2, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fas fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
@@ -85,7 +85,7 @@ class DataAdminSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_permission')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_permission')->insert(
             [
             ['id' => '1', 'name' => 'Admin manager', 'slug' => 'admin.manager', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'/user,GET::'.SC_ADMIN_PREFIX.'/role,GET::'.SC_ADMIN_PREFIX.'/permission,ANY::'.SC_ADMIN_PREFIX.'/log/*,ANY::'.SC_ADMIN_PREFIX.'/menu/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
@@ -106,7 +106,7 @@ class DataAdminSeeder extends Seeder
              ]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_role')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_role')->insert(
             [
             ['id' => '1', 'name' => 'Administrator', 'slug' => 'administrator', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Group only View', 'slug' => 'view.all', 'created_at' => date('Y-m-d H:i:s')],
@@ -116,7 +116,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '6', 'name' => 'Marketing', 'slug' => 'maketing', 'created_at' => date('Y-m-d H:i:s')]]
         );
 
-        DB::table(SC_DB_PREFIX.'admin_role_permission')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_role_permission')->insert(
             [
             ['role_id' => 3, 'permission_id' => 5, 'created_at' => date('Y-m-d H:i:s')],
             ['role_id' => 3, 'permission_id' => 1, 'created_at' => date('Y-m-d H:i:s')],
@@ -155,7 +155,7 @@ class DataAdminSeeder extends Seeder
             ]
         );
         
-        DB::table(SC_DB_PREFIX.'admin_role_user')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_role_user')->insert(
             ['role_id' => '1', 'user_id' => '1']
         );
 
@@ -168,7 +168,7 @@ class DataAdminSeeder extends Seeder
         if (!empty(session('infoInstall')['admin_email'])) {
             $this->adminEmail = session('infoInstall')['admin_email'];
         }
-        DB::table(SC_DB_PREFIX.'admin_user')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_user')->insert(
             ['id' => '1', 'username' => $this->adminUser, 'password' => $this->adminPassword, 'email' => $this->adminEmail, 'name' => 'Administrator', 'avatar' => '/admin/avatar/user.jpg', 'created_at' => date('Y-m-d H:i:s')]
         );
         
@@ -179,7 +179,7 @@ class DataAdminSeeder extends Seeder
         if (!empty(session('infoInstall')['language_default'])) {
             $this->language_default = session('infoInstall')['language_default'];
         }
-        DB::table(SC_DB_PREFIX.'admin_config')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_config')->insert(
             [
             ['group' => 'Plugins', 'code' => 'Payment', 'key' => 'Cash', 'value' => '1', 'sort' => '0', 'detail' => 'Plugins/Payment/Cash::lang.title', 'store_id' => 0],
             ['group' => 'Plugins', 'code' => 'Shipping', 'key' => 'ShippingStandard', 'value' => '1', 'sort' => '0', 'detail' => 'lang::Shipping Standard', 'store_id' => 0],
@@ -269,7 +269,7 @@ class DataAdminSeeder extends Seeder
             
             ]
         );
-        DB::table(SC_DB_PREFIX.'admin_store')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_store')->insert(
             [
                 'logo' => 'data/logo/scart-mid.png', 
                 'template' => 's-cart-3x', 
@@ -285,7 +285,7 @@ class DataAdminSeeder extends Seeder
             ]
         );
         
-        DB::table(SC_DB_PREFIX.'admin_store_description')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_store_description')->insert(
             [
                 ['store_id' => '1', 'lang' => 'en', 'title' => 'Demo SCart : Free Laravel eCommerce', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
     <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>

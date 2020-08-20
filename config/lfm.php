@@ -201,8 +201,8 @@ return [
             ],
         ],
 
-        'cms' => [
-            'folder_name' => 'cms',
+        'cms-image' => [
+            'folder_name' => 'cms-image',
             'startup_view' => 'grid',
             'max_size' => 50000, // size in KB
             'valid_mime' => [

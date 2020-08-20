@@ -21,7 +21,7 @@ class PluginModel extends Model
     {
         parent::__construct($attributes);
     }
-    public function uninstallExtension() {
+    public function uninstall() {
         if (Schema::hasTable($this->table)) {
             Schema::drop($this->table);
         }
@@ -49,45 +49,35 @@ class PluginModel extends Model
         );
     }
 
-    public function installExtension()
+    public function install()
     {
-        $return = ['error' => 0, 'msg' => trans('plugin.plugin_action.install_success')];
+        $this->uninstall();
 
-        if (Schema::hasTable($this->table) || Schema::hasTable($this->table_store) || Schema::hasTable($this->table_related)) {
-            $return = ['error' => 1, 'msg' => trans('table_exist', ['table' => $this->table.'|'.$this->table_store.'|'.$this->table_related])];
-        } else {
-            try {
-                Schema::create($this->table, function (Blueprint $table) {
-                    $table->increments('id');
-                    $table->string('code', 50)->unique();
-                    $table->integer('reward')->default(2);
-                    $table->string('type', 10)->default('point')->comment('point - Point; percent - %');
-                    $table->string('data', 300)->nullable();
-                    $table->integer('limit')->default(1);
-                    $table->integer('used')->default(0);
-                    $table->integer('login')->default(0);
-                    $table->tinyInteger('status')->default(0);
-                    $table->dateTime('expires_at')->nullable();
-                });
+        Schema::create($this->table, function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 50)->unique();
+            $table->integer('reward')->default(2);
+            $table->string('type', 10)->default('point')->comment('point - Point; percent - %');
+            $table->string('data', 300)->nullable();
+            $table->integer('limit')->default(1);
+            $table->integer('used')->default(0);
+            $table->integer('login')->default(0);
+            $table->tinyInteger('status')->default(0);
+            $table->dateTime('expires_at')->nullable();
+        });
 
-                Schema::create($this->table_store, function (Blueprint $table) {
-                    $table->integer($this->table.'_id');
-                    $table->integer('store_id');
-                    $table->primary([$this->table.'_id', 'store_id']);
-                });
-                
-                Schema::create($this->table_related, function (Blueprint $table) {
-                    $table->integer($this->table.'_id');
-                    $table->integer('store_id');
-                    $table->primary([$this->table.'_id', 'store_id']);
-                });
-
-            } catch (\Exception $e) {
-                $return = ['error' => 1, 'msg' => $e->getMessage()];
-            }
-        }
-
-        return $return;
+        Schema::create($this->table_store, function (Blueprint $table) {
+            $table->integer($this->table.'_id');
+            $table->integer('store_id');
+            $table->primary([$this->table.'_id', 'store_id']);
+        });
+        
+        Schema::create($this->table_related, function (Blueprint $table) {
+            $table->integer($this->table.'_id');
+            $table->integer('store_id');
+            $table->primary([$this->table.'_id', 'store_id']);
+        });
+        
 
     }
     /**

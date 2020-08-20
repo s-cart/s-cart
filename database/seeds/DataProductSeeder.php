@@ -12,7 +12,7 @@ class DataProductSeeder extends Seeder
      */
     public function run()
     {
-        DB::table(SC_DB_PREFIX.'shop_product')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_product')->insert(
             [
                 ['id' => 1, 'sku' => 'ABCZZ','alias' => 'demo-alias-name-product-1', 'image' => '/data/product/product-1.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '99',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => date("Y-m-d", strtotime("+1 month")), 'sold' => '1', 'minimum' => '0'],
                 ['id' => 2, 'sku' => 'LEDFAN1','alias' => 'demo-alias-name-product-2', 'image' => '/data/product/product-2.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
@@ -34,7 +34,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_product_description')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_product_description')->insert(
             [
                 ['product_id' => '1', 'lang' => 'en', 'name' => 'Easy Polo Black Edition 1', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
@@ -107,7 +107,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_category')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category')->insert(
             [
                 ['id' => '1', 'alias'=> 'electronics', 'image' => '/data/category/img-40.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
                 ['id' => '2', 'alias'=> 'clothing-wears', 'image' => '/data/category/img-44.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
@@ -124,7 +124,7 @@ class DataProductSeeder extends Seeder
                 ['id' => '13', 'alias'=> 'men-accessaries', 'image' => '/data/category/img-40.jpg', 'parent' => '4', 'top' => '0', 'sort' => '3', 'status' => '1'],
             ]
         );
-        DB::table(SC_DB_PREFIX.'shop_category_description')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category_description')->insert(
             [
                 ['category_id' => '1', 'lang' => 'en', 'title' => 'Electronics', 'keyword' => '', 'description' => ''],
                 ['category_id' => '2', 'lang' => 'en', 'title' => 'Clothing & Wears', 'keyword' => '', 'description' => ''],
@@ -156,7 +156,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_category_store')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category_store')->insert(
             [
                 ['category_id' => '1', 'store_id' => '0'],
                 ['category_id' => '2', 'store_id' => '0'],
@@ -174,7 +174,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_news')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news')->insert(
             [
                 ['id' => 1, 'alias' =>  'demo-alias-blog-1', 'image' => '/data/content/blog-1.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
                 ['id' => 2, 'alias' =>  'demo-alias-blog-2', 'image' => '/data/content/blog-2.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
@@ -185,7 +185,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_news_description')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news_description')->insert(
             [
                 ['news_id' => '1', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 1', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
@@ -214,7 +214,7 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::table(SC_DB_PREFIX.'shop_news_store')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news_store')->insert(
             [
                 ['news_id' => '1', 'store_id' => '0'],
                 ['news_id' => '2', 'store_id' => '0'],

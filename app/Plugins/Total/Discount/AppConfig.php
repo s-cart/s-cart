@@ -49,7 +49,11 @@ class AppConfig extends ConfigDefault
             if (!$process) {
                 $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.install_faild')];
             } else {
-                $return = (new PluginModel)->installExtension();
+               try {
+                    (new PluginModel)->install();
+               } catch (\Throwable $e) {
+                    return  ['error' => 1, 'msg' => $e->getMessage()];
+               }
             }
         }
 
@@ -63,7 +67,7 @@ class AppConfig extends ConfigDefault
         if (!$process) {
             $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
-        (new PluginModel)->uninstallExtension();
+        (new PluginModel)->uninstall();
         return $return;
     }
     public function enable()
