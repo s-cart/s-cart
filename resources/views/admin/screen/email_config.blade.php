@@ -54,23 +54,22 @@
            @if($config->key == 'smtp_security')
             <tr>
               <td>{{ sc_language_render($config->detail) }}</td>
-              <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
+              <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
             </tr>             
            @elseif($config->key == 'smtp_port')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
              </tr>
-           @elseif($config->key == 'smtp_password')
+           @elseif($config->key == 'smtp_password' || $config->key == 'smtp_user')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="password" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">****</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="password" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ (sc_admin_can_config()) ? $config->value: 'hidden' }}" data-original-title="" title=""></a></td>
              </tr>
-
           @else
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
              </tr>
            @endif
 
@@ -143,7 +142,7 @@ $(document).ready(function() {
       }
     });
 
-    {!! $script_sort??'' !!}
+    {{ $script_sort??'' }}
 
     $(document).on('ready pjax:end', function(event) {
       $('.table-list input').iCheck({
