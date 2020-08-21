@@ -445,10 +445,10 @@ if (!function_exists('sc_route')) {
      *
      * @return  [type]         [return description]
      */
-    function sc_route($name)
+    function sc_route($name, $param = null)
     {
         if (Route::has($name)) {
-            return route($name);
+            return route($name, $param);
         } else {
             return url($name);
         }
