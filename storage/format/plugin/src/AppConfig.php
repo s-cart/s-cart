@@ -36,7 +36,7 @@ class AppConfig extends ConfigDefault
         $check = AdminConfig::where('key', $this->configKey)->first();
         if ($check) {
             //Check Plugin key exist
-            $return = ['error' => 1, 'msg' => 'Plugin exist'];
+            $return = ['error' => 1, 'msg' =>  trans('plugin.plugin_action.plugin_exist')];
         } else {
             //Insert plugin to config
             $dataInsert = [
@@ -75,7 +75,7 @@ class AppConfig extends ConfigDefault
             //     ]
             // );
             if (!$process) {
-                $return = ['error' => 1, 'msg' => 'Error when install'];
+                $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.install_faild')];
             } else {
                 $return = (new PluginModel)->installExtension();
             }
@@ -90,7 +90,7 @@ class AppConfig extends ConfigDefault
         //Please delete all values inserted in the installation step
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
         if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error when uninstall'];
+            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
         (new PluginModel)->uninstallExtension();
         return $return;
