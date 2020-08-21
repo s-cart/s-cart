@@ -23,7 +23,7 @@ use Validator;
 
 class AdminProductController extends Controller
 {
-    public $languages, $kinds, $propertys, $attributeGroup, $listWeight, $listLength, $stories;
+    public $languages, $kinds, $propertys, $attributeGroup, $listWeight, $listLength, $stories, $categoriesTitle;
 
     public function __construct()
     {
