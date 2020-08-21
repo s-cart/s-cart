@@ -14,15 +14,15 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
                   <div class="rd-navbar-brand">
-                    <!--Brand--><a class="brand" href="{{ route('home') }}"><img class="brand-logo-dark" src="{{ asset(sc_store('logo')) }}" alt="" width="105" height="44"/>
+                    <!--Brand--><a class="brand" href="{{ sc_route('home') }}"><img class="brand-logo-dark" src="{{ asset(sc_store('logo')) }}" alt="" width="105" height="44"/>
                       <img class="brand-logo-light" src="{{ asset(sc_store('logo')) }}" alt="" width="106" height="44"/></a>
                   </div>
                 </div>
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ route('shop') }}">{{ trans('front.shop') }}</a>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a>
                         @if ($categoriesTop->count())
                         <ul class="rd-menu rd-navbar-dropdown">
                             @foreach ($categoriesTop as $key => $category)
@@ -32,7 +32,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                         @endif
                     </li>
                     <li class="rd-nav-item">
-                        <a class="rd-nav-link" href="{{ route('news') }}">{{ trans('front.blog') }}</a>
+                        <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
                     </li>
                     @if (!empty(sc_config('Content')))
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#">{{ trans('front.cms_category') }}</a>
@@ -61,31 +61,31 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('front.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('login') }}"><i class="fa fa-user"></i> {{ trans('front.login') }}</a>
+                                <a class="rd-dropdown-link" href="{{ sc_route('login') }}"><i class="fa fa-user"></i> {{ trans('front.login') }}</a>
                             </li>
                             @if (!empty(sc_config('LoginSocialite')))
                             <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'facebook']) }}"><i class="fab fa-facebook"></i>
+                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'facebook']) }}"><i class="fab fa-facebook"></i>
                                  {{ trans('front.login') }} facebook</a>
                             </li>
                             <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'google']) }}"><i class="fab fa-google-plus"></i>
+                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'google']) }}"><i class="fab fa-google-plus"></i>
                                  {{ trans('front.login') }} google</a>
                             </li>
                             <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'github']) }}"><i class="fab fa-github"></i>
+                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'github']) }}"><i class="fab fa-github"></i>
                                  {{ trans('front.login') }} github</a>
                             </li>
                             @endif
 
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
                                     <span class="count sc-wishlist"
                                     id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span>
                                 </a>
                             </li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
                                     <span class="count sc-compare"
                                     id="shopping-compare">{{ Cart::instance('compare')->count() }}</span>
                                 </a>
@@ -96,22 +96,22 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     @else
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('account.my_profile') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.my_profile') }}</a></li>
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('logout') }}" rel="nofollow" onclick="event.preventDefault();
+                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.my_profile') }}</a></li>
+                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('logout') }}" rel="nofollow" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ trans('front.logout') }}</a></li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
                                     <span class="count sc-wishlist"
                                     id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span>
                                 </a>
                             </li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
                                     <span class="count sc-compare"
                                     id="shopping-compare">{{ Cart::instance('compare')->count() }}</span>
                                 </a>
                             </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ sc_route('logout') }}" method="POST" style="display: none;">
                               @csrf
                             </form>
                         </ul>
@@ -127,7 +127,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                         <ul class="rd-menu rd-navbar-dropdown">
                             @foreach ($sc_languages as $key => $language)
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('locale', ['code' => $key]) }}">
+                                <a class="rd-dropdown-link" href="{{ sc_route('locale', ['code' => $key]) }}">
                                     <img src="{{ asset($language['icon']) }}" style="height: 25px;"> {{ $language['name'] }}
                                 </a>
                             </li>
@@ -144,7 +144,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                         <ul class="rd-menu rd-navbar-dropdown">
                             @foreach ($sc_currencies as $key => $currency)
                             <li class="rd-dropdown-item" {{ ($currency->code ==  sc_currency_info()['code']) ? 'disabled': '' }}>
-                                <a class="rd-dropdown-link" href="{{ route('currency', ['code' => $currency->code]) }}">
+                                <a class="rd-dropdown-link" href="{{ sc_route('currency', ['code' => $currency->code]) }}">
                                     {{ $currency->name }}
                                 </a>
                             </li>
@@ -160,7 +160,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                   <!-- RD Navbar Search-->
                   <div class="rd-navbar-search rd-navbar-search-2">
                     <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
-                    <form class="rd-search" action="{{ route('search') }}"  method="GET">
+                    <form class="rd-search" action="{{ sc_route('search') }}"  method="GET">
                       <div class="form-wrap">
                         <input class="rd-navbar-search-form-input form-input"  type="text" name="keyword"  placeholder="{{ trans('front.search_form.keyword') }}"/>
                         <button class="rd-search-form-submit" type="submit"></button>
@@ -169,13 +169,13 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                   </div>
                   <!-- RD Navbar Basket-->
                   <div class="rd-navbar-basket-wrap">
-                    <a href="{{ route('cart') }}">
+                    <a href="{{ sc_route('cart') }}">
                     <button class="rd-navbar-basket fl-bigmug-line-shopping202">
                       <span class="count sc-cart" id="shopping-cart">{{ Cart::instance('default')->count() }}</span>
                     </button>
                     </a>
                   </div>
-                  <a title="{{ trans('front.cart_title') }}" style="margin-top:10px;" class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2" href="{{ route('cart') }}">
+                  <a title="{{ trans('front.cart_title') }}" style="margin-top:10px;" class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2" href="{{ sc_route('cart') }}">
                     <span class="count sc-cart">{{ Cart::instance('default')->count() }}</span>
                  </a>
                 </div>

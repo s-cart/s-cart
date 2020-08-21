@@ -5,6 +5,7 @@ use App\Models\AdminStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
+use Illuminate\Support\Facades\Route;
 
 /*
 Get all block content
@@ -134,10 +135,10 @@ if (!function_exists('sc_config_global')) {
     }
 }
 
-/*
-Group Config info
- */
 if (!function_exists('sc_config_group')) {
+    /*
+    Group Config info
+     */
     function sc_config_group($group = null, $suffix = null)
     {
         $groupData = AdminConfig::getGroup($group, $suffix);
@@ -192,10 +193,10 @@ if (!function_exists('sc_store')) {
     }
 }
 
-/*
-url render
- */
 if (!function_exists('sc_url_render')) {
+    /*
+    url render
+     */
     function sc_url_render($string)
     {
         $arrCheckRoute = explode('route::', $string);
@@ -229,18 +230,18 @@ if (!function_exists('sc_url_render')) {
     }
 }
 
-//Get all language
 if (!function_exists('sc_language_all')) {
+    //Get all language
     function sc_language_all()
     {
         return ShopLanguage::getListActive();
     }
 }
 
-/*
-Render language
- */
 if (!function_exists('sc_language_render')) {
+    /*
+    Render language
+     */
     function sc_language_render($string)
     {
         $arrCheck = explode('lang::', $string);
@@ -252,10 +253,10 @@ if (!function_exists('sc_language_render')) {
     }
 }
 
-/*
-Html render
- */
 if (!function_exists('sc_html_render')) {
+    /*
+    Html render
+     */
     function sc_html_render($string)
     {
         $string = htmlspecialchars_decode($string);
@@ -263,10 +264,10 @@ if (!function_exists('sc_html_render')) {
     }
 }
 
-/*
-Format class name
- */
 if (!function_exists('sc_word_format_class')) {
+    /*
+    Format class name
+     */
     function sc_word_format_class($word)
     {
         $word = \Illuminate\Support\Str::camel($word);
@@ -275,10 +276,10 @@ if (!function_exists('sc_word_format_class')) {
     }
 }
 
-/*
-Truncates words
- */
 if (!function_exists('sc_word_limit')) {
+    /*
+    Truncates words
+     */
     function sc_word_limit($word, $limit = 20, $arg = '')
     {
         $word = \Illuminate\Support\Str::limit($word, $limit, $arg);
@@ -286,10 +287,10 @@ if (!function_exists('sc_word_limit')) {
     }
 }
 
-/**
- * Clear data
- */
 if (!function_exists('sc_clean')) {
+    /**
+     * Clear data
+     */
     function sc_clean($data = null, $exclude = [], $level_hight = null)
     {
         if ($level_hight) {
@@ -322,10 +323,10 @@ if (!function_exists('sc_clean')) {
     }
 }
 
-/*
-Create random token
- */
 if (!function_exists('sc_token')) {
+    /*
+    Create random token
+     */
     function sc_token($length = 32)
     {
         $token = \Illuminate\Support\Str::random($length);
@@ -333,10 +334,10 @@ if (!function_exists('sc_token')) {
     }
 }
 
-/*
-Handle report
- */
 if (!function_exists('sc_report')) {
+    /*
+    Handle report
+     */
     function sc_report($msg)
     {
         $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;       
@@ -348,10 +349,10 @@ if (!function_exists('sc_report')) {
 }
 
 
-/*
-Zip file or folder
- */
 if (!function_exists('sc_zip')) {
+    /*
+    Zip file or folder
+     */
     function sc_zip(string $source, string $destination)
     {
         if (extension_loaded('zip')) {
@@ -383,12 +384,13 @@ if (!function_exists('sc_zip')) {
     }
 }
 
-/**
- * Unzip file to folder
- *
- * @return  [type]  [return description]
- */
+
 if (!function_exists('sc_unzip')) {
+    /**
+     * Unzip file to folder
+     *
+     * @return  [type]  [return description]
+     */
     function sc_unzip(string $source, string $destination)
     {
         $zip = new \ZipArchive();
@@ -400,20 +402,22 @@ if (!function_exists('sc_unzip')) {
     }
 }
 
-/*
-Get locale
-*/
+
 if (!function_exists('sc_get_locale')) {
+    /*
+    Get locale
+    */
     function sc_get_locale()
     {
         return app()->getLocale();
     }
 }
 
-/*
-Get all template
-*/
+
 if (!function_exists('sc_get_all_template')) {
+    /*
+    Get all template
+    */
     function sc_get_all_template()
     {
         $arrTemplates = [];
@@ -433,37 +437,20 @@ if (!function_exists('sc_get_all_template')) {
 }
 
 
-/*
-    Return price with tax
-*/
-if (!function_exists('sc_tax_price')) {
-    function sc_tax_price($price, $tax)
+if (!function_exists('sc_route')) {
+    /**
+     * Render route
+     *
+     * @param   [string]  $name
+     *
+     * @return  [type]         [return description]
+     */
+    function sc_route($name)
     {
-        return floor($price * (100 + $tax) /100);
-    }
-}
-
-/**
- * Render html option price
- *
- * @param   string $arrtribute  format: attribute-name__value-option-price
- * @param   string $currency    code currency
- * @param   string  $rate        rate exchange
- * @param   string               [ description]
- *
- * @return  [type]             [return description]
- */
-if (!function_exists('sc_render_option_price')) {
-    function sc_render_option_price($arrtribute, $currency = null, $rate = null)
-    {
-        $html = '';
-        $tmpAtt = explode('__', $arrtribute);
-        $add_price = $tmpAtt[1] ?? 0;
-        if ($add_price) {
-            $html = $tmpAtt[0].'<span class="option_price">(+'.sc_currency_render($add_price,$currency, $rate).')</span>';
+        if (Route::has($name)) {
+            return route($name);
         } else {
-            $html = $tmpAtt[0];
+            return url($name);
         }
-        return $html;
     }
 }

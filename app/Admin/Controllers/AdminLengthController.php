@@ -22,13 +22,13 @@ class AdminLengthController extends Controller
             'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('length.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_length_unit.delete'),
+            'urlDeleteItem' => sc_route('admin_length_unit.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_length_unit.create'),
+            'url_action' => sc_route('admin_length_unit.create'),
         ];
 
         $listTh = [
@@ -48,7 +48,7 @@ class AdminLengthController extends Controller
                 'name' => $row['name'],
                 'description' => $row['description'],
                 'action' => '
-                    <a href="' . route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('length.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
             ];
@@ -112,13 +112,13 @@ class AdminLengthController extends Controller
             'title_action' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('length.admin.edit'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_length_unit.delete'),
+            'urlDeleteItem' => sc_route('admin_length_unit.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_length_unit.edit', ['id' => $length['id']]),
+            'url_action' => sc_route('admin_length_unit.edit', ['id' => $length['id']]),
             'length' => $length,
             'id' => $id,
         ];
@@ -140,7 +140,7 @@ class AdminLengthController extends Controller
                 'name' => $row['name'],
                 'description' => $row['description'],
                 'action' => '
-                    <a href="' . route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_length_unit.edit', ['id' => $row['id']]) . '"><span title="' . trans('length.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                 <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('length.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                 ',
             ];

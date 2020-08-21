@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-sm-3">
             <div class="single-widget">
-              <h2><a href="{{ route('home') }}"><img style="max-width: 150px;" src="{{  asset(sc_store('logo')) }}"></a></h2>
+              <h2><a href="{{ sc_route('home') }}"><img style="max-width: 150px;" src="{{  asset(sc_store('logo')) }}"></a></h2>
              <ul class="nav nav-pills nav-stacked">
                <li>{{ sc_store('title') }}</li>
              </ul>
@@ -56,7 +56,7 @@
           <div class="col-sm-3">
             <div class="single-widget">
               <h2>{{ trans('front.subscribe.title') }}</h2>
-              <form action="{{ route('subscribe') }}" method="post" class="searchform">
+              <form action="{{ sc_route('subscribe') }}" method="post" class="searchform">
                 @csrf
 
                 <input type="email" name="subscribe_email" required="required" placeholder="{{ trans('front.subscribe.subscribe_email') }}">
@@ -73,7 +73,7 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <p class="pull-left">Copyright © {{date('Y')}} <a href="{{ route('home') }}">{{ sc_store('title') }} </a> Inc. All rights reserved.</p>
+          <p class="pull-left">Copyright © {{date('Y')}} <a href="{{ sc_route('home') }}">{{ sc_store('title') }} </a> Inc. All rights reserved.</p>
           <p class="pull-right">Power by <a href="{{ config('scart.homepage') }}">{{ config('scart.name') }} {{ config('scart.version') }}</a>. Hosted by  <span><a target="_blank" href="https://giaiphap247.com">GiaiPhap247</a></span></p>
             <!--
             S-Cart is free open source and you are free to remove the powered by S-cart if you want, but its generally accepted practise to make a small donation.

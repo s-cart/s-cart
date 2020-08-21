@@ -5,7 +5,7 @@ $layout_page = shop_auth
 @endphp
 
 <h2>{{ trans('account.title_register') }}</h2>
-<form action="{{route('postRegister')}}" method="post" class="box">
+<form action="{{sc_route('postRegister')}}" method="post" class="box">
     {!! csrf_field() !!}
     <div class="form_content" id="collapseExample">
 

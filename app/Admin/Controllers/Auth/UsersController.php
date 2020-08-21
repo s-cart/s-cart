@@ -18,7 +18,7 @@ class UsersController extends Controller
             'title' => trans('user.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_user.delete'),
+            'urlDeleteItem' => sc_route('admin_user.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -88,7 +88,7 @@ class UsersController extends Controller
                 'permission' => $showPermission,
                 'created_at' => $row['created_at'],
                 'action' => '
-                    <a href="' . route('admin_user.edit', ['id' => $row['id']]) . '"><span title="' . trans('user.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_user.edit', ['id' => $row['id']]) . '"><span title="' . trans('user.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                     ' . ((Admin::user()->id == $row['id'] || in_array($row['id'], SC_GUARD_ADMIN)) ? '' : '<span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>')
                 ,
             ];
@@ -100,7 +100,7 @@ class UsersController extends Controller
         $data['resultItems'] = trans('user.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_user.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_user.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -111,13 +111,13 @@ class UsersController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_user.index');
+        $data['urlSort'] = sc_route('admin_user.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_user.index') . '" id="button_search">
+                <form action="' . sc_route('admin_user.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('user.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
@@ -146,7 +146,7 @@ class UsersController extends Controller
             'user' => [],
             'roles' => (new AdminRole)->pluck('name', 'id')->all(),
             'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => route('admin_user.create'),
+            'url_action' => sc_route('admin_user.create'),
 
         ];
 
@@ -220,7 +220,7 @@ class UsersController extends Controller
             'user' => $user,
             'roles' => (new AdminRole)->pluck('name', 'id')->all(),
             'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => route('admin_user.edit', ['id' => $user['id']]),
+            'url_action' => sc_route('admin_user.edit', ['id' => $user['id']]),
         ];
         return view('admin.auth.user')
             ->with($data);

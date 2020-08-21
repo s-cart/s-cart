@@ -55,7 +55,7 @@ $layout_page = shop_profile
                 @endif
 
                 <span class="btn">
-                  <a title="{{ trans('account.addresses.edit') }}" href="{{ route('member.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
+                  <a title="{{ trans('account.addresses.edit') }}" href="{{ sc_route('member.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
                 </span>
                 <span class="btn">
                   <a href="#" title="{{ trans('account.addresses.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
@@ -79,8 +79,8 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

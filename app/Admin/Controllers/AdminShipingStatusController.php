@@ -22,13 +22,13 @@ class AdminShipingStatusController extends Controller
             'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('shipping_status.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_shipping_status.delete'),
+            'urlDeleteItem' => sc_route('admin_shipping_status.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_shipping_status.create'),
+            'url_action' => sc_route('admin_shipping_status.create'),
         ];
 
         $listTh = [
@@ -46,7 +46,7 @@ class AdminShipingStatusController extends Controller
                 'id' => $row['id'],
                 'name' => $row['name'] ?? 'N/A',
                 'action' => '
-                    <a href="' . route('admin_shipping_status.edit', ['id' => $row['id']]) . '"><span title="' . trans('shipping_status.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_shipping_status.edit', ['id' => $row['id']]) . '"><span title="' . trans('shipping_status.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('shipping_status.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -107,13 +107,13 @@ public function edit($id)
         'title_action' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('shipping_status.admin.edit'),
         'subTitle' => '',
         'icon' => 'fa fa-indent',
-        'urlDeleteItem' => route('admin_shipping_status.delete'),
+        'urlDeleteItem' => sc_route('admin_shipping_status.delete'),
         'removeList' => 0, // 1 - Enable function delete list item
         'buttonRefresh' => 0, // 1 - Enable button refresh
         'buttonSort' => 0, // 1 - Enable button sort
         'css' => '', 
         'js' => '',
-        'url_action' => route('admin_shipping_status.edit', ['id' => $shipping_status['id']]),
+        'url_action' => sc_route('admin_shipping_status.edit', ['id' => $shipping_status['id']]),
         'shipping_status' => $shipping_status,
         'id' => $id,
     ];
@@ -133,7 +133,7 @@ public function edit($id)
             'id' => $row['id'],
             'name' => $row['name'] ?? 'N/A',
             'action' => '
-                <a href="' . route('admin_shipping_status.edit', ['id' => $row['id']]) . '"><span title="' . trans('shipping_status.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                <a href="' . sc_route('admin_shipping_status.edit', ['id' => $row['id']]) . '"><span title="' . trans('shipping_status.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
               <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('shipping_status.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
               ',

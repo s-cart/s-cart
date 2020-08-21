@@ -16,13 +16,13 @@ class AdminTaxController extends Controller
             'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('tax.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_tax.delete'),
+            'urlDeleteItem' => sc_route('admin_tax.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_tax.create'),
+            'url_action' => sc_route('admin_tax.create'),
         ];
 
         $listTh = [
@@ -42,7 +42,7 @@ class AdminTaxController extends Controller
                 'name' => $row['name'],
                 'value' => $row['value'],
                 'action' => '
-                    <a href="' . route('admin_tax.edit', ['id' => $row['id']]) . '"><span title="' . trans('tax.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_tax.edit', ['id' => $row['id']]) . '"><span title="' . trans('tax.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('tax.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
             ];
@@ -104,13 +104,13 @@ class AdminTaxController extends Controller
             'title_action' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('tax.admin.edit'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_tax.delete'),
+            'urlDeleteItem' => sc_route('admin_tax.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_tax.edit', ['id' => $tax['id']]),
+            'url_action' => sc_route('admin_tax.edit', ['id' => $tax['id']]),
             'tax' => $tax,
             'id' => $id,
         ];
@@ -132,7 +132,7 @@ class AdminTaxController extends Controller
                 'name' => $row['name'],
                 'value' => $row['value'],
                 'action' => '
-                    <a href="' . route('admin_tax.edit', ['id' => $row['id']]) . '"><span title="' . trans('tax.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_tax.edit', ['id' => $row['id']]) . '"><span title="' . trans('tax.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                 <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('tax.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                 ',
             ];

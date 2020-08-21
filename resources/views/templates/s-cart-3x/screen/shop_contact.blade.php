@@ -20,7 +20,7 @@ $layout_page = shop_contact
             </address>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <form method="post" action="{{ route('contact.post') }}" class="contact-form">
+            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form">
                 {{ csrf_field() }}
                 <div id="contactFormWrapper">
                     <div class="row">
@@ -107,7 +107,7 @@ $bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->fir
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

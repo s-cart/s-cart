@@ -53,7 +53,7 @@ class AdminStoreController extends Controller
         $data['languages'] = $this->languages;
         $data['currencies'] =$this->currencies;
 
-        $data['urlDeleteItem'] = route('admin_store.delete');
+        $data['urlDeleteItem'] = sc_route('admin_store.delete');
         return view('admin.screen.store')
             ->with($data);
     }
@@ -72,7 +72,7 @@ class AdminStoreController extends Controller
             'icon' => 'fa fa-plus',
             'store' => [],
             'languages' => $this->languages,
-            'url_action' => route('admin_store.create'),
+            'url_action' => sc_route('admin_store.create'),
             'templates' => $this->templates
         ];
 

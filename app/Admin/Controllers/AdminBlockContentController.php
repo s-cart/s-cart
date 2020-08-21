@@ -28,7 +28,7 @@ class AdminBlockContentController extends Controller
             'title' => trans('block_content.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_block_content.delete'),
+            'urlDeleteItem' => sc_route('admin_block_content.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
@@ -88,7 +88,7 @@ class AdminBlockContentController extends Controller
                 'text' => htmlspecialchars($row['text']),
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_block_content.edit', ['id' => $row['id']]) . '"><span title="' . trans('block_content.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_block_content.edit', ['id' => $row['id']]) . '"><span title="' . trans('block_content.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('block_content.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -102,7 +102,7 @@ class AdminBlockContentController extends Controller
 
         //menuRight
         $data['menuRight'][] = '
-                           <a href="' . route('admin_block_content.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+                           <a href="' . sc_route('admin_block_content.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
         //=menuRight
@@ -128,7 +128,7 @@ class AdminBlockContentController extends Controller
             'layoutType' => $this->layoutType,
             'listViewBlock' => $listViewBlock,
             'layout' => [],
-            'url_action' => route('admin_block_content.create'),
+            'url_action' => sc_route('admin_block_content.create'),
         ];
         return view('admin.screen.block_content')
             ->with($data);
@@ -192,7 +192,7 @@ class AdminBlockContentController extends Controller
             'layoutType' => $this->layoutType,
             'listViewBlock' => $listViewBlock,
             'layout' => $layout,
-            'url_action' => route('admin_block_content.edit', ['id' => $layout['id']]),
+            'url_action' => sc_route('admin_block_content.edit', ['id' => $layout['id']]),
         ];
         return view('admin.screen.block_content')
             ->with($data);

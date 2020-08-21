@@ -93,7 +93,7 @@ class LoginController extends Controller
             'user' => $user,
             'roles' => (new AdminRole)->pluck('name', 'id')->all(),
             'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => route('admin.setting'),
+            'url_action' => sc_route('admin.setting'),
         ];
         return view('admin.auth.setting')
             ->with($data);

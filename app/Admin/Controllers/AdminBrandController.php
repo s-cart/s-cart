@@ -17,13 +17,13 @@ class AdminBrandController extends Controller
             'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('brand.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_brand.delete'),
+            'urlDeleteItem' => sc_route('admin_brand.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_brand.create'),
+            'url_action' => sc_route('admin_brand.create'),
         ];
 
         $listTh = [
@@ -47,7 +47,7 @@ class AdminBrandController extends Controller
                 'sort' => $row['sort'],
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_brand.edit', ['id' => $row['id']]) . '"><span title="' . trans('brand.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_brand.edit', ['id' => $row['id']]) . '"><span title="' . trans('brand.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('brand.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -121,13 +121,13 @@ public function edit($id)
         'title_action' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('brand.admin.edit'),
         'subTitle' => '',
         'icon' => 'fa fa-indent',
-        'urlDeleteItem' => route('admin_brand.delete'),
+        'urlDeleteItem' => sc_route('admin_brand.delete'),
         'removeList' => 0, // 1 - Enable function delete list item
         'buttonRefresh' => 0, // 1 - Enable button refresh
         'buttonSort' => 0, // 1 - Enable button sort
         'css' => '', 
         'js' => '',
-        'url_action' => route('admin_brand.edit', ['id' => $brand['id']]),
+        'url_action' => sc_route('admin_brand.edit', ['id' => $brand['id']]),
         'brand' => $brand,
         'id' => $id,
     ];
@@ -153,7 +153,7 @@ public function edit($id)
             'sort' => $row['sort'],
             'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
             'action' => '
-                <a href="' . route('admin_brand.edit', ['id' => $row['id']]) . '"><span title="' . trans('brand.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                <a href="' . sc_route('admin_brand.edit', ['id' => $row['id']]) . '"><span title="' . trans('brand.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
               <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('brand.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
               ',

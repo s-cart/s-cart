@@ -22,7 +22,7 @@ class AdminSubscribeController extends Controller
             'title' => trans('subscribe.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_subscribe.delete'),
+            'urlDeleteItem' => sc_route('admin_subscribe.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -73,7 +73,7 @@ class AdminSubscribeController extends Controller
                 'email' => $row['email'],
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_subscribe.edit', ['id' => $row['id']]) . '"><span title="' . trans('subscribe.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_subscribe.edit', ['id' => $row['id']]) . '"><span title="' . trans('subscribe.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('subscribe.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -88,7 +88,7 @@ class AdminSubscribeController extends Controller
 
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_subscribe.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_subscribe.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
         <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -99,13 +99,13 @@ class AdminSubscribeController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_subscribe.index');
+        $data['urlSort'] = sc_route('admin_subscribe.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch        
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_subscribe.index') . '" id="button_search">
+                <form action="' . sc_route('admin_subscribe.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('subscribe.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
@@ -131,7 +131,7 @@ class AdminSubscribeController extends Controller
             'title_description' => trans('subscribe.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'subscribe' => [],
-            'url_action' => route('admin_subscribe.create'),
+            'url_action' => sc_route('admin_subscribe.create'),
         ];
         return view('admin.screen.subscribe')
             ->with($data);
@@ -180,7 +180,7 @@ class AdminSubscribeController extends Controller
             'title_description' => '',
             'icon' => 'fa fa-edit',
             'subscribe' => $subscribe,
-            'url_action' => route('admin_subscribe.edit', ['id' => $subscribe['id']]),
+            'url_action' => sc_route('admin_subscribe.edit', ['id' => $subscribe['id']]),
         ];
         return view('admin.screen.subscribe')
             ->with($data);

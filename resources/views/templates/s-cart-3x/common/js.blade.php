@@ -42,7 +42,7 @@
 <script type="text/javascript">
   function addToCartAjax(id,instance = null){
     $.ajax({
-        url: "{{ route('cart.add_ajax') }}",
+        url: "{{ sc_route('cart.add_ajax') }}",
         type: "POST",
         dataType: "JSON",
         data: {"id": id,"instance":instance, "_token":"{{ csrf_token() }}"},

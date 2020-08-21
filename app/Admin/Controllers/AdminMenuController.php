@@ -20,8 +20,8 @@ class AdminMenuController extends Controller
             'icon' => 'fa fa-indent',            
             'menu' => [],
             'treeMenu' => (new AdminMenu)->getTree(),
-            'url_action' => route('admin_menu.create'),
-            'urlDeleteItem' => route('admin_menu.delete'),
+            'url_action' => sc_route('admin_menu.create'),
+            'urlDeleteItem' => sc_route('admin_menu.delete'),
             'title_form' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('menu.admin.create'),
         ];
         $data['layout'] = 'index';
@@ -76,10 +76,10 @@ class AdminMenuController extends Controller
             'icon' => 'fa fa-edit',
             'menu' => $menu,
             'treeMenu' => (new AdminMenu)->getTree(),
-            'url_action' => route('admin_menu.edit', ['id' => $menu['id']]),
+            'url_action' => sc_route('admin_menu.edit', ['id' => $menu['id']]),
             'title_form' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
         ];
-        $data['urlDeleteItem'] = route('admin_menu.delete');
+        $data['urlDeleteItem'] = sc_route('admin_menu.delete');
         $data['id'] = $id;
         $data['layout'] = 'edit';
         return view('admin.screen.list_menu')

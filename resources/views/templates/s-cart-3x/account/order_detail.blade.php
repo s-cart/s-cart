@@ -194,8 +194,8 @@ $statusShipping
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

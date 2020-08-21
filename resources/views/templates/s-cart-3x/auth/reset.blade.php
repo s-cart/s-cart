@@ -17,7 +17,7 @@ $email
             <div class="card">
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
+                    <form method="POST" action="{{ sc_route('password.request') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -79,7 +79,7 @@ $email
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

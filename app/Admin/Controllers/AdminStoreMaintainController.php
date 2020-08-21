@@ -49,7 +49,7 @@ class AdminStoreMaintainController extends Controller
             'icon' => 'fa fa-edit',
             'languages' => $this->languages,
             'maintain' => $maintain,
-            'url_action' => route('admin_store_maintain.edit', ['id' => $id]),
+            'url_action' => sc_route('admin_store_maintain.edit', ['id' => $id]),
         ];
         return view('admin.screen.store_maintain_edit')
             ->with($data);

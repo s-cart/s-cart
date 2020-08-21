@@ -27,7 +27,7 @@ class AdminBannerController extends Controller
             'title' => trans('banner.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_banner.delete'),
+            'urlDeleteItem' => sc_route('admin_banner.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -86,7 +86,7 @@ class AdminBannerController extends Controller
                 'target' => $row['target'],
                 'type' => $this->dataType[$row['type']]??'N/A',
                 'action' => '
-                    <a href="' . route('admin_banner.edit', ['id' => $row['id']]) . '"><span title="' . trans('banner.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_banner.edit', ['id' => $row['id']]) . '"><span title="' . trans('banner.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('banner.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -99,7 +99,7 @@ class AdminBannerController extends Controller
         $data['resultItems'] = trans('banner.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_banner.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_banner.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
         <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -110,7 +110,7 @@ class AdminBannerController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_banner.index');
+        $data['urlSort'] = sc_route('admin_banner.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
@@ -132,7 +132,7 @@ class AdminBannerController extends Controller
             'banner' => [],
             'arrTarget' => $this->arrTarget,
             'dataType' => $this->dataType,
-            'url_action' => route('admin_banner.create'),
+            'url_action' => sc_route('admin_banner.create'),
             'stories' => $this->stories,
         ];
         return view('admin.screen.banner')
@@ -195,7 +195,7 @@ class AdminBannerController extends Controller
             'arrTarget' => $this->arrTarget,
             'dataType' => $this->dataType,
             'banner' => $banner,
-            'url_action' => route('admin_banner.edit', ['id' => $banner['id']]),
+            'url_action' => sc_route('admin_banner.edit', ['id' => $banner['id']]),
             'stories' => $this->stories,
             'storiesPivot' => ShopBannerStore::where('banner_id', $id)->pluck('store_id')->all(),
         ];

@@ -75,10 +75,10 @@ $attributesGroup: array
         <tr  style="background: #eaebec">
             <td colspan="7">
                  <div class="pull-left">
-                <button class="btn btn-default" type="button" style="cursor: pointer;padding:10px 30px" onClick="location.href='{{ route('home') }}'"><i class="fa fa-arrow-left"></i> {{ trans('cart.back_to_shop') }}</button>
+                <button class="btn btn-default" type="button" style="cursor: pointer;padding:10px 30px" onClick="location.href='{{ sc_route('home') }}'"><i class="fa fa-arrow-left"></i> {{ trans('cart.back_to_shop') }}</button>
                 </div>
                  <div class="pull-right">
-                <button class="btn" type="button" style="cursor: pointer;padding:10px 30px" onClick="if(confirm('Confirm ?')) window.location.href='{{ route('cart.clear') }}';" >
+                <button class="btn" type="button" style="cursor: pointer;padding:10px 30px" onClick="if(confirm('Confirm ?')) window.location.href='{{ sc_route('cart.clear') }}';" >
                     <i class="fa fa-window-close" aria-hidden="true"></i>
                     {{ trans('cart.remove_all') }}</button>
                 </div>
@@ -88,7 +88,7 @@ $attributesGroup: array
   </table>
   </div>
 
-<form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ route('cart.process') }}">
+<form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ sc_route('cart.process') }}">
 <div class="row">
     <div class="col-md-6">
             @csrf
@@ -353,7 +353,7 @@ $attributesGroup: array
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>
@@ -372,7 +372,7 @@ $attributesGroup: array
         var rowid = obj.data('rowid');
         var id = obj.data('id');
             $.ajax({
-            url: '{{ route('cart.update') }}',
+            url: '{{ sc_route('cart.update') }}',
             type: 'POST',
             dataType: 'json',
             async: false,

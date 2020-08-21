@@ -16,7 +16,7 @@ class AdminEmailTemplateController extends Controller
             'title' => trans('email_template.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_email_template.delete'),
+            'urlDeleteItem' => sc_route('admin_email_template.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
@@ -49,7 +49,7 @@ class AdminEmailTemplateController extends Controller
                 'group' => $row['group'] ?? 'N/A',
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_email_template.edit', ['id' => $row['id']]) . '"><span title="' . trans('email_template.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_email_template.edit', ['id' => $row['id']]) . '"><span title="' . trans('email_template.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('email_template.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -62,7 +62,7 @@ class AdminEmailTemplateController extends Controller
         $data['resultItems'] = trans('email_template.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_email_template.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_email_template.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -84,7 +84,7 @@ class AdminEmailTemplateController extends Controller
             'icon' => 'fa fa-plus',
             'arrayGroup' => $this->arrayGroup(),
             'obj' => [],
-            'url_action' => route('admin_email_template.create'),
+            'url_action' => sc_route('admin_email_template.create'),
         ];
         return view('admin.screen.email_template')
             ->with($data);
@@ -138,7 +138,7 @@ class AdminEmailTemplateController extends Controller
             'icon' => 'fa fa-edit',
             'obj' => $obj,
             'arrayGroup' => $this->arrayGroup(),
-            'url_action' => route('admin_email_template.edit', ['id' => $obj['id']]),
+            'url_action' => sc_route('admin_email_template.edit', ['id' => $obj['id']]),
         ];
         return view('admin.screen.email_template')
             ->with($data);

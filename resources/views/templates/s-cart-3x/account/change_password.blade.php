@@ -21,7 +21,7 @@ $user
             <h6 class="aside-title">{{ $title }}</h6>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('member.post_change_password') }}">
+                    <form method="POST" action="{{ sc_route('member.post_change_password') }}">
                         @csrf
 
                         <div class="form-group row {{ Session::has('password_old_error') ? ' has-error' : '' }}">
@@ -84,8 +84,8 @@ $user
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

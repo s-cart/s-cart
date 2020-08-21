@@ -33,7 +33,7 @@ class AdminLinkController extends Controller
             'title' => trans('link.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_link.delete'),
+            'urlDeleteItem' => sc_route('admin_link.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
@@ -70,7 +70,7 @@ class AdminLinkController extends Controller
                 'sort' => $row['sort'],
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_link.edit', ['id' => $row['id']]) . '"><span title="' . trans('link.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_link.edit', ['id' => $row['id']]) . '"><span title="' . trans('link.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('link.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -83,7 +83,7 @@ class AdminLinkController extends Controller
         $data['resultItems'] = trans('link.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_link.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_link.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="' . trans('link.admin.add_new') . '"></i>
                            </a>';
 //=menuRight
@@ -106,7 +106,7 @@ class AdminLinkController extends Controller
             'link' => [],
             'arrTarget' => $this->arrTarget,
             'arrGroup' => $this->arrGroup,
-            'url_action' => route('admin_link.create'),
+            'url_action' => sc_route('admin_link.create'),
         ];
         return view('admin.screen.link')
             ->with($data);
@@ -164,7 +164,7 @@ class AdminLinkController extends Controller
             'link' => $link,
             'arrTarget' => $this->arrTarget,
             'arrGroup' => $this->arrGroup,
-            'url_action' => route('admin_link.edit', ['id' => $link['id']]),
+            'url_action' => sc_route('admin_link.edit', ['id' => $link['id']]),
         ];
         return view('admin.screen.link')
             ->with($data);

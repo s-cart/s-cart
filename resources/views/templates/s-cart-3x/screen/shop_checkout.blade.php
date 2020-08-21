@@ -72,7 +72,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </div>
             </div>
             <div class="col-12">
-                <form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ route('order.add') }}">
+                <form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ sc_route('order.add') }}">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-6">
@@ -178,7 +178,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     <div class="pull-left">
                                         <button class="button button-lg" type="button"
                                             style="cursor: pointer;padding:10px 30px"
-                                            onClick="location.href='{{ route('cart') }}'"><i
+                                            onClick="location.href='{{ sc_route('cart') }}'"><i
                                                 class="fa fa-arrow-left"></i> {{ trans('cart.back_to_cart') }}</button>
                                     </div>
                                     <div class="pull-right">
@@ -204,8 +204,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('cart') }}">{{ trans('front.cart') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('cart') }}">{{ trans('front.cart') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

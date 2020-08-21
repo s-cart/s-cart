@@ -28,7 +28,7 @@ class AdminPageController extends Controller
             'title' => trans('page.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_page.delete'),
+            'urlDeleteItem' => sc_route('admin_page.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -86,7 +86,7 @@ class AdminPageController extends Controller
                 'alias' => $row['alias'],
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_page.edit', ['id' => $row['id']]) . '"><span title="' . trans('page.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_page.edit', ['id' => $row['id']]) . '"><span title="' . trans('page.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                       <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('language.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
                 ,
             ];
@@ -99,7 +99,7 @@ class AdminPageController extends Controller
 
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_page.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_page.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -110,13 +110,13 @@ class AdminPageController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_page.index');
+        $data['urlSort'] = sc_route('admin_page.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch        
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_page.index') . '" id="button_search">
+                <form action="' . sc_route('admin_page.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('page.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
@@ -144,7 +144,7 @@ class AdminPageController extends Controller
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
             'page' => $page,
-            'url_action' => route('admin_page.create'),
+            'url_action' => sc_route('admin_page.create'),
             'stories' => $this->stories,
 
         ];
@@ -227,7 +227,7 @@ class AdminPageController extends Controller
             'icon' => 'fa fa-edit',
             'languages' => $this->languages,
             'page' => $page,
-            'url_action' => route('admin_page.edit', ['id' => $page['id']]),
+            'url_action' => sc_route('admin_page.edit', ['id' => $page['id']]),
             'stories' => $this->stories,
             'storiesPivot' => ShopPageStore::where('page_id', $id)->pluck('store_id')->all(),
         ];

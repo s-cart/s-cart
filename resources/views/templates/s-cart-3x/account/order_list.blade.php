@@ -51,7 +51,7 @@ $statusOrder
             <td>{{ $statusOrder[$order->status]}}</td>
             <td>{{ $order->created_at }}</td>
             <td>
-              <a href="{{ route('member.order_detail', ['id' => $order->id ]) }}"><i class="fa fa-indent" aria-hidden="true"></i> {{ trans('account.orders.detail_order') }}</a>
+              <a href="{{ sc_route('member.order_detail', ['id' => $order->id ]) }}"><i class="fa fa-indent" aria-hidden="true"></i> {{ trans('account.orders.detail_order') }}</a>
             </td>
           </tr>
           @endforeach
@@ -70,8 +70,8 @@ $statusOrder
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

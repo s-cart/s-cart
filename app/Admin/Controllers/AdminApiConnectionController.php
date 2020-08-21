@@ -17,13 +17,13 @@ class AdminApiConnectionController extends Controller
             'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('api_connection.admin.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_api_connection.delete'),
+            'urlDeleteItem' => sc_route('admin_api_connection.delete'),
             'removeList' => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 0, // 1 - Enable button sort
             'css' => '', 
             'js' => '',
-            'url_action' => route('admin_api_connection.create'),
+            'url_action' => sc_route('admin_api_connection.create'),
             'layout' => 'index',
         ];
 
@@ -53,7 +53,7 @@ class AdminApiConnectionController extends Controller
                 'last_active' => $row['last_active'],
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'action' => '
-                    <a href="' . route('admin_api_connection.edit', ['id' => $row['id']]) . '"><span title="' . trans('api_connection.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_api_connection.edit', ['id' => $row['id']]) . '"><span title="' . trans('api_connection.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('api_connection.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
@@ -68,10 +68,10 @@ class AdminApiConnectionController extends Controller
         $data['rightContentMain'] = '<input id="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
     
         $optionSort = '';
-        $data['urlSort'] = route('admin_api_connection.index');
+        $data['urlSort'] = sc_route('admin_api_connection.index');
         $data['optionSort'] = $optionSort;
 
-        $urlUpdate = route('admin_config.update');
+        $urlUpdate = sc_route('admin_config.update');
         $csrf_token = csrf_token();
         $data['js'] = <<< JS
         <script type="text/javascript">
@@ -164,14 +164,14 @@ public function edit($id)
         'title_action' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('api_connection.admin.edit'),
         'subTitle' => '',
         'icon' => 'fa fa-indent',
-        'urlDeleteItem' => route('admin_api_connection.delete'),
+        'urlDeleteItem' => sc_route('admin_api_connection.delete'),
         'removeList' => 0, // 1 - Enable function delete list item
         'buttonRefresh' => 0, // 1 - Enable button refresh
         'buttonSort' => 0, // 1 - Enable button sort
         'css' => '', 
         'js' => '',
         'api_connection' => $api_connection,
-        'url_action' => route('admin_api_connection.edit', ['id' => $api_connection['id']]),
+        'url_action' => sc_route('admin_api_connection.edit', ['id' => $api_connection['id']]),
         'layout' => 'edit',
         'id' => $id,
     ];
@@ -202,7 +202,7 @@ public function edit($id)
             'last_active' => $row['last_active'],
             'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
             'action' => '
-                <a href="' . route('admin_api_connection.edit', ['id' => $row['id']]) . '"><span title="' . trans('api_connection.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                <a href="' . sc_route('admin_api_connection.edit', ['id' => $row['id']]) . '"><span title="' . trans('api_connection.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
               <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('api_connection.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
               ',
@@ -217,10 +217,10 @@ public function edit($id)
     $data['rightContentMain'] = '<input id="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
 
     $optionSort = '';
-    $data['urlSort'] = route('admin_api_connection.index');
+    $data['urlSort'] = sc_route('admin_api_connection.index');
     $data['optionSort'] = $optionSort;
 
-    $urlUpdate = route('admin_config.update');
+    $urlUpdate = sc_route('admin_config.update');
     $csrf_token = csrf_token();
     $data['js'] = <<< JS
     <script type="text/javascript">

@@ -17,7 +17,7 @@ $layout_page = shop_auth
                         {{ session('status') }}
                     </div>
                     @endif
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                    <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-12 control-label"><i class="fas fa-envelope"></i>
@@ -54,7 +54,7 @@ $layout_page = shop_auth
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

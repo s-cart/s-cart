@@ -47,7 +47,7 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="logo pull-left">
-              <a href="{{ route('home') }}"><img style="width: 150px;" src="{{ asset(sc_store('logo')) }}" alt="" /></a>
+              <a href="{{ sc_route('home') }}"><img style="width: 150px;" src="{{ asset(sc_store('logo')) }}" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-8">
@@ -56,17 +56,17 @@
                 @php
                 $cartsCount = \Cart::count();
                 @endphp
-                <li><a href="{{ route('wishlist') }}"><span  class="cart-qty  sc-wishlist" id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span><i class="fa fa-star"></i> {{ trans('front.wishlist') }}</a></li>
-                <li><a href="{{ route('compare') }}"><span  class="cart-qty sc-compare" id="shopping-compare">{{ Cart::instance('compare')->count() }}</span><i class="fa fa-crosshairs"></i> {{ trans('front.compare') }}</a></li>
-                <li><a href="{{ route('cart') }}"><span class="cart-qty sc-cart" id="shopping-cart">{{ Cart::instance('default')->count() }}</span><i class="fa fa-shopping-cart"></i> {{ trans('front.cart_title') }}</a>
+                <li><a href="{{ sc_route('wishlist') }}"><span  class="cart-qty  sc-wishlist" id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span><i class="fa fa-star"></i> {{ trans('front.wishlist') }}</a></li>
+                <li><a href="{{ sc_route('compare') }}"><span  class="cart-qty sc-compare" id="shopping-compare">{{ Cart::instance('compare')->count() }}</span><i class="fa fa-crosshairs"></i> {{ trans('front.compare') }}</a></li>
+                <li><a href="{{ sc_route('cart') }}"><span class="cart-qty sc-cart" id="shopping-cart">{{ Cart::instance('default')->count() }}</span><i class="fa fa-shopping-cart"></i> {{ trans('front.cart_title') }}</a>
                 </li>
                 @guest
-                <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> {{ trans('front.login') }}</a></li>
+                <li><a href="{{ sc_route('login') }}"><i class="fa fa-lock"></i> {{ trans('front.login') }}</a></li>
                 @else
-                <li><a href="{{ route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.account') }}</a></li>
-                <li><a href="{{ route('logout') }}" rel="nofollow" onclick="event.preventDefault();
+                <li><a href="{{ sc_route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.account') }}</a></li>
+                <li><a href="{{ sc_route('logout') }}" rel="nofollow" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ trans('front.logout') }}</a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ sc_route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
                 @endguest
@@ -92,19 +92,19 @@
             </div>
             <div class="mainmenu pull-left">
               <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="{{ route('home') }}" class="active">{{ trans('front.home') }}</a></li>
+                <li><a href="{{ sc_route('home') }}" class="active">{{ trans('front.home') }}</a></li>
                 <li class="dropdown"><a href="#">{{ trans('front.shop') }}<i class="fa fa-angle-down"></i></a>
                     <ul role="menu" class="sub-menu">
-                        <li><a href="{{ route('product.all') }}">{{ trans('front.all_product') }}</a></li>
-                        <li><a href="{{ route('compare') }}">{{ trans('front.compare') }}</a></li>
-                        <li><a href="{{ route('cart') }}">{{ trans('front.cart_title') }}</a></li>
-                        <li><a href="{{ route('category.all') }}">{{ trans('front.categories') }}</a></li>
-                        <li><a href="{{ route('brand.all') }}">{{ trans('front.brands') }}</a></li>
-                        <li><a href="{{ route('supplier.all') }}">{{ trans('front.suppliers') }}</a></li>
+                        <li><a href="{{ sc_route('product.all') }}">{{ trans('front.all_product') }}</a></li>
+                        <li><a href="{{ sc_route('compare') }}">{{ trans('front.compare') }}</a></li>
+                        <li><a href="{{ sc_route('cart') }}">{{ trans('front.cart_title') }}</a></li>
+                        <li><a href="{{ sc_route('category.all') }}">{{ trans('front.categories') }}</a></li>
+                        <li><a href="{{ sc_route('brand.all') }}">{{ trans('front.brands') }}</a></li>
+                        <li><a href="{{ sc_route('supplier.all') }}">{{ trans('front.suppliers') }}</a></li>
                     </ul>
                 </li>
 
-                <li><a href="{{ route('news') }}">{{ trans('front.blog') }}</a></li>
+                <li><a href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a></li>
 
                 @if (!empty(sc_config('Content')))
                 <li class="dropdown"><a href="#">{{ trans('front.cms_category') }}<i class="fa fa-angle-down"></i></a>
@@ -130,7 +130,7 @@
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <form id="searchbox" method="get" action="{{ route('search') }}" >
+              <form id="searchbox" method="get" action="{{ sc_route('search') }}" >
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="{{ trans('front.search_form.keyword') }}..." name="keyword">
                 </div>

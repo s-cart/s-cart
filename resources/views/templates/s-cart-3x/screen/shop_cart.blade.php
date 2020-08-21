@@ -94,19 +94,19 @@ $attributesGroup: array
             <div class="col-md-12">
                 <div class="pull-left">
                     <button class="btn btn-default btn-back" type="button"
-                        onClick="location.href='{{ route('home') }}'"><i class="fa fa-arrow-left"></i>
+                        onClick="location.href='{{ sc_route('home') }}'"><i class="fa fa-arrow-left"></i>
                         {{ trans('cart.back_to_shop') }}</button>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-delete-all" type="button"
-                        onClick="if(confirm('Confirm ?')) window.location.href='{{ route('cart.clear') }}';">
+                        onClick="if(confirm('Confirm ?')) window.location.href='{{ sc_route('cart.clear') }}';">
                         <i class="fa fa-window-close" aria-hidden="true"></i>
                         {{ trans('cart.remove_all') }}</button>
                 </div>
             </div>
             <div class="col-md-12">
                 <form class="sc-shipping-address" id="form-order" role="form" method="POST"
-                    action="{{ route('cart.process') }}">
+                    action="{{ sc_route('cart.process') }}">
                     <div class="row">
                         <div class="col-md-6">
                             @if (auth()->user())
@@ -429,7 +429,7 @@ $attributesGroup: array
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>
@@ -452,7 +452,7 @@ $attributesGroup: array
         var rowid = obj.data('rowid');
         var id = obj.data('id');
         $.ajax({
-            url: '{{ route('cart.update') }}',
+            url: '{{ sc_route('cart.update') }}',
             type: 'POST',
             dataType: 'json',
             async: false,
@@ -506,7 +506,7 @@ $attributesGroup: array
             $('#form-order [name="address2"]').val('');
         } else {
             $.ajax({
-            url: '{{ route('member.address_detail') }}',
+            url: '{{ sc_route('member.address_detail') }}',
             type: 'POST',
             dataType: 'json',
             async: false,

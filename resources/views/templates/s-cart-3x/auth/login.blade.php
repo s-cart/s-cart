@@ -5,7 +5,7 @@ $layout_page = shop_auth
 @endphp
 
 <h2>{{ trans('account.title_login') }}</h2>
-<form action="{{ route('postLogin') }}" method="post" class="box">
+<form action="{{ sc_route('postLogin') }}" method="post" class="box">
     {!! csrf_field() !!}
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email" class="control-label">{{ trans('account.email') }}</label>
@@ -29,7 +29,7 @@ $layout_page = shop_auth
 
     </div>
     <p class="lost_password form-group">
-        <a class="btn btn-link" href="{{ route('forgot') }}">
+        <a class="btn btn-link" href="{{ sc_route('forgot') }}">
             {{ trans('account.password_forgot') }}
         </a>
         <br>

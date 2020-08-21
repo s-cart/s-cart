@@ -4,7 +4,7 @@
           <div class="container">
             <div class="row row-40 row-md-50 justify-content-xl-between">
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight">
-                <a href="{{ route('home') }}">
+                <a href="{{ sc_route('home') }}">
                     <img class="logo-footer" src="{{  asset(sc_store('logo')) }}" alt="{{ sc_store('title') }}">
                 </a>
                 <p>{{ sc_store('title') }}</p>
@@ -45,7 +45,7 @@
                   </li>
                   <li>
 
-                    <form class="rd-form-inline rd-form-inline-2"  method="post" action="{{ route('subscribe') }}">
+                    <form class="rd-form-inline rd-form-inline-2"  method="post" action="{{ sc_route('subscribe') }}">
                         @csrf
                           <div class="form-wrap">
                             <input class="form-input" id="subscribe-form-2-email" type="email" name="subscribe_email" required/>

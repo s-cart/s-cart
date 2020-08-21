@@ -56,7 +56,7 @@ $productRelation: no paginate
               </div>
             </div>
             <div class="col-lg-6">
-            <form id="buy_block" class="product-information" action="{{ route('cart.add') }}" method="post">
+            <form id="buy_block" class="product-information" action="{{ sc_route('cart.add') }}" method="post">
               {{ csrf_field() }}
               <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
               <div class="single-product">
@@ -261,8 +261,8 @@ $bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->fir
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-        <li><a href="{{ route('shop') }}">{{ trans('front.shop') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

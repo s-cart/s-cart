@@ -53,7 +53,7 @@ class AdminProductController extends Controller
             'title' => trans('product.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_product.delete'),
+            'urlDeleteItem' => sc_route('admin_product.delete'),
             'removeList' => 1, // Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -162,7 +162,7 @@ class AdminProductController extends Controller
             }
             $dataMap['status'] = $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>';
             $dataMap['action'] = '
-            <a href="' . route('admin_product.edit', ['id' => $row['id']]) . '">
+            <a href="' . sc_route('admin_product.edit', ['id' => $row['id']]) . '">
             <span title="' . trans('product.admin.edit') . '" type="button" class="btn btn-flat btn-primary">
             <i class="fa fa-edit"></i>
             </span>
@@ -180,7 +180,7 @@ class AdminProductController extends Controller
         $data['resultItems'] = trans('product.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_product.create') . '" class="btn btn-success btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_product.create') . '" class="btn btn-success btn-flat" title="New" id="button_create_new">
         <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
         </a>';
 //=menuRight
@@ -191,13 +191,13 @@ class AdminProductController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
         $data['optionSort'] = $optionSort;
-        $data['urlSort'] = route('admin_product.index');
+        $data['urlSort'] = sc_route('admin_product.index');
 //=menuSort
 
 
 //topMenuRight
         $data['topMenuRight'][] ='
-                <form action="' . route('admin_product.index') . '" id="button_search">
+                <form action="' . sc_route('admin_product.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('product.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">

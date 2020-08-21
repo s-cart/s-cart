@@ -19,7 +19,7 @@ $countries
             <h6 class="aside-title">{{ $title }}</h6>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('member.post_change_infomation') }}">
+                    <form method="POST" action="{{ sc_route('member.post_change_infomation') }}">
                         @csrf
                         @if (sc_config('customer_lastname'))
                         <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -247,8 +247,8 @@ $countries
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

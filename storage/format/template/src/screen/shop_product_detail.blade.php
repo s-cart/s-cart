@@ -40,7 +40,7 @@ $productRelation: no paginate
                 @endif
             </div>
 
-        <form id="buy_block" action="{{ route('cart.add') }}" method="post">
+        <form id="buy_block" action="{{ sc_route('cart.add') }}" method="post">
           {{ csrf_field() }}
           <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
             <div class="col-sm-6">

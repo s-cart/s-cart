@@ -11,7 +11,7 @@ $banners = $modelBanner->start()->getBanner()->getData()
           <h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1>
           <p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p>
           <div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300">
-            <a class="button button-zachem-tak-delat button-white button-zakaria" href="{{ route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}">
+            <a class="button button-zachem-tak-delat button-white button-zakaria" href="{{ sc_route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}">
               Shop now
             </a>
           </div>

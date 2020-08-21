@@ -28,7 +28,7 @@ class AdminCustomerController extends Controller
             'title' => trans('customer.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_customer.delete'),
+            'urlDeleteItem' => sc_route('admin_customer.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 0, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -92,7 +92,7 @@ class AdminCustomerController extends Controller
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'created_at' => $row['created_at'],
                 'action' => '
-                    <a href="' . route('admin_customer.edit', ['id' => $row['id']]) . '"><span title="' . trans('customer.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_customer.edit', ['id' => $row['id']]) . '"><span title="' . trans('customer.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                     <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
                 ,
@@ -105,7 +105,7 @@ class AdminCustomerController extends Controller
         $data['resultItems'] = trans('customer.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_customer.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_customer.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -115,13 +115,13 @@ class AdminCustomerController extends Controller
         foreach ($arrSort as $key => $status) {
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
-        $data['urlSort'] = route('admin_customer.index');
+        $data['urlSort'] = sc_route('admin_customer.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch        
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_customer.index') . '" id="button_search">
+                <form action="' . sc_route('admin_customer.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('customer.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
@@ -148,7 +148,7 @@ class AdminCustomerController extends Controller
             'icon' => 'fa fa-plus',
             'countries' => (new ShopCountry)->getCodeAll(),
             'customer' => [],
-            'url_action' => route('admin_customer.create'),
+            'url_action' => sc_route('admin_customer.create'),
 
         ];
 
@@ -193,7 +193,7 @@ class AdminCustomerController extends Controller
             'customer' => $customer,
             'countries' => (new ShopCountry)->getCodeAll(),
             'addresses' => $customer->addresses,
-            'url_action' => route('admin_customer.edit', ['id' => $customer['id']]),
+            'url_action' => sc_route('admin_customer.edit', ['id' => $customer['id']]),
         ];
         return view('admin.screen.customer_edit')
             ->with($data);
@@ -260,7 +260,7 @@ Need mothod destroy to boot deleting in model
             'customer' => ShopUser::find($address->user_id),
             'countries' => ShopCountry::getCodeAll(),
             'layout_page' => 'shop_profile',
-            'url_action' => route('admin_customer.update_address', ['id' => $id]),
+            'url_action' => sc_route('admin_customer.update_address', ['id' => $id]),
             ]
         );
 

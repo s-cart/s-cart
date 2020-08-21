@@ -133,13 +133,13 @@ class AdminReportController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_report.product');
+        $data['urlSort'] = sc_route('admin_report.product');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_report.product') . '" id="button_search">
+                <form action="' . sc_route('admin_report.product') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans('product.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">

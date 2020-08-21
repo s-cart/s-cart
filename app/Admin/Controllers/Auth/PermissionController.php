@@ -48,7 +48,7 @@ class PermissionController extends Controller
             'title' => trans('permission.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_permission.delete'),
+            'urlDeleteItem' => sc_route('admin_permission.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -114,7 +114,7 @@ class PermissionController extends Controller
                 'permission' => $permissions,
                 'updated_at' => $row['updated_at'],
                 'action' => '
-                    <a href="' . route('admin_permission.edit', ['id' => $row['id']]) . '"><span title="' . trans('permission.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_permission.edit', ['id' => $row['id']]) . '"><span title="' . trans('permission.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                     <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>'
                 ,
             ];
@@ -126,7 +126,7 @@ class PermissionController extends Controller
         $data['resultItems'] = trans('permission.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_permission.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_permission.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.trans('admin.add_new').'"></i>
                            </a>';
 //=menuRight
@@ -137,7 +137,7 @@ class PermissionController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_permission.index');
+        $data['urlSort'] = sc_route('admin_permission.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
@@ -158,7 +158,7 @@ class PermissionController extends Controller
             'icon' => 'fa fa-plus',
             'permission' => [],
             'routeAdmin' => $this->routeAdmin,
-            'url_action' => route('admin_permission.create'),
+            'url_action' => sc_route('admin_permission.create'),
 
         ];
 
@@ -215,7 +215,7 @@ class PermissionController extends Controller
             'icon' => 'fa fa-edit',
             'permission' => $permission,
             'routeAdmin' => $this->routeAdmin,
-            'url_action' => route('admin_permission.edit', ['id' => $permission['id']]),
+            'url_action' => sc_route('admin_permission.edit', ['id' => $permission['id']]),
         ];
         return view('admin.auth.permission')
             ->with($data);

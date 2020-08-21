@@ -17,7 +17,7 @@ class AdminLogController extends Controller
             'title' => trans('log.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_log.delete'),
+            'urlDeleteItem' => sc_route('admin_log.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -99,7 +99,7 @@ class AdminLogController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
         $data['optionSort'] = $optionSort;
-        $data['urlSort'] = route('admin_log.index');
+        $data['urlSort'] = sc_route('admin_log.index');
 //=menuSort
 
         return view('admin.screen.list')
