@@ -94,7 +94,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     </li>
 
                     @else
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('account.account') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('account.my_profile') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
                             <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.my_profile') }}</a></li>
                             <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('logout') }}" rel="nofollow" onclick="event.preventDefault();
