@@ -4,9 +4,9 @@ $layout_page = shop_contact
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 
      <div id="contact-page" class="container">
         <div class="bg">

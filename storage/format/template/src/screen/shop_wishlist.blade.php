@@ -5,9 +5,9 @@ $wishlist: no paginate
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('center')
+@section('block_main_content_center')
 
 <div class="features_items">
 <h2 class="title text-center">{{ $title }}</h2>

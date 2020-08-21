@@ -5,7 +5,7 @@ $user
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <section >

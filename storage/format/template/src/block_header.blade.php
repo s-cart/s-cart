@@ -13,25 +13,25 @@
           <div class="col-sm-6">
             <div class="btn-group pull-right">
               <div class="btn-group locale">
-                @if (count($languages)>1)
-                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown"><img src="{{ asset($languages[app()->getLocale()]['icon']) }}" style="height: 25px;">
+                @if (count($sc_languages)>1)
+                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown"><img src="{{ asset($sc_languages[app()->getLocale()]['icon']) }}" style="height: 25px;">
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  @foreach ($languages as $key => $language)
+                  @foreach ($sc_languages as $key => $language)
                     <li><a href="{{ url('locale/'.$key) }}"><img src="{{ asset($language['icon']) }}" style="height: 25px;"></a></li>
                   @endforeach
                 </ul>
                 @endif
               </div>
-              @if (count($currencies)>1)
+              @if (count($sc_currencies)>1)
                <div class="btn-group locale">
                 <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                   {{ sc_currency_info()['name'] }}
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  @foreach ($currencies as $key => $currency)
+                  @foreach ($sc_currencies as $key => $currency)
                     <li><a href="{{ url('currency/'.$currency->code) }}">{{ $currency->name }}</a></li>
                   @endforeach
                 </ul>

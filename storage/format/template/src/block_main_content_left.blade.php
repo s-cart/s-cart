@@ -1,6 +1,6 @@
 <!--main left-->
 <div class="col-sm-3">
-   @section('left')
+   @section('block_main_content_left')
         <div class="left-sidebar">
       <!--Module left -->
           @isset ($blocksContent['left'])
@@ -12,8 +12,8 @@
                   @if ($layout->type =='html')
                     {!! $layout->text !!}
                   @elseif($layout->type =='view')
-                    @if (view()->exists($templatePath.'.block.'.$layout->text))
-                     @include($templatePath.'.block.'.$layout->text)
+                    @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+                     @include($sc_templatePath.'.block.'.$layout->text)
                     @endif
                   @endif
                 @endif

@@ -6,9 +6,9 @@ $productRelation: no paginate
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('center')
+@section('block_main_content_center')
           <div class="product-details"><!--product-details-->
             <div class="col-sm-6">
 
@@ -46,11 +46,11 @@ $productRelation: no paginate
             <div class="col-sm-6">
               <div class="product-information"><!--/product-information-->
                 @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                <img src="{{ asset($templateFile.'/images/home/sale2.png') }}" class="newarrival" alt="" />
+                <img src="{{ asset($sc_templateFile.'/images/home/sale2.png') }}" class="newarrival" alt="" />
                 @elseif($product->kind == SC_PRODUCT_BUILD)
-                <img src="{{ asset($templateFile.'/images/home/bundle2.png') }}" class="newarrival" alt="" />
+                <img src="{{ asset($sc_templateFile.'/images/home/bundle2.png') }}" class="newarrival" alt="" />
                 @elseif($product->kind == SC_PRODUCT_GROUP)
-                <img src="{{ asset($templateFile.'/images/home/group2.png') }}" class="newarrival" alt="" />
+                <img src="{{ asset($sc_templateFile.'/images/home/group2.png') }}" class="newarrival" alt="" />
                 @endif
 
                 <h2  id="product-detail-name">{{ $product->name }}</h2>
@@ -178,9 +178,9 @@ $productRelation: no paginate
                             <a href="{{ $product_rel->getUrl() }}"><p>{{ $product_rel->name }}</p></a>
                           </div>
                           @if ($product_rel->price != $product_rel->getFinalPrice())
-                          <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                          <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                           @elseif($product_rel->type == 1)
-                          <img src="{{ asset($templateFile.'/images/home/new.png') }}" class="new" alt="" />
+                          <img src="{{ asset($sc_templateFile.'/images/home/new.png') }}" class="new" alt="" />
                           @endif
                       </div>
                     </div>

@@ -6,7 +6,7 @@ $statusOrder
 $orders = $modelUserOrder->start()->getData();
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <section >

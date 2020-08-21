@@ -6,9 +6,9 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 <div class="row">
         <div class="container">
                 <h2 class="title text-center">{{ $title }}</h2>
