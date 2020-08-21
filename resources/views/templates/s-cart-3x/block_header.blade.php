@@ -58,11 +58,26 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     @endif
 
                     @guest
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('front.login') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('front.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ route('login') }}"><i class="fa fa-user"></i> {{ trans('front.account') }}</a>
+                                <a class="rd-dropdown-link" href="{{ route('login') }}"><i class="fa fa-user"></i> {{ trans('front.login') }}</a>
                             </li>
+                            @if (!empty(sc_config('LoginSocialite')))
+                            <li class="rd-dropdown-item">
+                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'facebook']) }}"><i class="fab fa-facebook"></i>
+                                 {{ trans('front.login') }} facebook</a>
+                            </li>
+                            <li class="rd-dropdown-item">
+                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'google']) }}"><i class="fab fa-google-plus"></i>
+                                 {{ trans('front.login') }} google</a>
+                            </li>
+                            <li class="rd-dropdown-item">
+                              <a class="rd-dropdown-link" href="{{ route('login_socialite.index', ['provider' => 'github']) }}"><i class="fab fa-github"></i>
+                                 {{ trans('front.login') }} github</a>
+                            </li>
+                            @endif
+
                             <li class="rd-dropdown-item">
                                 <a class="rd-dropdown-link" href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
                                     <span class="count sc-wishlist"
@@ -79,9 +94,9 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                     </li>
 
                     @else
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('front.login') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('account.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.account') }}</a></li>
+                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('member.index') }}"><i class="fa fa-user"></i> {{ trans('front.my_profile') }}</a></li>
                             <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ route('logout') }}" rel="nofollow" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ trans('front.logout') }}</a></li>
                             <li class="rd-dropdown-item">
