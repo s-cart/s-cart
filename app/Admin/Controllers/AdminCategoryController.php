@@ -12,12 +12,14 @@ use App\Models\AdminStore;
 use App\Models\ShopCategoryStore;
 class AdminCategoryController extends Controller
 {
-    public $languages, $stories;
+    public $languages, $stories, $categoriesTitle;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
         $this->stories = AdminStore::getListAll();
+        $this->categoriesTitle = (new ShopCategory)->getListTitle();
+
     }
 
     public function index()
@@ -85,7 +87,7 @@ class AdminCategoryController extends Controller
                 'id' => $row['id'],
                 'image' => sc_image_render($row->getThumb(), '50px', '50px', $row['title']),
                 'title' => $row['title'],
-                'parent' => $row['parent'] ? ($row->getParent() ? $row->getParent()['title'] : '') : 'ROOT',
+                'parent' => $row['parent'] ? ($this->categoriesTitle[$row['parent']] ?? '') : 'ROOT',
                 'top' => $row['top'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'sort' => $row['sort'],
