@@ -41,7 +41,7 @@
                                     <select class="form-control position select2" style="width: 100%;" name="position" >
                                         <option value=""></option>
                                         @foreach ($layoutPosition as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('position',$layout['position']??'') ==$k) ? 'selected':'' }}>{{ $v }}</option>
+                                            <option value="{{ $k }}" {{ (old('position',$layout['position']??'') ==$k) ? 'selected':'' }}>{{ sc_language_render($v) }}</option>
                                         @endforeach
                                     </select>
                                         @if ($errors->has('position'))
@@ -62,7 +62,7 @@
                                             $arrPage = explode(',', $layout['page']??'');
                                         @endphp
                                         @foreach ($layoutPage as $k => $v)
-                                            <option value="{{ $k }}" {{ in_array($k,old('page',$arrPage)) ? 'selected':'' }}>{{ $v }}</option>
+                                            <option value="{{ $k }}" {{ in_array($k,old('page',$arrPage)) ? 'selected':'' }}>{{ sc_language_render($v) }}</option>
                                         @endforeach
                                     </select>
                                         @if ($errors->has('page'))
