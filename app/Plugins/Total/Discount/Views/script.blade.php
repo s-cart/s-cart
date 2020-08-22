@@ -7,7 +7,7 @@ $('#coupon-button').click(function() {
        $('#coupon-button').button('loading');
        setTimeout(function() {
            $.ajax({
-               url: '{{ sc_ route('discount.process') }}',
+               url: '{{ sc_route('discount.process') }}',
                type: 'POST',
                dataType: 'json',
                data: {
@@ -42,7 +42,7 @@ $('#coupon-button').click(function() {
    });
    $('#removeCoupon').click(function() {
            $.ajax({
-               url: '{{ sc_ route('discount.remove') }}',
+               url: '{{ sc_route('discount.remove') }}',
                type: 'POST',
                dataType: 'json',
                data: {
