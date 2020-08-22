@@ -65,11 +65,6 @@ class ScartServiceProvider extends ServiceProvider
         $storeId = 1;
         if (in_array($domain, $arrDomain)) {
             $storeId =  array_search($domain, $arrDomain);
-        } else {
-            if (sc_config_global('domain_strict')) {
-                echo view('deny_domain')->render();
-                exit();
-            }
         }
         //Get storeId
         config(['app.storeId' => $storeId]);
@@ -133,6 +128,7 @@ class ScartServiceProvider extends ServiceProvider
     protected $routeMiddleware = [
         'localization' => \App\Http\Middleware\Localization::class,
         'currency' => \App\Http\Middleware\Currency::class,
+        'checkdomain' => \App\Http\Middleware\CheckDomain::class,
     ];
 
     /**

@@ -167,7 +167,7 @@ class AdminStoreController extends Controller
                 try {
                     if ($name == 'domain') {
                         $value = Str::finish(str_replace(['http://', 'https://'], '', $value), '/');
-                        if (AdminStore::where('domain', $value)->first()) {
+                        if (AdminStore::where('domain', $value)->where('id', '<>', $storeId)->first()) {
                             $error = 1;
                             $msg = trans('store.domain_exist');
                         } else {

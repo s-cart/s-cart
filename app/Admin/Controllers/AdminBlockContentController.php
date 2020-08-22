@@ -65,11 +65,11 @@ class AdminBlockContentController extends Controller
                 $htmlPage .= '';
             } else
             if (strpos($row['page'], '*') !== false) {
-                $htmlPage .= 'All pages';
+                $htmlPage .= sc_language_render('lang::layout.page_position.all');
             } else {
                 $arrPage = explode(',', $row['page']);
                 foreach ($arrPage as $key => $value) {
-                    $htmlPage .= '+' . ($layoutPage[$value] ?? '') . '<br>';
+                    $htmlPage .= '+' . sc_language_render($layoutPage[$value] ?? '') . '<br>';
                 }
             }
 
@@ -83,7 +83,7 @@ class AdminBlockContentController extends Controller
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'type' => $type_name,
-                'position' => $this->layoutPosition[$row['position']] ?? '',
+                'position' => sc_language_render($this->layoutPosition[$row['position']]) ?? '',
                 'page' => $htmlPage,
                 'text' => htmlspecialchars($row['text']),
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
