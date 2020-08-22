@@ -86,10 +86,10 @@
                   </table>
                  <table class="table table-bordered">
                     <tr>
-                      <td class="td-title">{{ trans('order.currency') }}:</td><td>{{ $order->currency }}</td>
+                      <td class="td-title"><i class="far fa-money-bill-alt nav-icon"></i> {{ trans('order.currency') }}:</td><td>{{ $order->currency }}</td>
                     </tr>
                     <tr>
-                      <td class="td-title">{{ trans('order.exchange_rate') }}:</td><td>{{ ($order->exchange_rate)??1 }}</td>
+                      <td class="td-title"><i class="fas fa-chart-line"></i> {{ trans('order.exchange_rate') }}:</td><td>{{ ($order->exchange_rate)??1 }}</td>
                     </tr>
                 </table>
             </div>
@@ -153,7 +153,7 @@
                     @endforeach
 
                     <tr  id="add-item" class="not-print">
-                      <td colspan="6">
+                      <td colspan="7">
                         <button  type="button" class="btn btn-flat btn-success" id="add-item-button"  title="{{trans('product.add_product') }}"><i class="fa fa-plus"></i> {{ trans('product.add_product') }}</button>
                         &nbsp;&nbsp;&nbsp;<button style="display: none; margin-right: 50px" type="button" class="btn btn-flat btn-warning" id="add-item-button-save"  title="Save"><i class="fa fa-save"></i> {{ trans('admin.save') }}</button>
                     </td>
@@ -223,7 +223,10 @@
             <div class="card collapsed-card"">
               <div class="card-header border-transparent">
                 <h3 class="card-title">{{ trans('order.order_history') }}</h3>
-
+                <div class="order-info">
+                  <span><b>Agent:</b> {{ $order->user_agent }}</span>
+                  <span><b>IP:</b> {{ $order->ip }}</span>
+                </div>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-plus"></i>

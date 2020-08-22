@@ -296,5 +296,12 @@
     vertical-align: text-top !important; 
     display:inline
   }
+  .order-info {
+    clear: both;
+    font-size: 14px;
+  }
+  .order-info span {
+    display: block;
+  }
 
 </style>
