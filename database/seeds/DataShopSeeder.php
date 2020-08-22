@@ -203,19 +203,21 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_page')->insert(
             [
-                ['key' => 'shop_home', 'name' => 'Home'],
-                ['key' => 'product_list', 'name' => 'Product list'],
-                ['key' => 'product_detail', 'name' => 'Product detail'],
-                ['key' => 'shop_cart', 'name' => 'Shop cart'],
-                ['key' => 'shop_auth', 'name' => 'Account auth'],
-                ['key' => 'shop_profile', 'name' => 'Account profile'],
-                ['key' => 'item_list', 'name' => 'Item list'],
-                ['key' => 'news_list', 'name' => 'News list'],
-                ['key' => 'content_list', 'name' => 'Content list'],
-                ['key' => 'news_detail', 'name' => 'News detail'],
-                ['key' => 'content_detail', 'name' => 'Content detail'],
-                ['key' => 'shop_page', 'name' => 'Page detail'],
-                ['key' => 'shop_contact', 'name' => 'Contact page'],
+                ['key' => 'home', 'name' => 'lang::layout.page_position.home'],
+                ['key' => 'shop_home', 'name' => 'lang::layout.page_position.shop_home'],
+                ['key' => 'product_list', 'name' => 'lang::layout.page_position.product_list'],
+                ['key' => 'product_detail', 'name' => 'lang::layout.page_position.product_detail'],
+                ['key' => 'shop_cart', 'name' => 'lang::layout.page_position.shop_cart'],
+                ['key' => 'item_list', 'name' => 'lang::layout.page_position.item_list'],
+                ['key' => 'item_detail', 'name' => 'lang::layout.page_position.item_detail'],
+                ['key' => 'news_list', 'name' => 'lang::layout.page_position.news_list'],
+                ['key' => 'news_detail', 'name' => 'lang::layout.page_position.news_detail'],
+                ['key' => 'shop_auth', 'name' => 'lang::layout.page_position.shop_auth'],
+                ['key' => 'shop_profile', 'name' => 'lang::layout.page_position.shop_profile'],
+                ['key' => 'shop_page', 'name' => 'lang::layout.page_position.shop_page'],
+                ['key' => 'shop_contact', 'name' => 'lang::layout.page_position.shop_contact'],
+                ['key' => 'content_list', 'name' => 'lang::layout.page_position.content_list'],
+                ['key' => 'content_detail', 'name' => 'lang::layout.page_position.content_detail'],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_position')->insert(
