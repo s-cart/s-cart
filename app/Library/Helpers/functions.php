@@ -206,14 +206,14 @@ if (!function_exists('sc_url_render')) {
             $arrRoute = explode('::', $string);
             if (isset($arrRoute[2])) {
                 try {
-                    return route($arrRoute[1], $arrRoute[2]);
+                    return sc_route($arrRoute[1], $arrRoute[2]);
                 } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
                 }  
             } else {
                 try {
-                    return route($arrRoute[1]);
+                    return sc_route($arrRoute[1]);
                 } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
@@ -450,7 +450,7 @@ if (!function_exists('sc_route')) {
         if (Route::has($name)) {
             return route($name, $param);
         } else {
-            return url($name);
+            return url('#'.$name);
         }
     }
 }
