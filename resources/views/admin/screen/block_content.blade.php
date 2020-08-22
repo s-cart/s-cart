@@ -58,7 +58,7 @@
                                     <select class="form-control page select2" multiple="multiple" style="width: 100%;" name="page[]" >
                                         <option value=""></option>
                                         @php
-                                            $layoutPage = ['*'=> trans('layout.all')] + $layoutPage;
+                                            $layoutPage = ['*'=> trans('layout.page_position.all')] + $layoutPage;
                                             $arrPage = explode(',', $layout['page']??'');
                                         @endphp
                                         @foreach ($layoutPage as $k => $v)

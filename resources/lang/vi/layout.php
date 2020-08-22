@@ -18,4 +18,13 @@ return [
         'shop_contact'      => 'Trang liên hệ',
         'shop_page'      => 'Các trang khác: giới thiệu...',
     ],
+    'page_block' => [
+        'meta' => 'Thẻ <meta>',
+        'header' => 'Trong <header>: css, javascript,...',
+        'top' => 'Block trên cùng, dưới <body>',
+        'bottom' => 'Block dưới cùng, trên <footer>',
+        'left' => 'Bên trái',
+        'right' => 'Bên phải',
+        'banner_top' => 'Banner top',
+    ],
 ];

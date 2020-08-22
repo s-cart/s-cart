@@ -222,14 +222,13 @@ class DataShopSeeder extends Seeder
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_position')->insert(
             [
-                ['key' => 'meta', 'name' => 'Meta'],
-                ['key' => 'header', 'name' => 'Header'],
-                ['key' => 'top', 'name' => 'Top'],
-                ['key' => 'bottom', 'name' => 'Bottom'],
-                ['key' => 'footer', 'name' => 'Footer'],
-                ['key' => 'left', 'name' => 'Column left'],
-                ['key' => 'right', 'name' => 'Column right'],
-                ['key' => 'banner_top', 'name' => 'Banner top'],
+                ['key' => 'meta', 'name' => 'lang::layout.page_block.meta'],
+                ['key' => 'header', 'name' => 'lang::layout.page_block.header'],
+                ['key' => 'top', 'name' => 'lang::layout.page_block.top'],
+                ['key' => 'bottom', 'name' => 'lang::layout.page_block.bottom'],
+                ['key' => 'left', 'name' => 'lang::layout.page_block.left'],
+                ['key' => 'right', 'name' => 'lang::layout.page_block.right'],
+                ['key' => 'banner_top', 'name' => 'lang::layout.page_block.banner_top'],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_link')->insert(

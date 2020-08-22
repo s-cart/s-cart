@@ -65,11 +65,11 @@ class AdminBlockContentController extends Controller
                 $htmlPage .= '';
             } else
             if (strpos($row['page'], '*') !== false) {
-                $htmlPage .= 'All pages';
+                $htmlPage .= sc_language_render('lang::layout.page_position.all');
             } else {
                 $arrPage = explode(',', $row['page']);
                 foreach ($arrPage as $key => $value) {
-                    $htmlPage .= '+' . ($layoutPage[$value] ?? '') . '<br>';
+                    $htmlPage .= '+' . sc_language_render($layoutPage[$value] ?? '') . '<br>';
                 }
             }
 

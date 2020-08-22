@@ -18,4 +18,14 @@ return [
         'shop_contact'      => 'Page contact',
         'shop_page'      => 'Other page: about...',
     ],
+
+    'page_block' => [
+        'meta' => '<meta> tag',
+        'header' => 'Inside <header>: css, javascript,...',
+        'top' => 'Block top, below <body>',
+        'bottom' => 'Block bottom, above <footer>',
+        'left' => 'Column trái',
+        'right' => 'Column right',
+        'banner_top' => 'Banner top',
+    ],
 ];
