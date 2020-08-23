@@ -17,15 +17,10 @@ class AdminProductConfigController extends Controller
             'title' => trans('product.config_manager.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
-
         $productConfig = (new AdminConfig)
-            ->where('code', 'product')
+            ->where('code', 'product_config')
             ->orderBy('sort', 'desc')->get();
-        $productSetting = (new AdminConfig)
-            ->where('code', 'product_setting')
-            ->orderBy('sort', 'desc')->get();
-        $data['configs'] = $productConfig;
-        $data['productSetting'] = $productSetting;
+        $data['productConfig'] = $productConfig;
         $data['taxs'] = $taxs;
 
         return view('admin.screen.product_config')

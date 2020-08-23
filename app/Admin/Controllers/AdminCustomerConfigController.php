@@ -18,7 +18,7 @@ class AdminCustomerConfigController extends Controller
             'icon' => 'fa fa-indent',        ];
 
         $obj = (new AdminConfig)
-            ->where('code', 'customer')
+            ->where('code', 'customer_config')
             ->orderBy('sort', 'desc')->get();
         $data['configs'] = $obj;
 

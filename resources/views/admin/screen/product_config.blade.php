@@ -4,30 +4,7 @@
 
 <div class="row">
 
-  <div class="col-md-6">
-
-    <div class="card">
-      <div class="card-header with-border">
-        <h3 class="card-title">{{ trans('product.admin.config_info') }}</h3>
-      </div>
-
-      <div class="card-body table-responsivep-0">
-       <table class="table table-hover">
-         <tbody>
-           @foreach ($configs as $config)
-             <tr>
-               <td>{{ sc_language_render($config->detail) }}</td>
-               <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
-             </tr>
-           @endforeach
-         </tbody>
-       </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-
+  <div class="col-md-12">
     <div class="card">
       <div class="card-header with-border">
         <h3 class="card-title">{{ trans('product.admin.setting_info') }}</h3>
@@ -36,7 +13,7 @@
       <div class="card-body table-responsivep-0">
        <table class="table table-hover">
          <tbody>
-           @foreach ($productSetting as $config)
+           @foreach ($productConfig as $config)
            @if ($config->key == 'product_tax')
            <tr>
             <td>{{ trans('product.config_manager.tax') }}</td>
