@@ -82,7 +82,7 @@ $attributesGroup: array
                                 <td align="center">
                                     <a onClick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"
                                         class="cart_quantity_delete"
-                                        href="{{route("cart.remove",['id'=>$item->rowId])}}"><i class="fa fa-times"
+                                        href="{{ sc_route("cart.remove",['id'=>$item->rowId]) }}"><i class="fa fa-times"
                                             aria-hidden="true"></i></a>
                                 </td>
                             </tr>

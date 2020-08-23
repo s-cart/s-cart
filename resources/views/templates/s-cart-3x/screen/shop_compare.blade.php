@@ -44,7 +44,7 @@ $compare: no paginate
                                     <hr>
                                     <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item"
                                         class="cart_quantity_delete"
-                                        href="{{route("compare.remove",['id'=>$item->rowId])}}"><i
+                                        href="{{ sc_route("compare.remove",['id'=>$item->rowId]) }}"><i
                                             class="fa fa-times"></i></a>
                                 </td>
                                 @if ($n % 4 == 0)

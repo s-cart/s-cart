@@ -100,7 +100,7 @@ $layout_page = shop_profile
     }
     var id = $(this).data('id');
     $.ajax({
-            url:'{{ route("member.delete_address") }}',
+            url:'{{ sc_route("member.delete_address") }}',
             type:'POST',
             dataType:'json',
             data:{id:id,"_token": "{{ csrf_token() }}"},
