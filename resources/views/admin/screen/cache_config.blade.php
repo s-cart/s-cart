@@ -39,15 +39,9 @@
             <td>{{ sc_language_render($config->detail) }}</td>
             <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
             <td>
-              @if (\Cache::has($config->key))
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
                 <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
-              </button>
-              @else
-              <button type="button" disabled data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
-                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
-              </button>
-              @endif        
+              </button>      
             </td>
           </tr>
            @endif
