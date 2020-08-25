@@ -57,7 +57,7 @@ return [
         'field'          => 'Field config',
         'value'          => 'Value',
         'lastname'       => 'Use last name',
-        'name_kana'      => 'Use first name KANA',
+        'name_kana'      => 'Use name KANA',
         'firstname_kana' => 'Use first name KANA',
         'lastname_kana'  => 'Use last name KANA',
         'address1'       => 'Use ADDRESS 1',
