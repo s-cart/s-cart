@@ -28,7 +28,7 @@ class AdminController extends Controller
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => sc_ route('admin_discount.delete'),
+            'urlDeleteItem' => sc_route('admin_discount.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
