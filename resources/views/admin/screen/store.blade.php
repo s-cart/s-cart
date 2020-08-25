@@ -11,7 +11,7 @@
       </div>
       <div class="card-tools">
         <div class="menu-right">
-            <a href="{{ route('admin_store.create') }}" class="btn btn-success btn-flat btn-sm" title="New" id="button_create_new">
+            <a href="{{ route('admin_store.create') }}" class="btn btn-success btn-flat btn-lg" title="New" id="button_create_new">
             <i class="fa fa-plus" title="{{ trans('store.admin.add_new') }}"></i>
             </a>
         </div>
@@ -25,7 +25,7 @@
   <div class="col-md-12" id="pjax-container">
 
     @foreach ($stories as $store)
-    <div class="card collapsed-card">
+    <div class="card {{ ($stories->count() > 1)? 'collapsed-card':'' }}">
       <div class="card-header with-border">
         <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store.admin.title') }} #{{ $store->id }} 
           (<i class="fas fa-link"></i> <a target=_new href="//{{ $store->domain }}">{{ $store->domain }}</a>)
@@ -48,7 +48,7 @@
       <div class="card-header with-border">
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fas fa-plus"></i>
+            <i class="fas {{ ($stories->count() > 1)? 'fa-plus':'fa-minus' }}"></i>
           </button>
         </div>
       </div>
