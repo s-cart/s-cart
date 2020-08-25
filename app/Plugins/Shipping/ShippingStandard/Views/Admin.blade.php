@@ -9,7 +9,7 @@
 
               <div class="box-tools">
                   <div class="btn-group pull-right" style="margin-right: 5px">
-                      <a href="{{ sc_ route('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                      <a href="{{ sc_route('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                   </div>
               </div>
           </div>
@@ -29,7 +29,7 @@
                         data-name="fee" 
                         data-type="text" 
                         data-pk="{{ $data['id'] }}" 
-                        data-url="{{ sc_ route('shippingstandard.updateConfig') }}" 
+                        data-url="{{ sc_route('shippingstandard.updateConfig') }}" 
                         data-title="{{ trans($pathPlugin.'::lang.fee') }}">
                           {{ $data['fee'] }}
                         </a>
@@ -39,7 +39,7 @@
                             data-name="shipping_free" 
                             data-type="text" 
                             data-pk="{{ $data['id'] }}" 
-                            data-url="{{ sc_ route('shippingstandard.updateConfig') }}" 
+                            data-url="{{ sc_route('shippingstandard.updateConfig') }}" 
                             data-title="{{ trans($pathPlugin.'::lang.shipping_free') }}">
                             {{ $data['shipping_free'] }}
                             </a>
