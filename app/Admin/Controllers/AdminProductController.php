@@ -76,16 +76,16 @@ class AdminProductController extends Controller
             'name' => trans('product.name'),
             'category' => trans('product.category'),
         ];
-        if(sc_config('product_cost')){
+        if (sc_config('product_cost')) {
             $listTh['cost'] = trans('product.cost');
         }
-        if(sc_config('product_price')){
+        if (sc_config('product_price')) {
             $listTh['price'] = trans('product.price');
         }
-        if(sc_config('product_kind')){
+        if (sc_config('product_kind')) {
             $listTh['kind'] = trans('product.kind');
         }
-        if(sc_config('product_property')){
+        if (sc_config('product_property')) {
             $listTh['property'] = trans('product.property');
         }
         $listTh['status'] = trans('product.status');
@@ -113,9 +113,9 @@ class AdminProductController extends Controller
         if ($keyword) {
             $obj = $obj->where(function ($sql) use($tableDescription, $tableProduct, $keyword){
                 $sql->where($tableDescription . '.name', 'like', '%' . $keyword . '%')
-                ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
-                ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%')
-                ->orWhere($tableProduct . '.sku', 'like', '%' . $keyword . '%');
+                    ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
+                    ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%')
+                    ->orWhere($tableProduct . '.sku', 'like', '%' . $keyword . '%');
             });
         }
 
@@ -148,16 +148,16 @@ class AdminProductController extends Controller
                 'category' => implode(';<br>', $arrName),
                 
             ];
-            if(sc_config('product_cost')){
+            if (sc_config('product_cost')) {
                 $dataMap['cost'] = $row['cost'];
             }
-            if(sc_config('product_price')){
+            if (sc_config('product_price')) {
                 $dataMap['price'] = $row['price'];
             }
-            if(sc_config('product_kind')){
+            if (sc_config('product_kind')) {
                 $dataMap['kind'] = $kind;
             }
-            if(sc_config('product_property')){
+            if (sc_config('product_property')) {
                 $dataMap['property'] = $this->propertys[$row['property']] ?? $row['property'];
             }
             $dataMap['status'] = $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>';
@@ -250,26 +250,26 @@ class AdminProductController extends Controller
         //end add more images
 
         $data = [
-            'title' => trans('product.admin.add_new_title'),
-            'subTitle' => '',
-            'title_description' => trans('product.admin.add_new_des'),
-            'icon' => 'fa fa-plus',
-            'languages' => $this->languages,
-            'categories' => (new ShopCategory)->getTreeCategories(),
-            'brands' => (new ShopBrand)->getListAll(),
-            'suppliers' => (new ShopSupplier)->getListAll(),
-            'taxs' => (new ShopTax)->getListAll(),
-            'propertys' => $this->propertys,
-            'kinds' => $this->kinds,
-            'attributeGroup' => $this->attributeGroup,
-            'htmlSelectGroup' => $htmlSelectGroup,
-            'htmlSelectBuild' => $htmlSelectBuild,
-            'listProductSingle' => $listProductSingle,
+            'title'                => trans('product.admin.add_new_title'),
+            'subTitle'             => '',
+            'title_description'    => trans('product.admin.add_new_des'),
+            'icon'                 => 'fa fa-plus',
+            'languages'            => $this->languages,
+            'categories'           => (new ShopCategory)->getTreeCategories(),
+            'brands'               => (new ShopBrand)->getListAll(),
+            'suppliers'            => (new ShopSupplier)->getListAll(),
+            'taxs'                 => (new ShopTax)->getListAll(),
+            'propertys'            => $this->propertys,
+            'kinds'                => $this->kinds,
+            'attributeGroup'       => $this->attributeGroup,
+            'htmlSelectGroup'      => $htmlSelectGroup,
+            'htmlSelectBuild'      => $htmlSelectBuild,
+            'listProductSingle'    => $listProductSingle,
             'htmlProductAtrribute' => $htmlProductAtrribute,
-            'htmlMoreImage' => $htmlMoreImage,
-            'listWeight' => $this->listWeight,
-            'listLength' => $this->listLength, 
-            'stories' => $this->stories, 
+            'htmlMoreImage'        => $htmlMoreImage,
+            'listWeight'           => $this->listWeight,
+            'listLength'           => $this->listLength, 
+            'stories'              => $this->stories, 
         ];
 
         return view('admin.screen.product_add')
@@ -293,75 +293,69 @@ class AdminProductController extends Controller
         switch ($data['kind']) {
             case SC_PRODUCT_SINGLE: // product single
                 $arrValidation = [
-                    'kind' => 'required',
-                    'sort' => 'numeric|min:0',
-                    'minimum' => 'numeric|min:0',
-                    'weight_class' => 'nullable|string|max:100',
-                    'length_class' => 'nullable|string|max:100',
-                    'weight' => 'nullable|numeric|min:0',
-                    'height' => 'nullable|numeric|min:0',
-                    'length' => 'nullable|numeric|min:0',
-                    'width' => 'nullable|numeric|min:0',
-                    'descriptions.*.name' => 'required|string|max:100',
-                    'descriptions.*.keyword' => 'nullable|string|max:100',
+                    'kind'                       => 'required',
+                    'sort'                       => 'numeric|min:0',
+                    'minimum'                    => 'numeric|min:0',
+                    'descriptions.*.name'        => 'required|string|max:100',
+                    'descriptions.*.keyword'     => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
-                    'descriptions.*.content' => 'required|string',
-                    'category' => 'required',
-                    'store' => 'required',
-                    'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
+                    'descriptions.*.content'     => 'required|string',
+                    'category'                   => 'required',
+                    'store'                      => 'required',
+                    'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
+                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
                 ];
+
+                $arrValidation = $this->validateAttribute($arrValidation);
+                
                 $arrMsg = [
-                    'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
+                    'descriptions.*.name.required'    => trans('validation.required', ['attribute' => trans('product.name')]),
                     'descriptions.*.content.required' => trans('validation.required', ['attribute' => trans('product.content')]),
-                    'category.required' => trans('validation.required', ['attribute' => trans('product.category')]),
-                    'sku.regex' => trans('product.sku_validate'),
-                    'alias.regex' => trans('product.alias_validate'),
+                    'category.required'               => trans('validation.required', ['attribute' => trans('product.category')]),
+                    'sku.regex'                       => trans('product.sku_validate'),
+                    'alias.regex'                     => trans('product.alias_validate'),
                 ];
                 break;
 
             case SC_PRODUCT_BUILD: //product build
                 $arrValidation = [
-                    'kind' => 'required',
-                    'sort' => 'numeric|min:0',
-                    'minimum' => 'numeric|min:0',
-                    'weight_class' => 'nullable|string|max:100',
-                    'length_class' => 'nullable|string|max:100',
-                    'weight' => 'nullable|numeric|min:0',
-                    'height' => 'nullable|numeric|min:0',
-                    'length' => 'nullable|numeric|min:0',
-                    'width' => 'nullable|numeric|min:0',
-                    'descriptions.*.name' => 'required|string|max:100',
-                    'descriptions.*.keyword' => 'nullable|string|max:100',
+                    'kind'                       => 'required',
+                    'sort'                       => 'numeric|min:0',
+                    'minimum'                    => 'numeric|min:0',
+                    'descriptions.*.name'        => 'required|string|max:100',
+                    'descriptions.*.keyword'     => 'nullable|string|max:100',
                     'descriptions.*.description' => 'nullable|string|max:100',
-                    'category' => 'required',
-                    'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
-                    'productBuild' => 'required',
-                    'productBuildQty' => 'required',
-                    'store' => 'required',
+                    'category'                   => 'required',
+                    'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
+                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
+                    'productBuild'               => 'required',
+                    'productBuildQty'            => 'required',
+                    'store'                      => 'required',
 
                 ];
+
+                $arrValidation = $this->validateAttribute($arrValidation);
+
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
-                    'category.required' => trans('validation.required', ['attribute' => trans('product.category')]),
-                    'sku.regex' => trans('product.sku_validate'),
-                    'alias.regex' => trans('product.alias_validate'),
+                    'category.required'            => trans('validation.required', ['attribute' => trans('product.category')]),
+                    'sku.regex'                    => trans('product.sku_validate'),
+                    'alias.regex'                  => trans('product.alias_validate'),
                 ];
                 break;
 
             case SC_PRODUCT_GROUP: //product group
                 $arrValidation = [
-                    'kind' => 'required',
-                    'productInGroup' => 'required',
-                    'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
-                    'sort' => 'numeric|min:0',
-                    'minimum' => 'numeric|min:0',
-                    'descriptions.*.name' => 'required|string|max:200',
-                    'descriptions.*.keyword' => 'nullable|string|max:200',
+                    'kind'                       => 'required',
+                    'productInGroup'             => 'required',
+                    'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku',
+                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias|string|max:100',
+                    'sort'                       => 'numeric|min:0',
+                    'minimum'                    => 'numeric|min:0',
+                    'descriptions.*.name'        => 'required|string|max:200',
+                    'descriptions.*.keyword'     => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
-                    'store' => 'required',
+                    'store'                      => 'required',
                 ];
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
@@ -395,27 +389,27 @@ class AdminProductController extends Controller
         $subImages = $data['sub_image'] ?? [];
         $supplier_id = $data['supplier_id']?? [];
         $dataInsert = [
-            'brand_id' => $data['brand_id']??0,
-            'supplier_id' => implode(',', $supplier_id ),
-            'price' => $data['price']??0,
-            'sku' => $data['sku'],
-            'cost' => $data['cost']??0,
-            'stock' => $data['stock']??0,
-            'weight_class' => $data['weight_class'] ?? '',
-            'length_class' => $data['length_class'] ?? '',
-            'weight' => $data['weight'] ?? 0,
-            'height' => $data['height'] ?? 0,
-            'length' => $data['length'] ?? 0,
-            'width' => $data['width'] ?? 0,
-            'kind' => $data['kind']??SC_PRODUCT_SINGLE,
-            'alias' => $data['alias'],
-            'property' => $data['property'] ?? SC_PROPERTY_PHYSICAL,
+            'brand_id'       => $data['brand_id']??0,
+            'supplier_id'    => implode(',', $supplier_id ),
+            'price'          => $data['price']??0,
+            'sku'            => $data['sku'],
+            'cost'           => $data['cost']??0,
+            'stock'          => $data['stock']??0,
+            'weight_class'   => $data['weight_class'] ?? '',
+            'length_class'   => $data['length_class'] ?? '',
+            'weight'         => $data['weight'] ?? 0,
+            'height'         => $data['height'] ?? 0,
+            'length'         => $data['length'] ?? 0,
+            'width'          => $data['width'] ?? 0,
+            'kind'           => $data['kind']??SC_PRODUCT_SINGLE,
+            'alias'          => $data['alias'],
+            'property'       => $data['property'] ?? SC_PROPERTY_PHYSICAL,
             'date_available' => !empty($data['date_available']) ? $data['date_available'] : null,
-            'image' => $data['image']??'',
-            'tax_id' => $data['tax_id']??0,
-            'status' => (!empty($data['status']) ? 1 : 0),
-            'sort' => (int) $data['sort'],
-            'minimum' => (int) $data['minimum'],
+            'image'          => $data['image']??'',
+            'tax_id'         => $data['tax_id']??0,
+            'status'         => (!empty($data['status']) ? 1 : 0),
+            'sort'           => (int) $data['sort'],
+            'minimum'        => (int) $data['minimum'],
         ];
         //insert product
         $product = ShopProduct::create($dataInsert);
@@ -479,12 +473,12 @@ class AdminProductController extends Controller
         $languages = $this->languages;
         foreach ($languages as $code => $value) {
             $dataDes[] = [
-                'product_id' => $product->id,
-                'lang' => $code,
-                'name' => $descriptions[$code]['name'],
-                'keyword' => $descriptions[$code]['keyword'],
+                'product_id'  => $product->id,
+                'lang'        => $code,
+                'name'        => $descriptions[$code]['name'],
+                'keyword'     => $descriptions[$code]['keyword'],
                 'description' => $descriptions[$code]['description'],
-                'content' => $descriptions[$code]['content'] ?? '',
+                'content'     => $descriptions[$code]['content'] ?? '',
             ];
         }
 
@@ -589,12 +583,6 @@ class AdminProductController extends Controller
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
                     'minimum' => 'numeric|min:0',
-                    'weight_class' => 'nullable|string|max:100',
-                    'length_class' => 'nullable|string|max:100',
-                    'weight' => 'nullable|numeric|min:0',
-                    'height' => 'nullable|numeric|min:0',
-                    'length' => 'nullable|numeric|min:0',
-                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -604,6 +592,9 @@ class AdminProductController extends Controller
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",sku,' . $product->id . ',id',
                     'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopProduct::class.'",alias,' . $product->id . ',id|string|max:100',
                 ];
+
+                $arrValidation = $this->validateAttribute($arrValidation);
+
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
                     'descriptions.*.content.required' => trans('validation.required', ['attribute' => trans('product.content')]),
@@ -616,12 +607,6 @@ class AdminProductController extends Controller
                 $arrValidation = [
                     'sort' => 'numeric|min:0',
                     'minimum' => 'numeric|min:0',
-                    'weight_class' => 'nullable|string|max:100',
-                    'length_class' => 'nullable|string|max:100',
-                    'weight' => 'nullable|numeric|min:0',
-                    'height' => 'nullable|numeric|min:0',
-                    'length' => 'nullable|numeric|min:0',
-                    'width' => 'nullable|numeric|min:0',
                     'descriptions.*.name' => 'required|string|max:200',
                     'descriptions.*.keyword' => 'nullable|string|max:200',
                     'descriptions.*.description' => 'nullable|string|max:300',
@@ -632,6 +617,9 @@ class AdminProductController extends Controller
                     'productBuildQty' => 'required',
                     'store' => 'required',
                 ];
+
+                $arrValidation = $this->validateAttribute($arrValidation);
+                
                 $arrMsg = [
                     'descriptions.*.name.required' => trans('validation.required', ['attribute' => trans('product.name')]),
                     'category.required' => trans('validation.required', ['attribute' => trans('product.category')]),
@@ -834,6 +822,108 @@ class AdminProductController extends Controller
             }
 
         }
+    }
+
+    /**
+     * Validate attribute product
+     */
+    public function validateAttribute(array $arrValidation) {
+        if (sc_config('product_brand')) {
+            if (sc_config('product_brand_required')) {
+                $arrValidation['brand_id'] = 'required|numeric';
+            } else {
+                $arrValidation['brand_id'] = 'nullable|numeric';
+            }
+        }
+
+        if (sc_config('product_supplier')) {
+            if (sc_config('product_supplier_required')) {
+                $arrValidation['supplier_id'] = 'required|numeric';
+            } else {
+                $arrValidation['supplier_id'] = 'nullable|numeric';
+            }
+        }
+
+        if (sc_config('product_price')) {
+            if (sc_config('product_price_required')) {
+                $arrValidation['price_id'] = 'required|numeric|min:0';
+            } else {
+                $arrValidation['price_id'] = 'nullable|numeric|min:0';
+            }
+        }
+
+        if (sc_config('product_cost')) {
+            if (sc_config('product_cost_required')) {
+                $arrValidation['cost'] = 'required|numeric|min:0';
+            } else {
+                $arrValidation['cost'] = 'nullable|numeric|min:0';
+            }
+        }
+
+        if (sc_config('product_promotion')) {
+            if (sc_config('product_promotion_required')) {
+                $arrValidation['promotion'] = 'required|numeric|min:0';
+            } else {
+                $arrValidation['promotion'] = 'nullable|numeric|min:0';
+            }
+        }
+
+        if (sc_config('product_stock')) {
+            if (sc_config('product_stock_required')) {
+                $arrValidation['stock'] = 'required|numeric';
+            } else {
+                $arrValidation['stock'] = 'nullable|numeric';
+            }
+        }
+
+        if (sc_config('product_property')) {
+            if (sc_config('product_property_required')) {
+                $arrValidation['property'] = 'required|string';
+            } else {
+                $arrValidation['property'] = 'nullable|string';
+            }
+        }
+
+        if (sc_config('product_attribute')) {
+            if (sc_config('product_attribute_required')) {
+                $arrValidation['attribute'] = 'required|string';
+            } else {
+                $arrValidation['attribute'] = 'nullable|string';
+            }
+        }
+
+        if (sc_config('product_available')) {
+            if (sc_config('product_available_required')) {
+                $arrValidation['available'] = 'required|date';
+            } else {
+                $arrValidation['available'] = 'nullable|date';
+            }
+        }
+
+        if (sc_config('product_weight')) {
+            if (sc_config('product_weight_required')) {
+                $arrValidation['weight'] = 'required|numeric';
+                $arrValidation['weight_class'] = 'required|string';
+            } else {
+                $arrValidation['weight'] = 'nullable|numeric';
+                $arrValidation['weight_class'] = 'nullable|string';
+            }
+        }
+
+        if (sc_config('product_length')) {
+            if (sc_config('product_length_required')) {
+                $arrValidation['length_class'] = 'required|string';
+                $arrValidation['length'] = 'required|numeric|min:0';
+                $arrValidation['width'] = 'required|numeric|min:0';
+                $arrValidation['height'] = 'required|numeric|min:0';
+            } else {
+                $arrValidation['length_class'] = 'nullable|string';
+                $arrValidation['length'] = 'nullable|numeric|min:0';
+                $arrValidation['width'] = 'nullable|numeric|min:0';
+                $arrValidation['height'] = 'nullable|numeric|min:0';
+            }
+        }
+        return $arrValidation;
     }
 
 }
