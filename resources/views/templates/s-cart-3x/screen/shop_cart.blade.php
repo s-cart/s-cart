@@ -159,6 +159,30 @@ $attributesGroup: array
                                     @endif
                                 </tr>
 
+                                @if (sc_config('customer_name_kana'))
+                                <tr>
+                                <td class="form-group{{ $errors->has('first_name_kana') ? ' has-error' : '' }}">
+                                    <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                        {{ trans('cart.first_name_kana') }}:</label>
+                                    <input class="form-control" name="first_name_kana" type="text"
+                                        placeholder="{{ trans('cart.first_name_kana') }}"
+                                        value="{{old('first_name_kana', $shippingAddress['first_name_kana'])}}">
+                                    @if($errors->has('first_name_kana'))
+                                    <span class="help-block">{{ $errors->first('first_name_kana') }}</span>
+                                    @endif
+                                </td>
+                                <td class="form-group{{ $errors->has('last_name_kana') ? ' has-error' : '' }}">
+                                    <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                        {{ trans('cart.last_name_kana') }}:</label>
+                                    <input class="form-control" name="last_name_kana" type="text" placeholder="{{ trans('cart.last_name_kana') }}"
+                                        value="{{old('last_name_kana',$shippingAddress['last_name_kana'])}}">
+                                    @if($errors->has('last_name_kana'))
+                                    <span class="help-block">{{ $errors->first('last_name_kana') }}</span>
+                                    @endif
+                                </td>
+                                </tr>
+                                @endif
+
                                 <tr>
                                     @if (sc_config('customer_phone'))
                                     <td class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

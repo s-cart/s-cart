@@ -31,7 +31,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="first_name" type="text" class="form-control" name="first_name" required
+                                    <input id="first_name" type="text" class="form-control" name="first_name" 
                                         value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('first_name'))
@@ -49,7 +49,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="last_name" type="text" class="form-control" name="last_name" required
+                                    <input id="last_name" type="text" class="form-control" name="last_name" 
                                         value="{{ (old('last_name', $customer['last_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('last_name'))
@@ -68,7 +68,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="first_name" type="text" class="form-control" name="first_name" required
+                                    <input id="first_name" type="text" class="form-control" name="first_name" 
                                         value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('first_name'))
@@ -79,6 +79,44 @@
                             </div>
                             @endif
     
+                            @if (sc_config('customer_name_kana'))
+                            <div class="form-group row {{ $errors->has('first_name_kana') ? ' text-red' : '' }}">
+                                <label for="first_name_kana"
+                                    class="col-sm-2 col-form-label">{{ trans('account.first_name_kana') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
+                                    <input id="first_name_kana" type="text" class="form-control" name="first_name_kana"
+                                        value="{{ (old('first_name_kana', $customer['first_name_kana'] ?? ''))}}">
+                                    </div>
+                                    @if($errors->has('first_name_kana'))
+                                    <span class="form-text">{{ $errors->first('first_name_kana') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('last_name_kana') ? ' text-red' : '' }}">
+                                <label for="last_name_kana"
+                                    class="col-sm-2 col-form-label">{{ trans('account.last_name_kana') }}</label>
+    
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
+                                    <input id="last_name_kana" type="text" class="form-control" name="last_name_kana"
+                                        value="{{ (old('last_name_kana', $customer['last_name_kana'] ?? ''))}}">
+                                    </div>
+                                    @if($errors->has('last_name_kana'))
+                                    <span class="form-text">{{ $errors->first('last_name_kana') }}</span>
+                                    @endif
+    
+                                </div>
+                            </div>
+                            @endif
     
                             @if (sc_config('customer_phone'))
                             <div class="form-group row {{ $errors->has('phone') ? ' text-red' : '' }}">
@@ -90,7 +128,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="phone" type="text" class="form-control" name="phone" required
+                                    <input id="phone" type="text" class="form-control" name="phone" 
                                         value="{{ (old('phone', $customer['phone'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('phone'))
@@ -111,7 +149,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="postcode" type="text" class="form-control" name="postcode" required
+                                    <input id="postcode" type="text" class="form-control" name="postcode" 
                                         value="{{ (old('postcode', $customer['postcode'] ?? ''))}}">
                                     </div>
     
@@ -132,7 +170,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="email" type="text" class="form-control" name="email" required
+                                    <input id="email" type="text" class="form-control" name="email" 
                                         value="{{ (old('email',$customer['email'] ?? ''))}}">
                                     </div>
     
@@ -153,7 +191,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="address1" type="text" class="form-control" name="address1" required
+                                    <input id="address1" type="text" class="form-control" name="address1" 
                                         value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address1'))
@@ -171,7 +209,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="address2" type="text" class="form-control" name="address2" required
+                                    <input id="address2" type="text" class="form-control" name="address2" 
                                         value="{{ (old('address2', $customer['address2'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address2'))
@@ -190,7 +228,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="address1" type="text" class="form-control" name="address1" required
+                                    <input id="address1" type="text" class="form-control" name="address1" 
                                         value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('address1'))
@@ -259,7 +297,7 @@
                                     <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
                                     <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
-                                        name="birthday" required
+                                        name="birthday" 
                                         value="{{ (old('birthday', $customer['birthday'] ?? ''))}}">
                                     </div>
                                     @if($errors->has('birthday'))
@@ -280,7 +318,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="group" type="number" class="form-control" name="group" required
+                                    <input id="group" type="number" class="form-control" name="group" 
                                         value="{{ (old('group', $customer['group'] ?? ''))}}">
                                     </div>
     

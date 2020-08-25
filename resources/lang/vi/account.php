@@ -42,6 +42,8 @@ return [
     'email'                   => 'Email',
     'first_name'              => 'Tên',
     'last_name'               => 'Họ',
+    'first_name_kana'         => 'Tên kana',
+    'last_name_kana'          => 'Họ kana',
     'sex_women'               => 'Nữ',
     'sex_men'                 => 'Nam',
     'orders'                   => [

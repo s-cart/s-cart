@@ -152,7 +152,7 @@ class AdminCustomerController extends Controller
 
         ];
 
-        return view('admin.screen.customer')
+        return view('admin.screen.customer_add')
             ->with($data);
     }
 
@@ -247,7 +247,7 @@ Need mothod destroy to boot deleting in model
         $address =  (new ShopUserAddress)
         ->where('id', $id)
         ->first();
-        if($address) {
+        if ($address) {
             $title = trans('account.address_detail').' #'.$address->id;
         } else {
             $title = trans('account.address_detail_notfound');
@@ -285,44 +285,91 @@ Need mothod destroy to boot deleting in model
         ];
         $validate = [
             'first_name' => 'required|string|max:100',
-            'address1' => 'required|string|max:255',
         ];
-        if(sc_config('customer_lastname')) {
-            $validate['last_name'] = 'required|max:100';
+        
+        if (sc_config('customer_lastname')) {
+            if (sc_config('customer_lastname_required')) {
+                $validate['last_name'] = 'required|string|max:100';
+            } else {
+                $validate['last_name'] = 'nullable|string|max:100';
+            }
             $dataUpdate['last_name'] = $data['last_name']??'';
         }
-        if(sc_config('customer_address2')) {
-            $validate['address2'] = 'required|max:100';
+
+        if (sc_config('customer_address1')) {
+            if (sc_config('customer_address1_required')) {
+                $validate['address1'] = 'required|string|max:100';
+            } else {
+                $validate['address1'] = 'nullable|string|max:100';
+            }
+            $dataUpdate['address1'] = $data['address1']??'';
+        }
+
+        if (sc_config('customer_address2')) {
+            if (sc_config('customer_address1_required')) {
+                $validate['address2'] = 'required|string|max:100';
+            } else {
+                $validate['address2'] = 'nullable|string|max:100';
+            }
             $dataUpdate['address2'] = $data['address2']??'';
         }
-        if(sc_config('customer_phone')) {
-            $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+
+        if (sc_config('customer_phone')) {
+            if (sc_config('customer_phone_required')) {
+                $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+            } else {
+                $validate['phone'] = 'nullable|regex:/^0[^0][0-9\-]{7,13}$/';
+            }
             $dataUpdate['phone'] = $data['phone']??'';
         }
-        if(sc_config('customer_country')) {
-            $validate['country'] = 'required|min:2';
+
+        if (sc_config('customer_country')) {
+            $arraycountry = (new ShopCountry)->pluck('code')->toArray();
+            if (sc_config('customer_country_required')) {
+                $validate['country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
+            } else {
+                $validate['country'] = 'nullable|string|min:2|in:'. implode(',', $arraycountry);
+            }
+            
             $dataUpdate['country'] = $data['country']??'';
         }
-        if(sc_config('customer_postcode')) {
-            $validate['postcode'] = 'nullable|min:5';
+
+        if (sc_config('customer_postcode')) {
+            if (sc_config('customer_postcode_required')) {
+                $validate['postcode'] = 'required|min:5';
+            } else {
+                $validate['postcode'] = 'nullable|min:5';
+            }
             $dataUpdate['postcode'] = $data['postcode']??'';
         }
 
+        if (sc_config('customer_name_kana')) {
+            if (sc_config('customer_name_kana_required')) {
+                $validate['first_name_kana'] = 'required|string|max:100';
+                $validate['last_name_kana'] = 'required|string|max:100';
+            } else {
+                $validate['first_name_kana'] = 'nullable|string|max:100';
+                $validate['last_name_kana'] = 'nullable|string|max:100';
+            }
+            $dataUpdate['first_name_kana'] = $data['first_name_kana']?? '';
+            $dataUpdate['last_name_kana'] = $data['last_name_kana']?? '';
+        }
+
         $messages = [
-            'last_name.required' => trans('validation.required',['attribute'=> trans('account.last_name')]),
+            'last_name.required'  => trans('validation.required',['attribute'=> trans('account.last_name')]),
             'first_name.required' => trans('validation.required',['attribute'=> trans('account.first_name')]),
-            'address1.required' => trans('validation.required',['attribute'=> trans('account.address1')]),
-            'address2.required' => trans('validation.required',['attribute'=> trans('account.address2')]),
-            'phone.required' => trans('validation.required',['attribute'=> trans('account.phone')]),
-            'country.required' => trans('validation.required',['attribute'=> trans('account.country')]),
-            'postcode.required' => trans('validation.required',['attribute'=> trans('account.postcode')]),
-            'phone.regex' => trans('validation.regex',['attribute'=> trans('account.phone')]),
-            'postcode.min' => trans('validation.min',['attribute'=> trans('account.postcode')]),
-            'country.min' => trans('validation.min',['attribute'=> trans('account.country')]),
-            'first_name.max' => trans('validation.max',['attribute'=> trans('account.first_name')]),
-            'address1.max' => trans('validation.max',['attribute'=> trans('account.address1')]),
-            'address2.max' => trans('validation.max',['attribute'=> trans('account.address2')]),
-            'last_name.max' => trans('validation.max',['attribute'=> trans('account.last_name')]),
+            'address1.required'   => trans('validation.required',['attribute'=> trans('account.address1')]),
+            'address2.required'   => trans('validation.required',['attribute'=> trans('account.address2')]),
+            'phone.required'      => trans('validation.required',['attribute'=> trans('account.phone')]),
+            'country.required'    => trans('validation.required',['attribute'=> trans('account.country')]),
+            'postcode.required'   => trans('validation.required',['attribute'=> trans('account.postcode')]),
+            'phone.regex'         => trans('validation.regex',['attribute'=> trans('account.phone')]),
+            'postcode.min'        => trans('validation.min',['attribute'=> trans('account.postcode')]),
+            'country.min'         => trans('validation.min',['attribute'=> trans('account.country')]),
+            'first_name.max'      => trans('validation.max',['attribute'=> trans('account.first_name')]),
+            'address1.max'        => trans('validation.max',['attribute'=> trans('account.address1')]),
+            'address2.max'        => trans('validation.max',['attribute'=> trans('account.address2')]),
+            'last_name.max'       => trans('validation.max',['attribute'=> trans('account.last_name')]),
         ];
 
         $v = Validator::make(
@@ -336,7 +383,7 @@ Need mothod destroy to boot deleting in model
 
         $address->update(sc_clean($dataUpdate));
 
-        if(!empty($data['default'])) {
+        if (!empty($data['default'])) {
             $customer = ShopUser::find($address->user_id);
             $customer->address_id = $id;
             $customer->save();

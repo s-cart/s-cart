@@ -20,6 +20,8 @@ return [
     'status'                => 'Status',
     'shipping_first_name'   => 'First name',
     'shipping_last_name'    => 'Last name',
+    'shipping_first_name_kana' => 'First name kana',
+    'shipping_last_name_kana' => 'Last name kana',
     'shipping_address'      => 'Address',
     'shipping_address1'     => 'Address 1',
     'address1'              => 'Address 1',

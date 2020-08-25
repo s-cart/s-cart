@@ -27,7 +27,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.first_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" required
+                                <input id="first_name" type="text" class="form-control" name="first_name" 
                                     value="{{ (old('first_name'))?old('first_name'):$user['first_name']}}">
 
                                 @if($errors->has('first_name'))
@@ -41,7 +41,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.last_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control" name="last_name" required
+                                <input id="last_name" type="text" class="form-control" name="last_name" 
                                     value="{{ (old('last_name'))?old('last_name'):$user['last_name']}}">
 
                                 @if($errors->has('last_name'))
@@ -56,11 +56,42 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" required
+                                <input id="first_name" type="text" class="form-control" name="first_name" 
                                     value="{{ (old('first_name'))?old('first_name'):$user['first_name']}}">
 
                                 @if($errors->has('first_name'))
                                 <span class="help-block">{{ $errors->first('first_name') }}</span>
+                                @endif
+
+                            </div>
+                        </div>
+                        @endif
+
+                        @if (sc_config('customer_name_kana'))
+                        <div class="form-group row {{ $errors->has('first_name_kana') ? ' has-error' : '' }}">
+                            <label for="first_name_kana"
+                                class="col-md-4 col-form-label text-md-right">{{ trans('account.first_name_kana') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="first_name_kana" type="text" class="form-control" name="first_name_kana" 
+                                    value="{{ (old('first_name_kana'))?old('first_name_kana'):$user['first_name_kana']}}">
+
+                                @if($errors->has('first_name_kana'))
+                                <span class="help-block">{{ $errors->first('first_name_kana') }}</span>
+                                @endif
+
+                            </div>
+                        </div>
+                        <div class="form-group row {{ $errors->has('last_name_kana') ? ' has-error' : '' }}">
+                            <label for="last_name_kana"
+                                class="col-md-4 col-form-label text-md-right">{{ trans('account.last_name_kana') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="last_name_kana" type="text" class="form-control" name="last_name_kana" 
+                                    value="{{ (old('last_name_kana'))?old('last_name_kana'):$user['last_name_kana']}}">
+
+                                @if($errors->has('last_name_kana'))
+                                <span class="help-block">{{ $errors->first('last_name_kana') }}</span>
                                 @endif
 
                             </div>
@@ -74,7 +105,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" required
+                                <input id="phone" type="text" class="form-control" name="phone" 
                                     value="{{ (old('phone'))?old('phone'):$user['phone']}}">
 
                                 @if($errors->has('phone'))
@@ -91,7 +122,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.postcode') }}</label>
 
                             <div class="col-md-6">
-                                <input id="postcode" type="text" class="form-control" name="postcode" required
+                                <input id="postcode" type="text" class="form-control" name="postcode" 
                                     value="{{ (old('postcode'))?old('postcode'):$user['postcode']}}">
 
                                 @if($errors->has('postcode'))
@@ -118,7 +149,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address1" type="text" class="form-control" name="address1" required
+                                <input id="address1" type="text" class="form-control" name="address1" 
                                     value="{{ (old('address1'))?old('address1'):$user['address1']}}">
 
                                 @if($errors->has('address1'))
@@ -132,7 +163,7 @@ $countries
                             <label for="address2"
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address2') }}</label>
                             <div class="col-md-6">
-                                <input id="address2" type="text" class="form-control" name="address2" required
+                                <input id="address2" type="text" class="form-control" name="address2" 
                                     value="{{ (old('address2'))?old('address2'):$user['address2']}}">
 
                                 @if($errors->has('address2'))
@@ -147,7 +178,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address1" type="text" class="form-control" name="address1" required
+                                <input id="address1" type="text" class="form-control" name="address1" 
                                     value="{{ (old('address1'))?old('address1'):$user['address1']}}">
 
                                 @if($errors->has('address1'))
@@ -213,7 +244,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
-                                    name="birthday" required
+                                    name="birthday" 
                                     value="{{ (old('birthday'))?old('birthday'):$user['birthday']}}">
 
                                 @if($errors->has('birthday'))

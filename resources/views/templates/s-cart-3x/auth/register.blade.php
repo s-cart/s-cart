@@ -44,6 +44,29 @@ $layout_page = shop_auth
         </div>
         @endif
 
+        @if (sc_config('customer_name_kana'))
+        <div class="form-group{{ $errors->has('reg_first_name_kana') ? ' has-error' : '' }}">
+            <input type="text"
+                class="is_required validate account_input form-control {{ ($errors->has('reg_first_name_kana'))?"input-error":"" }}"
+                name="reg_first_name_kana" placeholder="{{ trans('account.first_name_kana') }}"
+                value="{{ old('reg_first_name_kana') }}">
+            @if ($errors->has('reg_first_name_kana'))
+            <span class="help-block">
+                {{ $errors->first('reg_first_name_kana') }}
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('reg_last_name_kana') ? ' has-error' : '' }}">
+            <input type="text"
+                class="is_required validate account_input form-control {{ ($errors->has('reg_last_name_kana'))?"input-error":"" }}"
+                name="reg_last_name_kana" placeholder="{{ trans('account.last_name_kana') }}" value="{{ old('reg_last_name_kana') }}">
+            @if ($errors->has('reg_last_name_kana'))
+            <span class="help-block">
+                {{ $errors->first('reg_last_name_kana') }}
+            </span>
+            @endif
+        </div>
+        @endif
 
         <div class="form-group{{ $errors->has('reg_email') ? ' has-error' : '' }}">
             <input type="text"

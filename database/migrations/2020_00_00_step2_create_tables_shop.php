@@ -175,13 +175,15 @@ class CreateTablesShop extends Migration
             $table->integer('received')->nullable()->default(0);
             $table->integer('balance')->nullable()->default(0);
             $table->string('first_name', 100);
-            $table->string('last_name', 100);
-            $table->string('address1', 100);
-            $table->string('address2', 100);
-            $table->string('country', 10)->default('VN');
+            $table->string('last_name', 100)->nullable();
+            $table->string('first_name_kana', 100)->nullable();
+            $table->string('last_name_kana', 100)->nullable();
+            $table->string('address1', 100)->nullable();
+            $table->string('address2', 100)->nullable();
+            $table->string('country', 10)->nullable()->default('VN');
             $table->string('company', 100)->nullable();
             $table->string('postcode', 10)->nullable();
-            $table->string('phone', 20);
+            $table->string('phone', 20)->nullable();
             $table->string('email', 150);
             $table->string('comment', 300)->nullable();
             $table->string('payment_method', 100)->nullable();
@@ -393,6 +395,8 @@ class CreateTablesShop extends Migration
             $table->increments('id');
             $table->string('first_name', 100);
             $table->string('last_name', 100)->nullable();
+            $table->string('first_name_kana', 100)->nullable();
+            $table->string('last_name_kana', 100)->nullable();
             $table->string('email', 150)->unique();
             $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
@@ -419,6 +423,8 @@ class CreateTablesShop extends Migration
             $table->integer('user_id');
             $table->string('first_name', 100);
             $table->string('last_name', 100)->nullable();
+            $table->string('first_name_kana', 100)->nullable();
+            $table->string('last_name_kana', 100)->nullable();
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();

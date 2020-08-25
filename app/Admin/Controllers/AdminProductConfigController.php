@@ -16,11 +16,32 @@ class AdminProductConfigController extends Controller
         $data = [
             'title' => trans('product.config_manager.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
+            'icon' => 'fa fa-indent',        
+        ];
         $productConfig = (new AdminConfig)
             ->where('code', 'product_config')
-            ->orderBy('sort', 'desc')->get();
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
+        $productConfigAttribute = (new AdminConfig)
+            ->where('code', 'product_config_attribute')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
+        $productConfigAttributeRequired = (new AdminConfig)
+            ->where('code', 'product_config_attribute_required')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
         $data['productConfig'] = $productConfig;
+        $data['productConfigAttribute'] = $productConfigAttribute;
+        $data['productConfigAttributeRequired'] = $productConfigAttributeRequired;
         $data['taxs'] = $taxs;
 
         return view('admin.screen.product_config')

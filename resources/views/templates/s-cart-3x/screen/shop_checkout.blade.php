@@ -83,6 +83,12 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     <th>{{ trans('cart.name') }}:</td>
                                     <td>{{ $shippingAddress['first_name'] }} {{ $shippingAddress['last_name'] }}</td>
                                 </tr>
+                                @if (sc_config('customer_name_kana'))
+                                <tr>
+                                    <th>{{ trans('cart.name_kana') }}:</td>
+                                    <td>{{ $shippingAddress['first_name_kana'].$shippingAddress['last_name_kana'] }}</td>
+                                </tr>
+                                @endif
                                 @if (sc_config('customer_phone'))
                                 <tr>
                                     <th>{{ trans('cart.phone') }}:</td>

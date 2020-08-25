@@ -74,6 +74,43 @@
                             </div>
                         @endif
 
+                        @if (sc_config('customer_name_kana'))
+                            <div class="form-group row {{ $errors->has('first_name_kana') ? ' text-red' : '' }}">
+                                <label for="first_name_kana" class="col-sm-2 col-form-label">{{ trans('order.shipping_first_name_kana') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
+                                        <input type="text" id="first_name_kana" name="first_name_kana" value="{!! old('first_name_kana') !!}" class="form-control first_name_kana" placeholder="" />
+                                    </div>
+                                        @if ($errors->has('first_name_kana'))
+                                            <span class="text-sm">
+                                                {{ $errors->first('first_name_kana') }}
+                                            </span>
+                                        @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('last_name_kana') ? ' text-red' : '' }}">
+                                <label for="last_name_kana" class="col-sm-2 col-form-label">{{ trans('order.shipping_last_name_kana') }}</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
+                                        <input type="text" id="last_name_kana" name="last_name_kana" value="{!! old('last_name_kana') !!}" class="form-control last_name_kana" placeholder="" />
+                                    </div>
+                                        @if ($errors->has('last_name_kana'))
+                                            <span class="text-sm">
+                                                {{ $errors->first('last_name_kana') }}
+                                            </span>
+                                        @endif
+                                </div>
+                            </div>
+
+                        @endif
+
                         @if (sc_config('customer_company'))
                             <div class="form-group row {{ $errors->has('company') ? ' text-red' : '' }}">
                                 <label for="company" class="col-sm-2 col-form-label">{{ trans('order.company') }}</label>
@@ -191,8 +228,8 @@
                                 <div class="col-sm-8">
                                     <select class="form-control currency " style="width: 100%;" name="currency" >
                                         <option value=""></option>
-                                      @foreach ($currencies as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('currency') ==$k) ? 'selected':'' }}>{{ $v}}</option>
+                                      @foreach ($currencies as  $v)
+                                            <option value="{{ $v->code }}" {{ (old('currency') == $v->code) ? 'selected':'' }}>{{ $v->name}}</option>
                                         @endforeach
                                     </select>
                                         @if ($errors->has('currency'))
@@ -281,8 +318,18 @@
 
                     <div class="card-footer row">
                             @csrf
-                        <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
-                        <button type="submit" class="btn btn-primary float-right">{{ trans('admin.submit') }}</button>
+                            <div class="col-md-2">
+                            </div>
+        
+                            <div class="col-md-8">
+                                <div class="btn-group float-right">
+                                    <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
+                                </div>
+        
+                                <div class="btn-group float-left">
+                                    <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
+                                </div>
+                            </div>
                     </div>
 
                     <!-- /.card-footer -->
@@ -336,6 +383,8 @@ function addInfo(){
                 var returnedData = JSON.parse(result);
                 $('[name="first_name"]').val(returnedData.first_name);
                 $('[name="last_name"]').val(returnedData.last_name);
+                $('[name="first_name_kana"]').val(returnedData.first_name_kana);
+                $('[name="last_name_kana"]').val(returnedData.last_name_kana);
                 $('[name="address1"]').val(returnedData.address1);
                 $('[name="address2"]').val(returnedData.address2);
                 $('[name="phone"]').val(returnedData.phone);

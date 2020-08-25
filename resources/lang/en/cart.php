@@ -28,7 +28,10 @@ return [
     'country'          => 'Country',
     'first_name'       => 'First name',
     'last_name'        => 'Last name',
+    'first_name_kana'  => 'First name kana',
+    'last_name_kana'   => 'Last name kana',
     'name'             => 'Full name',
+    'name_kana'        => 'Full name kana',
     'company'          => 'Company',
     'postcode'         => 'Postcode',
     'cart_empty'       => 'Cart empty',
@@ -39,6 +42,6 @@ return [
     'total_price'      => 'Total price',
     'validation' => [
         'shippingMethod_required' => 'Shipping method is required',
-        'paymentMethod_required' => 'Payment method is required',
+        'paymentMethod_required'  => 'Payment method is required',
     ],
 ];

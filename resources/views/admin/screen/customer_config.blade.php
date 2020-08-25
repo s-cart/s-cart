@@ -14,13 +14,19 @@
            <tr>
              <th>{{ trans('customer.config_manager.field') }}</th>
              <th>{{ trans('customer.config_manager.value') }}</th>
+             <th>{{ trans('customer.config_manager.reqired') }}</th>
            </tr>
          </thead>
          <tbody>
-           @foreach ($configs as $config)
+           @foreach ($configs as $key => $config)
              <tr>
-               <td>{{ sc_language_render($config->detail) }}</td>
-               <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+               <td>{{ sc_language_render($config['detail']) }}</td>
+               <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
+               <td>
+                 @if (!empty($configsRequired[$key.'_required']))
+                 <input type="checkbox" name="{{ $configsRequired[$key.'_required']['key'] }}"  {{ $configsRequired[$key.'_required']['value']?"checked":"" }}>
+                 @endif
+               </td>
              </tr>
            @endforeach
          </tbody>
