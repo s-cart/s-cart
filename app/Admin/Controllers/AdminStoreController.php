@@ -152,14 +152,14 @@ class AdminStoreController extends Controller
     public function updateInfo()
     {
         $data = request()->all();
+        $storeId = $data['storeId'];
         $fieldName = $data['name'];
         $value = $data['value'];
         $parseName = explode('__', $fieldName);
-        $storeId = $parseName[0];
-        $name = $parseName[1];
-        $lang = $parseName[2] ?? '';
+        $name = $parseName[0];
+        $lang = $parseName[1] ?? '';
         $msg = '';
-        if (!in_array($parseName[1], ['title', 'description', 'keyword', 'maintain_content'])) {
+        if (!in_array($name, ['title', 'description', 'keyword', 'maintain_content'])) {
             if (config('app.storeId') == $storeId && $name == 'status') {
                 $error = 1;
                 $msg = trans('store.cannot_disable');
@@ -220,6 +220,24 @@ class AdminStoreController extends Controller
             }
             return response()->json(['error' => 0, 'msg' => '']);
         }
+    }
+
+    public function config($id) {
+        $data = [
+            'title' => trans('store.admin.config_store', ['id' => $id]),
+            'subTitle' => '',
+            'icon' => 'fas fa-cogs',        
+        ];
+        $stories = AdminStore::getListAll();
+        $data['store'] = $stories[$id] ?? [];
+        $data['templates'] = $this->templates;
+        $data['timezones'] = $this->timezones;
+        $data['languages'] = $this->languages;
+        $data['currencies'] =$this->currencies;
+        $data['storeId'] = $id;
+
+        return view('admin.screen.store_config')
+        ->with($data);
     }
 
 }

@@ -20,6 +20,9 @@ class ShopCategory extends Model
     protected  $sc_parent = ''; // category id parent
     protected  $sc_top = 'all'; // 1 - category display top, 0 -non top, all - all
 
+    protected static $getListTitle = null;
+    protected static $getListFull = null;
+
     public function products()
     {
         return $this->belongsToMany(ShopProduct::class, SC_DB_PREFIX . 'shop_product_category', 'category_id', 'product_id');
@@ -178,20 +181,24 @@ class ShopCategory extends Model
      *
      * @return  [type]  [return description]
      */
-    public function getListTitle()
+    public static function getListTitle()
     {
-        if(sc_config_global('cache_status') && sc_config_global('cache_category')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_category')) {
             if (!Cache::has('cache_category_'.sc_get_locale())) {
-                $data = (new ShopCategoryDescription)->where('lang', sc_get_locale())
-                ->pluck('title', 'category_id')->toArray();
-                Cache::put('cache_category_'.sc_get_locale(), $data, $seconds = sc_config_global('cache_time')?:600);
+                if (self::$getListTitle === null) {
+                    self::$getListTitle = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+                        ->pluck('title', 'category_id')->toArray();
+                }
+                Cache::put('cache_category_'.sc_get_locale(), self::$getListTitle, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_category_'.sc_get_locale());
-        } 
-
-        $data = (new ShopCategoryDescription)->where('lang', sc_get_locale())
-            ->pluck('title', 'category_id')->toArray();
-        return $data;
+        } else {
+            if (self::$getListTitle === null) {
+                self::$getListTitle = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+                    ->pluck('title', 'category_id')->toArray();
+            }
+            return self::$getListTitle;
+        }
     }
 
 
@@ -202,13 +209,19 @@ class ShopCategory extends Model
      */
     public static function getListFull()
     {
-        if(sc_config_global('cache_status') && sc_config_global('cache_category')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_category')) {
             if (!Cache::has('cache_category')) {
-                Cache::put('cache_category', self::get()->keyBy('id')->toJson(), $seconds = sc_config_global('cache_time')?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_category', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_category');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 

@@ -29,6 +29,8 @@ class ShopProduct extends Model
     protected  $sc_brand = []; // array brand id
     protected  $sc_supplier = []; // array supplier id
 
+    protected $getListFull = null;
+    
     public function brand()
     {
         return $this->belongsTo(ShopBrand::class, 'brand_id', 'id');
@@ -390,13 +392,19 @@ class ShopProduct extends Model
      */
     public static function getListFull()
     {
-        if (sc_config('cache_status') && sc_config('cache_product')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_product')) {
             if (!Cache::has('cache_product')) {
-                Cache::put('cache_product', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time')?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_product', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_product');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 

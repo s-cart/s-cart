@@ -14,6 +14,7 @@ class ShopNews extends Model
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
 
+    protected $getListFull = null;
     public function descriptions()
     {
         return $this->hasMany(ShopNewsDescription::class, 'news_id', 'id');
@@ -144,13 +145,19 @@ class ShopNews extends Model
      */
     public static function getListFull()
     {
-        if(sc_config('cache_status') && sc_config('cache_news')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_news')) {
             if (!Cache::has('cache_news')) {
-                Cache::put('cache_news', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time')?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_news', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_news');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 

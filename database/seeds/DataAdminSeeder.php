@@ -196,6 +196,8 @@ class DataAdminSeeder extends Seeder
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_category_cms', 'value' => '0', 'sort' => '6', 'detail' => 'lang::cache.config_manager.cache_category_cms', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_content_cms', 'value' => '0', 'sort' => '7', 'detail' => 'lang::cache.config_manager.cache_content_cms', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_page', 'value' => '0', 'sort' => '8', 'detail' => 'lang::cache.config_manager.cache_page', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'cache', 'key' => 'cache_store', 'value' => '0', 'sort' => '9', 'detail' => 'lang::cache.config_manager.cache_store', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'cache', 'key' => 'cache_country', 'value' => '0', 'sort' => '10', 'detail' => 'lang::cache.config_manager.cache_country', 'store_id' => 0],
             
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_brand', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.brand', 'store_id' => 0],
             ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_brand_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => 0],

@@ -9,11 +9,12 @@ class ShopPage extends Model
 {
     use ModelTrait;
 
-    public $timestamps = false;
-    public $table = SC_DB_PREFIX.'shop_page';
-    protected $connection = SC_CONNECTION;
-    protected $guarded = [];
+    public $timestamps     = false;
+    public $table          = SC_DB_PREFIX.'shop_page';
+    protected $connection  = SC_CONNECTION;
+    protected $guarded     = [];
 
+    protected $getListFull = null;
     public function descriptions()
     {
         return $this->hasMany(ShopPageDescription::class, 'page_id', 'id');
@@ -130,13 +131,19 @@ class ShopPage extends Model
      */
     public static function getListFull()
     {
-        if (sc_config('cache_status') && sc_config('cache_page')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_page')) {
             if (!Cache::has('cache_page')) {
-                Cache::put('cache_page', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time')?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_page', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_page');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 
