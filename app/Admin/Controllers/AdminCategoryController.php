@@ -18,7 +18,7 @@ class AdminCategoryController extends Controller
     {
         $this->languages = ShopLanguage::getListActive();
         $this->stories = AdminStore::getListAll();
-        $this->categoriesTitle = (new ShopCategory)->getListTitle();
+        $this->categoriesTitle = ShopCategory::getListTitle();
 
     }
 

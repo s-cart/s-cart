@@ -14,7 +14,7 @@ class ShopPage extends Model
     protected $connection  = SC_CONNECTION;
     protected $guarded     = [];
 
-    protected $getListFull = null;
+    protected static $getListFull = null;
     public function descriptions()
     {
         return $this->hasMany(ShopPageDescription::class, 'page_id', 'id');

@@ -14,7 +14,7 @@ class ShopNews extends Model
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
 
-    protected $getListFull = null;
+    protected static $getListFull = null;
     public function descriptions()
     {
         return $this->hasMany(ShopNewsDescription::class, 'news_id', 'id');
