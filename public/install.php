@@ -109,6 +109,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             session(['infoInstall'=> request('infoInstall')]);
             try {
                 Artisan::call('db:seed --class=DataAdminSeeder');
+                Artisan::call('db:seed --class=DataStoreSeeder');
             } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
