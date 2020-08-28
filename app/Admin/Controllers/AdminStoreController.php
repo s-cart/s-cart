@@ -7,9 +7,13 @@ use App\Models\AdminStore;
 use App\Models\AdminStoreDescription;
 use App\Models\ShopLanguage;
 use App\Models\ShopCurrency;
+use App\Models\AdminConfig;
+use App\Models\ShopTax;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Artisan;
+use DB;
 
 class AdminStoreController extends Controller
 {
@@ -34,13 +38,6 @@ class AdminStoreController extends Controller
 
     public function index()
     {
-        $data = [
-            'title' => trans('config.admin.title'),
-            'subTitle' => '',
-            'icon' => 'fa fa-indent',
-        ];
-
-
         $data = [
             'title' => trans('store.admin.list'),
             'subTitle' => '',
@@ -127,24 +124,35 @@ class AdminStoreController extends Controller
             'domain' => $data['domain'],
             'status' => empty($data['status']) ? 0 : 1,
         ];
-        $store = AdminStore::create($dataInsert);
 
-        $dataDes = [];
-        $languages = ShopLanguage::getListActive();
-        foreach ($languages as $code => $value) {
-            $dataDes[] = [
-                'store_id' => $store->id,
-                'lang' => $code,
-                'title' => $data['descriptions'][$code]['title'],
-                'keyword' => $data['descriptions'][$code]['keyword'],
-                'description' => $data['descriptions'][$code]['description'],
-            ];
-        }
-        AdminStoreDescription::insert($dataDes);
+        //Create new store
+        DB::connection(SC_CONNECTION)
+            ->transaction(function () use($dataInsert, $data) {
+                $store = AdminStore::create($dataInsert);
+                $dataDes = [];
+                $languages = ShopLanguage::getListActive();
+                foreach ($languages as $code => $value) {
+                    $dataDes[] = [
+                        'store_id' => $store->id,
+                        'lang' => $code,
+                        'title' => $data['descriptions'][$code]['title'],
+                        'keyword' => $data['descriptions'][$code]['keyword'],
+                        'description' => $data['descriptions'][$code]['description'],
+                    ];
+                }
+                AdminStoreDescription::insert($dataDes);
+
+                //Add config default for new store
+                session(['lastStoreId' => $store->id]);
+                Artisan::call('db:seed --class=DataStoreSeeder');
+
+            }, 2);
+
 
         return redirect()->route('admin_store.index')->with('success', trans('store.admin.create_success'));
 
     }
+
 
     /*
     Update value config
@@ -217,12 +225,26 @@ class AdminStoreController extends Controller
             }
             if ($id != 1) {
                 AdminStore::destroy($id);
+                Adminconfig::where('store_id', $id)->delete();
             }
             return response()->json(['error' => 0, 'msg' => '']);
         }
     }
 
     public function config($id) {
+
+        $store = AdminStore::find($id);
+        if (!$store) {
+            $data = [
+                'title' => trans('store.admin.config_store', ['id' => $id]),
+                'subTitle' => '',
+                'icon' => 'fas fa-cogs',
+                'dataNotFound' => 1       
+            ];
+            return view('admin.screen.store_config')
+            ->with($data);
+        }
+
         $data = [
             'title' => trans('store.admin.config_store', ['id' => $id]),
             'subTitle' => '',

@@ -6,7 +6,7 @@ use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Str;
 /*
 Get all block content
  */
@@ -222,7 +222,7 @@ if (!function_exists('sc_url_render')) {
         }
 
         if (count($arrCheckUrl) == 2) {
-            $string = \Illuminate\Support\Str::start($arrCheckUrl[1], '/');
+            $string = Str::start($arrCheckUrl[1], '/');
             $string = SC_ADMIN_PREFIX . $string;
             return url($string);
         }
@@ -270,7 +270,7 @@ if (!function_exists('sc_word_format_class')) {
      */
     function sc_word_format_class($word)
     {
-        $word = \Illuminate\Support\Str::camel($word);
+        $word = Str::camel($word);
         $word = ucfirst($word);
         return $word;
     }
@@ -282,7 +282,7 @@ if (!function_exists('sc_word_limit')) {
      */
     function sc_word_limit($word, $limit = 20, $arg = '')
     {
-        $word = \Illuminate\Support\Str::limit($word, $limit, $arg);
+        $word = Str::limit($word, $limit, $arg);
         return $word;
     }
 }
@@ -329,7 +329,7 @@ if (!function_exists('sc_token')) {
      */
     function sc_token($length = 32)
     {
-        $token = \Illuminate\Support\Str::random($length);
+        $token = Str::random($length);
         return $token;
     }
 }
