@@ -5,10 +5,8 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
 use App\Models\ShopTax;
-use App\Admin\AdminConfigTrait;
 class AdminProductConfigController extends Controller
 {
-    use AdminConfigTrait;
     public function index()
     {
         $taxs = ShopTax::pluck('name', 'id')->toArray();

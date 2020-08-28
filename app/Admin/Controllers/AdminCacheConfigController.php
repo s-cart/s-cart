@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
 use App\Models\ShopLanguage;
 use Illuminate\Http\Request;
-use App\Admin\AdminConfigTrait;
 use Illuminate\Support\Facades\Cache;
 class AdminCacheConfigController extends Controller
 {
-    use AdminConfigTrait;
     public function index()
     {
 

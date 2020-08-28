@@ -8,6 +8,8 @@ class AdminConfig extends Model
 {
     public $timestamps = false;
     public $table = SC_DB_PREFIX.'admin_config';
+    protected $guarded = [];
+
     protected static $getAll = null;
     protected static $getAllGlobal = null;
     protected static $getAllStore = null;
@@ -106,6 +108,4 @@ class AdminConfig extends Model
         }
         return self::$getAllStore;
     }
-
-
 }

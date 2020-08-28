@@ -13,8 +13,9 @@ return [
     |
      */
 
-    'failed'   => 'Thông tin đăng nhập không đúng',
-    'throttle' => 'Bạn đã đăng nhập quá nhiều lần. Vui lòng thử lại sau :seconds giây.',
+    'failed'             => 'Thông tin đăng nhập không đúng',
+    'throttle'           => 'Bạn đã đăng nhập quá nhiều lần. Vui lòng thử lại sau :seconds giây.',
     'link_reset_invalid' => 'Link không hợp lệ!',
+    'login_success'      => 'Đăng nhập thành công',
 
 ];

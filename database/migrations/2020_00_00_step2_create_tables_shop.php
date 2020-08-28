@@ -397,7 +397,7 @@ class CreateTablesShop extends Migration
             $table->string('last_name', 100)->nullable();
             $table->string('first_name_kana', 100)->nullable();
             $table->string('last_name_kana', 100)->nullable();
-            $table->string('email', 150)->unique();
+            $table->string('email', 150)->unique()->nullable();
             $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
             $table->string('password', 100)->nullable();;
@@ -428,8 +428,8 @@ class CreateTablesShop extends Migration
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
-            $table->string('country', 10)->default('VN');
-            $table->string('phone', 20);
+            $table->string('country', 10)->nullable()->default('VN');
+            $table->string('phone', 20)->nullable();
             }
         );
 

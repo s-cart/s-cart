@@ -107,7 +107,7 @@ $(document).ready(function() {
       };
 
         $('.editable').editable({
-        validate: function(value) {
+          validate: function(value) {
         },
         success: function(data) {
           if(data.error == 0){

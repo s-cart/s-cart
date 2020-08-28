@@ -72,24 +72,12 @@ class AdminStore extends Model
      */
     public static function getListAll()
     {
-        if (sc_config_global('cache_status') && sc_config_global('cache_store')) {
-            if (!Cache::has('cache_store')) {
-                if (self::$getAll === null) {
-                    self::$getAll = self::with('descriptions')
-                        ->get()
-                        ->keyBy('id');
-                }
-                Cache::put('cache_store', self::$getAll, $seconds = sc_config_global('cache_time')?:600);
-            }
-            return Cache::get('cache_store');
-        } else {
-            if (self::$getAll === null) {
-                self::$getAll = self::with('descriptions')
-                    ->get()
-                    ->keyBy('id');
-            }
-            return self::$getAll;
+        if (self::$getAll === null) {
+            self::$getAll = self::with('descriptions')
+                ->get()
+                ->keyBy('id');
         }
+        return self::$getAll;
     }
 
     /**

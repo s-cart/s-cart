@@ -5,10 +5,8 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
 use Illuminate\Http\Request;
-use App\Admin\AdminConfigTrait;
 class AdminEmailController extends Controller
 {
-    use AdminConfigTrait;
     public function index()
     {
 
