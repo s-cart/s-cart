@@ -13,7 +13,7 @@
         </div>
         <div class="card-tools">
           <div class="menu-right">
-              <a href="{{ route('admin_store.create') }}" class="btn btn-success btn-flat btn-lg" title="New" id="button_create_new">
+              <a href="{{ route('admin_store.create') }}" class="btn btn-success btn-flat btn-md" title="New" id="button_create_new">
               <i class="fa fa-plus" title="{{ trans('store.admin.add_new') }}"></i>
               </a>
           </div>

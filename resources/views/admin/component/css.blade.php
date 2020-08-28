@@ -303,5 +303,8 @@
   .order-info span {
     display: block;
   }
-
+.block-action {
+  display: inline;
+  margin-right: 10px;
+}
 </style>

@@ -2,9 +2,14 @@
 
 @if (!empty($dataNotFound))
   @section('main')
-  <div class="row">
-    <div class="col-md-12" id="pjax-container">
       <div class="card">
+        <div class="card-tools">
+            <div class="btn-group float-right">
+                <a href="{{ route('admin_store.index') }}" class="btn  btn-flat btn-default" title="List">
+                    <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
+                </a>
+            </div>
+        </div>
         <div class="card-header with-border">
           <h2 class="card-title">{{ $title_description??'' }}</h2>
           <div class="card-tools">
@@ -19,14 +24,17 @@
           {{ trans('admin.data_notfound') }}
         </div>
       </div>
-    </div>
-  </div>
   @endsection
 @else
 @section('main')
-<div class="row">
-  <div class="col-md-12" id="pjax-container">
       <div class="card card-primary card-outline card-outline-tabs">
+        <div class="card-tools">
+            <div class="btn-group float-right">
+                <a href="{{ route('admin_store.index') }}" class="btn  btn-flat btn-default" title="List">
+                    <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
+                </a>
+            </div>
+        </div>
         <div class="card-body">
           <div class="tab-content" id="custom-tabs-four-tabContent">
             {{-- Tab infomation --}}
@@ -183,8 +191,6 @@
           </div>
         </div>
         <!-- /.card -->
-      </div>
-  </div>
 </div>
 
 @endsection

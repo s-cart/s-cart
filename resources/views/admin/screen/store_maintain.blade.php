@@ -10,20 +10,12 @@
       <div class="card-header with-border">
         <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store_maintain.admin.content') }} #{{ $store->id }}</h3>
         <div class="card-tools">
+          <div class="block-action"><a href="{{ route('admin_store_maintain.edit', ['id' => $store->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i>{{ trans('admin.edit') }}</a></div>
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
             <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
-
-      <div class="card-header with-border">
-        <div class="card-tools">
-          <div class="menu-right">
-            <h3><a href="{{ route('admin_store_maintain.edit', ['id' => $store->id]) }}"><i class="fa fa-edit" aria-hidden="true"></i>{{ trans('admin.edit') }}</a></h3>
-          </div>
-        </div>
-      </div>
-
       @php
       $descriptions = $store->descriptions->keyBy('lang');
       @endphp
