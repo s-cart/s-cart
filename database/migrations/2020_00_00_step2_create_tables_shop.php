@@ -397,7 +397,7 @@ class CreateTablesShop extends Migration
             $table->string('last_name', 100)->nullable();
             $table->string('first_name_kana', 100)->nullable();
             $table->string('last_name_kana', 100)->nullable();
-            $table->string('email', 150)->unique()->nullable();
+            $table->string('email', 150)->nullable();
             $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
             $table->string('password', 100)->nullable();;
@@ -415,6 +415,7 @@ class CreateTablesShop extends Migration
             //Login social
             $table->string('provider', 50)->nullable();
             $table->string('provider_id', 50)->nullable();
+            $table->unique(['email', 'provider', 'provider_id']);
             }
         );
 
