@@ -70,6 +70,7 @@ class AdminOrderController extends Controller
         $listTh = [
             'id' => trans('order.admin.id'),
             'email' => trans('order.admin.email'),
+            'store_id' => trans('order.admin.store'),
             'subtotal' => trans('order.admin.subtotal'),
             'shipping' => trans('order.admin.shipping'),
             'discount' => trans('order.admin.discount'),
@@ -115,16 +116,17 @@ class AdminOrderController extends Controller
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
             $dataTr[] = [
-                'id' => $row['id'],
-                'email' => $row['email'] ?? 'N/A',
-                'subtotal' => sc_currency_render_symbol($row['subtotal'] ?? 0, $row['currency']),
-                'shipping' => sc_currency_render_symbol($row['shipping'] ?? 0, $row['currency']),
-                'discount' => sc_currency_render_symbol($row['discount'] ?? 0, $row['currency']),
-                'total' => sc_currency_render_symbol($row['total'] ?? 0, $row['currency']),
+                'id'             => $row['id'],
+                'email'          => $row['email'] ?? 'N/A',
+                'store_id'       => $row['store_id'],
+                'subtotal'       => sc_currency_render_symbol($row['subtotal'] ?? 0, $row['currency']),
+                'shipping'       => sc_currency_render_symbol($row['shipping'] ?? 0, $row['currency']),
+                'discount'       => sc_currency_render_symbol($row['discount'] ?? 0, $row['currency']),
+                'total'          => sc_currency_render_symbol($row['total'] ?? 0, $row['currency']),
                 'payment_method' => $row['payment_method'],
-                'currency' => $row['currency'] . '/' . $row['exchange_rate'],
-                'status' => $styleStatus[$row['status']],
-                'created_at' => $row['created_at'],
+                'currency'       => $row['currency'] . '/' . $row['exchange_rate'],
+                'status'         => $styleStatus[$row['status']],
+                'created_at'     => $row['created_at'],
                 'action' => '
                                 <a href="' . sc_route('admin_order.detail', ['id' => $row['id']]) . '"><span title="' . trans('order.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 

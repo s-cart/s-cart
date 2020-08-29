@@ -104,8 +104,9 @@ return [
         'add_new_title'        => 'Tạo đơn hàng',
         'add_new_des'          => 'Tạo mới một đơn hàng',
         'export_batch'         => 'Xuất',
-        'update_success' => 'Cập nhật thành công!',
-        'config_info'         => 'Cấu hình đơn hàng',
+        'update_success'       => 'Cập nhật thành công!',
+        'config_info'          => 'Cấu hình đơn hàng',
+        'store'                => 'Cửa hàng',
         'export_batch_group'   => [
             'all'          => 'Tất cả',
             'current_page' => 'Trang hiện tại',
