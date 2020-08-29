@@ -9,43 +9,33 @@ $layout_page = shop_auth
 @section('block_main')
 <section class="section section-sm section-first bg-default text-md-left">
     <div class="container">
-        <div class="col-md-12 ">
-            <div class="row">
-                <div class="col-md-6 login-form">
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-12 control-label"><i class="fas fa-envelope"></i>
-                                {{ trans('customer.email') }}</label>
-                            <div class="col-md-12">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
-                                    required>
-                                @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                <br />
-                                @endif
+    <div class="row">
+        <div class="col-12 col-sm-12">
+            <h2>{{ trans('account.title_login') }}</h2>
 
-                                <button type="submit" name="SubmitLogin" class="button button-lg button-secondary pull-right">
-                                    <span>
-                                        <i class="glyphicon glyphicon-wrench"></i>
-                                        {{ trans('front.submit_form') }}
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}">
+                {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="email" class="col-md-12 control-label"><i class="fas fa-envelope"></i>
+                        {{ trans('customer.email') }}</label>
+                    <div class="col-md-12">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
+                            required>
+                        @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                        <br />
+                        @endif
+                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary">{{ trans('front.submit_form') }}</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 </section>
+
 @endsection
 
 {{-- breadcrumb --}}
