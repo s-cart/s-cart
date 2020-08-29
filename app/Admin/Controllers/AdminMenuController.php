@@ -17,12 +17,11 @@ class AdminMenuController extends Controller
         $data = [
             'title' => trans('menu.admin.list'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',            'menu' => [],
+            'icon' => 'fa fa-indent',            
+            'menu' => [],
             'treeMenu' => (new AdminMenu)->getTree(),
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => route('admin_menu.create'),
-            'urlDeleteItem' => route('admin_menu.delete'),
+            'url_action' => sc_route('admin_menu.create'),
+            'urlDeleteItem' => sc_route('admin_menu.delete'),
             'title_form' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . trans('menu.admin.create'),
         ];
         $data['layout'] = 'index';
@@ -56,18 +55,7 @@ class AdminMenuController extends Controller
             'sort' => $data['sort'],
         ];
 
-        $menu = AdminMenu::createMenu($dataInsert);
-        $permissions = $data['permissions'] ?? [];
-        $roles = $data['roles'] ?? [];
-        //Insert permission
-        if ($permissions) {
-            $menu->permissions()->attach($permissions);
-        }
-        $roles = $data['roles'] ?? [];
-        //Insert roles
-        if ($roles) {
-            $menu->roles()->attach($roles);
-        }
+        AdminMenu::createMenu($dataInsert);
         return redirect()->route('admin_menu.index')->with('success', trans('menu.admin.create_success'));
 
     }
@@ -85,15 +73,13 @@ class AdminMenuController extends Controller
             'title' => trans('menu.admin.list'),
             'subTitle' => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
+            'icon' => 'fa fa-edit',
             'menu' => $menu,
             'treeMenu' => (new AdminMenu)->getTree(),
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permissions' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => route('admin_menu.edit', ['id' => $menu['id']]),
-            'title_form' => '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
+            'url_action' => sc_route('admin_menu.edit', ['id' => $menu['id']]),
+            'title_form' => '<i class="fa fa-edit" aria-hidden="true"></i> ' . trans('menu.admin.edit'),
         ];
-        $data['urlDeleteItem'] = route('admin_menu.delete');
+        $data['urlDeleteItem'] = sc_route('admin_menu.delete');
         $data['id'] = $id;
         $data['layout'] = 'edit';
         return view('admin.screen.list_menu')
@@ -128,20 +114,6 @@ class AdminMenuController extends Controller
         ];
 
         AdminMenu::updateInfo($dataUpdate, $id);
-        $permissions = $data['permissions'] ?? [];
-        $menu->permissions()->detach();
-        //Insert permission
-        if ($permissions) {
-            $menu->permissions()->attach($permissions);
-        }
-        $roles = $data['roles'] ?? [];
-        $menu->roles()->detach();
-        //Insert permission
-        if ($roles) {
-            $menu->roles()->attach($roles);
-        }
-
-//
         return redirect()->back()->with('success', trans('menu.admin.edit_success'));
 
     }

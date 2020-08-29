@@ -43,9 +43,9 @@ class ShopUser extends Authenticatable
         return $this->hasMany(ShopUserAddress::class, 'user_id', 'id');
     }
 
-    public static function getList()
+    public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;
@@ -121,13 +121,15 @@ class ShopUser extends Authenticatable
     {
         $dataClean = sc_clean($dataInsert, 'password');
         $dataAddress = [
-            'first_name' => $dataClean['first_name'] ?? '',
-            'last_name' => $dataClean['last_name'] ?? '',
-            'postcode' => $dataClean['postcode'] ?? '',
-            'address1' => $dataClean['address1'] ?? '',
-            'address2' => $dataClean['address2'] ?? '',
-            'country' => $dataClean['country'] ?? '',
-            'phone' => $dataClean['phone'] ?? '',
+            'first_name'      => $dataClean['first_name'] ?? '',
+            'last_name'       => $dataClean['last_name'] ?? '',
+            'first_name_kana' => $dataClean['first_name_kana'] ?? '',
+            'last_name_kana'  => $dataClean['last_name_kana'] ?? '',
+            'postcode'        => $dataClean['postcode'] ?? '',
+            'address1'        => $dataClean['address1'] ?? '',
+            'address2'        => $dataClean['address2'] ?? '',
+            'country'         => $dataClean['country'] ?? '',
+            'phone'           => $dataClean['phone'] ?? '',
         ];
         $user = self::create($dataClean);
         $address = $user->addresses()->save(new ShopUserAddress($dataAddress));

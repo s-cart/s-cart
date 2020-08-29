@@ -11,7 +11,7 @@ class AdminTemplateOnlineController extends Controller
     {
         $arrTemplateLibrary = [];
         $sc_version = config('scart.version');
-        $only_version = request('only_version', 0);
+        $all_version = request('all_version', 0);
         $only_free = request('only_free', 0);
         $sort_download = request('sort_download', 0);
         $sort_rating = request('sort_rating', 0);
@@ -20,8 +20,8 @@ class AdminTemplateOnlineController extends Controller
         $search_keyword = request('search_keyword', '');
         $page = request('page') ?? 1;
         $url = config('scart.api_link').'/templates/?page[size]=20&page[number]='.$page;
-        if($only_version) {
-            $url .='&sc='.$sc_version;
+        if(!$all_version) {
+            $url .='&version='.$sc_version;
         }
         if($only_free) {
             $url .='&free=1';
@@ -84,7 +84,7 @@ class AdminTemplateOnlineController extends Controller
                     "title" => $title,
                     "arrTemplateLocal" => sc_get_all_template(),
                     "arrTemplateLibrary" => $arrTemplateLibrary,
-                    "only_version" => $only_version,
+                    "all_version" => $all_version,
                     "only_free" => $only_free,
                     "search_keyword" => $search_keyword ?? '',
                     "sort_price_asc" => $sort_price_asc ?? 0,

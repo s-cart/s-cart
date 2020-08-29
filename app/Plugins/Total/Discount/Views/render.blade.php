@@ -5,9 +5,11 @@
       </label>
       <div id="coupon-group" class="input-group {{ Session::has('error_discount')?'has-error':'' }}">
         <input type="text" {{ ($plugin['permission'])?'':'disabled' }} placeholder="Your coupon" class="form-control" id="coupon-value" aria-describedby="inputGroupSuccess3Status">
-        <span class="input-group-addon {{ ($plugin['permission'])?'':'disabled' }}"  {!! ($plugin['permission'])?'id="coupon-button"':'' !!} style="cursor: pointer;" data-loading-text="<i class='fa fa-spinner fa-spin'></i> checking">{{ trans('cart.apply') }}</span>
+        <div class="input-group-prepend">
+        <span class="input-group-text {{ ($plugin['permission'])?'':'disabled' }}"  {!! ($plugin['permission'])?'id="coupon-button"':'' !!} style="cursor: pointer;" data-loading-text="<i class='fa fa-spinner fa-spin'></i> checking">{{ trans('cart.apply') }}</span>
+        </div>
       </div>
       <span class="status-coupon" style="display: none;" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-      <div class="coupon-msg  {{ Session::has('error_discount')?'text-danger':'' }}" style="text-align: left;padding-left: 10px;">{{ Session::has('error_discount')?Session::get('error_discount'):'' }}</div>
+      <div class="coupon-msg  {{ Session::has('error_discount')?'text-danger':'' }}" style="text-align: left;padding-left: 10px; {{ Session::has('error_discount')? 'color:red':'' }}">{{ Session::has('error_discount')?Session::get('error_discount'):'' }}</div>
     </div>
 </div>

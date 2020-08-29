@@ -12,12 +12,22 @@ Route::group(
     foreach (glob(__DIR__ . '/Routes/*.php') as $filename) {
         require_once $filename;
     }
-    $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->get('deny', 'HomeController@deny')->name('admin.deny');
+    $router->get('/', 'DashboardController@index')->name('admin.home');
+    $router->get('deny', 'DashboardController@deny')->name('admin.deny');
+    $router->get('deny_single', 'DashboardController@denySingle')->name('admin.deny_single');
 
     //Language
     $router->get('locale/{code}', function ($code) {
         session(['locale' => $code]);
         return back();
     })->name('admin.locale');
+
+    //theme
+    $router->get('theme/{theme}', function ($theme) {
+        session(['adminTheme' => $theme]);
+        if (!\Admin::user()->isViewAll()) {
+            \Admin::user()->update(['theme' => $theme]);
+        }
+        return back();
+    })->name('admin.theme');
 });

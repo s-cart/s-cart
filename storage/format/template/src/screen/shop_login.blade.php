@@ -4,9 +4,9 @@ $layout_page = shop_auth
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 
     <section id="form-login"><!--form-->
         <div class="container">
@@ -14,7 +14,7 @@ $layout_page = shop_auth
                 <h2 class="title text-center">{{ $title }}</h2>
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
-                        @include($templatePath.'.auth.login')
+                        @include($sc_templatePath.'.auth.login')
                     </div><!--/login form-->
                 </div>
 
@@ -24,7 +24,7 @@ $layout_page = shop_auth
 
                 <div class="col-sm-4">
                     <div class="signup-form"><!--sign up form-->
-                        @include($templatePath.'.auth.register')
+                        @include($sc_templatePath.'.auth.register')
                     </div><!--/sign up form-->
                 </div>
 
@@ -36,7 +36,7 @@ $layout_page = shop_auth
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

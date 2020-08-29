@@ -1,9 +1,9 @@
 <?php
 $router->group(['prefix' => 'category'], function ($router) {
-    $router->get('/', 'ShopCategoryController@index')->name('admin_category.index');
-    $router->get('create', 'ShopCategoryController@create')->name('admin_category.create');
-    $router->post('/create', 'ShopCategoryController@postCreate')->name('admin_category.create');
-    $router->get('/edit/{id}', 'ShopCategoryController@edit')->name('admin_category.edit');
-    $router->post('/edit/{id}', 'ShopCategoryController@postEdit')->name('admin_category.edit');
-    $router->post('/delete', 'ShopCategoryController@deleteList')->name('admin_category.delete');
+    $router->get('/', 'AdminCategoryController@index')->name('admin_category.index');
+    $router->get('create', 'AdminCategoryController@create')->name('admin_category.create');
+    $router->post('/create', 'AdminCategoryController@postCreate')->name('admin_category.create');
+    $router->get('/edit/{id}', 'AdminCategoryController@edit')->name('admin_category.edit');
+    $router->post('/edit/{id}', 'AdminCategoryController@postEdit')->name('admin_category.edit');
+    $router->post('/delete', 'AdminCategoryController@deleteList')->name('admin_category.delete');
 });

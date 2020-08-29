@@ -21,6 +21,8 @@ return [
     'status'                => 'Trạng thái',
     'shipping_first_name'   => 'Tên',
     'shipping_last_name'    => 'Họ',
+    'shipping_first_name_kana' => 'Tên kana',
+    'shipping_last_name_kana' => 'Họ kana',
     'shipping_address'      => 'Địa chỉ nhận hàng',
     'shipping_address1'     => 'Tỉnh/Thành',
     'address1'              => 'Tỉnh/Thành',
@@ -78,7 +80,7 @@ return [
     ],
     'admin'                 => [
         'title'                => 'Quản lý đơn hàng',
-        'config_title'         => 'Cấu hình thông tin đơn hàng',
+        'config_title'         => 'Cấu hình đơn hàng',
         'create_success'       => 'Tạo đơn hàng thành công!',
         'list'                 => 'Danh sách đơn hàng',
         'id'                   => 'ID',

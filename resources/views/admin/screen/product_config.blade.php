@@ -5,59 +5,24 @@
 <div class="row">
 
   <div class="col-md-6">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.config_info') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('product.admin.setting_info') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('product.config_manager.field') }}</th>
-             <th>{{ trans('product.config_manager.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
-           @foreach ($configs as $config)
-             <tr>
-               <td>{{ sc_language_render($config->detail) }}</td>
-               <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
-             </tr>
-           @endforeach
-         </tbody>
-       </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('product.admin.setting_info') }}</h3>
-      </div>
-
-      <div class="box-body table-responsive no-padding box-primary">
-       <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('setting.admin.field') }}</th>
-             <th>{{ trans('setting.admin.value') }}</th>
-           </tr>
-         </thead>
-         <tbody>
-           @foreach ($productSetting as $config)
-           @if ($config->key == 'product_tax')
+           @foreach ($productConfig as $config)
+           @if ($config['key'] == 'product_tax')
            <tr>
             <td>{{ trans('product.config_manager.tax') }}</td>
-            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="fied-required" data-name="product_tax" data-type="select" data-pk="" data-source="{{ json_encode($taxs) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('product.config_manager.tax') }}" data-value="{{ sc_config('product_tax') }}" data-original-title="" title="" data-placement="left"></a></td>
           </tr>
            @else
            <tr>
-            <td>{{ sc_language_render($config->detail) }}</td>
-            <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+            <td>{{ sc_language_render($config['detail']) }}</td>
+            <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
           </tr>
            @endif
 
@@ -68,7 +33,38 @@
     </div>
   </div>
 
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('product.admin.setting_info') }}</h3>
+      </div>
 
+      <div class="card-body table-responsivep-0">
+       <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>{{ trans('product.config_manager.field') }}</th>
+            <th>{{ trans('product.config_manager.value') }}</th>
+            <th>{{ trans('product.config_manager.required') }}</th>
+          </tr>
+        </thead>
+         <tbody>
+           @foreach ($productConfigAttribute as $key => $config)
+           <tr>
+            <td>{{ sc_language_render($config['detail']) }}</td>
+            <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
+            <td>
+              @if (!empty($productConfigAttributeRequired[$key.'_required']))
+              <input type="checkbox" name="{{ $productConfigAttributeRequired[$key.'_required']['key'] }}"  {{ $productConfigAttributeRequired[$key.'_required']['value']?"checked":"" }}>
+              @endif
+            </td>
+          </tr>
+           @endforeach
+         </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -220,7 +216,7 @@ $('.grid-trash').on('click', function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

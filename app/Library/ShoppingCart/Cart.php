@@ -3,7 +3,6 @@
 namespace App\Library\ShoppingCart;
 
 use App\Library\ShoppingCart\Exceptions\CartAlreadyStoredException;
-use App\Library\ShoppingCart\Exceptions\InvalidRowIDException;
 use App\Library\ShoppingCart\Exceptions\UnknownModelException;
 use Closure;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -114,7 +113,10 @@ class Cart
     public function update($rowId, $qty)
     {
         $cartItem = $this->get($rowId);
-
+        if (!$cartItem) {
+            return;
+        }
+        
        if (is_array($qty)) {
             $cartItem->updateFromArray($qty);
         } else {
@@ -176,7 +178,7 @@ class Cart
         $content = $this->getContent();
 
         if (!$content->has($rowId)) {
-            throw new InvalidRowIDException("The cart does not contain rowId {$rowId}.");
+            return;
         }
 
         return $content->get($rowId);
@@ -446,7 +448,7 @@ class Cart
     /*
     Get list Cart
     */
-    public static function getListCart($instance = 'default')
+    public static function getListCart($instance = self::DEFAULT_INSTANCE)
     {
         $cart = \Cart::instance($instance);
         $arrCart['count'] = $cart->count();

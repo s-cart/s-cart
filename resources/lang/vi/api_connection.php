@@ -6,8 +6,10 @@ return [
     'apiconnection' => 'Tài khoản kết nối',
     'expire' => 'Hết hạn',
     'api_connection_required' => 'Yêu cầu tài khoản connection',
-    'api_connection_required_help' => 'Phải có tài khoản connection để kết nối API.<br>
-    <b>Danh sách API:</b><br>
+    'api_connection_required_help' => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Phải có tài khoản connection để kết nối API.<br>
+    <a href="https://s-cart.org/docs/master/api-shop-info.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true">Xem chi tiết ở đây</i></a>
+    <hr>
+    <b>Danh sách API hỗ trợ:</b><br>
     <i>
     '.url('api/auth/login').'<br>
     '.url('api/auth/create').'<br>

@@ -24,7 +24,7 @@ return [
         'edit' => 'Sửa',
         'add_new' => 'Thêm mới',
         'add_new_title' => 'Tạo người dùng',
-        'add_new_des' => 'Tạo mới một người dùng',
+        'add_new_des' => 'Tạo mới người dùng',
         'export' => 'Xuất',
         'refresh' => 'Làm mới',
         'result_item' => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',

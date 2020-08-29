@@ -21,9 +21,9 @@ class ShopTax extends Model
      *
      * @return  [type]  [return description]
      */
-    public static function getList()
+    public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;
@@ -36,7 +36,7 @@ class ShopTax extends Model
      */
     public static function getArrayId()
     {
-        if (self::$arrayId == null) {
+        if (self::$arrayId === null) {
             self::$arrayId = self::pluck('id')->all();
         }
         return self::$arrayId;
@@ -49,7 +49,7 @@ class ShopTax extends Model
      */
     public static function getArrayValue()
     {
-        if (self::$arrayValue == null) {
+        if (self::$arrayValue === null) {
             self::$arrayValue = self::pluck('value', 'id')->all();
         }
         return self::$arrayValue;
@@ -63,7 +63,7 @@ class ShopTax extends Model
      */
     public static function checkStatus() {
         $arrTaxId = self::getArrayId();
-        if (self::$status == null) {
+        if (self::$status === null) {
             if(!sc_config('product_tax')) {
                 $status = 0;
             } else {

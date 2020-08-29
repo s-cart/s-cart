@@ -9,22 +9,21 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">
-          <div class="btn-group">
-            <a class="btn btn-warning btn-flat btn-sm menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
-          </div>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">
+          <h3 class="card-title">
+            <a class="btn btn-warning btn-flat menu-sort-save" title="Save"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;Save</span></a>
+          </h3>
         </h3>
       </div>
 
-      <div class="box-body table-responsive box-primary">
-
-<div class="dd" id="menu-sort">
-    <ol class="dd-list">
+<div class="card-body p-0">
+  <div class="box-body table-responsive">
+  <div class="dd" id="menu-sort">
+      <ol class="dd-list">
 @php
   $menus = Admin::getMenu();
-  // print_r($menus);
 @endphp
 {{-- Level 0 --}}
         @foreach ($menus[0] as $level0)
@@ -32,32 +31,32 @@
             <li class="dd-item " data-id="{{ $level0->id }}">
                 <div class="dd-handle header-fix  {{ ($level0->id == $id)? 'active-item' : '' }}">
                   {!! sc_language_render($level0->title) !!}
-                  <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-2x"></i></a>
+                  <span class="float-right dd-nodrag">
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit"></i></a>
                       &nbsp; 
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-2x"></i></a>
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
                   </span>
                 </div>
             </li>
           @elseif($level0->uri)
             <li class="dd-item" data-id="{{ $level0->id }}">
                 <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
-                  <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
-                  <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                  <i class="{{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
+                  <span class="float-right dd-nodrag">
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                       &nbsp; 
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                   </span>
                 </div>
             </li>
           @else
             <li class="dd-item " data-id="{{ $level0->id }}">
               <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
-                <i class="fa {{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
-                  <span class="pull-right dd-nodrag">
-                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                <i class="{{ $level0->icon }}"></i> {!! sc_language_render($level0->title) !!}
+                  <span class="float-right dd-nodrag">
+                      <a href="{{ route('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                       &nbsp; 
-                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                      <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                   </span>
               </div>
     {{-- Level 1 --}}
@@ -67,22 +66,22 @@
                   @if($level1->uri)
                     <li class="dd-item" data-id="{{ $level1->id }}">
                         <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
-                          <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
-                          <span class="pull-right dd-nodrag">
-                              <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                          <i class="{{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
+                          <span class="float-right dd-nodrag">
+                              <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                               &nbsp; 
-                              <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                              <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                           </span>
                         </div>
                     </li>
                   @else
                   <li class="dd-item" data-id="{{ $level1->id }}">
                     <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
-                      <i class="fa {{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
-                      <span class="pull-right dd-nodrag">
-                          <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                      <i class="{{ $level1->icon }}"></i> {!! sc_language_render($level1->title) !!}
+                      <span class="float-right dd-nodrag">
+                          <a href="{{ route('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                           &nbsp; 
-                          <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                          <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                       </span>
                     </div>
             {{-- LEvel 2  --}}
@@ -92,22 +91,22 @@
                               @if($level2->uri)
                                 <li class="dd-item" data-id="{{ $level2->id }}">
                                     <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
-                                      <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
-                                      <span class="pull-right dd-nodrag">
-                                          <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                                      <i class="{{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
+                                      <span class="float-right dd-nodrag">
+                                          <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                                           &nbsp; 
-                                          <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                                          <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                                       </span>
                                     </div>
                                 </li>
                               @else
                               <li class="dd-item" data-id="{{ $level2->id }}">
                                 <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
-                                  <i class="fa {{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
-                                  <span class="pull-right dd-nodrag">
-                                      <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit fa-2x"></i></a>
+                                  <i class="{{ $level2->icon }}"></i> {!! sc_language_render($level2->title) !!}
+                                  <span class="float-right dd-nodrag">
+                                      <a href="{{ route('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                                       &nbsp; 
-                                      <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit fa-2x"></i></a>
+                                      <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
                                   </span>
                                 </li>
                               @endif
@@ -132,16 +131,17 @@
 
       </div>
     </div>
+    </div>
   </div>
 
   <div class="col-md-6">
 
-    <div class="box box-primary">   
-              <div class="box-header with-border">
-                <h3 class="box-title">{!! $title_form !!}</h3>
+    <div class="card">   
+              <div class="card-header with-border">
+                <h3 class="card-title">{!! $title_form !!}</h3>
                 @if ($layout == 'edit')
-                <div class="box-tools">
-                    <div class="btn-group pull-right" style="margin-right: 5px">
+                <div class="card-tools">
+                    <div class="btn-group float-right" style="margin-right: 5px">
                         <a href="{{ route('admin_menu.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>
@@ -150,162 +150,129 @@
    
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
-                    <div class="box-body">
-                        <div class="fields-group">
+                    <div class="card-body">
 
-                            <div class="form-group   {{ $errors->has('parent_id') ? ' has-error' : '' }}">
-                                <label for="name" class="col-sm-2 col-form-label">{{ trans('menu.admin.parent') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control parent select2" style="width: 100%;" name="parent_id" >
-                                        <option value=""></option>
-                                        <option value="0" {{ (old('parent',$menu['parent']??'') ==0) ? 'selected':'' }}>== ROOT ==</option>
-                                        @foreach ($treeMenu as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('parent',$menu['parent_id']??'') ==$k) ? 'selected':'' }}>{!! $v !!}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                {{ $errors->first('parent_id') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group   {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-sm-2 col-form-label">{{ trans('menu.admin.title') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="title" name="title" value="{{ old('title',$menu['title']??'') }}" class="form-control title" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('title'))
-                                            <span class="help-block">
-                                                {{ $errors->first('title') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                          <div class="form-group">
-                              <label for="icon" class="col-sm-2 col-form-label">{{ trans('menu.admin.icon') }}</label>
-                              <div class="col-sm-8">
-                                  <div class="input-group">
-                                      <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                      <input required="1" style="width: 140px" type="text" id="icon" name="icon" value="{{ old('icon',$menu['icon']??'fa-bars') }}" class="form-control icon" placeholder="Input Icon" />
-                                  </div>
-                              </div>
-                          </div>
-
-                            <div class="form-group   {{ $errors->has('uri') ? ' has-error' : '' }}">
-                                <label for="uri" class="col-sm-2 col-form-label">{{ trans('menu.admin.uri') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="text"   id="uri" name="uri" value="{{ old('uri',$menu['uri']??'') }}" class="form-control uri" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('uri'))
-                                            <span class="help-block">
-                                                {{ $errors->first('uri') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group    {{ $errors->has('sort') ? ' has-error' : '' }}">
-                                <label for="sort" class="col-sm-2 col-form-label">{{ trans('menu.admin.sort') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                        <input type="number" style="width: 100px;"  id="sort" name="sort" value="{!! old('sort',$menu['sort']??0)??0 !!}" class="form-control input-sm sort" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('sort'))
-                                            <span class="help-block">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-{{-- select role --}}
-                            <div class="form-group  {{ $errors->has('roles') ? ' has-error' : '' }}">
-                              @php
-                              $listRoles = [];
-                              $old_roles = old('roles',($menu?$menu->roles->pluck('id')->toArray():''));
-                                  if(is_array($old_roles)){
-                                      foreach($old_roles as $value){
-                                          $listRoles[] = (int)$value;
-                                      }
-                                  }
-                              @endphp
-                                <label for="roles" class="col-sm-2 col-form-label">{{ trans('menu.admin.roles') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control input-sm roles select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="roles[]" >
-                                        <option value=""></option>
-                                        @foreach ($roles as $k => $v)
-                                            <option value="{{ $k }}"  {{ (count($listRoles) && in_array($k, $listRoles))?'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('roles'))
-                                            <span class="help-block">
-                                                {{ $errors->first('roles') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-{{-- //select role --}}
-
-
-{{-- select permission --}}
-                            <div class="form-group  {{ $errors->has('permissions') ? ' has-error' : '' }}">
-                              @php
-                              $listPermission = [];
-                              $old_permission = old('permissions',($menu?$menu->permissions->pluck('id')->toArray():''));
-                                  if(is_array($old_permission)){
-                                      foreach($old_permission as $value){
-                                          $listPermission[] = (int)$value;
-                                      }
-                                  }
-                              @endphp
-                                <label for="permissions" class="col-sm-2 col-form-label">{{ trans('menu.admin.permissions') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control input-sm permissions select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permissions[]" >
-                                        <option value=""></option>
-                                        @foreach ($permissions as $k => $v)
-                                            <option value="{{ $k }}"  {{ (count($listPermission) && in_array($k, $listPermission))?'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('permissions'))
-                                            <span class="help-block">
-                                                {{ $errors->first('permissions') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-{{-- //select permission --}}
-
-
-                          </div>
+                      <div class="form-group row {{ $errors->has('parent_id') ? ' text-red' : '' }}">
+                        <label for="parent_id" class="col-sm-2 col-form-label">{{ trans('menu.admin.parent') }}</label>
+                        <div class="col-sm-10 ">
+                          <select class="form-control parent mb-3" name="parent_id" >
+                            <option value=""></option>
+                            <option value="0" {{ (old('parent',$menu['parent']??'') ==0) ? 'selected':'' }}>== ROOT ==</option>
+                            @foreach ($treeMenu as $k => $v)
+                                <option value="{{ $k }}" {{ (old('parent',$menu['parent_id']??'') ==$k) ? 'selected':'' }}>{!! $v !!}</option>
+                            @endforeach
+                        </select>
+            
+                          @if ($errors->has('parent_id'))
+                          <span class="text-sm">
+                            <i class="fa fa-info-circle"></i> {{ $errors->first('parent_id') }}
+                          </span>
+                          @endif
+            
                         </div>
+                      </div>
 
-                    <!-- /.box-body -->
+                      <div class="form-group row {{ $errors->has('title') ? ' text-red' : '' }}">
+                        <label for="title" class="col-sm-2 col-form-label">{{ trans('menu.admin.title') }}</label>
+                        <div class="col-sm-10 ">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                            </div>
+                            <input type="text" id="title" name="title" value="{!! old()?old('title'):$menu['title']??'' !!}" class="form-control title {{ $errors->has('title') ? ' is-invalid' : '' }}">
+                          </div>
+            
+                          @if ($errors->has('title'))
+                          <span class="text-sm">
+                            <i class="fa fa-info-circle"></i> {{ $errors->first('title') }}
+                          </span>
+                          @endif
+            
+                        </div>
+                      </div>
 
-                    <div class="box-footer">
+                      <div class="form-group row {{ $errors->has('icon') ? ' text-red' : '' }}">
+                        <label for="icon" class="col-sm-2 col-form-label">{{ trans('menu.admin.icon') }}</label>
+                        <div class="col-sm-10 ">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <span class="input-group-addon">
+                                <i class="fas fa-pencil-alt"></i>
+                              </span>
+                              </span>
+                            </div>
+                            <input required="1" style="width: 140px" type="text" id="icon" name="icon" value="{!! old()?old('icon'):$menu['icon']??'fas fa-bars' !!}" class="form-control icon {{ $errors->has('icon') ? ' is-invalid' : '' }} " placeholder="Input Icon">
+                          </div>
+                          
+            
+                          @if ($errors->has('icon'))
+                          <span class="text-sm">
+                            <i class="fa fa-info-circle"></i> {{ $errors->first('icon') }}
+                          </span>
+                          @endif
+            
+                        </div>
+                      </div>
+
+                      <div class="form-group row {{ $errors->has('uri') ? ' text-red' : '' }}">
+                        <label for="uri" class="col-sm-2 col-form-label">{{ trans('menu.admin.uri') }}</label>
+                        <div class="col-sm-10 ">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                            </div>
+                            <input type="text" id="uri" name="uri" value="{!! old()?old('uri'):$menu['uri']??'' !!}" class="form-control uri {{ $errors->has('uri') ? ' is-invalid' : '' }}" placeholder="Input uri">
+                          </div>
+            
+                          @if ($errors->has('uri'))
+                          <span class="text-sm">
+                            <i class="fa fa-info-circle"></i> {{ $errors->first('uri') }}
+                          </span>
+                          @endif
+            
+                        </div>
+                      </div>
+
+                      <div class="form-group row {{ $errors->has('sort') ? ' text-red' : '' }}">
+                        <label for="sort" class="col-sm-2 col-form-label">{{ trans('menu.admin.sort') }}</label>
+                        <div class="col-sm-10 ">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                            </div>
+                            <input type="number" style="width: 100px;" id="sort" name="sort" value="{!! old()?old('sort'):$menu['sort']??'' !!}" class="form-control sort {{ $errors->has('sort') ? ' is-invalid' : '' }}" placeholder="Input sort">
+                          </div>
+            
+                          @if ($errors->has('sort'))
+                          <span class="text-sm">
+                            <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
+                          </span>
+                          @endif
+            
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer row">
                             @csrf
                         <div class="col-md-2">
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
 
-                            <div class="btn-group pull-left">
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
 
                       </form>
 
@@ -320,23 +287,6 @@
 <!-- Ediable -->
 <link rel="stylesheet" href="{{ asset('admin/plugin/nestable/jquery.nestable.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.css')}}">
-
-<style type="text/css">
-  .header-fix,.header-fix:hover{
-    background: #8cc1dc;
-    border-radius: 0px;
-    color:#424242;
-  }
-  .dd-handle{
-    border-radius: 0px;
-  }
-  .remove_menu{
-    cursor: pointer;
-  }
-  .dd-handle:hover, .active-item{
-    background: #c9d3d8;
-  }
-</style>
 @endpush
 
 @push('scripts')
@@ -344,7 +294,6 @@
 
 <script src="{{ asset('admin/plugin/nestable/jquery.nestable.min.js')}}"></script>
 <script src="{{ asset('admin/plugin/iconpicker/fontawesome-iconpicker.min.js')}}"></script>
-
 
 <script type="text/javascript">
 $('.remove_menu').click(function(event) {
@@ -382,7 +331,7 @@ $('.remove_menu').click(function(event) {
                       return;
                     }else{
                       alertMsg('success', 'Success');
-                      location.reload();
+                      window.location.replace('{{ route('admin_menu.index') }}');
                     }
 
                 }
@@ -437,14 +386,10 @@ $('.menu-sort-save').click(function () {
 $(document).ready(function() {
     $('.active-item').parents('li').removeClass('dd-collapsed');
 
-    $('.select2').select2();
+    // $('.select2').select2();
       //icon picker
-    $('.icon').iconpicker({placement:'bottomLeft'});
+    $('.icon').iconpicker({placement:'bottomLeft', animation: false});
 });
 
 </script>
 @endpush
-
-@section('version-jquery')
-  <script src="{{ asset('admin/AdminLTE/bower_components/jquery/dist/jQuery-2.1.4.min.js')}}"></script>
-@endsection

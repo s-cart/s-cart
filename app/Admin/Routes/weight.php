@@ -1,9 +1,9 @@
 <?php
 $router->group(['prefix' => 'weight_unit'], function ($router) {
-    $router->get('/', 'ShopWeightController@index')->name('admin_weight_unit.index');
-    $router->get('create', 'ShopWeightController@create')->name('admin_weight_unit.create');
-    $router->post('/create', 'ShopWeightController@postCreate')->name('admin_weight_unit.create');
-    $router->get('/edit/{id}', 'ShopWeightController@edit')->name('admin_weight_unit.edit');
-    $router->post('/edit/{id}', 'ShopWeightController@postEdit')->name('admin_weight_unit.edit');
-    $router->post('/delete', 'ShopWeightController@deleteList')->name('admin_weight_unit.delete');
+    $router->get('/', 'AdminWeightController@index')->name('admin_weight_unit.index');
+    $router->get('create', 'AdminWeightController@create')->name('admin_weight_unit.create');
+    $router->post('/create', 'AdminWeightController@postCreate')->name('admin_weight_unit.create');
+    $router->get('/edit/{id}', 'AdminWeightController@edit')->name('admin_weight_unit.edit');
+    $router->post('/edit/{id}', 'AdminWeightController@postEdit')->name('admin_weight_unit.edit');
+    $router->post('/delete', 'AdminWeightController@deleteList')->name('admin_weight_unit.delete');
 });

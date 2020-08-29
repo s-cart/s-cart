@@ -5,7 +5,8 @@ use App\Models\AdminStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 /*
 Get all block content
  */
@@ -60,34 +61,84 @@ if (!function_exists('sc_word_format_url')) {
     }
 }
 
-/*
-Config info
- */
 if (!function_exists('sc_config')) {
-    function sc_config($key = null, $default = null)
+    /**
+     * Get value config from table sc_config
+     *
+     * @param   [string|array] $key      [$key description]
+     * @param   [null|int]  $store    Store id.
+     *
+     * @return  [type]          [return description]
+     */
+    function sc_config($key = null, $storeId = null)
     {
+        $storeId = ($storeId === null) ? config('app.storeId') : $storeId;
+        //Update config
+        if (is_array($key)) {
+            if (count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminConfig::where('store_id', $storeId)->where('key', $k)->update(['value' => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+
+        $allConfig = AdminConfig::getAllStore($storeId);
+
+        if ($key === null) {
+            return $allConfig;
+        }
+        return $allConfig[$key] ?? (sc_config_global()[$key] ?? null);
+    }
+}
+
+
+if (!function_exists('sc_config_global')) {
+    /**
+     * Get value config from table sc_config for store_id 0
+     *
+     * @param   [string|array] $key      [$key description]
+     * @param   [null|int]  $store    Store id.
+     *
+     * @return  [type]          [return description]
+     */
+    function sc_config_global($key = null)
+    {
+        //Update config
+        if (is_array($key)) {
+            if (count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminConfig::where('store_id', 0)->where('key', $k)->update(['value' => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+        
         $allConfig = [];
         try {
-            $allConfig = AdminConfig::getAll();
+            $allConfig = AdminConfig::getAllGlobal();
         } catch(\Throwable $e) {
             //
         }
-        if ($key == null) {
+        if ($key === null) {
             return $allConfig;
         }
         if (!array_key_exists($key, $allConfig)) {
-            return $default;
+            return null;
         } else {
             return trim($allConfig[$key]);
         }
     }
 }
 
-
-/*
-Group Config info
- */
 if (!function_exists('sc_config_group')) {
+    /*
+    Group Config info
+     */
     function sc_config_group($group = null, $suffix = null)
     {
         $groupData = AdminConfig::getGroup($group, $suffix);
@@ -95,13 +146,39 @@ if (!function_exists('sc_config_group')) {
     }
 }
 
-/*
-Store info
- */
+
 if (!function_exists('sc_store')) {
-    function sc_store($key = null, $default = null)
+    /**
+     * Get info store
+     *
+     * @param   [string] $key      [$key description]
+     * @param   [null|int]  $store    store id
+     *
+     * @return  [mix] 
+     */
+    function sc_store($key = null, $store = null)
     {
-        $allStoreInfo = AdminStore::getData() ? AdminStore::getData()->toArray() : [];
+        $store = ($store == null) ? config('app.storeId') : $store;
+
+        //Update store info
+        if (is_array($key)) {
+            if (count($key) == 1) {
+                foreach ($key as $k => $v) {
+                    return AdminStore::where('store_id', $store)->update([$k => $v]);
+                }
+            } else {
+                return false;
+            }
+        }
+        //End update
+
+        $allStoreInfo = [];
+        try {
+            $allStoreInfo = AdminStore::getListAll()[$store]->toArray() ?? [];
+        } catch(\Throwable $e) {
+            //
+        }
+
         $lang = app()->getLocale();
         $descriptions = $allStoreInfo['descriptions'] ?? [];
         foreach ($descriptions as $row) {
@@ -112,18 +189,14 @@ if (!function_exists('sc_store')) {
         if ($key == null) {
             return $allStoreInfo;
         }
-        if (!array_key_exists($key, $allStoreInfo)) {
-            return $default;
-        } else {
-            return is_array($allStoreInfo[$key]) ?: trim($allStoreInfo[$key]);
-        }
+        return $allStoreInfo[$key] ?? null;
     }
 }
 
-/*
-url render
- */
 if (!function_exists('sc_url_render')) {
+    /*
+    url render
+     */
     function sc_url_render($string)
     {
         $arrCheckRoute = explode('route::', $string);
@@ -133,14 +206,14 @@ if (!function_exists('sc_url_render')) {
             $arrRoute = explode('::', $string);
             if (isset($arrRoute[2])) {
                 try {
-                    return route($arrRoute[1], $arrRoute[2]);
+                    return sc_route($arrRoute[1], $arrRoute[2]);
                 } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
                 }  
             } else {
                 try {
-                    return route($arrRoute[1]);
+                    return sc_route($arrRoute[1]);
                 } catch(\Throwable $e) {
                     sc_report($e->getMessage());
                     return false;
@@ -149,7 +222,7 @@ if (!function_exists('sc_url_render')) {
         }
 
         if (count($arrCheckUrl) == 2) {
-            $string = \Illuminate\Support\Str::start($arrCheckUrl[1], '/');
+            $string = Str::start($arrCheckUrl[1], '/');
             $string = SC_ADMIN_PREFIX . $string;
             return url($string);
         }
@@ -157,18 +230,18 @@ if (!function_exists('sc_url_render')) {
     }
 }
 
-//Get all language
 if (!function_exists('sc_language_all')) {
+    //Get all language
     function sc_language_all()
     {
-        return ShopLanguage::getList();
+        return ShopLanguage::getListActive();
     }
 }
 
-/*
-Render language
- */
 if (!function_exists('sc_language_render')) {
+    /*
+    Render language
+     */
     function sc_language_render($string)
     {
         $arrCheck = explode('lang::', $string);
@@ -180,10 +253,10 @@ if (!function_exists('sc_language_render')) {
     }
 }
 
-/*
-Html render
- */
 if (!function_exists('sc_html_render')) {
+    /*
+    Html render
+     */
     function sc_html_render($string)
     {
         $string = htmlspecialchars_decode($string);
@@ -191,33 +264,33 @@ if (!function_exists('sc_html_render')) {
     }
 }
 
-/*
-Format class name
- */
 if (!function_exists('sc_word_format_class')) {
+    /*
+    Format class name
+     */
     function sc_word_format_class($word)
     {
-        $word = \Illuminate\Support\Str::camel($word);
+        $word = Str::camel($word);
         $word = ucfirst($word);
         return $word;
     }
 }
 
-/*
-Truncates words
- */
 if (!function_exists('sc_word_limit')) {
+    /*
+    Truncates words
+     */
     function sc_word_limit($word, $limit = 20, $arg = '')
     {
-        $word = \Illuminate\Support\Str::limit($word, $limit, $arg);
+        $word = Str::limit($word, $limit, $arg);
         return $word;
     }
 }
 
-/**
- * Clear data
- */
 if (!function_exists('sc_clean')) {
+    /**
+     * Clear data
+     */
     function sc_clean($data = null, $exclude = [], $level_hight = null)
     {
         if ($level_hight) {
@@ -250,25 +323,25 @@ if (!function_exists('sc_clean')) {
     }
 }
 
-/*
-Create random token
- */
 if (!function_exists('sc_token')) {
+    /*
+    Create random token
+     */
     function sc_token($length = 32)
     {
-        $token = \Illuminate\Support\Str::random($length);
+        $token = Str::random($length);
         return $token;
     }
 }
 
-/*
-Handle report
- */
 if (!function_exists('sc_report')) {
+    /*
+    Handle report
+     */
     function sc_report($msg)
     {
         $msg = date('Y-m-d H:i:s').':'.PHP_EOL.$msg.PHP_EOL;       
-        if(config('logging.channels.slack.url')) {
+        if (config('logging.channels.slack.url')) {
             \Log::channel('slack')->error($msg);
         }
         \Log::channel('handle')->error($msg);
@@ -276,10 +349,10 @@ if (!function_exists('sc_report')) {
 }
 
 
-/*
-Zip file or folder
- */
 if (!function_exists('sc_zip')) {
+    /*
+    Zip file or folder
+     */
     function sc_zip(string $source, string $destination)
     {
         if (extension_loaded('zip')) {
@@ -311,12 +384,13 @@ if (!function_exists('sc_zip')) {
     }
 }
 
-/**
- * Unzip file to folder
- *
- * @return  [type]  [return description]
- */
+
 if (!function_exists('sc_unzip')) {
+    /**
+     * Unzip file to folder
+     *
+     * @return  [type]  [return description]
+     */
     function sc_unzip(string $source, string $destination)
     {
         $zip = new \ZipArchive();
@@ -328,20 +402,22 @@ if (!function_exists('sc_unzip')) {
     }
 }
 
-/*
-Get locale
-*/
+
 if (!function_exists('sc_get_locale')) {
+    /*
+    Get locale
+    */
     function sc_get_locale()
     {
         return app()->getLocale();
     }
 }
 
-/*
-Get all template
-*/
+
 if (!function_exists('sc_get_all_template')) {
+    /*
+    Get all template
+    */
     function sc_get_all_template()
     {
         $arrTemplates = [];
@@ -360,37 +436,21 @@ if (!function_exists('sc_get_all_template')) {
     }
 }
 
-/*
-    Return price with tax
-*/
-if (!function_exists('sc_tax_price')) {
-    function sc_tax_price($price, $tax)
-    {
-        return floor($price * (100 + $tax) /100);
-    }
-}
 
-/**
- * Render html option price
- *
- * @param   string $arrtribute  format: attribute-name__value-option-price
- * @param   string $currency    code currency
- * @param   string  $rate        rate exchange
- * @param   string               [ description]
- *
- * @return  [type]             [return description]
- */
-if (!function_exists('sc_render_option_price')) {
-    function sc_render_option_price($arrtribute, $currency = null, $rate = null)
+if (!function_exists('sc_route')) {
+    /**
+     * Render route
+     *
+     * @param   [string]  $name
+     *
+     * @return  [type]         [return description]
+     */
+    function sc_route($name, $param = null)
     {
-        $html = '';
-        $tmpAtt = explode('__', $arrtribute);
-        $add_price = $tmpAtt[1] ?? 0;
-        if($add_price) {
-            $html = $tmpAtt[0].'<span class="option_price">(+'.sc_currency_render($add_price,$currency, $rate).')</span>';
+        if (Route::has($name)) {
+            return route($name, $param);
         } else {
-            $html = $tmpAtt[0];
+            return url('#'.$name);
         }
-        return $html;
     }
 }

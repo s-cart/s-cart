@@ -7,6 +7,15 @@ return [
     'group' => 'Nhóm',
     'sort' => 'Thứ tự',
     'status' => 'Trạng thái',
+    'link_position' => [
+        'menu' => 'Menu',
+        'menu_left' => 'Menu trái',
+        'menu_right' => 'Menu phải',
+        'footer' => 'Footer',
+        'footer_left' => 'Footer trái',
+        'footer_right' => 'Footer phải',
+        'sidebar' => 'Thanh bên',
+    ],
     'admin' => [
         'title' => 'Quản lý URL',
         'create_success' => 'Tạo mới thành công!',

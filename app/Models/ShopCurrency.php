@@ -27,35 +27,38 @@ class ShopCurrency extends Model
     protected $guarded                  = [];
     protected $connection = SC_CONNECTION;
 
-    public static function getList()
+    public static function getListAll()
     {
         if (!self::$list) {
-            self::$list = self::pluck('name', 'code')->all();
+            self::$list = self::get()
+                ->keyBy('code');
         }
         return self::$list;
     }
 
     public static function getCodeActive()
     {
-        if (self::$getCodeActive == null) {
-            self::$getCodeActive = self::where('status', 1)->pluck('name', 'code')->all();
+        if (self::$getCodeActive === null) {
+            self::$getCodeActive = self::where('status', 1)
+                ->pluck('name', 'code')
+                ->all();
         }
         return self::$getCodeActive;
     }
 
 
-    public static function getArray()
+    public static function getCodeAll()
     {
-        if (self::$getArray == null) {
+        if (self::$getArray === null) {
             self::$getArray = self::pluck('name', 'code')->all();
         }
         return self::$getArray;
     }
-/**
- * [setCode description]
- * @param [type] $code [description]
- */
 
+    /**
+     * [setCode description]
+     * @param [type] $code [description]
+     */
     public static function setCode($code)
     {
         self::$code = $code;
@@ -74,10 +77,10 @@ class ShopCurrency extends Model
         }
     }
 
-/**
- * [getCurrency description]
- * @return [type] [description]
- */
+    /**
+     * [getCurrency description]
+     * @return [type] [description]
+     */
     public static function getCurrency()
     {
         return [
@@ -92,29 +95,30 @@ class ShopCurrency extends Model
         ];
     }
 
-/**
- * [getCode description]
- * @return [type] [description]
- */
+    /*
+     * [getCode description]
+     * @return [type] [description]
+     */
     public static function getCode()
     {
         return self::$code;
     }
-/**
- * [getRate description]
- * @return [type] [description]
- */
+
+    /**
+     * [getRate description]
+     * @return [type] [description]
+     */
     public static function getRate()
     {
         return self::$exchange_rate;
     }
 
-/**
- * [getValue description]
- * @param  float  $money [description]
- * @param  [type] $rate  [description]
- * @return [type]        [description]
- */
+    /**
+     * [getValue description]
+     * @param  float  $money [description]
+     * @param  [type] $rate  [description]
+     * @return [type]        [description]
+     */
     public static function getValue(float $money, $rate = null)
     {
         if ($rate) {
@@ -125,25 +129,25 @@ class ShopCurrency extends Model
 
     }
 
-/**
- * [format description]
- * @param  float  $money [description]
- * @return [type]        [description]
- */
+    /**
+     * [format description]
+     * @param  float  $money [description]
+     * @return [type]        [description]
+     */
     public static function format(float $money)
     {
         return number_format($money, self::$precision, self::$decimal, self::$thousands);
     }
 
-/**
- * [render description]
- * @param  float   $money                [description]
- * @param  [type]  $currency             [description]
- * @param  [type]  $rate                 [description]
- * @param  boolean $space_between_symbol [description]
- * @param  boolean $include_symbol       [description]
- * @return [type]                        [description]
- */
+    /**
+     * [render description]
+     * @param  float   $money                [description]
+     * @param  [type]  $currency             [description]
+     * @param  [type]  $rate                 [description]
+     * @param  boolean $space_between_symbol [description]
+     * @param  boolean $include_symbol       [description]
+     * @return [type]                        [description]
+     */
     public static function render(float $money, $currency = null, $rate = null, $space_between_symbol = false, $include_symbol = true)
     {
         $space_symbol = ($space_between_symbol) ? ' ' : '';
@@ -157,7 +161,7 @@ class ShopCurrency extends Model
                 $dataCurrency = $checkCurrency;
             }
         }
-//Get currently value
+        //Get currently value
         $value = self::getValue($money, $rate);
 
         $symbol = ($include_symbol) ? $dataCurrency['symbol'] : '';
@@ -173,14 +177,14 @@ class ShopCurrency extends Model
         }
     }
 
-/**
- * [onlyRender description]
- * @param  float   $money                [description]
- * @param  [type]  $currency             [description]
- * @param  boolean $space_between_symbol [description]
- * @param  boolean $include_symbol       [description]
- * @return [type]                        [description]
- */
+    /**
+     * [onlyRender description]
+     * @param  float   $money                [description]
+     * @param  [type]  $currency             [description]
+     * @param  boolean $space_between_symbol [description]
+     * @param  boolean $include_symbol       [description]
+     * @return [type]                        [description]
+     */
     public static function onlyRender(float $money, $currency, $space_between_symbol = false, $include_symbol = true)
     {
         if (empty(self::$checkListCurrency[$currency])) {
@@ -201,14 +205,14 @@ class ShopCurrency extends Model
         }
     }
     
-/**
- * Sum value of cart
- *
- * @param   [\App\Library\ShoppingCart\CartItem] $details  [$details description]
- * @param   float  $rate     [$rate description]
- *
- * @return  [array]
- */
+    /**
+     * Sum value of cart
+     *
+     * @param   [\App\Library\ShoppingCart\CartItem] $details  [$details description]
+     * @param   float  $rate     [$rate description]
+     *
+     * @return  [array]
+     */
     public static function sumCart($details, float $rate = null)
     {
         $sumSubtotal  = 0;
@@ -230,11 +234,13 @@ class ShopCurrency extends Model
         return self::pluck('exchange_rate', 'code')->all();
     }
 
-    public static function getAll()
+    public static function getListActive()
     {
-        return self::where('status', 1)->sort()->get();
+        return self::where('status', 1)
+            ->sort()
+            ->get();
     }
-//Scort
+    //Scort
     public function scopeSort($query, $sortBy = null, $sortOrder = 'desc')
     {
         $sortBy = $sortBy ?? 'sort';

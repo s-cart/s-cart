@@ -1,8 +1,7 @@
 {
-    "name": "Template name",
+    "name": "Template format for S-Cart 3.0",
     "image": "images/logo.jpg",
     "auth": "Your name",
-    "configKey": "Template_Key",
     "email": "Your-email@email.com",
     "website": "http://Your-link.com",
     "version": "1.0.0"

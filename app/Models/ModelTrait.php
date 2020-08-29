@@ -49,7 +49,7 @@ trait ModelTrait
      * @param   [array]  $sort ['field', 'asc|desc']
      */
     public function setSort(array $sort) {
-        if(is_array($sort)) {
+        if (is_array($sort)) {
             $this->sc_sort[] = $sort;
         }
         return $this;
@@ -60,15 +60,15 @@ trait ModelTrait
      * @param   [array]  $moreWhere 
      */
     public function setMoreWhere(array $moreWhere) {
-        if(is_array($moreWhere)) {
-            if(count($moreWhere) == 2) {
+        if (is_array($moreWhere)) {
+            if (count($moreWhere) == 2) {
                 $where[0] = $moreWhere[0];
                 $where[1] = '=';
                 $where[2] = $moreWhere[1];
-            } elseif(count($moreWhere) == 3) {
+            } elseif (count($moreWhere) == 3) {
                 $where = $moreWhere;
             }
-            if(count($where) == 3) {
+            if (count($where) == 3) {
                 $this->sc_moreWhere[] = $where;
             }
         }
@@ -97,7 +97,7 @@ trait ModelTrait
      * @param   [string]  $keyword 
      */
     public function setKeyword($keyword) {
-        if(trim($keyword)) {
+        if (trim($keyword)) {
             $this->sc_keyword = trim($keyword);
         }
         $this->setStatus(1);
@@ -110,7 +110,7 @@ trait ModelTrait
      */
     public function getQuery() {
         $query = $this->buildQuery();
-        if(!$this->sc_paginate) {
+        if (!$this->sc_paginate) {
             if ($this->sc_limit !== 'all') {
                 $query = $query->limit($this->sc_limit);
             }
@@ -127,7 +127,7 @@ trait ModelTrait
         if (!empty($action['query'])) {
             return $query;
         }
-        if($this->sc_paginate) {
+        if ($this->sc_paginate) {
             $data =  $query->paginate(($this->sc_limit === 'all') ? 20 : $this->sc_limit);
         } else {
             if ($this->sc_limit !== 'all') {

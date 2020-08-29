@@ -5,10 +5,10 @@
       <div class="col-md-12">
           <div class="box-body">
             <div class="error-page text-center">
-                <h3 class="text-red">403</h3>
-                <h5 class="text-red">{{ trans('admin.deny_content') }}</h5>
+                <h2 class="text-red">403 - {{ trans('admin.deny_content') }}</h2>
                 @if ($url)
-                <span><i class="fa fa-warning text-red" aria-hidden="true"></i> You cannot access to url <code>{{ $url }}</code> method <code>{{ $method }}</code></span>
+                <span><h4><i class="fa fa-warning text-red" aria-hidden="true"></i> {{ trans('admin.deny_msg') }}</h4></span>
+                <span><strong>URL:</strong> <code>{{ $url }}</code> - <strong>Method:</strong> <code>{{ $method }}</code></span>
                 @endif
             </div>
         </div>

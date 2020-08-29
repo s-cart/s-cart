@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminStoreDescription extends Model
 {
-    protected $primaryKey = ['lang', 'config_id'];
+    protected $primaryKey = ['lang', 'store_id'];
     public $incrementing = false;
     protected $guarded = [];
     public $timestamps = false;
