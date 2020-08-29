@@ -20,11 +20,11 @@ return [
     ],
     'page_block' => [
         'meta' => 'Thẻ <meta>',
-        'header' => 'Trong <header>: css, javascript,...',
-        'top' => 'Block trên cùng, dưới <body>',
-        'bottom' => 'Block dưới cùng, trên <footer>',
-        'left' => 'Bên trái',
-        'right' => 'Bên phải',
-        'banner_top' => 'Banner top',
+        'header' => 'Trong <header> :css, javascript,...',
+        'top' => 'Phía dưới <body>',
+        'bottom' => 'Phía trên <footer>',
+        'left' => 'Cột trái',
+        'right' => 'Cột phải',
+        'banner_top' => 'Banner trên cùng',
     ],
 ];

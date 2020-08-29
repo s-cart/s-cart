@@ -83,7 +83,7 @@ class AdminBlockContentController extends Controller
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'type' => $type_name,
-                'position' => sc_language_render($this->layoutPosition[$row['position']]) ?? '',
+                'position' => htmlspecialchars(sc_language_render($this->layoutPosition[$row['position']]) ?? ''),
                 'page' => $htmlPage,
                 'text' => htmlspecialchars($row['text']),
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',

@@ -22,10 +22,10 @@ return [
     'page_block' => [
         'meta' => '<meta> tag',
         'header' => 'Inside <header>: css, javascript,...',
-        'top' => 'Block top, below <body>',
-        'bottom' => 'Block bottom, above <footer>',
-        'left' => 'Column trái',
-        'right' => 'Column right',
+        'top' => 'Below <body>',
+        'bottom' => 'Above <footer>',
+        'left' => 'Left Column',
+        'right' => 'Right Column',
         'banner_top' => 'Banner top',
     ],
 ];
