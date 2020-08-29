@@ -456,6 +456,12 @@ class ShopCart extends GeneralController
         $dataOrder['balance']         = $total + $received;
         $dataOrder['email']           = $shippingAddress['email'];
         $dataOrder['first_name']      = $shippingAddress['first_name'];
+        $dataOrder['payment_method']  = $paymentMethod;
+        $dataOrder['shipping_method'] = $shippingMethod;
+        $dataOrder['user_agent']      = $request->header('User-Agent');
+        $dataOrder['ip']              = $request->ip();
+        $dataOrder['created_at']      = date('Y-m-d H:i:s');
+
         if (!empty($shippingAddress['last_name'])) {
             $dataOrder['last_name']       = $shippingAddress['last_name'];
         }
@@ -483,19 +489,9 @@ class ShopCart extends GeneralController
         if (!empty($shippingAddress['company'])) {
             $dataOrder['company']       = $shippingAddress['company'];
         }
-        if (!empty($shippingAddress['payment_method'])) {
-            $dataOrder['payment_method']       = $shippingAddress['payment_method'];
-        }
-        if (!empty($shippingAddress['shipping_method'])) {
-            $dataOrder['shipping_method']       = $shippingAddress['shipping_method'];
-        }
         if (!empty($shippingAddress['comment'])) {
             $dataOrder['comment']       = $shippingAddress['comment'];
         }
-        $dataOrder['comment']         = $shippingAddress['comment'];
-        $dataOrder['user_agent']      = $request->header('User-Agent');
-        $dataOrder['ip']              = $request->ip();
-        $dataOrder['created_at']      = date('Y-m-d H:i:s');
 
         $arrCartDetail = [];
         foreach (Cart::instance('default')->content() as $cartItem) {

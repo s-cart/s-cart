@@ -398,7 +398,7 @@ class CreateTablesShop extends Migration
             $table->string('first_name_kana', 100)->nullable();
             $table->string('last_name_kana', 100)->nullable();
             $table->string('email', 150)->nullable();
-            $table->tinyInteger('sex')->default(0)->comment('0:women, 1:men');
+            $table->tinyInteger('sex')->nullable()->comment('0:women, 1:men');
             $table->date('birthday')->nullable();
             $table->string('password', 100)->nullable();;
             $table->integer('address_id')->default(0)->index();

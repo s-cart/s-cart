@@ -163,6 +163,7 @@ class AdminCustomerController extends Controller
     public function postCreate()
     {
         $data = request()->all();
+        $data['status'] = empty($data['status']) ? 0 : 1;
         $dataMapping = $this->mappingValidator($data);
         $validator =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
         if ($validator->fails()) {
@@ -199,12 +200,13 @@ class AdminCustomerController extends Controller
             ->with($data);
     }
 
-/**
- * update status
- */
+    /**
+     * update status
+     */
     public function postEdit($id)
     {
         $data = request()->all();
+        $data['status'] = empty($data['status']) ? 0 : 1;
         $data['id'] = $id;
         $dataMapping = $this->mappingValidatorEdit($data);
 
@@ -216,15 +218,15 @@ class AdminCustomerController extends Controller
                 ->withInput();
         }
         ShopUser::updateInfo($dataMapping['dataUpdate'], $id);
-//
+    //
         return redirect()->route('admin_customer.index')->with('success', trans('customer.admin.edit_success'));
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list Item
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {
@@ -245,8 +247,8 @@ Need mothod destroy to boot deleting in model
     public function updateAddress($id)
     {
         $address =  (new ShopUserAddress)
-        ->where('id', $id)
-        ->first();
+            ->where('id', $id)
+            ->first();
         if ($address) {
             $title = trans('account.address_detail').' #'.$address->id;
         } else {
@@ -276,8 +278,8 @@ Need mothod destroy to boot deleting in model
     {
         $data = request()->all();
         $address =  (new ShopUserAddress)
-        ->where('id', $id)
-        ->first();
+            ->where('id', $id)
+            ->first();
         
         $dataUpdate = [
             'first_name' => $data['first_name'],
@@ -400,8 +402,8 @@ Need mothod destroy to boot deleting in model
     public function deleteAddress() {
         $id = request('id');
         (new ShopUserAddress)
-        ->where('id', $id)
-        ->delete();
+            ->where('id', $id)
+            ->delete();
         return json_encode(['error' => 0, 'msg' => trans('account.delete_address_success')]);
     }
 

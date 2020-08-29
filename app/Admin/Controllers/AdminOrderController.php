@@ -232,6 +232,7 @@ class AdminOrderController extends Controller
             'first_name' => 'required|max:100',
             'address1' => 'required|max:100',
             'exchange_rate' => 'required',
+            'currency' => 'required',
             'status' => 'required',
             'payment_method' => 'required',
             'shipping_method' => 'required',

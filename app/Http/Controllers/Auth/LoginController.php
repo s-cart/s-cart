@@ -31,7 +31,7 @@ class LoginController extends GeneralController
     // protected $redirectTo = '/';
     protected function redirectTo()
     {
-        return '/';
+        return route('member.index');
     }
     /**
      * Create a new controller instance.
@@ -57,12 +57,17 @@ class LoginController extends GeneralController
         ], $messages);
     }
 
+    /**
+     * Form login
+     *
+     * @return  [type]  [return description]
+     */
     public function showLoginForm()
     {
         if (Auth::user()) {
             return redirect()->route('home');
         }
-        return view($this->templatePath . '.screen.shop_login',
+        return view($this->templatePath . '.auth.login',
             array(
                 'title'       => trans('front.login'),
                 'countries'   => ShopCountry::getCodeAll(),

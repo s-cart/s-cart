@@ -20,7 +20,7 @@
 
                     <div class="card-body">
                             @if (sc_config('customer_lastname'))
-                            <div class="form-group row {{ $errors->has('reg_first_name') ? ' text-red' : '' }}">
+                            <div class="form-group row {{ $errors->has('first_name') ? ' text-red' : '' }}">
                                 <label for="first_name"
                                     class="col-sm-2 col-form-label">{{ trans('account.first_name') }}</label>
     
@@ -29,17 +29,17 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_first_name" type="text" class="form-control" name="reg_first_name"
-                                        value="{{ (old('reg_first_name', $customer['first_name'] ?? ''))}}">
+                                    <input id="first_name" type="text" class="form-control" name="first_name"
+                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_first_name'))
-                                    <span class="form-text">{{ $errors->first('reg_first_name') }}</span>
+                                    @if($errors->has('first_name'))
+                                    <span class="form-text">{{ $errors->first('first_name') }}</span>
                                     @endif
     
                                 </div>
                             </div>
-                            <div class="form-group row {{ $errors->has('reg_last_name') ? ' text-red' : '' }}">
-                                <label for="reg_last_name"
+                            <div class="form-group row {{ $errors->has('last_name') ? ' text-red' : '' }}">
+                                <label for="last_name"
                                     class="col-sm-2 col-form-label">{{ trans('account.last_name') }}</label>
     
                                 <div class="col-sm-8">
@@ -47,18 +47,18 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_last_name" type="text" class="form-control" name="reg_last_name"
-                                        value="{{ (old('reg_last_name', $customer['last_name'] ?? ''))}}">
+                                    <input id="last_name" type="text" class="form-control" name="last_name"
+                                        value="{{ (old('last_name', $customer['last_name'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_last_name'))
-                                    <span class="form-text">{{ $errors->first('reg_last_name') }}</span>
+                                    @if($errors->has('last_name'))
+                                    <span class="form-text">{{ $errors->first('last_name') }}</span>
                                     @endif
     
                                 </div>
                             </div>
                             @else
-                            <div class="form-group row {{ $errors->has('reg_first_name') ? ' text-red' : '' }}">
-                                <label for="reg_first_name"
+                            <div class="form-group row {{ $errors->has('first_name') ? ' text-red' : '' }}">
+                                <label for="first_name"
                                     class="col-sm-2 col-form-label">{{ trans('account.name') }}</label>
     
                                 <div class="col-sm-8">
@@ -66,11 +66,11 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_first_name" type="text" class="form-control" name="reg_first_name"
-                                        value="{{ (old('reg_first_name', $customer['first_name'] ?? ''))}}">
+                                    <input id="first_name" type="text" class="form-control" name="first_name"
+                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_first_name'))
-                                    <span class="form-text">{{ $errors->first('reg_first_name') }}</span>
+                                    @if($errors->has('first_name'))
+                                    <span class="form-text">{{ $errors->first('first_name') }}</span>
                                     @endif
     
                                 </div>
@@ -78,7 +78,7 @@
                             @endif
     
                             @if (sc_config('customer_name_kana'))
-                            <div class="form-group row {{ $errors->has('reg_first_name_kana') ? ' text-red' : '' }}">
+                            <div class="form-group row {{ $errors->has('first_name_kana') ? ' text-red' : '' }}">
                                 <label for="first_name_kana"
                                     class="col-sm-2 col-form-label">{{ trans('account.first_name_kana') }}</label>
     
@@ -87,17 +87,17 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_first_name_kana" type="text" class="form-control" name="reg_first_name_kana"
-                                        value="{{ (old('reg_first_name_kana', $customer['first_name_kana'] ?? ''))}}">
+                                    <input id="first_name_kana" type="text" class="form-control" name="first_name_kana"
+                                        value="{{ (old('first_name_kana', $customer['first_name_kana'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_first_name_kana'))
-                                    <span class="form-text">{{ $errors->first('reg_first_name_kana') }}</span>
+                                    @if($errors->has('first_name_kana'))
+                                    <span class="form-text">{{ $errors->first('first_name_kana') }}</span>
                                     @endif
     
                                 </div>
                             </div>
-                            <div class="form-group row {{ $errors->has('reg_last_name_kana') ? ' text-red' : '' }}">
-                                <label for="reg_last_name_kana"
+                            <div class="form-group row {{ $errors->has('last_name_kana') ? ' text-red' : '' }}">
+                                <label for="last_name_kana"
                                     class="col-sm-2 col-form-label">{{ trans('account.last_name_kana') }}</label>
     
                                 <div class="col-sm-8">
@@ -105,11 +105,11 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_last_name_kana" type="text" class="form-control" name="reg_last_name_kana"
-                                        value="{{ (old('reg_last_name_kana', $customer['last_name_kana'] ?? ''))}}">
+                                    <input id="last_name_kana" type="text" class="form-control" name="last_name_kana"
+                                        value="{{ (old('last_name_kana', $customer['last_name_kana'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_last_name_kana'))
-                                    <span class="form-text">{{ $errors->first('reg_last_name_kana') }}</span>
+                                    @if($errors->has('last_name_kana'))
+                                    <span class="form-text">{{ $errors->first('last_name_kana') }}</span>
                                     @endif
     
                                 </div>
@@ -118,8 +118,8 @@
 
 
                             @if (sc_config('customer_phone'))
-                            <div class="form-group row {{ $errors->has('reg_phone') ? ' text-red' : '' }}">
-                                <label for="reg_phone"
+                            <div class="form-group row {{ $errors->has('phone') ? ' text-red' : '' }}">
+                                <label for="phone"
                                     class="col-sm-2 col-form-label">{{ trans('account.phone') }}</label>
     
                                 <div class="col-sm-8">
@@ -127,11 +127,11 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="phone" type="text" class="form-control" name="reg_phone"
-                                        value="{{ (old('reg_phone', $customer['phone'] ?? ''))}}">
+                                    <input id="phone" type="text" class="form-control" name="phone"
+                                        value="{{ (old('phone', $customer['phone'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_phone'))
-                                    <span class="form-text">{{ $errors->first('reg_phone') }}</span>
+                                    @if($errors->has('phone'))
+                                    <span class="form-text">{{ $errors->first('phone') }}</span>
                                     @endif
     
                                 </div>
@@ -139,8 +139,8 @@
                             @endif
     
                             @if (sc_config('customer_postcode'))
-                            <div class="form-group row {{ $errors->has('reg_postcode') ? ' text-red' : '' }}">
-                                <label for="reg_postcode"
+                            <div class="form-group row {{ $errors->has('postcode') ? ' text-red' : '' }}">
+                                <label for="postcode"
                                     class="col-sm-2 col-form-label">{{ trans('account.postcode') }}</label>
     
                                 <div class="col-sm-8">
@@ -148,20 +148,20 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_postcode" type="text" class="form-control" name="reg_postcode"
-                                        value="{{ (old('reg_postcode', $customer['postcode'] ?? ''))}}">
+                                    <input id="postcode" type="text" class="form-control" name="postcode"
+                                        value="{{ (old('postcode', $customer['postcode'] ?? ''))}}">
                                     </div>
     
-                                    @if($errors->has('reg_postcode'))
-                                    <span class="form-text">{{ $errors->first('reg_postcode') }}</span>
+                                    @if($errors->has('postcode'))
+                                    <span class="form-text">{{ $errors->first('postcode') }}</span>
                                     @endif
     
                                 </div>
                             </div>
                             @endif
     
-                            <div class="form-group row {{ $errors->has('reg_email') ? ' text-red' : '' }}">
-                                <label for="reg_email"
+                            <div class="form-group row {{ $errors->has('email') ? ' text-red' : '' }}">
+                                <label for="email"
                                     class="col-sm-2 col-form-label">{{ trans('account.email') }}</label>
     
                                 <div class="col-sm-8">
@@ -169,20 +169,20 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_email" type="text" class="form-control" name="reg_email"
-                                        value="{{ (old('reg_email',$customer['email'] ?? ''))}}">
+                                    <input id="email" type="text" class="form-control" name="email"
+                                        value="{{ (old('email',$customer['email'] ?? ''))}}">
                                     </div>
     
-                                    @if($errors->has('reg_email'))
-                                    <span class="form-text">{{ $errors->first('reg_email') }}</span>
+                                    @if($errors->has('email'))
+                                    <span class="form-text">{{ $errors->first('email') }}</span>
                                     @endif
     
                                 </div>
                             </div>
     
                             @if (sc_config('customer_address2'))
-                            <div class="form-group row {{ $errors->has('reg_address1') ? ' text-red' : '' }}">
-                                <label for="reg_address1"
+                            <div class="form-group row {{ $errors->has('address1') ? ' text-red' : '' }}">
+                                <label for="address1"
                                     class="col-sm-2 col-form-label">{{ trans('account.address1') }}</label>
     
                                 <div class="col-sm-8">
@@ -190,36 +190,36 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_address1" type="text" class="form-control" name="reg_address1"
-                                        value="{{ (old('reg_address1', $customer['address1'] ?? ''))}}">
+                                    <input id="address1" type="text" class="form-control" name="address1"
+                                        value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_address1'))
-                                    <span class="form-text">{{ $errors->first('reg_address1') }}</span>
+                                    @if($errors->has('address1'))
+                                    <span class="form-text">{{ $errors->first('address1') }}</span>
                                     @endif
     
                                 </div>
                             </div>
     
-                            <div class="form-group row {{ $errors->has('reg_address2') ? ' text-red' : '' }}">
-                                <label for="reg_address2"
+                            <div class="form-group row {{ $errors->has('address2') ? ' text-red' : '' }}">
+                                <label for="address2"
                                     class="col-sm-2 col-form-label">{{ trans('account.address2') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_address2" type="text" class="form-control" name="reg_address2"
-                                        value="{{ (old('reg_address2', $customer['address2'] ?? ''))}}">
+                                    <input id="address2" type="text" class="form-control" name="address2"
+                                        value="{{ (old('address2', $customer['address2'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_address2'))
-                                    <span class="form-text">{{ $errors->first('reg_address2') }}</span>
+                                    @if($errors->has('address2'))
+                                    <span class="form-text">{{ $errors->first('address2') }}</span>
                                     @endif
     
                                 </div>
                             </div>
                             @else
-                            <div class="form-group row {{ $errors->has('reg_address1') ? ' text-red' : '' }}">
-                                <label for="reg_address1"
+                            <div class="form-group row {{ $errors->has('address1') ? ' text-red' : '' }}">
+                                <label for="address1"
                                     class="col-sm-2 col-form-label">{{ trans('account.address') }}</label>
     
                                 <div class="col-sm-8">
@@ -227,11 +227,11 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_address1" type="text" class="form-control" name="reg_address1"
-                                        value="{{ (old('reg_address1', $customer['address1'] ?? ''))}}">
+                                    <input id="address1" type="text" class="form-control" name="address1"
+                                        value="{{ (old('address1', $customer['address1'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_address1'))
-                                    <span class="form-text">{{ $errors->first('reg_address1') }}</span>
+                                    @if($errors->has('address1'))
+                                    <span class="form-text">{{ $errors->first('address1') }}</span>
                                     @endif
     
                                 </div>
@@ -241,22 +241,22 @@
     
                             @if (sc_config('customer_country'))
                             @php
-                            $country = old('reg_country', $customer['country'] ?? '');
+                            $country = old('country', $customer['country'] ?? '');
                             @endphp
     
-                            <div class="form-group row {{ $errors->has('reg_country') ? ' text-red' : '' }}">
-                                <label for="reg_country"
+                            <div class="form-group row {{ $errors->has('country') ? ' text-red' : '' }}">
+                                <label for="country"
                                     class="col-sm-2 col-form-label">{{ trans('account.country') }}</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control reg_country" style="width: 100%;" name="reg_country">
+                                    <select class="form-control country" style="width: 100%;" name="country">
                                         <option>__{{ trans('account.country') }}__</option>
                                         @foreach ($countries as $k => $v)
                                         <option value="{{ $k }}" {{ ($country == $k) ? 'selected':'' }}>{{ $v }}</option>
                                         @endforeach
                                     </select>
-                                    @if ($errors->has('reg_country'))
+                                    @if ($errors->has('country'))
                                     <span class="form-text">
-                                        {{ $errors->first('reg_country') }}
+                                        {{ $errors->first('country') }}
                                     </span>
                                     @endif
                                 </div>
@@ -265,29 +265,29 @@
     
                             @if (sc_config('customer_sex'))
                             @php
-                            $sex = old('reg_sex', $customer['sex'] ?? 0);
+                            $sex = old('sex', $customer['sex'] ?? 0);
                             @endphp
-                            <div class="form-group{{ $errors->has('reg_sex') ? ' text-red' : '' }}">
+                            <div class="form-group{{ $errors->has('sex') ? ' text-red' : '' }}">
                                 <label
-                                    class="col-sm-2 validate account_input {{ ($errors->has('reg_sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
+                                    class="col-sm-2 validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ trans('account.sex') }}:
                                 </label>
                                 <div class="col-sm-8">
-                                <label class="radio-inline"><input value="0" type="radio" name="reg_sex"
+                                <label class="radio-inline"><input value="0" type="radio" name="sex"
                                         {{ ($sex == 0)?'checked':'' }}> {{ trans('account.sex_women') }}</label>
-                                <label class="radio-inline"><input value="1" type="radio" name="reg_sex"
+                                <label class="radio-inline"><input value="1" type="radio" name="sex"
                                         {{ ($sex == 1)?'checked':'' }}> {{ trans('account.sex_men') }}</label>
                                 </div>
-                                @if ($errors->has('reg_sex'))
+                                @if ($errors->has('sex'))
                                 <span class="form-text">
-                                    {{ $errors->first('reg_sex') }}
+                                    {{ $errors->first('sex') }}
                                 </span>
                                 @endif
                             </div>
                             @endif
     
                             @if (sc_config('customer_birthday'))
-                            <div class="form-group row {{ $errors->has('reg_birthday') ? ' text-red' : '' }}">
-                                <label for="reg_birthday"
+                            <div class="form-group row {{ $errors->has('birthday') ? ' text-red' : '' }}">
+                                <label for="birthday"
                                     class="col-sm-2 col-form-label">
                                     {{ trans('account.birthday') }}</label>
                                 <div class="col-sm-8">
@@ -295,12 +295,12 @@
                                         <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input type="date" id="reg_birthday" data-date-format="YYYY-MM-DD" class="form-control"
-                                        name="reg_birthday"
-                                        value="{{ (old('reg_birthday', $customer['birthday'] ?? ''))}}">
+                                    <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
+                                        name="birthday"
+                                        value="{{ (old('birthday', $customer['birthday'] ?? ''))}}">
                                     </div>
-                                    @if($errors->has('reg_birthday'))
-                                    <span class="form-text">{{ $errors->first('reg_birthday') }}</span>
+                                    @if($errors->has('birthday'))
+                                    <span class="form-text">{{ $errors->first('birthday') }}</span>
                                     @endif
     
                                 </div>
@@ -308,8 +308,8 @@
                             @endif
 
                             @if (sc_config('customer_group'))
-                            <div class="form-group row {{ $errors->has('reg_group') ? ' text-red' : '' }}">
-                                <label for="reg_group"
+                            <div class="form-group row {{ $errors->has('group') ? ' text-red' : '' }}">
+                                <label for="group"
                                     class="col-sm-2 col-form-label">{{ trans('account.group') }}</label>
     
                                 <div class="col-sm-8">
@@ -317,12 +317,12 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                    <input id="reg_group" type="number" class="form-control" name="reg_group"
-                                        value="{{ (old('reg_group', $customer['group'] ?? ''))}}">
+                                    <input id="group" type="number" class="form-control" name="group"
+                                        value="{{ (old('group', $customer['group'] ?? ''))}}">
                                     </div>
     
-                                    @if($errors->has('reg_group'))
-                                    <span class="form-text">{{ $errors->first('reg_group') }}</span>
+                                    @if($errors->has('group'))
+                                    <span class="form-text">{{ $errors->first('group') }}</span>
                                     @endif
     
                                 </div>
@@ -330,18 +330,18 @@
                             @endif
 
 
-                            <div class="form-group  row {{ $errors->has('reg_password') ? ' text-red' : '' }}">
+                            <div class="form-group  row {{ $errors->has('password') ? ' text-red' : '' }}">
                                 <label for="password" class="col-sm-2  col-form-label">{{ trans('customer.password') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                        <input type="text"   id="reg_password" name="reg_password" value="{{ old('reg_password')??'' }}" class="form-control reg_password" placeholder="" />
+                                        <input type="text"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
                                     </div>
-                                        @if ($errors->has('reg_password'))
+                                        @if ($errors->has('password'))
                                             <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('reg_password') }}
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password') }}
                                             </span>
                                         @else
                                             @if ($customer)
@@ -354,9 +354,9 @@
                             </div>
 
                             <div class="form-group  row">
-                                <label for="reg_status" class="col-sm-2  col-form-label">{{ trans('customer.status') }}</label>
+                                <label for="status" class="col-sm-2  col-form-label">{{ trans('customer.status') }}</label>
                                 <div class="col-sm-8">
-                                    <input class="input" type="checkbox" name="reg_status"  {{ old('reg_status',(empty($customer['status'])?0:1))?'checked':''}}>
+                                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($customer['status'])?0:1))?'checked':''}}>
 
                                 </div>
                             </div>
