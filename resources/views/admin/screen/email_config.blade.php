@@ -22,11 +22,16 @@
            <tbody>
              @foreach ($configs['email_action'] as $config)
                <tr>
-                 <td>{{ sc_language_render($config->detail) }}</td>
+                 <td>{!! sc_language_render($config->detail) !!}</td>
                  <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
                </tr>
              @endforeach
            </tbody>
+           <tfoot>
+            <tr>
+              <td colspan="2">{!! trans('email.admin.help_note') !!}</td>
+            </tr>
+          </tfoot>
          </table>
       </div>
     </div>

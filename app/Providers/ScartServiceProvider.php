@@ -89,11 +89,9 @@ class ScartServiceProvider extends ServiceProvider
         config(['mail.mailers.smtp.password' => $smtpPassword]);
 
         config(
-            ['mail.from' =>
-                [
-                    'address' => sc_store('email'),
-                    'name' => sc_store('title'),
-                ],
+            [
+                'mail.from.address' => sc_store('email'),
+                'mail.from.name' => sc_store('title')
             ]
         );
         //email
@@ -127,8 +125,8 @@ class ScartServiceProvider extends ServiceProvider
      */
     protected $routeMiddleware = [
         'localization' => \App\Http\Middleware\Localization::class,
-        'currency' => \App\Http\Middleware\Currency::class,
-        'checkdomain' => \App\Http\Middleware\CheckDomain::class,
+        'currency'     => \App\Http\Middleware\Currency::class,
+        'checkdomain'  => \App\Http\Middleware\CheckDomain::class,
     ];
 
     /**
