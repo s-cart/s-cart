@@ -120,7 +120,6 @@ class ShopCart extends GeneralController
             ];
         }
         $shippingAddress = session('shippingAddress') ?? $addressDefaul;
-
         $objects = ShopOrderTotal::getObjectOrderTotal();
         return view(
             $this->templatePath . '.screen.shop_cart',
@@ -359,35 +358,36 @@ class ShopCart extends GeneralController
     }
 
     /**
-     * add to cart by post, always use in the product page detail
+     * Add to cart by method post, always use in the product page detail
+     * 
      * @return [redirect]
      */
     public function addToCart()
     {
         $data = request()->all();
-        $product_id = $data['product_id'];
+        $productId = $data['product_id'];
 
         //Process attribute price
-        $form_attr = $data['form_attr'] ?? null;
+        $formAttr = $data['form_attr'] ?? null;
         $optionPrice  = 0;
-        if ($form_attr) {
-            foreach ($form_attr as $key => $attr) {
-                $optionPrice += explode('__',$attr)[1] ??0;
+        if ($formAttr) {
+            foreach ($formAttr as $key => $attr) {
+                $optionPrice += explode('__', $attr)[1] ??0;
             }
         }
         //End addtribute price
 
         $qty = $data['qty'];
-        $product = (new ShopProduct)->getDetail($product_id);
+        $product = (new ShopProduct)->getDetail($productId);
         if ($product->allowSale()) {
             $options = array();
-            $options = $form_attr;
+            $options = $formAttr;
             $dataCart = array(
-                'id' => $product_id,
-                'name' => $product->name,
-                'qty' => $qty,
+                'id'    => $productId,
+                'name'  => $product->name,
+                'qty'   => $qty,
                 'price' => $product->getFinalPrice() + $optionPrice,
-                'tax' => $product->getTaxValue(),
+                'tax'   => $product->getTaxValue(),
             );
             if ($options) {
                 $dataCart['options'] = $options;
@@ -556,7 +556,6 @@ class ShopCart extends GeneralController
         }
         $instance = request('instance') ?? 'default';
         $cart = Cart::instance($instance);
-
         $id = request('id');
         $product = (new ShopProduct)->getDetail($id);
         switch ($instance) {
@@ -629,7 +628,7 @@ class ShopCart extends GeneralController
         }
 
         $carts = Cart::getListCart($instance);
-
+        
         return response()->json(
             [
                 'error'      => 0,
