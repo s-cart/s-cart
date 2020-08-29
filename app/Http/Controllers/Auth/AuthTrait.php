@@ -20,6 +20,9 @@ trait AuthTrait
         $dataUpdate = [
             'first_name' => $data['first_name'],
         ];
+        if (isset($data['status'])) {
+            $dataUpdate['status']  = $data['status'];
+        }
         $validate = [
             'first_name' => 'required|string|max:100',
             'password' => 'nullable|string|min:6',
@@ -339,6 +342,9 @@ trait AuthTrait
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ];
+        if (isset($data['status'])) {
+            $dataInsert['status']  = $data['status'];
+        }
         if (sc_config('customer_lastname')) {
             if (!empty($data['last_name'])) {
                 $dataInsert['last_name'] = $data['last_name'];
