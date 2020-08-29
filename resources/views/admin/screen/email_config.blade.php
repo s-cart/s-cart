@@ -6,12 +6,12 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('email.admin.config_mode') }}</h3>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('email.admin.config_mode') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
          <table class="table table-hover">
            <thead>
              <tr>
@@ -22,31 +22,30 @@
            <tbody>
              @foreach ($configs['email_action'] as $config)
                <tr>
-                 <td>{{ sc_language_render($config->detail) }}</td>
+                 <td>{!! sc_language_render($config->detail) !!}</td>
                  <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
                </tr>
              @endforeach
            </tbody>
+           <tfoot>
+            <tr>
+              <td colspan="2">{!! trans('email.admin.help_note') !!}</td>
+            </tr>
+          </tfoot>
          </table>
       </div>
     </div>
   </div>
 
 
-  <div class="col-md-6 config_smtp" {!! sc_config('email_action_smtp_mode')?'':'style="display:none"' !!}>
+  <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('email.admin.config_smtp') }}</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
+    <div class="card">
+      <div class="card-header with-border">
+        <h3 class="card-title">{{ trans('email.admin.config_smtp') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
          <table class="table table-hover">
          <thead>
            <tr>
@@ -55,33 +54,27 @@
            </tr>
          </thead>
          <tbody>
-           @foreach ($configs['smtp'] as $config)
+           @foreach ($configs['smtp_config'] as $config)
 
-           @if ($config->key == 'smtp_load_config')
-              <tr>
-                <td>{{ sc_language_render($config->detail) }}</td>
-                <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source='{"database":"{{ trans('email.smtp_load_config_database') }}", "file_config":"{{ trans('email.smtp_load_config_file') }}"}' data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
-              </tr>
-            @elseif($config->key == 'smtp_security')
+           @if($config->key == 'smtp_security')
             <tr>
               <td>{{ sc_language_render($config->detail) }}</td>
-              <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_email.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title=""></a></td>
+              <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="select" data-pk="" data-source="{{ json_encode($smtp_method) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
             </tr>             
            @elseif($config->key == 'smtp_port')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="number" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
              </tr>
-           @elseif($config->key == 'smtp_password')
+           @elseif($config->key == 'smtp_password' || $config->key == 'smtp_user')
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">****</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="password" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ (sc_admin_can_config()) ? $config->value: 'hidden' }}" data-original-title="" title=""></a></td>
              </tr>
-
           @else
              <tr>
                <td>{{ sc_language_render($config->detail) }}</td>
-               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_setting.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{!! $config->value !!}" data-original-title="" title="">{!! $config->value !!}</a></td>
+               <td align="left"><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ sc_language_render($config->detail) }}" data-value="{{ $config->value }}" data-original-title="" title=""></a></td>
              </tr>
            @endif
 
@@ -119,7 +112,7 @@ $(document).ready(function() {
       };
 
         $('.editable').editable({
-        validate: function(value) {
+          validate: function(value) {
         },
         success: function(data) {
           if(data.error == 0){
@@ -154,7 +147,7 @@ $(document).ready(function() {
       }
     });
 
-    {!! $script_sort??'' !!}
+    {{ $script_sort??'' }}
 
     $(document).on('ready pjax:end', function(event) {
       $('.table-list input').iCheck({
@@ -251,18 +244,13 @@ $('.grid-trash').on('click', function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},
       })
       .done(function(data) {
         if(data.error == 0){
-          if(isChecked == 1 && name == 'email_action_smtp_mode'){
-            $('.config_smtp').show();
-          }else if(isChecked == 0 && name == 'email_action_smtp_mode'){
-            $('.config_smtp').hide();
-          }
           alertJs('success', '{{ trans('admin.msg_change_success') }}');
         } else {
           alertMsg('error', '', data.msg);

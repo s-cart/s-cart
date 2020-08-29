@@ -8,15 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
-
+use App\Models\AdminStore;
 class AdminController extends Controller
 {
     public $plugin;
+    public $stories;
 
     public function __construct()
     {
-        $this->languages = ShopLanguage::getList();
+        $this->languages = ShopLanguage::getListActive();
         $this->plugin = new AppConfig;
+        $this->stories = AdminStore::getListAll();
 
     }
     public function index()
@@ -26,7 +28,7 @@ class AdminController extends Controller
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_discount.delete'),
+            'urlDeleteItem' => sc_route('admin_discount.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -39,8 +41,9 @@ class AdminController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
+        $data['stories'] = $this->stories;
+
         $listTh = [
-            'id' => trans($this->plugin->pathPlugin.'::lang.id'),
             'code' => trans($this->plugin->pathPlugin.'::lang.code'),
             'reward' => trans($this->plugin->pathPlugin.'::lang.reward'),
             'type' => trans($this->plugin->pathPlugin.'::lang.type'),
@@ -60,7 +63,7 @@ class AdminController extends Controller
             'code__desc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_desc'),
             'code__asc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_asc'),
         ];
-        $obj = new PluginModel;
+        $obj = (new PluginModel);
         if ($keyword) {
             $obj = $obj->whereRaw('code like "%' . $keyword . '%" )');
         }
@@ -77,7 +80,6 @@ class AdminController extends Controller
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
             $dataTr[] = [
-                'id' => $row['id'],
                 'code' => $row['code'],
                 'reward' => $row['reward'],
                 'type' => ($row['type'] == 'point') ? 'Point' : '%',
@@ -88,7 +90,7 @@ class AdminController extends Controller
                 'login' => $row['login'],
                 'expires_at' => $row['expires_at'],
                 'action' => '
-                    <a href="' . route('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                   ',
@@ -101,7 +103,7 @@ class AdminController extends Controller
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 //menuRight
-        $data['menuRight'][] = '<a href="' . route('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="' . trans($this->plugin->pathPlugin.'::lang.admin.add_new') . '"></i>
                            </a>';
 //=menuRight
@@ -112,23 +114,19 @@ class AdminController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
 
-        $data['urlSort'] = route('admin_discount.index');
+        $data['urlSort'] = sc_route('admin_discount.index');
         $data['optionSort'] = $optionSort;
 //=menuSort
 
 //menuSearch
         $data['topMenuRight'][] = '
-                <form action="' . route('admin_discount.index') . '" id="button_search">
-                   <div onclick="$(this).submit();" class="btn-group pull-right">
-                           <a class="btn btn-flat btn-primary" title="Refresh">
-                              <i class="fa  fa-search"></i><span class="hidden-xs"> ' . trans('admin.search') . '</span>
-                           </a>
-                   </div>
-                   <div class="btn-group pull-right">
-                         <div class="form-group">
-                           <input type="text" name="keyword" class="form-control" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
-                         </div>
-                   </div>
+              <form action="' . sc_route('admin_discount.index') . '" id="button_search">
+                <div class="input-group input-group" style="width: 250px;">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
                 </form>';
 //=menuSearch
 
@@ -148,7 +146,8 @@ class AdminController extends Controller
             'title_description' => trans($this->plugin->pathPlugin.'::lang.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'discount' => [],
-            'url_action' => route('admin_discount.create'),
+            'url_action' => sc_route('admin_discount.create'),
+            'stories' => $this->stories,
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -165,6 +164,7 @@ class AdminController extends Controller
             'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code|string|max:50',
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
+            'store' => 'required',
             'type' => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
@@ -175,6 +175,7 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $store = $data['store'] ?? [];
         $dataInsert = [
             'code' => $data['code'],
             'reward' => (int)$data['reward'],
@@ -185,7 +186,11 @@ class AdminController extends Controller
             'expires_at' => $data['expires_at'],
             'status' => empty($data['status']) ? 0 : 1,
         ];
-        PluginModel::create($dataInsert);
+        $discount = PluginModel::create($dataInsert);
+        //Insert store
+        if ($store) {
+            $discount->stories()->attach($store);
+        }
 //
         return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
 
@@ -200,13 +205,16 @@ class AdminController extends Controller
         if ($discount === null) {
             return 'no data';
         }
+
         $data = [
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.edit'),
             'subTitle' => '',
             'title_description' => '',
             'icon' => 'fa fa-pencil-square-o',
             'discount' => $discount,
-            'url_action' => route('admin_discount.edit', ['id' => $discount['id']]),
+            'stories' => $this->stories,
+            'storiesPivot' => \DB::connection(SC_CONNECTION)->table((new PluginModel)->table_store)->where((new PluginModel)->table.'_id', $id)->pluck('store_id')->all(),
+            'url_action' => sc_route('admin_discount.edit', ['id' => $discount['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -224,6 +232,7 @@ class AdminController extends Controller
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
             'type' => 'required',
+            'store' => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
         ]);
@@ -234,6 +243,7 @@ class AdminController extends Controller
                 ->withInput();
         }
 //Edit
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'code' => $data['code'],
             'reward' => (int)$data['reward'],
@@ -246,6 +256,12 @@ class AdminController extends Controller
         ];
 
         $discount->update($dataUpdate);
+        //Update store
+        $discount->stories()->detach();
+        if (count($store)) {
+            $discount->stories()->attach($store);
+        }
+
 //
         return redirect()->route('admin_discount.index')
             ->with('success', trans($this->plugin->pathPlugin.'::lang.admin.edit_success'));

@@ -12,7 +12,7 @@ class ShopAttributeGroup extends Model
     protected static $getList = null;
     protected $connection = SC_CONNECTION;
 
-    public static function getList()
+    public static function getListAll()
     {
         if (!self::$getList) {
             self::$getList = self::pluck('name', 'id')->all();

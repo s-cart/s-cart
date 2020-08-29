@@ -51,16 +51,6 @@ class Permission
     }
 
     /**
-     * Don't check permission.
-     *
-     * @return bool
-     */
-    public static function free()
-    {
-        return true;
-    }
-
-    /**
      * Roles denied to access.
      *
      * @param $roles
@@ -92,7 +82,7 @@ class Permission
     {
         $uriCurrent = request()->fullUrl();
         $methodCurrent = request()->method();
-        if(strtoupper($methodCurrent) ==='GET'){
+        if(strtoupper($methodCurrent) === 'GET' ){
             return redirect()->route('admin.deny')->with(['method' => $methodCurrent, 'url' => $uriCurrent]);
         } else {
             return response()->json([

@@ -6,6 +6,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class AdminUser extends Model implements AuthenticatableContract
 {
@@ -16,6 +17,8 @@ class AdminUser extends Model implements AuthenticatableContract
         'password', 'remember_token',
     ];
     protected static $allPermissions = null;
+    protected static $allViewPermissions = null;
+    protected static $canChangeConfig = null;
 
     /**
      * A user has and belongs to many roles.
@@ -86,10 +89,69 @@ class AdminUser extends Model implements AuthenticatableContract
     {
         if (self::$allPermissions === null) {
             $user                 = \Admin::user();
-            self::$allPermissions = $user->roles()->with('permissions')->get()->pluck('permissions')->flatten()->merge($user->permissions);
+            self::$allPermissions = $user->roles()->with('permissions')
+                ->get()->pluck('permissions')->flatten()
+                ->merge($user->permissions);
         }
         return self::$allPermissions;
     }
+
+    /**
+     * Get all view permissions of user.
+     *
+     * @return mixed
+     */
+    protected static function allViewPermissions()
+    {
+        if (self::$allViewPermissions === null) {
+            $arrView = [];
+            $allPermissionTmp = self::allPermissions();
+            $allPermissionTmp = $allPermissionTmp->pluck('http_uri')->toArray();
+            if ($allPermissionTmp) {
+                foreach ($allPermissionTmp as  $actionList) {
+                    foreach (explode(',', $actionList) as  $action) {
+                        if (strpos($action, 'ANY::') === 0 || strpos($action, 'GET::') === 0) {
+                            $arrPrefix = ['ANY::', 'GET::'];
+                            $arrScheme = ['https://', 'http://'];
+                            $arrView[] = str_replace($arrScheme, '', url(str_replace($arrPrefix, '', $action)));
+                        }
+                    }
+                }
+            }
+            self::$allViewPermissions = $arrView;
+        }
+        return self::$allViewPermissions;
+    }
+
+    /**
+     * Check url menu can display
+     *
+     * @param   [type]  $url  [$url description]
+     *
+     * @return  [type]        [return description]
+     */
+    public  function checkUrlAllowAccess($url) {
+
+        if ($this->isAdministrator() || $this->isViewAll()) {
+            return true;
+        }
+        $listUrlAllowAccess = self::allViewPermissions();
+        $arrScheme = ['https://', 'http://'];
+        $pathCheck = strtolower(str_replace($arrScheme, '', $url));
+        if ($listUrlAllowAccess) {
+            foreach ($listUrlAllowAccess as  $pathAllow) {
+                if ($pathCheck === $pathAllow   
+                    || $pathCheck  === $pathAllow.'/'
+                    || (Str::endsWith($pathAllow, '*') && ($pathCheck === str_replace('/*', '', $pathAllow) || strpos($pathCheck, str_replace('*', '', $pathAllow)) === 0)) 
+                    || (Str::endsWith($pathAllow, '{id}') && ($pathCheck === str_replace('/{id}', '', $pathAllow) || strpos($pathCheck, str_replace('{id}', '', $pathAllow)) === 0))
+                    ) {
+                        return true;
+                    }
+            }
+        }
+        return false;
+    } 
+
 
     /**
      * Check if user has permission.
@@ -157,61 +219,43 @@ class AdminUser extends Model implements AuthenticatableContract
     }
 
     /**
-     * Check if user in $roles.
+     * Check user can change config value
      *
-     * @param array $roles
-     *
-     * @return mixed
+     * @return  [type]  [return description]
      */
-    public function inRoles(array $roles = []): bool
+    public static function checkPermissionconfig()
     {
-        return $this->roles->pluck('slug')->intersect($roles)->isNotEmpty();
-    }
+        if (self::$canChangeConfig === null) {
+            if (\Admin::user()->isAdministrator()) {
+                return self::$canChangeConfig = true;
+            }
 
-     /**
-      * Check user can visile menu.
-      * Allow: is isAdministrator, is viewAll group, 
-      * or menu not yet require psermission, or require permission same user
-      *
-      *
-      * @param  \App\Admin\Models\AdminMenu  $menu 
-      *
-      * @return bool                                
-      */
-    public function visible(\App\Admin\Models\AdminMenu $menu): bool
-    {
-        $allPermissionsMenuAllow = $menu->permissions()
-            ->pluck('slug')->flatten()->toArray();
-        $allRolesMenuAllow       = $menu->roles()
-            ->pluck('slug')->flatten()->toArray();
-        /*
-            Allow if: user is administrator, is isViewAll
-            or 
-            menu not specify permission and role
-         */
-        if ((!count($allPermissionsMenuAllow) 
-            && !count($allRolesMenuAllow))
-            || $this->isAdministrator() 
-            || $this->isViewAll()){
-            return true;
+            if (self::allPermissions()->first(function ($permission) {
+                if (!$permission->http_uri) {
+                    return false;
+                }
+                $actions = explode(',', $permission->http_uri);
+                    foreach ($actions as $key => $action) {
+                    $method = explode('::', $action);
+                    if (
+                        in_array($method[0], ['ANY', 'POST']) 
+                        && (
+                        SC_ADMIN_PREFIX . '/config/*' == $method[1] 
+                        || SC_ADMIN_PREFIX . '/config/update_info' == $method[1] 
+                        || SC_ADMIN_PREFIX . '/config' == $method[1]
+                        )
+                    ) {
+                        return true;
+                    }
+                }
+            })) {
+                return self::$canChangeConfig = true;
+            } else {
+                return self::$canChangeConfig = false;
+            }
+        } else {
+            return self::$canChangeConfig;
         }
-
-        /*
-            Allow if: user contains  role menu
-        */
-        if ($allRolesMenuAllow) {
-            return $this->inRoles($allRolesMenuAllow);
-        }
-        /*
-            Allow if: user contains  permission menu
-        */        
-        if ($allPermissionsMenuAllow) {
-            return $this->permissions
-                ->pluck('slug')->intersect($allPermissionsMenuAllow)
-                ->isNotEmpty();
-        }
-
-        return false;
     }
 
 }

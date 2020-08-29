@@ -6,21 +6,15 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
+    <div class="card">
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('cache.config_manager.field') }}</th>
-             <th>{{ trans('cache.config_manager.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
           <tr>
             <td colspan="3">
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear_processing')}}" class="btn btn-flat btn-success clear-cache" data-clear="cache_all">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear_all') }}
+                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear_all') }}
               </button>
             </td>
             
@@ -28,14 +22,14 @@
           <tr>
             <td>{{ trans('cache.config_manager.cache_status') }}</td>
             <td>
-              <a href="#" class="fied-required editable editable-click" data-name="cache_status" data-type="select" data-pk="" data-source="{{ json_encode(['1'=>'ON','0'=>'OFF']) }}" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('cache.config_manager.cache_status') }}" data-value="{{ sc_config('cache_status') }}" data-original-title="" title=""></a>
+              <a href="#" class="fied-required editable editable-click" data-name="cache_status" data-type="select" data-pk="" data-source="{{ json_encode(['1'=>'ON','0'=>'OFF']) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('cache.config_manager.cache_status') }}" data-value="{{ sc_config('cache_status') }}" data-original-title="" title=""></a>
             </td>
             <td></td>
           </tr>
           <tr>
             <td>{{ trans('cache.config_manager.cache_time') }}</td>
             <td>
-              <a href="#" class="cache-time data-cache_time"  data-name="cache_time" data-type="text" data-pk="" data-url="{{ route('admin_setting.update') }}" data-title="{{ trans('cache.config_manager.cache_time') }}">{{ sc_config('cache_time') }}</a>
+              <a href="#" class="cache-time data-cache_time"  data-name="cache_time" data-type="text" data-pk="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('cache.config_manager.cache_time') }}">{{ sc_config('cache_time') }}</a>
             </td>
             <td></td>
           </tr>
@@ -45,15 +39,9 @@
             <td>{{ sc_language_render($config->detail) }}</td>
             <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
             <td>
-              @if (\Cache::has($config->key))
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear') }}
-              </button>
-              @else
-              <button type="button" disabled data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
-                <i class="fa fa-refresh"></i> {{ trans('cache.config_manager.cache_clear') }}
-              </button>
-              @endif        
+                <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
+              </button>      
             </td>
           </tr>
            @endif
@@ -141,7 +129,7 @@ $(document).ready(function() {
       isChecked = (isChecked == false)?0:1;
       var name = $(this).attr('name');
         $.ajax({
-          url: '{{ route('admin_setting.update') }}',
+          url: '{{ route('admin_config.update') }}',
           type: 'POST',
           dataType: 'JSON',
           data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

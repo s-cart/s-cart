@@ -4,9 +4,9 @@ $layout_page = shop_contact
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 
      <div id="contact-page" class="container">
         <div class="bg">
@@ -19,7 +19,7 @@ $layout_page = shop_contact
                 <div class="col-sm-8">
                     <div class="contact-form">
                         <h2 class="title text-center">{{ trans('front.contact_form.title') }}</h2>
-                        <form method="post" action="{{ route('contact.post') }}" class="contact-form">
+                        <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form">
                         {{ csrf_field() }}
                         <div id="contactFormWrapper" style="margin: 30px;">
                         <div class="row">
@@ -137,7 +137,7 @@ $layout_page = shop_contact
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

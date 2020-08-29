@@ -10,7 +10,9 @@ use App\Models\ShopBrand;
 use App\Models\ShopSupplier;
 use App\Models\ShopNews;
 use App\Models\ShopPage;
-
+use App\Models\AdminStore;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class ScartServiceProvider extends ServiceProvider
 {
     /**
@@ -20,6 +22,7 @@ class ScartServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         foreach (glob(app_path() . '/Library/Helpers/*.php') as $filename) {
             require_once $filename;
         }
@@ -28,7 +31,12 @@ class ScartServiceProvider extends ServiceProvider
             require_once $filename;
         }
 
-        if(!file_exists(public_path('install.php'))) {
+        if (!file_exists(public_path('install.php'))) {
+            try {
+                DB::connection(SC_CONNECTION)->getPdo();
+            } catch(\Throwable $e) {
+                return;
+            }
             $this->bootScart();
         }
 
@@ -41,7 +49,7 @@ class ScartServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if(file_exists(app_path().'/Library/Const.php')) {
+        if (file_exists(app_path().'/Library/Const.php')) {
             require_once (app_path().'/Library/Const.php');
         }
         $this->app->bind('cart', 'App\Library\ShoppingCart\Cart');
@@ -51,62 +59,63 @@ class ScartServiceProvider extends ServiceProvider
 
     public function bootScart()
     {
-            if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
-                config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
-            }
-            config(['app.name' => sc_store('title')]);
+        //Check domain exist
+        $domain = Str::finish(str_replace(['http://','https://'], '', url('/')), '/');
+        $arrDomain = AdminStore::getDomain();
+        $storeId = 1;
+        if (in_array($domain, $arrDomain)) {
+            $storeId =  array_search($domain, $arrDomain);
+        }
+        //Get storeId
+        config(['app.storeId' => $storeId]);
+        if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
+            config(['logging.channels.slack.url' => sc_config('LOG_SLACK_WEBHOOK_URL')]);
+        }
 
-            //Config for  email
-            $smtpMode = sc_config('email_action_smtp_mode') ? 'smtp' : 'sendmail';
-            config(['mail.default' => $smtpMode]);
-            if ($smtpMode == 'smtp') {
-                if(sc_config('smtp_load_config') == 'database') {
-                    $smtpHost = sc_config('smtp_host');
-                    $smtpPort = sc_config('smtp_port');
-                    $smtpSecurity = sc_config('smtp_security');
-                    $smtpUser = sc_config('smtp_user');
-                    $smtpPassword = sc_config('smtp_password');
-                    config(['mail.mailers.smtp.host' => $smtpHost]);
-                    config(['mail.mailers.smtp.port' => $smtpPort]);
-                    config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
-                    config(['mail.mailers.smtp.username' => $smtpUser]);
-                    config(['mail.mailers.smtp.password' => $smtpPassword]);
-                }
-            }
+        config(['app.name' => sc_store('title')]);
 
-            config(
-                ['mail.from' =>
-                    [
-                        'address' => sc_store('email'),
-                        'name' => sc_store('title'),
-                    ],
-                ]
-            );
-            //email
+        //Config for  email
+        config(['mail.default' => 'smtp']);
+        
+        $smtpHost = sc_config('smtp_host');
+        $smtpPort = sc_config('smtp_port');
+        $smtpSecurity = sc_config('smtp_security');
+        $smtpUser = sc_config('smtp_user');
+        $smtpPassword = sc_config('smtp_password');
+        config(['mail.mailers.smtp.host' => $smtpHost]);
+        config(['mail.mailers.smtp.port' => $smtpPort]);
+        config(['mail.mailers.smtp.encryption' => $smtpSecurity]);
+        config(['mail.mailers.smtp.username' => $smtpUser]);
+        config(['mail.mailers.smtp.password' => $smtpPassword]);
 
-            // Time zone
-            config(['app.timezone' => (sc_config('SITE_TIMEZONE') ?? config('app.timezone'))]);
-            // End time zone
+        config(
+            [
+                'mail.from.address' => sc_store('email'),
+                'mail.from.name' => sc_store('title')
+            ]
+        );
+        //email
 
-            //Debug mode
-            config(['app.debug' => env('APP_DEBUG') ? true : ((sc_config('APP_DEBUG') === 'on') ? true : false)]);
-            //End debug mode
+        // Time zone
+        config(['app.timezone' => (sc_store('timezone') ?? config('app.timezone'))]);
+        // End time zone
 
-            //Share variable for view
-            view()->share('languages', sc_language_all());
-            view()->share('currencies', sc_currency_all());
-            view()->share('blocksContent', sc_block_content());
-            view()->share('layoutsUrl', sc_link());
-            view()->share('templatePath', 'templates.' . sc_store('template'));
-            view()->share('templateFile', 'templates/' . sc_store('template'));
-            //variable model
-            view()->share('modelProduct', (new ShopProduct));
-            view()->share('modelCategory', (new ShopCategory));
-            view()->share('modelBanner', (new ShopBanner));
-            view()->share('modelBrand', (new ShopBrand));
-            view()->share('modelSupplier', (new ShopSupplier));
-            view()->share('modelNews', (new ShopNews));
-            view()->share('modelPage', (new ShopPage));
+        //Share variable for view
+        view()->share('sc_languages', sc_language_all());
+        view()->share('sc_currencies', sc_currency_all());
+        view()->share('sc_blocksContent', sc_block_content());
+        view()->share('sc_layoutsUrl', sc_link());
+        view()->share('sc_templatePath', 'templates.' . sc_store('template'));
+        view()->share('sc_templateFile', 'templates/' . sc_store('template'));
+        //variable model
+        view()->share('modelProduct', (new ShopProduct));
+        view()->share('modelCategory', (new ShopCategory));
+        view()->share('modelBanner', (new ShopBanner));
+        view()->share('modelBrand', (new ShopBrand));
+        view()->share('modelSupplier', (new ShopSupplier));
+        view()->share('modelNews', (new ShopNews));
+        view()->share('modelPage', (new ShopPage));
+
     }
 
     /**
@@ -116,7 +125,8 @@ class ScartServiceProvider extends ServiceProvider
      */
     protected $routeMiddleware = [
         'localization' => \App\Http\Middleware\Localization::class,
-        'currency' => \App\Http\Middleware\Currency::class,
+        'currency'     => \App\Http\Middleware\Currency::class,
+        'checkdomain'  => \App\Http\Middleware\CheckDomain::class,
     ];
 
     /**

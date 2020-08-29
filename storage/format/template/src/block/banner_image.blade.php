@@ -17,7 +17,7 @@
                @foreach ($banners as $key => $banner)
                   <div class="item {{ ($key)?'':'active' }}">
                     <div class="col-sm-12">
-                      <a href="{{ route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}"><img src="{{ asset($banner->image) }}" class="girl img-responsive" alt="" /></a>
+                      <a href="{{ sc_route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}"><img src="{{ asset($banner->image) }}" class="girl img-responsive" alt="" /></a>
                     </div>
                   </div>
                @endforeach

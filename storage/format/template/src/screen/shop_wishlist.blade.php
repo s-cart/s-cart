@@ -5,9 +5,9 @@ $wishlist: no paginate
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('center')
+@section('block_main_content_center')
 
 <div class="features_items">
 <h2 class="title text-center">{{ $title }}</h2>
@@ -43,7 +43,7 @@ $wishlist: no paginate
         </td>
         <td>{!! $product->showPrice() !!}</td>
         <td>
-            <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item" class="cart_quantity_delete" href="{{ route('wishlist.remove',['id'=>$item->rowId]) }}"><i class="fa fa-times"></i></a>
+            <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item" class="cart_quantity_delete" href="{{ sc_route('wishlist.remove',['id'=>$item->rowId]) }}"><i class="fa fa-times"></i></a>
         </td>
     </tr>
     @endforeach
@@ -58,7 +58,7 @@ $wishlist: no paginate
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

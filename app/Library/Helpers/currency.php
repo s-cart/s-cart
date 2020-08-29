@@ -97,7 +97,7 @@ if (!function_exists('sc_currency_info')) {
 if (!function_exists('sc_currency_all')) {
     function sc_currency_all()
     {
-        return ShopCurrency::getAll();
+        return ShopCurrency::getListActive();
     }
 }
 

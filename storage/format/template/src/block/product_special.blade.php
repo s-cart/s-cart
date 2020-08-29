@@ -17,7 +17,7 @@ $productPromotion = $modelProduct->getProductPromotion()->setRandom()->setLimit(
                             <a href="{{ $product->getUrl() }}"><p>{{ $product->name }}</p></a>
                           </div>
                       @if ($product->price != $product->getFinalPrice())
-                      <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                      <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                       @endif
                       </div>
                     </div>

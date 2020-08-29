@@ -6,9 +6,9 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 */
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 <div class="row">
         <div class="container">
                 <h2 class="title text-center">{{ $title }}</h2>
@@ -39,7 +39,7 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
     <div class="breadcrumbs pull-left">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

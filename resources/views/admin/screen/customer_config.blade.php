@@ -6,21 +6,27 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
+    <div class="card">
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0">
        <table class="table table-hover">
          <thead>
            <tr>
              <th>{{ trans('customer.config_manager.field') }}</th>
              <th>{{ trans('customer.config_manager.value') }}</th>
+             <th>{{ trans('customer.config_manager.reqired') }}</th>
            </tr>
          </thead>
          <tbody>
-           @foreach ($configs as $config)
+           @foreach ($configs as $key => $config)
              <tr>
-               <td>{{ sc_language_render($config->detail) }}</td>
-               <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+               <td>{{ sc_language_render($config['detail']) }}</td>
+               <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
+               <td>
+                 @if (!empty($configsRequired[$key.'_required']))
+                 <input type="checkbox" name="{{ $configsRequired[$key.'_required']['key'] }}"  {{ $configsRequired[$key.'_required']['value']?"checked":"" }}>
+                 @endif
+               </td>
              </tr>
            @endforeach
          </tbody>
@@ -119,7 +125,7 @@ $(document).ready(function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

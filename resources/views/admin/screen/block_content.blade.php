@@ -3,77 +3,77 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
-                        <div class="btn-group pull-right" style="margin-right: 5px">
+                    <div class="card-tools">
+                        <div class="btn-group float-right mr-5">
                             <a href="{{ route('admin_block_content.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
-                        <div class="fields-group">
-
-                            <div class="form-group   {{ $errors->has('name') ? ' has-error' : '' }}">
+                    <div class="card-body">
+                            <div class="form-group row  {{ $errors->has('name') ? ' text-red' : '' }}">
                                 <label for="name" class="col-sm-2 col-form-label">{{ trans('block_content.name') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="text" id="name" name="name" value="{!! old('name',$layout['name']??'') !!}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                {{ $errors->first('name') }}
+                                            <span class="form-text">
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
-                            <div class="form-group  {{ $errors->has('position') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('position') ? ' text-red' : '' }}">
                                 <label for="position" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_position') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control position select2" style="width: 100%;" name="position" >
                                         <option value=""></option>
                                         @foreach ($layoutPosition as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('position',$layout['position']??'') ==$k) ? 'selected':'' }}>{{ $v }}</option>
+                                            <option value="{{ $k }}" {{ (old('position',$layout['position']??'') ==$k) ? 'selected':'' }}>{{ sc_language_render($v) }}</option>
                                         @endforeach
                                     </select>
                                         @if ($errors->has('position'))
-                                            <span class="help-block">
-                                                {{ $errors->first('position') }}
+                                            <span class="form-text">
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('position') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('page') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('page') ? ' text-red' : '' }}">
                                 <label for="page" class="col-sm-2 col-form-label">{{ trans('block_content.admin.select_page') }}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control page select2" multiple="multiple" style="width: 100%;" name="page[]" >
                                         <option value=""></option>
                                         @php
-                                            $layoutPage = ['*'=>'All pages'] + $layoutPage;
+                                            $layoutPage = ['*'=> trans('layout.page_position.all')] + $layoutPage;
                                             $arrPage = explode(',', $layout['page']??'');
                                         @endphp
                                         @foreach ($layoutPage as $k => $v)
-                                            <option value="{{ $k }}" {{ in_array($k,old('page',$arrPage)) ? 'selected':'' }}>{{ $v }}</option>
+                                            <option value="{{ $k }}" {{ in_array($k,old('page',$arrPage)) ? 'selected':'' }}>{{ sc_language_render($v) }}</option>
                                         @endforeach
                                     </select>
                                         @if ($errors->has('page'))
-                                            <span class="help-block">
-                                                {{ $errors->first('page') }}
+                                            <span class="form-text">
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('page') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('type') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
                                 <label for="type" class="col-sm-2 col-form-label">{{ trans('block_content.type') }}</label>
                                 <div class="col-sm-8">
                             @if ($layout)
@@ -84,14 +84,14 @@
                                 @endforeach
                             @endif
                                         @if ($errors->has('type'))
-                                            <span class="help-block">
-                                                {{ $errors->first('type') }}
+                                            <span class="form-text">
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
-                            <div class="form-group  {{ $errors->has('text') ? ' has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('text') ? ' text-red' : '' }}">
                                 <label for="text" class="col-sm-2 col-form-label">{{ trans('block_content.text') }}</label>
                                 <div class="col-sm-8">
                                     @php
@@ -101,14 +101,14 @@
                                         <textarea name="text" class="form-control text" rows="5" placeholder="Layout text">
                                             {{ old('text',$layout['text']??'') }}
                                         </textarea>
-                                    <span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}</span>
+                                    <span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}</span>
                                     @elseif ($dataType =='view')
                                         <select name="text" class="form-control text">
                                             @foreach ($listViewBlock as $view)
                                                 <option value="{!! $view !!}" {{ (old('text',$layout['text']??'') == $view)?'selected':'' }} >{{ $view }}</option>
                                             @endforeach
                                         </select>
-                                        <span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>
+                                        <span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>
                                     @else
                                         <textarea name="text" class="form-control text" rows="5" placeholder="Layout text">
                                             {!! old('text',$layout['text']??'') !!}
@@ -117,7 +117,7 @@
 
 
                                     @if ($errors->has('text'))
-                                        <span class="help-block">
+                                        <span class="form-text">
                                             {{ $errors->first('text') }}
                                         </span>
                                     @endif
@@ -125,54 +125,54 @@
                             </div>
 
 
-                            <div class="form-group   {{ $errors->has('sort') ? ' has-error' : '' }}">
+                            <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
                                 <label for="sort" class="col-sm-2 col-form-label">{{ trans('block_content.sort') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="number" style="width: 100px;"  id="sort" name="sort" value="{!! old()?old('sort'):$layout['sort']??0 !!}" class="form-control sort" placeholder="" />
                                     </div>
                                         @if ($errors->has('sort'))
-                                            <span class="help-block">
-                                                {{ $errors->first('sort') }}
+                                            <span class="form-text">
+                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
                                             </span>
                                         @endif
                                 </div>
                             </div>
 
 
-                            <div class="form-group  ">
+                            <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('block_content.status') }}</label>
                                 <div class="col-sm-8">
                                 <input class="input" type="checkbox" name="status"  {!! old('status',(empty($layout['status'])?0:1))?'checked':''!!}>
 
                                 </div>
                             </div>
-
-                        </div>
                     </div>
 
 
 
-                    <!-- /.box-body -->
+                    <!-- /.card-body -->
 
-                    <div class="box-footer">
+                    <div class="card-footer row">
                             @csrf
                         <div class="col-md-2">
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
 
-                            <div class="btn-group pull-left">
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
             </div>
         </div>
@@ -201,12 +201,12 @@ $(function () {
     $('[name="type"]').change(function(){
     var type = $(this).val();
     var obj = $('[name="text"]');
-    obj.next('.help-block').remove();
+    obj.next('.form-text').remove();
     if(type =='html'){
-       obj.before('<textarea name="text" class="form-control text" rows="5" placeholder="Layout text"></textarea><span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}.</span>');
+       obj.before('<textarea name="text" class="form-control text" rows="5" placeholder="Layout text"></textarea><span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_html') }}.</span>');
        obj.remove();
     }else if(type =='view'){
-       obj.before('<select name="text" class="form-control text">@foreach ($listViewBlock as $view)<option value="{{ $view }}">{{ $view }}</option>@endforeach</select><span class="help-block"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>');
+       obj.before('<select name="text" class="form-control text">@foreach ($listViewBlock as $view)<option value="{{ $view }}">{{ $view }}</option>@endforeach</select><span class="form-text"><i class="fa fa-info-circle"></i> {{ trans('block_content.admin.helper_view',['template' => sc_store('template')]) }}</span>');
        obj.remove();
     }
     });

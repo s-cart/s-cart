@@ -2,7 +2,7 @@
 return [
     'id'     => 'ID',
     'name'   => 'Name',
-    'status' => 'Description',
+    'description' => 'Description',
     'admin'  => [
         'title'          => 'Weight unit',
         'create_success' => 'Create new item success!',

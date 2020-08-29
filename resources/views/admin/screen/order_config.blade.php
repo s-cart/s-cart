@@ -6,19 +6,13 @@
 
   <div class="col-md-6">
 
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{ trans('order.admin.config_info') }}</h3>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-cog"></i> {{ trans('order.admin.config_info') }}</h3>
       </div>
 
-      <div class="box-body table-responsive no-padding box-primary">
+      <div class="card-body table-responsivep-0 card-primary">
        <table class="table table-hover">
-         <thead>
-           <tr>
-             <th>{{ trans('product.config_manager.field') }}</th>
-             <th>{{ trans('product.config_manager.value') }}</th>
-           </tr>
-         </thead>
          <tbody>
            @foreach ($configs as $config)
              <tr>
@@ -183,7 +177,7 @@ $('.grid-trash').on('click', function() {
     isChecked = (isChecked == false)?0:1;
     var name = $(this).attr('name');
       $.ajax({
-        url: '{{ route('admin_setting.update') }}',
+        url: '{{ route('admin_config.update') }}',
         type: 'POST',
         dataType: 'JSON',
         data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},

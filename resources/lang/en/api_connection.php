@@ -6,8 +6,10 @@ return [
     'apiconnection' => 'Account connection',
     'expire' => 'Expire',
     'api_connection_required' => 'Require connection',
-    'api_connection_required_help' => 'Connection account is required to use the API<br>
-    <b>API list:</b><br>
+    'api_connection_required_help' => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Connection account is required to use the API<br>
+    <a href="https://s-cart.org/docs/master/api-shop-info.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true"></i>See full infomation</a>
+    <hr>
+    <b>API list support:</b><br>
     <i>
     '.url('api/auth/create').'<br>
     '.url('api/auth/login').'<br>
@@ -29,9 +31,9 @@ return [
     'validate_regex' => 'Only use characters : a-z0-9',
     'admin' => [
         'title' => 'Api connection manager',
-        'create_success' => 'Tạo mới thành công!',
-        'edit_success' => 'Cập nhật thành công!',
-        'list' => 'Danh sách API connection',
+        'create_success' => 'Create new success!',
+        'edit_success' => 'Update successful!',
+        'list' => 'List of API connection',
         'id' => 'ID',
         'status' => 'Status',
         'action' => 'Action',

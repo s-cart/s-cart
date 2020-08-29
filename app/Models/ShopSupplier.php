@@ -15,9 +15,9 @@ class ShopSupplier extends Model
     private static $getList = null;
     protected $connection = SC_CONNECTION;
 
-    public static function getList()
+    public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;
@@ -76,7 +76,7 @@ class ShopSupplier extends Model
         if(empty($key)) {
             return null;
         }
-        if ($type == null) {
+        if ($type === null) {
             $data = $this->where('id', (int) $key);
         } else {
             $data = $this->where($type, $key);

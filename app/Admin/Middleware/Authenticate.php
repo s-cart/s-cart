@@ -17,7 +17,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        $redirectTo = route('admin.login');
+        $redirectTo = sc_route('admin.login');
         if (Auth::guard('admin')->guest() && !$this->shouldPassThrough($request)) {
             return redirect()->guest($redirectTo);
         }

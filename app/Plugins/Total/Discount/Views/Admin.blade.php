@@ -3,33 +3,35 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-         <div class="box">
-                <div class="box-header with-border">
-                    <h2 class="box-title">{{ $title_description??'' }}</h2>
+         <div class="card">
+                <div class="card-header with-border">
+                    <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-                    <div class="box-tools">
+                    <div class="card-tools">
                         <div class="btn-group pull-right" style="margin-right: 5px">
-                            <a href="{{ route('admin_discount.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                            <a href="{{ sc_route('admin_discount.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
+                <!-- /.card-header -->
                 <!-- form start -->
                 <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"  enctype="multipart/form-data">
 
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="fields-group">
 
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="fields-group">
 
-                            <div class="form-group   {{ $errors->has('code') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('code') ? ' invalid' : '' }}">
                                 <label for="code" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.code') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-ticket fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-clipboard-list"></i></span>
+                                        </div>
                                         <input type="text" id="code" name="code" value="{{ old()?old('code'):$discount['code']??'' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('code'))
@@ -44,11 +46,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group   {{ $errors->has('reward') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('reward') ? ' invalid' : '' }}">
                                 <label for="reward" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.reward') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-file-text-o fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-file-alt"></i></span>
+                                        </div>
                                         <input type="text" id="reward" name="reward" value="{{ old()?old('reward'):$discount['reward']??'' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('reward'))
@@ -60,11 +64,12 @@
                             </div>
 
 
-                            <div class="form-group   {{ $errors->has('type') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('type') ? ' invalid' : '' }}">
                                 <label for="type" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.type') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                     <label class="radio-inline"><input type="radio" name="type" value="point" {{ (old('type',$discount['type']??'') == 'point')?'checked':'' }}> Point</label>
+                                        &nbsp; 
                                     <label class="radio-inline"><input type="radio" name="type" value="percent" {{ (old('type',$discount['type']??'') == 'percent')?'checked':'' }}> Percent (%)</label>
                                     </div>
                                         @if ($errors->has('type'))
@@ -76,11 +81,13 @@
                             </div>
 
 
-                            <div class="form-group   {{ $errors->has('data') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('data') ? ' invalid' : '' }}">
                                 <label for="data" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.data') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="text" id="data" name="data" value="{{ old()?old('data'):$discount['data']??'' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('data'))
@@ -93,11 +100,13 @@
 
 
 
-                            <div class="form-group   {{ $errors->has('limit') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('limit') ? ' invalid' : '' }}">
                                 <label for="limit" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.limit') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                        </div>
                                         <input type="number" id="limit" name="limit" value="{{ old()?old('limit'):$discount['limit']??'1' }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('limit'))
@@ -108,13 +117,49 @@
                                 </div>
                             </div>
 
+                        {{-- select store --}}
+                        @if (count($stories) > 1)
+                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
+                            @php
+                            $listStore = [];
+                            $store = old('store', ($storiesPivot ?? []));
+                            if(is_array($store)){
+                                foreach($store as $value){
+                                    $listStore[] = (int)$value;
+                                }
+                            }
+                            @endphp
+                            <label for="store" class="col-sm-2 col-form-label">
+                                {{ trans('store.select_store') }}
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm store select2" multiple="multiple"
+                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
+                                    name="store[]">
+                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
+                                    @foreach ($stories as $id => $store)
+                                    <option value="{{ $id }}"
+                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('store'))
+                                <span class="form-text">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" name="store[]" value="0">
+                        @endif
+                        {{-- //select store --}}
 
-
-                            <div class="form-group   {{ $errors->has('login') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('login') ? ' invalid' : '' }}">
                                 <label for="login" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.login') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input type="checkbox"  id="login" name="login" {{ old('login',(empty($discount['login'])?0:1))?'checked':''}}  placeholder="" class="check-form" />
+                                        <input type="checkbox" class="input" id="login" name="login" {{ old('login',(empty($discount['login'])?0:1))?'checked':''}}  placeholder="" class="check-form" />
                                     </div>
                                         @if ($errors->has('login'))
                                             <span class="help-block">
@@ -123,12 +168,14 @@
                                         @endif
                                 </div>
                             </div>
-                            <div class="form-group   {{ $errors->has('expires_at') ? ' has-error' : '' }}">
+                            <div class="form-group  row {{ $errors->has('expires_at') ? ' invalid' : '' }}">
                                 <label for="expires_at" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.expires_at') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-                                        <input type="text" id="expires_at" name="expires_at" value="{{ old()?old('expires_at'):$discount['expires_at']??'' }}" class="form-control date_time" style="width: 100px;" placeholder="" />
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
+                                        </div>
+                                        <input type="date" id="expires_at" name="expires_at" value="{{ old()?old('expires_at'):$discount['expires_at']??'' }}" class="form-control date_time"  placeholder="" />
                                     </div>
                                         @if ($errors->has('expires_at'))
                                             <span class="help-block">
@@ -138,8 +185,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group  ">
-                                <label for="status" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.status') }}</label>
+                            <div class="form-group row ">
+                                <label for="status" class="col-sm-2 control-label">{{ trans('Plugins/Total/Discount::lang.status') }}</label>
                                 <div class="col-sm-8">
                                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($discount['status'])?0:1))?'checked':''}}>
                                 </div>
@@ -149,25 +196,26 @@
                     </div>
 
 
-                    <!-- /.box-body -->
+                    <!-- /.card-body -->
 
-                    <div class="box-footer">
-                            @csrf
+
+                    <div class="card-footer row" id="card-footer">
+                        @csrf
                         <div class="col-md-2">
                         </div>
-
+    
                         <div class="col-md-8">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group float-right">
                                 <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                             </div>
-
-                            <div class="btn-group pull-left">
+    
+                            <div class="btn-group float-left">
                                 <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- /.box-footer -->
+                    <!-- /.card-footer -->
                 </form>
             </div>
         </div>
@@ -176,42 +224,13 @@
 @endsection
 
 @push('styles')
-<!-- Select2 -->
-<link rel="stylesheet" href="{{ asset('admin/AdminLTE/bower_components/select2/dist/css/select2.min.css')}}">
-
-{{-- switch --}}
-<link rel="stylesheet" href="{{ asset('admin/plugin/bootstrap-switch.min.css')}}">
-
 @endpush
 
 @push('scripts')
-<!-- Select2 -->
-<script src="{{ asset('admin/AdminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-
-{{-- switch --}}
-<script src="{{ asset('admin/plugin/bootstrap-switch.min.js')}}"></script>
-
-
-
 <script type="text/javascript">
-
 $(document).ready(function() {
     $('.select2').select2()
 });
 
-//Date picker
-$('.date_time').datepicker({
-  autoclose: true,
-  format: 'yyyy-mm-dd'
-})
-</script>
-<script>
-  $(function () {
-    $('input.check-form').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
 </script>
 @endpush

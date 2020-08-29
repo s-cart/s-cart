@@ -9,10 +9,10 @@ return [
     'description' => 'Mô tả',
     'image'       => 'Hình ảnh',
     'parent'      => 'Danh mục cha',
-    'top'         => 'Hiển thị ưu tiên',
+    'top'         => 'Hiển thị bên ngoài website',
+    'top_help'   => 'Danh mục này sẽ hiển thị ra ngoài trang chủ. Mặc định chỉ dành cho những danh mục Root.',
     'status'      => 'Trạng thái',
     'sort'        => 'Sắp xếp',
-    'help_top'    => 'Hiển thị danh mục này bên ngoài website',
     'admin'       => [
         'title'           => 'Quản lý danh mục',
         'create_success'  => 'Tạo item thành công!',

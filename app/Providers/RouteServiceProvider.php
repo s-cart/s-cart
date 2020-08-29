@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware(['web', 'localization', 'currency'])
+        Route::middleware(['web', 'localization', 'currency', 'checkdomain'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapPluginsRoutes()
     {
-        Route::middleware(['web', 'localization', 'currency'])
+        Route::middleware(['web', 'localization', 'currency', 'checkdomain'])
             ->group(function () {
                 foreach (glob(app_path() . '/Plugins/*/*/Route.php') as $filename) {
                     require_once $filename;
@@ -89,7 +89,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapFrontRoutes()
     {
         $suffix = sc_config('SUFFIX_URL')??'';
-        Route::middleware(['web', 'localization', 'currency'])
+        Route::middleware(['web', 'localization', 'currency', 'checkdomain'])
             ->namespace('App\Http\Controllers')
             ->group(function () use($suffix){
                 foreach (glob(base_path() . '/routes/component/*.php') as $filename) {

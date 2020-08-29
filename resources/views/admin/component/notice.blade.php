@@ -3,26 +3,22 @@
   $totalNewOrders = $newOrders->count();
   $orders = $newOrders->limit(10)->get();
 @endphp
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">{{$totalNewOrders}}</span>
+
+    <!-- Notifications: style can be found in dropdown.less -->
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-warning navbar-badge">{{$totalNewOrders}}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-item dropdown-header">{{ trans('admin.menu_notice.new_order',['total'=>$totalNewOrders]) }}</span>
+        <div class="dropdown-divider"></div>
+            @foreach ($orders as $order)
+            <a href="{{route('admin_order.detail',['id'=>$order->id])}}" class="dropdown-item">
+              #{{$order->id}} - {{ trans('admin.menu_notice.date') }}: {{$order->created_at}}
             </a>
-            <ul class="dropdown-menu">
-              <li class="header"> {{ trans('admin.menu_notice.new_order',['total'=>$totalNewOrders]) }}</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  @foreach ($orders as $order)
-                    <li>
-                      <a href="{{route('admin_order.detail',['id'=>$order->id])}}">
-                        <i class="fa fa-shopping-cart text-green"></i> #{{$order->id}} - {{ trans('admin.menu_notice.date') }}: {{$order->created_at}}
-                      </a>
-                    </li>                      
-                  @endforeach
-                </ul>
-              </li>
-              <li class="footer"><a href="{{route('admin_order.index')}}?order_status=1">{{ trans('admin.menu_notice.view_all') }}</a></li>
-            </ul>
-          </li>
+            <div class="dropdown-divider"></div>                     
+            @endforeach
+          <a href="{{route('admin_order.index')}}?order_status=1" class="dropdown-item dropdown-footer">{{ trans('admin.menu_notice.view_all') }}</a>
+      </div>
+    </li>

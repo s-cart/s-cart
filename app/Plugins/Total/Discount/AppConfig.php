@@ -12,9 +12,9 @@ class AppConfig extends ConfigDefault
     {
     	$config = file_get_contents(__DIR__.'/config.json');
     	$config = json_decode($config, true);
-    	$this->configGroup = $config['configGroup'];
-    	$this->configCode = $config['configCode'];
-    	$this->configKey = $config['configKey'];
+    	$this->configGroup = $config['configGroup'] ?? '';
+    	$this->configCode = $config['configCode'] ?? '';
+    	$this->configKey = $config['configKey'] ?? '';
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
         $this->title = trans($this->pathPlugin.'::lang.title');
         $this->image = $this->pathPlugin.'/'.$config['image'];
@@ -34,7 +34,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $check = AdminConfig::where('key', $this->configKey)->first();
         if ($check) {
-            $return = ['error' => 1, 'msg' => 'Module exist'];
+            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.plugin_exist')];
         } else {
             $process = AdminConfig::insert(
                 [
@@ -47,9 +47,13 @@ class AppConfig extends ConfigDefault
                 ]
             );
             if (!$process) {
-                $return = ['error' => 1, 'msg' => 'Error when install'];
+                $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.install_faild')];
             } else {
-                $return = (new PluginModel)->installExtension();
+               try {
+                    (new PluginModel)->install();
+               } catch (\Throwable $e) {
+                    return  ['error' => 1, 'msg' => $e->getMessage()];
+               }
             }
         }
 
@@ -61,9 +65,9 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
         if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error when uninstall'];
+            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
-        (new PluginModel)->uninstallExtension();
+        (new PluginModel)->uninstall();
         return $return;
     }
     public function enable()
@@ -71,7 +75,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->update(['value' => self::ON]);
         if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error enable'];
+            $return = ['error' => 1, 'msg' =>  trans('plugin.plugin_action.action_error', ['action' => 'Enable'])];
         }
         return $return;
     }
@@ -82,7 +86,7 @@ class AppConfig extends ConfigDefault
             ->where('key', $this->configKey)
             ->update(['value' => self::OFF]);
         if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error disable'];
+            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Disable'])];
         }
         return $return;
     }
