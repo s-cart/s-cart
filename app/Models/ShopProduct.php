@@ -298,9 +298,9 @@ class ShopProduct extends Model
             return false;
         }
         if ($this->sc_status &&
-            (sc_config('product_preorder') == 1 || $this->date_available === null || date('Y-m-d H:i:s') >= $this->date_available) &&
-            (sc_config('product_buy_out_of_stock') || $this->stock) &&
-            $this->kind != SC_PRODUCT_GROUP
+            (sc_config('product_preorder') == 1 || $this->date_available === null || date('Y-m-d H:i:s') >= $this->date_available) 
+            && (sc_config('product_buy_out_of_stock') || $this->stock || empty(sc_config('product_stock'))) 
+            && $this->kind != SC_PRODUCT_GROUP
         ) {
             return true;
         } else {
@@ -738,7 +738,7 @@ class ShopProduct extends Model
         }
 
         //Hidden product out of stock
-        if (empty(sc_config('product_display_out_of_stock'))) {
+        if (empty(sc_config('product_display_out_of_stock')) && !empty(sc_config('product_stock'))) {
             $query = $query->where('stock', '>', 0);
         }
 
