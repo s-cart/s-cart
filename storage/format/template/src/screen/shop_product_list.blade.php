@@ -8,9 +8,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('center')
+@section('block_main_content_center')
   <div class="features_items">
     <h2 class="title text-center">{{ $title }}</h2>
 
@@ -61,11 +61,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                       @endif
                   </div>
                       @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                      <img src="{{ asset($templateFile.'/images/home/sale.png') }}" class="new" alt="" />
+                      <img src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_BUILD)
-                      <img src="{{ asset($templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
+                      <img src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" />
                       @elseif($product->kind == SC_PRODUCT_GROUP)
-                      <img src="{{ asset($templateFile.'/images/home/group.png') }}" class="new" alt="" />
+                      <img src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" />
                       @endif
                 </div>
                 <div class="choose">
@@ -91,7 +91,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
     <div class="breadcrumbs pull-left">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

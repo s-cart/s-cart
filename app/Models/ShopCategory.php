@@ -20,6 +20,9 @@ class ShopCategory extends Model
     protected  $sc_parent = ''; // category id parent
     protected  $sc_top = 'all'; // 1 - category display top, 0 -non top, all - all
 
+    protected static $getListTitle = null;
+    protected static $getListFull = null;
+
     public function products()
     {
         return $this->belongsToMany(ShopProduct::class, SC_DB_PREFIX . 'shop_product_category', 'category_id', 'product_id');
@@ -29,7 +32,10 @@ class ShopCategory extends Model
     {
         return $this->hasMany(ShopCategoryDescription::class, 'category_id', 'id');
     }
-
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopCategoryStore::class, 'category_id', 'store_id');
+    }
     /**
      * Get category parent
      */
@@ -45,6 +51,8 @@ class ShopCategory extends Model
         static::deleting(function ($category) {
             //Delete category descrition
             $category->descriptions()->delete();
+            $category->products()->detach();
+            $category->stories()->detach();
         });
     }
 
@@ -58,7 +66,7 @@ class ShopCategory extends Model
      */
     public function getIdCategories($parent = 0, &$arrayID = [], $categories = [])
     {
-        $categories = $categories ?? $this->getList();
+        $categories = $categories ?? $this->getListAll();
         $arrayID = $arrayID ?? [];
         $lisCategory = $categories[$parent] ?? [];
         if (count($lisCategory)) {
@@ -84,7 +92,7 @@ class ShopCategory extends Model
      */
     public function getTreeCategories($parent = 0, &$tree = [], $categories = null, &$st = '')
     {
-        $categories = $categories ?? $this->getList();
+        $categories = $categories ?? $this->getListAll();
         $tree = $tree ?? [];
         $lisCategory = $categories[$parent] ?? [];
         if ($lisCategory) {
@@ -139,7 +147,7 @@ class ShopCategory extends Model
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $tableDescription = (new ShopCategoryDescription)->getTable();
 
@@ -168,19 +176,52 @@ class ShopCategory extends Model
     }
 
     /**
+     * Get array title category
+     * user for admin 
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getListTitle()
+    {
+        if (sc_config_global('cache_status') && sc_config_global('cache_category')) {
+            if (!Cache::has('cache_category_'.sc_get_locale())) {
+                if (self::$getListTitle === null) {
+                    self::$getListTitle = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+                        ->pluck('title', 'category_id')->toArray();
+                }
+                Cache::put('cache_category_'.sc_get_locale(), self::$getListTitle, $seconds = sc_config_global('cache_time')?:600);
+            }
+            return Cache::get('cache_category_'.sc_get_locale());
+        } else {
+            if (self::$getListTitle === null) {
+                self::$getListTitle = (new ShopCategoryDescription)->where('lang', sc_get_locale())
+                    ->pluck('title', 'category_id')->toArray();
+            }
+            return self::$getListTitle;
+        }
+    }
+
+
+    /**
      * Process list full cactegory
      *
      * @return  [type]  [return description]
      */
     public static function getListFull()
     {
-        if(sc_config('cache_status') && sc_config('cache_category')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_category')) {
             if (!Cache::has('cache_category')) {
-                Cache::put('cache_category', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time', 0)?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_category', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_category');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 
@@ -201,7 +242,14 @@ class ShopCategory extends Model
         $category = $this
             ->leftJoin($tableDescription, $tableDescription . '.category_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
-        if ($type == null) {
+
+        //Get category active for store
+        $tableCTS = (new ShopCategoryStore)->getTable();
+        $category = $category->leftJoin($tableCTS, $tableCTS . '.category_id', $this->getTable() . '.id');
+        $category = $category->whereIn($tableCTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
+        if ($type === null) {
             $category = $category->where('id', (int) $key);
         } else {
             $category = $category->where($type, $key);
@@ -278,6 +326,12 @@ class ShopCategory extends Model
                 ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%');
             });
         }
+
+        //Get category active for store
+        $tableCTS = (new ShopCategoryStore)->getTable();
+        $query = $query->leftJoin($tableCTS, $tableCTS . '.category_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tableCTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
 
         if ($this->sc_status !== 'all') {
             $query = $query->where('status', $this->sc_status);

@@ -24,6 +24,7 @@ class FrontController extends GeneralController
         $this->prefix = false;
         $this->length = 8;
         $this->mask = '****-****';
+        $this->mask = '****-****';
         $this->plugin = new AppConfig;
     }
 
@@ -91,7 +92,7 @@ class FrontController extends GeneralController
     public function check($code, $uID = null)
     {
         $uID = (int) $uID;
-        $promocode = PluginModel::byCode($code)->first();
+        $promocode = (new PluginModel)->getPromotionByCode($code);
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
         }
@@ -135,15 +136,16 @@ class FrontController extends GeneralController
         $check = json_decode($checkCode, true);
 
         if ($check['error'] === 0) {
-            $promocode = PluginModel::byCode($code)->first();
+            $promocode = (new PluginModel)->getPromotionByCode($code);
             try {
+                // increment used
+                $promocode->used += 1;
+                $promocode->save();
+
                 $promocode->users()->attach($uID, [
                     'used_at' => Carbon::now(),
                     'log' => $msg,
                 ]);
-                // increment used
-                $promocode->used += 1;
-                $promocode->save();
                 return json_encode(['error' => 0, 'content' => $promocode->load('users')]);
             } catch (\Exception $e) {
                 return json_encode(['error' => 1, 'msg' => $e->getMessage()]);
@@ -161,7 +163,7 @@ class FrontController extends GeneralController
  */
     public function disableDiscount($code)
     {
-        $promocode = PluginModel::byCode($code)->first();
+        $promocode = (new PluginModel)->getPromotionByCode($code);
 
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
@@ -178,7 +180,7 @@ class FrontController extends GeneralController
  */
     public function enableDiscount($code)
     {
-        $promocode = PluginModel::byCode($code)->first();
+        $promocode = (new PluginModel)->getPromotionByCode($code);
 
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
@@ -322,7 +324,7 @@ class FrontController extends GeneralController
     {
         $html = '';
         //destroy discount
-        $totalMethod = session('totalMethod',[]);
+        $totalMethod = session('totalMethod', []);
         unset($totalMethod[$this->plugin->configKey]);
         session(['totalMethod' => $totalMethod]);
 
@@ -332,7 +334,7 @@ class FrontController extends GeneralController
             if ($element['value'] != 0) {
                 $html .= "<tr class='showTotal'>
                          <th>" . $element['title'] . "</th>
-                        <td style='text-align: right' id='" . $element['code'] . "'>" . $element['text'] . "</td>
+                         <td style='text-align: right' id='" . $element['code'] . "'>" . $element['text'] . "</td>
                     </tr>";
             }
         }

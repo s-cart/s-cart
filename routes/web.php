@@ -13,7 +13,10 @@
 /*
  Home
 */
+$prefixShop = sc_config('PREFIX_SHOP')??'shop';
+
 Route::get('/', 'ShopFront@index')->name('home');
+Route::get('/'.$prefixShop, 'ShopFront@shop')->name('shop');
 Route::get('index.html', 'ShopFront@index');
 
 $suffix = sc_config('SUFFIX_URL')??'';
@@ -28,7 +31,7 @@ Route::get('locale/{code}', function ($code) {
 Route::get('currency/{code}', function ($code) {
     session(['currency' => $code]);
     return back();
-});
+})->name('currency');
 
 //Process click banner
 Route::get('/banner/{id}', 'ShopFront@clickBanner')

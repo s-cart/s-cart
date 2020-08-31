@@ -47,6 +47,7 @@ return [
     'only_version_current' => 'Only this version',
     'compatible' => 'Compatible',
     'guide'      => 'Read document in <a target=_new href="https://s-cart.org/guide/template.html">HERE</a>',
+    'used' => 'Template used',
     'admin'      => [
         'list'  => 'Template list',
         'title' => 'Template manager',

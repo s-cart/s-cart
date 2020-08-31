@@ -17,7 +17,7 @@ class AdminLogController extends Controller
             'title' => trans('log.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => route('admin_log.delete'),
+            'urlDeleteItem' => sc_route('admin_log.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -44,7 +44,6 @@ class AdminLogController extends Controller
         ];
 
         $sort_order = request('sort_order') ?? 'id_desc';
-        $keyword = request('keyword') ?? '';
         $arrSort = [
             'id__desc' => trans('log.admin.sort_order.id_desc'),
             'id__asc' => trans('log.admin.sort_order.id_asc'),
@@ -84,7 +83,7 @@ class AdminLogController extends Controller
                 'input' => $row['input'],
                 'created_at' => $row['created_at'],
                 'action' => '
-                  <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('log.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
+                  <span  onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('log.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
             ];
         }
@@ -100,7 +99,7 @@ class AdminLogController extends Controller
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
         $data['optionSort'] = $optionSort;
-        $data['urlSort'] = route('admin_log.index');
+        $data['urlSort'] = sc_route('admin_log.index');
 //=menuSort
 
         return view('admin.screen.list')

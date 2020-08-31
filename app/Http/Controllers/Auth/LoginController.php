@@ -31,7 +31,7 @@ class LoginController extends GeneralController
     // protected $redirectTo = '/';
     protected function redirectTo()
     {
-        return '/';
+        return route('member.index');
     }
     /**
      * Create a new controller instance.
@@ -47,25 +47,30 @@ class LoginController extends GeneralController
     protected function validateLogin(Request $request)
     {
         $messages = [
-            'email.email' => trans('validation.email',['attribute'=> trans('customer.email')]),
-            'email.required' => trans('validation.required',['attribute'=> trans('customer.email')]),
+            'email.email'       => trans('validation.email',['attribute'=> trans('customer.email')]),
+            'email.required'    => trans('validation.required',['attribute'=> trans('customer.email')]),
             'password.required' => trans('validation.required',['attribute'=> trans('customer.password')]),
             ];
         $this->validate($request, [
-            'email' => 'required|string|email',
+            'email'    => 'required|string|email',
             'password' => 'required|string',
         ], $messages);
     }
 
+    /**
+     * Form login
+     *
+     * @return  [type]  [return description]
+     */
     public function showLoginForm()
     {
         if (Auth::user()) {
             return redirect()->route('home');
         }
-        return view($this->templatePath . '.screen.shop_login',
+        return view($this->templatePath . '.auth.login',
             array(
-                'title' => trans('front.login'),
-                'countries' => ShopCountry::getArray(),
+                'title'       => trans('front.login'),
+                'countries'   => ShopCountry::getCodeAll(),
                 'layout_page' => 'shop_auth',
             )
         );

@@ -7,7 +7,7 @@ Route::group(['namespace' => 'Auth', 'prefix' => $prefixMember], function ($rout
         ->name('login');
     $router->post('/login'.$suffix, 'LoginController@login')
         ->name('postLogin');
-    $router->get('/register'.$suffix, 'LoginController@showLoginForm')
+    $router->get('/register'.$suffix, 'RegisterController@showRegisterForm')
         ->name('register');
     $router->post('/register'.$suffix, 'RegisterController@register')
         ->name('postRegister');

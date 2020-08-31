@@ -1,4 +1,4 @@
-@extends($templatePath.'.mail.layout')
+@extends($sc_templatePath.'.mail.layout')
 
 @section('main')
   {!! $content??'' !!}

@@ -9,16 +9,20 @@ class ShopPage extends Model
 {
     use ModelTrait;
 
-    public $timestamps = false;
-    public $table = SC_DB_PREFIX.'shop_page';
-    protected $connection = SC_CONNECTION;
-    protected $guarded = [];
+    public $timestamps     = false;
+    public $table          = SC_DB_PREFIX.'shop_page';
+    protected $connection  = SC_CONNECTION;
+    protected $guarded     = [];
 
+    protected static $getListFull = null;
     public function descriptions()
     {
         return $this->hasMany(ShopPageDescription::class, 'page_id', 'id');
     }
-
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopPageStore::class, 'page_id', 'store_id');
+    }
     /*
     *Get thumb
     */
@@ -50,14 +54,21 @@ class ShopPage extends Model
      */
     public function getDetail($key, $type = null, $status = 1)
     {
-        if(empty($key)) {
+        if (empty($key)) {
             return null;
         }
         $tableDescription = (new ShopPageDescription)->getTable();
         $page = $this
             ->leftJoin($tableDescription, $tableDescription . '.page_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
-        if ($type == null) {
+
+        //Get news active for store
+        $tablePTS = (new ShopPageStore)->getTable();
+        $page = $page->leftJoin($tablePTS, $tablePTS . '.page_id', $this->getTable() . '.id');
+        $page = $page->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
+        if ($type === null) {
             $page = $page->where('id', (int) $key);
         } else {
             $page = $page->where($type, $key);
@@ -68,20 +79,30 @@ class ShopPage extends Model
         return $page->first();
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($page) {
+            $page->descriptions()->delete();
+            $page->stories()->detach();
+            }
+        );
+    }
 
 
-/**
+    /**
      * Get list page
      *
-     * @param   array  $arrOpt
+     * @param  array  $arrOpt
      * Example: ['status' => 1, 'top' => 1]
-     * @param   array  $arrSort
+     * @param  array  $arrSort
      * Example: ['sortBy' => 'id', 'sortOrder' => 'asc']
      * @param   array  $arrLimit  [$arrLimit description]
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $sortBy = $arrSort['sortBy'] ?? null;
         $sortOrder = $arrSort['sortOrder'] ?? 'asc';
@@ -89,12 +110,12 @@ class ShopPage extends Model
         $limit = $arrLimit['limit'] ?? 0;
 
         $data = $this->sort($sortBy, $sortOrder);
-        if(count($arrOpt = [])) {
+        if (count($arrOpt = [])) {
             foreach ($arrOpt as $key => $value) {
                 $data = $data->where($key, $value);
             }
         }
-        if((int)$limit) {
+        if ((int)$limit) {
             $start = $step * $limit;
             $data = $data->offset((int)$start)->limit((int)$limit);
         }
@@ -110,13 +131,19 @@ class ShopPage extends Model
      */
     public static function getListFull()
     {
-        if(sc_config('cache_status') && sc_config('cache_page')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_page')) {
             if (!Cache::has('cache_page')) {
-                Cache::put('cache_page', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time', 0)?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_page', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_page');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 
@@ -148,13 +175,19 @@ class ShopPage extends Model
             });
         }
 
+        //Get news active for store
+        $tablePTS = (new ShopPageStore)->getTable();
+        $query = $query->leftJoin($tablePTS, $tablePTS . '.page_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
         if ($this->sc_status !== 'all') {
             $query = $query->where('status', $this->sc_status);
         }
 
         if (count($this->sc_moreWhere)) {
             foreach ($this->sc_moreWhere as $key => $where) {
-                if(count($where)) {
+                if (count($where)) {
                     $query = $query->where($where[0], $where[1], $where[2]);
                 }
             }
@@ -165,7 +198,7 @@ class ShopPage extends Model
         } else {
             if (is_array($this->sc_sort) && count($this->sc_sort)) {
                 foreach ($this->sc_sort as  $rowSort) {
-                    if(is_array($rowSort) && count($rowSort) == 2) {
+                    if (is_array($rowSort) && count($rowSort) == 2) {
                         $query = $query->sort($rowSort[0], $rowSort[1]);
                     }
                 }

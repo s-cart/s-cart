@@ -22,13 +22,15 @@ class ShopProduct extends Model
     protected $connection = SC_CONNECTION;
 
     protected  $sc_kind = 'all'; // 0:single, 1:bundle, 2:group
-    protected  $sc_virtual = 'all'; // 0:physical, 1:download, 2:only view, 3: Service
+    protected  $sc_property = 'all'; // 0:physical, 1:download, 2:only view, 3: Service
     protected  $sc_promotion = 0; // 1: only produc promotion,
     protected  $sc_array_ID = []; // array ID product
     protected  $sc_category = []; // array category id
     protected  $sc_brand = []; // array brand id
     protected  $sc_supplier = []; // array supplier id
 
+    protected $getListFull = null;
+    
     public function brand()
     {
         return $this->belongsTo(ShopBrand::class, 'brand_id', 'id');
@@ -36,6 +38,10 @@ class ShopProduct extends Model
     public function categories()
     {
         return $this->belongsToMany(ShopCategory::class, ShopProductCategory::class, 'product_id', 'category_id');
+    }
+    public function stories()
+    {
+        return $this->belongsToMany(AdminStore::class, ShopProductStore::class, 'product_id', 'store_id');
     }
     public function groups()
     {
@@ -138,7 +144,7 @@ class ShopProduct extends Model
      */
     public function getDetail($key = null, $type = null,  $status = 1)
     {
-        if(empty($key)) {
+        if (empty($key)) {
             return null;
         }
         $tableDescription = (new ShopProductDescription)->getTable();
@@ -146,7 +152,13 @@ class ShopProduct extends Model
             ->leftJoin($tableDescription, $tableDescription . '.product_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
 
-        if(empty($type)) {
+        //Get product active for store
+        $tablePTS = (new ShopProductStore)->getTable();
+        $product = $product->leftJoin($tablePTS, $tablePTS . '.product_id', $this->getTable() . '.id');
+        $product = $product->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
+
+        if (empty($type)) {
             $product = $product->where('id', (int)$key);  
         } elseif ($type == 'alias') {
             $product = $product->where('alias', $key);
@@ -155,7 +167,7 @@ class ShopProduct extends Model
         } else {
             return null;
         }
-        if($status) {
+        if ($status) {
             $product = $product->where('status', (int)$status);
         }
         
@@ -178,7 +190,9 @@ class ShopProduct extends Model
             $product->attributes()->delete();
             $product->builds()->delete();
             $product->categories()->detach();
-        });
+            $product->stories()->detach();
+            }
+        );
     }
 
     /*
@@ -236,7 +250,7 @@ class ShopProduct extends Model
         return  view('templates.'.sc_store('template').'.common.render_attribute', 
         [
             'details' => $this->attributes()->get()->groupBy('attribute_group_id'),
-            'groups' => ShopAttributeGroup::getList(),
+            'groups' => ShopAttributeGroup::getListAll(),
         ]);
     }
 
@@ -253,7 +267,7 @@ class ShopProduct extends Model
     {
         $html = '';
         $details = $this->attributes()->get()->groupBy('attribute_group_id');
-        $groups = ShopAttributeGroup::getList();
+        $groups = ShopAttributeGroup::getListAll();
         foreach ($details as $groupId => $detailsGroup) {
             $html .= '<br><b><label>' . $groups[$groupId] . '</label></b>: ';
             foreach ($detailsGroup as $k => $detail) {
@@ -280,11 +294,11 @@ class ShopProduct extends Model
     */
     public function allowSale()
     {
-        if(!sc_config('product_price')) {
+        if (!sc_config('product_price')) {
             return false;
         }
         if ($this->sc_status &&
-            (sc_config('product_preorder') == 1 || $this->date_available == null || date('Y-m-d H:i:s') >= $this->date_available) &&
+            (sc_config('product_preorder') == 1 || $this->date_available === null || date('Y-m-d H:i:s') >= $this->date_available) &&
             (sc_config('product_buy_out_of_stock') || $this->stock) &&
             $this->kind != SC_PRODUCT_GROUP
         ) {
@@ -301,8 +315,8 @@ class ShopProduct extends Model
     {
         $promotion = $this->promotionPrice;
         if ($promotion) {
-            if (($promotion['date_end'] >= date("Y-m-d") || $promotion['date_end'] == null)
-                && ($promotion['date_start'] <= date("Y-m-d") || $promotion['date_start'] == null)
+            if (($promotion['date_end'] >= date("Y-m-d") || $promotion['date_end'] === null)
+                && ($promotion['date_start'] <= date("Y-m-d") || $promotion['date_start'] === null)
                 && $promotion['status_promotion'] = 1) {
                 return $promotion['price_promotion'];
             }
@@ -348,7 +362,7 @@ class ShopProduct extends Model
      * Example: ['step' => 0, 'limit' => 20]
      * @return  [type]             [return description]
      */
-    public function getList($arrOpt = [], $arrSort = [], $arrLimit = [])
+    public function getListAll($arrOpt = [], $arrSort = [], $arrLimit = [])
     {
         $sortBy = $arrSort['sortBy'] ?? 'sort';
         $sortOrder = $arrSort['sortOrder'] ?? 'asc';
@@ -356,12 +370,12 @@ class ShopProduct extends Model
         $limit = $arrLimit['limit'] ?? 0;
 
         $data = $this->sort($sortBy, $sortOrder);
-        if(count($arrOpt = [])) {
+        if (count($arrOpt = [])) {
             foreach ($arrOpt as $key => $value) {
                 $data = $data->where($key, $value);
             }
         }
-        if((int)$limit) {
+        if ((int)$limit) {
             $start = $step * $limit;
             $data = $data->offset((int)$start)->limit((int)$limit);
         }
@@ -378,13 +392,19 @@ class ShopProduct extends Model
      */
     public static function getListFull()
     {
-        if(sc_config('cache_status') && sc_config('cache_product')) {
+        if (sc_config_global('cache_status') && sc_config_global('cache_product')) {
             if (!Cache::has('cache_product')) {
-                Cache::put('cache_product', self::get()->keyBy('id')->toJson(), $seconds = sc_config('cache_time', 0)?:600);
+                if (self::$getListFull === null) {
+                    self::$getListFull = self::get()->keyBy('id')->toJson();
+                }
+                Cache::put('cache_product', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
             }
             return Cache::get('cache_product');
         } else {
-            return  self::get()->keyBy('id')->toJson();
+            if (self::$getListFull === null) {
+                self::$getListFull = self::get()->keyBy('id')->toJson();
+            }
+            return self::$getListFull;
         }
     }
 
@@ -410,13 +430,13 @@ class ShopProduct extends Model
     }
 
     /**
-     * Set virtual product
+     * Set property product
      */
-    private function setVirtual($virtual) {
-        if ($virtual === 'all') {
-            $this->sc_virtual = $virtual;
+    private function setVirtual($property) {
+        if ($property === 'all') {
+            $this->sc_property = $property;
         } else {
-            $this->sc_virtual = (int)$virtual;
+            $this->sc_property = (int)$property;
         }
         return $this;
     }
@@ -605,7 +625,7 @@ class ShopProduct extends Model
      */
     public function getProductFromListID($arrID) {
         $this->setStatus(1);
-        if(is_array($arrID)) {
+        if (is_array($arrID)) {
             $this->setArrayID($arrID);
         }
         return $this;
@@ -626,9 +646,9 @@ class ShopProduct extends Model
         if ($this->sc_keyword !='') {
             $query = $query->where(function ($sql) use($tableDescription){
                 $sql->where($tableDescription . '.name', 'like', '%' . $this->sc_keyword . '%')
-                ->orWhere($tableDescription . '.keyword', 'like', '%' . $this->sc_keyword . '%')
-                ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%')
-                ->orWhere($this->getTable() . '.sku', 'like', '%' . $this->sc_keyword . '%');
+                    ->orWhere($tableDescription . '.keyword', 'like', '%' . $this->sc_keyword . '%')
+                    ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%')
+                    ->orWhere($this->getTable() . '.sku', 'like', '%' . $this->sc_keyword . '%');
             });
         }
 
@@ -653,9 +673,16 @@ class ShopProduct extends Model
             
 
         if (count($this->sc_category)) {
-            $query = $query->leftJoin((new ShopProductCategory)->getTable(), (new ShopProductCategory)->getTable() . '.product_id', $this->getTable() . '.id');
-            $query = $query->whereIn((new ShopProductCategory)->getTable() . '.category_id', $this->sc_category);
+            $tablePTC = (new ShopProductCategory)->getTable();
+            $query = $query->leftJoin($tablePTC, $tablePTC . '.product_id', $this->getTable() . '.id');
+            $query = $query->whereIn($tablePTC . '.category_id', $this->sc_category);
         }
+
+        //Get product active for store
+        $tablePTS = (new ShopProductStore)->getTable();
+        $query = $query->leftJoin($tablePTS, $tablePTS . '.product_id', $this->getTable() . '.id');
+        $query = $query->whereIn($tablePTS . '.store_id', [config('app.storeId'), 0]);
+        //End store
 
         if (count($this->sc_array_ID)) {
             $query = $query->whereIn('id', $this->sc_array_ID);
@@ -670,8 +697,8 @@ class ShopProduct extends Model
         }
 
         
-        if ($this->sc_virtual !== 'all') {
-            $query = $query->where('virtual', $this->sc_virtual);
+        if ($this->sc_property !== 'all') {
+            $query = $query->where('property', $this->sc_property);
         }
 
         if (count($this->sc_brand)) {
@@ -692,7 +719,7 @@ class ShopProduct extends Model
 
         if (count($this->sc_moreWhere)) {
             foreach ($this->sc_moreWhere as $key => $where) {
-                if(count($where)) {
+                if (count($where)) {
                     $query = $query->where($where[0], $where[1], $where[2]);
                 }
             }
@@ -703,7 +730,7 @@ class ShopProduct extends Model
         } else {
             if (is_array($this->sc_sort) && count($this->sc_sort)) {
                 foreach ($this->sc_sort as  $rowSort) {
-                    if(is_array($rowSort) && count($rowSort) == 2) {
+                    if (is_array($rowSort) && count($rowSort) == 2) {
                         $query = $query->sort($rowSort[0], $rowSort[1]);
                     }
                 }
@@ -724,14 +751,14 @@ class ShopProduct extends Model
      * @return  [type]  [return description]
      */
     public function getTaxId() {
-        if(!ShopTax::checkStatus()) {
+        if (!ShopTax::checkStatus()) {
             return 0;
         }
-        if($this->tax_id == 'auto') {
+        if ($this->tax_id == 'auto') {
             return ShopTax::checkStatus();
         } else {
-            $arrTaxList = ShopTax::getList();
-            if($this->tax_id == 0 || !$arrTaxList->has($this->tax_id)) {
+            $arrTaxList = ShopTax::getListAll();
+            if ($this->tax_id == 0 || !$arrTaxList->has($this->tax_id)) {
                 return 0;
             }
         }
@@ -745,7 +772,7 @@ class ShopProduct extends Model
      */
     public function getTaxValue() {
         $taxId = $this->getTaxId();
-        if($taxId) {
+        if ($taxId) {
             $arrValue = ShopTax::getArrayValue();
             return $arrValue[$taxId] ?? 0;
         } else {

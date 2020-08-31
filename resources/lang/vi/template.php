@@ -46,6 +46,7 @@ return [
     'image_demo' => 'Hình mẫu',
     'only_version_current' => 'Chỉ phiên bản này',
     'compatible' => 'Tương thích',
+    'used' => 'Đang sử dụng',
     'admin'      => [
         'list'  => 'Danh sách giao diện',
         'title' => 'Quan lý giao diện',

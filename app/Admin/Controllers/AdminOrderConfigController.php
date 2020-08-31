@@ -4,10 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
-use App\Admin\AdminConfigTrait;
 class AdminOrderConfigController extends Controller
 {
-    use AdminConfigTrait;
     public function index()
     {
         $data = [

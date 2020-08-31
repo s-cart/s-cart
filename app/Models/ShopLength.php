@@ -12,7 +12,7 @@ class ShopLength extends Model
     protected $guarded           = [];
     protected static $getList = null;
 
-    public static function getList()
+    public static function getListAll()
     {
         if (!self::$getList) {
             self::$getList = self::pluck('description', 'name')->all();

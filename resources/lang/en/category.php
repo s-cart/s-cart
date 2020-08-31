@@ -9,10 +9,10 @@ return [
     'description' => 'Description',
     'image'       => 'Image',
     'parent'      => 'Parent',
-    'top'         => 'Display website',
+    'top'         => 'Display out site',
+    'top_help'    => 'This category will display outside the homepage. The default is for Root items only.',
     'status'      => 'Status',
     'sort'        => 'Sort',
-    'help_top'    => 'Display this category out site',
     'admin'       => [
         'title'           => 'Category manager',
         'create_success'  => 'Create new item success!',

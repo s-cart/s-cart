@@ -1,6 +1,6 @@
-@if (sc_config('SITE_STATUS') == 'off')
-    @include($templatePath . '.maintenance')
-@else
+@if (sc_store('active') == '0')
+    @include($sc_templatePath . '.maintenance')
+@else 
 
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -18,6 +18,10 @@
     <meta property="og:description" content="{{ $description??sc_store('description') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
 <!--Module meta -->
   @isset ($blocksContent['meta'])
       @foreach ( $blocksContent['meta']  as $layout)
@@ -34,10 +38,10 @@
 <!--//Module meta -->
 
 <!-- css default for item s-cart -->
-@include($templatePath.'.common.css')
+@include($sc_templatePath.'.common.css')
 <!--//end css defaut -->
 
-  <link href="{{ asset($templateFile.'/css/main.css')}}" rel="stylesheet">
+  <link href="{{ asset($sc_templateFile.'/css/main.css')}}" rel="stylesheet">
 
 
   <!--Module header -->
@@ -59,110 +63,48 @@
 <!--//head-->
 <body>
 
-@include($templatePath.'.header')
+  {{-- Block header --}}
+  @section('block_header')
+    @include($sc_templatePath.'.block_header')
+  @show
+  {{--// Block header --}}
 
-<!--Module banner -->
-  @isset ($blocksContent['banner_top'])
-      @foreach ( $blocksContent['banner_top']  as $layout)
-      @php
-        $arrPage = explode(',', $layout->page)
-      @endphp
-        @if ($layout->page == '*' ||  (isset($layout_page) && in_array($layout_page, $arrPage)))
-          @if ($layout->type =='html')
-            {!! $layout->text !!}
-          @elseif($layout->type =='view')
-            @if (view()->exists($templatePath.'.block.'.$layout->text))
-             @include($templatePath.'.block.'.$layout->text)
-            @endif
-          @endif
-        @endif
-      @endforeach
-  @endisset
-<!--//Module banner -->
+  <main role="main">
+      {{-- Block top --}}
+      @section('block_top')
+        @include($sc_templatePath.'.block_top')
+      @show
+      {{-- //Block top --}}
 
+      <section>
+      {{-- Block main --}}
+      @section('block_main')
+          @include($sc_templatePath.'.block_main_content_left')
+          @include($sc_templatePath.'.block_main_content_center')
+          @include($sc_templatePath.'.block_main_content_right')
+      @show
+      {{-- //Block main --}}
+      </section>
 
-<!--Module top -->
-  @isset ($blocksContent['top'])
-      @foreach ( $blocksContent['top']  as $layout)
-        @php
-          $arrPage = explode(',', $layout->page)
-        @endphp
-        @if ($layout->page == '*' ||  (isset($layout_page) && in_array($layout_page, $arrPage)))
-          @if ($layout->type =='html')
-            {!! $layout->text !!}
-          @elseif($layout->type =='view')
-            @if (view()->exists($templatePath.'.block.'.$layout->text))
-             @include($templatePath.'.block.'.$layout->text)
-            @endif
-          @endif
-        @endif
-      @endforeach
-  @endisset
-<!--//Module top -->
+      {{-- Block bottom --}}
+      @section('block_bottom')
+        @include($sc_templatePath.'.block_bottom')
+      @show
+      {{-- //Block bottom --}}
+  </main>
+  {{-- Block footer --}}
+  @section('block_footer')
+    @include($sc_templatePath.'.block_footer')
+  @show
+  {{-- //Block footer --}}
 
-
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12" id="breadcrumb">
-          <!--breadcrumb-->
-          @yield('breadcrumb')
-          <!--//breadcrumb-->
-
-          <!--fillter-->
-          @yield('filter')
-          <!--//fillter-->
-        </div>
-
-        <!--Notice -->
-        @include($templatePath.'.common.notice')
-        <!--//Notice -->
-
-        <!--body-->
-        @section('main')
-          @include($templatePath.'.left')
-          @include($templatePath.'.center')
-          @include($templatePath.'.right')
-        @show
-        <!--//body-->
-
-      </div>
-    </div>
-  </section>
-
-@include($templatePath.'.footer')
-
-<script src="{{ asset($templateFile.'/js/main.js')}}"></script>
-
+<script src="{{ asset($sc_templateFile.'/js/main.js')}}"></script>
 
 @stack('scripts')
-
 <!-- js default for item s-cart -->
-@include($templatePath.'.common.js')
+@include($sc_templatePath.'.common.js')
 <!--//end js defaut -->
 
-   <!--Module bottom -->
-   @isset ($blocksContent['bottom'])
-       @foreach ( $blocksContent['bottom']  as $layout)
-         @php
-           $arrPage = explode(',', $layout->page)
-         @endphp
-         @if ($layout->page == '*' ||  (isset($layout_page) && in_array($layout_page, $arrPage)))
-           @if ($layout->type =='html')
-             {!! $layout->text !!}
-           @elseif($layout->type =='view')
-             @if (view()->exists($templatePath.'.block.'.$layout->text))
-              @include($templatePath.'.block.'.$layout->text)
-             @endif
-           @endif
-         @endif
-       @endforeach
-   @endisset
- <!--//Module bottom -->
- 
- <div id="sc-loading">
-  <div class="sc-overlay"><i class="fa fa-spinner fa-pulse fa-5x fa-fw "></i></div>
-</div>
 
 </body>
 </html>

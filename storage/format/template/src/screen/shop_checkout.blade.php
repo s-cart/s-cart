@@ -13,9 +13,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 <section>
     <div class="container">
       <div class="row">
@@ -69,7 +69,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     </tbody>
   </table>
   </div>
-<form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ route('order.add') }}">
+<form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ sc_route('order.add') }}">
     {{ csrf_field() }}
     <div class="row">
     <div class="col-md-6">
@@ -155,7 +155,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
         <div class="row" style="padding-bottom: 20px;">
             <div class="col-md-12 text-center">
              <div class="pull-left">
-                <button class="btn btn-default" type="button" style="cursor: pointer;padding:10px 30px" onClick="location.href='{{ route('cart') }}'"><i class="fa fa-arrow-left"></i>{{ trans('cart.back_to_cart') }}</button>
+                <button class="btn btn-default" type="button" style="cursor: pointer;padding:10px 30px" onClick="location.href='{{ sc_route('cart') }}'"><i class="fa fa-arrow-left"></i>{{ trans('cart.back_to_cart') }}</button>
                 </div>
                     <div class="pull-right">
                         <button class="btn btn-success" id="submit-order" type="submit" style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ trans('cart.confirm') }}</button>
@@ -175,8 +175,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-          <li><a href="{{ route('cart') }}">{{ trans('front.cart_title') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('cart') }}">{{ trans('front.cart_title') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

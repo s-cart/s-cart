@@ -10,9 +10,9 @@ class ShopSubscribe extends Model
     protected $guarded      = [];
     protected $connection = SC_CONNECTION;
     private static $getList = null;
-    public static function getList()
+    public static function getListAll()
     {
-        if (self::$getList == null) {
+        if (self::$getList === null) {
             self::$getList = self::get()->keyBy('id');
         }
         return self::$getList;

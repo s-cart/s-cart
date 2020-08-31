@@ -5,7 +5,7 @@ $user
 */ 
 @endphp
 
-@extends($templatePath.'.layout')
+@extends($sc_templatePath.'.layout')
 
 @section('main')
 <div class="container">
@@ -16,7 +16,7 @@ $user
             <div class="card">
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('member.post_change_password') }}">
+                    <form method="POST" action="{{ sc_route('member.post_change_password') }}">
                         @csrf
 
                         <div class="form-group row {{ Session::has('password_old_error') ? ' has-error' : '' }}">
@@ -71,8 +71,8 @@ $user
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ route('home') }}">{{ trans('front.home') }}</a></li>
-          <li><a href="{{ route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
           <li class="active">{{ $title }}</li>
         </ol>
       </div>

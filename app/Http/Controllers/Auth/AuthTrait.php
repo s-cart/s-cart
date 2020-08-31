@@ -20,6 +20,9 @@ trait AuthTrait
         $dataUpdate = [
             'first_name' => $data['first_name'],
         ];
+        if (isset($data['status'])) {
+            $dataUpdate['status']  = $data['status'];
+        }
         $validate = [
             'first_name' => 'required|string|max:100',
             'password' => 'nullable|string|min:6',
@@ -35,73 +38,152 @@ trait AuthTrait
         //Dont update id
         unset($data['id']);
 
-        if(sc_config('customer_lastname')) {
-            $validate['last_name'] = 'required|string|max:100';
-            $dataUpdate['last_name'] = $data['last_name']??'';
+        if (sc_config('customer_lastname')) {
+            if (sc_config('customer_lastname_required')) {
+                $validate['last_name'] = 'required|string|max:100';
+            } else {
+                $validate['last_name'] = 'nullable|string|max:100';
+            }
+            if (!empty($data['last_name'])) {
+                $dataUpdate['last_name'] = $data['last_name'];
+            }
         }
-        if(sc_config('customer_address1')) {
-            $validate['address1'] = 'required|string|max:100';
-            $dataUpdate['address1'] = $data['address1']??'';
+        if (sc_config('customer_address1')) {
+            if (sc_config('customer_address1_required')) {
+                $validate['address1'] = 'required|string|max:100';
+            } else {
+                $validate['address1'] = 'nullable|string|max:100';
+            }
+            if (!empty($data['address1'])) {
+                $dataUpdate['address1'] = $data['address1'];
+            }
         }
 
-        if(sc_config('customer_address2')) {
-            $validate['address2'] = 'required|string|max:100';
-            $dataUpdate['address2'] = $data['address2']??'';
+        if (sc_config('customer_address2')) {
+            if (sc_config('customer_address1_required')) {
+                $validate['address2'] = 'required|string|max:100';
+            } else {
+                $validate['address2'] = 'nullable|string|max:100';
+            }
+            if (!empty($data['address2'])) {
+                $dataUpdate['address2'] = $data['address2'];
+            }
         }
-        if(sc_config('customer_phone')) {
-            $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
-            $dataUpdate['phone'] = $data['phone']??'';
+        if (sc_config('customer_phone')) {
+            if (sc_config('customer_phone_required')) {
+                $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+            } else {
+                $validate['phone'] = 'nullable|regex:/^0[^0][0-9\-]{7,13}$/';
+            }
+            if (!empty($data['phone'])) {
+                $dataUpdate['phone'] = $data['phone'];
+            }
         }
-        if(sc_config('customer_country')) {
+
+        if (sc_config('customer_country')) {
             $arraycountry = (new ShopCountry)->pluck('code')->toArray();
-            $validate['country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
-            $dataUpdate['country'] = $data['country']??'';
+            if (sc_config('customer_country_required')) {
+                $validate['country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
+            } else {
+                $validate['country'] = 'nullable|string|min:2|in:'. implode(',', $arraycountry);
+            }
+            if (!empty($data['country'])) {
+                $dataUpdate['country'] = $data['country'];
+            }
         }
-        if(sc_config('customer_postcode')) {
-            $validate['postcode'] = 'nullable|min:5';
-            $dataUpdate['postcode'] = $data['postcode']??'';
+
+        if (sc_config('customer_postcode')) {
+            if (sc_config('customer_postcode_required')) {
+                $validate['postcode'] = 'required|min:5';
+            } else {
+                $validate['postcode'] = 'nullable|min:5';
+            }
+            if (!empty($data['postcode'])) {
+                $dataUpdate['postcode'] = $data['postcode'];
+            }
         }
-        if(sc_config('customer_company')) {
-            $validate['company'] = 'nullable';
-            $dataUpdate['company'] = $data['company']??'';
+
+        if (sc_config('customer_company')) {
+            if (sc_config('customer_company_required')) {
+                $validate['company'] = 'required|string|max:100';
+            } else {
+                $validate['company'] = 'nullable|string|max:100';
+            }
+            if (!empty($data['company'])) {
+                $dataUpdate['company'] = $data['company'];
+            }
         }   
-        if(sc_config('customer_sex')) {
-            $validate['sex'] = 'required';
-            $dataUpdate['sex'] = $data['sex']??'';
+
+        if (sc_config('customer_sex')) {
+            if (sc_config('customer_sex_required')) {
+                $validate['sex'] = 'required|integer|max:10';
+            } else {
+                $validate['sex'] = 'nullable|integer|max:10';
+            }
+            if (!empty($data['sex'])) {
+                $dataUpdate['sex'] = $data['sex'];
+            }
         }   
-        if(sc_config('customer_birthday')) {
-            $validate['birthday'] = 'nullable|date|date_format:Y-m-d';
-            $dataUpdate['birthday'] = $data['birthday']??'';
+
+        if (sc_config('customer_birthday')) {
+            if (sc_config('customer_birthday_required')) {
+                $validate['birthday'] = 'required|date|date_format:Y-m-d';
+            } else {
+                $validate['birthday'] = 'nullable|date|date_format:Y-m-d';
+            }
+            if (!empty($data['birthday'])) {
+                $dataUpdate['birthday'] = $data['birthday'];
+            }
         } 
-        if(sc_config('customer_group')) {
-            $validate['group'] = 'nullable|integer|max:10';
-            $dataUpdate['group'] = $data['group']?? 0;
+
+        if (sc_config('customer_group')) {
+            if (sc_config('customer_group_required')) {
+                $validate['group'] = 'required|integer|max:10';
+            } else {
+                $validate['group'] = 'nullable|integer|max:10';
+            }
+            if (!empty($data['group'])) {
+                $dataUpdate['group'] = $data['group'];
+            }
         }
+
+        if (sc_config('customer_name_kana')) {
+            if (sc_config('customer_name_kana_required')) {
+                $validate['first_name_kana'] = 'required|string|max:100';
+                $validate['last_name_kana'] = 'required|string|max:100';
+            } else {
+                $validate['first_name_kana'] = 'nullable|string|max:100';
+                $validate['last_name_kana'] = 'nullable|string|max:100';
+            }
+            $dataUpdate['first_name_kana'] = $data['first_name_kana']?? '';
+            $dataUpdate['last_name_kana'] = $data['last_name_kana']?? '';
+        }
+
         $messages = [
-            'last_name.required' => trans('validation.required',['attribute'=> trans('customer.last_name')]),
-            'first_name.required' => trans('validation.required',['attribute'=> trans('customer.first_name')]),
-            'email.required' => trans('validation.required',['attribute'=> trans('customer.email')]),
-            'password.required' => trans('validation.required',['attribute'=> trans('customer.password')]),
-            'address1.required' => trans('validation.required',['attribute'=> trans('customer.address1')]),
-            'address2.required' => trans('validation.required',['attribute'=> trans('customer.address2')]),
-            'phone.required' => trans('validation.required',['attribute'=> trans('customer.phone')]),
-            'country.required' => trans('validation.required',['attribute'=> trans('customer.country')]),
-            'postcode.required' => trans('validation.required',['attribute'=> trans('customer.postcode')]),
-            'company.required' => trans('validation.required',['attribute'=> trans('customer.company')]),
-            'sex.required' => trans('validation.required',['attribute'=> trans('customer.sex')]),
-            'birthday.required' => trans('validation.required',['attribute'=> trans('customer.birthday')]),
-            'email.email' => trans('validation.email',['attribute'=> trans('customer.email')]),
-            'phone.regex' => trans('validation.regex',['attribute'=> trans('customer.phone')]),
-            'password.confirmed' => trans('validation.confirmed',['attribute'=> trans('customer.password')]),
-            'postcode.min' => trans('validation.min',['attribute'=> trans('customer.postcode')]),
-            'password.min' => trans('validation.min',['attribute'=> trans('customer.password')]),
-            'country.min' => trans('validation.min',['attribute'=> trans('customer.country')]),
-            'first_name.max' => trans('validation.max',['attribute'=> trans('customer.first_name')]),
-            'email.max' => trans('validation.max',['attribute'=> trans('customer.email')]),
-            'address1.max' => trans('validation.max',['attribute'=> trans('customer.address1')]),
-            'address2.max' => trans('validation.max',['attribute'=> trans('customer.address2')]),
-            'last_name.max' => trans('validation.max',['attribute'=> trans('customer.last_name')]),
-            'birthday.date' => trans('validation.date',['attribute'=> trans('customer.birthday')]),
+            'last_name.required'   => trans('validation.required',['attribute'=> trans('customer.last_name')]),
+            'first_name.required'  => trans('validation.required',['attribute'=> trans('customer.first_name')]),
+            'email.required'       => trans('validation.required',['attribute'=> trans('customer.email')]),
+            'password.required'    => trans('validation.required',['attribute'=> trans('customer.password')]),
+            'address1.required'    => trans('validation.required',['attribute'=> trans('customer.address1')]),
+            'address2.required'    => trans('validation.required',['attribute'=> trans('customer.address2')]),
+            'phone.required'       => trans('validation.required',['attribute'=> trans('customer.phone')]),
+            'country.required'     => trans('validation.required',['attribute'=> trans('customer.country')]),
+            'postcode.required'    => trans('validation.required',['attribute'=> trans('customer.postcode')]),
+            'company.required'     => trans('validation.required',['attribute'=> trans('customer.company')]),
+            'sex.required'         => trans('validation.required',['attribute'=> trans('customer.sex')]),
+            'birthday.required'    => trans('validation.required',['attribute'=> trans('customer.birthday')]),
+            'email.email'          => trans('validation.email',['attribute'=> trans('customer.email')]),
+            'phone.regex'          => trans('validation.regex',['attribute'=> trans('customer.phone')]),
+            'password.confirmed'   => trans('validation.confirmed',['attribute'=> trans('customer.password')]),
+            'postcode.min'         => trans('validation.min',['attribute'=> trans('customer.postcode')]),
+            'password.min'         => trans('validation.min',['attribute'=> trans('customer.password')]),
+            'country.min'          => trans('validation.min',['attribute'=> trans('customer.country')]),
+            'first_name.max'       => trans('validation.max',['attribute'=> trans('customer.first_name')]),
+            'email.max'            => trans('validation.max',['attribute'=> trans('customer.email')]),
+            'address1.max'         => trans('validation.max',['attribute'=> trans('customer.address1')]),
+            'address2.max'         => trans('validation.max',['attribute'=> trans('customer.address2')]),
+            'last_name.max'        => trans('validation.max',['attribute'=> trans('customer.last_name')]),
+            'birthday.date'        => trans('validation.date',['attribute'=> trans('customer.birthday')]),
             'birthday.date_format' => trans('validation.date_format',['attribute'=> trans('customer.birthday')]),
         ];
         $dataMap = [
@@ -122,67 +204,121 @@ trait AuthTrait
     public function mappingValidator($data) {
         $dataInsert = $this->mappDataInsert($data);
         $validate = [
-            'reg_first_name' => 'required|string|max:100',
-            'reg_email' => 'required|string|email|max:255|unique:"'.ShopUser::class.'",email',
-            'reg_password' => 'required|string|min:6',
+            'first_name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:255|unique:"'.ShopUser::class.'",email',
+            'password' => 'required|string|min:6',
         ];
-        if(sc_config('customer_lastname')) {
-            $validate['reg_last_name'] = 'required|string|max:100';
+
+        if (sc_config('customer_lastname')) {
+            if (sc_config('customer_lastname_required')) {
+                $validate['last_name'] = 'required|string|max:100';
+            } else {
+                $validate['last_name'] = 'nullable|string|max:100';
+            }
         }
-        if(sc_config('customer_address1')) {
-            $validate['reg_address1'] = 'required|string|max:100';
+        if (sc_config('customer_address1')) {
+            if (sc_config('customer_address1_required')) {
+                $validate['address1'] = 'required|string|max:100';
+            } else {
+                $validate['address1'] = 'nullable|string|max:100';
+            }
         }
-        if(sc_config('customer_address2')) {
-            $validate['reg_address2'] = 'required|string|max:100';
+
+        if (sc_config('customer_address2')) {
+            if (sc_config('customer_address2_required')) {
+                $validate['address2'] = 'required|string|max:100';
+            } else {
+                $validate['address2'] = 'nullable|string|max:100';
+            }
         }
-        if(sc_config('customer_phone')) {
-            $validate['reg_phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+        if (sc_config('customer_phone')) {
+            if (sc_config('customer_phone_required')) {
+                $validate['phone'] = 'required|regex:/^0[^0][0-9\-]{7,13}$/';
+            } else {
+                $validate['phone'] = 'nullable|regex:/^0[^0][0-9\-]{7,13}$/';
+            }
         }
-        if(sc_config('customer_country')) {
+        if (sc_config('customer_country')) {
             $arraycountry = (new ShopCountry)->pluck('code')->toArray();
-            $validate['reg_country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
+            if (sc_config('customer_country_required')) {
+                $validate['country'] = 'required|string|min:2|in:'. implode(',', $arraycountry);
+            } else {
+                $validate['country'] = 'nullable|string|min:2|in:'. implode(',', $arraycountry);
+            }
         }
-        if(sc_config('customer_postcode')) {
-            $validate['reg_postcode'] = 'nullable|string|min:5';
+
+        if (sc_config('customer_postcode')) {
+            if (sc_config('customer_postcode_required')) {
+                $validate['postcode'] = 'required|min:5';
+            } else {
+                $validate['postcode'] = 'nullable|min:5';
+            }
         }
-        if(sc_config('customer_company')) {
-            $validate['reg_company'] = 'nullable|string|min:100';
+        if (sc_config('customer_company')) {
+            if (sc_config('customer_company_required')) {
+                $validate['company'] = 'required|string|max:100';
+            } else {
+                $validate['company'] = 'nullable|string|max:100';
+            }
         }   
-        if(sc_config('customer_sex')) {
-            $validate['reg_sex'] = 'required|integer';
+        if (sc_config('customer_sex')) {
+            if (sc_config('customer_sex_required')) {
+                $validate['sex'] = 'required|integer|max:10';
+            } else {
+                $validate['sex'] = 'nullable|integer|max:10';
+            }
         }   
-        if(sc_config('customer_birthday')) {
-            $validate['reg_birthday'] = 'nullable|date|date_format:Y-m-d';
+        if (sc_config('customer_birthday')) {
+            if (sc_config('customer_birthday_required')) {
+                $validate['birthday'] = 'required|date|date_format:Y-m-d';
+            } else {
+                $validate['birthday'] = 'nullable|date|date_format:Y-m-d';
+            }
         } 
-        if(sc_config('customer_group')) {
-            $validate['reg_group'] = 'nullable|integer|max:10';
+        if (sc_config('customer_group')) {
+            if (sc_config('customer_group_required')) {
+                $validate['group'] = 'required|integer|max:10';
+            } else {
+                $validate['group'] = 'nullable|integer|max:10';
+            }
         }
+
+        if (sc_config('customer_name_kana')) {
+            if (sc_config('customer_name_kana_required')) {
+                $validate['first_name_kana'] = 'required|string|max:100';
+                $validate['last_name_kana'] = 'required|string|max:100';
+            } else {
+                $validate['first_name_kana'] = 'nullable|string|max:100';
+                $validate['last_name_kana'] = 'nullable|string|max:100';
+            }
+        }
+
         $messages = [
-            'reg_last_name.required' => trans('validation.required',['attribute'=> trans('customer.last_name')]),
-            'reg_first_name.required' => trans('validation.required',['attribute'=> trans('customer.first_name')]),
-            'reg_email.required' => trans('validation.required',['attribute'=> trans('customer.email')]),
-            'reg_password.required' => trans('validation.required',['attribute'=> trans('customer.password')]),
-            'reg_address1.required' => trans('validation.required',['attribute'=> trans('customer.address1')]),
-            'reg_address2.required' => trans('validation.required',['attribute'=> trans('customer.address2')]),
-            'reg_phone.required' => trans('validation.required',['attribute'=> trans('customer.phone')]),
-            'reg_country.required' => trans('validation.required',['attribute'=> trans('customer.country')]),
-            'reg_postcode.required' => trans('validation.required',['attribute'=> trans('customer.postcode')]),
-            'reg_company.required' => trans('validation.required',['attribute'=> trans('customer.company')]),
-            'reg_sex.required' => trans('validation.required',['attribute'=> trans('customer.sex')]),
-            'reg_birthday.required' => trans('validation.required',['attribute'=> trans('customer.birthday')]),
-            'reg_email.email' => trans('validation.email',['attribute'=> trans('customer.email')]),
-            'reg_phone.regex' => trans('validation.regex',['attribute'=> trans('customer.phone')]),
-            'reg_password.confirmed' => trans('validation.confirmed',['attribute'=> trans('customer.password')]),
-            'reg_postcode.min' => trans('validation.min',['attribute'=> trans('customer.postcode')]),
-            'reg_password.min' => trans('validation.min',['attribute'=> trans('customer.password')]),
-            'reg_country.min' => trans('validation.min',['attribute'=> trans('customer.country')]),
-            'reg_first_name.max' => trans('validation.max',['attribute'=> trans('customer.first_name')]),
-            'reg_email.max' => trans('validation.max',['attribute'=> trans('customer.email')]),
-            'reg_address1.max' => trans('validation.max',['attribute'=> trans('customer.address1')]),
-            'reg_address2.max' => trans('validation.max',['attribute'=> trans('customer.address2')]),
-            'reg_last_name.max' => trans('validation.max',['attribute'=> trans('customer.last_name')]),
-            'reg_birthday.date' => trans('validation.date',['attribute'=> trans('customer.birthday')]),
-            'reg_birthday.date_format' => trans('validation.date_format',['attribute'=> trans('customer.birthday')]),
+            'last_name.required'   => trans('validation.required',['attribute'=> trans('customer.last_name')]),
+            'first_name.required'  => trans('validation.required',['attribute'=> trans('customer.first_name')]),
+            'email.required'       => trans('validation.required',['attribute'=> trans('customer.email')]),
+            'password.required'    => trans('validation.required',['attribute'=> trans('customer.password')]),
+            'address1.required'    => trans('validation.required',['attribute'=> trans('customer.address1')]),
+            'address2.required'    => trans('validation.required',['attribute'=> trans('customer.address2')]),
+            'phone.required'       => trans('validation.required',['attribute'=> trans('customer.phone')]),
+            'country.required'     => trans('validation.required',['attribute'=> trans('customer.country')]),
+            'postcode.required'    => trans('validation.required',['attribute'=> trans('customer.postcode')]),
+            'company.required'     => trans('validation.required',['attribute'=> trans('customer.company')]),
+            'sex.required'         => trans('validation.required',['attribute'=> trans('customer.sex')]),
+            'birthday.required'    => trans('validation.required',['attribute'=> trans('customer.birthday')]),
+            'email.email'          => trans('validation.email',['attribute'=> trans('customer.email')]),
+            'phone.regex'          => trans('validation.regex',['attribute'=> trans('customer.phone')]),
+            'password.confirmed'   => trans('validation.confirmed',['attribute'=> trans('customer.password')]),
+            'postcode.min'         => trans('validation.min',['attribute'=> trans('customer.postcode')]),
+            'password.min'         => trans('validation.min',['attribute'=> trans('customer.password')]),
+            'country.min'          => trans('validation.min',['attribute'=> trans('customer.country')]),
+            'first_name.max'       => trans('validation.max',['attribute'=> trans('customer.first_name')]),
+            'email.max'            => trans('validation.max',['attribute'=> trans('customer.email')]),
+            'address1.max'         => trans('validation.max',['attribute'=> trans('customer.address1')]),
+            'address2.max'         => trans('validation.max',['attribute'=> trans('customer.address2')]),
+            'last_name.max'        => trans('validation.max',['attribute'=> trans('customer.last_name')]),
+            'birthday.date'        => trans('validation.date',['attribute'=> trans('customer.birthday')]),
+            'birthday.date_format' => trans('validation.date_format',['attribute'=> trans('customer.birthday')]),
         ];
         $dataMap = [
             'validate' => $validate,
@@ -202,39 +338,72 @@ trait AuthTrait
     public function mappDataInsert($data) {
 
         $dataInsert = [
-            'first_name' => $data['reg_first_name'],
-            'email' => $data['reg_email'],
-            'password' => bcrypt($data['reg_password']),
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
         ];
-        if(sc_config('customer_lastname')) {
-            $dataInsert['last_name'] = $data['reg_last_name'] ?? '';
+        if (isset($data['status'])) {
+            $dataInsert['status']  = $data['status'];
         }
-        if(sc_config('customer_address1')) {
-            $dataInsert['address1'] = $data['reg_address1'] ?? '';
+        if (sc_config('customer_lastname')) {
+            if (!empty($data['last_name'])) {
+                $dataInsert['last_name'] = $data['last_name'];
+            }
         }
-        if(sc_config('customer_address2')) {
-            $dataInsert['address2'] = $data['reg_address2'] ?? '';
+        if (sc_config('customer_firstname_kana')) {
+            if (!empty($data['first_name_kana'])) {
+                $dataInsert['first_name_kana'] = $data['first_name_kana'];
+            }
         }
-        if(sc_config('customer_phone')) {
-            $dataInsert['phone'] =  $data['reg_phone'] ?? '';
+        if (sc_config('customer_lastname_kana')) {
+            if (!empty($data['last_name_kana'])) {
+                $dataInsert['last_name_kana'] = $data['last_name_kana'];
+            }
         }
-        if(sc_config('customer_country')) {
-            $dataInsert['country'] = $data['reg_country'] ?? '';
+        if (sc_config('customer_address1')) {
+            if (!empty($data['address1'])) {
+                $dataInsert['address1'] = $data['address1'];
+            }
         }
-        if(sc_config('customer_postcode')) {
-            $dataInsert['postcode'] = $data['reg_postcode'] ?? '';
+        if (sc_config('customer_address2')) {
+            if (!empty($data['address2'])) {
+                $dataInsert['address2'] = $data['address2'];
+            }
         }
-        if(sc_config('customer_company')) {
-            $dataInsert['company'] = $data['reg_company'] ?? '';
+        if (sc_config('customer_phone')) {
+            if (!empty($data['phone'])) {
+                $dataInsert['phone'] = $data['phone'];
+            }
+        }
+        if (sc_config('customer_country')) {
+            if (!empty($data['country'])) {
+                $dataInsert['country'] = $data['country'];
+            }
+        }
+        if (sc_config('customer_postcode')) {
+            if (!empty($data['postcode'])) {
+                $dataInsert['postcode'] = $data['postcode'];
+            }
+        }
+        if (sc_config('customer_company')) {
+            if (!empty($data['company'])) {
+                $dataInsert['company'] = $data['company'];
+            }
         }   
-        if(sc_config('customer_sex')) {
-            $dataInsert['sex'] = $data['reg_sex'] ?? 0;
+        if (sc_config('customer_sex')) {
+            if (!empty($data['sex'])) {
+                $dataInsert['sex'] = $data['sex'];
+            }
         }   
-        if(sc_config('customer_birthday')) {
-            $dataInsert['birthday'] =  $dataInsert['reg_birthday'] ?? '';
+        if (sc_config('customer_birthday')) {
+            if (!empty($data['birthday'])) {
+                $dataInsert['birthday'] = $data['birthday'];
+            }
         } 
-        if(sc_config('customer_group')) {
-            $dataInsert['group'] = $data['reg_group'] ?? 1;
+        if (sc_config('customer_group')) {
+            if (!empty($data['group'])) {
+                $dataInsert['group'] = $data['group'];
+            }
         }
         return $dataInsert;
     }

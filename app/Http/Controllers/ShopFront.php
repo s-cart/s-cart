@@ -36,6 +36,47 @@ class ShopFront extends GeneralController
     }
 
     /**
+     * Shop page
+     * @return [view]
+     */
+    public function shop()
+    {
+        $sortBy = 'sort';
+        $sortOrder = 'asc';
+        $filter_sort = request('filter_sort') ?? '';
+        $filterArr = [
+            'price_desc' => ['price', 'desc'],
+            'price_asc' => ['price', 'asc'],
+            'sort_desc' => ['sort', 'desc'],
+            'sort_asc' => ['sort', 'asc'],
+            'id_desc' => ['id', 'desc'],
+            'id_asc' => ['id', 'asc'],
+        ];
+        if (array_key_exists($filter_sort, $filterArr)) {
+            $sortBy = $filterArr[$filter_sort][0];
+            $sortOrder = $filterArr[$filter_sort][1];
+        }
+
+        $products = (new ShopProduct)
+            ->setLimit(sc_config('product_list'))
+            ->setPaginate()
+            ->setSort([$sortBy, $sortOrder])
+            ->getData();
+
+        return view($this->templatePath . '.screen.shop_product_list',
+            array(
+                'title' => trans('front.shop'),
+                'keyword' => sc_store('keyword'),
+                'description' => sc_store('description'),
+                'products' => $products,
+                'layout_page' => 'product_list',
+                'filter_sort' => $filter_sort,
+            )
+        );
+    }
+
+
+    /**
      * display list category root (parent = 0)
      * @return [view]  
      */
@@ -107,7 +148,7 @@ class ShopFront extends GeneralController
                 ->setSort([$sortBy, $sortOrder])
                 ->getData();
 
-            $itemsList = (new ShopCategory)
+            $subCategory = (new ShopCategory)
                 ->setParent($category->id)
                 ->setLimit(sc_config('item_list'))
                 ->setPaginate()
@@ -119,7 +160,7 @@ class ShopFront extends GeneralController
                     'description' => $category->description,
                     'keyword' => $category->keyword,
                     'products' => $products,
-                    'itemsList' => $itemsList,
+                    'subCategory' => $subCategory,
                     'layout_page' => 'product_list',
                     'og_image' => asset($category->getImage()),
                     'filter_sort' => $filter_sort,

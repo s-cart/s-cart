@@ -29,15 +29,14 @@ class AdminPermission extends Model
      *
      * @return bool
      */
-    public function shouldPassThrough(Request $request): bool
+    public function passRequest(Request $request): bool
     {
 
         if (empty($this->http_uri)) {
             return false;
         }
 
-        $routerCurrent = app()->make('router');
-        $uriCurrent = $routerCurrent->getCurrentRoute()->uri;
+        $uriCurrent = \Route::getCurrentRoute()->uri;
         $methodCurrent = $request->method();
         $actions = explode(',', $this->http_uri);
 

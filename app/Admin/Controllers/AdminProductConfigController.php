@@ -5,10 +5,8 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\AdminConfig;
 use App\Models\ShopTax;
-use App\Admin\AdminConfigTrait;
 class AdminProductConfigController extends Controller
 {
-    use AdminConfigTrait;
     public function index()
     {
         $taxs = ShopTax::pluck('name', 'id')->toArray();
@@ -16,16 +14,32 @@ class AdminProductConfigController extends Controller
         $data = [
             'title' => trans('product.config_manager.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
-
+            'icon' => 'fa fa-indent',        
+        ];
         $productConfig = (new AdminConfig)
-            ->where('code', 'product')
-            ->orderBy('sort', 'desc')->get();
-        $productSetting = (new AdminConfig)
-            ->where('code', 'product_setting')
-            ->orderBy('sort', 'desc')->get();
-        $data['configs'] = $productConfig;
-        $data['productSetting'] = $productSetting;
+            ->where('code', 'product_config')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
+        $productConfigAttribute = (new AdminConfig)
+            ->where('code', 'product_config_attribute')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
+        $productConfigAttributeRequired = (new AdminConfig)
+            ->where('code', 'product_config_attribute_required')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key')
+            ->toArray();
+        $data['productConfig'] = $productConfig;
+        $data['productConfigAttribute'] = $productConfigAttribute;
+        $data['productConfigAttributeRequired'] = $productConfigAttributeRequired;
         $data['taxs'] = $taxs;
 
         return view('admin.screen.product_config')

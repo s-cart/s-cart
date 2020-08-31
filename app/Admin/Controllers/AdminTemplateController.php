@@ -17,7 +17,7 @@ class AdminTemplateController extends Controller
             'icon' => 'fa fa-indent',        ];
 
         $data["templates"] = sc_get_all_template();
-        $data["templateCurrent"] = sc_store('template');
+        $data["templatesUsed"] = AdminStore::getAllTemplateUsed();
         return view('admin.screen.template')
             ->with($data);
     }

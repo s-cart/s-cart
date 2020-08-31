@@ -116,38 +116,14 @@ class ShopOrder extends Model
     {
         try {
             DB::connection(SC_CONNECTION)->beginTransaction();
-            $uID = sc_clean($dataOrder['user_id']);
-            $currency = sc_clean($dataOrder['currency']);
-            $exchange_rate = sc_clean($dataOrder['exchange_rate']);
+            $dataOrder = sc_clean($dataOrder);
+            $dataOrder['domain'] = url('/');
+            $dataOrder['store_id'] = config('app.storeId');
+            $uID = $dataOrder['user_id'];
+            $currency = $dataOrder['currency'];
+            $exchange_rate = $dataOrder['exchange_rate'];
 
             //Insert order
-            $dataOrder['user_id'] = sc_clean($dataOrder['user_id']);
-            $dataOrder['subtotal'] = sc_clean($dataOrder['subtotal']);
-            $dataOrder['shipping'] = sc_clean($dataOrder['shipping']);
-            $dataOrder['discount'] = sc_clean($dataOrder['discount']);
-            $dataOrder['received'] = sc_clean($dataOrder['received']);
-            $dataOrder['tax'] = sc_clean($dataOrder['tax']);
-            $dataOrder['payment_status'] = sc_clean($dataOrder['payment_status']);
-            $dataOrder['shipping_status'] = sc_clean($dataOrder['shipping_status']);
-            $dataOrder['status'] = sc_clean($dataOrder['status']);
-            $dataOrder['currency'] = sc_clean($dataOrder['currency']);
-            $dataOrder['exchange_rate'] = sc_clean($dataOrder['exchange_rate']);
-            $dataOrder['total'] = sc_clean($dataOrder['total']);
-            $dataOrder['balance'] = sc_clean($dataOrder['balance']);
-            $dataOrder['first_name'] = sc_clean($dataOrder['first_name']);
-            $dataOrder['last_name'] = sc_clean($dataOrder['last_name']);
-            $dataOrder['email'] = sc_clean($dataOrder['email']);
-            $dataOrder['address1'] = sc_clean($dataOrder['address1']);
-            $dataOrder['address2'] = sc_clean($dataOrder['address2']);
-            $dataOrder['country'] = sc_clean($dataOrder['country']);
-            $dataOrder['phone'] = sc_clean($dataOrder['phone']);
-            $dataOrder['postcode'] = sc_clean($dataOrder['postcode']);
-            $dataOrder['company'] = sc_clean($dataOrder['company']);
-            $dataOrder['payment_method'] = sc_clean($dataOrder['payment_method']);
-            $dataOrder['shipping_method'] = sc_clean($dataOrder['shipping_method']);
-            $dataOrder['comment'] = sc_clean($dataOrder['comment']);
-            $dataOrder['created_at'] = date('Y-m-d H:i:s');
-
             $order = ShopOrder::create($dataOrder);
             $orderID = $order->id;
             //End insert order
@@ -156,7 +132,8 @@ class ShopOrder extends Model
             foreach ($dataTotal as $key => $row) {
                 array_walk($row, function (&$v, $k) {
                     return $v = sc_clean($v);
-                });
+                    }
+                );
                 $row['order_id'] = $orderID;
                 $row['created_at'] = date('Y-m-d H:i:s');
                 $dataTotal[$key] = $row;
@@ -397,8 +374,10 @@ class ShopOrder extends Model
     */
     public function getCountryInYear() {
         return $this->selectRaw('country, count(id) as count')
-        ->whereRaw('DATE(created_at) >=  DATE_SUB(DATE(NOW()), INTERVAL 12 MONTH)')
-        ->groupBy('country')->orderBy('count','desc')->get();
+            ->whereRaw('DATE(created_at) >=  DATE_SUB(DATE(NOW()), INTERVAL 12 MONTH)')
+            ->groupBy('country')
+            ->orderBy('count', 'desc')
+            ->get();
     }
     
     /**
@@ -421,8 +400,8 @@ class ShopOrder extends Model
     public function getSumOrderTotalInMonth() {
         return $this->selectRaw('DATE_FORMAT(created_at, "%m-%d") AS md,
         SUM(total/exchange_rate) AS total_amount, count(id) AS total_order')
-        ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), "%Y-%m-%d 00:00")')
-        ->groupBy('md')->get();
+            ->whereRaw('created_at >=  DATE_FORMAT(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), "%Y-%m-%d")')
+            ->groupBy('md')->get();
     }
 
 }

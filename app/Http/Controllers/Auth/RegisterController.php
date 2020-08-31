@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\GeneralController;
 use App\Models\ShopEmailTemplate;
 use App\Models\ShopUser;
+use App\Models\ShopCountry;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +33,10 @@ class RegisterController extends GeneralController
      * @var string
      */
     // protected $redirectTo = '/home';
-    protected $redirectTo = '/';
+    protected function redirectTo()
+    {
+        return route('member.index');
+    }
 
     /**
      * Create a new controller instance.
@@ -126,5 +130,24 @@ class RegisterController extends GeneralController
     protected function registered(Request $request, $user)
     {
         redirect()->route('home')->with(['message' => trans('account.register_success')]);
+    }
+
+    /**
+     * Form register
+     *
+     * @return  [type]  [return description]
+     */
+    public function showRegisterForm()
+    {
+        if (auth()->user()) {
+            return redirect()->route('home');
+        }
+        return view($this->templatePath . '.auth.register',
+            array(
+                'title'       => trans('account.title_register'),
+                'countries'   => ShopCountry::getCodeAll(),
+                'layout_page' => 'shop_auth',
+            )
+        );
     }
 }

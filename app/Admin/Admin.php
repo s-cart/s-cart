@@ -27,10 +27,15 @@ class Admin
     }
     public static function getMenu()
     {
-        return AdminMenu::getList()->groupBy('parent_id');
+        return AdminMenu::getListAll()->groupBy('parent_id');
     }
     public static function getMenuVisible()
     {
         return AdminMenu::getListVisible();
     }   
+    public static function checkUrlIsChild($urlParent, $urlChild)
+    {
+        return AdminMenu::checkUrlIsChild($urlParent, $urlChild);
+    }   
+    
 }

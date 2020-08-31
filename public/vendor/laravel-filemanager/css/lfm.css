@@ -189,7 +189,12 @@ a {
 
 /* Items */
 
-#content.preserve_actions_space {
+#pagination > ul.pagination {
+  justify-content: center;
+}
+
+#pagination.preserve_actions_space {
+  padding-top: 1em;
   padding-bottom: 4rem; /* preserve space for main actions */
 }
 
@@ -302,9 +307,17 @@ time {
   font-size: 2rem;
 }
 
-.list .mime-icon:before {
+.list .mime-icon .ico:before {
   top: calc(45% - .5rem);
   font-size: 1rem;
+}
+
+.mime-icon .ico {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
 }
 
 /* Floating action buttons */

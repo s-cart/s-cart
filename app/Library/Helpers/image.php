@@ -123,7 +123,7 @@ function sc_image_insert_watermark($pathFile)
  */
 function sc_image_generate_thumb($pathFile, $widthThumb = null, $heightThumb = null, $disk = 'public')
 {
-    $widthThumb = $widthThumb ?? sc_config('upload_image_thumb_width', 250);
+    $widthThumb = $widthThumb ?? sc_config('upload_image_thumb_width');
     if (!Storage::disk($disk)->has('tmp')) {
         Storage::disk($disk)->makeDirectory('tmp');
     }
@@ -160,9 +160,9 @@ Return path image
  */
 function sc_image_get_path($path, $urlDefault = null)
 {
-    $image = $urlDefault ?? sc_config('no_image', 'images/no-image.jpg');
+    $image = $urlDefault ?? 'images/no-image.jpg';
     if ($path) {
-        if (file_exists(public_path($path)) || filter_var(str_replace(' ','%20', $path), FILTER_VALIDATE_URL)) {
+        if (file_exists(public_path($path)) || filter_var(str_replace(' ', '%20', $path), FILTER_VALIDATE_URL)) {
             $image = $path;
         } else {
             $image = $image;

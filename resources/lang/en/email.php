@@ -39,6 +39,8 @@ return [
         'smtp_password'  => 'Password SMTP',
         'smtp_user'      => 'Tài khoản SMTP',
         'smtp_host'      => 'Server SMTP',
+        'help_note'      => '<span class="text-red">(*)</span>: Emails will not be sent directly, but through a queue. You need to set up "artisan schedule: run" first, details <a href="https://s-cart.org/docs/'.config('scart.version').'/email.html">HERE</a>',
+
 
     ],
     'email_action'     => [
@@ -53,7 +55,7 @@ return [
         'contact_to_customer'      => 'Send email contact to customer',
         'contact_to_admin'         => 'Send email contact to admin',
         'email_action_mode'        => 'ON/OFF send mail',
-        'email_action_queue'       => 'Use send mail queue',
+        'email_action_queue'       => 'Use send mail queue <span class="text-red">(*)</span>',
         'email_action_smtp_mode'   => 'SMTP mode',
         'config_smtp'              => 'Config SMTP',
         'other'                    => 'Other',
