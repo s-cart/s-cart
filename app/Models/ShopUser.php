@@ -22,6 +22,7 @@ class ShopUser extends Authenticatable
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
     private static $getList = null;
+    private static $profile = null;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -147,6 +148,13 @@ class ShopUser extends Authenticatable
         return (new ShopUserAddress)->where('user_id', $this->id)
             ->where('id', $this->address_id)
             ->first();
+    }
+
+    public function profile() {
+        if (self::$profile === null) {
+            self::$profile = Auth::user();
+        }
+        return self::$profile;
     }
 
 }
