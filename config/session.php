@@ -85,7 +85,6 @@ return [
     |
     */
 
-    'table' => 'sessions',
     'table' => env('DB_PREFIX', '').'shop_sessions',
 
     /*
@@ -167,7 +166,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', null),
+    'secure' => env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------

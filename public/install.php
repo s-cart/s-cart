@@ -188,7 +188,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         base_path('vendor'),
         base_path('bootstrap/cache'),
     ];
-    exec('chmod o+w -R ' . implode(' ', $dirsWritable));
+    @exec('chmod o+w -R ' . implode(' ', $dirsWritable));
     
     $requirements = [
         'ext' => [
