@@ -1,6 +1,6 @@
 <?php
 /**
- * Format plugin for S-Cart 2.x
+ * Format plugin for S-Cart 3.x
  */
 #App\Plugins\Plugin_Code\Plugin_Key\AppConfig.php
 namespace App\Plugins\Plugin_Code\Plugin_Key;

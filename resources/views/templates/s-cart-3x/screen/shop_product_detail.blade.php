@@ -206,7 +206,7 @@ $productRelation: no paginate
                       </div>
                       <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
                       @if ($product_rel->allowSale())
-                      <a onClick="addToCartAjax('{{ $product_rel->id }}','card')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
                         <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                       @endif
             
