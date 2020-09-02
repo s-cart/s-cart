@@ -90,7 +90,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
             @if ($product->allowSale())
-            <a onClick="addToCartAjax('{{ $product->id }}','card')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+            <a onClick="addToCartAjax('{{ $product->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
               <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
             @endif
 
