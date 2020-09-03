@@ -10,9 +10,8 @@ use Intervention\Image\Facades\Image;
 /**
  * Function upload image
  */
-function sc_image_upload($fileContent, $path = null, $name = null, $options = ['unique_name' => true, 'thumb' => false, 'watermark' => false])
+function sc_image_upload($fileContent, $disk = 'public', $path = null, $name = null, $options = ['unique_name' => true, 'thumb' => false, 'watermark' => false])
 {
-    $disk = 'public';
     $pathFile = null;
     try {
         $fileName = false;
@@ -30,7 +29,7 @@ function sc_image_upload($fileContent, $path = null, $name = null, $options = ['
         else {
             $pathFile = Storage::disk($disk)->putFile(($path ?? ''), $fileContent);
         }
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
         return null;
     }
 
@@ -74,7 +73,7 @@ function sc_file_upload($fileContent, $disk = 'public', $path = null, $name = nu
         else {
             $pathFile = Storage::disk($disk)->putFile(($path ?? ''), $fileContent);
         }
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
         return null;
     }
     if ($disk == 'public') {
@@ -92,11 +91,8 @@ function sc_file_upload($fileContent, $disk = 'public', $path = null, $name = nu
  * @param   [string]  $prefix  will remove
  *
  */
-function sc_remove_file($pathFile, $prefix = null,  $disk = null) {
-    if($prefix) {
-        $pathFile = str_replace($prefix,'', $pathFile);
-    }
-    if($disk) {
+function sc_remove_file($pathFile, $disk = null) {
+    if ($disk) {
         return Storage::disk($disk)->delete($pathFile);
     } else {
         return Storage::delete($pathFile);
