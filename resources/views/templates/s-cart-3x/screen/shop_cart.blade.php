@@ -289,16 +289,18 @@ $attributesGroup: array
                                         @endif
                                     </td>
                                     @else
-                                    <td colspan="2"
-                                        class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
-                                        <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
-                                            {{ trans('cart.address') }}:</label>
-                                        <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address') }}"
-                                            value="{{ old('address1',$shippingAddress['address1'])}}">
-                                        @if($errors->has('address1'))
-                                        <span class="help-block">{{ $errors->first('address1') }}</span>
+                                        @if (sc_config('customer_address1'))
+                                        <td colspan="2"
+                                            class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                            <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
+                                                {{ trans('cart.address') }}:</label>
+                                            <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address') }}"
+                                                value="{{ old('address1',$shippingAddress['address1'])}}">
+                                            @if($errors->has('address1'))
+                                            <span class="help-block">{{ $errors->first('address1') }}</span>
+                                            @endif
+                                        </td>
                                         @endif
-                                    </td>
                                     @endif
                                 </tr>
 

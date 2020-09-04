@@ -173,20 +173,22 @@ $countries
                             </div>
                         </div>
                         @else
-                        <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
-                            <label for="address1"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.address') }}</label>
+                            @if (sc_config('customer_address1'))
+                            <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                <label for="address1"
+                                    class="col-md-4 col-form-label text-md-right">{{ trans('account.address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="address1" type="text" class="form-control" name="address1" 
-                                    value="{{ (old('address1'))?old('address1'):$user['address1']}}">
+                                <div class="col-md-6">
+                                    <input id="address1" type="text" class="form-control" name="address1" 
+                                        value="{{ (old('address1'))?old('address1'):$user['address1']}}">
 
-                                @if($errors->has('address1'))
-                                <span class="help-block">{{ $errors->first('address1') }}</span>
-                                @endif
+                                    @if($errors->has('address1'))
+                                    <span class="help-block">{{ $errors->first('address1') }}</span>
+                                    @endif
 
+                                </div>
                             </div>
-                        </div>
+                            @endif
                         @endif
 
 
