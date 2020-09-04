@@ -17,7 +17,7 @@
         @endif
 
         @if(Session::has('error'))
-        <div class="alert alert-error alert-dismissible" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {!! Session::get('error') !!}
         </div>

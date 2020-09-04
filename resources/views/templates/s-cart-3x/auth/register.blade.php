@@ -130,16 +130,18 @@
                         @endif
                     </div>
                     @else
-                    <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
-                        <input type="text"
-                            class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
-                            name="address1" placeholder="{{ trans('account.address') }}" value="{{ old('address1') }}">
-                        @if ($errors->has('address1'))
-                        <span class="help-block">
-                            {{ $errors->first('address1') }}
-                        </span>
+                        @if (sc_config('customer_address1'))
+                        <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
+                            <input type="text"
+                                class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
+                                name="address1" placeholder="{{ trans('account.address') }}" value="{{ old('address1') }}">
+                            @if ($errors->has('address1'))
+                            <span class="help-block">
+                                {{ $errors->first('address1') }}
+                            </span>
+                            @endif
+                        </div>
                         @endif
-                    </div>
                     @endif
             
             

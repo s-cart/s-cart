@@ -97,6 +97,25 @@
             </div>
           </div>
 
+          <div class="form-group row {{ $errors->has('email') ? ' text-red' : '' }}">
+            <label for="email" class="col-sm-2 col-form-label">{!! trans('supplier.email') !!}</label>
+            <div class="col-sm-10 ">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="email" id="email" name="email" value="{!! old()?old('email'):$supplier['email']??'' !!}" class="form-control email {{ $errors->has('email') ? ' is-invalid' : '' }}">
+              </div>
+
+              @if ($errors->has('email'))
+              <span class="text-sm">
+                <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
+              </span>
+              @endif
+
+            </div>
+          </div>
+
           <div class="form-group row {{ $errors->has('address') ? ' text-red' : '' }}">
             <label for="address" class="col-sm-2 col-form-label">{!! trans('supplier.address') !!}</label>
             <div class="col-sm-10 ">

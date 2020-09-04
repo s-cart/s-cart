@@ -53,7 +53,9 @@ class AppConfig extends ConfigDefault
                 $dataInsert
             );
 
-            /*Insert plugin's html elements into index of admin pages*/
+            /*Insert plugin's html elements into index of admin pages
+            Detail: https://s-cart.org/docs/master/create-new-a-plugin.html 
+            */
 
             // AdminConfig::insert(
             //     [
@@ -88,7 +90,10 @@ class AppConfig extends ConfigDefault
     {
         $return = ['error' => 0, 'msg' => ''];
         //Please delete all values inserted in the installation step
-        $process = (new AdminConfig)->where('key', $this->configKey)->delete();
+        $process = (new AdminConfig)
+            ->where('key', $this->configKey)
+            ->orWhere('code', $this->configKey.'_config')
+            ->delete();
         if (!$process) {
             $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
