@@ -148,7 +148,6 @@ class ShopAccount extends GeneralController
 
         $v =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
         if ($v->fails()) {
-            dd($v->errors());
             return redirect()->back()
                 ->withErrors($v)
                 ->withInput();
