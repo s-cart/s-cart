@@ -2,7 +2,7 @@
 
 @section('main')
 @php
-    $kindOpt = old('kind', '')
+    $kindOpt = old('kind', '');
 @endphp
 <div class="row">
     <div class="col-md-12">
@@ -478,7 +478,7 @@
 
 @if (sc_config('product_promotion'))
                         {{-- price promotion --}}
-                        <div class="form-group row kind kind0 kind1">
+                        <div class="form-group row kind kind0 kind1   {{ $errors->has('price_promotion') ? ' text-red' : '' }}">
                             <label for="price"
                                 class="col-sm-2 col-form-label">{{ trans('product.price_promotion') }}</label>
                             <div class="col-sm-8">
@@ -530,7 +530,11 @@
                                     {{ trans('product.admin.add_product_promotion') }}
                                 </button>
                                 @endif
-
+                                @if ($errors->has('price_promotion'))
+                                <span class="form-text">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('price_promotion') }}
+                                </span>
+                                @endif
                             </div>
                         </div>
                         {{-- //price promotion --}}
