@@ -838,17 +838,17 @@ class AdminProductController extends Controller
 
         if (sc_config('product_supplier')) {
             if (sc_config('product_supplier_required')) {
-                $arrValidation['supplier_id'] = 'required|numeric';
+                $arrValidation['supplier_id'] = 'required';
             } else {
-                $arrValidation['supplier_id'] = 'nullable|numeric';
+                $arrValidation['supplier_id'] = 'nullable';
             }
         }
 
         if (sc_config('product_price')) {
             if (sc_config('product_price_required')) {
-                $arrValidation['price_id'] = 'required|numeric|min:0';
+                $arrValidation['price'] = 'required|numeric|min:0';
             } else {
-                $arrValidation['price_id'] = 'nullable|numeric|min:0';
+                $arrValidation['price'] = 'nullable|numeric|min:0';
             }
         }
 
@@ -862,9 +862,9 @@ class AdminProductController extends Controller
 
         if (sc_config('product_promotion')) {
             if (sc_config('product_promotion_required')) {
-                $arrValidation['promotion'] = 'required|numeric|min:0';
+                $arrValidation['price_promotion'] = 'required|numeric|min:0';
             } else {
-                $arrValidation['promotion'] = 'nullable|numeric|min:0';
+                $arrValidation['price_promotion'] = 'nullable|numeric|min:0';
             }
         }
 
@@ -884,19 +884,11 @@ class AdminProductController extends Controller
             }
         }
 
-        if (sc_config('product_attribute')) {
-            if (sc_config('product_attribute_required')) {
-                $arrValidation['attribute'] = 'required|string';
-            } else {
-                $arrValidation['attribute'] = 'nullable|string';
-            }
-        }
-
         if (sc_config('product_available')) {
             if (sc_config('product_available_required')) {
-                $arrValidation['available'] = 'required|date';
+                $arrValidation['date_available'] = 'required|date';
             } else {
-                $arrValidation['available'] = 'nullable|date';
+                $arrValidation['date_available'] = 'nullable|date';
             }
         }
 
