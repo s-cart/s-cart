@@ -172,8 +172,7 @@ $statusShipping
                   @endif
 
                 @endforeach
-
-                  <tr class="data-balance"><td>{{ trans('order.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->total) }}</td></tr>
+                <tr class="data-balance"><td>{{ trans('order.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->balance) }}</td></tr>
             </table>
           </div>
 
