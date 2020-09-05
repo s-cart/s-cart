@@ -270,6 +270,7 @@ class ShopOrder extends Model
      */
     public function setOrderProfile() {
         $this->sc_order_profile = 1;
+        $this->sc_status = 'all' ;
         return $this;
     }
 
@@ -403,4 +404,19 @@ class ShopOrder extends Model
             ->groupBy('md')->get();
     }
 
+    /**
+     * Update value balance, received when order capture full money with payment method
+     *
+     * @return  [type]  [return description]
+     */
+    public function processPaymentPaid() {
+        $total = $this->total;
+        $this->balance = 0;
+        $this->received = -$total;
+        $this->save();
+        (new ShopOrderTotal)
+            ->where('order_id', $this->id)
+            ->where('code', 'received')
+            ->update(['value' =>  -$total]);
+    }
 }
