@@ -270,6 +270,7 @@ class ShopOrder extends Model
      */
     public function setOrderProfile() {
         $this->sc_order_profile = 1;
+        $this->sc_status = 'all' ;
         return $this;
     }
 
