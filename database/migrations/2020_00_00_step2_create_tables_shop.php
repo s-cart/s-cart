@@ -24,7 +24,7 @@ class CreateTablesShop extends Migration
             $table->string('target', 50)->nullable();
             $table->text('html')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             $table->integer('click')->default(0);
             $table->tinyInteger('type')->default(0);
             $table->timestamps();
@@ -54,7 +54,7 @@ class CreateTablesShop extends Migration
             $table->string('icon', 100)->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('rtl')->nullable()->default(0)->comment('Layout RTL');
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -66,7 +66,7 @@ class CreateTablesShop extends Migration
             $table->string('type', 200);
             $table->text('text')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -92,7 +92,7 @@ class CreateTablesShop extends Migration
             $table->string('group', 100);
             $table->string('module', 100)->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -118,7 +118,7 @@ class CreateTablesShop extends Migration
             $table->string('image', 255)->nullable();
             $table->string('url', 100)->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -129,7 +129,7 @@ class CreateTablesShop extends Migration
             $table->integer('parent')->default(0);
             $table->integer('top')->nullable()->default(0);
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -153,7 +153,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('symbol_first')->default(0);
             $table->string('thousands')->default(',');
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -294,7 +294,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('property')->nullable()->default(0)->comment('0:physical, 1:download, 2:only view, 3: Service')->index();
             $table->string('tax_id', 50)->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
             $table->tinyInteger('status')->default(0)->index();
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             $table->integer('view')->default(0);
             $table->string('alias', 120)->unique();
             $table->dateTime('date_lastview')->nullable();
@@ -347,7 +347,7 @@ class CreateTablesShop extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             $table->string('type', 50)->comment('radio,select,checkbox');
             }
         );
@@ -358,7 +358,7 @@ class CreateTablesShop extends Migration
             $table->integer('attribute_group_id');
             $table->integer('product_id');
             $table->integer('add_price')->default(0);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->index(['product_id', 'attribute_group_id']);
             }
@@ -445,7 +445,7 @@ class CreateTablesShop extends Migration
             $table->string('address', 100)->nullable();
             $table->string('url', 100)->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             }
         );
 
@@ -468,7 +468,7 @@ class CreateTablesShop extends Migration
             $table->increments('id');
             $table->string('image', 200)->nullable();
             $table->string('alias', 120)->index();
-            $table->tinyInteger('sort')->default(0);
+            $table->integer('sort')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
