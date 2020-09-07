@@ -142,13 +142,13 @@ class AdminStoreController extends Controller
                 }
                 AdminStoreDescription::insert($dataDes);
 
-                //Add config default for new store
-                session(['lastStoreId' => $store->id]);
-                Artisan::call('db:seed --class=DataStoreSeeder');
-
+                if(sc_config_global('MultiStorePro')) {
+                    //Add config default for new store
+                    session(['lastStoreId' => $store->id]);
+                    Artisan::call('db:seed --class=DataStoreSeeder');
+                }
+                
             }, 2);
-
-
         return redirect()->route('admin_store.index')->with('success', trans('store.admin.create_success'));
 
     }
