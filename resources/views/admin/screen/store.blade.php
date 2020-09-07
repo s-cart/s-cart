@@ -112,11 +112,11 @@
                   console.log(data);
                     if(data.error == 1){
                       alertMsg('error', data.msg, '{{ trans('admin.warning') }}');
-                      $.pjax.reload('#pjax-container');
+                     location.reload();
                       return;
                     }else{
                       alertMsg('success', data.msg);
-                      $.pjax.reload('#pjax-container');
+                     location.reload();
                       resolve(data);
                     }
 
