@@ -146,6 +146,7 @@ class AdminStoreController extends Controller
                     //Add config default for new store
                     session(['lastStoreId' => $store->id]);
                     Artisan::call('db:seed --class=DataStoreSeeder');
+                    session()->forget('lastStoreId');
                 }
                 
             }, 2);
