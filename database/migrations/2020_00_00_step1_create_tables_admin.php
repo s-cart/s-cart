@@ -53,6 +53,7 @@ class CreateTablesAdmin extends Migration
             $table->string('icon', 50);
             $table->string('uri', 255)->nullable();
             $table->integer('type')->default(0);
+            $table->integer('hidden')->default(0);
             $table->string('key', 50)->unique()->nullable();
             $table->timestamps();
         });
