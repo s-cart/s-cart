@@ -49,7 +49,7 @@ class CreateTablesAdmin extends Migration
             $table->increments('id');
             $table->integer('parent_id')->default(0);
             $table->integer('sort')->default(0);
-            $table->string('title', 50);
+            $table->string('title', 100);
             $table->string('icon', 50);
             $table->string('uri', 255)->nullable();
             $table->integer('type')->default(0);
