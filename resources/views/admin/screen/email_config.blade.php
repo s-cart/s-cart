@@ -26,6 +26,10 @@
                  <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
                </tr>
              @endforeach
+             <tr>
+              <td>{{ trans('email.email_action.forgot_password') }}</td>
+              <td><input type="checkbox" checked disabled></td>
+            </tr>
            </tbody>
            <tfoot>
             <tr>

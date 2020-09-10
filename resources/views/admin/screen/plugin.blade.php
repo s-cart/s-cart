@@ -59,12 +59,16 @@
                     if($pluginsInstalled[$codePlugin]['value']){
                       $pluginStatusTitle = trans('plugin.actived');
                       $pluginAction ='<span onClick="disablePlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.disable').'" type="button" class="btn btn-flat btn-warning btn-flat"><i class="fa fa-power-off"></i></span>&nbsp;';
+
                         if($pluginClass->config()){
                           $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                         }
+                        //Delete data
+                        $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.trans('plugin.only_delete_data').'" class="btn btn-flat btn-danger"><i class="fas fa-times"></i></span>';
+
                         //You can not remove if plugin is default
                         if(!in_array($codePlugin, $arrDefault)) {
-                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                          $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
                         }
                     }else{
                       $pluginStatusTitle = trans('plugin.disabled');
@@ -72,10 +76,12 @@
                         if($pluginClass->config()){
                           $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.trans('plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                         }
+                        //Delete data
+                        $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.trans('plugin.only_delete_data').'" class="btn btn-flat btn-danger"><i class="fas fa-times"></i></span>';
 
                         //You can not remove if plugin is default
                         if(!in_array($codePlugin, $arrDefault)) {
-                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                          $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.trans('plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
                         }
                     }
                   }
@@ -190,7 +196,7 @@
         }
       });
   }
-  function uninstallPlugin(obj,key) {
+  function uninstallPlugin(obj,key, onlyRemoveData = null) {
 
       Swal.fire({
         title: '{{ trans('admin.action_admin.are_you_sure') }}',
@@ -211,7 +217,8 @@
               data: {
                 "_token": "{{ csrf_token() }}",
                 "key":key,
-                "code":"{{ $code }}"
+                "code":"{{ $code }}",
+                "onlyRemoveData": onlyRemoveData,
               },
               success: function (response) {
                 console.log(response);

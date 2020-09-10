@@ -2,10 +2,8 @@
 #app/Http/Admin/Controllers/Auth/PermissionController.php
 namespace App\Admin\Controllers\Auth;
 
-use App\Admin\Admin;
 use App\Admin\Models\AdminPermission;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
 
@@ -17,28 +15,31 @@ class PermissionController extends Controller
     public function __construct()
     {
         $routes = app()->routes->getRoutes();
-        foreach ($routes as $value) {
-            if (\Illuminate\Support\Str::startsWith($value->getPrefix(), SC_ADMIN_PREFIX)) {
-                $prefix = SC_ADMIN_PREFIX?$value->getPrefix():ltrim($value->getPrefix(),'/');
+
+        foreach ($routes as $route) {
+            if (Str::startsWith($route->uri(), SC_ADMIN_PREFIX)) {
+                $prefix = SC_ADMIN_PREFIX?$route->getPrefix():ltrim($route->getPrefix(),'/');
                 $routeAdmin[$prefix] = [
-                    'uri' => 'ANY::' . $prefix . '/*',
-                    'name' => $prefix . '/*',
+                    'uri'    => 'ANY::' . $prefix . '/*',
+                    'name'   => $prefix . '/*',
                     'method' => 'ANY',
                 ];
-                foreach ($value->methods as $key => $method) {
-                    if ($method != 'HEAD' && !collect($this->without())->first(function ($exp) use ($value) {
-                        return Str::startsWith($value->uri, $exp);
+                foreach ($route->methods as $key => $method) {
+                    if ($method != 'HEAD' && !collect($this->without())->first(function ($exp) use ($route) {
+                        return Str::startsWith($route->uri, $exp);
                     })) {
                         $routeAdmin[] = [
-                            'uri' => $method . '::' . $value->uri,
-                            'name' => $value->uri,
+                            'uri'    => $method . '::' . $route->uri,
+                            'name'   => $route->uri,
                             'method' => $method,
                         ];
                     }
 
                 }
             }
+
         }
+
         $this->routeAdmin = $routeAdmin;
     }
 

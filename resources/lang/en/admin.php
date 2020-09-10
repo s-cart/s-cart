@@ -335,7 +335,7 @@ return [
       'confirm_delete_deleted_msg' => 'Item has been deleted.',
       'action_admin' => [
             'are_you_sure'   => 'Are you sure?',
-            'delete_warning' => 'You won\'t be able to revert this!',
+            'delete_warning' => 'This will not be reversible!',
             'confirm_yes'    => 'Yes, do it',
             'cancel'         => 'Cancel',
       ],
