@@ -53,7 +53,7 @@ class AdminSubscribeController extends Controller
         ];
         $obj = new ShopSubscribe;
         if ($keyword) {
-            $obj = $obj->whereRaw('(email like "%' . $keyword . '%" OR id like = "' . $keyword . '" )');
+            $obj = $obj->whereRaw('(email like "%' . $keyword . '%" OR id = "' . $keyword . '" )');
         }
 
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
