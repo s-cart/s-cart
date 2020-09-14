@@ -299,6 +299,7 @@ return [
         'cache_manager'     => 'Quản lý bộ nhớ Cache',
         'store_manager'     => 'Quản lý cửa hàng',
         'store_config'     => 'Cấu hình cửa hàng',
+        'config_store_default'      => 'Cấu hình mặc định',
     ],
     //=======++===========
     'status'           => 'Trạng thái',
