@@ -77,10 +77,10 @@ class ScartServiceProvider extends ServiceProvider
         //Config for  email
         config(['mail.default' => 'smtp']);
         
-        $smtpHost = sc_config('smtp_host');
-        $smtpPort = sc_config('smtp_port');
+        $smtpHost     = sc_config('smtp_host');
+        $smtpPort     = sc_config('smtp_port');
         $smtpSecurity = sc_config('smtp_security');
-        $smtpUser = sc_config('smtp_user');
+        $smtpUser     = sc_config('smtp_user');
         $smtpPassword = sc_config('smtp_password');
         config(['mail.mailers.smtp.host' => $smtpHost]);
         config(['mail.mailers.smtp.port' => $smtpPort]);

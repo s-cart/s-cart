@@ -18,6 +18,7 @@ class AdminEmailController extends Controller
 
         $obj = (new AdminConfig)
             ->whereIn('code', ['email_action', 'smtp_config'])
+            ->where('store_id', 0)
             ->orderBy('sort', 'asc')
             ->get()->groupBy('code');
         $data['configs'] = $obj;

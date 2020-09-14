@@ -15,6 +15,7 @@ class AdminOrderConfigController extends Controller
 
         $orderConfig = (new AdminConfig)
             ->where('code', 'order_config')
+            ->where('store_id', '0')
             ->orderBy('sort', 'desc')->get();
         $data['configs'] = $orderConfig;
         return view('admin.screen.order_config')
