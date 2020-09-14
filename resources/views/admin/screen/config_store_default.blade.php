@@ -1,40 +1,6 @@
 @extends('admin.layout')
-
-@if (!empty($dataNotFound))
-  @section('main')
-      <div class="card">
-        <div class="card-tools">
-          <div class="btn-group float-right">
-              <a href="{{ route('admin_store.index') }}" class="btn  btn-flat btn-default" title="List">
-                  <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
-              </a>
-          </div>
-      </div>
-        <div class="card-header with-border">
-          <h2 class="card-title">{{ $title_description??'' }}</h2>
-          <div class="card-tools">
-              <div class="btn-group float-right mr-5">
-                  <a href="{{ route('admin_multistorepro.index') }}" class="btn  btn-flat btn-default" title="List">
-                      <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
-                  </a>
-              </div>
-          </div>
-      </div>
-        <div class="card-body table-responsivep-0">
-          {{ trans('admin.data_notfound') }}
-        </div>
-      </div>
-  @endsection
-@else
 @section('main')
       <div class="card card-primary card-outline card-outline-tabs">
-        <div class="card-tools">
-          <div class="btn-group float-right">
-              <a href="{{ route('admin_multistorepro.index') }}" class="btn  btn-flat btn-default" title="List">
-                  <i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span>
-              </a>
-          </div>
-      </div>
         <div class="card-header p-0 border-bottom-0">
           <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
             <li class="nav-item">
@@ -103,7 +69,6 @@
 </div>
 
 @endsection
-@endif
 
 @push('styles')
 <!-- Ediable -->
