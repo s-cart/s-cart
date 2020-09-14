@@ -4,7 +4,6 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Plugins\Other\MultiStorePro\AppConfig;
 use App\Models\ShopLanguage;
 use App\Models\ShopCurrency;
 use App\Models\AdminConfig;
@@ -12,7 +11,6 @@ use App\Models\ShopTax;
 
 class AdminConfigStoreDefaultController extends Controller
 {
-    public $plugin;
     public $templates, $currencies, $languages, $timezones;
 
     public function __construct()
@@ -25,7 +23,6 @@ class AdminConfigStoreDefaultController extends Controller
         foreach (timezone_identifiers_list() as $key => $value) {
             $timezones[$value] = $value;
         }
-        $this->plugin = new AppConfig;
         $this->templates = $templates;
         $this->currencies = ShopCurrency::getCodeActive();
         $this->languages = ShopLanguage::getListActive();
