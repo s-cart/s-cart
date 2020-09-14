@@ -20,6 +20,16 @@ class AdminMenu extends Model
         return self::$getList;
     }
 
+    public static function getListAllDisplay()
+    {
+        if (self::$getList == null) {
+            self::$getList = self::orderBy('sort', 'asc')
+            ->where('hidden', 0)
+            ->get();
+        }
+        return self::$getList;
+    }
+
     /**
      * Get list menu can visible for user
      *
@@ -27,7 +37,7 @@ class AdminMenu extends Model
      */
     public static function getListVisible()
     {
-        $list = self::getListAll();
+        $list = self::getListAllDisplay();
         $listVisible = [];
         foreach ($list as  $menu) {
             if (!$menu->uri) {
