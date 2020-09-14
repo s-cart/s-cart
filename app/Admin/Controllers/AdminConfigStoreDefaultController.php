@@ -52,8 +52,6 @@ class AdminConfigStoreDefaultController extends Controller
             ->get()
             ->keyBy('key')
             ->toArray();
-        $data['customerConfigs'] = $customerConfigs;
-        $data['customerConfigsRequired'] = $customerConfigsRequired;
         //End customer
 
         //Product config
@@ -90,14 +88,6 @@ class AdminConfigStoreDefaultController extends Controller
             ->get()
             ->keyBy('key');
             
-        $data['productConfig']                  = $productConfig;
-        $data['productConfigAttribute']         = $productConfigAttribute;
-        $data['productConfigAttributeRequired'] = $productConfigAttributeRequired;
-        $data['taxs']                           = $taxs;
-        $data['configDisplay']                  = $configDisplay;
-        $data['orderConfig']                    = $orderConfig;
-        //End product config
-
         //Email config
         $emailConfig = (new AdminConfig)
             ->whereIn('code', ['email_action', 'smtp_config'])
@@ -109,11 +99,19 @@ class AdminConfigStoreDefaultController extends Controller
         $data['smtp_method'] = ['' => 'None Secirity', 'TLS' => 'TLS', 'SSL' => 'SSL'];
         //End email
 
-        $data['templates']  = $this->templates;
-        $data['timezones']  = $this->timezones;
-        $data['languages']  = $this->languages;
-        $data['currencies'] = $this->currencies;
-        $data['storeId']    = 0;
+        $data['customerConfigs']                = $customerConfigs;
+        $data['customerConfigsRequired']        = $customerConfigsRequired;
+        $data['productConfig']                  = $productConfig;
+        $data['productConfigAttribute']         = $productConfigAttribute;
+        $data['productConfigAttributeRequired'] = $productConfigAttributeRequired;
+        $data['taxs']                           = $taxs;
+        $data['configDisplay']                  = $configDisplay;
+        $data['orderConfig']                    = $orderConfig;
+        $data['templates']                      = $this->templates;
+        $data['timezones']                      = $this->timezones;
+        $data['languages']                      = $this->languages;
+        $data['currencies']                     = $this->currencies;
+        $data['storeId']                        = 0;
 
         return view('admin.screen.config_store_default')
         ->with($data);
