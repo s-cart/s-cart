@@ -20,7 +20,7 @@ $layout_page = shop_contact
             </address>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form">
+            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form" id="form-process">
                 {{ csrf_field() }}
                 <div id="contactFormWrapper">
                     <div class="row">
@@ -79,8 +79,9 @@ $layout_page = shop_contact
 
                         </div>
                     </div>
+                    {!! $viewCaptcha?? '' !!}
                     <div class="btn-toolbar form-group">
-                        <input type="submit" value="{{ trans('front.contact_form.submit') }}" class="button button-lg button-secondary">
+                        <input type="submit" value="{{ trans('front.contact_form.submit') }}" class="button button-lg button-secondary" id="button-form-process">
                     </div>
                 </div>
             </form>

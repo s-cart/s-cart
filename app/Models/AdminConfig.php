@@ -32,10 +32,29 @@ class AdminConfig extends Model
         if ($onlyActive) {
             $query = $query->where('value', 1);
         }
-        $return = $query->orderBy('sort', 'asc')
+        $data = $query->orderBy('sort', 'asc')
             ->get()->keyBy('key');
-        return $return;
+        return $data;
     }
+
+    /**
+     * get Plugin Captcha installed
+     * @param  boolean $onlyActive
+     * @return [type]              [description]
+     */
+    public static function getPluginCaptchaCode($onlyActive = true)
+    {
+        $query =  self::where('group', 'Plugins')
+        ->where('code', 'Other')
+        ->where('key', 'like', '%Captcha');
+        if ($onlyActive) {
+            $query = $query->where('value', 1);
+        }
+        $data = $query->orderBy('sort', 'asc')
+            ->get()->keyBy('key');
+        return $data;
+    }
+
 
     /**
      * get Group

@@ -115,7 +115,11 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CART_DEFAULT', 'value' => 'cart', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CART_DEFAULT', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CART_CHECKOUT', 'value' => 'checkout', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CART_CHECKOUT', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_ORDER_SUCCESS', 'value' => 'order-success', 'sort' => '0', 'detail' => 'lang::env.PREFIX_ORDER_SUCCESS', 'store_id' => $storeId],
-
+            
+            ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_mode', 'value' => '0', 'sort' => '20', 'detail' => 'lang::captcha.captcha_mode', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_page', 'value' => '[]', 'sort' => '10', 'detail' => 'lang::captcha.captcha_page', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_method', 'value' => '', 'sort' => '0', 'detail' => 'lang::captcha.captcha_method', 'store_id' => $storeId],
+            
             ['group' => '', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => $storeId],
             
             

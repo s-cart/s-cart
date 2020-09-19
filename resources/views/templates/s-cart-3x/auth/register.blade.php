@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12 col-sm-12">
             <h2>{{ trans('account.title_register') }}</h2>
-            <form action="{{sc_route('postRegister')}}" method="post" class="box">
+            <form action="{{sc_route('postRegister')}}" method="post" class="box" id="form-process">
                 {!! csrf_field() !!}
                 <div class="form_content" id="collapseExample">
             
@@ -238,8 +238,9 @@
                         </span>
                         @endif
                     </div>
+                    {!! $viewCaptcha ?? ''!!}
                     <div class="submit">
-                        <button type="submit" name="SubmitCreate" class="button button-lg button-secondary">{{ trans('account.signup') }}</button>
+                        <button type="submit" name="SubmitCreate" class="button button-lg button-secondary" id="button-form-process">{{ trans('account.signup') }}</button>
                     </div>
                 </div>
             

@@ -19,6 +19,9 @@
               <a class="nav-link" id="tab-store-url-tab" data-toggle="pill" href="#tab-store-url" role="tab" aria-controls="tab-store-url" aria-selected="false">{{ trans('store.admin.config_url') }}</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" id="tab-store-captcha-tab" data-toggle="pill" href="#tab-store-captcha" role="tab" aria-controls="tab-store-captcha" aria-selected="false">{{ trans('captcha.captcha_title') }}</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" id="tab-store-display-tab" data-toggle="pill" href="#tab-store-display" role="tab" aria-controls="tab-store-display" aria-selected="false">{{ trans('store.admin.config_display') }}</a>
             </li>
           </ul>
@@ -55,6 +58,12 @@
               @include('admin.screen.config_store.config_url')
             </div>
             {{-- // Url config --}}
+
+            {{-- Tab captcha config --}}
+            <div class="tab-pane fade" id="tab-store-captcha" role="tabpanel" aria-labelledby="tab-store-captcha-tab">
+              @include('admin.screen.config_store.config_captcha')
+            </div>
+            {{-- // captcha config --}}
 
             {{-- Tab display config --}}
             <div class="tab-pane fade" id="tab-store-display" role="tabpanel" aria-labelledby="tab-store-display-tab">
@@ -142,7 +151,7 @@ $(document).ready(function() {
 <script>
   // Update config
   $(function () {
-    $('#tab-store-customer input, #tab-store-product input, #tab-store-email .input-info, #tab-store-order input').iCheck({
+    $('#tab-store-customer input, #tab-store-product input, #tab-store-email .input-info, #tab-store-order input, #tab-store-captcha input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */

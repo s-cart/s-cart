@@ -5,7 +5,7 @@ $layout_page = shop_auth
 @endphp
 
 <h2>{{ trans('account.title_register') }}</h2>
-<form action="{{sc_route('postRegister')}}" method="post" class="box">
+<form action="{{sc_route('postRegister')}}" method="post" class="box" id="form-process">
     {!! csrf_field() !!}
     <div class="form_content {{ (old('check_red'))?'in':'' }}" id="collapseExample">
 
@@ -209,7 +209,8 @@ $layout_page = shop_auth
         </div>
         <input type="hidden" name="check_red" value="1">
         <div class="submit">
-            <button type="submit" name="SubmitCreate" class="btn btn-default">{{ trans('account.signup') }}</button>
+            {!! $viewCaptcha ?? ''!!}
+            <button type="submit" name="SubmitCreate" class="btn btn-default" id="button-form-process">{{ trans('account.signup') }}</button>
         </div>
     </div>
 

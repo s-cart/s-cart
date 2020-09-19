@@ -11,9 +11,9 @@ $layout_page = shop_auth
     <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12">
-            <h2>{{ trans('account.title_login') }}</h2>
+            <h2>{{ trans('account.password_forgot') }}</h2>
 
-            <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}">
+            <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}" id="form-process">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="col-md-12 control-label"><i class="fas fa-envelope"></i>
@@ -27,7 +27,8 @@ $layout_page = shop_auth
                         </span>
                         <br />
                         @endif
-                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary">{{ trans('front.submit_form') }}</button>
+                        {!! $viewCaptcha ?? ''!!}
+                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary" id="button-form-process">{{ trans('front.submit_form') }}</button>
                     </div>
                 </div>
             </form>

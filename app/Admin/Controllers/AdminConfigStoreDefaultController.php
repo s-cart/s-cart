@@ -87,7 +87,12 @@ class AdminConfigStoreDefaultController extends Controller
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
-            
+        $configCaptcha = (new AdminConfig)
+            ->where('code', 'captcha_config')
+            ->where('store_id', 0)
+            ->orderBy('sort', 'desc')
+            ->get()
+            ->keyBy('key');
         //Email config
         $emailConfig = (new AdminConfig)
             ->whereIn('code', ['email_action', 'smtp_config'])
@@ -97,16 +102,23 @@ class AdminConfigStoreDefaultController extends Controller
             ->groupBy('code');
         $data['emailConfig'] = $emailConfig;
         $data['smtp_method'] = ['' => 'None Secirity', 'TLS' => 'TLS', 'SSL' => 'SSL'];
+        $data['captcha_page'] = [
+            'register' => trans('captcha.captcha_page_register'), 
+            'forgot'   => trans('captcha.captcha_page_forgot_password'), 
+            'checkout' => trans('captcha.captcha_page_checkout'), 
+            'contact'  => trans('captcha.captcha_page_contact'), 
+        ];
         //End email
-
         $data['customerConfigs']                = $customerConfigs;
         $data['customerConfigsRequired']        = $customerConfigsRequired;
         $data['productConfig']                  = $productConfig;
         $data['productConfigAttribute']         = $productConfigAttribute;
         $data['productConfigAttributeRequired'] = $productConfigAttributeRequired;
+        $data['pluginCaptchaInstalled']         = sc_get_plugin_captcha_installed();
         $data['taxs']                           = $taxs;
         $data['configDisplay']                  = $configDisplay;
         $data['orderConfig']                    = $orderConfig;
+        $data['configCaptcha']                  = $configCaptcha;
         $data['templates']                      = $this->templates;
         $data['timezones']                      = $this->timezones;
         $data['languages']                      = $this->languages;

@@ -19,7 +19,7 @@ $layout_page = shop_auth
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}">
+                    <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}" id="form-process">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">{{ trans('customer.email') }}</label>
@@ -30,7 +30,8 @@ $layout_page = shop_auth
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                <button type="submit" name="SubmitLogin" class="btn btn-default">
+                                {!! $viewCaptcha ?? ''!!}
+                                <button type="submit" name="SubmitLogin" class="btn btn-default" id="button-form-process">
                                     <span>
                                     <i class="glyphicon glyphicon-wrench"></i>
                                        {{ trans('front.submit_form') }}

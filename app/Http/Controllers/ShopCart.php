@@ -121,6 +121,19 @@ class ShopCart extends GeneralController
         }
         $shippingAddress = session('shippingAddress') ?? $addressDefaul;
         $objects = ShopOrderTotal::getObjectOrderTotal();
+
+        $viewCaptcha = '';
+        if(sc_captcha_method() && in_array('forgot', sc_captcha_page())) {
+            if (view()->exists(sc_captcha_method()->pathPlugin.'::render')){
+                $dataView = [
+                    'titleButton' => trans('cart.checkout'),
+                    'idForm' => 'form-process',
+                    'idButtonForm' => 'button-form-process',
+                ];
+                $viewCaptcha = view(sc_captcha_method()->pathPlugin.'::render', $dataView)->render();
+            }
+        }
+
         return view(
             $this->templatePath . '.screen.shop_cart',
             [
@@ -137,6 +150,7 @@ class ShopCart extends GeneralController
                 'layout_page'     => 'shop_cart',
                 'countries'       => ShopCountry::getCodeAll(),
                 'attributesGroup' => ShopAttributeGroup::pluck('name', 'id')->all(),
+                'viewCaptcha'     => $viewCaptcha,
             ]
         );
     }
@@ -155,6 +169,7 @@ class ShopCart extends GeneralController
             return redirect()->route('login');
         }
 
+        $data = request()->all();
 
         $validate = [
             'first_name'     => 'required|max:100',
@@ -252,8 +267,14 @@ class ShopCart extends GeneralController
             'paymentMethod.required'  => trans('cart.validation.paymentMethod_required'),
         ];
 
+        if(sc_captcha_method() && in_array('checkout', sc_captcha_page())) {
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $validate['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
+        }
+
+
         $v = Validator::make(
-            request()->all(), 
+            $data, 
             $validate, 
             $messages
         );

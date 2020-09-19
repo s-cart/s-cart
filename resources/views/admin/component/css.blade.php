@@ -307,4 +307,7 @@
   display: inline;
   margin-right: 10px;
 }
+.help-block {
+  color: red;
+}
 </style>
