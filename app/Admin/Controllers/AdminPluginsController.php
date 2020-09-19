@@ -35,6 +35,9 @@ class AdminPluginsController extends Controller
         if($code == 'Total') {
             $arrDefault[] = 'Discount';
         }
+        if($code == 'Other') {
+            $arrDefault[] = 'GoogleCaptcha';
+        }
         $pluginsInstalled = sc_get_plugin_installed($code, $onlyActive = false);
         $plugins = sc_get_all_plugin($code);
         $title = trans('plugin.' . $code.'_plugin');
