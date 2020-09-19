@@ -172,6 +172,9 @@ class AdminPluginsController extends Controller
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         $namespace = sc_get_class_plugin_config($configCode, $configKey);
                         $response = (new $namespace)->install();
+                        if(!is_array($response) || $response['error'] == 1) {
+                            return redirect()->back()->with('error', $response['msg']);
+                        }
                         $linkRedirect = route('admin_plugin', ['code' => (new $namespace)->configCode]);
                     } catch(\Exception $e) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
