@@ -88,7 +88,7 @@ $attributesGroup: array
   </table>
   </div>
 
-<form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ sc_route('cart.process') }}">
+<form class="sc-shipping-address" id="form-process" role="form" method="POST" action="{{ sc_route('cart.process') }}">
 <div class="row">
     <div class="col-md-6">
             @csrf
@@ -334,7 +334,8 @@ $attributesGroup: array
         <div class="row" style="padding-bottom: 20px;">
             <div class="col-md-12 text-center">
                     <div class="pull-right">
-                        <button class="btn btn-success" id="submit-order" type="button" style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ trans('cart.checkout') }}</button>
+                        {!! $viewCaptcha ?? ''!!}
+                        <button class="btn btn-success" id="button-form-process" type="button" style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ trans('cart.checkout') }}</button>
                     </div>
             </div>
         </div>
@@ -395,8 +396,8 @@ $attributesGroup: array
         });
     }
 
-$('#submit-order').click(function(){
-    $('#form-order').submit();
+$('#button-form-process').click(function(){
+    $('#form-process').submit();
     $(this).prop('disabled',true);
 });
 

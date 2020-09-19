@@ -60,6 +60,7 @@ return [
         'config_display'  => 'Hiển thị',
         'config_url'      => 'URL',
         'config_api'      => 'API',
+        'config_order'    => 'Đơn hàng',
         'config_other'    => 'Khác',
     ],
 ];

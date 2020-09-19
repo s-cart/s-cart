@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\AuthTrait;
-
 class RegisterController extends GeneralController
 {
     /*
@@ -58,6 +57,10 @@ class RegisterController extends GeneralController
     protected function validator(array $data)
     {
         $dataMapping = $this->mappingValidator($data);
+        if(sc_captcha_method() && in_array('register', sc_captcha_page())) {
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $dataMapping['validate']['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
+        }
         return Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
     }
 
@@ -142,11 +145,23 @@ class RegisterController extends GeneralController
         if (auth()->user()) {
             return redirect()->route('home');
         }
+        $viewCaptcha = '';
+        if(sc_captcha_method() && in_array('register', sc_captcha_page())) {
+            if (view()->exists(sc_captcha_method()->pathPlugin.'::render')){
+                $dataView = [
+                    'titleButton' => trans('account.signup'),
+                    'idForm' => 'form-process',
+                    'idButtonForm' => 'button-form-process',
+                ];
+                $viewCaptcha = view(sc_captcha_method()->pathPlugin.'::render', $dataView)->render();
+            }
+        }
         return view($this->templatePath . '.auth.register',
             array(
                 'title'       => trans('account.title_register'),
                 'countries'   => ShopCountry::getCodeAll(),
                 'layout_page' => 'shop_auth',
+                'viewCaptcha' => $viewCaptcha,
             )
         );
     }

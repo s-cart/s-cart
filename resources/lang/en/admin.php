@@ -92,7 +92,7 @@ return [
       'parent_select_error'               => 'Parent select error',
       'maintain_enable'                   => 'Active',
       'maintain_disable'                  => 'Maintenance',
-      'maintain_help'                  => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Turning on maintenance mode will affect the operation of the website!',
+      'maintain_help'                     => '<i class="fa fa-warning text-red" aria-hidden="true"></i> Turning on maintenance mode will affect the operation of the website!',
       'parent_select_error'               => 'Parent select error',
 
       'pagination'                        => [
@@ -300,7 +300,8 @@ return [
             'email_action'      => 'Email action',
             'cache_manager'     => 'Cache manager',
             'store_manager'     => 'Store manager',
-            'store_config'     => 'Store config',
+            'store_config'      => 'Store config',
+            'config_store_default'      => 'Config store default',
       ],
 
       'status'                            => 'Status',

@@ -19849,3 +19849,23 @@ disabled look for disabled choices in the results dropdown
 .products-lasView .row {
 	padding-top:10px;
 }
+
+/* Captcha */
+.g-recaptcha, .g-recaptcha:focus {
+    color: #151515;
+    background-color: #e9da5d;
+    border-color: #e9da5d;
+}
+
+.g-recaptcha:hover, .g-recaptcha:active {
+    color: #ff0000;
+    background-color: #f5f3f3;
+    border-color: #d9a1a3;
+}
+.grecaptcha-badge {
+	margin: 20px 0;
+    position: unset !important;
+    width: 100% !important;
+    text-align: left;
+    box-shadow: unset !important;
+}

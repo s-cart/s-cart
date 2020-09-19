@@ -120,4 +120,8 @@ return [
         'id_asc'     => 'Sort by oldest product',
     ],
 
+    'captcha_action' => [
+        'submit' => 'Submit',
+    ],
+
 ];

@@ -532,14 +532,26 @@ class ShopFront extends GeneralController
      */
     public function getContact()
     {
+        $viewCaptcha = '';
+        if(sc_captcha_method() && in_array('contact', sc_captcha_page())) {
+            if (view()->exists(sc_captcha_method()->pathPlugin.'::render')){
+                $dataView = [
+                    'titleButton' => trans('front.contact_form.submit'),
+                    'idForm' => 'form-process',
+                    'idButtonForm' => 'button-form-process',
+                ];
+                $viewCaptcha = view(sc_captcha_method()->pathPlugin.'::render', $dataView)->render();
+            }
+        }
         return view(
             $this->templatePath . '.screen.shop_contact',
             array(
-                'title' => trans('front.contact'),
+                'title'       => trans('front.contact'),
                 'description' => '',
-                'keyword' => '',
+                'keyword'     => '',
                 'layout_page' => 'shop_contact',
-                'og_image' => '',
+                'og_image'    => '',
+                'viewCaptcha' => $viewCaptcha,
             )
         );
     }
@@ -552,13 +564,15 @@ class ShopFront extends GeneralController
      */
     public function postContact(Request $request)
     {
-        $validator = $request->validate([
+        $data   = $request->all();
+        $validate = [
             'name' => 'required',
             'title' => 'required',
             'content' => 'required',
             'email' => 'required|email',
             'phone' => 'required|regex:/^0[^0][0-9\-]{7,13}$/',
-        ], [
+        ];
+        $message = [
             'name.required' => trans('validation.required', ['attribute' => trans('front.contact_form.name')]),
             'content.required' => trans('validation.required', ['attribute' => trans('front.contact_form.content')]),
             'title.required' => trans('validation.required', ['attribute' => trans('front.contact_form.title')]),
@@ -566,9 +580,19 @@ class ShopFront extends GeneralController
             'email.email' => trans('validation.email', ['attribute' => trans('front.contact_form.email')]),
             'phone.required' => trans('validation.required', ['attribute' => trans('front.contact_form.phone')]),
             'phone.regex' => trans('validation.phone', ['attribute' => trans('front.contact_form.phone')]),
-        ]);
+        ];
+
+        if(sc_captcha_method() && in_array('contact', sc_captcha_page())) {
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $validate['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
+        }
+        $validator = \Illuminate\Support\Facades\Validator::make($data, $validate, $message);
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         //Send email
-        $data = $request->all();
         $data['content'] = str_replace("\n", "<br>", $data['content']);
 
         if (sc_config('contact_to_admin')) {

@@ -35,6 +35,9 @@ $layout_page = shop_auth
             {{ trans('account.password_forgot') }}
         </a>
         <br>
+        <a class="btn btn-link" href="{{ sc_route('register') }}">
+            {{ trans('account.title_register') }}
+        </a>
     </p>
     <button type="submit" name="SubmitLogin" class="btn btn-default">{{ trans('account.login') }}</button>
 </form>

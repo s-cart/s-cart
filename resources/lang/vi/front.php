@@ -120,4 +120,8 @@ return [
         'id_desc'    => 'Sản phẩm mới nhất',
         'id_asc'     => 'Sản phẩm cũ nhất',
     ],
+
+    'captcha_action' => [
+        'submit' => 'Gửi đi',
+    ],
 ];

@@ -244,6 +244,10 @@ if (!function_exists('sc_language_render')) {
      */
     function sc_language_render($string)
     {
+        if(empty($string)) {
+            return null;
+        }
+        
         $arrCheck = explode('lang::', $string);
         if (count($arrCheck) == 2) {
             return trans($arrCheck[1]);

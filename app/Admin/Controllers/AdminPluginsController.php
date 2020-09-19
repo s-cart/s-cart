@@ -35,6 +35,9 @@ class AdminPluginsController extends Controller
         if($code == 'Total') {
             $arrDefault[] = 'Discount';
         }
+        if($code == 'Other') {
+            $arrDefault[] = 'GoogleCaptcha';
+        }
         $pluginsInstalled = sc_get_plugin_installed($code, $onlyActive = false);
         $plugins = sc_get_all_plugin($code);
         $title = trans('plugin.' . $code.'_plugin');
@@ -74,15 +77,10 @@ class AdminPluginsController extends Controller
     {
         $key = request('key');
         $code = request('code');
-        $onlyRemoveData = request('onlyRemoveData');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->uninstall();
-
-        if(!$onlyRemoveData) {
-            File::deleteDirectory(app_path('Plugins/'.$code.'/'.$key));
-            File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
-        }
-
+        File::deleteDirectory(app_path('Plugins/'.$code.'/'.$key));
+        File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
         return response()->json($response);
     }
 
@@ -145,7 +143,8 @@ class AdminPluginsController extends Controller
                 ->withInput();
         }
         $pathTmp = time();
-        $pathFile = sc_file_upload($data['file'],'tmp', $pathFolder = $pathTmp);
+        $linkRedirect = '';
+        $pathFile = sc_file_upload($data['file'],'tmp', $pathFolder = $pathTmp)['pathFile'] ?? '';
         if($pathFile) {
             $unzip = sc_unzip(storage_path('tmp/'.$pathFile), storage_path('tmp/'.$pathTmp));
             if($unzip) {
@@ -176,6 +175,10 @@ class AdminPluginsController extends Controller
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         $namespace = sc_get_class_plugin_config($configCode, $configKey);
                         $response = (new $namespace)->install();
+                        if(!is_array($response) || $response['error'] == 1) {
+                            return redirect()->back()->with('error', $response['msg']);
+                        }
+                        $linkRedirect = route('admin_plugin', ['code' => (new $namespace)->configCode]);
                     } catch(\Exception $e) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         return redirect()->back()->with('error', $e->getMessage());
@@ -191,7 +194,11 @@ class AdminPluginsController extends Controller
         } else {
             return redirect()->back()->with('error', trans('plugin.error_upload'));
         }
-        return redirect()->back()->with('success', trans('plugin.import_success')); 
+        if($linkRedirect) {
+            return redirect($linkRedirect)->with('success', trans('plugin.import_success')); 
+        } else {
+            return redirect()->back()->with('success', trans('plugin.import_success')); 
+        }
     }
 
 }

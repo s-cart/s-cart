@@ -56,6 +56,7 @@ return [
         'add_new_des'     => 'Create a new config',
         
         'config_info'     => 'Infomation',
+        'config_order'    => 'Order',
         'config_product'  => 'Product',
         'config_customer' => 'Customer',
         'config_email'    => 'Email',

@@ -105,7 +105,7 @@ $attributesGroup: array
                 </div>
             </div>
             <div class="col-md-12">
-                <form class="sc-shipping-address" id="form-order" role="form" method="POST"
+                <form class="sc-shipping-address" id="form-process" role="form" method="POST"
                     action="{{ sc_route('cart.process') }}">
                     <div class="row">
                         <div class="col-md-6">
@@ -434,7 +434,8 @@ $attributesGroup: array
                             <div class="row" style="padding-bottom: 20px;">
                                 <div class="col-md-12 text-center">
                                     <div class="pull-right">
-                                        <button class="button button-lg button-secondary" type="submit" id="submit-order" href="cart-page.html">{{ trans('cart.checkout') }}</button>
+                                        {!! $viewCaptcha ?? ''!!}
+                                        <button class="button button-lg button-secondary" type="submit" id="button-form-process" href="cart-page.html">{{ trans('cart.checkout') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -512,8 +513,8 @@ $attributesGroup: array
         updateCart(input)
     }
 
-    $('#submit-order').click(function(){
-        $('#form-order').submit();
+    $('#button-form-process').click(function(){
+        $('#form-process').submit();
         $(this).prop('disabled',true);
     });
 
@@ -522,14 +523,14 @@ $attributesGroup: array
         if(!id) {
             return;   
         } else if(id == 'new') {
-            $('#form-order [name="first_name"]').val('');
-            $('#form-order [name="last_name"]').val('');
-            $('#form-order [name="phone"]').val('');
-            $('#form-order [name="postcode"]').val('');
-            $('#form-order [name="company"]').val('');
-            $('#form-order [name="country"]').val('');
-            $('#form-order [name="address1"]').val('');
-            $('#form-order [name="address2"]').val('');
+            $('#form-process [name="first_name"]').val('');
+            $('#form-process [name="last_name"]').val('');
+            $('#form-process [name="phone"]').val('');
+            $('#form-process [name="postcode"]').val('');
+            $('#form-process [name="company"]').val('');
+            $('#form-process [name="country"]').val('');
+            $('#form-process [name="address1"]').val('');
+            $('#form-process [name="address2"]').val('');
         } else {
             $.ajax({
             url: '{{ sc_route('member.address_detail') }}',
@@ -546,14 +547,14 @@ $attributesGroup: array
                 {
                     alert(data.msg);
                 }else{
-                    $('#form-order [name="first_name"]').val(data.first_name);
-                    $('#form-order [name="last_name"]').val(data.last_name);
-                    $('#form-order [name="phone"]').val(data.phone);
-                    $('#form-order [name="postcode"]').val(data.postcode);
-                    $('#form-order [name="company"]').val(data.company);
-                    $('#form-order [name="country"]').val(data.country);
-                    $('#form-order [name="address1"]').val(data.address1);
-                    $('#form-order [name="address2"]').val(data.address2);
+                    $('#form-process [name="first_name"]').val(data.first_name);
+                    $('#form-process [name="last_name"]').val(data.last_name);
+                    $('#form-process [name="phone"]').val(data.phone);
+                    $('#form-process [name="postcode"]').val(data.postcode);
+                    $('#form-process [name="company"]').val(data.company);
+                    $('#form-process [name="country"]').val(data.country);
+                    $('#form-process [name="address1"]').val(data.address1);
+                    $('#form-process [name="address2"]').val(data.address2);
                 }
 
                 }
