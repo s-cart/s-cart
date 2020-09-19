@@ -9,6 +9,6 @@ return [
     'captcha_page_help'           => 'Select page use Captcha',
     'captcha_page_contact'        => 'Contact',
     'captcha_page_register'       => 'Register',
-    'captcha_page_forgot_pasword' => 'Forgot pasword',
+    'captcha_page_forgot_password' => 'Forgot pasword',
     'captcha_page_checkout'       => 'Checkout',
 ];
