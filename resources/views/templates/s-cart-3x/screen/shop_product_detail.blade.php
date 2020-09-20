@@ -108,12 +108,17 @@ $productRelation: no paginate
                     </span>
                 </div>
                 @endif
+                
+                {{ trans('product.category') }}: 
+                @foreach ($product->categories as $category)
+                <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
+                @endforeach
 
                 @if (sc_config('product_brand') && !empty($product->brand->name))
                 <div>
                     {{ trans('product.brand') }}:
                     <span id="product-detail-brand">
-                        {{ empty($product->brand->name) ? 'None' : $product->brand->name }}
+                        {!! empty($product->brand->name) ? 'None' : '<a href="'.$product->brand->getUrl().'">'.$product->brand->name.'</a>' !!}
                     </span>
                 </div>
                 @endif
