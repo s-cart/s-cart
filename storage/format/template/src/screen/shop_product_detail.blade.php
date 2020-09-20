@@ -79,12 +79,13 @@ $productRelation: no paginate
                 </span>  
                 @endif
 
-
+                @if (sc_config('product_property'))
                 <div  id="product-detail-attr">
                   @if ($product->attributes())
                   {!! $product->renderAttributeDetails() !!}
                   @endif
                 </div>
+                @endif
 
                 @if (sc_config('product_stock'))
                 <b>{{ trans('product.stock_status') }}:</b>
