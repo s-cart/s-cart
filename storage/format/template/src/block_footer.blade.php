@@ -1,8 +1,8 @@
 <!--Footer-->
 
 <!--Module top footer -->
-  @isset ($blocksContent['footer'])
-      @foreach ( $blocksContent['footer']  as $layout)
+  @isset ($sc_blocksContent['footer'])
+      @foreach ( $sc_blocksContent['footer']  as $layout)
         @php
           $arrPage = explode(',', $layout->page)
         @endphp

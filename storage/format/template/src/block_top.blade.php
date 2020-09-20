@@ -1,7 +1,7 @@
 
 <!--Module banner -->
-@isset ($blocksContent['banner_top'])
-@foreach ( $blocksContent['banner_top']  as $layout)
+@isset ($sc_blocksContent['banner_top'])
+@foreach ( $sc_blocksContent['banner_top']  as $layout)
 @php
   $arrPage = explode(',', $layout->page)
 @endphp
@@ -20,8 +20,8 @@
 
 
 <!--Module top -->
-@isset ($blocksContent['top'])
-@foreach ( $blocksContent['top']  as $layout)
+@isset ($sc_blocksContent['top'])
+@foreach ( $sc_blocksContent['top']  as $layout)
   @php
     $arrPage = explode(',', $layout->page)
   @endphp
