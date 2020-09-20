@@ -1112,9 +1112,15 @@ $(document).ready(function() {
 
 /* process_form(); */
 
+if({{ sc_config('product_kind') != 1 }}) {
+    $('#main-add').show();
+}
+
 $('[name="kind"]').change(function(event) {
     process_form();
 });
+
+
 
 function process_form(){
     var kind = $('[name="kind"] option:selected').val();
