@@ -120,8 +120,8 @@
                 </li>
                 @endif
 
-                  @if (!empty($layoutsUrl['menu']))
-                    @foreach ($layoutsUrl['menu'] as $url)
+                  @if (!empty($sc_layoutsUrl['menu']))
+                    @foreach ($sc_layoutsUrl['menu'] as $url)
                       <li><a {{ ($url->target =='_blank')?'target=_blank':''  }} href="{{ sc_url_render($url->url) }}">{{ sc_language_render($url->name) }}</a></li>
                     @endforeach
                   @endif
