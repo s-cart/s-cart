@@ -233,7 +233,7 @@ class DataShopSeeder extends Seeder
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_link')->insert(
             [
-                ['name' => 'lang::front.contact', 'url' => 'route::page.detail::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3'],
+                ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3'],
                 ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4'],
                 ['name' => 'lang::front.my_profile', 'url' => '/member/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5'],
                 ['name' => 'lang::front.compare_page', 'url' => '/compare.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4'],
