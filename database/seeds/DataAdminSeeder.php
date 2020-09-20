@@ -62,7 +62,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 42, 'parent_id' => 35, 'sort' => 100, 'title' => 'plugin.Other', 'icon' => 'far fa-circle', 'uri' => 'admin::plugin/other', 'key' => null, 'type' => 0],
             ['id' => 43, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Cms', 'icon' => 'fab fa-modx', 'uri' => 'admin::plugin/cms', 'key' => null, 'type' => 0],
             ['id' => 46, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.users', 'icon' => 'fas fa-users', 'uri' => 'admin::user', 'key' => null, 'type' => 0],
-            ['id' => 47, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.roles', 'icon' => 'fas fa-user', 'uri' => 'admin::role', 'key' => null, 'type' => 0],
+            ['id' => 47, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.roles', 'icon' => 'fas fa-user-tag', 'uri' => 'admin::role', 'key' => null, 'type' => 0],
             ['id' => 48, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.permission', 'icon' => 'fas fa-ban', 'uri' => 'admin::permission', 'key' => null, 'type' => 0],
             ['id' => 49, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.menu', 'icon' => 'fas fa-bars', 'uri' => 'admin::menu', 'key' => null, 'type' => 0],
             ['id' => 50, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.operation_log', 'icon' => 'fas fa-history', 'uri' => 'admin::log', 'key' => null, 'type' => 0],
