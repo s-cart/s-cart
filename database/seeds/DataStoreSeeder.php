@@ -16,9 +16,9 @@ class DataStoreSeeder extends Seeder
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_config')->insertOrIgnore(
             [
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_brand', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.brand', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_brand_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_brand_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_supplier', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.supplier', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_supplier_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_supplier_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_price', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.price', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_price_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_cost', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.cost', 'store_id' => $storeId],
