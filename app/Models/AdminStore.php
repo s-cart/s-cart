@@ -55,11 +55,11 @@ class AdminStore extends Model
             }
             //Delete store descrition
             $store->descriptions()->delete();
-            $store->products()->delete();
-            $store->categories()->delete();
-            $store->banners()->delete();
-            $store->news()->delete();
-            $store->pages()->delete();
+            $store->products()->detach();
+            $store->categories()->detach();
+            $store->banners()->detach();
+            $store->news()->detach();
+            $store->pages()->detach();
             AdminConfig::where('store_id', $store->id)->delete();
         });
     }
