@@ -583,7 +583,7 @@ class ShopFront extends GeneralController
         ];
 
         if(sc_captcha_method() && in_array('contact', sc_captcha_page())) {
-            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()] ?? '';
             $validate['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
         }
         $validator = \Illuminate\Support\Facades\Validator::make($data, $validate, $message);
