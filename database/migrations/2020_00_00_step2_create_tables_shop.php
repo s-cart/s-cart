@@ -114,7 +114,7 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_brand', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->string('image', 255)->nullable();
             $table->string('url', 100)->nullable();
             $table->tinyInteger('status')->default(0);
@@ -125,7 +125,7 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image', 255)->nullable();
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->integer('parent')->default(0);
             $table->integer('top')->nullable()->default(0);
             $table->tinyInteger('status')->default(0);
@@ -438,7 +438,7 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_supplier', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->string('email', 150)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('image', 255)->nullable();
@@ -451,7 +451,7 @@ class CreateTablesShop extends Migration
 
         Schema::create(SC_DB_PREFIX.'shop_subscribe', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email', 150)->unique();
+            $table->string('email', 120)->unique();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             }

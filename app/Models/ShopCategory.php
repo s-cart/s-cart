@@ -36,6 +36,22 @@ class ShopCategory extends Model
     {
         return $this->belongsToMany(AdminStore::class, ShopCategoryStore::class, 'category_id', 'store_id');
     }
+
+    //Function get text description 
+    public function getText() {
+        return $this->descriptions()->where('lang', sc_get_locale())->first();
+    }
+    public function getTitle() {
+        return $this->getText()->title;
+    }
+    public function getDescription() {
+        return $this->getText()->description;
+    }
+    public function getKeyword() {
+        return $this->getText()->keyword;
+    }
+    //End  get text description
+
     /**
      * Get category parent
      */
@@ -259,6 +275,7 @@ class ShopCategory extends Model
         }
         return $category->first();
     }
+    
 
 
     /**

@@ -1,8 +1,8 @@
 <!--Footer-->
 
 <!--Module top footer -->
-  @isset ($blocksContent['footer'])
-      @foreach ( $blocksContent['footer']  as $layout)
+  @isset ($sc_blocksContent['footer'])
+      @foreach ( $sc_blocksContent['footer']  as $layout)
         @php
           $arrPage = explode(',', $layout->page)
         @endphp
@@ -35,8 +35,8 @@
             <div class="single-widget">
               <h2>{{ trans('front.my_account') }}</h2>
               <ul class="nav nav-pills nav-stacked">
-                @if (!empty($layoutsUrl['footer']))
-                  @foreach ($layoutsUrl['footer'] as $url)
+                @if (!empty($sc_layoutsUrl['footer']))
+                  @foreach ($sc_layoutsUrl['footer'] as $url)
                     <li><a {{ ($url->target =='_blank')?'target=_blank':''  }} href="{{ sc_url_render($url->url) }}">{{ sc_language_render($url->name) }}</a></li>
                   @endforeach
                 @endif

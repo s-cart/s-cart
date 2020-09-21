@@ -3,8 +3,8 @@
    @section('block_main_content_left')
         <div class="left-sidebar">
       <!--Module left -->
-          @isset ($blocksContent['left'])
-              @foreach ( $blocksContent['left']  as $layout)
+          @isset ($sc_blocksContent['left'])
+              @foreach ( $sc_blocksContent['left']  as $layout)
               @php
                 $arrPage = explode(',', $layout->page)
               @endphp

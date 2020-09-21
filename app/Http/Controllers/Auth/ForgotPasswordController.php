@@ -44,7 +44,7 @@ class ForgotPasswordController extends GeneralController
         $data = $request->all();
         $dataMapping['email'] = 'required|string|email';
         if(sc_captcha_method() && in_array('forgot', sc_captcha_page())) {
-            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()] ?? '';
             $dataMapping['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
         }
         $validator = \Illuminate\Support\Facades\Validator::make($data, $dataMapping);

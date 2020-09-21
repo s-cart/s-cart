@@ -1,6 +1,6 @@
    <!--Module bottom -->
-   @isset ($blocksContent['bottom'])
-       @foreach ( $blocksContent['bottom']  as $layout)
+   @isset ($sc_blocksContent['bottom'])
+       @foreach ( $sc_blocksContent['bottom']  as $layout)
          @php
            $arrPage = explode(',', $layout->page)
          @endphp

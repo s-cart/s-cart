@@ -1111,10 +1111,16 @@ $(document).ready(function() {
 // $("input.image").fileinput({"browseLabel":"Browse","cancelLabel":"Cancel","showRemove":true,"showUpload":false,"dropZoneEnabled":false});
 
 /* process_form(); */
+@if(sc_config('product_kind') == 0)
+$('#main-add').show();
+@endif
+
 
 $('[name="kind"]').change(function(event) {
     process_form();
 });
+
+
 
 function process_form(){
     var kind = $('[name="kind"] option:selected').val();

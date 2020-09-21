@@ -23,8 +23,8 @@
 
 
 <!--Module meta -->
-  @isset ($blocksContent['meta'])
-      @foreach ( $blocksContent['meta']  as $layout)
+  @isset ($sc_blocksContent['meta'])
+      @foreach ( $sc_blocksContent['meta']  as $layout)
         @php
           $arrPage = explode(',', $layout->page)
         @endphp
@@ -45,8 +45,8 @@
 
 
   <!--Module header -->
-  @isset ($blocksContent['header'])
-      @foreach ( $blocksContent['header']  as $layout)
+  @isset ($sc_blocksContent['header'])
+      @foreach ( $sc_blocksContent['header']  as $layout)
       @php
         $arrPage = explode(',', $layout->page)
       @endphp
@@ -97,7 +97,7 @@
     @include($sc_templatePath.'.block_footer')
   @show
   {{-- //Block footer --}}
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
 <script src="{{ asset($sc_templateFile.'/js/main.js')}}"></script>
 
 @stack('scripts')

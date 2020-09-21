@@ -220,7 +220,7 @@ class ShopFront extends GeneralController
     public function productDetail($alias)
     {
         $product = (new ShopProduct)->getDetail($alias, $type = 'alias' );
-        if ($product && $product->status && (sc_config('product_display_out_of_stock') || $product->stock > 0)) {
+        if ($product && $product->status && (!sc_config('product_stock') || sc_config('product_display_out_of_stock') || $product->stock > 0)) {
             //Update last view
             $product->view += 1;
             $product->date_lastview = date('Y-m-d H:i:s');
@@ -583,7 +583,7 @@ class ShopFront extends GeneralController
         ];
 
         if(sc_captcha_method() && in_array('contact', sc_captcha_page())) {
-            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()] ?? '';
             $validate['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
         }
         $validator = \Illuminate\Support\Facades\Validator::make($data, $validate, $message);
