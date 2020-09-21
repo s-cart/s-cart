@@ -58,7 +58,7 @@ class RegisterController extends GeneralController
     {
         $dataMapping = $this->mappingValidator($data);
         if(sc_captcha_method() && in_array('register', sc_captcha_page())) {
-            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()] ?? '';
             $dataMapping['validate']['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
         }
         return Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);

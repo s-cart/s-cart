@@ -268,7 +268,7 @@ class ShopCart extends GeneralController
         ];
 
         if(sc_captcha_method() && in_array('checkout', sc_captcha_page())) {
-            $data['captcha_field'] = $data[sc_captcha_method()->getField()];
+            $data['captcha_field'] = $data[sc_captcha_method()->getField()] ?? '';
             $validate['captcha_field'] = ['required', 'string', new \App\Rules\CaptchaRule];
         }
 
