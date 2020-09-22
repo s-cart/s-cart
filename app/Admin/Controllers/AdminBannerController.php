@@ -12,12 +12,12 @@ class AdminBannerController extends Controller
 {
     protected $arrTarget;
     protected $dataType;
-    public $stories;
+    public $stores;
     public function __construct()
     {
         $this->arrTarget = ['_blank' => '_blank', '_self' => '_self'];
         $this->dataType = ['0' => 'Banner', '1' => 'Background', '2' => 'Breadcrumbs', '3' => 'Other'];
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
     }
 
     public function index()
@@ -41,7 +41,7 @@ class AdminBannerController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'image' => trans('banner.image'),
@@ -133,7 +133,7 @@ class AdminBannerController extends Controller
             'arrTarget' => $this->arrTarget,
             'dataType' => $this->dataType,
             'url_action' => sc_route('admin_banner.create'),
-            'stories' => $this->stories,
+            'stores' => $this->stores,
         ];
         return view('admin.screen.banner')
             ->with($data);
@@ -172,7 +172,7 @@ class AdminBannerController extends Controller
 
         //Insert store
         if ($store) {
-            $banner->stories()->attach($store);
+            $banner->stores()->attach($store);
         }
         return redirect()->route('admin_banner.index')->with('success', trans('banner.admin.create_success'));
 
@@ -196,8 +196,8 @@ class AdminBannerController extends Controller
             'dataType' => $this->dataType,
             'banner' => $banner,
             'url_action' => sc_route('admin_banner.edit', ['id' => $banner['id']]),
-            'stories' => $this->stories,
-            'storiesPivot' => ShopBannerStore::where('banner_id', $id)->pluck('store_id')->all(),
+            'stores' => $this->stores,
+            'storesPivot' => ShopBannerStore::where('banner_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.banner')
             ->with($data);
@@ -237,9 +237,9 @@ class AdminBannerController extends Controller
         $banner->update($dataUpdate);
 
         //Update store
-        $banner->stories()->detach();
+        $banner->stores()->detach();
         if (count($store)) {
-            $banner->stories()->attach($store);
+            $banner->stores()->attach($store);
         }
 
 //

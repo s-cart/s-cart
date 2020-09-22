@@ -13,12 +13,12 @@ use App\Models\ShopNewsStore;
 
 class AdminNewsController extends Controller
 {
-    public $languages, $stories;
+    public $languages, $stores;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
 
     }
 
@@ -42,7 +42,7 @@ class AdminNewsController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'id' => trans('news.id'),
@@ -149,7 +149,7 @@ class AdminNewsController extends Controller
             'languages' => $this->languages,
             'news' => $news,
             'url_action' => sc_route('admin_news.create'),
-            'stories' => $this->stories,
+            'stores' => $this->stores,
 
         ];
 
@@ -213,7 +213,7 @@ class AdminNewsController extends Controller
         ShopNewsDescription::insert($dataDes);
         //Insert store
         if ($store) {
-            $news->stories()->attach($store);
+            $news->stores()->attach($store);
         }
 
         return redirect()->route('admin_news.index')->with('success', trans('news.admin.create_success'));
@@ -237,8 +237,8 @@ class AdminNewsController extends Controller
             'languages' => $this->languages,
             'news' => $news,
             'url_action' => sc_route('admin_news.edit', ['id' => $news['id']]),
-            'stories' => $this->stories,
-            'storiesPivot' => ShopNewsStore::where('news_id', $id)->pluck('store_id')->all(),
+            'stores' => $this->stores,
+            'storesPivot' => ShopNewsStore::where('news_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.news')
             ->with($data);
@@ -298,9 +298,9 @@ class AdminNewsController extends Controller
         }
         ShopNewsDescription::insert($dataDes);
         //Update store
-        $news->stories()->detach();
+        $news->stores()->detach();
         if (count($store)) {
-            $news->stories()->attach($store);
+            $news->stores()->attach($store);
         }
 //
         return redirect()->route('admin_news.index')->with('success', trans('news.admin.edit_success'));

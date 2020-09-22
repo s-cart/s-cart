@@ -21,14 +21,14 @@ class AdminStoreMaintainController extends Controller
     
     public function index()
     {
-        $stories = AdminStore::getListAll();
+        $stores = AdminStore::getListAll();
         $data = [
             'title' => trans('store_maintain.admin.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        
         ];
         $data['languages'] = $this->languages;
-        $data['stories'] = $stories;
+        $data['stores'] = $stores;
         return view('admin.screen.store_maintain')
             ->with($data);
     }

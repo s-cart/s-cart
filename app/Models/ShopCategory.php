@@ -32,7 +32,7 @@ class ShopCategory extends Model
     {
         return $this->hasMany(ShopCategoryDescription::class, 'category_id', 'id');
     }
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, ShopCategoryStore::class, 'category_id', 'store_id');
     }
@@ -68,7 +68,7 @@ class ShopCategory extends Model
             //Delete category descrition
             $category->descriptions()->delete();
             $category->products()->detach();
-            $category->stories()->detach();
+            $category->stores()->detach();
         });
     }
 

@@ -12,12 +12,12 @@ use App\Models\AdminStore;
 use App\Models\ShopCategoryStore;
 class AdminCategoryController extends Controller
 {
-    public $languages, $stories, $categoriesTitle;
+    public $languages, $stores, $categoriesTitle;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
         $this->categoriesTitle = ShopCategory::getListTitle();
 
     }
@@ -42,7 +42,7 @@ class AdminCategoryController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'id' => trans('category.id'),
@@ -152,7 +152,7 @@ class AdminCategoryController extends Controller
             'category' => [],
             'categories' => (new ShopCategory)->getTreeCategories(),
             'url_action' => sc_route('admin_category.create'),
-            'stories' => $this->stories,
+            'stores' => $this->stores,
         ];
 
         return view('admin.screen.category')
@@ -216,7 +216,7 @@ class AdminCategoryController extends Controller
         ShopCategoryDescription::insert($dataDes);
         //Insert store
         if ($store) {
-            $category->stories()->attach($store);
+            $category->stores()->attach($store);
         }
 
         return redirect()->route('admin_category.index')->with('success', trans('category.admin.create_success'));
@@ -233,16 +233,16 @@ class AdminCategoryController extends Controller
             return 'no data';
         }
         $data = [
-            'title' => trans('category.admin.edit'),
-            'subTitle' => '',
+            'title'             => trans('category.admin.edit'),
+            'subTitle'          => '',
             'title_description' => '',
-            'icon' => 'fa fa-edit',
-            'languages' => $this->languages,
-            'category' => $category,
-            'categories' => (new ShopCategory)->getTreeCategories(),
-            'url_action' => sc_route('admin_category.edit', ['id' => $category['id']]),
-            'stories' => $this->stories,
-            'storiesPivot' => ShopCategoryStore::where('category_id', $id)->pluck('store_id')->all(),
+            'icon'              => 'fa fa-edit',
+            'languages'         => $this->languages,
+            'category'          => $category,
+            'categories'        => (new ShopCategory)->getTreeCategories(),
+            'url_action'        => sc_route('admin_category.edit', ['id' => $category['id']]),
+            'stores'           => $this->stores,
+            'storesPivot'      => ShopCategoryStore::where('category_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.category')
             ->with($data);
@@ -262,12 +262,12 @@ class AdminCategoryController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'image' => 'required',
-            'parent' => 'required',
-            'sort' => 'numeric|min:0',
-            'store' => 'required',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias,' . $category->id . ',id|string|max:100',
-            'descriptions.*.title' => 'required|string|max:200',
+            'image'                  => 'required',
+            'parent'                 => 'required',
+            'sort'                   => 'numeric|min:0',
+            'store'                  => 'required',
+            'alias'                  => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|unique:"'.ShopCategory::class.'",alias,' . $category->id . ',id|string|max:100',
+            'descriptions.*.title'   => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
             ], [
@@ -284,11 +284,11 @@ class AdminCategoryController extends Controller
 //Edit
         $store = $data['store'] ?? [];
         $dataUpdate = [
-            'image' => $data['image'],
-            'alias' => $data['alias'],
+            'image'  => $data['image'],
+            'alias'  => $data['alias'],
             'parent' => $data['parent'],
-            'sort' => $data['sort'],
-            'top' => empty($data['top']) ? 0 : 1,
+            'sort'   => $data['sort'],
+            'top'    => empty($data['top']) ? 0 : 1,
             'status' => empty($data['status']) ? 0 : 1,
         ];
 
@@ -298,18 +298,18 @@ class AdminCategoryController extends Controller
         foreach ($data['descriptions'] as $code => $row) {
             $dataDes[] = [
                 'category_id' => $id,
-                'lang' => $code,
-                'title' => $row['title'],
-                'keyword' => $row['keyword'],
+                'lang'        => $code,
+                'title'       => $row['title'],
+                'keyword'     => $row['keyword'],
                 'description' => $row['description'],
             ];
         }
         ShopCategoryDescription::insert($dataDes);
 
         //Update store
-        $category->stories()->detach();
+        $category->stores()->detach();
         if (count($store)) {
-            $category->stories()->attach($store);
+            $category->stores()->attach($store);
         }
 
 //

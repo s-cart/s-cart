@@ -21,8 +21,8 @@
       </div>
 
       <div class="card-body">
-        @foreach ($stories as $store)
-        <div class="card {{ ($stories->count() > 1)? 'collapsed-card':'' }}">
+        @foreach ($stores as $store)
+        <div class="card {{ ($stores->count() > 1)? 'collapsed-card':'' }}">
           <div class="card-header with-border">
             <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store.admin.title') }} #{{ $store->id }} 
               (<i class="fas fa-link"></i> <a target=_new href="//{{ $store->domain }}">{{ $store->domain }}</a>)

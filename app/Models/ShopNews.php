@@ -20,7 +20,7 @@ class ShopNews extends Model
         return $this->hasMany(ShopNewsDescription::class, 'news_id', 'id');
     }
 
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, ShopNewsStore::class, 'news_id', 'store_id');
     }
@@ -116,7 +116,7 @@ class ShopNews extends Model
         // before delete() method call this
         static::deleting(function ($news) {
             $news->descriptions()->delete();
-            $news->stories()->detach();
+            $news->stores()->detach();
             }
         );
     }

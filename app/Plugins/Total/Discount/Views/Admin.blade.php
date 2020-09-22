@@ -118,11 +118,11 @@
                             </div>
 
                         {{-- select store --}}
-                        @if (count($stories) > 1)
+                        @if (count($stores) > 1)
                         <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
                             @php
                             $listStore = [];
-                            $store = old('store', ($storiesPivot ?? []));
+                            $store = old('store', ($storesPivot ?? []));
                             if(is_array($store)){
                                 foreach($store as $value){
                                     $listStore[] = (int)$value;
@@ -136,8 +136,8 @@
                                 <select class="form-control input-sm store select2" multiple="multiple"
                                     data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
                                     name="store[]">
-                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
-                                    @foreach ($stories as $id => $store)
+                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stores') }}</option>
+                                    @foreach ($stores as $id => $store)
                                     <option value="{{ $id }}"
                                         {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
                                     </option>

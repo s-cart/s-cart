@@ -33,7 +33,7 @@ class PluginModel extends Model
         }
     }
 
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, $this->table_store, $this->table.'_id', 'store_id');
     }
@@ -43,7 +43,7 @@ class PluginModel extends Model
         parent::boot();
         // before delete() method call this
         static::deleting(function ($model) {
-                $model->stories()->detach();
+                $model->stores()->detach();
                 $model->users()->detach();
             }
         );

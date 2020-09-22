@@ -15,7 +15,7 @@ class ShopBanner extends Model
 
     protected  $sc_type = 'all'; // all or interger,0 - banner, 1 - background, 2 - other
 
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, ShopBannerStore::class, 'banner_id', 'store_id');
     }
@@ -68,7 +68,7 @@ class ShopBanner extends Model
         // before delete() method call this
         static::deleting(function ($banner) {
             //Delete banner descrition
-            $banner->stories()->detach();
+            $banner->stores()->detach();
         });
     }
 

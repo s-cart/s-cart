@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-12">
 
-    @foreach ($stories as $store)
+    @foreach ($stores as $store)
     <div class="card collapsed-card">
       <div class="card-header with-border">
         <h3 class="card-title"><i class="fas fa-home"></i> {{ trans('store_maintain.admin.content') }} #{{ $store->id }}</h3>

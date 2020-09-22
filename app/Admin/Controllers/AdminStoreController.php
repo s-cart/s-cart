@@ -43,8 +43,8 @@ class AdminStoreController extends Controller
             'subTitle' => '',
             'icon' => 'fa fa-indent',        
         ];
-        $stories = AdminStore::getListAll();
-        $data['stories'] = $stories;
+        $stores = AdminStore::getListAll();
+        $data['stores'] = $stores;
         $data['templates'] = $this->templates;
         $data['timezones'] = $this->timezones;
         $data['languages'] = $this->languages;
@@ -244,8 +244,8 @@ class AdminStoreController extends Controller
             'subTitle' => '',
             'icon' => 'fas fa-cogs',        
         ];
-        $stories = AdminStore::getListAll();
-        $data['store'] = $stories[$id] ?? [];
+        $stores = AdminStore::getListAll();
+        $data['store'] = $stores[$id] ?? [];
         $data['templates'] = $this->templates;
         $data['timezones'] = $this->timezones;
         $data['languages'] = $this->languages;

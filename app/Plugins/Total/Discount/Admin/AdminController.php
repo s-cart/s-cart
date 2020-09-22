@@ -12,13 +12,13 @@ use App\Models\AdminStore;
 class AdminController extends Controller
 {
     public $plugin;
-    public $stories;
+    public $stores;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
         $this->plugin = new AppConfig;
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
 
     }
     public function index()
@@ -41,7 +41,7 @@ class AdminController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'code' => trans($this->plugin->pathPlugin.'::lang.code'),
@@ -147,7 +147,7 @@ class AdminController extends Controller
             'icon' => 'fa fa-plus',
             'discount' => [],
             'url_action' => sc_route('admin_discount.create'),
-            'stories' => $this->stories,
+            'stores' => $this->stores,
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -189,7 +189,7 @@ class AdminController extends Controller
         $discount = PluginModel::create($dataInsert);
         //Insert store
         if ($store) {
-            $discount->stories()->attach($store);
+            $discount->stores()->attach($store);
         }
 //
         return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
@@ -212,8 +212,8 @@ class AdminController extends Controller
             'title_description' => '',
             'icon' => 'fa fa-pencil-square-o',
             'discount' => $discount,
-            'stories' => $this->stories,
-            'storiesPivot' => \DB::connection(SC_CONNECTION)->table((new PluginModel)->table_store)->where((new PluginModel)->table.'_id', $id)->pluck('store_id')->all(),
+            'stores' => $this->stores,
+            'storesPivot' => \DB::connection(SC_CONNECTION)->table((new PluginModel)->table_store)->where((new PluginModel)->table.'_id', $id)->pluck('store_id')->all(),
             'url_action' => sc_route('admin_discount.edit', ['id' => $discount['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
@@ -257,9 +257,9 @@ class AdminController extends Controller
 
         $discount->update($dataUpdate);
         //Update store
-        $discount->stories()->detach();
+        $discount->stores()->detach();
         if (count($store)) {
-            $discount->stories()->attach($store);
+            $discount->stores()->attach($store);
         }
 
 //

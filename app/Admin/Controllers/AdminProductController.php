@@ -23,7 +23,7 @@ use Validator;
 
 class AdminProductController extends Controller
 {
-    public $languages, $kinds, $propertys, $attributeGroup, $listWeight, $listLength, $stories, $categoriesTitle;
+    public $languages, $kinds, $propertys, $attributeGroup, $listWeight, $listLength, $stores, $categoriesTitle;
 
     public function __construct()
     {
@@ -31,7 +31,7 @@ class AdminProductController extends Controller
         $this->listWeight = ShopWeight::getListAll();
         $this->listLength = ShopLength::getListAll();
         $this->attributeGroup = ShopAttributeGroup::getListAll();
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
         $this->categoriesTitle = (new ShopCategory)->getListTitle();
         $this->kinds = [
             SC_PRODUCT_SINGLE => trans('product.kinds.single'),
@@ -67,7 +67,7 @@ class AdminProductController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'id' => trans('product.id'),
@@ -269,7 +269,7 @@ class AdminProductController extends Controller
             'htmlMoreImage'        => $htmlMoreImage,
             'listWeight'           => $this->listWeight,
             'listLength'           => $this->listLength, 
-            'stories'              => $this->stories, 
+            'stores'              => $this->stores, 
         ];
 
         return view('admin.screen.product_add')
@@ -428,7 +428,7 @@ class AdminProductController extends Controller
         }
         //Insert store
         if ($store) {
-            $product->stories()->attach($store);
+            $product->stores()->attach($store);
         }
         //Insert group
         if ($productInGroup && $data['kind'] == SC_PRODUCT_GROUP) {
@@ -558,8 +558,8 @@ class AdminProductController extends Controller
             'htmlProductAtrribute' => $htmlProductAtrribute,
             'listWeight' => $this->listWeight,
             'listLength' => $this->listLength,  
-            'stories' => $this->stories,
-            'storiesPivot' => ShopProductStore::where('product_id', $id)->pluck('store_id')->all(),
+            'stores' => $this->stores,
+            'storesPivot' => ShopProductStore::where('product_id', $id)->pluck('store_id')->all(),
 
         ];
         return view('admin.screen.product_edit')
@@ -726,9 +726,9 @@ class AdminProductController extends Controller
         }
 
         //Update store
-        $product->stories()->detach();
+        $product->stores()->detach();
         if (count($store)) {
-            $product->stories()->attach($store);
+            $product->stores()->attach($store);
         }
 
         //Update group
