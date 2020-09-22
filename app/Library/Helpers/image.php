@@ -45,10 +45,16 @@ function sc_image_upload($fileContent, $disk = 'public', $path = null, $name = n
         }
     }
     if ($disk == 'public') {
-        return 'storage/' . $pathFile;
+        $url =  'storage/' . $pathFile;
     } else {
-        return Storage::disk($disk)->url($pathFile);
+        $url =  Storage::disk($disk)->url($pathFile);
     }
+
+    return  [
+        'fileName' => $fileName,
+        'pathFile' => $pathFile,
+        'url' => $url,
+    ];
 }
 
 /**
@@ -77,10 +83,15 @@ function sc_file_upload($fileContent, $disk = 'public', $path = null, $name = nu
         return null;
     }
     if ($disk == 'public') {
-        return 'storage/' . $pathFile;
+        $url =  'storage/' . $pathFile;
     } else {
-        return Storage::disk($disk)->url($pathFile);
+        $url =  Storage::disk($disk)->url($pathFile);
     }
+    return  [
+        'fileName' => $fileName,
+        'pathFile' => $pathFile,
+        'url' => $url,
+    ];
 }
 
 /**
