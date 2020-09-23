@@ -244,6 +244,8 @@ class UsersController extends Controller
             'stores'            => $this->stores,
             'url_action'        => sc_route('admin_user.edit', ['id' => $user['id']]),
             'storesPivot'       => AdminUserStore::where('user_id', $id)->pluck('store_id')->all(),
+            'isAllStore'        => ($user->isAdministrator() || $user->isViewAll()) ? 1: 0,
+
         ];
         return view('admin.auth.user')
             ->with($data);
