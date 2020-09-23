@@ -90,11 +90,11 @@ class AdminStore extends Model
     }
 
     /**
-     * Get all domain and id store
+     * Get all domain and id store active
      *
      * @return  [array]  [return description]
      */
-    public static function getDomain()
+    public static function getDomainActive()
     {
         return self::where('status', 1)
             ->pluck('domain', 'id')

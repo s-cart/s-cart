@@ -458,3 +458,19 @@ if (!function_exists('sc_route')) {
         }
     }
 }
+
+if (!function_exists('sc_process_domain_store')) {
+    /**
+     * Process domain store
+     *
+     * @param   [string]  $domain
+     *
+     * @return  [string]         [$domain]
+     */
+    function sc_process_domain_store($domain)
+    {
+        $domain = Str::finish(str_replace(['http://', 'https://'], '', $domain), '/');
+        $domain = Str::lower($domain);
+        return $domain;
+    }
+}

@@ -1,5 +1,5 @@
 @php
-   $stores = \App\Models\AdminStore::getDomain();
+   $stores = \App\Models\AdminStore::getDomainActive();
 @endphp
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">

@@ -87,7 +87,8 @@ class AdminStoreController extends Controller
     public function postCreate()
     {
         $dataOrigin = $data = request()->all();
-        $data['domain'] = Str::finish(str_replace(['http://', 'https://'], '', $data['domain']), '/');
+        $domain = sc_process_domain_store($data['domain']);
+        $data['domain'] = $domain;
         $validator = Validator::make($data, [
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
@@ -168,12 +169,12 @@ class AdminStoreController extends Controller
             } else {
                 try {
                     if ($name == 'domain') {
-                        $value = Str::finish(str_replace(['http://', 'https://'], '', $value), '/');
-                        if (AdminStore::where('domain', $value)->where('id', '<>', $storeId)->first()) {
+                        $domain = sc_process_domain_store($value);
+                        if (AdminStore::where('domain', $domain)->where('id', '<>', $storeId)->first()) {
                             $error = 1;
                             $msg = trans('store.domain_exist');
                         } else {
-                            AdminStore::where('id', $storeId)->update([$name => $value]);
+                            AdminStore::where('id', $storeId)->update([$name => $domain]);
                             $error = 0;
                         }
                     } else {

@@ -60,8 +60,8 @@ class ScartServiceProvider extends ServiceProvider
     public function bootScart()
     {
         //Check domain exist
-        $domain = Str::finish(str_replace(['http://','https://'], '', url('/')), '/');
-        $arrDomain = AdminStore::getDomain();
+        $domain = sc_process_domain_store(url('/'));
+        $arrDomain = AdminStore::getDomainActive();
         $storeId = 1;
         if (in_array($domain, $arrDomain)) {
             $storeId =  array_search($domain, $arrDomain);
