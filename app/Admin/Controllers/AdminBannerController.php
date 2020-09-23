@@ -172,7 +172,11 @@ class AdminBannerController extends Controller
 
         //Insert store
         if ($store) {
-            $banner->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $banner->stores()->attach([0]);
+            } else {
+                $banner->stores()->attach($store);
+            }
         }
         return redirect()->route('admin_banner.index')->with('success', trans('banner.admin.create_success'));
 
@@ -239,7 +243,11 @@ class AdminBannerController extends Controller
         //Update store
         $banner->stores()->detach();
         if (count($store)) {
-            $banner->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $banner->stores()->attach([0]);
+            } else {
+                $banner->stores()->attach($store);
+            }
         }
 
 //

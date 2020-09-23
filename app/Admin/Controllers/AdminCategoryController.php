@@ -216,7 +216,11 @@ class AdminCategoryController extends Controller
         ShopCategoryDescription::insert($dataDes);
         //Insert store
         if ($store) {
-            $category->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $category->stores()->attach([0]);
+            } else {
+                $category->stores()->attach($store);
+            }
         }
 
         return redirect()->route('admin_category.index')->with('success', trans('category.admin.create_success'));
@@ -309,7 +313,11 @@ class AdminCategoryController extends Controller
         //Update store
         $category->stores()->detach();
         if (count($store)) {
-            $category->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $category->stores()->attach([0]);
+            } else {
+                $category->stores()->attach($store);
+            }
         }
 
 //

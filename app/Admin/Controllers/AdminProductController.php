@@ -428,7 +428,11 @@ class AdminProductController extends Controller
         }
         //Insert store
         if ($store) {
-            $product->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $product->stores()->attach([0]);
+            } else {
+                $product->stores()->attach($store);
+            }
         }
         //Insert group
         if ($productInGroup && $data['kind'] == SC_PRODUCT_GROUP) {
@@ -728,7 +732,11 @@ class AdminProductController extends Controller
         //Update store
         $product->stores()->detach();
         if (count($store)) {
-            $product->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $product->stores()->attach([0]);
+            } else {
+                $product->stores()->attach($store);
+            }
         }
 
         //Update group

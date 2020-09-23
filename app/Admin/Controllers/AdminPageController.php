@@ -204,7 +204,11 @@ class AdminPageController extends Controller
         ShopPageDescription::insert($dataDes);
         //Insert store
         if ($store) {
-            $page->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $page->stores()->attach([0]);
+            } else {
+                $page->stores()->attach($store);
+            }
         }
 
         return redirect()->route('admin_page.index')->with('success', trans('page.admin.create_success'));
@@ -291,7 +295,11 @@ class AdminPageController extends Controller
         //Update store
         $page->stores()->detach();
         if (count($store)) {
-            $page->stores()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $page->stores()->attach([0]);
+            } else {
+                $page->stores()->attach($store);
+            }
         }
 
 //
