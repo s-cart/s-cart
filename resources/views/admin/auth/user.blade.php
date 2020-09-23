@@ -193,13 +193,13 @@
                                     @if (isset($user['id']) && in_array($user['id'], SC_GUARD_ADMIN))
                                         @if (count($listPermission))
                                             @foreach ($listPermission as $p)
-                                                {!! '<span class="badge badge-primary">'.($permission[$p]??'').'</span>' !!}
+                                                {!! '<span class="badge badge-primary">'.($permissions[$p]??'').'</span>' !!}
                                             @endforeach
                                         @endif
                                     @else
                                         <select class="form-control permission select2"  multiple="multiple" data-placeholder="{{ trans('user.admin.select_permission') }}" style="width: 100%;" name="permission[]" >
                                             <option value=""></option>
-                                            @foreach ($permission as $k => $v)
+                                            @foreach ($permissions as $k => $v)
                                                 <option value="{{ $k }}"  {{ (count($listPermission) && in_array($k, $listPermission))?'selected':'' }}>{{ $v }}</option>
                                             @endforeach
                                         </select>
@@ -213,6 +213,48 @@
                                 </div>
                             </div>
 {{-- //select permission --}}
+
+
+
+                        {{-- select store --}}
+                        @if (count($stores) > 1)
+                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
+                            @php
+                            $listStore = [];
+                            $store = old('store', ($storesPivot ?? []));
+                            if(is_array($store)){
+                                foreach($store as $value){
+                                    $listStore[] = (int)$value;
+                                }
+                            }
+                            @endphp
+                            <label for="store" class="col-sm-2 col-form-label">
+                                {{ trans('store.select_store') }}
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input-sm store select2" multiple="multiple"
+                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
+                                    name="store[]">
+                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
+                                    @foreach ($stores as $id => $store)
+                                    <option value="{{ $id }}"
+                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('store'))
+                                <span class="form-text">
+                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" name="store[]" value="0">
+                        @endif
+                        {{-- //select store --}}
+
+
 
                     </div>
 

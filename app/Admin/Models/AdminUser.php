@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use App\Models\AdminStore;
 
 class AdminUser extends Model implements AuthenticatableContract
 {
@@ -41,6 +42,16 @@ class AdminUser extends Model implements AuthenticatableContract
     }
 
     /**
+     * A user has and belongs to many stores.
+     *
+     * @return BelongsToMany
+     */
+    public function stores()
+    {
+        return $this->belongsToMany(AdminStore::class, SC_DB_PREFIX.'admin_user_store', 'user_id', 'store_id');
+    }
+
+    /**
      * Update info customer
      * @param  [array] $dataUpdate
      * @param  [int] $id
@@ -67,6 +78,7 @@ class AdminUser extends Model implements AuthenticatableContract
             }
             $model->roles()->detach();
             $model->permissions()->detach();
+            $model->stores()->detach();
         });
     }
 
@@ -256,6 +268,25 @@ class AdminUser extends Model implements AuthenticatableContract
         } else {
             return self::$canChangeConfig;
         }
+    }
+
+    /**
+     * Get list store id of user admin
+     *
+     * @return  [type]  [return description]
+     */
+    public function listStoreId() {
+        $allStore = array_merge([0], AdminStore::pluck('id')->all());
+        if($this->isAdministrator() || $this->isViewAll()) {
+            $arrStore =  $allStore;
+        } else {
+            $arrStore = AdminUserStore::where('user_id', $this->id)->pluck('store_id')->all();
+            //id 0: all store
+            if(in_array(0, $arrStore)) {
+                $arrStore =  $allStore;
+            }
+        }
+        return $arrStore;
     }
 
 }

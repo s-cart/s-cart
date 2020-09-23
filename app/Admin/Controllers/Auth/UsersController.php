@@ -6,50 +6,60 @@ use App\Admin\Admin;
 use App\Admin\Models\AdminPermission;
 use App\Admin\Models\AdminRole;
 use App\Admin\Models\AdminUser;
+use App\Admin\Models\AdminUserStore;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\AdminStore;
 use Validator;
 
 class UsersController extends Controller
 {
+    public $stores, $permissions, $roles;
+    public function __construct()
+    {
+        $this->stores      = AdminStore::getListAll();
+        $this->permissions = AdminPermission::pluck('name', 'id')->all();
+        $this->roles       = AdminRole::pluck('name', 'id')->all();
+    }
+
     public function index()
     {
         $data = [
-            'title' => trans('user.admin.list'),
-            'subTitle' => '',
-            'icon' => 'fa fa-indent',
+            'title'         => trans('user.admin.list'),
+            'subTitle'      => '',
+            'icon'          => 'fa fa-indent',
             'urlDeleteItem' => sc_route('admin_user.delete'),
-            'removeList' => 0, // 1 - Enable function delete list item
+            'removeList'    => 0, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
-            'buttonSort' => 1, // 1 - Enable button sort
-            'css' => '', 
-            'js' => '',
+            'buttonSort'    => 1, // 1 - Enable button sort
+            'css'           => '', 
+            'js'            => '',
         ];
         //Process add content
-        $data['menuRight'] = sc_config_group('menuRight', \Request::route()->getName());
-        $data['menuLeft'] = sc_config_group('menuLeft', \Request::route()->getName());
+        $data['menuRight']    = sc_config_group('menuRight', \Request::route()->getName());
+        $data['menuLeft']     = sc_config_group('menuLeft', \Request::route()->getName());
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
-        $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
-        $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+        $data['topMenuLeft']  = sc_config_group('topMenuLeft', \Request::route()->getName());
+        $data['blockBottom']  = sc_config_group('blockBottom', \Request::route()->getName());
+        $data['stores']       = $this->stores;
 
         $listTh = [
-            'id' => trans('user.id'),
-            'username' => trans('user.user_name'),
-            'name' => trans('user.name'),
-            'roles' => trans('user.roles'),
+            'id'         => trans('user.id'),
+            'username'   => trans('user.user_name'),
+            'name'       => trans('user.name'),
+            'roles'      => trans('user.roles'),
             'permission' => trans('user.permission'),
             'created_at' => trans('user.created_at'),
-            'action' => trans('user.admin.action'),
+            'action'     => trans('user.admin.action'),
         ];
         $sort_order = request('sort_order') ?? 'id_desc';
         $keyword = request('keyword') ?? '';
         $arrSort = [
-            'id__desc' => trans('user.admin.sort_order.id_desc'),
-            'id__asc' => trans('user.admin.sort_order.id_asc'),
+            'id__desc'       => trans('user.admin.sort_order.id_desc'),
+            'id__asc'        => trans('user.admin.sort_order.id_asc'),
             'username__desc' => trans('user.admin.sort_order.username_desc'),
-            'username__asc' => trans('user.admin.sort_order.username_asc'),
-            'name__desc' => trans('user.admin.sort_order.name_desc'),
-            'name__asc' => trans('user.admin.sort_order.name_asc'),
+            'username__asc'  => trans('user.admin.sort_order.username_asc'),
+            'name__desc'     => trans('user.admin.sort_order.name_desc'),
+            'name__asc'      => trans('user.admin.sort_order.name_asc'),
         ];
         $obj = new AdminUser;
 
@@ -139,14 +149,15 @@ class UsersController extends Controller
     public function create()
     {
         $data = [
-            'title' => trans('user.admin.add_new_title'),
-            'subTitle' => '',
+            'title'             => trans('user.admin.add_new_title'),
+            'subTitle'          => '',
             'title_description' => trans('user.admin.add_new_des'),
-            'icon' => 'fa fa-plus',
-            'user' => [],
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => sc_route('admin_user.create'),
+            'icon'              => 'fa fa-plus',
+            'user'              => [],
+            'roles'             => $this->roles,
+            'permissions'       => $this->permissions,
+            'url_action'        => sc_route('admin_user.create'),
+            'stores'            => $this->stores,
 
         ];
 
@@ -163,11 +174,11 @@ class UsersController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|string|max:100',
+            'name'     => 'required|string|max:100',
             'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:"'.AdminUser::class.'",username|string|max:100|min:3',
-            'avatar' => 'nullable|string|max:255',
+            'avatar'   => 'nullable|string|max:255',
             'password' => 'required|string|max:60|min:6|confirmed',
-            'email' => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email',
+            'email'    => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email',
         ], [
             'username.regex' => trans('user.username_validate'),
         ]);
@@ -177,12 +188,13 @@ class UsersController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $store = $data['store'] ?? [];
 
         $dataInsert = [
-            'name' => $data['name'],
+            'name'     => $data['name'],
             'username' => strtolower($data['username']),
-            'avatar' => $data['avatar'],
-            'email' => strtolower($data['email']),
+            'avatar'   => $data['avatar'],
+            'email'    => strtolower($data['email']),
             'password' => bcrypt($data['password']),
         ];
 
@@ -199,6 +211,15 @@ class UsersController extends Controller
             $user->permissions()->attach($permission);
         }
 
+        //Insert store
+        if ($store) {
+            if(is_array($store) && in_array(0, $store)) {
+                $user->stores()->attach([0]);
+            } else {
+                $user->stores()->attach($store);
+            }
+        }
+
         return redirect()->route('admin_user.index')->with('success', trans('user.admin.create_success'));
 
     }
@@ -213,14 +234,16 @@ class UsersController extends Controller
             return 'no data';
         }
         $data = [
-            'title' => trans('user.admin.edit'),
-            'subTitle' => '',
+            'title'             => trans('user.admin.edit'),
+            'subTitle'          => '',
             'title_description' => '',
-            'icon' => 'fa fa-edit',
-            'user' => $user,
-            'roles' => (new AdminRole)->pluck('name', 'id')->all(),
-            'permission' => (new AdminPermission)->pluck('name', 'id')->all(),
-            'url_action' => sc_route('admin_user.edit', ['id' => $user['id']]),
+            'icon'              => 'fa fa-edit',
+            'user'              => $user,
+            'roles'             => $this->roles,
+            'permissions'       => $this->permissions,
+            'stores'            => $this->stores,
+            'url_action'        => sc_route('admin_user.edit', ['id' => $user['id']]),
+            'storesPivot'       => AdminUserStore::where('user_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.auth.user')
             ->with($data);
@@ -235,11 +258,11 @@ class UsersController extends Controller
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [
-            'name' => 'required|string|max:100',
+            'name'     => 'required|string|max:100',
             'username' => 'required|regex:/(^([0-9A-Za-z@\._]+)$)/|unique:"'.AdminUser::class.'",username,' . $user->id . '|string|max:100|min:3',
-            'avatar' => 'nullable|string|max:255',
+            'avatar'   => 'nullable|string|max:255',
             'password' => 'nullable|string|max:60|min:6|confirmed',
-            'email' => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email,' . $user->id,
+            'email'    => 'required|string|email|max:255|unique:"'.AdminUser::class.'",email,' . $user->id,
         ], [
             'username.regex' => trans('user.username_validate'),
         ]);
@@ -250,7 +273,7 @@ class UsersController extends Controller
                 ->withInput();
         }
 //Edit
-
+        $store = $data['store'] ?? [];
         $dataUpdate = [
             'name' => $data['name'],
             'username' => strtolower($data['username']),
@@ -275,8 +298,19 @@ class UsersController extends Controller
             if ($permission) {
                 $user->permissions()->attach($permission);
             }
-        }
 
+            //Update store
+            $user->stores()->detach();
+            if (count($store)) {
+                if(is_array($store) && in_array(0, $store)) {
+                    $user->stores()->attach([0]);
+                } else {
+                    $user->stores()->attach($store);
+                }
+                
+            }
+
+        }
 
 //
         return redirect()->route('admin_user.index')->with('success', trans('user.admin.edit_success'));
