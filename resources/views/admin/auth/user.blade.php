@@ -218,7 +218,7 @@
 
                         {{-- select store --}}
                         @if (count($stores) > 1)
-                            @if ($isAllStore)
+                            @if (!empty($isAllStore))
                             <label for="store" class="col-sm-2 col-form-label">
                                 {{ trans('store.select_store') }}
                             </label>
