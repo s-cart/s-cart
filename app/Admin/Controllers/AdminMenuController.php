@@ -52,7 +52,7 @@ class AdminMenuController extends Controller
             'parent_id' => $data['parent_id'],
             'uri' => $data['uri'],
             'icon' => $data['icon'],
-            'sort' => $data['sort'],
+            'sort' => $data['sort'] ?? 0,
         ];
 
         AdminMenu::createMenu($dataInsert);
@@ -110,7 +110,7 @@ class AdminMenuController extends Controller
             'parent_id' => $data['parent_id'],
             'uri' => $data['uri'],
             'icon' => $data['icon'],
-            'sort' => $data['sort'],
+            'sort' => $data['sort'] ?? 0,
         ];
 
         AdminMenu::updateInfo($dataUpdate, $id);
