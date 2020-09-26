@@ -20,6 +20,7 @@ class AdminUser extends Model implements AuthenticatableContract
     protected static $allPermissions = null;
     protected static $allViewPermissions = null;
     protected static $canChangeConfig = null;
+    protected static $listStoreId = null;
 
     /**
      * A user has and belongs to many roles.
@@ -275,18 +276,23 @@ class AdminUser extends Model implements AuthenticatableContract
      *
      * @return  [type]  [return description]
      */
-    public function listStoreId() {
-        $allStore = array_merge([0], AdminStore::pluck('id')->all());
-        if($this->isAdministrator() || $this->isViewAll()) {
-            $arrStore =  $allStore;
-        } else {
-            $arrStore = AdminUserStore::where('user_id', $this->id)->pluck('store_id')->all();
-            //id 0: all store
-            if(in_array(0, $arrStore)) {
+    public static function listStoreId() {
+        if (self::$listStoreId === null) {
+            $admin = \Admin::user();
+            $allStore = array_merge([0], AdminStore::pluck('id')->all());
+            if($admin->isAdministrator() || $admin->isViewAll()) {
                 $arrStore =  $allStore;
+            } else {
+                $arrStore = AdminUserStore::where('user_id', $admin->id)->pluck('store_id')->all();
+                //id 0: all store
+                if(in_array(0, $arrStore)) {
+                    $arrStore =  $allStore;
+                }
             }
+            asort($arrStore);
+            self::$listStoreId = $arrStore;
         }
-        return $arrStore;
+        return self::$listStoreId;
     }
 
 }

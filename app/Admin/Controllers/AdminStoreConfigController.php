@@ -1,5 +1,5 @@
 <?php
-#App\Plugins\Other\MultiStorePro\Admin\AdminConfigStoreDefaultController.php
+#App\Plugins\Other\MultiStorePro\Admin\AdminStoreConfigController.php
 
 namespace App\Admin\Controllers;
 
@@ -9,7 +9,7 @@ use App\Models\ShopCurrency;
 use App\Models\AdminConfig;
 use App\Models\ShopTax;
 
-class AdminConfigStoreDefaultController extends Controller
+class AdminStoreConfigController extends Controller
 {
     public $templates, $currencies, $languages, $timezones;
 
@@ -31,6 +31,7 @@ class AdminConfigStoreDefaultController extends Controller
     }
 
     public function index() {
+        $id = session('adminStoreId');
         $data = [
             'title' => trans('admin.menu_titles.config_store_default'),
             'subTitle' => '',
@@ -40,14 +41,14 @@ class AdminConfigStoreDefaultController extends Controller
         // Customer config
         $customerConfigs = (new AdminConfig)
             ->where('code', 'customer_config_attribute')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key')
             ->toArray();
         $customerConfigsRequired = (new AdminConfig)
             ->where('code', 'customer_config_attribute_required')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key')
@@ -59,44 +60,44 @@ class AdminConfigStoreDefaultController extends Controller
         $taxs[0] = trans('tax.admin.non_tax');
         $productConfig = (new AdminConfig)
             ->where('code', 'product_config')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         $productConfigAttribute = (new AdminConfig)
             ->where('code', 'product_config_attribute')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         $productConfigAttributeRequired = (new AdminConfig)
             ->where('code', 'product_config_attribute_required')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         $orderConfig = (new AdminConfig)
             ->where('code', 'order_config')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         $configDisplay = (new AdminConfig)
             ->where('code', 'display_config')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         $configCaptcha = (new AdminConfig)
             ->where('code', 'captcha_config')
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'desc')
             ->get()
             ->keyBy('key');
         //Email config
         $emailConfig = (new AdminConfig)
             ->whereIn('code', ['email_action', 'smtp_config'])
-            ->where('store_id', 0)
+            ->where('store_id', $id)
             ->orderBy('sort', 'asc')
             ->get()
             ->groupBy('code');

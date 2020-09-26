@@ -16,28 +16,14 @@ class AdminStoreMaintainController extends Controller
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
-
-    }
-    
-    public function index()
-    {
-        $stores = AdminStore::getListAll();
-        $data = [
-            'title' => trans('store_maintain.admin.title'),
-            'subTitle' => '',
-            'icon' => 'fa fa-indent',        
-        ];
-        $data['languages'] = $this->languages;
-        $data['stores'] = $stores;
-        return view('admin.screen.store_maintain')
-            ->with($data);
     }
 
 /**
  * Form edit
  */
-    public function edit($id)
+    public function index()
     {
+        $id = session('adminStoreId');;
         $maintain = AdminStore::find($id);
         if ($maintain === null) {
             return 'no data';
@@ -49,17 +35,18 @@ class AdminStoreMaintainController extends Controller
             'icon' => 'fa fa-edit',
             'languages' => $this->languages,
             'maintain' => $maintain,
-            'url_action' => sc_route('admin_store_maintain.edit', ['id' => $id]),
+            'url_action' => sc_route('admin_store_maintain.index'),
         ];
-        return view('admin.screen.store_maintain_edit')
+        return view('admin.screen.store_maintain')
             ->with($data);
     }
 
 /**
  * update status
  */
-    public function postEdit($id)
+    public function postEdit()
     {
+        $id = 1;
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [

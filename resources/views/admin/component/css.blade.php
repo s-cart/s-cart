@@ -310,4 +310,7 @@
 .help-block {
   color: red;
 }
+.nav-sidebar > .nav-link{
+  text-transform: uppercase;
+}
 </style>

@@ -18,6 +18,7 @@ class AdminServiceProvider extends ServiceProvider
         'admin.log' => \App\Admin\Middleware\LogOperation::class,
         'admin.permission' => \App\Admin\Middleware\PermissionMiddleware::class,
         'admin.theme' => \App\Admin\Middleware\AdminTheme::class,
+        'admin.storeId' => \App\Admin\Middleware\AdminStoreId::class,
         // 'admin.session' => \App\Admin\Middleware\Session::class,
     ];
 
@@ -32,6 +33,7 @@ class AdminServiceProvider extends ServiceProvider
             'admin.log',
             'admin.permission',
             'admin.theme',
+            'admin.storeId',
 //            'admin.session',
         ],
     ];

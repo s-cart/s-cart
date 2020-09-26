@@ -27,6 +27,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      @include('admin.component.admin_select_store')
 
       @include('admin.component.store_list')
 

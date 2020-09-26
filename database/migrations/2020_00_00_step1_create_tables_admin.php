@@ -151,6 +151,7 @@ class CreateTablesAdmin extends Migration
     {
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_user');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_role');
+        Schema::dropIfExists(SC_DB_PREFIX . 'admin_user_store');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_permission');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_menu');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_user_permission');
