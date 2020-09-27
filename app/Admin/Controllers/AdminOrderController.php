@@ -70,7 +70,6 @@ class AdminOrderController extends Controller
         $listTh = [
             'id'             => trans('order.admin.id'),
             'email'          => trans('order.admin.email'),
-            'store_id'       => trans('order.admin.store'),
             'subtotal'       => trans('order.admin.subtotal'),
             'shipping'       => trans('order.admin.shipping'),
             'discount'       => trans('order.admin.discount'),
@@ -118,7 +117,6 @@ class AdminOrderController extends Controller
             $dataTr[] = [
                 'id'             => $row['id'],
                 'email'          => $row['email'] ?? 'N/A',
-                'store_id'       => $row['store_id'],
                 'subtotal'       => sc_currency_render_symbol($row['subtotal'] ?? 0, $row['currency']),
                 'shipping'       => sc_currency_render_symbol($row['shipping'] ?? 0, $row['currency']),
                 'discount'       => sc_currency_render_symbol($row['discount'] ?? 0, $row['currency']),

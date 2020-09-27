@@ -138,7 +138,7 @@
             <tr>
                 @if (!empty($removeList))
                 <td>
-                  <input class="input grid-row-checkbox" type="checkbox" data-id="{{ $tr['id']??'' }}">
+                  <input class="checkbox grid-row-checkbox" type="checkbox" data-id="{{ $tr['id']??'' }}">
                 </td>
                 @endif
                 @foreach ($tr as $key => $trtd)

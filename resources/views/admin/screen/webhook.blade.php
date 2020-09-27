@@ -15,15 +15,15 @@
          <tbody>
           <tr>
             <td>{{ trans('config.LOG_SLACK_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('LOG_SLACK_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="" data-value="{{ (sc_admin_can_config()) ? sc_config('LOG_SLACK_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('config.GOOGLE_CHAT_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="GOOGLE_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GOOGLE_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="GOOGLE_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="" data-value="{{ (sc_admin_can_config()) ? sc_config('GOOGLE_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
             <td>{{ trans('config.CHATWORK_CHAT_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="CHATWORK_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('CHATWORK_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="CHATWORK_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="" data-value="{{ (sc_admin_can_config()) ? sc_config('CHATWORK_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
          </tbody>
        </table>
