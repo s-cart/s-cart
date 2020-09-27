@@ -1,4 +1,5 @@
 @if ($listStoreId = \Admin::user()->listStoreId())
+@if (count($listStoreId) > 2)
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
         <i class="fas fa-random"></i> {{ trans('store.admin.switch_store') }}
@@ -14,5 +15,6 @@
     @endif
     @endforeach
     </div>
-</li>  
+</li> 
+@endif
 @endif
