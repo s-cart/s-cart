@@ -2,6 +2,11 @@
    $stores = \App\Models\AdminStore::getDomainActive();
 @endphp
 <li class="nav-item dropdown">
+    @if (count($stores) == 1)
+    <a class="nav-link" data-toggle="dropdown" href="{{ route('home') }}" aria-expanded="false">
+        <i class="fas fa-home"></i>
+    </a> 
+    @else
     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
         <i class="fas fa-home"></i>
     </a>
@@ -14,4 +19,6 @@
         </a>
         @endforeach
     </div>
+    @endif
+
 </li>
