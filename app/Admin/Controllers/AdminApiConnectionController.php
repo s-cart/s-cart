@@ -65,50 +65,11 @@ class AdminApiConnectionController extends Controller
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
         $data['resultItems'] = trans('api_connection.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
-        $data['rightContentMain'] = '<input id="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
+        $data['rightContentMain'] = '<input class="switch-data-config" data-store=0 name="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
     
         $optionSort = '';
         $data['urlSort'] = sc_route('admin_api_connection.index');
         $data['optionSort'] = $optionSort;
-
-        $urlUpdate = sc_route('admin_config.update');
-        $csrf_token = csrf_token();
-        $data['js'] = <<< JS
-        <script type="text/javascript">
-        $("#api_connection_required").bootstrapSwitch();
-        $('#api_connection_required').on('switchChange.bootstrapSwitch', function (event, state) {
-            var data_config;
-            if (state == true) {
-                data_config = 1;
-            } else {
-                data_config = 0;
-            }
-            $('#loading').show()
-            $.ajax({
-              type: 'POST',
-              dataType:'json',
-              url: "$urlUpdate",
-              data: {
-                "_token": "$csrf_token",
-                "name": "api_connection_required",
-                "value": data_config
-              },
-              success: function (response) {
-                  console.log(response);
-                if(parseInt(response.error) ==0){
-                    alertJs('success', response.msg);
-                    
-                }else{
-                    alertJs('error', response.msg);
-                }
-                $('#loading').hide();
-              }
-            });
-        }); 
-    
-    </script>
-JS;
-        ;
         return view('admin.screen.api_connection')
             ->with($data);
     }
@@ -213,50 +174,12 @@ public function edit($id)
     $data['dataTr'] = $dataTr;
     $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
     $data['resultItems'] = trans('api_connection.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
-
-    $data['rightContentMain'] = '<input id="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
+    
+    $data['rightContentMain'] = '<input class="switch-data-config" data-store=0 name="api_connection_required" type="checkbox"  '.(sc_config('api_connection_required')?'checked':'').'><br> '.trans('api_connection.api_connection_required_help');
 
     $optionSort = '';
     $data['urlSort'] = sc_route('admin_api_connection.index');
     $data['optionSort'] = $optionSort;
-
-    $urlUpdate = sc_route('admin_config.update');
-    $csrf_token = csrf_token();
-    $data['js'] = <<< JS
-    <script type="text/javascript">
-    $("#api_connection_required").bootstrapSwitch();
-    $('#api_connection_required').on('switchChange.bootstrapSwitch', function (event, state) {
-        var data_config;
-        if (state == true) {
-            data_config = 1;
-        } else {
-            data_config = 0;
-        }
-        $('#loading').show()
-        $.ajax({
-          type: 'POST',
-          dataType:'json',
-          url: "$urlUpdate",
-          data: {
-            "_token": "$csrf_token",
-            "name": "api_connection_required",
-            "value": data_config
-          },
-          success: function (response) {
-              console.log(response);
-            if(parseInt(response.error) ==0){
-                alertMsg(response.msg, '', 'success');
-            }else{
-                alertMsg(response.msg, '', 'error');
-            }
-            $('#loading').hide();
-          }
-        });
-    }); 
-
-</script>
-JS;
-    ;
     return view('admin.screen.api_connection')
         ->with($data);
 }

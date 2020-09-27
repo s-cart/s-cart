@@ -159,7 +159,7 @@
                                 <label for="login" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.login') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
-                                        <input type="checkbox" class="input" id="login" name="login" {{ old('login',(empty($discount['login'])?0:1))?'checked':''}}  placeholder="" class="check-form" />
+                                        <input type="checkbox" class="checkbox" id="login" name="login" {{ old('login',(empty($discount['login'])?0:1))?'checked':''}}  placeholder="" class="check-form" />
                                     </div>
                                         @if ($errors->has('login'))
                                             <span class="help-block">
@@ -188,7 +188,7 @@
                             <div class="form-group row ">
                                 <label for="status" class="col-sm-2 control-label">{{ trans('Plugins/Total/Discount::lang.status') }}</label>
                                 <div class="col-sm-8">
-                                   <input class="input" type="checkbox" name="status"  {{ old('status',(empty($discount['status'])?0:1))?'checked':''}}>
+                                   <input class="checbox" type="checkbox" name="status"  {{ old('status',(empty($discount['status'])?0:1))?'checked':''}}>
                                 </div>
                             </div>
 

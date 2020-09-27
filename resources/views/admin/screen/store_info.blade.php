@@ -30,7 +30,7 @@
       <div class="card card-primary card-outline card-outline-tabs">
         <div class="card-tools">
             <div class="btn-group">
-              <input class="store-active" data-store="{{ $store->id }}" name="active" data-on-text="{{ trans('admin.maintain_enable') }}" data-off-text="{{ trans('admin.maintain_disable') }}" type="checkbox"  {{ ($store->active == '1'?'checked':'') }}>
+              <input class="switch-data-store" data-store="{{ $store->id }}" name="active" data-on-text="{{ trans('admin.maintain_enable') }}" data-off-text="{{ trans('admin.maintain_disable') }}" type="checkbox"  {{ ($store->active == '1'?'checked':'') }}>
             </div>
         </div>
         <div class="card-body">
@@ -262,39 +262,6 @@ $(document).ready(function() {
 <script src="{{ asset('admin/plugin/jquery.pjax.js')}}"></script>
 
 <script>
-
-$(".store-active").bootstrapSwitch();
-  $('.store-active').on('switchChange.bootstrapSwitch', function (event, state) {
-      var site_status;
-      if (state == true) {
-          site_status =  '1';
-      } else {
-          site_status = '0';
-      }
-      $('#loading').show();
-      $.ajax({
-        type: 'POST',
-        dataType:'json',
-        url: "{{ route('admin_store.update') }}",
-        data: {
-          "_token": "{{ csrf_token() }}",
-          "storeId": {{ $storeId }},
-          "name": $(this).attr('name'),
-          "value": site_status
-        },
-        success: function (response) {
-          if(parseInt(response.error) ==0){
-            alertMsg('success', '{{ trans('admin.msg_change_success') }}');
-          }else{
-            alertMsg('error', response.msg);
-          }
-          $('#loading').hide();
-        }
-      });
-  }); 
-
-  // Update store_info
-
 //Logo
   $('.logo').change(function() {
         $.ajax({

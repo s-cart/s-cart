@@ -11,7 +11,8 @@ class AdminConfigController extends Controller
         $data = [
             'title' => trans('config.admin.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
+            'icon' => 'fa fa-indent',  
+        ];
         $obj = (new AdminConfig)->whereIn('code', ['admin_config'])
                 ->orderBy('sort', 'desc')
                 ->get()

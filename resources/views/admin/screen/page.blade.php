@@ -223,7 +223,7 @@
                         <div class="form-group row ">
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('page.status') }}</label>
                             <div class="col-sm-8">
-                                <input class="input" type="checkbox" name="status"
+                                <input class="checkbox" type="checkbox" name="status"
                                     {{ old('status',(empty($page['status'])?0:1))?'checked':''}}>
                             </div>
                         </div>

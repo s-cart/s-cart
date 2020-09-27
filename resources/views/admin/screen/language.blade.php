@@ -190,7 +190,7 @@
                             <tr class="{{ ($id == $tr['id']) ? 'active': '' }}">
                                 @if (!empty($removeList))
                                 <td>
-                                  <input class="input" type="checkbox" class="grid-row-checkbox" data-id="{{ $tr['id']??'' }}">
+                                  <input class="checkbox" type="checkbox" class="grid-row-checkbox" data-id="{{ $tr['id']??'' }}">
                                 </td>
                                 @endif
                                 @foreach ($tr as $key => $trtd)
@@ -270,15 +270,6 @@
       });
     @endif
     
-
-    $(document).on('ready pjax:end', function(event) {
-      $('.input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
-      });
-    })
-
   </script>
     {{-- //End pjax --}}
 

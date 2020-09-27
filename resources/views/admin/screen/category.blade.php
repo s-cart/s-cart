@@ -242,7 +242,7 @@
                         <div class="form-group  row">
                             <label for="top" class="col-sm-2 col-form-label">{{ trans('category.top') }}</label>
                             <div class="col-sm-8">
-                                <input class="input" type="checkbox" name="top"
+                                <input class="checkbox" type="checkbox" name="top"
                                     {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
                             </div>
                             <span class="form-text">
@@ -253,7 +253,7 @@
                         <div class="form-group  row">
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('category.status') }}</label>
                             <div class="col-sm-8">
-                                <input class="input" type="checkbox" name="status"
+                                <input class="checkbox" type="checkbox" name="status"
                                     {{ old('status',(empty($category['status'])?0:1))?'checked':''}}>
 
                             </div>

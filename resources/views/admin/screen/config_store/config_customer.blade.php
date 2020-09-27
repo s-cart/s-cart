@@ -13,10 +13,10 @@
        @foreach ($customerConfigs as $key => $customerConfig)
          <tr>
            <td>{{ sc_language_render($customerConfig['detail']) }}</td>
-           <td><input type="checkbox" name="{{ $customerConfig['key'] }}"  {{ $customerConfig['value']?"checked":"" }}></td>
+           <td><input class="check-data-config" data-store="{{ $storeId }}" type="checkbox" name="{{ $customerConfig['key'] }}"  {{ $customerConfig['value']?"checked":"" }}></td>
            <td>
              @if (!empty($customerConfigsRequired[$key.'_required']))
-             <input type="checkbox" name="{{ $customerConfigsRequired[$key.'_required']['key'] }}"  {{ $customerConfigsRequired[$key.'_required']['value']?"checked":"" }}>
+             <input class="check-data-config" data-store="{{ $storeId }}" type="checkbox" name="{{ $customerConfigsRequired[$key.'_required']['key'] }}"  {{ $customerConfigsRequired[$key.'_required']['value']?"checked":"" }}>
              @endif
            </td>
          </tr>

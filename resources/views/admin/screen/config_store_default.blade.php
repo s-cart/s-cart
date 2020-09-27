@@ -149,37 +149,6 @@ $(document).ready(function() {
 
 
 <script>
-  // Update config
-  $(function () {
-    $('#tab-store-customer input, #tab-store-product input, #tab-store-email .input-info, #tab-store-order input, #tab-store-captcha input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    }).on('ifChanged', function(e) {
-    var isChecked = e.currentTarget.checked;
-    isChecked = (isChecked == false)?0:1;
-    var name = $(this).attr('name');
-      $.ajax({
-        url: '{{ route('admin_config.update') }}',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}", "storeId":"{{ $storeId }}" },
-      })
-      .done(function(data) {
-        if(data.error == 0){
-          alertJs('success', '{{ trans('admin.msg_change_success') }}');
-        } else {
-          alertMsg('error', '', data.msg);
-        }
-      });
-
-      });
-
-  });
-  //End update config
-</script>
-
-<script>
   // Update store_info
 
 //Logo

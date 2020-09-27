@@ -37,7 +37,7 @@
            @if (!in_array($config->key, ['cache_status', 'cache_time']))
            <tr>
             <td>{{ sc_language_render($config->detail) }}</td>
-            <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+            <td><input class="check-data-config" data-store=0 type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
             <td>
               <button type="button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {{ trans('cache.config_manager.cache_clear')}}" class="btn btn-flat btn-warning clear-cache" data-clear="{{ $config->key }}">
                 <i class="fas fa-sync-alt"></i> {{ trans('cache.config_manager.cache_clear') }}
@@ -118,34 +118,6 @@ $(document).ready(function() {
     }
   });
   
-
-    $(function () {
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
-      }).on('ifChanged', function(e) {
-      var isChecked = e.currentTarget.checked;
-      isChecked = (isChecked == false)?0:1;
-      var name = $(this).attr('name');
-        $.ajax({
-          url: '{{ route('admin_config.update') }}',
-          type: 'POST',
-          dataType: 'JSON',
-          data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},
-        })
-        .done(function(data) {
-          if(data.error == 0){
-            alertJs('success', '{{ trans('admin.msg_change_success') }}');
-          } else {
-            alertJs('error', data.msg);
-          }
-        });
-  
-        });
-  
-    });
-  
 });
 
 
@@ -208,14 +180,6 @@ $('.clear-cache').click(function() {
     });
 
     {!! $script_sort??'' !!}
-
-    $(document).on('ready pjax:end', function(event) {
-      $('.table-list input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
-      });
-    })
 
   </script>
     {{-- //End pjax --}}

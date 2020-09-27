@@ -191,7 +191,6 @@
   color: #ffffff !important;
     background: #4da0f1 !important;
     padding: 10px 25px 10px 15px;
-    font-size: 12px;
   }
 
   .sidebar-lightblue .nav-item.has-treeview > a {
@@ -203,7 +202,6 @@
   color: #ffffff !important;
     background: #343a40 !important;
     padding: 10px 25px 10px 15px;
-    font-size: 12px;
   }
 
   .sidebar-gray-dark .nav-item.has-treeview > a {
@@ -215,7 +213,6 @@
     color: #ffffff !important;
     background: #28a745 !important;
     padding: 10px 25px 10px 15px;
-    font-size: 12px;
   }
 
   .sidebar-success .nav-item.has-treeview > a {
@@ -227,7 +224,6 @@
     color: #000 !important;
     background: #96a3ab !important;
     padding: 10px 25px 10px 15px;
-    font-size: 12px;
   }
 
   .sidebar-white .nav-item.has-treeview > a {
@@ -239,7 +235,6 @@
   color: #ffffff !important;
     background: #e83e8c !important;
     padding: 10px 25px 10px 15px;
-    font-size: 12px;
   }
 
   .sidebar-pink .nav-item.has-treeview > a {

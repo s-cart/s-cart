@@ -107,14 +107,6 @@ $(document).ready(function() {
 
     {!! $script_sort??'' !!}
 
-    $(document).on('ready pjax:end', function(event) {
-      $('.table-list input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
-      });
-    })
-
   </script>
     {{-- //End pjax --}}
 
@@ -188,36 +180,5 @@ $('.grid-trash').on('click', function() {
 }
 {{--/ sweetalert2 --}}
 
-</script>
-<script>
-
-  // Update config
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    }).on('ifChanged', function(e) {
-    var isChecked = e.currentTarget.checked;
-    isChecked = (isChecked == false)?0:1;
-    var name = $(this).attr('name');
-      $.ajax({
-        url: '{{ route('admin_config.update') }}',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {"name": name,"value":isChecked,"_token": "{{ csrf_token() }}",},
-      })
-      .done(function(data) {
-        if(data.error == 0){
-          alertJs('success', '{{ trans('admin.msg_change_success') }}');
-        } else {
-          alertJs('error', data.msg);
-        }
-      });
-
-      });
-
-  });
-  //End update config
 </script>
 @endpush

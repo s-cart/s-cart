@@ -172,7 +172,7 @@
                             <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('banner.status') }}</label>
                                 <div class="col-sm-8">
-                                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($banner['status'])?0:1))?'checked':''}}>
+                                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($banner['status'])?0:1))?'checked':''}}>
                                 </div>
                             </div>
 

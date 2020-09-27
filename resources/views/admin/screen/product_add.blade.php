@@ -794,9 +794,9 @@
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('product.status') }}</label>
                             <div class="col-sm-8">
                                 @if (old())
-                                <input class="input" type="checkbox" name="status" {{ ((old('status') ==='on')?'checked':'')}}>
+                                <input class="checkbox" type="checkbox" name="status" {{ ((old('status') ==='on')?'checked':'')}}>
                                 @else
-                                <input class="input" type="checkbox" name="status" checked>
+                                <input class="checkbox" type="checkbox" name="status" checked>
                                 @endif
 
                             </div>

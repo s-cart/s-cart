@@ -12,7 +12,7 @@ class DataStoreSeeder extends Seeder
      */
     public function run()
     {
-        $storeId = empty(session('lastStoreId')) ? 0 : session('lastStoreId');
+        $storeId = empty(session('lastStoreId')) ? 1 : session('lastStoreId');
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_config')->insertOrIgnore(
             [
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_brand', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.brand', 'store_id' => $storeId],
@@ -119,9 +119,6 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_mode', 'value' => '0', 'sort' => '20', 'detail' => 'lang::captcha.captcha_mode', 'store_id' => $storeId],
             ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_page', 'value' => '[]', 'sort' => '10', 'detail' => 'lang::captcha.captcha_page', 'store_id' => $storeId],
             ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_method', 'value' => '', 'sort' => '0', 'detail' => 'lang::captcha.captcha_method', 'store_id' => $storeId],
-            
-            ['group' => '', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => $storeId],
-            
             
             ]
         );

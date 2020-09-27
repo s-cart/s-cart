@@ -25,37 +25,37 @@
           <div class="card-header">
             <div class="float-right" >
               <div class="filter-api">
-              <input name="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }} class="input">
+              <input name="sort_download" data-name="sort_download" type="checkbox"  {{ $sort_download? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="sort_download">
                 {{ trans('plugin.libraries.sort_download') }}
               </label>
               </div>
               <div class="filter-api">
-              <input name="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }} class="input">
+              <input name="sort_rating" data-name="sort_rating" type="checkbox"  {{ $sort_rating? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="sort_rating">
                 {{ trans('plugin.libraries.sort_rating') }}
               </label>
               </div>
               <div class="filter-api">
-              <input name="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }} class="input">
+              <input name="sort_price_asc" data-name="sort_price_asc" type="checkbox"  {{ $sort_price_asc? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="sort_price_asc">
                 {{ trans('plugin.libraries.sort_price_asc') }}
               </label>
               </div>
               <div class="filter-api">
-              <input name="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }} class="input">
+              <input name="sort_price_desc" data-name="sort_price_desc" type="checkbox"  {{ $sort_price_desc? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="sort_price_desc">
                 {{ trans('plugin.libraries.sort_price_desc') }}
               </label>
               </div>
               <div class="filter-api">
-              <input name="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }} class="input">
+              <input name="only_free" data-name="only_free" type="checkbox"  {{ $only_free? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="only_free">
                 {{ trans('plugin.libraries.only_free') }}
               </label>  
               </div>
               <div class="filter-api">
-              <input name="all_version" data-name="all_version" type="checkbox"  {{ $all_version? 'checked':'' }} class="input">
+              <input name="all_version" data-name="all_version" type="checkbox"  {{ $all_version? 'checked':'' }} class="checkbox">
               <label class="checkbox-inline  form-check-label"  for="all_version">
                 {{ trans('plugin.libraries.all_version') }}
               </label>    
@@ -263,11 +263,6 @@
 </script>
 
 <script>
-  $('.input-check').iCheck({
-    checkboxClass: 'icheckbox_square-blue',
-    radioClass: 'iradio_square-blue',
-    increaseArea: '20%' /* optional */
-  });
 
   $('#filter-button').click(function(){
     var urlNext = '{{ url()->current() }}';

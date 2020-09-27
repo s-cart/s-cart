@@ -2,12 +2,115 @@
 <script type="text/javascript">
 
   $(function () {
-    $('.input').iCheck({
+    $('input.checkbox').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
   });
+
+  $(document).on('ready pjax:end', function(event) {
+    $('input.checkbox').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+      });
+  })
+
+
+  $('input.check-data-config').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' /* optional */
+  }).on('ifChanged', function(e) {
+  var isChecked = e.currentTarget.checked;
+  isChecked = (isChecked == false)?0:1;
+  var name = $(this).attr('name');
+    $.ajax({
+      url: '{{ route('admin_config.update') }}',
+      type: 'POST',
+      dataType: 'JSON',
+      data: {
+          "_token": "{{ csrf_token() }}",
+          "name": $(this).attr('name'),
+          "storeId": $(this).data('store'),
+          "value": isChecked
+        },
+    })
+    .done(function(data) {
+      if(data.error == 0){
+        alertJs('success', '{{ trans('admin.msg_change_success') }}');
+      } else {
+        alertJs('error', data.msg);
+      }
+    });
+
+    });
+
+
+  
+
+  $("input.switch-data-config").bootstrapSwitch();
+  $('input.switch-data-config').on('switchChange.bootstrapSwitch', function (event, state) {
+      var valueSet;
+      if (state == true) {
+          valueSet =  '1';
+      } else {
+          valueSet = '0';
+      }
+      $('#loading').show();
+      $.ajax({
+        type: 'POST',
+        dataType:'json',
+        url: "{{ route('admin_config.update') }}",
+        data: {
+          "_token": "{{ csrf_token() }}",
+          "name": $(this).attr('name'),
+          "storeId": $(this).data('store'),
+          "value": valueSet
+        },
+        success: function (response) {
+          if(parseInt(response.error) ==0){
+            alertMsg('success', '{{ trans('admin.msg_change_success') }}');
+          }else{
+            alertMsg('error', response.msg);
+          }
+          $('#loading').hide();
+        }
+      });
+  }); 
+
+
+  $("input.switch-data-store").bootstrapSwitch();
+  $('input.switch-data-store').on('switchChange.bootstrapSwitch', function (event, state) {
+      var valueSet;
+      if (state == true) {
+          valueSet =  '1';
+      } else {
+          valueSet = '0';
+      }
+      $('#loading').show();
+      $.ajax({
+        type: 'POST',
+        dataType:'json',
+        url: "{{ route('admin_store.update') }}",
+        data: {
+          "_token": "{{ csrf_token() }}",
+          "name": $(this).attr('name'),
+          "storeId": $(this).data('store'),
+          "value": valueSet
+        },
+        success: function (response) {
+          if(parseInt(response.error) ==0){
+            alertMsg('success', '{{ trans('admin.msg_change_success') }}');
+          }else{
+            alertMsg('error', response.msg);
+          }
+          $('#loading').hide();
+        }
+      });
+  }); 
+
 
 </script>
 

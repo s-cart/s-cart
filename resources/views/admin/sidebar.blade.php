@@ -46,7 +46,8 @@
         {{-- LEvel 1  --}}
         @if (!empty($menus[$level0->id]))
         <li class="nav-link header">
-          {!! sc_language_render($level0->title) !!}
+          <i class="nav-icon  {{ $level0->icon }} "></i> 
+          <p class="sub-header"> {!! sc_language_render($level0->title) !!}</p>
         </li>
           @foreach ($menus[$level0->id] as $level1)
             @if($level1->uri)
