@@ -3,7 +3,7 @@
 @endphp
 <li class="nav-item dropdown">
     @if (count($stores) == 1)
-    <a class="nav-link" data-toggle="dropdown" href="{{ route('home') }}" aria-expanded="false">
+    <a class="nav-link" href="{{ route('home') }}" target=_new>
         <i class="fas fa-home"></i>
     </a> 
     @else
