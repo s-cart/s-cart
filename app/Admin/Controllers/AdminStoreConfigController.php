@@ -124,7 +124,7 @@ class AdminStoreConfigController extends Controller
         $data['timezones']                      = $this->timezones;
         $data['languages']                      = $this->languages;
         $data['currencies']                     = $this->currencies;
-        $data['storeId']                        = 0;
+        $data['storeId']                        = $id;
 
         return view('admin.screen.config_store_default')
         ->with($data);
