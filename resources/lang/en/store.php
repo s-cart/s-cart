@@ -66,5 +66,6 @@ return [
         'config_api'          => 'API',
         'config_other'        => 'Other',
         'switch_store'        =>  'Switch store',
+        'config_admin_other'  =>  'Config admin',
     ],
 ];

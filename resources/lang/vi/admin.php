@@ -308,6 +308,7 @@ return [
         'ADMIN_EXTENSION' => 'TIỆN ÍCH',
         'ADMIN_MARKETING' => 'MARKETING',
         'ADMIN_SHOP_SETTING' => 'THIẾT LẬP CỬA HÀNG',
+        'webhook' => 'Webhook',
     ],
     //=======++===========
     'status'           => 'Trạng thái',

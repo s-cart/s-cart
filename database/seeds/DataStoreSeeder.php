@@ -67,9 +67,9 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_name_kana_required', 'value' => '0', 'sort' => '1', 'detail' => '', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_NAME', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_LOGO', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'admin_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.LOG_SLACK_WEBHOOK_URL', 'store_id' => $storeId],
+
 
             ['group' => '', 'code' => 'display_config', 'key' => 'product_top', 'value' => '8', 'sort' => '0', 'detail' => 'lang::admin.product_top', 'store_id' => $storeId],
             ['group' => '', 'code' => 'display_config', 'key' => 'product_list', 'value' => '12', 'sort' => '0', 'detail' => 'lang::admin.list_product', 'store_id' => $storeId],

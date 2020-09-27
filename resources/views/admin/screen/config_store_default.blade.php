@@ -24,6 +24,9 @@
             <li class="nav-item">
               <a class="nav-link" id="tab-store-display-tab" data-toggle="pill" href="#tab-store-display" role="tab" aria-controls="tab-store-display" aria-selected="false">{{ trans('store.admin.config_display') }}</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" id="tab-admin-other-tab" data-toggle="pill" href="#tab-admin-other" role="tab" aria-controls="tab-admin-other" aria-selected="false">{{ trans('store.admin.config_admin_other') }}</a>
+            </li>
           </ul>
         </div>
         <div class="card-body">
@@ -70,6 +73,12 @@
               @include('admin.screen.config_store.config_display')
             </div>
             {{-- // display config --}}
+
+            {{-- Tab admin config --}}
+            <div class="tab-pane fade" id="tab-admin-other" role="tabpanel" aria-labelledby="tab-admin-other-tab">
+              @include('admin.screen.config_store.config_admin_other')
+            </div>
+            {{-- // admin config --}}
 
 
           </div>

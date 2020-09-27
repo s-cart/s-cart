@@ -14,28 +14,17 @@
        <table class="table table-hover">
          <tbody>
           <tr>
-            <td>{{ trans('env.ADMIN_LOG') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOG" data-type="select" data-pk="" data-source="{{ json_encode(['off'=>'OFF','on'=>'ON']) }}" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_LOG') }}" data-value="{{ sc_config('ADMIN_LOG') }}" data-original-title="{{ trans('env.ADMIN_LOG') }}" title=""></a></td>
-          </tr>
-          
-          <tr>
-            <td>{{ trans('env.ADMIN_NAME') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_NAME" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_NAME') }}" data-value="{{ sc_config('ADMIN_NAME') }}" data-original-title="" title=""></a></td>
+            <td>{{ trans('config.LOG_SLACK_WEBHOOK_URL') }}</td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('LOG_SLACK_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
-            <td>{{ trans('env.ADMIN_TITLE') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_TITLE" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_TITLE') }}" data-value="{{ sc_config('ADMIN_TITLE') }}" data-original-title="" title=""></a></td>
+            <td>{{ trans('config.GOOGLE_CHAT_WEBHOOK_URL') }}</td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="GOOGLE_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GOOGLE_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
           <tr>
-            <td>{{ trans('env.ADMIN_LOGO') }}</td>
-            <td><a href="#" class="fied-required editable editable-click" data-name="ADMIN_LOGO" data-type="text" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.ADMIN_LOGO') }}" data-value="{{ sc_config('ADMIN_LOGO') }}" data-original-title="" title=""></a></td>
+            <td>{{ trans('config.CHATWORK_CHAT_WEBHOOK_URL') }}</td>
+            <td><a href="#" class="updateInfo editable editable-click" data-name="CHATWORK_CHAT_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('config.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('CHATWORK_CHAT_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
           </tr>
-          <tr>
-            <td>{{ trans('env.LOG_SLACK_WEBHOOK_URL') }}</td>
-            <td><a href="#" class="updateInfo editable editable-click" data-name="LOG_SLACK_WEBHOOK_URL" data-type="password" data-pk="" data-source="" data-url="{{ route('admin_config.update') }}" data-title="{{ trans('env.LOG_SLACK_WEBHOOK_URL_help') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('LOG_SLACK_WEBHOOK_URL') : 'hidden' }}" data-original-title="" title=""></a></td>
-          </tr>
-          
-
          </tbody>
        </table>
       </div>

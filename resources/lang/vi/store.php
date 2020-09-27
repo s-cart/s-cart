@@ -64,5 +64,6 @@ return [
         'config_order'        => 'Đơn hàng',
         'config_other'        => 'Khác',
         'switch_store'        =>  'Chuyển đổi cửa hàng',
+        'config_admin_other'  =>  'Cấu hình admin',
     ],
 ];

@@ -12,8 +12,6 @@ return [
     'field'                      => 'Trường dữ liệu',
     'value'                      => 'Giá trị',
     'title'                      => 'Cấu hình môi trường',
-    'LOG_SLACK_WEBHOOK_URL'      => 'Gửi thông báo lỗi tới Slack webhook',
-    'LOG_SLACK_WEBHOOK_URL_help' => 'Link https: //hooks.slack.com/services/...',
     'SUFFIX_URL'                 => 'Hậu tố URL',
     'PREFIX_BRAND'               => 'Tiền tố trang BRAND',
     'PREFIX_SUPPLIER'            => 'Tiền tố trang SUPPLIER',

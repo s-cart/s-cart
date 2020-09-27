@@ -310,6 +310,7 @@ return [
             'ADMIN_EXTENSION' => 'EXTENSION',
             'ADMIN_MARKETING' => 'MARKETING',
             'ADMIN_SHOP_SETTING' => 'SHOP SETTING',
+            'webhook' => 'Webhook',
       ],
 
       'status'                            => 'Status',

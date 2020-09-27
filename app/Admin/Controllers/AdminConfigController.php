@@ -23,6 +23,17 @@ class AdminConfigController extends Controller
             ->with($data);
     }
 
+    public function webhook()
+    {
+        $data = [
+            'title' => trans('config.admin.webhook'),
+            'subTitle' => '',
+            'icon' => 'fa fa-indent',  
+        ];
+        return view('admin.screen.webhook')
+            ->with($data);
+    }
+
     /*
     Update value config
     */
