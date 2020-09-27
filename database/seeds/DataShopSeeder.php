@@ -182,7 +182,7 @@ class DataShopSeeder extends Seeder
     js.src = \'//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473\';
     fjs.parentNode.insertBefore(js, fjs);
     }(document, \'script\', \'facebook-jssdk\'));
-    </script>', 'status' => '1', 'sort' => '0'],
+    </script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
                 ['name' => 'Google Analytics', 'position' => 'header', 'page' => '*', 'type' => 'html', 'text' => '<!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128658138-1"></script>
     <script>
@@ -190,13 +190,13 @@ class DataShopSeeder extends Seeder
     function gtag(){dataLayer.push(arguments);}
     gtag(\'js\', new Date());
     gtag(\'config\', \'UA-128658138-1\');
-    </script>', 'status' => '1', 'sort' => '0'],
+    </script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
 
-                ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1'],
-                ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3'],
-                ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'shop_home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0'],
-                ['name' => 'Categories', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4'],
-                ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0'],
+                ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1', 'store_id' => 1],
+                ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3', 'store_id' => 1],
+                ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'shop_home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0', 'store_id' => 1],
+                ['name' => 'Categories', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0', 'store_id' => 1],
 
             ]
         );
@@ -233,11 +233,11 @@ class DataShopSeeder extends Seeder
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_link')->insert(
             [
-                ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3'],
-                ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4'],
-                ['name' => 'lang::front.my_profile', 'url' => '/member/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5'],
-                ['name' => 'lang::front.compare_page', 'url' => '/compare.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4'],
-                ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3'],
+                ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3', 'store_id' => 1],
+                ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'lang::front.my_profile', 'url' => '/member/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
+                ['name' => 'lang::front.compare_page', 'url' => '/compare.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3', 'store_id' => 1],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_shipping_standard')->insert(
