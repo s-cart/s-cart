@@ -11,15 +11,13 @@
             <!-- form start -->
             <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main"
                 enctype="multipart/form-data">
-
-
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body">
-                            <div class="form-group row {{ $errors->has('css') ? ' text-red' : '' }}">
-                                <label for="css" class="col-sm-2 col-form-label">{{ trans('store.css') }}</label>
-                                <div class="col-sm-8">
-                                        <textarea class="form-control" rows="10" id="css" name="css">{{ old('css',$css??'') }}</textarea>
+                            <h2>{{ trans('store.css') }}</h2>
+                            <div class="form-group row {{ $errors->has('css') ? 'text-red' : '' }}">
+                                <div class="col-sm-12">
+                                        <textarea  id="css" name="css">{{ old('css',$css??'') }}</textarea>
                                         @if ($errors->has('css'))
                                             <span class="form-text">
                                                 <i class="fa fa-info-circle"></i> {{ $errors->first('css') }}
@@ -59,8 +57,24 @@
 @endsection
 
 @push('styles')
-
+<link rel="stylesheet" href="{{ asset('admin/plugin/mirror/doc/docs.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/plugin/mirror/lib/codemirror.css')}}">
 @endpush
 
 @push('scripts')
+<script src="{{ asset('admin/plugin/mirror/lib/codemirror.js')}}"></script>
+<script src="{{ asset('admin/plugin/mirror/mode/css/css.js')}}"></script>
+<script>
+    window.onload = function() {
+      editor = CodeMirror(document.getElementById("css"), {
+        mode: "text/html",
+        value: document.documentElement.innerHTML
+      });
+    };
+    var editor = CodeMirror.fromTextArea(document.getElementById("css"), {
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true
+    });
+  </script>
 @endpush
