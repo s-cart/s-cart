@@ -140,6 +140,7 @@ class AdminLinkController extends Controller
             'group' => $data['group'],
             'sort' => $data['sort'],
             'status' => empty($data['status']) ? 0 : 1,
+            'store_id' => session('adminStoreId'),
         ];
         ShopLink::create($dataInsert);
 //
@@ -198,6 +199,7 @@ class AdminLinkController extends Controller
             'group' => $data['group'],
             'sort' => $data['sort'],
             'status' => empty($data['status']) ? 0 : 1,
+            'store_id' => session('adminStoreId'),
         ];
         $obj = ShopLink::find($id);
         $obj->update($dataUpdate);

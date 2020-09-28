@@ -5,6 +5,7 @@ use App\Models\AdminStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
+use App\Models\ShopStoreCss;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 /*
@@ -190,6 +191,16 @@ if (!function_exists('sc_store')) {
             return $allStoreInfo;
         }
         return $allStoreInfo[$key] ?? null;
+    }
+}
+
+if (!function_exists('sc_store_css')) {
+    function sc_store_css()
+    {
+        $css =  ShopStoreCss::where('store_id', config('app.storeId'))->first();
+        if($css) {
+            return $css->css;
+        }
     }
 }
 
@@ -456,5 +467,21 @@ if (!function_exists('sc_route')) {
         } else {
             return url('#'.$name);
         }
+    }
+}
+
+if (!function_exists('sc_process_domain_store')) {
+    /**
+     * Process domain store
+     *
+     * @param   [string]  $domain
+     *
+     * @return  [string]         [$domain]
+     */
+    function sc_process_domain_store($domain)
+    {
+        $domain = Str::finish(str_replace(['http://', 'https://'], '', $domain), '/');
+        $domain = Str::lower($domain);
+        return $domain;
     }
 }

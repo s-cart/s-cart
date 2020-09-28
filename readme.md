@@ -33,7 +33,6 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 <pre>
 ======= FRONT-END =======
-- Multi-store, multi-domain (from V3)
 - Multi-language
 - Multi-currency
 - Multi-address
@@ -41,7 +40,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - Customer login
 - Product attributes: cost price, promotion price, stock, tax..
 - CMS content: category, news, content, web page
-- Plugin: Shipping, payment, Discount, Total...
+- Plugin: Shipping, payment, Discount, Total, Multiple vendor...
 - Upload manager: banner, images,..
 - SEO support: custome URL
 - API module
@@ -69,7 +68,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Requirements:
 
-Version 3.0
+Version 3.1
 
 > Core laravel framework 7.x Requirements::
 

@@ -19,7 +19,7 @@ class ShopPage extends Model
     {
         return $this->hasMany(ShopPageDescription::class, 'page_id', 'id');
     }
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, ShopPageStore::class, 'page_id', 'store_id');
     }
@@ -105,7 +105,7 @@ class ShopPage extends Model
         // before delete() method call this
         static::deleting(function ($page) {
             $page->descriptions()->delete();
-            $page->stories()->detach();
+            $page->stores()->detach();
             }
         );
     }

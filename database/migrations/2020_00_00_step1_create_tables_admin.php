@@ -30,6 +30,13 @@ class CreateTablesAdmin extends Migration
             $table->timestamps();
         });
 
+        Schema::create(SC_DB_PREFIX.'admin_user_store', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('store_id');
+            $table->primary(['user_id', 'store_id']);
+            }
+        );
+
         Schema::create(SC_DB_PREFIX . 'admin_role', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
@@ -144,6 +151,7 @@ class CreateTablesAdmin extends Migration
     {
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_user');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_role');
+        Schema::dropIfExists(SC_DB_PREFIX . 'admin_user_store');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_permission');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_menu');
         Schema::dropIfExists(SC_DB_PREFIX . 'admin_user_permission');

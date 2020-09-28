@@ -68,11 +68,11 @@
                             <div class="form-group row ">
                                 <label for="status" class="col-sm-2 col-form-label">{{ trans('email_template.status') }}</label>
                                 <div class="col-sm-8">
-                                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
+                                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            <hr>
+                            <div class="form-group row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-8">
                                     <label>{{ trans('email_template.admin.variable_support') }}</label>
@@ -109,10 +109,37 @@
 @endsection
 
 @push('styles')
-
+<link rel="stylesheet" href="{{ asset('admin/plugin/mirror/doc/docs.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/plugin/mirror/lib/codemirror.css')}}">
 @endpush
 
 @push('scripts')
+<script src="{{ asset('admin/plugin/mirror/lib/codemirror.js')}}"></script>
+<script src="{{ asset('admin/plugin/mirror/mode/javascript/javascript.js')}}"></script>
+<script src="{{ asset('admin/plugin/mirror/mode/css/css.js')}}"></script>
+<script src="{{ asset('admin/plugin/mirror/mode/htmlmixed/htmlmixed.js')}}"></script>
+<script>
+    window.onload = function() {
+      editor = CodeMirror(document.getElementById("text"), {
+        mode: "text/html",
+        value: document.documentElement.innerHTML
+      });
+    };
+    var myModeSpec = {
+    name: "htmlmixed",
+    tags: {
+        style: [["type", /^text\/(x-)?scss$/, "text/x-scss"],
+                [null, null, "css"]],
+        custom: [[null, null, "customMode"]]
+    }
+    }
+    var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true
+    });
+  </script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

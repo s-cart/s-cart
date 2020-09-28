@@ -30,6 +30,8 @@ class AdminLogController extends Controller
         $data['topMenuRight'] = sc_config_group('topMenuRight', \Request::route()->getName());
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
+        
+        $data['menuRight'][] = '<input class="switch-data-config" data-store=0  type="checkbox" name="ADMIN_LOG"  '.(sc_config('ADMIN_LOG', 0) ? 'checked':'').'>';
 
         $listTh = [
             'id' => trans('log.id'),

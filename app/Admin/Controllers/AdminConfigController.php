@@ -11,7 +11,8 @@ class AdminConfigController extends Controller
         $data = [
             'title' => trans('config.admin.title'),
             'subTitle' => '',
-            'icon' => 'fa fa-indent',        ];
+            'icon' => 'fa fa-indent',  
+        ];
         $obj = (new AdminConfig)->whereIn('code', ['admin_config'])
                 ->orderBy('sort', 'desc')
                 ->get()
@@ -19,6 +20,17 @@ class AdminConfigController extends Controller
         $data['configs'] = $obj;
 
         return view('admin.screen.config')
+            ->with($data);
+    }
+
+    public function webhook()
+    {
+        $data = [
+            'title' => trans('config.admin.webhook'),
+            'subTitle' => '',
+            'icon' => 'fa fa-indent',  
+        ];
+        return view('admin.screen.webhook')
             ->with($data);
     }
 

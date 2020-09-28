@@ -19,7 +19,9 @@ return [
     'value'                      => 'Value',
     'title'                      => 'Website setting',
     'LOG_SLACK_WEBHOOK_URL'      => 'Report error to Slack webhook',
-    'LOG_SLACK_WEBHOOK_URL_help' => 'Link https://hooks.slack.com/services/...',
+    'GOOGLE_CHAT_WEBHOOK_URL'    => 'Report error to Googlechat webhook',
+    'CHATWORK_CHAT_WEBHOOK_URL'  => 'Report error to Chatwork webhook',
+    'LOG_SLACK_WEBHOOK_URL_help' => 'Link https: //hooks.slack.com/services/...',
     'SUFFIX_URL'                 => 'Suffix URL',
     'PREFIX_BRAND'               => 'Prefix url BRAND',
     'PREFIX_SUPPLIER'            => 'Prefix url SUPPLIER',
@@ -63,5 +65,6 @@ return [
         'add_new'         => 'Add new',
         'add_new_title'   => 'Add config',
         'add_new_des'     => 'Create a new config',
+        'webhook'         => 'Config url webhook',
     ],
 ];

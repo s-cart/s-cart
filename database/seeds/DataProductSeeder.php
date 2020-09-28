@@ -107,6 +107,29 @@ class DataProductSeeder extends Seeder
             ]
         );
 
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_product_store')->insert(
+            [
+                ['product_id' => '1', 'store_id' => '1'],
+                ['product_id' => '2', 'store_id' => '1'],
+                ['product_id' => '3', 'store_id' => '1'],
+                ['product_id' => '4', 'store_id' => '1'],
+                ['product_id' => '5', 'store_id' => '1'],
+                ['product_id' => '6', 'store_id' => '1'],
+                ['product_id' => '7', 'store_id' => '1'],
+                ['product_id' => '8', 'store_id' => '1'],
+                ['product_id' => '9', 'store_id' => '1'],
+                ['product_id' => '10', 'store_id' => '1'],
+                ['product_id' => '11', 'store_id' => '1'],
+                ['product_id' => '12', 'store_id' => '1'],
+                ['product_id' => '13', 'store_id' => '1'],
+                ['product_id' => '14', 'store_id' => '1'],
+                ['product_id' => '15', 'store_id' => '1'],
+                ['product_id' => '16', 'store_id' => '1'],
+                ['product_id' => '17', 'store_id' => '1'],
+            ]
+        );
+
+
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category')->insert(
             [
                 ['id' => '1', 'alias'=> 'electronics', 'image' => '/data/category/img-40.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
@@ -158,19 +181,19 @@ class DataProductSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category_store')->insert(
             [
-                ['category_id' => '1', 'store_id' => '0'],
-                ['category_id' => '2', 'store_id' => '0'],
-                ['category_id' => '3', 'store_id' => '0'],
-                ['category_id' => '4', 'store_id' => '0'],
-                ['category_id' => '5', 'store_id' => '0'],
-                ['category_id' => '6', 'store_id' => '0'],
-                ['category_id' => '7', 'store_id' => '0'],
-                ['category_id' => '8', 'store_id' => '0'],
-                ['category_id' => '9', 'store_id' => '0'],
-                ['category_id' => '10', 'store_id' => '0'],
-                ['category_id' => '11', 'store_id' => '0'],
-                ['category_id' => '12', 'store_id' => '0'],
-                ['category_id' => '13', 'store_id' => '0'],
+                ['category_id' => '1', 'store_id' => '1'],
+                ['category_id' => '2', 'store_id' => '1'],
+                ['category_id' => '3', 'store_id' => '1'],
+                ['category_id' => '4', 'store_id' => '1'],
+                ['category_id' => '5', 'store_id' => '1'],
+                ['category_id' => '6', 'store_id' => '1'],
+                ['category_id' => '7', 'store_id' => '1'],
+                ['category_id' => '8', 'store_id' => '1'],
+                ['category_id' => '9', 'store_id' => '1'],
+                ['category_id' => '10', 'store_id' => '1'],
+                ['category_id' => '11', 'store_id' => '1'],
+                ['category_id' => '12', 'store_id' => '1'],
+                ['category_id' => '13', 'store_id' => '1'],
             ]
         );
 
@@ -216,12 +239,12 @@ class DataProductSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news_store')->insert(
             [
-                ['news_id' => '1', 'store_id' => '0'],
-                ['news_id' => '2', 'store_id' => '0'],
-                ['news_id' => '3', 'store_id' => '0'],
-                ['news_id' => '4', 'store_id' => '0'],
-                ['news_id' => '5', 'store_id' => '0'],
-                ['news_id' => '6', 'store_id' => '0'],
+                ['news_id' => '1', 'store_id' => '1'],
+                ['news_id' => '2', 'store_id' => '1'],
+                ['news_id' => '3', 'store_id' => '1'],
+                ['news_id' => '4', 'store_id' => '1'],
+                ['news_id' => '5', 'store_id' => '1'],
+                ['news_id' => '6', 'store_id' => '1'],
             ]
         );
 

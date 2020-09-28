@@ -58,7 +58,7 @@
 
             <div class="checkbox input text-center remember">
               <label>
-                <input type="checkbox" name="remember" value="1"
+                <input class="checkbox" type="checkbox" name="remember" value="1"
                   {{ (old('remember')) ? 'checked' : '' }}>
                 <b>{{ trans('admin.remember_me') }}</b>
               </label>
@@ -84,7 +84,7 @@
     @push('scripts')
     <script>
       $(function () {
-        $('.input').iCheck({
+        $('.checkbox').iCheck({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
           increaseArea: '20%' /* optional */

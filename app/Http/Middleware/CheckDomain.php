@@ -18,8 +18,8 @@ class CheckDomain
     public function handle($request, Closure $next)
     {
         //Check domain exist
-        $domain = Str::finish(str_replace(['http://','https://'], '', url('/')), '/');
-        $arrDomain = AdminStore::getDomain();
+        $domain = sc_process_domain_store(url('/'));
+        $arrDomain = AdminStore::getDomainActive();
         if (!in_array($domain, $arrDomain) && sc_config_global('domain_strict') ) {
             echo view('deny_domain')->render();
             exit();

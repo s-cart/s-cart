@@ -67,6 +67,7 @@ class CreateTablesShop extends Migration
             $table->text('text')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->integer('sort')->default(0);
+            $table->integer('store_id')->default(0)->index();
             }
         );
 
@@ -93,6 +94,7 @@ class CreateTablesShop extends Migration
             $table->string('module', 100)->nullable();
             $table->tinyInteger('status')->default(0);
             $table->integer('sort')->default(0);
+            $table->integer('store_id')->default(0)->index();
             }
         );
 
@@ -631,6 +633,12 @@ class CreateTablesShop extends Migration
             }
         );
 
+        Schema::create(SC_DB_PREFIX.'shop_store_css', function (Blueprint $table) {
+            $table->text('css');
+            $table->integer('store_id')->unique();
+            }
+        );
+
     }
 
     /**
@@ -702,6 +710,8 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_category_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_news_store');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_page_store');
+        
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_store_css');
     }
 
 }

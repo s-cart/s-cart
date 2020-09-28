@@ -107,7 +107,7 @@
                 <label for="status" class="col-sm-2 col-form-label">{{ trans('api_connection.status') }}</label>
                 <div class="col-sm-10 ">
                   <div class="input-group mb-3">
-                    <input class="input" type="checkbox" name="status"  {{ old('status',(empty($api_connection['status'])?0:1))?'checked':''}}>
+                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($api_connection['status'])?0:1))?'checked':''}}>
                 </div>
                   @if ($errors->has('status'))
                   <span class="text-sm">
@@ -175,7 +175,7 @@
                               <tr  class="{{ ($tr['id'] == $id)? 'active':$id }}">
                                   @if (!empty($removeList))
                                   <td>
-                                    <input class="input" type="checkbox" class="grid-row-checkbox" data-id="{{ $tr['id']??'' }}">
+                                    <input class="checkbox" type="checkbox" class="grid-row-checkbox" data-id="{{ $tr['id']??'' }}">
                                   </td>
                                   @endif
                                   @foreach ($tr as $key => $trtd)

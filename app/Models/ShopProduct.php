@@ -39,7 +39,7 @@ class ShopProduct extends Model
     {
         return $this->belongsToMany(ShopCategory::class, ShopProductCategory::class, 'product_id', 'category_id');
     }
-    public function stories()
+    public function stores()
     {
         return $this->belongsToMany(AdminStore::class, ShopProductStore::class, 'product_id', 'store_id');
     }
@@ -208,7 +208,7 @@ class ShopProduct extends Model
             $product->attributes()->delete();
             $product->builds()->delete();
             $product->categories()->detach();
-            $product->stories()->detach();
+            $product->stores()->detach();
             }
         );
     }

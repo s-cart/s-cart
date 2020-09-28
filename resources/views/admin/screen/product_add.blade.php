@@ -199,7 +199,7 @@
                         {{-- //select category --}}
 
                         {{-- select store --}}
-                        @if (count($stories) > 1)
+                        @if (count($stores) > 1)
                         <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
                             @php
                             $listStore = [];
@@ -217,7 +217,7 @@
                                     data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
                                     name="store[]">
                                     <option value="0" {{ (in_array(0, $listStore) || !is_array(old('store'))) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
-                                    @foreach ($stories as $id => $store)
+                                    @foreach ($stores as $id => $store)
                                     <option value="{{ $id }}"
                                         {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
                                     </option>
@@ -794,9 +794,9 @@
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('product.status') }}</label>
                             <div class="col-sm-8">
                                 @if (old())
-                                <input class="input" type="checkbox" name="status" {{ ((old('status') ==='on')?'checked':'')}}>
+                                <input class="checkbox" type="checkbox" name="status" {{ ((old('status') ==='on')?'checked':'')}}>
                                 @else
-                                <input class="input" type="checkbox" name="status" checked>
+                                <input class="checkbox" type="checkbox" name="status" checked>
                                 @endif
 
                             </div>

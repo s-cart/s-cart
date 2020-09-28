@@ -165,6 +165,7 @@ class AdminBlockContentController extends Controller
             'type' => $data['type'],
             'sort' => (int) $data['sort'],
             'status' => (empty($data['status']) ? 0 : 1),
+            'store_id' => session('adminStoreId'),
         ];
         ShopBlockContent::create($dataInsert);
         //
@@ -226,6 +227,7 @@ class AdminBlockContentController extends Controller
             'type' => $data['type'],
             'sort' => (int) $data['sort'],
             'status' => (empty($data['status']) ? 0 : 1),
+            'store_id' => session('adminStoreId'),
         ];
         $layout = ShopBlockContent::find($id);
         $layout->update($dataUpdate);

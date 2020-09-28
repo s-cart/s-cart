@@ -13,12 +13,12 @@ use App\Models\ShopPageStore;
 
 class AdminPageController extends Controller
 {
-    public $languages, $stories;
+    public $languages, $stores;
 
     public function __construct()
     {
         $this->languages = ShopLanguage::getListActive();
-        $this->stories = AdminStore::getListAll();
+        $this->stores = AdminStore::getListAll();
 
     }
 
@@ -42,7 +42,7 @@ class AdminPageController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stories'] = $this->stories;
+        $data['stores'] = $this->stores;
 
         $listTh = [
             'title' => trans('page.title'),
@@ -145,7 +145,7 @@ class AdminPageController extends Controller
             'languages' => $this->languages,
             'page' => $page,
             'url_action' => sc_route('admin_page.create'),
-            'stories' => $this->stories,
+            'stores' => $this->stores,
 
         ];
 
@@ -204,7 +204,11 @@ class AdminPageController extends Controller
         ShopPageDescription::insert($dataDes);
         //Insert store
         if ($store) {
-            $page->stories()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $page->stores()->attach([0]);
+            } else {
+                $page->stores()->attach($store);
+            }
         }
 
         return redirect()->route('admin_page.index')->with('success', trans('page.admin.create_success'));
@@ -228,8 +232,8 @@ class AdminPageController extends Controller
             'languages' => $this->languages,
             'page' => $page,
             'url_action' => sc_route('admin_page.edit', ['id' => $page['id']]),
-            'stories' => $this->stories,
-            'storiesPivot' => ShopPageStore::where('page_id', $id)->pluck('store_id')->all(),
+            'stores' => $this->stores,
+            'storesPivot' => ShopPageStore::where('page_id', $id)->pluck('store_id')->all(),
         ];
         return view('admin.screen.page')
             ->with($data);
@@ -289,9 +293,13 @@ class AdminPageController extends Controller
         ShopPageDescription::insert($dataDes);
 
         //Update store
-        $page->stories()->detach();
+        $page->stores()->detach();
         if (count($store)) {
-            $page->stories()->attach($store);
+            if(is_array($store) && in_array(0, $store)) {
+                $page->stores()->attach([0]);
+            } else {
+                $page->stores()->attach($store);
+            }
         }
 
 //

@@ -12,32 +12,32 @@ class DataStoreSeeder extends Seeder
      */
     public function run()
     {
-        $storeId = empty(session('lastStoreId')) ? 0 : session('lastStoreId');
+        $storeId = empty(session('lastStoreId')) ? 1 : session('lastStoreId');
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_config')->insertOrIgnore(
             [
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_brand', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.brand', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_brand_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_brand_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_supplier', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.supplier', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_supplier_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_supplier_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_price', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.price', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_price_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_cost', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.cost', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_cost_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_cost_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_promotion', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.promotion', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_promotion_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_promotion_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_stock', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.stock', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_stock_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_stock_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_kind', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.kind', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_property', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.property', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_property_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_property_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_attribute', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.attribute', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_attribute_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_attribute_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_available', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.available', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_available_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_available_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_weight', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.weight', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_weight_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_weight_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_length', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.length', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_length_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_length_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'product_config', 'key' => 'product_display_out_of_stock', 'value' => '1', 'sort' => '19', 'detail' => 'lang::admin.product_display_out_of_stock', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config', 'key' => 'show_date_available', 'value' => '1', 'sort' => '21', 'detail' => 'lang::admin.show_date_available', 'store_id' => $storeId],
@@ -67,9 +67,9 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_name_kana_required', 'value' => '0', 'sort' => '1', 'detail' => '', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_NAME', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_LOGO', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'admin_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.LOG_SLACK_WEBHOOK_URL', 'store_id' => $storeId],
+
 
             ['group' => '', 'code' => 'display_config', 'key' => 'product_top', 'value' => '8', 'sort' => '0', 'detail' => 'lang::admin.product_top', 'store_id' => $storeId],
             ['group' => '', 'code' => 'display_config', 'key' => 'product_list', 'value' => '12', 'sort' => '0', 'detail' => 'lang::admin.list_product', 'store_id' => $storeId],
@@ -120,10 +120,120 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_page', 'value' => '[]', 'sort' => '10', 'detail' => 'lang::captcha.captcha_page', 'store_id' => $storeId],
             ['group' => '', 'code' => 'captcha_config', 'key' => 'captcha_method', 'value' => '', 'sort' => '0', 'detail' => 'lang::captcha.captcha_method', 'store_id' => $storeId],
             
-            ['group' => '', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => $storeId],
-            
-            
             ]
         );
+
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_store_css')->insertOrIgnore(
+            [
+                [
+                    'css' => '
+.sc-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: -webkit-translate(-50%, -50%);
+  transform: -moz-translate(-50%, -50%);
+  transform: -ms-translate(-50%, -50%);
+  color:#1f222b;
+  z-index: 9999;
+  background: rgba(255,255,255,0.7);
+}
+  
+#sc-loading{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: rgba(255,255,255,0.7);
+}
+/*end loading */
+  
+/*price*/
+.sc-new-price{
+  color:#FE980F;
+  font-size: 14px;
+  padding: 10px 5px;
+  font-weight:bold;
+  }
+  .sc-old-price {
+  text-decoration: line-through;
+  color: #a95d5d;
+  font-size: 13px;
+  padding: 10px;
+  }
+  /*end price*/
+.sc-product-build{
+  font-size: 20px;
+  font-weight: bold;
+}
+.sc-product-build img{
+  width: 50px;
+}
+.sc-product-group  img{
+  width: 100px;
+  cursor: pointer;
+  }
+.sc-product-group:hover{
+  box-shadow: 0px 0px 2px #999;
+}
+.sc-product-group:active{
+  box-shadow: 0px 0px 2px #ff00ff;
+}
+.sc-product-group.active{
+  box-shadow: 0px 0px 2px #ff00ff;
+}
+
+.sc-shipping-address td{
+  padding: 3px !important;
+}
+.sc-shipping-address textarea,
+.sc-shipping-address input[type="text"],
+.sc-shipping-address option{
+  width: 100%;
+  padding: 7px !important;
+}
+.row_cart>td{
+  vertical-align: middle !important;
+}
+input[type="number"]{
+  text-align: center;
+  padding:2px;
+}
+.sc-notice{
+  clear: both;
+  clear: both;
+  font-size: 20px;
+  background: #f3f3f3;
+  width: 100%;
+}
+img.new {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 0px !important;
+}
+.pointer {
+  cursor: pointer: 
+}
+.add-to-cart-list {
+  padding: 5px 10px !important;
+  margin: 2px !important;
+  letter-spacing: 0px !important;
+  font-size: 12px !important;
+  border-radius: 5px;
+}
+.help-block {
+  font-size: 12px;
+  color: red;
+  font-style: italic;
+}
+                  ',
+                    'store_id' => $storeId,
+                ]
+            ]);
     }
 }

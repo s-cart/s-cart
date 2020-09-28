@@ -15,13 +15,13 @@
                  @foreach ($emailConfig['email_action'] as $config)
                  <tr>
                    <td>{!! sc_language_render($config->detail) !!}</td>
-                   <td><input class="input-info" type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
+                   <td><input class="check-data-config" data-store="{{ $storeId }}"  type="checkbox" name="{{ $config->key }}"  {{ $config->value?"checked":"" }}></td>
                  </tr>
                @endforeach
                  @endif
                  <tr>
                   <td>{{ trans('email.email_action.forgot_password') }}</td>
-                  <td><input class="input-info" type="checkbox" checked disabled></td>
+                  <td><input class="check-data-config" data-store="{{ $storeId }}"  type="checkbox" checked disabled></td>
                 </tr>
                </tbody>
                <tfoot>

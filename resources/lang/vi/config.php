@@ -19,8 +19,10 @@ return [
     'field'                      => 'Biến môi trường',
     'value'                      => 'Giá trị',
     'title'                      => 'Cấu hình website',
-    'LOG_SLACK_WEBHOOK_URL'      => 'Thông báo lỗi tới Slack webhook',
-    'LOG_SLACK_WEBHOOK_URL_help' => 'Link https://hooks.slack.com/services/...',
+    'LOG_SLACK_WEBHOOK_URL'      => 'Gửi thông báo lỗi tới Slack',
+    'LOG_SLACK_WEBHOOK_URL_help' => 'Link https: //hooks.slack.com/services/...',
+    'GOOGLE_CHAT_WEBHOOK_URL'    => 'Gửi thông báo lỗi tới Google chat',
+    'CHATWORK_CHAT_WEBHOOK_URL'  => 'Gửi thông báo lỗi tới Chatwork',
     'SUFFIX_URL'                 => 'Hậu tố URL',
     'PREFIX_BRAND'               => 'Tiền tố trang NHÃN HIỆU',
     'PREFIX_SUPPLIER'            => 'Tiền tố trang NHÀ CUNG CẤP',
@@ -64,6 +66,7 @@ return [
         'search'          => 'Tìm kiếm',
         'add_new_title'   => 'Tạo cấu hình',
         'add_new_des'     => 'Tạo mới cấu hình',
+        'webhook'         => 'Cấu hình webhook',
     ],
 
 ];

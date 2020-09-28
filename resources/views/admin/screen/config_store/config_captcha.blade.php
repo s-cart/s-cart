@@ -8,7 +8,7 @@
            @if ($config->key == 'captcha_mode')
            <tr>
             <td>{{ sc_language_render($config->detail) }}</td>
-            <td><input type="checkbox" name="{{ $config->key }}"  {{ $config->value ? "checked":"" }}></td>
+            <td><input class="check-data-config" data-store="{{ $storeId }}" type="checkbox" name="{{ $config->key }}"  {{ $config->value ? "checked":"" }}></td>
           </tr>
            @elseif($config->key == 'captcha_page')
            <tr>

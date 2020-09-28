@@ -18,7 +18,7 @@
            @else
            <tr>
             <td>{{ sc_language_render($config['detail']) }}</td>
-            <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
+            <td><input class="check-data-config" data-store="{{ $storeId }}"  type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
           </tr>
            @endif
 
@@ -48,10 +48,10 @@
            @foreach ($productConfigAttribute as $key => $config)
            <tr>
             <td>{{ sc_language_render($config['detail']) }}</td>
-            <td><input type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
+            <td><input class="check-data-config" data-store="{{ $storeId }}"  type="checkbox" name="{{ $config['key'] }}"  {{ $config['value']?"checked":"" }}></td>
             <td>
               @if (!empty($productConfigAttributeRequired[$key.'_required']))
-              <input type="checkbox" name="{{ $productConfigAttributeRequired[$key.'_required']['key'] }}"  {{ $productConfigAttributeRequired[$key.'_required']['value']?"checked":"" }}>
+              <input class="check-data-config" data-store="{{ $storeId }}"  type="checkbox" name="{{ $productConfigAttributeRequired[$key.'_required']['key'] }}"  {{ $productConfigAttributeRequired[$key.'_required']['value']?"checked":"" }}>
               @endif
             </td>
           </tr>

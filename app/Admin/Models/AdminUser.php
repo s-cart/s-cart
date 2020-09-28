@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use App\Models\AdminStore;
 
 class AdminUser extends Model implements AuthenticatableContract
 {
@@ -19,6 +20,7 @@ class AdminUser extends Model implements AuthenticatableContract
     protected static $allPermissions = null;
     protected static $allViewPermissions = null;
     protected static $canChangeConfig = null;
+    protected static $listStoreId = null;
 
     /**
      * A user has and belongs to many roles.
@@ -38,6 +40,16 @@ class AdminUser extends Model implements AuthenticatableContract
     public function permissions()
     {
         return $this->belongsToMany(AdminPermission::class, SC_DB_PREFIX.'admin_user_permission', 'user_id', 'permission_id');
+    }
+
+    /**
+     * A user has and belongs to many stores.
+     *
+     * @return BelongsToMany
+     */
+    public function stores()
+    {
+        return $this->belongsToMany(AdminStore::class, SC_DB_PREFIX.'admin_user_store', 'user_id', 'store_id');
     }
 
     /**
@@ -67,6 +79,7 @@ class AdminUser extends Model implements AuthenticatableContract
             }
             $model->roles()->detach();
             $model->permissions()->detach();
+            $model->stores()->detach();
         });
     }
 
@@ -256,6 +269,30 @@ class AdminUser extends Model implements AuthenticatableContract
         } else {
             return self::$canChangeConfig;
         }
+    }
+
+    /**
+     * Get list store id of user admin
+     *
+     * @return  [type]  [return description]
+     */
+    public static function listStoreId() {
+        if (self::$listStoreId === null) {
+            $admin = \Admin::user();
+            $allStore = array_merge([0], AdminStore::pluck('id')->all());
+            if($admin->isAdministrator() || $admin->isViewAll()) {
+                $arrStore =  $allStore;
+            } else {
+                $arrStore = AdminUserStore::where('user_id', $admin->id)->pluck('store_id')->all();
+                //id 0: all store
+                if(in_array(0, $arrStore)) {
+                    $arrStore =  $allStore;
+                }
+            }
+            asort($arrStore);
+            self::$listStoreId = $arrStore;
+        }
+        return self::$listStoreId;
     }
 
 }
