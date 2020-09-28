@@ -1,0 +1,11 @@
+{
+    "name": "Cms content module",
+    "image": "images/logo.jpg",
+    "auth": "Naruto",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Cms",
+    "configKey": "Content",
+    "version": "3.0"
+}
