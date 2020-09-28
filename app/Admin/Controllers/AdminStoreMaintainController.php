@@ -23,7 +23,7 @@ class AdminStoreMaintainController extends Controller
  */
     public function index()
     {
-        $id = session('adminStoreId');;
+        $id = session('adminStoreId');
         $maintain = AdminStore::find($id);
         if ($maintain === null) {
             return 'no data';
@@ -46,7 +46,7 @@ class AdminStoreMaintainController extends Controller
  */
     public function postEdit()
     {
-        $id = 1;
+        $id = session('adminStoreId');
         $data = request()->all();
         $dataOrigin = request()->all();
         $validator = Validator::make($dataOrigin, [

@@ -20,10 +20,6 @@
     <meta property="og:description" content="{{ $description??sc_store('description') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- css default for item s-cart -->
-    @include($sc_templatePath.'.common.css')
-    <!--//end css defaut -->
-
     <!--Module meta -->
     @isset ($sc_blocksContent['meta'])
     @foreach ( $sc_blocksContent['meta'] as $layout)
@@ -44,6 +40,9 @@
     <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/fonts.css')}}">
     <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/style.css')}}">
+    <style>
+        {{ sc_store_css() }}
+    </style>
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
     @stack('styles')
   </head>

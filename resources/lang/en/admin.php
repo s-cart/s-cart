@@ -311,6 +311,7 @@ return [
             'ADMIN_MARKETING' => 'MARKETING',
             'ADMIN_SHOP_SETTING' => 'SHOP SETTING',
             'webhook' => 'Webhook',
+            'css' => 'Css',
       ],
 
       'status'                            => 'Status',

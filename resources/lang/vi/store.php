@@ -31,6 +31,7 @@ return [
     'deny_help_1'      => 'Xin lỗi, tên miền này không tồn tại trên hệ thống!',
     'deny_help_2'      => 'trở về trang chủ:',
     'deny_help_3'      => 'Bấm vào đây',
+    'css'              => 'CSS cho cửa hàng',
     'admin' => [
         'title'               => 'Thông tin cửa hàng',
         'config_store'        => 'Cấu hình cửa hàng #:id',

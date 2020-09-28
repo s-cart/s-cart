@@ -32,6 +32,7 @@ return [
     'deny_help_1'      => 'Sorry, this domain does not exist on the system!',
     'deny_help_2'      => 'Return to home page:',
     'deny_help_3'      => 'click here',
+    'css'              => 'CSS for store',
     'admin' => [
         'title'               => 'Store infomation',
         'config_store'        => 'Config store #:id',

@@ -35,9 +35,7 @@
                                         class="col-sm-2 col-form-label">{{ trans('store_maintain.admin.description') }}</label>
                                     <div class="col-sm-8">
                                         <textarea id="{{ $code }}__maintain_content" class="editor"
-                                            name="descriptions[{{ $code }}][maintain_content]">
-                                                {{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}
-                                            </textarea>
+                                            name="descriptions[{{ $code }}][maintain_content]">{{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}</textarea>
                                         @if ($errors->has('descriptions.'.$code.'.maintain_content'))
                                         <span class="form-text">
                                             <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_content') }}

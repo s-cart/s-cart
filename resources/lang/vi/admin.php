@@ -309,6 +309,7 @@ return [
         'ADMIN_MARKETING' => 'MARKETING',
         'ADMIN_SHOP_SETTING' => 'THIẾT LẬP CỬA HÀNG',
         'webhook' => 'Webhook',
+        'css' => 'Css',
     ],
     //=======++===========
     'status'           => 'Trạng thái',

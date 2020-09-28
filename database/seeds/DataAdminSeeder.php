@@ -44,6 +44,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 21, 'parent_id' => 25, 'sort' => 0, 'title' => 'lang::subscribe.admin.title', 'icon' => 'fas fa-user-circle', 'uri' => 'admin::subscribe', 'key' => null, 'type' => 0],
             ['id' => 22, 'parent_id' => 67, 'sort' => 1, 'title' => 'lang::block_content.admin.title', 'icon' => 'far fa-newspaper', 'uri' => 'admin::block_content', 'key' => null, 'type' => 0],
             ['id' => 23, 'parent_id' => 67, 'sort' => 2, 'title' => 'lang::admin.menu_titles.block_link', 'icon' => 'fab fa-chrome', 'uri' => 'admin::link', 'key' => null, 'type' => 0],
+            ['id' => 44, 'parent_id' => 67, 'sort' => 2, 'title' => 'lang::admin.menu_titles.css', 'icon' => 'far fa-file-code', 'uri' => 'admin::store_css', 'key' => null, 'type' => 0],
             ['id' => 24, 'parent_id' => 4, 'sort' => 0, 'title' => 'lang::admin.menu_titles.template_manager', 'icon' => 'fas fa-columns', 'uri' => 'admin::template', 'key' => null, 'type' => 0],
             ['id' => 25, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::admin.menu_titles.ADMIN_MARKETING', 'icon' => 'fas fa-sort-amount-up', 'uri' => '', 'key' => 'MARKETING', 'type' => 0],
             ['id' => 26, 'parent_id' => 65, 'sort' => 1, 'title' => 'lang::store.admin.title', 'icon' => 'fas fa-h-square', 'uri' => 'admin::store', 'key' => null, 'type' => 0],

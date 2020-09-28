@@ -5,6 +5,7 @@ use App\Models\AdminStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
+use App\Models\ShopStoreCss;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 /*
@@ -190,6 +191,16 @@ if (!function_exists('sc_store')) {
             return $allStoreInfo;
         }
         return $allStoreInfo[$key] ?? null;
+    }
+}
+
+if (!function_exists('sc_store_css')) {
+    function sc_store_css()
+    {
+        $css =  ShopStoreCss::where('store_id', config('app.storeId'))->first();
+        if($css) {
+            return $css->css;
+        }
     }
 }
 
