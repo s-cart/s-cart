@@ -27,7 +27,7 @@ class AdminStoreCssController extends Controller
             'css' => $cssContent->css,
             'url_action' => sc_route('admin_store_css.index'),
         ];
-        return view('admin.screen.css')
+        return view('admin.screen.store_css')
             ->with($data);
     }
 
