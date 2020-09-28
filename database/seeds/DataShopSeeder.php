@@ -179,23 +179,25 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_block_content')->insert(
             [
-                ['name' => 'Facebook code', 'position' => 'top', 'page' => '*', 'type' => 'html', 'text' => '<div id="fb-root"></div>
-    <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = \'//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473\';
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, \'script\', \'facebook-jssdk\'));
-    </script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
-                ['name' => 'Google Analytics', 'position' => 'header', 'page' => '*', 'type' => 'html', 'text' => '<!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128658138-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag(\'js\', new Date());
-    gtag(\'config\', \'UA-128658138-1\');
-    </script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
+                ['name' => 'Facebook code', 'position' => 'top', 'page' => '*', 'type' => 'html', 'text' => '
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = \'//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473\';
+fjs.parentNode.insertBefore(js, fjs);
+}(document, \'script\', \'facebook-jssdk\'));
+</script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
+                ['name' => 'Google Analytics', 'position' => 'header', 'page' => '*', 'type' => 'html', 'text' => '
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128658138-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag(\'js\', new Date());
+gtag(\'config\', \'UA-128658138-1\');
+</script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
 
                 ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1', 'store_id' => 1],
                 ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3', 'store_id' => 1],
