@@ -8,7 +8,7 @@ use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
 use App\Plugins\Cms\Content\Models\CmsContentDescription;
 use App\Plugins\Cms\Content\AppConfig;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use Validator;
 
 class CmsContentController extends Controller

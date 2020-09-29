@@ -3,7 +3,7 @@
 namespace App\Plugins\Cms\Content;
 
 use App\Admin\Models\AdminMenu;
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
 use App\Plugins\Cms\Content\Models\CmsImage;

@@ -2,7 +2,7 @@
 #App\Plugins\Payment\Cash\AppConfig.php
 namespace App\Plugins\Payment\Cash;
 
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {

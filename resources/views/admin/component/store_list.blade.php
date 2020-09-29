@@ -1,5 +1,5 @@
 @php
-   $stores = \App\Models\AdminStore::getDomainActive();
+   $stores = \App\Admin\Models\AdminStore::getDomainActive();
 @endphp
 <li class="nav-item dropdown">
     @if (count($stores) == 1)

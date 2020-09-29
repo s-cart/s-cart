@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
-use App\Models\AdminStore;
+use App\Models\ShopStore;
 
 class AdminUser extends Model implements AuthenticatableContract
 {
@@ -49,7 +49,7 @@ class AdminUser extends Model implements AuthenticatableContract
      */
     public function stores()
     {
-        return $this->belongsToMany(AdminStore::class, SC_DB_PREFIX.'admin_user_store', 'user_id', 'store_id');
+        return $this->belongsToMany(ShopStore::class, SC_DB_PREFIX.'admin_user_store', 'user_id', 'store_id');
     }
 
     /**
@@ -279,7 +279,7 @@ class AdminUser extends Model implements AuthenticatableContract
     public static function listStoreId() {
         if (self::$listStoreId === null) {
             $admin = \Admin::user();
-            $allStore = array_merge([0], AdminStore::pluck('id')->all());
+            $allStore = array_merge([0], ShopStore::pluck('id')->all());
             if($admin->isAdministrator() || $admin->isViewAll()) {
                 $arrStore =  $allStore;
             } else {

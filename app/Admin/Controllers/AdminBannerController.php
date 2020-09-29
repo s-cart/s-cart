@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopBanner;
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopBannerStore;
 class AdminBannerController extends Controller
 {

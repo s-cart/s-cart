@@ -3,17 +3,9 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminStore;
-use App\Models\AdminStoreDescription;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopLanguage;
 use App\Models\ShopCurrency;
-use App\Models\AdminConfig;
-use App\Models\ShopTax;
-use Validator;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Artisan;
-use DB;
 
 class AdminStoreController extends Controller
 {
@@ -77,10 +69,14 @@ class AdminStoreController extends Controller
 
             
         } else {
+            $dataUpdate = [
+                'storeId' => $storeId,
+                'lang' => $lang,
+                'name' => $name,
+                'value' => $value,
+            ];
             try {
-                AdminStoreDescription::where('store_id', $storeId)
-                    ->where('lang', $lang)
-                    ->update([$name => $value]);
+                AdminStore::updateDescription($dataUpdate);
                 $error = 0;
             } catch (\Throwable $e) {
                 $error = 1;

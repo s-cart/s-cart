@@ -1,6 +1,6 @@
 <?php
-#app/Models/AdminConfig.php
-namespace App\Models;
+#app/Admin/Models/AdminConfig.php
+namespace App\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Cache;
@@ -126,5 +126,36 @@ class AdminConfig extends Model
                 ->all();
         }
         return self::$getAllStore;
+    }
+
+    /**
+     * [getListConfigByCode description]
+     *
+     * @param   [array]$code     [$code description]
+     *
+     * @return  [type]         [return description]
+     */
+    public static function getListConfigByCode(array $data) {
+        if(empty($data['code'])) {
+            return null;
+        }
+        if(is_array($data['code'])) {
+            $data = self::whereIn('code', $data['code']);
+        } else {
+            $data = self::where('code', $data['code']);
+        }
+        $storeId = $data['storeId'] ?? 0;
+        $Sort    = $data['Sort'] ?? 'desc';
+        $groupBy = $data['groupBy'] ?? null;
+        $keyBy   = $data['keyBy'] ?? null;
+        $data = $data->where('store_id', $storeId)
+        ->orderBy('sort', $Sort);
+        if($groupBy) {
+            $data = $data->groupBy($groupBy);
+        }
+        elseif($keyBy) {
+            $data = $data->keyBy($keyBy);
+        }
+        return $data;
     }
 }

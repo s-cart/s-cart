@@ -8,7 +8,7 @@ use App\Models\ShopPage;
 use App\Models\ShopPageDescription;
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopPageStore;
 
 class AdminPageController extends Controller

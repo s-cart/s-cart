@@ -1,10 +1,11 @@
 <?php
-#app/Models/AdminStore.php
+#app/Models/ShopStore.php
 namespace App\Models;
 
+use App\Admin\Models\AdminConfig;
 use Illuminate\Database\Eloquent\Model;
 use Cache;
-class AdminStore extends Model
+class ShopStore extends Model
 {
     public $timestamps = false;
     public $table = SC_DB_PREFIX.'admin_store';
@@ -14,7 +15,7 @@ class AdminStore extends Model
     
     public function descriptions()
     {
-        return $this->hasMany(AdminStoreDescription::class, 'store_id', 'id');
+        return $this->hasMany(ShopStoreDescription::class, 'store_id', 'id');
     }
 
     public function products()
@@ -78,15 +79,6 @@ class AdminStore extends Model
                 ->keyBy('id');
         }
         return self::$getAll;
-    }
-
-    /**
-     * Get all template used
-     *
-     * @return  [type]  [return description]
-     */
-    public static function getAllTemplateUsed() {
-        return self::pluck('template')->all();
     }
 
     /**

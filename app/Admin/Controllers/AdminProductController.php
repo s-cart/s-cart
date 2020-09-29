@@ -18,7 +18,7 @@ use App\Models\ShopProductGroup;
 use App\Models\ShopProductImage;
 use App\Models\ShopSupplier;
 use App\Models\ShopProductStore;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use Validator;
 
 class AdminProductController extends Controller

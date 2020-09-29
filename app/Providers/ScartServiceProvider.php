@@ -10,7 +10,7 @@ use App\Models\ShopBrand;
 use App\Models\ShopSupplier;
 use App\Models\ShopNews;
 use App\Models\ShopPage;
-use App\Models\AdminStore;
+use App\Models\ShopStore;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 class ScartServiceProvider extends ServiceProvider
@@ -61,7 +61,7 @@ class ScartServiceProvider extends ServiceProvider
     {
         //Check domain exist
         $domain = sc_process_domain_store(url('/'));
-        $arrDomain = AdminStore::getDomainActive();
+        $arrDomain = ShopStore::getDomainActive();
         $storeId = 1;
         if (in_array($domain, $arrDomain)) {
             $storeId =  array_search($domain, $arrDomain);

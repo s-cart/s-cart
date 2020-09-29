@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Models\ShopLanguage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -16,13 +16,8 @@ class AdminCacheConfigController extends Controller
             'title' => trans('cache.config_manager.title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',        ];
-
-        $obj = (new AdminConfig)
-            ->where('code', 'cache')
-            ->where('store_id', 0)
-            ->orderBy('sort', 'desc')
-            ->get();
-        $data['configs'] = $obj;
+        $configs = AdminConfig::getListConfigByCode(['code' => 'cache']);
+        $data['configs'] = $configs;
         return view('admin.screen.cache_config')
             ->with($data);
     }
