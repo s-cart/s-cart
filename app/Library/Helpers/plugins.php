@@ -36,7 +36,7 @@ if (!function_exists('sc_get_plugin_installed')) {
      */
     function sc_get_plugin_installed($code = null, $onlyActive = true)
     {
-        return \App\Models\AdminConfig::getPluginCode($code, $onlyActive);
+        return \App\Admin\Models\AdminConfig::getPluginCode($code, $onlyActive);
     }
 }
 

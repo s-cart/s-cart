@@ -8,7 +8,7 @@ use App\Models\ShopCategoryDescription;
 use App\Models\ShopLanguage;
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopCategoryStore;
 class AdminCategoryController extends Controller
 {

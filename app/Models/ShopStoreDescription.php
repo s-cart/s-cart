@@ -1,10 +1,10 @@
 <?php
-#app/Models/AdminStoreDescription.php
+#app/Models/ShopStoreDescription.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminStoreDescription extends Model
+class ShopStoreDescription extends Model
 {
     protected $primaryKey = ['lang', 'store_id'];
     public $incrementing = false;

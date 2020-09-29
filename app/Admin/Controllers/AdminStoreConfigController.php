@@ -6,7 +6,7 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\ShopLanguage;
 use App\Models\ShopCurrency;
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Models\ShopTax;
 
 class AdminStoreConfigController extends Controller
@@ -39,68 +39,74 @@ class AdminStoreConfigController extends Controller
         ];
 
         // Customer config
-        $customerConfigs = (new AdminConfig)
-            ->where('code', 'customer_config_attribute')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key')
-            ->toArray();
-        $customerConfigsRequired = (new AdminConfig)
-            ->where('code', 'customer_config_attribute_required')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key')
-            ->toArray();
+        $dataCustomerConfig = [
+            'code' => 'customer_config_attribute',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $customerConfigs = AdminConfig::getListConfigByCode($dataCustomerConfig);
+        
+        $dataCustomerConfigRequired = [
+            'code' => 'customer_config_attribute_required',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $customerConfigsRequired = AdminConfig::getListConfigByCode($dataCustomerConfigRequired);
         //End customer
 
         //Product config
         $taxs = ShopTax::pluck('name', 'id')->toArray();
         $taxs[0] = trans('tax.admin.non_tax');
-        $productConfig = (new AdminConfig)
-            ->where('code', 'product_config')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        $productConfigAttribute = (new AdminConfig)
-            ->where('code', 'product_config_attribute')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        $productConfigAttributeRequired = (new AdminConfig)
-            ->where('code', 'product_config_attribute_required')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        $orderConfig = (new AdminConfig)
-            ->where('code', 'order_config')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        $configDisplay = (new AdminConfig)
-            ->where('code', 'display_config')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        $configCaptcha = (new AdminConfig)
-            ->where('code', 'captcha_config')
-            ->where('store_id', $id)
-            ->orderBy('sort', 'desc')
-            ->get()
-            ->keyBy('key');
-        //Email config
-        $emailConfig = (new AdminConfig)
-            ->whereIn('code', ['email_action', 'smtp_config'])
-            ->where('store_id', $id)
-            ->orderBy('sort', 'asc')
-            ->get()
-            ->groupBy('code');
+
+        $productConfigQuery = [
+            'code' => 'product_config',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $productConfig = AdminConfig::getListConfigByCode($productConfigQuery);
+
+        $productConfigAttributeQuery = [
+            'code' => 'product_config_attribute',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $productConfigAttribute = AdminConfig::getListConfigByCode($productConfigAttributeQuery);
+
+        $productConfigAttributeRequiredQuery = [
+            'code' => 'product_config_attribute_required',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $productConfigAttributeRequired = AdminConfig::getListConfigByCode($productConfigAttributeRequiredQuery);
+
+        $orderConfigQuery = [
+            'code' => 'order_config',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $orderConfig = AdminConfig::getListConfigByCode($orderConfigQuery);
+
+        $configDisplayQuery = [
+            'code' => 'display_config',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $configDisplay = AdminConfig::getListConfigByCode($configDisplayQuery);
+
+        $configCaptchaQuery = [
+            'code' => 'captcha_config',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $configCaptcha = AdminConfig::getListConfigByCode($configCaptchaQuery);
+
+        $emailConfigQuery = [
+            'code' => 'smtp_config',
+            'storeId' => $id,
+            'keyBy' => 'key',
+        ];
+        $emailConfig = AdminConfig::getListConfigByCode($emailConfigQuery);
+
         $data['emailConfig'] = $emailConfig;
         $data['smtp_method'] = ['' => 'None Secirity', 'TLS' => 'TLS', 'SSL' => 'SSL'];
         $data['captcha_page'] = [

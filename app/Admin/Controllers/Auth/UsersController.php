@@ -8,7 +8,7 @@ use App\Admin\Models\AdminRole;
 use App\Admin\Models\AdminUser;
 use App\Admin\Models\AdminUserStore;
 use App\Http\Controllers\Controller;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use Validator;
 
 class UsersController extends Controller

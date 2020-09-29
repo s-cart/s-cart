@@ -7,7 +7,7 @@ use App\Plugins\Cms\Content\Models\CmsContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ModelTrait;
 use Illuminate\Support\Facades\DB;
 use Cache;

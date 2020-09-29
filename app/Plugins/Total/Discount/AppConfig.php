@@ -4,7 +4,7 @@ namespace App\Plugins\Total\Discount;
 
 use App\Plugins\Total\Discount\Models\PluginModel;
 use App\Plugins\Total\Discount\Controllers\FrontController;
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {

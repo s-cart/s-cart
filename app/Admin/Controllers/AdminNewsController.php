@@ -8,7 +8,7 @@ use App\Models\ShopNews;
 use App\Models\ShopNewsDescription;
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopNewsStore;
 
 class AdminNewsController extends Controller

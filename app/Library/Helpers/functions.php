@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\AdminConfig;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminConfig;
+use App\Models\ShopStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
 use App\Models\ShopLink;
@@ -165,7 +165,7 @@ if (!function_exists('sc_store')) {
         if (is_array($key)) {
             if (count($key) == 1) {
                 foreach ($key as $k => $v) {
-                    return AdminStore::where('store_id', $store)->update([$k => $v]);
+                    return ShopStore::where('store_id', $store)->update([$k => $v]);
                 }
             } else {
                 return false;
@@ -175,7 +175,7 @@ if (!function_exists('sc_store')) {
 
         $allStoreInfo = [];
         try {
-            $allStoreInfo = AdminStore::getListAll()[$store]->toArray() ?? [];
+            $allStoreInfo = ShopStore::getListAll()[$store]->toArray() ?? [];
         } catch(\Throwable $e) {
             //
         }

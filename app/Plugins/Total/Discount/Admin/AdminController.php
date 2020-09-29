@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 class AdminController extends Controller
 {
     public $plugin;

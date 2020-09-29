@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\AdminStore;
+use App\Models\ShopStore;
 class PluginModel extends Model
 {
     public $timestamps    = false;
@@ -35,7 +35,7 @@ class PluginModel extends Model
 
     public function stores()
     {
-        return $this->belongsToMany(AdminStore::class, $this->table_store, $this->table.'_id', 'store_id');
+        return $this->belongsToMany(ShopStore::class, $this->table_store, $this->table.'_id', 'store_id');
     }
 
     protected static function boot()

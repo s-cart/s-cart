@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use Illuminate\Support\Facades\File;
 
 class AdminTemplateController extends Controller
@@ -41,7 +41,7 @@ class AdminTemplateController extends Controller
             File::deleteDirectory(public_path('templates/'.$key));
             File::deleteDirectory(resource_path('views/templates/'.$key));
             $response = ['error' => 0, 'msg' => 'Remove template success'];
-        } catch(\Exception $e) {
+        } catch(\Throwable $e) {
             $response = ['error' => 0, 'msg' => $e->getMessage()];
         }
         return response()->json($response);
@@ -107,7 +107,7 @@ class AdminTemplateController extends Controller
                         File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/public'), public_path('templates/'.$configKey));
                         File::copyDirectory(storage_path('tmp/'.$pathTmp.'/'.$folderName.'/src'), resource_path('views/templates/'.$configKey));
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
-                    } catch(\Exception $e) {
+                    } catch(\Throwable $e) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         return redirect()->back()->with('error', $e->getMessage());
                     }

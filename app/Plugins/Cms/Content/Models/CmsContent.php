@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Cache;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use Illuminate\Support\Facades\DB;
 use App\Models\ModelTrait;
 

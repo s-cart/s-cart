@@ -7,7 +7,7 @@ use App\Models\ShopLanguage;
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsCategoryDescription;
 use App\Plugins\Cms\Content\AppConfig;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 
 use Validator;
 

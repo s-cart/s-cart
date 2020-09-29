@@ -3,10 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminStore;
+use App\Admin\Models\AdminStore;
 use App\Models\ShopLanguage;
-use App\Models\AdminStoreDescription;
-use Illuminate\Http\Request;
 use Validator;
 
 class AdminStoreMaintainController extends Controller
@@ -60,8 +58,13 @@ class AdminStoreMaintainController extends Controller
         }
         //Edit
         foreach ($data['descriptions'] as $code => $row) {
-            (new AdminStoreDescription)->where('store_id', $id)->where('lang', $code)
-            ->update(['maintain_content' => $row['maintain_content']]);
+            $dataUpdate = [
+                'storeId' => $id,
+                'lang' => $code,
+                'name' => 'maintain_content',
+                'value' => $row['maintain_content'],
+            ];
+            AdminStore::updateDescription($dataUpdate);
         }
 //
         return redirect()->route('admin_store_maintain.index')->with('success', trans('store_maintain.admin.edit_success'));
