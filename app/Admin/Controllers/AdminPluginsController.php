@@ -160,6 +160,13 @@ class AdminPluginsController extends Controller
                     $configGroup = $config['configGroup'] ?? '';
                     $configCode = $config['configCode'] ?? '';
                     $configKey = $config['configKey'] ?? '';
+                    $scartVersion = $config['scartVersion'] ?? [];
+
+                    if (is_array($scartVersion) && count($scartVersion) && !in_array(config('scart.version'), $scartVersion)) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('plugin.check_version'));
+                    }
+
                     if (!$configGroup || !$configCode || !$configKey) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         return redirect()->back()->with('error', trans('plugin.error_config'));

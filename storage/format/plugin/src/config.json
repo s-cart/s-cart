@@ -7,5 +7,6 @@
     "configGroup": "Plugins",
     "configCode": "Plugin_Code",
     "configKey": "Plugin_Key",
-    "version": "1.0"
+    "version": "1.0",
+    "scartVersion": []
 }
