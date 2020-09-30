@@ -156,6 +156,6 @@ class AdminConfig extends Model
         elseif($keyBy) {
             $data = $data->keyBy($keyBy);
         }
-        return $data;
+        return $data->toArray();
     }
 }
