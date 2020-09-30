@@ -101,9 +101,9 @@ class AdminStoreConfigController extends Controller
         $configCaptcha = AdminConfig::getListConfigByCode($configCaptchaQuery);
 
         $emailConfigQuery = [
-            'code' => 'smtp_config',
+            'code' => ['smtp_config', 'email_action'],
             'storeId' => $id,
-            'keyBy' => 'key',
+            'groupBy' => 'code',
         ];
         $emailConfig = AdminConfig::getListConfigByCode($emailConfigQuery);
 
