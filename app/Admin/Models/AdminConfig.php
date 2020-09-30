@@ -135,21 +135,22 @@ class AdminConfig extends Model
      *
      * @return  [type]         [return description]
      */
-    public static function getListConfigByCode(array $data) {
-        if(empty($data['code'])) {
+    public static function getListConfigByCode(array $dataQuery) {
+        if(empty($dataQuery['code'])) {
             return null;
         }
-        if(is_array($data['code'])) {
-            $data = self::whereIn('code', $data['code']);
+        if(is_array($dataQuery['code'])) {
+            $data = self::whereIn('code', $dataQuery['code']);
         } else {
-            $data = self::where('code', $data['code']);
+            $data = self::where('code', $dataQuery['code']);
         }
-        $storeId = $data['storeId'] ?? 0;
-        $Sort    = $data['Sort'] ?? 'desc';
-        $groupBy = $data['groupBy'] ?? null;
-        $keyBy   = $data['keyBy'] ?? null;
+        $storeId = $dataQuery['storeId'] ?? 0;
+        $Sort    = $dataQuery['Sort'] ?? 'desc';
+        $groupBy = $dataQuery['groupBy'] ?? null;
+        $keyBy   = $dataQuery['keyBy'] ?? null;
         $data = $data->where('store_id', $storeId)
-        ->orderBy('sort', $Sort);
+        ->orderBy('sort', $Sort)
+        ->get();
         if($groupBy) {
             $data = $data->groupBy($groupBy);
         }
