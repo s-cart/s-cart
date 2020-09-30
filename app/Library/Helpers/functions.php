@@ -4,6 +4,7 @@ use App\Admin\Models\AdminConfig;
 use App\Models\ShopStore;
 use App\Models\ShopBlockContent;
 use App\Models\ShopLanguage;
+use App\Admin\Models\AdminRole;
 use App\Models\ShopLink;
 use App\Models\ShopStoreCss;
 use Illuminate\Support\Facades\Route;
@@ -483,5 +484,24 @@ if (!function_exists('sc_process_domain_store')) {
         $domain = Str::finish(str_replace(['http://', 'https://'], '', $domain), '/');
         $domain = Str::lower($domain);
         return $domain;
+    }
+}
+
+if (!function_exists('sc_get_id_group_seller')) {
+    /**
+     * Process domain store
+     *
+     * @param   [string]  $domain
+     *
+     * @return  [string]         [$domain]
+     */
+    function sc_get_id_group_seller()
+    {
+        $checkData  = AdminRole::where('slug','seller')->first();
+        if($checkData) {
+            return $checkData->id;
+        } else {
+            return 0;
+        }
     }
 }
