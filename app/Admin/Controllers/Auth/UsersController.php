@@ -210,10 +210,11 @@ class UsersController extends Controller
         } else if(in_array(2, $roles)) {
             // If group onlyview
             $roles = [2];
-        } else if(in_array(sc_get_id_group_seller(), $roles)) {
-            $roles = [sc_get_id_group_seller()];
+        }else if(in_array(3, $roles)) {
+            // If group seller
+            $roles = [3];
         }
-        if(in_array(1, $roles) || in_array(2, $roles) || in_array(sc_get_id_group_seller(), $roles)) {
+        if(in_array(1, $roles) || in_array(2, $roles) || in_array(3, $roles)) {
             $permission = [];
         }
         //End process role special
@@ -305,23 +306,7 @@ class UsersController extends Controller
 
         if(!in_array($user->id, SC_GUARD_ADMIN)) {
             $roles = $data['roles'] ?? [];
-            $permission = $data['permission'] ?? [];
-
-            //Process role special
-            if(in_array(1, $roles)) {
-                // If group admin
-                $roles = [1];
-            } else if(in_array(2, $roles)) {
-                // If group onlyview
-                $roles = [2];
-            } else if(in_array(sc_get_id_group_seller(), $roles)) {
-                $roles = [sc_get_id_group_seller()];
-            }
-            if(in_array(1, $roles) || in_array(2, $roles) || in_array(sc_get_id_group_seller(), $roles)) {
-                $permission = [];
-            }
-            //End process role special
-            
+            $permission = $data['permission'] ?? []; 
             $user->roles()->detach();
             $user->permissions()->detach();
             //Insert roles

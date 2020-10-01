@@ -76,10 +76,10 @@ class RoleController extends Controller
                 'permission' => $showPermission,
                 'created_at' => $row['created_at'],
                 'updated_at' => $row['updated_at'],
-                'action' => ((in_array($row['id'], SC_GUARD_ROLES) || in_array($row['slug'], ['seller'])) ? '' : '
+                'action' => ((in_array($row['id'], SC_GUARD_ROLES)) ? '' : '
                     <a href="' . sc_route('admin_role.edit', ['id' => $row['id']]) . '"><span title="' . trans('role.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                     ') 
-                    . ((in_array($row['id'], SC_GUARD_ROLES) || in_array($row['slug'], ['seller'])) ? '' : '<span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>')
+                    . ((in_array($row['id'], SC_GUARD_ROLES)) ? '' : '<span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></span>')
                 ,
             ];
         }

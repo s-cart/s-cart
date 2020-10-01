@@ -486,22 +486,3 @@ if (!function_exists('sc_process_domain_store')) {
         return $domain;
     }
 }
-
-if (!function_exists('sc_get_id_group_seller')) {
-    /**
-     * Process domain store
-     *
-     * @param   [string]  $domain
-     *
-     * @return  [string]         [$domain]
-     */
-    function sc_get_id_group_seller()
-    {
-        $checkData  = AdminRole::where('slug','seller')->first();
-        if($checkData) {
-            return $checkData->id;
-        } else {
-            return 0;
-        }
-    }
-}
