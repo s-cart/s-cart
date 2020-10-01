@@ -16,7 +16,7 @@ define('SC_GUARD_LANGUAGE', ['1', '2']); // vi, en
 // list ID currency guard
 define('SC_GUARD_CURRENCY', ['1', '2']); // vndong , usd
 // list ID ROLES guard
-define('SC_GUARD_ROLES', ['1', '2']); // admin, only view
+define('SC_GUARD_ROLES', ['1', '2', '3']); // admin, only view, seller
 
 /**
  * Admin define

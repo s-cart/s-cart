@@ -80,10 +80,13 @@ class AdminPluginsController extends Controller
     {
         $key = request('key');
         $code = request('code');
+        $onlyRemoveData = request('onlyRemoveData');
         $namespace = sc_get_class_plugin_config($code, $key);
         $response = (new $namespace)->uninstall();
-        File::deleteDirectory(app_path('Plugins/'.$code.'/'.$key));
-        File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
+        if(!$onlyRemoveData) {
+            File::deleteDirectory(app_path('Plugins/'.$code.'/'.$key));
+            File::deleteDirectory(public_path('Plugins/'.$code.'/'.$key));
+        }
         return response()->json($response);
     }
 
@@ -160,6 +163,13 @@ class AdminPluginsController extends Controller
                     $configGroup = $config['configGroup'] ?? '';
                     $configCode = $config['configCode'] ?? '';
                     $configKey = $config['configKey'] ?? '';
+                    $scartVersion = $config['scartVersion'] ?? [];
+
+                    if (is_array($scartVersion) && count($scartVersion) && !in_array(config('scart.version'), $scartVersion)) {
+                        File::deleteDirectory(storage_path('tmp/'.$pathTmp));
+                        return redirect()->back()->with('error', trans('plugin.check_version'));
+                    }
+
                     if (!$configGroup || !$configCode || !$configKey) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
                         return redirect()->back()->with('error', trans('plugin.error_config'));

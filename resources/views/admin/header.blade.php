@@ -27,9 +27,14 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      @include('admin.component.admin_select_store')
-
-      @include('admin.component.store_list')
+      @if (sc_config_global('MultiStorePro'))
+        @include('admin.component.admin_select_store')
+        @include('admin.component.store_list')
+      @else
+      <a class="nav-link" href="{{ route('home') }}" target=_new>
+        <i class="fas fa-home"></i>
+      </a> 
+      @endif
 
       @include('admin.component.notice')
 

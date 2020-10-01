@@ -1,12 +1,12 @@
 <?php
 /**
- * Format plugin for S-Cart 3.x
+ * Version 3.1
  */
 #App\Plugins\Plugin_Code\Plugin_Key\AppConfig.php
 namespace App\Plugins\Plugin_Code\Plugin_Key;
 
 use App\Plugins\Plugin_Code\Plugin_Key\Models\PluginModel;
-use App\Models\AdminConfig;
+use App\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
@@ -18,6 +18,7 @@ class AppConfig extends ConfigDefault
     	$this->configGroup = $config['configGroup'];
     	$this->configCode = $config['configCode'];
         $this->configKey = $config['configKey'];
+        $this->scartVersion = $config['scartVersion'];
         //Path
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
         //Language

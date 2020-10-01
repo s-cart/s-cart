@@ -123,7 +123,7 @@ class CreateTablesAdmin extends Migration
             $table->string('office', 300)->nullable();
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
-            $table->string('domain', 100)->unique();
+            $table->string('domain', 100)->nullable()->unique();
             $table->string('language', 10);
             $table->string('timezone', 50);
             $table->string('currency', 10);

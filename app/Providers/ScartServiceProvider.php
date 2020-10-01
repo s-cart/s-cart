@@ -35,6 +35,7 @@ class ScartServiceProvider extends ServiceProvider
             try {
                 DB::connection(SC_CONNECTION)->getPdo();
             } catch(\Throwable $e) {
+                \Log::error($e->getMessage());
                 return;
             }
             $this->bootScart();
@@ -60,12 +61,18 @@ class ScartServiceProvider extends ServiceProvider
     public function bootScart()
     {
         //Check domain exist
-        $domain = sc_process_domain_store(url('/'));
-        $arrDomain = ShopStore::getDomainActive();
         $storeId = 1;
-        if (in_array($domain, $arrDomain)) {
-            $storeId =  array_search($domain, $arrDomain);
+
+        //Process for multi store
+        if(sc_config_global('MultiStorePro')) {
+            $domain = sc_process_domain_store(url('/'));
+            $arrDomain = ShopStore::getDomainActive();
+            if (in_array($domain, $arrDomain)) {
+                $storeId =  array_search($domain, $arrDomain);
+            }
         }
+        //End process multi store
+
         //Get storeId
         config(['app.storeId' => $storeId]);
         if (sc_config('LOG_SLACK_WEBHOOK_URL')) {
@@ -124,9 +131,10 @@ class ScartServiceProvider extends ServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-        'localization' => \App\Http\Middleware\Localization::class,
-        'currency'     => \App\Http\Middleware\Currency::class,
-        'checkdomain'  => \App\Http\Middleware\CheckDomain::class,
+        'localization'   => \App\Http\Middleware\Localization::class,
+        'currency'       => \App\Http\Middleware\Currency::class,
+        'api.connection' => \App\Api\Middleware\ApiConnection::class,
+        'checkdomain'    => \App\Http\Middleware\CheckDomain::class,
     ];
 
     /**
