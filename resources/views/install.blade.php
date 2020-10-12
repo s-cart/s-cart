@@ -64,7 +64,7 @@
                 {!! trans('install.info.about_us') !!}<br>
                 {!! trans('install.info.document') !!}<br>
             </p>
-            <p><b>{{ trans('install.info.version') }}</b>: {{ config('s-cart::version') }}</p>
+            <p><b>{{ trans('install.info.version') }}</b>: {{ config('s-cart.version') }}</p>
             <p>{!! trans('install.info.terms') !!}</p>
         </div>
 
