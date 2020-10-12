@@ -63,7 +63,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 {{-- breadcrumb --}}
 @section('breadcrumb')
 <section class="breadcrumbs-custom">
-  <h1>{{ sc_store('title', $storeId) }}</h1>
+  <h2>{{ sc_store('title', $storeId) }}</h2>
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">

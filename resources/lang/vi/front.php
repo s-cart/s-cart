@@ -125,4 +125,5 @@ return [
         'submit' => 'Gửi đi',
     ],
     'store' => 'Cửa hàng',
+    'view_not_exist' => 'View không tồn tại "<span style=\'color:red\'>:view</span>"',
 ];
