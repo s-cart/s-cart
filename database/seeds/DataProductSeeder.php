@@ -14,23 +14,23 @@ class DataProductSeeder extends Seeder
     {
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_product')->insert(
             [
-                ['id' => 1, 'sku' => 'ABCZZ','alias' => 'demo-alias-name-product-1', 'image' => '/data/product/product-1.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '99',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => date("Y-m-d", strtotime("+1 month")), 'sold' => '1', 'minimum' => '0'],
-                ['id' => 2, 'sku' => 'LEDFAN1','alias' => 'demo-alias-name-product-2', 'image' => '/data/product/product-2.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 3, 'sku' => 'CLOCKFAN1','alias' => 'demo-alias-name-product-3', 'image' => '/data/product/product-3.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 4, 'sku' => 'CLOCKFAN2','alias' => 'demo-alias-name-product-4', 'image' => '/data/product/product-4.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '10'],
-                ['id' => 5, 'sku' => 'CLOCKFAN3','alias' => 'demo-alias-name-product-5', 'image' => '/data/product/product-5.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 6, 'sku' => 'TMC2208','alias' => 'demo-alias-name-product-6', 'image' => '/data/product/product-6.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 7, 'sku' => 'FILAMENT','alias' => 'demo-alias-name-product-7', 'image' => '/data/product/product-7.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 8, 'sku' => 'A4988','alias' => 'demo-alias-name-product-8', 'image' => '/data/product/product-8.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 9, 'sku' => 'ANYCUBIC-P','alias' => 'demo-alias-name-product-9', 'image' => '/data/product/product-9.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 10, 'sku' => '3DHLFD-P','alias' => 'demo-alias-name-product-10', 'image' => '/data/product/product-10.png', 'brand_id' => '4', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 11, 'sku' => 'SS495A','alias' => 'demo-alias-name-product-11', 'image' => '/data/product/product-11.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 12, 'sku' => '3D-CARBON175','alias' => 'demo-alias-name-product-12', 'image' => '/data/product/product-12.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '5'],
-                ['id' => 13, 'sku' => '3D-GOLD175','alias' => 'demo-alias-name-product-13', 'image' => '/data/product/product-13.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '10000', 'cost' => '5000', 'stock' => '0',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 14, 'sku' => 'LCD12864-3D','alias' => 'demo-alias-name-product-14', 'image' => '/data/product/product-14.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 15, 'sku' => 'LCD2004-3D','alias' => 'demo-alias-name-product-15', 'image' => '/data/product/product-15.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 1, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '10'],
-                ['id' => 16, 'sku' => 'RAMPS15-3D','alias' => 'demo-alias-name-product-16', 'image' => '/data/product/product-16.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '0', 'cost' => '0', 'stock' => '0',  'status' => '1', 'kind' => 2, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0'],
-                ['id' => 17, 'sku' => 'ALOKK1-AY','alias' => 'demo-alias-name-product-17', 'image' => '/data/product/product-10.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '5'],
+                ['id' => 1, 'sku' => 'ABCZZ','alias' => 'demo-alias-name-product-1', 'image' => '/data/product/product-1.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '99',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => date("Y-m-d", strtotime("+1 month")), 'sold' => '1', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 2, 'sku' => 'LEDFAN1','alias' => 'demo-alias-name-product-2', 'image' => '/data/product/product-2.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 3, 'sku' => 'CLOCKFAN1','alias' => 'demo-alias-name-product-3', 'image' => '/data/product/product-3.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 4, 'sku' => 'CLOCKFAN2','alias' => 'demo-alias-name-product-4', 'image' => '/data/product/product-4.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '10', 'store_id' => 1],
+                ['id' => 5, 'sku' => 'CLOCKFAN3','alias' => 'demo-alias-name-product-5', 'image' => '/data/product/product-5.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 6, 'sku' => 'TMC2208','alias' => 'demo-alias-name-product-6', 'image' => '/data/product/product-6.png', 'brand_id' => '1', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 7, 'sku' => 'FILAMENT','alias' => 'demo-alias-name-product-7', 'image' => '/data/product/product-7.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 8, 'sku' => 'A4988','alias' => 'demo-alias-name-product-8', 'image' => '/data/product/product-8.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 9, 'sku' => 'ANYCUBIC-P','alias' => 'demo-alias-name-product-9', 'image' => '/data/product/product-9.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 10, 'sku' => '3DHLFD-P','alias' => 'demo-alias-name-product-10', 'image' => '/data/product/product-10.png', 'brand_id' => '4', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 11, 'sku' => 'SS495A','alias' => 'demo-alias-name-product-11', 'image' => '/data/product/product-11.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 12, 'sku' => '3D-CARBON175','alias' => 'demo-alias-name-product-12', 'image' => '/data/product/product-12.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '5', 'store_id' => 1],
+                ['id' => 13, 'sku' => '3D-GOLD175','alias' => 'demo-alias-name-product-13', 'image' => '/data/product/product-13.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '10000', 'cost' => '5000', 'stock' => '0',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 14, 'sku' => 'LCD12864-3D','alias' => 'demo-alias-name-product-14', 'image' => '/data/product/product-14.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 15, 'sku' => 'LCD2004-3D','alias' => 'demo-alias-name-product-15', 'image' => '/data/product/product-15.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 1, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '10', 'store_id' => 1],
+                ['id' => 16, 'sku' => 'RAMPS15-3D','alias' => 'demo-alias-name-product-16', 'image' => '/data/product/product-16.png', 'brand_id' => '2', 'supplier_id' => '1', 'price' => '0', 'cost' => '0', 'stock' => '0',  'status' => '1', 'kind' => 2, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '0', 'store_id' => 1],
+                ['id' => 17, 'sku' => 'ALOKK1-AY','alias' => 'demo-alias-name-product-17', 'image' => '/data/product/product-10.png', 'brand_id' => '3', 'supplier_id' => '1', 'price' => '15000', 'cost' => '10000', 'stock' => '100',  'status' => '1', 'kind' => 0, 'tax_id' => 'auto', 'date_available' => null, 'sold' => '0', 'minimum' => '5', 'store_id' => 1],
             ]
         );
 
@@ -107,29 +107,6 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_product_store')->insert(
-            [
-                ['product_id' => '1', 'store_id' => '1'],
-                ['product_id' => '2', 'store_id' => '1'],
-                ['product_id' => '3', 'store_id' => '1'],
-                ['product_id' => '4', 'store_id' => '1'],
-                ['product_id' => '5', 'store_id' => '1'],
-                ['product_id' => '6', 'store_id' => '1'],
-                ['product_id' => '7', 'store_id' => '1'],
-                ['product_id' => '8', 'store_id' => '1'],
-                ['product_id' => '9', 'store_id' => '1'],
-                ['product_id' => '10', 'store_id' => '1'],
-                ['product_id' => '11', 'store_id' => '1'],
-                ['product_id' => '12', 'store_id' => '1'],
-                ['product_id' => '13', 'store_id' => '1'],
-                ['product_id' => '14', 'store_id' => '1'],
-                ['product_id' => '15', 'store_id' => '1'],
-                ['product_id' => '16', 'store_id' => '1'],
-                ['product_id' => '17', 'store_id' => '1'],
-            ]
-        );
-
-
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category')->insert(
             [
                 ['id' => '1', 'alias'=> 'electronics', 'image' => '/data/category/img-40.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
@@ -179,32 +156,14 @@ class DataProductSeeder extends Seeder
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category_store')->insert(
-            [
-                ['category_id' => '1', 'store_id' => '1'],
-                ['category_id' => '2', 'store_id' => '1'],
-                ['category_id' => '3', 'store_id' => '1'],
-                ['category_id' => '4', 'store_id' => '1'],
-                ['category_id' => '5', 'store_id' => '1'],
-                ['category_id' => '6', 'store_id' => '1'],
-                ['category_id' => '7', 'store_id' => '1'],
-                ['category_id' => '8', 'store_id' => '1'],
-                ['category_id' => '9', 'store_id' => '1'],
-                ['category_id' => '10', 'store_id' => '1'],
-                ['category_id' => '11', 'store_id' => '1'],
-                ['category_id' => '12', 'store_id' => '1'],
-                ['category_id' => '13', 'store_id' => '1'],
-            ]
-        );
-
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news')->insert(
             [
-                ['id' => 1, 'alias' =>  'demo-alias-blog-1', 'image' => '/data/content/blog-1.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
-                ['id' => 2, 'alias' =>  'demo-alias-blog-2', 'image' => '/data/content/blog-2.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
-                ['id' => 3, 'alias' =>  'demo-alias-blog-3', 'image' => '/data/content/blog-3.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
-                ['id' => 4, 'alias' =>  'demo-alias-blog-4', 'image' => '/data/content/blog-4.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
-                ['id' => 5, 'alias' =>  'demo-alias-blog-5', 'image' => '/data/content/blog-5.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
-                ['id' => 6, 'alias' =>  'demo-alias-blog-6', 'image' => '/data/content/blog-6.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],
+                ['id' => 1, 'alias' =>  'demo-alias-blog-1', 'image' => '/data/content/blog-1.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 2, 'alias' =>  'demo-alias-blog-2', 'image' => '/data/content/blog-2.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 3, 'alias' =>  'demo-alias-blog-3', 'image' => '/data/content/blog-3.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 4, 'alias' =>  'demo-alias-blog-4', 'image' => '/data/content/blog-4.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 5, 'alias' =>  'demo-alias-blog-5', 'image' => '/data/content/blog-5.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 6, 'alias' =>  'demo-alias-blog-6', 'image' => '/data/content/blog-6.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
             ]
         );
 
@@ -236,18 +195,5 @@ class DataProductSeeder extends Seeder
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
             ]
         );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news_store')->insert(
-            [
-                ['news_id' => '1', 'store_id' => '1'],
-                ['news_id' => '2', 'store_id' => '1'],
-                ['news_id' => '3', 'store_id' => '1'],
-                ['news_id' => '4', 'store_id' => '1'],
-                ['news_id' => '5', 'store_id' => '1'],
-                ['news_id' => '6', 'store_id' => '1'],
-            ]
-        );
-
-
     }
 }

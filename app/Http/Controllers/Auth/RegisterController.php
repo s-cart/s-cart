@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\RootFrontController;
 use App\Models\ShopEmailTemplate;
-use App\Models\ShopUser;
+use App\Models\ShopCustomer;
 use App\Models\ShopCountry;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\AuthTrait;
-class RegisterController extends GeneralController
+class RegisterController extends RootFrontController
 {
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class RegisterController extends GeneralController
     // protected $redirectTo = '/home';
     protected function redirectTo()
     {
-        return route('member.index');
+        return sc_route('member.index');
     }
 
     /**
@@ -68,14 +68,14 @@ class RegisterController extends GeneralController
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\ShopUser
+     * @return \App\Models\ShopCustomer
      */
     protected function create(array $data)
     {
         $data['reg_country'] = strtoupper($data['reg_country'] ?? '');
         $dataMap = $this->mappDataInsert($data);
 
-        $user = ShopUser::createCustomer($dataMap);
+        $user = ShopCustomer::createCustomer($dataMap);
         if ($user) {
             if (sc_config('welcome_customer')) {
 

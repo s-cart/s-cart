@@ -105,7 +105,7 @@ return [
 
     'shop_info'          => [
         'email'   => 'Email',
-        'hotline' => 'Hot line',
+        'hotline' => 'Hotline',
         'address' => 'Address',
     ],
     'filters'            => [
@@ -123,5 +123,6 @@ return [
     'captcha_action' => [
         'submit' => 'Submit',
     ],
+    'store' => 'Store',
 
 ];

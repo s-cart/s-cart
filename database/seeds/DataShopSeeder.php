@@ -15,17 +15,9 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_banner')->insert(
             [
-                ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
-                ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0],
-                ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 2],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_banner_store')->insert(
-            [
-                ['banner_id' => '1', 'store_id' => '1'],
-                ['banner_id' => '2', 'store_id' => '1'],
-                ['banner_id' => '3', 'store_id' => '1'],
+                ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0, 'store_id'=> 1],
+                ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0, 'store_id'=> 1],
+                ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 2, 'store_id'=> 1],
             ]
         );
 
@@ -66,11 +58,11 @@ class DataShopSeeder extends Seeder
     </td>
     </tr>
 </tbody>
-</table>', 'status' => '1'],
+</table>', 'status' => '1', 'store_id' => 1],
 
                 ['name' => 'Welcome new customer', 'group' => 'welcome_customer', 'text' => '
 <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:center">{{$title}}</h1>
-<p style="text-align:center;">Welcome to my site!</p>', 'status' => '1'],
+<p style="text-align:center;">Welcome to my site!</p>', 'status' => '1', 'store_id' => 1],
                 ['name' => 'Send form contact to admin', 'group' => 'contact_to_admin', 'text' => '
 <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
 <tr>
@@ -87,7 +79,7 @@ class DataShopSeeder extends Seeder
 <tr>
 <td>{{$content}}</td>
 </tr>
-</table>', 'status' => '1'],
+</table>', 'status' => '1', 'store_id' => 1],
 
                 ['name' => 'New order to admin', 'group' => 'order_success_to_admin', 'text' => '
 <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
@@ -127,7 +119,7 @@ class DataShopSeeder extends Seeder
         <td colspan="2" style="font-weight: bold;">Total</td>
         <td colspan="2" align="right">{{$total}}</td>
     </tr>
-</table>', 'status' => '1'],
+</table>', 'status' => '1', 'store_id' => 1],
 
                 ['name' => 'New order to customr', 'group' => 'order_success_to_customer', 'text' => '
 <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
@@ -166,7 +158,7 @@ class DataShopSeeder extends Seeder
     <td colspan="2" style="font-weight: bold;">Total</td>
     <td colspan="2" align="right">{{$total}}</td>
 </tr>
-</table>', 'status' => '1'],
+</table>', 'status' => '1', 'store_id' => 1],
             ]
         );
 
@@ -177,7 +169,7 @@ class DataShopSeeder extends Seeder
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_block_content')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_store_block')->insert(
             [
                 ['name' => 'Facebook code', 'position' => 'top', 'page' => '*', 'type' => 'html', 'text' => '
 <div id="fb-root"></div>
@@ -374,7 +366,7 @@ gtag(\'config\', \'UA-128658138-1\');
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_page')->insert(
             [
-                ['id' => '1', 'image' => '', 'alias' => 'about', 'status' => '1'],
+                ['id' => '1', 'image' => '', 'alias' => 'about', 'status' => '1', 'store_id' => 1],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_page_description')->insert(
@@ -385,12 +377,6 @@ gtag(\'config\', \'UA-128658138-1\');
                 ['page_id' => '1', 'lang' => 'vi', 'title' => 'Giới thiệu', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-2.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     ',],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_page_store')->insert(
-            [
-                ['page_id' => '1', 'store_id' => '1'],
             ]
         );
 
@@ -413,12 +399,12 @@ gtag(\'config\', \'UA-128658138-1\');
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_supplier')->insert(
             [
-                ['id' => '1', 'alias' => 'abc-distributor',  'name' => 'ABC distributor', 'email' => 'abc@abc.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0'],
-                ['id' => '2', 'alias' => 'xyz-distributor',  'name' => 'XYZ distributor', 'email' => 'xyz@xyz.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0'],
+                ['id' => '1', 'alias' => 'abc-distributor',  'name' => 'ABC distributor', 'email' => 'abc@abc.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0', 'store_id' => 1],
+                ['id' => '2', 'alias' => 'xyz-distributor',  'name' => 'XYZ distributor', 'email' => 'xyz@xyz.com', 'phone' => '012496657567', 'image' => '/data/supplier/supplier.png', 'address' => '', 'url' => '', 'sort' => '0', 'store_id' => 1],
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_user')->insert(
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_customer')->insert(
             [
                 ['id' => '1', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'email' => 'test@test.com', 'password' => bcrypt(123), 'address1' => 'HCM', 'address2' => 'HCM city', 'phone' => '0667151172', 'postcode' => 70000, 'company' => 'KTC', 'country' => 'VN', 'created_at' => date('Y-m-d H:i:s')],
             ]
@@ -426,7 +412,7 @@ gtag(\'config\', \'UA-128658138-1\');
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order')->insert(
             [
-                ['id' => '1', 'user_id' => '1', 'subtotal' => '5000', 'shipping' => '2000', 'discount' => '0', 'payment_status' => '1', 'shipping_status' => '1', 'status' => '1', 'tax' => '0', 'total' => '7000', 'currency' => 'USD', 'exchange_rate' => '1', 'received' => '0', 'balance' => '7000', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'address1' => 'ADDRESS 1', 'address2' => 'ADDRESS 2', 'country' => 'VN', 'phone' => '667151172', 'email' => 'test@test.com', 'comment' => 'ok', 'payment_method' => 'Cash', 'shipping_method' => 'ShippingStandard', 'created_at' => date('Y-m-d H:i:s')],
+                ['id' => '1', 'customer_id' => '1', 'subtotal' => '5000', 'shipping' => '2000', 'discount' => '0', 'payment_status' => '1', 'shipping_status' => '1', 'status' => '1', 'tax' => '0', 'total' => '7000', 'currency' => 'USD', 'exchange_rate' => '1', 'received' => '0', 'balance' => '7000', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'address1' => 'ADDRESS 1', 'address2' => 'ADDRESS 2', 'country' => 'VN', 'phone' => '667151172', 'email' => 'test@test.com', 'comment' => 'ok', 'payment_method' => 'Cash', 'shipping_method' => 'ShippingStandard', 'created_at' => date('Y-m-d H:i:s')],
             ]
         );
 
@@ -438,7 +424,7 @@ gtag(\'config\', \'UA-128658138-1\');
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_history')->insert(
             [
-                ['id' => '1', 'order_id' => '1', 'content' => 'New order', 'admin_id' => '0', 'user_id' => '1', 'order_status_id' => '1', 'add_date' => date('Y-m-d H:i:s')],
+                ['id' => '1', 'order_id' => '1', 'content' => 'New order', 'admin_id' => '0', 'customer_id' => '1', 'order_status_id' => '1', 'add_date' => date('Y-m-d H:i:s')],
             ]
         );
 

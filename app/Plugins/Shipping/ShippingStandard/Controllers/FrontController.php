@@ -10,8 +10,8 @@
 namespace App\Plugins\Shipping\ShippingStandard\Controllers;
 
 use App\Plugins\Shipping\ShippingStandard\AppConfig;
-use App\Http\Controllers\GeneralController;
-class FrontController extends GeneralController
+use App\Http\Controllers\RootFrontController;
+class FrontController extends RootFrontController
 {
     public $plugin;
 

@@ -11,6 +11,7 @@ return [
     'title'      => 'Mã giảm giá',
     'login'      => 'Yêu cầu login',
     'expires_at' => 'Hết hạn',
+    'discount_unique' => 'Mã này đã có rồi',
     'admin'      => [
         'title'          => 'Mã giảm giá',
         'create_success' => 'Tạo mới thành công!',

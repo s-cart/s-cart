@@ -1,82 +1,68 @@
 <?php
-#app$this->plugin->pathPlugin.//Admin/CmsContentController.php
 namespace App\Plugins\Cms\Content\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\ShopLanguage;
-use App\Plugins\Cms\Content\Models\CmsCategory;
-use App\Plugins\Cms\Content\Models\CmsContent;
-use App\Plugins\Cms\Content\Models\CmsContentDescription;
+use App\Http\Controllers\RootAdminController;
+use SCart\Core\Front\Models\ShopLanguage;
+use App\Plugins\Cms\Content\Admin\Models\AdminCmsCategory;
+use App\Plugins\Cms\Content\Admin\Models\AdminCmsContent;
 use App\Plugins\Cms\Content\AppConfig;
-use App\Admin\Models\AdminStore;
 use Validator;
 
-class CmsContentController extends Controller
+class CmsContentController extends RootAdminController
 {
-    public $languages, $stories;
-    public $plugin, $categoriesTitle;
+    public $languages;
+    public $plugin;
 
     public function __construct()
     {
+        parent::__construct();
         $this->languages = ShopLanguage::getListActive();
-        $this->stories = AdminStore::getListAll();
         $this->plugin = new AppConfig;
-        $this->categoriesTitle = CmsCategory::getListTitle();
-
     }
 
     public function index()
     {
+        $categoriesTitle =  AdminCmsCategory::getListTitleAdmin();
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::Content.admin.list'),
-            'subTitle' => '',
-            'icon' => 'fa fa-indent',
-            'menuRight' => [],
-            'menuLeft' => [],
-            'topMenuRight' => [],
-            'topMenuLeft' => [],
+            'title'         => trans($this->plugin->pathPlugin.'::Content.admin.list'),
+            'subTitle'      => '',
+            'icon'          => 'fa fa-indent',
+            'menuRight'     => [],
+            'menuLeft'      => [],
+            'topMenuRight'  => [],
+            'topMenuLeft'   => [],
             'urlDeleteItem' => sc_route('admin_cms_content.delete'),
-            'removeList' => 1, // 1 - Enable function delete list item
+            'removeList'    => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
-            'buttonSort' => 1, // 1 - Enable button sort
-            'css' => '', 
-            'js' => '',
+            'buttonSort'    => 1, // 1 - Enable button sort
+            'css'           => '', 
+            'js'            => '',
         ];
 
         $listTh = [
-            'id' => trans($this->plugin->pathPlugin.'::Content.id'),
-            'image' => trans($this->plugin->pathPlugin.'::Content.image'),
-            'title' => trans($this->plugin->pathPlugin.'::Content.title'),
+            'id'          => trans($this->plugin->pathPlugin.'::Content.id'),
+            'image'       => trans($this->plugin->pathPlugin.'::Content.image'),
+            'title'       => trans($this->plugin->pathPlugin.'::Content.title'),
             'category_id' => trans($this->plugin->pathPlugin.'::Content.category_id'),
-            'status' => trans($this->plugin->pathPlugin.'::Content.status'),
-            'sort' => trans($this->plugin->pathPlugin.'::Content.sort'),
-            'action' => trans($this->plugin->pathPlugin.'::Content.admin.action'),
+            'status'      => trans($this->plugin->pathPlugin.'::Content.status'),
+            'sort'        => trans($this->plugin->pathPlugin.'::Content.sort'),
+            'action'      => trans($this->plugin->pathPlugin.'::Content.admin.action'),
         ];
         $sort_order = request('sort_order') ?? 'id_desc';
         $keyword = request('keyword') ?? '';
         $arrSort = [
-            'id__desc' => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_desc'),
-            'id__asc' => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_asc'),
+            'id__desc'    => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_desc'),
+            'id__asc'     => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_asc'),
             'title__desc' => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.title_desc'),
-            'title__asc' => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.title_asc'),
+            'title__asc'  => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.title_asc'),
         ];
-        $obj = new CmsContent;
 
-        $obj = $obj
-            ->leftJoin(SC_DB_PREFIX.'cms_content_description', SC_DB_PREFIX.'cms_content_description.content_id', SC_DB_PREFIX.'cms_content.id')
-            ->where(SC_DB_PREFIX.'cms_content_description.lang', sc_get_locale());
-        if ($keyword) {
-            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR '.SC_DB_PREFIX.'cms_content_description.title like "%' . $keyword . '%" )');
-        }
-        if ($sort_order && array_key_exists($sort_order, $arrSort)) {
-            $field = explode('__', $sort_order)[0];
-            $sort_field = explode('__', $sort_order)[1];
-            $obj = $obj->orderBy($field, $sort_field);
-
-        } else {
-            $obj = $obj->orderBy('id', 'desc');
-        }
-        $dataTmp = $obj->paginate(20);
+        $dataSearch = [
+            'keyword'    => $keyword,
+            'sort_order' => $sort_order,
+            'arrSort'    => $arrSort,
+        ];
+        $dataTmp = (new AdminCmsContent)->getContentListAdmin($dataSearch);
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
@@ -84,7 +70,7 @@ class CmsContentController extends Controller
                 'id' => $row['id'],
                 'image' => sc_image_render($row->getThumb(), '50px', '50px', $row['title']),
                 'title' => $row['title'],
-                'category_id' => $row['category_id'] ? $this->categoriesTitle[$row['category_id']] ?? '' : 'ROOT',
+                'category_id' => $row['category_id'] ? $categoriesTitle[$row['category_id']] ?? '' : 'ROOT',
 
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'sort' => $row['sort'],
@@ -137,7 +123,7 @@ class CmsContentController extends Controller
             </form>';
         //=menuSearch
 
-        return view('admin.screen.list')
+        return view($this->templatePathAdmin.'screen.list')
             ->with($data);
     }
 
@@ -154,10 +140,8 @@ class CmsContentController extends Controller
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
             'content' => [],
-            'categories' => (new CmsCategory)->getTreeCategories(),
+            'categories' => (new AdminCmsCategory)->getTreeCategoriesAdmin(),
             'url_action' => sc_route('admin_cms_content.create'),
-            'stories' => $this->stories,
-
         ];
         return view($this->plugin->pathPlugin.'::Admin.cms_content')
             ->with($data);
@@ -180,7 +164,6 @@ class CmsContentController extends Controller
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'store' => 'required',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
         ], [
             'descriptions.*.title.required' => trans('validation.required', 
@@ -193,15 +176,15 @@ class CmsContentController extends Controller
                 ->withErrors($validator)
                 ->withInput($data);
         }
-        $store = $data['store'] ?? [];
         $dataInsert = [
-            'image' => $data['image'],
-            'alias' => $data['alias'],
+            'image'       => $data['image'],
+            'alias'       => $data['alias'],
             'category_id' => (int) $data['category_id'],
-            'status' => !empty($data['status']) ? 1 : 0,
-            'sort' => (int) $data['sort'],
+            'status'      => !empty($data['status']) ? 1 : 0,
+            'sort'        => (int) $data['sort'],
+            'store_id'    => session('adminStoreId'),
         ];
-        $content = CmsContent::create($dataInsert);
+        $content = AdminCmsContent::createContentAdmin($dataInsert);
         $id = $content->id;
         $dataDes = [];
         $languages = $this->languages;
@@ -215,11 +198,8 @@ class CmsContentController extends Controller
                 'content' => $data['descriptions'][$code]['content'],
             ];
         }
-        CmsContentDescription::insert($dataDes);
-        //Insert store
-        if ($store) {
-            $content->stories()->attach($store);
-        }
+        AdminCmsContent::insertDescriptionAdmin($dataDes);
+        sc_clear_cache('cache_cms_content');
         return redirect()->route('admin_cms_content.index')
             ->with('success', trans($this->plugin->pathPlugin.'::Content.admin.create_success'));
 
@@ -230,9 +210,10 @@ class CmsContentController extends Controller
  */
     public function edit($id)
     {
-        $content = CmsContent::find($id);
-        if ($content === null) {
-            return 'no data';
+        $content = AdminCmsContent::getContentAdmin($id);
+
+        if (!$content) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
         $data = [
             'title' => trans($this->plugin->pathPlugin.'::Content.admin.edit'),
@@ -241,10 +222,8 @@ class CmsContentController extends Controller
             'icon' => 'fa fa-pencil-square-o',
             'languages' => $this->languages,
             'content' => $content,
-            'categories' => (new CmsCategory)->getTreeCategories(),
-            'stories' => $this->stories,
+            'categories' => (new AdminCmsCategory)->getTreeCategoriesAdmin(),
             'url_action' => sc_route('admin_cms_content.edit', ['id' => $content['id']]),
-            'storiesPivot' => \DB::connection(SC_CONNECTION)->table((new CmsContent)->table.'_store')->where('content_id', $id)->pluck('store_id')->all(),
 
         ];
         return view($this->plugin->pathPlugin.'::Admin.cms_content')
@@ -256,7 +235,12 @@ class CmsContentController extends Controller
  */
     public function postEdit($id)
     {
-        $content = CmsContent::find($id);
+        $content = AdminCmsContent::getContentAdmin($id);
+
+        if (!$content) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
+        }
+
         $data = request()->all();
         
         $langFirst = array_key_first(sc_language_all()->toArray()); //get first code language active
@@ -271,7 +255,6 @@ class CmsContentController extends Controller
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'store' => 'required',
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Content.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Content.title')]),
@@ -285,35 +268,29 @@ class CmsContentController extends Controller
 //Edit
         $store = $data['store'] ?? [];
         $dataUpdate = [
-            'image' => $data['image'],
-            'alias' => $data['alias'],
+            'image'       => $data['image'],
+            'alias'       => $data['alias'],
             'category_id' => $data['category_id'],
-            'sort' => $data['sort'],
-            'status' => empty($data['status']) ? 0 : 1,
+            'sort'        => $data['sort'],
+            'status'      => empty($data['status']) ? 0 : 1,
+            'store_id'    => session('adminStoreId'),
         ];
 
-        $content = CmsContent::find($id);
         $content->update($dataUpdate);
         $content->descriptions()->delete();
         $dataDes = [];
         foreach ($data['descriptions'] as $code => $row) {
             $dataDes[] = [
-                'content_id' => $id,
-                'lang' => $code,
-                'title' => $row['title'],
-                'keyword' => $row['keyword'],
+                'content_id'  => $id,
+                'lang'        => $code,
+                'title'       => $row['title'],
+                'keyword'     => $row['keyword'],
                 'description' => $row['description'],
-                'content' => $row['content'],
+                'content'     => $row['content'],
             ];
         }
-        CmsContentDescription::insert($dataDes);
-        //Update store
-        $content->stories()->detach();
-        if (count($store)) {
-            $content->stories()->attach($store);
-        }
-
-//
+        AdminCmsContent::insertDescriptionAdmin($dataDes);
+        sc_clear_cache('cache_cms_content');
         return redirect()->route('admin_cms_content.index')->with('success', trans($this->plugin->pathPlugin.'::Content.admin.edit_success'));
 
     }
@@ -329,9 +306,26 @@ Need mothod destroy to boot deleting in model
         } else {
             $ids = request('ids');
             $arrID = explode(',', $ids);
-            CmsContent::destroy($arrID);
+            $arrDontPermission = [];
+            foreach ($arrID as $key => $id) {
+                if(!$this->checkPermisisonItem($id)) {
+                    $arrDontPermission[] = $id;
+                }
+            }
+            if (count($arrDontPermission)) {
+                return response()->json(['error' => 1, 'msg' => trans('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
+            }
+            AdminCmsContent::destroy($arrID);
+            sc_clear_cache('cache_cms_content');
             return response()->json(['error' => 0, 'msg' => '']);
         }
+    }
+
+    /**
+     * Check permisison item
+     */
+    public function checkPermisisonItem($id) {
+        return AdminCmsContent::getContentAdmin($id);
     }
 
 }

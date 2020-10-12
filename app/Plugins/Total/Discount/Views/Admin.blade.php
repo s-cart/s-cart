@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends($templatePathAdmin.'layout')
 
 @section('main')
    <div class="row">
@@ -39,9 +39,9 @@
                                                 <i class="fa fa-info-circle"></i>  {{ $errors->first('code') }}
                                             </span>
                                         @else
-                                            <span class="help-block">
+                                            
                                                 <i class="fa fa-info-circle"></i>  {{ trans('Plugins/Total/Discount::lang.admin.code_helper') }}
-                                            </span>
+                                      
                                         @endif
                                 </div>
                             </div>
@@ -116,44 +116,6 @@
                                         @endif
                                 </div>
                             </div>
-
-                        {{-- select store --}}
-                        @if (count($stores) > 1)
-                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
-                            @php
-                            $listStore = [];
-                            $store = old('store', ($storesPivot ?? []));
-                            if(is_array($store)){
-                                foreach($store as $value){
-                                    $listStore[] = (int)$value;
-                                }
-                            }
-                            @endphp
-                            <label for="store" class="col-sm-2 col-form-label">
-                                {{ trans('store.select_store') }}
-                            </label>
-                            <div class="col-sm-8">
-                                <select class="form-control input-sm store select2" multiple="multiple"
-                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
-                                    name="store[]">
-                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stores') }}</option>
-                                    @foreach ($stores as $id => $store)
-                                    <option value="{{ $id }}"
-                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('store'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @else
-                            <input type="hidden" name="store[]" value="0">
-                        @endif
-                        {{-- //select store --}}
 
                             <div class="form-group  row {{ $errors->has('login') ? ' invalid' : '' }}">
                                 <label for="login" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.login') }}</label>

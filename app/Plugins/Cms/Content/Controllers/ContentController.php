@@ -4,10 +4,10 @@ namespace App\Plugins\Cms\Content\Controllers;
 
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
-use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\RootAdminController;
 use App\Plugins\Cms\Content\AppConfig;
 
-class ContentController extends GeneralController
+class ContentController extends RootAdminController
 {
     public $plugin;
     public function __construct()

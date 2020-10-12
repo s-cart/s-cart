@@ -2,12 +2,12 @@
 #App\Plugins\Total\Discount\Controllers\FrontController.php
 namespace App\Plugins\Total\Discount\Controllers;
 
-use App\Plugins\Total\Discount\Models\PluginModel;
+use App\Plugins\Total\Discount\Models\PluginModel as Discount;
 use App\Models\ShopOrderTotal;
 use Carbon\Carbon;
 use App\Plugins\Total\Discount\AppConfig;
-use App\Http\Controllers\GeneralController;
-class FrontController extends GeneralController
+use App\Http\Controllers\RootFrontController;
+class FrontController extends RootFrontController
 {
     private $codes = [];
     private $length;
@@ -73,7 +73,7 @@ class FrontController extends GeneralController
             ];
         }
 
-        if (PluginModel::insert($records)) {
+        if (Discount::insert($records)) {
             return collect($records)->map(function ($record) {
                 $record['data'] = json_decode($record['data'], true);
                 return $record;
@@ -92,7 +92,7 @@ class FrontController extends GeneralController
     public function check($code, $uID = null)
     {
         $uID = (int) $uID;
-        $promocode = (new PluginModel)->getPromotionByCode($code);
+        $promocode = (new Discount)->getPromotionByCode($code);
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
         }
@@ -112,7 +112,7 @@ class FrontController extends GeneralController
             //check if this user has already used this code already
             $arrUsers = [];
             foreach ($promocode->users as $value) {
-                $arrUsers[] = $value->pivot->user_id;
+                $arrUsers[] = $value->pivot->customer_id;
             }
             if (in_array($uID, $arrUsers)) {
                 return json_encode(['error' => 1, 'msg' => "error_user_used"]);
@@ -136,7 +136,7 @@ class FrontController extends GeneralController
         $check = json_decode($checkCode, true);
 
         if ($check['error'] === 0) {
-            $promocode = (new PluginModel)->getPromotionByCode($code);
+            $promocode = (new Discount)->getPromotionByCode($code);
             try {
                 // increment used
                 $promocode->used += 1;
@@ -163,7 +163,7 @@ class FrontController extends GeneralController
  */
     public function disableDiscount($code)
     {
-        $promocode = (new PluginModel)->getPromotionByCode($code);
+        $promocode = (new Discount)->getPromotionByCode($code);
 
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
@@ -180,7 +180,7 @@ class FrontController extends GeneralController
  */
     public function enableDiscount($code)
     {
-        $promocode = (new PluginModel)->getPromotionByCode($code);
+        $promocode = (new Discount)->getPromotionByCode($code);
 
         if ($promocode === null) {
             return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
@@ -252,7 +252,7 @@ class FrontController extends GeneralController
      */
     public function validateCoupon($collection, $new)
     {
-        $this->codes = PluginModel::pluck('code')->toArray();
+        $this->codes = Discount::pluck('code')->toArray();
         return !in_array($new, array_merge($collection, $this->codes));
     }
 
@@ -277,7 +277,7 @@ class FrontController extends GeneralController
             } elseif ($check['msg'] == 'error_user_used') {
                 $msg = trans('promotion.process.used');
             } elseif ($check['msg'] == 'error_uID_input') {
-                $msg = trans('promotion.process.user_id_invalid');
+                $msg = trans('promotion.process.customer_id_invalid');
             } elseif ($check['msg'] == 'error_login') {
                 $msg = trans('promotion.process.must_login');
             } else {

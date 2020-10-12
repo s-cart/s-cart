@@ -35,7 +35,7 @@ return [
     ],
 
     'stripe'    => [
-        'model'  => App\Models\ShopUser::class,
+        'model'  => App\Models\ShopCustomer::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

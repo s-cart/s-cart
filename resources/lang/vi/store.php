@@ -10,6 +10,7 @@ return [
     'address'          => 'Địa chỉ',
     'office'           => 'Văn Phòng',
     'warehouse'        => 'Nhà kho',
+    'code'             => 'Mã cửa hàng',
     'email'            => 'Email',
     'status'           => 'Trạng thái',
     'language'         => 'Ngôn ngữ mặc định',
@@ -66,5 +67,8 @@ return [
         'config_other'        => 'Khác',
         'switch_store'        =>  'Chuyển đổi cửa hàng',
         'config_admin_other'  =>  'Cấu hình admin',
+        'active_strict'  =>  'Kích hoạt chế độ kiểm tra tên miền',
+        'active_domain'  =>  'Kích hoạt tên miền',
+        'active_maintain'  =>  'Kích hoạt chế độ bảo trì',
     ],
 ];

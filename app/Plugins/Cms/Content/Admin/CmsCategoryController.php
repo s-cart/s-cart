@@ -1,32 +1,30 @@
 <?php
-#app/Plugins\Cms\ContentContent/Admin/CmsCategoryController.php
 namespace App\Plugins\Cms\Content\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\RootAdminController;
 use App\Models\ShopLanguage;
-use App\Plugins\Cms\Content\Models\CmsCategory;
-use App\Plugins\Cms\Content\Models\CmsCategoryDescription;
+use App\Plugins\Cms\Content\Admin\Models\AdminCmsCategory;
 use App\Plugins\Cms\Content\AppConfig;
-use App\Admin\Models\AdminStore;
 
 use Validator;
 
-class CmsCategoryController extends Controller
+class CmsCategoryController extends RootAdminController
 {
-    public $languages, $stories;
-    public $plugin, $categoriesTitle;
+    public $languages;
+    public $plugin;
 
     public function __construct()
     {
+        parent::__construct();
         $this->languages = ShopLanguage::getListActive();
-        $this->stories = AdminStore::getListAll();
         $this->plugin = new AppConfig;
-        $this->categoriesTitle = CmsCategory::getListTitle();
 
     }
 
     public function index()
     {
+        $categoriesTitle =  AdminCmsCategory::getListTitleAdmin();
+
         $data = [
             'title' => trans($this->plugin->pathPlugin.'::Category.admin.list'),
             'subTitle' => '',
@@ -60,23 +58,13 @@ class CmsCategoryController extends Controller
             'title__desc' => trans($this->plugin->pathPlugin.'::Category.admin.sort_order.title_desc'),
             'title__asc' => trans($this->plugin->pathPlugin.'::Category.admin.sort_order.title_asc'),
         ];
-        $obj = new CmsCategory;
 
-        $obj = $obj
-            ->leftJoin(SC_DB_PREFIX.'cms_category_description', SC_DB_PREFIX.'cms_category_description.category_id', SC_DB_PREFIX.'cms_category.id')
-            ->where(SC_DB_PREFIX.'cms_category_description.lang', sc_get_locale());
-        if ($keyword) {
-            $obj = $obj->whereRaw('(id = ' . (int) $keyword . ' OR '.SC_DB_PREFIX.'cms_category_description.title like "%' . $keyword . '%" )');
-        }
-        if ($sort_order && array_key_exists($sort_order, $arrSort)) {
-            $field = explode('__', $sort_order)[0];
-            $sort_field = explode('__', $sort_order)[1];
-            $obj = $obj->orderBy($field, $sort_field);
-
-        } else {
-            $obj = $obj->orderBy('id', 'desc');
-        }
-        $dataTmp = $obj->paginate(20);
+        $dataSearch = [
+            'keyword'    => $keyword,
+            'sort_order' => $sort_order,
+            'arrSort'    => $arrSort,
+        ];
+        $dataTmp = (new AdminCmsCategory)->getCategoryListAdmin($dataSearch);
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
@@ -84,7 +72,7 @@ class CmsCategoryController extends Controller
                 'id' => $row['id'],
                 'image' => sc_image_render($row->getThumb(), '50px', '50px',$row['title']),
                 'title' => $row['title'],
-                'parent' => $row['parent'] ? ($this->categoriesTitle[$row['parent']] ?? '') : 'ROOT',
+                'parent' => $row['parent'] ? ($categoriesTitle[$row['parent']] ?? '') : 'ROOT',
 
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'sort' => $row['sort'],
@@ -102,13 +90,13 @@ class CmsCategoryController extends Controller
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::Category.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 
-//menuRight
+        //menuRight
         $data['menuRight'][] = '<a href="' . sc_route('admin_cms_category.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('admin.add_new') . '</span>
                            </a>';
-//=menuRight
+        //=menuRight
 
-//menuSort
+        //menuSort
         $optionSort = '';
         foreach ($arrSort as $key => $status) {
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
@@ -116,9 +104,9 @@ class CmsCategoryController extends Controller
 
         $data['urlSort'] = sc_route('admin_cms_category.index');
         $data['optionSort'] = $optionSort;
-//=menuSort
+        //=menuSort
 
-//menuSearch
+        //menuSearch
         $data['topMenuRight'][] = '
                 <form action="' . sc_route('admin_cms_category.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
@@ -128,10 +116,10 @@ class CmsCategoryController extends Controller
                     </div>
                 </div>
                 </form>';
-//=menuSearch
+        //=menuSearch
 
 
-        return view('admin.screen.list')
+        return view($this->templatePathAdmin.'screen.list')
             ->with($data);
     }
 
@@ -148,10 +136,8 @@ class CmsCategoryController extends Controller
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
             'category' => [],
-            'categories' => (new CmsCategory)->getTreeCategories(),
+            'categories' => (new AdminCmsCategory)->getTreeCategoriesAdmin(),
             'url_action' => sc_route('admin_cms_category.create'),
-            'stories' => $this->stories,
-
         ];
         return view($this->plugin->pathPlugin.'::Admin.cms_category')
             ->with($data);
@@ -176,7 +162,6 @@ class CmsCategoryController extends Controller
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'store' => 'required',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Category.alias_validate'),
@@ -190,31 +175,31 @@ class CmsCategoryController extends Controller
         }
         $store = $data['store'] ?? [];
         $dataInsert = [
-            'image' => $data['image'],
-            'alias' => $data['alias'],
-            'parent' => (int) $data['parent'],
-            'status' => !empty($data['status']) ? 1 : 0,
-            'sort' => (int) $data['sort'],
+            'image'    => $data['image'],
+            'alias'    => $data['alias'],
+            'parent'   => (int) $data['parent'],
+            'status'   => !empty($data['status']) ? 1 : 0,
+            'sort'     => (int) $data['sort'],
+            'store_id' => session('adminStoreId'),
         ];
 
-        $category = CmsCategory::create($dataInsert);
+        $category = AdminCmsCategory::createCategoryAdmin($dataInsert);
         $id = $category->id;
         $dataDes = [];
         $languages = $this->languages;
         foreach ($languages as $code => $value) {
             $dataDes[] = [
                 'category_id' => $id,
-                'lang' => $code,
-                'title' => $data['descriptions'][$code]['title'],
-                'keyword' => $data['descriptions'][$code]['keyword'],
+                'lang'        => $code,
+                'title'       => $data['descriptions'][$code]['title'],
+                'keyword'     => $data['descriptions'][$code]['keyword'],
                 'description' => $data['descriptions'][$code]['description'],
             ];
         }
-        CmsCategoryDescription::insert($dataDes);
-        //Insert store
-        if ($store) {
-            $category->stories()->attach($store);
-        }
+        AdminCmsCategory::insertDescriptionAdmin($dataDes);
+
+        sc_clear_cache('cache_cms_category');
+
         return redirect()->route('admin_cms_category.index')->with('success', trans($this->plugin->pathPlugin.'::Category.admin.create_success'));
 
     }
@@ -224,21 +209,21 @@ class CmsCategoryController extends Controller
  */
     public function edit($id)
     {
-        $category = CmsCategory::find($id);
-        if ($category === null) {
-            return 'no data';
+        $category = AdminCmsCategory::getCategoryAdmin($id);
+
+        if (!$category) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
+
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::Category.admin.edit'),
-            'subTitle' => '',
+            'title'             => trans($this->plugin->pathPlugin.'::Category.admin.edit'),
+            'subTitle'          => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
-            'languages' => $this->languages,
-            'stories' => $this->stories,
-            'category' => $category,
-            'categories' => (new CmsCategory)->getTreeCategories(),
-            'url_action' => sc_route('admin_cms_category.edit', ['id' => $category['id']]),
-            'storiesPivot' => \DB::connection(SC_CONNECTION)->table((new CmsCategory)->table.'_store')->where('category_id', $id)->pluck('store_id')->all(),
+            'icon'              => 'fa fa-pencil-square-o',
+            'languages'         => $this->languages,
+            'category'          => $category,
+            'categories'        => (new AdminCmsCategory)->getTreeCategoriesAdmin(),
+            'url_action'        => sc_route('admin_cms_category.edit', ['id' => $category['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin.cms_category')
             ->with($data);
@@ -249,7 +234,10 @@ class CmsCategoryController extends Controller
  */
     public function postEdit($id)
     {
-        $category = CmsCategory::find($id);
+        $category = AdminCmsCategory::getCategoryAdmin($id);
+        if (!$category) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
+        }
 
         $data = request()->all();
 
@@ -259,13 +247,12 @@ class CmsCategoryController extends Controller
         $data['alias'] = sc_word_limit($data['alias'], 100);
 
         $validator = Validator::make($data, [
-            'sort' => 'numeric|min:0',
-            'parent' => 'required',
-            'store' => 'required',
-            'descriptions.*.title' => 'required|string|max:200',
-            'descriptions.*.keyword' => 'nullable|string|max:200',
+            'sort'                       => 'numeric|min:0',
+            'parent'                     => 'required',
+            'descriptions.*.title'       => 'required|string|max:200',
+            'descriptions.*.keyword'     => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Category.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Category.title')]),
@@ -276,14 +263,14 @@ class CmsCategoryController extends Controller
                 ->withErrors($validator)
                 ->withInput($data);
         }
-//Edit
-        $store = $data['store'] ?? [];
+        //Edit
         $dataUpdate = [
-            'image' => $data['image'],
-            'alias' => $data['alias'],
-            'parent' => $data['parent'],
-            'sort' => $data['sort'],
-            'status' => empty($data['status']) ? 0 : 1,
+            'image'    => $data['image'],
+            'alias'    => $data['alias'],
+            'parent'   => $data['parent'],
+            'sort'     => $data['sort'],
+            'status'   => empty($data['status']) ? 0 : 1,
+            'store_id' => session('adminStoreId'),
         ];
 
         $category->update($dataUpdate);
@@ -292,29 +279,25 @@ class CmsCategoryController extends Controller
         foreach ($data['descriptions'] as $code => $row) {
             $dataDes[] = [
                 'category_id' => $id,
-                'lang' => $code,
-                'title' => $row['title'],
-                'keyword' => $row['keyword'],
+                'lang'        => $code,
+                'title'       => $row['title'],
+                'keyword'     => $row['keyword'],
                 'description' => $row['description'],
             ];
         }
-        CmsCategoryDescription::insert($dataDes);
 
-        //Update store
-        $category->stories()->detach();
-        if (count($store)) {
-            $category->stories()->attach($store);
-        }
+        AdminCmsCategory::insertDescriptionAdmin($dataDes);
 
-        //
+        sc_clear_cache('cache_cms_category');
+
         return redirect()->route('admin_cms_category.index')->with('success', trans($this->plugin->pathPlugin.'::Category.admin.edit_success'));
 
     }
 
-/*
-Delete list Item
-Need mothod destroy to boot deleting in model
- */
+    /*
+    Delete list Item
+    Need mothod destroy to boot deleting in model
+    */
     public function deleteList()
     {
         if (!request()->ajax()) {
@@ -322,9 +305,26 @@ Need mothod destroy to boot deleting in model
         } else {
             $ids = request('ids');
             $arrID = explode(',', $ids);
-            CmsCategory::destroy($arrID);
+            $arrDontPermission = [];
+            foreach ($arrID as $key => $id) {
+                if(!$this->checkPermisisonItem($id)) {
+                    $arrDontPermission[] = $id;
+                }
+            }
+            if (count($arrDontPermission)) {
+                return response()->json(['error' => 1, 'msg' => trans('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
+            }
+            AdminCmsCategory::destroy($arrID);
+            sc_clear_cache('cache_cms_category');
             return response()->json(['error' => 0, 'msg' => '']);
         }
+    }
+
+    /**
+     * Check permisison item
+     */
+    public function checkPermisisonItem($id) {
+        return AdminCmsCategory::getCategoryAdmin($id);
     }
 
 }

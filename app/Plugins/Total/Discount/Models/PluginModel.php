@@ -6,13 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\ShopStore;
 class PluginModel extends Model
 {
     public $timestamps    = false;
     public $table = SC_DB_PREFIX.'shop_discount';
-    public $table_store = SC_DB_PREFIX.'shop_discount_store';
-    public $table_related = SC_DB_PREFIX.'shop_discount_user';
+    public $table_related = SC_DB_PREFIX.'shop_discount_customer';
     protected $connection = SC_CONNECTION;
     protected $guarded    = [];
     protected $dates      = ['expires_at'];
@@ -25,17 +23,9 @@ class PluginModel extends Model
         if (Schema::hasTable($this->table)) {
             Schema::drop($this->table);
         }
-        if (Schema::hasTable($this->table_store)) {
-            Schema::drop($this->table_store);
-        }
         if (Schema::hasTable($this->table_related)) {
             Schema::drop($this->table_related);
         }
-    }
-
-    public function stores()
-    {
-        return $this->belongsToMany(ShopStore::class, $this->table_store, $this->table.'_id', 'store_id');
     }
 
     protected static function boot()
@@ -43,7 +33,6 @@ class PluginModel extends Model
         parent::boot();
         // before delete() method call this
         static::deleting(function ($model) {
-                $model->stores()->detach();
                 $model->users()->detach();
             }
         );
@@ -62,20 +51,17 @@ class PluginModel extends Model
             $table->integer('limit')->default(1);
             $table->integer('used')->default(0);
             $table->integer('login')->default(0);
+            $table->integer('store_id')->default(1)->index();
             $table->tinyInteger('status')->default(0);
             $table->dateTime('expires_at')->nullable();
         });
 
-        Schema::create($this->table_store, function (Blueprint $table) {
-            $table->integer($this->table.'_id');
-            $table->integer('store_id');
-            $table->primary([$this->table.'_id', 'store_id']);
-        });
-        
         Schema::create($this->table_related, function (Blueprint $table) {
-            $table->integer($this->table.'_id');
-            $table->integer('store_id');
-            $table->primary([$this->table.'_id', 'store_id']);
+            $table->integer('customer_id');
+            $table->integer('discount_id');
+            $table->text('log')->nullable();
+            $table->timestamp('used_at')->nullable();
+            $table->primary(['customer_id', 'discount_id']);
         });
         
 
@@ -87,7 +73,7 @@ class PluginModel extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(\App\Models\ShopUser::class, $this->table_related, $this->table.'_id','user_id')
+        return $this->belongsToMany(\App\Models\ShopCustomer::class, $this->table_related, 'discount_id','customer_id')
             ->withPivot('used_at', 'log');
     }
 
@@ -121,9 +107,8 @@ class PluginModel extends Model
      */
     public function getPromotionByCode($code) {
         $promocode = $this
-        ->leftJoin($this->table_store, $this->table_store . '.'.$this->table.'_id', $this->table . '.id')
-        ->where($this->table . '.code', $code)
-        ->whereIn($this->table_store.'.store_id', [0, config('app.storeId')])
+        ->where('code', $code)
+        ->where('store_id', config('app.storeId'))
         ->first();
         return $promocode;
     }

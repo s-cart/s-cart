@@ -124,4 +124,5 @@ return [
     'captcha_action' => [
         'submit' => 'Gửi đi',
     ],
+    'store' => 'Cửa hàng',
 ];

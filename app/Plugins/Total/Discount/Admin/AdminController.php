@@ -3,27 +3,24 @@
 
 namespace App\Plugins\Total\Discount\Admin;
 
-use App\Plugins\Total\Discount\Models\PluginModel;
-use App\Http\Controllers\Controller;
+use App\Plugins\Total\Discount\Admin\Models\AdminDiscount;
+use App\Http\Controllers\RootFrontController;
 use App\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
-use App\Admin\Models\AdminStore;
-class AdminController extends Controller
+class AdminController extends RootFrontController
 {
     public $plugin;
-    public $stores;
 
     public function __construct()
     {
+        parent::__construct();
         $this->languages = ShopLanguage::getListActive();
         $this->plugin = new AppConfig;
-        $this->stores = AdminStore::getListAll();
-
     }
+
     public function index()
     {
-
         $data = [
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.list'),
             'subTitle' => '',
@@ -41,7 +38,6 @@ class AdminController extends Controller
         $data['topMenuLeft'] = sc_config_group('topMenuLeft', \Request::route()->getName());
         $data['blockBottom'] = sc_config_group('blockBottom', \Request::route()->getName());
 
-        $data['stores'] = $this->stores;
 
         $listTh = [
             'code' => trans($this->plugin->pathPlugin.'::lang.code'),
@@ -63,19 +59,12 @@ class AdminController extends Controller
             'code__desc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_desc'),
             'code__asc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_asc'),
         ];
-        $obj = (new PluginModel);
-        if ($keyword) {
-            $obj = $obj->whereRaw('code like "%' . $keyword . '%" )');
-        }
-        if ($sort_order && array_key_exists($sort_order, $arrSort)) {
-            $field = explode('__', $sort_order)[0];
-            $sort_field = explode('__', $sort_order)[1];
-            $obj = $obj->orderBy($field, $sort_field);
-
-        } else {
-            $obj = $obj->orderBy('id', 'desc');
-        }
-        $dataTmp = $obj->paginate(20);
+        $dataSearch = [
+            'keyword'    => $keyword,
+            'sort_order' => $sort_order,
+            'arrSort'    => $arrSort,
+        ];
+        $dataTmp = AdminDiscount::getDiscountListAdmin($dataSearch);
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
@@ -102,13 +91,13 @@ class AdminController extends Controller
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
-//menuRight
+        //menuRight
         $data['menuRight'][] = '<a href="' . sc_route('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="' . trans($this->plugin->pathPlugin.'::lang.admin.add_new') . '"></i>
                            </a>';
-//=menuRight
+        //=menuRight
 
-//menuSort
+        //menuSort
         $optionSort = '';
         foreach ($arrSort as $key => $status) {
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
@@ -116,9 +105,9 @@ class AdminController extends Controller
 
         $data['urlSort'] = sc_route('admin_discount.index');
         $data['optionSort'] = $optionSort;
-//=menuSort
+        //=menuSort
 
-//menuSearch
+        //menuSearch
         $data['topMenuRight'][] = '
               <form action="' . sc_route('admin_discount.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
@@ -128,7 +117,7 @@ class AdminController extends Controller
                     </div>
                 </div>
                 </form>';
-//=menuSearch
+        //=menuSearch
 
         return view('admin.screen.list')
             ->with($data);
@@ -147,7 +136,6 @@ class AdminController extends Controller
             'icon' => 'fa fa-plus',
             'discount' => [],
             'url_action' => sc_route('admin_discount.create'),
-            'stores' => $this->stores,
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -161,13 +149,13 @@ class AdminController extends Controller
     {
         $data = request()->all();
         $validator = Validator::make($data, [
-            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code|string|max:50',
-            'limit' => 'required|numeric|min:1',
+            'code'   => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|discount_unique|string|max:50',
+            'limit'  => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
-            'store' => 'required',
-            'type' => 'required',
+            'type'   => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
+            'code.discount_unique' => trans($this->plugin->pathPlugin.'::lang.discount_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -175,66 +163,63 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $store = $data['store'] ?? [];
         $dataInsert = [
-            'code' => $data['code'],
-            'reward' => (int)$data['reward'],
-            'limit' => $data['limit'],
-            'type' => $data['type'],
-            'data' => $data['data'],
-            'login' => empty($data['login']) ? 0 : 1,
+            'code'       => $data['code'],
+            'reward'     => (int)$data['reward'],
+            'limit'      => $data['limit'],
+            'type'       => $data['type'],
+            'data'       => $data['data'],
+            'login'      => empty($data['login']) ? 0 : 1,
             'expires_at' => $data['expires_at'],
-            'status' => empty($data['status']) ? 0 : 1,
+            'status'     => empty($data['status']) ? 0 : 1,
+            'store_id'   => session('adminStoreId'),
         ];
-        $discount = PluginModel::create($dataInsert);
-        //Insert store
-        if ($store) {
-            $discount->stores()->attach($store);
-        }
-//
+        AdminDiscount::createDiscountAdmin($dataInsert);
+
         return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
 
     }
 
-/**
- * Form edit
- */
+    /**
+     * Form edit
+     */
     public function edit($id)
     {
-        $discount = PluginModel::find($id);
-        if ($discount === null) {
-            return 'no data';
+        $discount = AdminDiscount::getDiscountAdmin($id);
+        if (!$discount) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
 
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::lang.admin.edit'),
-            'subTitle' => '',
+            'title'             => trans($this->plugin->pathPlugin.'::lang.admin.edit'),
+            'subTitle'          => '',
             'title_description' => '',
-            'icon' => 'fa fa-pencil-square-o',
-            'discount' => $discount,
-            'stores' => $this->stores,
-            'storesPivot' => \DB::connection(SC_CONNECTION)->table((new PluginModel)->table_store)->where((new PluginModel)->table.'_id', $id)->pluck('store_id')->all(),
-            'url_action' => sc_route('admin_discount.edit', ['id' => $discount['id']]),
+            'icon'              => 'fa fa-pencil-square-o',
+            'discount'          => $discount,
+            'url_action'        => sc_route('admin_discount.edit', ['id' => $discount['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
     }
 
-/**
- * update status
- */
+    /**
+     * update
+     */
     public function postEdit($id)
     {
-        $discount = PluginModel::find($id);
+        $discount = AdminDiscount::getDiscountAdmin($id);
+        if (!$discount) {
+            return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
+        }
         $data = request()->all();
         $validator = Validator::make($data, [
-            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|unique:"'.PluginModel::class.'",code,' . $discount->id . ',id|string|max:50',
+            'code' => 'required|regex:/(^([0-9A-Za-z\-\._]+)$)/|discount_unique:' . $discount->id . '|string|max:50',
             'limit' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:0',
             'type' => 'required',
-            'store' => 'required',
         ], [
             'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
+            'code.discount_unique' => trans($this->plugin->pathPlugin.'::lang.discount_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -242,27 +227,21 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-//Edit
-        $store = $data['store'] ?? [];
+        //Edit
         $dataUpdate = [
-            'code' => $data['code'],
-            'reward' => (int)$data['reward'],
-            'limit' => $data['limit'],
-            'type' => $data['type'],
-            'data' => $data['data'],
-            'login' => empty($data['login']) ? 0 : 1,
+            'code'       => $data['code'],
+            'reward'     => (int)$data['reward'],
+            'limit'      => $data['limit'],
+            'type'       => $data['type'],
+            'data'       => $data['data'],
+            'login'      => empty($data['login']) ? 0 : 1,
             'expires_at' => $data['expires_at'],
-            'status' => empty($data['status']) ? 0 : 1,
+            'status'     => empty($data['status']) ? 0 : 1,
+            'store_id'   => session('adminStoreId'),
         ];
 
         $discount->update($dataUpdate);
-        //Update store
-        $discount->stores()->detach();
-        if (count($store)) {
-            $discount->stores()->attach($store);
-        }
 
-//
         return redirect()->route('admin_discount.index')
             ->with('success', trans($this->plugin->pathPlugin.'::lang.admin.edit_success'));
 
@@ -279,9 +258,24 @@ class AdminController extends Controller
         } else {
             $ids = request('ids');
             $arrID = explode(',', $ids);
-            PluginModel::destroy($arrID);
-            return 1;
+            $arrDontPermission = [];
+            foreach ($arrID as $key => $id) {
+                if(!$this->checkPermisisonItem($id)) {
+                    $arrDontPermission[] = $id;
+                }
+            }
+            if (count($arrDontPermission)) {
+                return response()->json(['error' => 1, 'msg' => trans('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
+            }
+            AdminDiscount::destroy($arrID);
+            return response()->json(['error' => 0, 'msg' => '']);
         }
     }
 
+    /**
+     * Check permisison item
+     */
+    public function checkPermisisonItem($id) {
+        return AdminDiscount::getDiscountAdmin($id);
+    }
 }
