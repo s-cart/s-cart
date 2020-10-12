@@ -3,7 +3,7 @@
 
 namespace App\Plugins\Other\GoogleCaptcha\Admin;
 
-use App\Http\Controllers\RootAdminController;
+use SCart\Core\Front\Controllers\RootAdminController;
 use App\Plugins\Other\GoogleCaptcha\AppConfig;
 
 class AdminController extends RootAdminController

@@ -5,7 +5,7 @@ namespace App\Plugins\Total\Discount\Admin;
 
 use App\Plugins\Total\Discount\Admin\Models\AdminDiscount;
 use App\Http\Controllers\RootFrontController;
-use App\Models\ShopLanguage;
+use SCart\Core\Front\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
 class AdminController extends RootFrontController

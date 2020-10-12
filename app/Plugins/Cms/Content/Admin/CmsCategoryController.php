@@ -1,8 +1,8 @@
 <?php
 namespace App\Plugins\Cms\Content\Admin;
 
-use App\Http\Controllers\RootAdminController;
-use App\Models\ShopLanguage;
+use SCart\Core\Front\Controllers\RootAdminController;
+use SCart\Core\Front\Models\ShopLanguage;
 use App\Plugins\Cms\Content\Admin\Models\AdminCmsCategory;
 use App\Plugins\Cms\Content\AppConfig;
 

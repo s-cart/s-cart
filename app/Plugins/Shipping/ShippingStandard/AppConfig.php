@@ -3,7 +3,7 @@
 namespace App\Plugins\Shipping\ShippingStandard;
 
 use App\Plugins\Shipping\ShippingStandard\Models\PluginModel;
-use App\Admin\Models\AdminConfig;
+use SCart\Core\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
