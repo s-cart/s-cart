@@ -170,10 +170,12 @@ class AdminController extends RootFrontController
             'type'       => $data['type'],
             'data'       => $data['data'],
             'login'      => empty($data['login']) ? 0 : 1,
-            'expires_at' => $data['expires_at'],
             'status'     => empty($data['status']) ? 0 : 1,
             'store_id'   => session('adminStoreId'),
         ];
+        if(!empty($data['expires_at'])) {
+            $dataInsert['expires_at'] = $data['expires_at'];
+        }
         AdminDiscount::createDiscountAdmin($dataInsert);
 
         return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
@@ -235,11 +237,12 @@ class AdminController extends RootFrontController
             'type'       => $data['type'],
             'data'       => $data['data'],
             'login'      => empty($data['login']) ? 0 : 1,
-            'expires_at' => $data['expires_at'],
             'status'     => empty($data['status']) ? 0 : 1,
             'store_id'   => session('adminStoreId'),
         ];
-
+        if(!empty($data['expires_at'])) {
+            $dataUpdate['expires_at'] = $data['expires_at'];
+        }
         $discount->update($dataUpdate);
 
         return redirect()->route('admin_discount.index')
