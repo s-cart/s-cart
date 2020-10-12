@@ -192,7 +192,7 @@ class DataAdminSeeder extends Seeder
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_store')->insert(
             [
                 'logo' => 'data/logo/scart-mid.png', 
-                'template' => 's-cart-3x', 
+                'template' => 's-cart-light', 
                 'phone' => '0123456789', 
                 'long_phone' => 'Support: 0987654321', 
                 'email' => $this->adminEmail, 
