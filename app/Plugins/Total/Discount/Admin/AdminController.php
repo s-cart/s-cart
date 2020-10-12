@@ -64,7 +64,7 @@ class AdminController extends RootFrontController
             'sort_order' => $sort_order,
             'arrSort'    => $arrSort,
         ];
-        $dataTmp = AdminDiscount::getDiscountListAdmin($dataSearch);
+        $dataTmp = (new AdminDiscount)->getDiscountListAdmin($dataSearch);
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
