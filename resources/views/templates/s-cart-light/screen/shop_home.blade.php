@@ -27,8 +27,10 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                         </a>
                     </div>
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
+                    @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
                     <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $productNew->store_id  }}</a>
                     </div>
+                    @endif
                     @if ($productNew->allowSale())
                     <a onClick="addToCartAjax('{{ $productNew->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                     @endif
