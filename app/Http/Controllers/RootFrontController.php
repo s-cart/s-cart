@@ -22,8 +22,9 @@ class RootFrontController extends Controller
      */
     public function pageNotFound()
     {
+        sc_check_view( $this->templatePath . '.notfound');
         return view(
-            $this->templatePath . '.notfound',
+             $this->templatePath . '.notfound',
             [
             'title' => trans('front.page_not_found_title'),
             'msg' => trans('front.page_not_found'),
@@ -40,8 +41,9 @@ class RootFrontController extends Controller
      */
     public function itemNotFound()
     {
+        sc_check_view( $this->templatePath . '.notfound');
         return view(
-            $this->templatePath . '.notfound',
+             $this->templatePath . '.notfound',
             [
                 'title' => trans('front.item_not_found_title'),
                 'msg' => trans('front.item_not_found'),
@@ -50,5 +52,4 @@ class RootFrontController extends Controller
             ]
         );
     }
-
 }

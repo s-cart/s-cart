@@ -124,5 +124,5 @@ return [
         'submit' => 'Submit',
     ],
     'store' => 'Store',
-
+    'view_not_exist' => 'View not exist "<span style=\'color:red\'>:view</span>"',
 ];

@@ -61,8 +61,12 @@ $productRelation: no paginate
               <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
               <div class="single-product">
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
+                
+                @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
                 <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
                 </div>
+                @endif
+                
                 <p>SKU: <span id="product-detail-model">{{ $product->sku }}</span></p>
                 <div class="group-md group-middle">
                   <div class="single-product-price" id="product-detail-price">
@@ -270,7 +274,9 @@ $bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->fir
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
         <li><a href="{{ $goToStore }}">{{ sc_store('title', $product->store_id) }}</a></li>
+        @endif
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>
