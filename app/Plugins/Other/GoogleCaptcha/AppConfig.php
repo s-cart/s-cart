@@ -6,7 +6,7 @@
 namespace App\Plugins\Other\GoogleCaptcha;
 
 use App\Plugins\Other\GoogleCaptcha\Models\PluginModel;
-use App\Admin\Models\AdminConfig;
+use SCart\Core\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 use GuzzleHttp\Client;
 

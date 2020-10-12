@@ -86,7 +86,7 @@
               <div class="col-md-auto order-md-1">Hosted by <a target="_blank"
                 href="https://giaiphap247.com">GiaiPhap247.com</a></div>
               <div class="col-md-auto">
-                    Power by <a href="{{ config('scart.homepage') }}">{{ config('scart.name') }} {{ config('scart.sub_version') }}</a>
+                    Power by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub_version') }}</a>
               </div>
             </div>
           </div>

@@ -1,13 +1,12 @@
 @php
 /*
-$layout_page = shop_home
+$layout_page = store_home
 */ 
 @endphp
 
 @extends($sc_templatePath.'.layout')
 @php
-$productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('product_top'))->getData();
-$news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
+$productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('product_top'))->setStore($storeId)->getData();
 @endphp
 
 @section('block_main')
@@ -27,8 +26,6 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                         </a>
                     </div>
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
-                    <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $productNew->store_id  }}</a>
-                    </div>
                     @if ($productNew->allowSale())
                     <a onClick="addToCartAjax('{{ $productNew->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                     @endif
@@ -36,8 +33,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                     {!! $productNew->showPrice() !!}
                   </div>
                   
-                  @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind !=
-                  SC_PRODUCT_GROUP)
+                  @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind != SC_PRODUCT_GROUP)
                   <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                   @elseif($productNew->kind == SC_PRODUCT_BUILD)
                   <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
@@ -64,30 +60,22 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
       </section>      
 @endsection
 
-@section('news')
-@if ($news)
-<!-- Our Blog-->
-<section class="section section-xxl section-last bg-gray-21">
-  <div class="container">
-    <h2 class="wow fadeScale">{{ trans('front.blog') }}</h2>
-  </div>
-  <!-- Owl Carousel-->
-  <div class="owl-carousel owl-style-7" data-items="1" data-sm-items="2" data-xl-items="3" data-xxl-items="4" data-nav="true" data-dots="true" data-margin="30" data-autoplay="true">
-    @foreach ($news as $blog)
-    <!-- Post Creative-->
-    <article class="post post-creative"><a class="post-creative-figure" href="{{ $blog->getUrl() }}"><img src="{{ asset($blog->getThumb()) }}" alt="" width="420" height="368"/></a>
-      <div class="post-creative-content">
-        <h5 class="post-creative-title"><a href="{{ $blog->getUrl() }}">{{ $blog->title }}</a></h5>
-        <div class="post-creative-time">
-          <time datetime="{{ $blog->created_at }}">{{ $blog->created_at }}</time>
-        </div>
-      </div>
-    </article>
-    @endforeach
+{{-- breadcrumb --}}
+@section('breadcrumb')
+<section class="breadcrumbs-custom">
+  <h1>{{ sc_store('title', $storeId) }}</h1>
+  <div class="breadcrumbs-custom-footer">
+    <div class="container">
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li class="active">{{ sc_store('title', $storeId) }}</li>
+      </ul>
+    </div>
   </div>
 </section>
-@endif
 @endsection
+{{-- //breadcrumb --}}
+
 
 @push('styles')
 @endpush

@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends($templatePathAdmin.'layout')
 
 @section('main')
 <div class="row">
@@ -112,44 +112,6 @@
                         </div>
                         @endforeach
 
-                        {{-- select store --}}
-                        @if (count($stories) > 1)
-                        <div class="form-group row {{ $errors->has('store') ? ' text-red' : '' }}">
-                            @php
-                            $listStore = [];
-                            $store = old('store', ($storiesPivot ?? []));
-                            if(is_array($store)){
-                                foreach($store as $value){
-                                    $listStore[] = (int)$value;
-                                }
-                            }
-                            @endphp
-                            <label for="store" class="col-sm-2 col-form-label">
-                                {{ trans('store.select_store') }}
-                            </label>
-                            <div class="col-sm-8">
-                                <select class="form-control input-sm store select2" multiple="multiple"
-                                    data-placeholder="{{ trans('store.select_store') }}" style="width: 100%;"
-                                    name="store[]">
-                                    <option value="0" {{ (in_array(0, $listStore)) ? 'selected' : ''}}>{{ trans('store.all_stories') }}</option>
-                                    @foreach ($stories as $id => $store)
-                                    <option value="{{ $id }}"
-                                        {{ (count($listStore) && in_array($id, $listStore))?'selected':'' }}>{{ sc_store('title', $id) }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('store'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('store') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @else
-                            <input type="hidden" name="store[]" value="0">
-                        @endif
-                        {{-- //select store --}}
-
                         <div class="form-group row {{ $errors->has('parent') ? ' text-red' : '' }}">
                             <label for="parent"
                                 class="col-sm-2 col-form-label">{{ trans('Plugins/Cms/Content::Category.admin.select_category') }}</label>
@@ -243,7 +205,7 @@
                         <div class="form-group  row">
                             <label for="status" class="col-sm-2 col-form-label">{{ trans('Plugins/Cms/Content::Category.status') }}</label>
                             <div class="col-sm-8">
-                                <input class="input" type="checkbox" name="status"
+                                <input class="checkbox" type="checkbox" name="status"
                                     {{ old('status',(empty($category['status'])?0:1))?'checked':''}}>
 
                             </div>

@@ -3,8 +3,8 @@
 namespace App\Plugins\Other\GoogleCaptcha\Controllers;
 
 use App\Plugins\Other\GoogleCaptcha\AppConfig;
-use App\Http\Controllers\GeneralController;
-class FrontController extends GeneralController
+use App\Http\Controllers\RootFrontController;
+class FrontController extends RootFrontController
 {
     public $plugin;
 

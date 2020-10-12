@@ -11,6 +11,7 @@ return [
     'title'      => 'Coupon/Discount',
     'login'      => 'Login require',
     'expires_at' => 'Expires',
+    'discount_unique' => 'Code already exists',
     'admin'      => [
         'title'          => 'Discount',
         'create_success' => 'Create new item success!',

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\RootFrontController;
 use Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use App\Models\ShopUserPasswordReset;
-class ResetPasswordController extends GeneralController
+use App\Models\ShopCustomerPasswordReset;
+class ResetPasswordController extends RootFrontController
 {
     /*
     |--------------------------------------------------------------------------

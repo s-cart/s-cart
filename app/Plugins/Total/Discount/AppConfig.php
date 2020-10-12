@@ -5,6 +5,7 @@ namespace App\Plugins\Total\Discount;
 use App\Plugins\Total\Discount\Models\PluginModel;
 use App\Plugins\Total\Discount\Controllers\FrontController;
 use App\Admin\Models\AdminConfig;
+use App\Admin\Models\AdminMenu;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
@@ -46,6 +47,19 @@ class AppConfig extends ConfigDefault
                     'detail' => $this->pathPlugin.'::lang.title',
                 ]
             );
+
+            $blockMarketing = AdminMenu::where('key','MARKETING')->first();
+            if($blockMarketing) {
+                AdminMenu::insert([
+                    'sort' => 100,
+                    'parent_id' => $blockMarketing->id,
+                    'title' => 'lang::'.$this->pathPlugin.'::lang.title',
+                    'icon' => 'fas fa-tags',
+                    'uri' => 'route::admin_discount.index',
+                    'key' => $this->configKey,
+                    ]);
+            }
+
             if (!$process) {
                 $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.install_faild')];
             } else {
@@ -64,6 +78,7 @@ class AppConfig extends ConfigDefault
     {
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
+        AdminMenu::where('key', $this->configKey)->delete();
         if (!$process) {
             $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }

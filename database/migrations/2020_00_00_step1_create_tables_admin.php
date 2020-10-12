@@ -39,7 +39,7 @@ class CreateTablesAdmin extends Migration
 
         Schema::create(SC_DB_PREFIX . 'admin_role', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
+            $table->string('name', 50);
             $table->string('slug', 50)->unique();
             $table->timestamps();
         });
@@ -123,7 +123,8 @@ class CreateTablesAdmin extends Migration
             $table->string('office', 300)->nullable();
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
-            $table->string('domain', 100)->nullable()->unique();
+            $table->string('domain', 100)->nullable()->index();
+            $table->string('code', 20)->nullable()->unique();
             $table->string('language', 10);
             $table->string('timezone', 50);
             $table->string('currency', 10);

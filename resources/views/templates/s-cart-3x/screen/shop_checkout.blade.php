@@ -43,7 +43,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                             @php
                             $n = (isset($n)?$n:0);
                             $n++;
-                            $product = (new App\Models\ShopProduct)->getDetail($item->id);
+                            $product = $modelProduct->start()->getDetail($item->id);
                             @endphp
                             <tr class="row_cart">
                                 <td>{{ $n }}</td>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\RootFrontController;
 use App\Models\ShopCountry;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends GeneralController
+class LoginController extends RootFrontController
 {
     /*
     |--------------------------------------------------------------------------

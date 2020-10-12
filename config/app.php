@@ -151,7 +151,6 @@ return [
         /*
          * Package Service Providers...
          */
-        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Spatie\JsonApiPaginate\JsonApiPaginateServiceProvider::class,
         /*
@@ -161,13 +160,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-
-        /*
-         * S-Cart
-         */
-        App\Providers\ScartServiceProvider::class,
-        App\Admin\Providers\AdminServiceProvider::class,
-
+        
         App\Providers\RouteServiceProvider::class,
     ],
 
@@ -220,11 +213,6 @@ return [
         //App
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        //scart
-        'Cart' => App\Library\ShoppingCart\Facades\Cart::class,
-        'ProcessData' => App\Library\ProcessData\Boot::class,
-        'Admin' => App\Admin\Admin::class,
-        'Export' => App\Library\ProcessData\Export::class,
     ],
 
     'debug_blacklist' => [

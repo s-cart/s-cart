@@ -2,9 +2,9 @@
 #App\Plugins\Payment\Cash\Controllers\FrontController.php
 namespace App\Plugins\Payment\Cash\Controllers;
 
-use App\Http\Controllers\ShopCart;
-use App\Http\Controllers\GeneralController;
-class FrontController extends GeneralController
+use SCart\Core\Front\Controllers\ShopCart;
+use App\Http\Controllers\RootFrontController;
+class FrontController extends RootFrontController
 {
     /**
      * Process order

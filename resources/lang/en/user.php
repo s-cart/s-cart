@@ -32,6 +32,7 @@ return [
         'keep_password'     => 'Leave blank if you don\'t want to change the password',
         'select_roles'      => 'Select roles',
         'select_permission' => 'Select permission',
+        'add_permission'    => 'Add permission',
         'select_store'      => 'Select store',
 
         'sort_order' => [

@@ -1,6 +1,3 @@
-@php
-$categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
-@endphp
       <!-- Page Header-->
       <header class="section page-header">
         <!-- RD Navbar-->
@@ -22,15 +19,7 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a>
-                        @if ($categoriesTop->count())
-                        <ul class="rd-menu rd-navbar-dropdown">
-                            @foreach ($categoriesTop as $key => $category)
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ $category->getUrl() }}">{{ $category->title }}</a></li>
-                            @endforeach
-                        </ul>
-                        @endif
-                    </li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a></li>
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
                     </li>

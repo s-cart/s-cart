@@ -105,6 +105,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'install'     => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/install.log'),
+            'level'  => 'debug',
+            'permission' => 0775,
+        ],
     ],
 
 ];

@@ -11,6 +11,7 @@ return [
     'office'           => 'Office',
     'status'           => 'Status',
     'warehouse'        => 'Warehouse',
+    'code'             => 'Code',
     'email'            => 'Email',
     'stauts'           => 'Status',
     'language'         => 'Language default',
@@ -68,5 +69,8 @@ return [
         'config_other'        => 'Other',
         'switch_store'        =>  'Switch store',
         'config_admin_other'  =>  'Config admin',
+        'active_strict'  =>  'Activate domain check mode',
+        'active_domain'  =>  'Activate the domain name',
+        'active_maintain'  =>  'Activate maintenance mode',
     ],
 ];

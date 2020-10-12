@@ -32,6 +32,7 @@ return [
         'keep_password'     => 'Để trống nếu không muốn thay đổi mật khẩu',
         'select_roles'      => 'Chọn vai trò',
         'select_permission' => 'Chọn quyền hạn',
+        'add_permission'    => 'Thêm quyền hạn',
         'select_store'      => 'Chọn cửa hàng',
         'sort_order' => [
             'id_asc'        => 'ID asc',

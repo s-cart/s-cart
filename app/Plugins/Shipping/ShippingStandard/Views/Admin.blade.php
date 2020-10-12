@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends($templatePathAdmin.'layout')
 
 @section('main')
 <div class="row">

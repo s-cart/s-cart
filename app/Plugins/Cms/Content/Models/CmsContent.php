@@ -7,10 +7,8 @@ use App\Plugins\Cms\Content\Models\CmsImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Cache;
-use App\Admin\Models\AdminStore;
 use Illuminate\Support\Facades\DB;
-use App\Models\ModelTrait;
+use SCart\Core\Front\Models\ModelTrait;
 
 class CmsContent extends Model
 {
@@ -22,16 +20,9 @@ class CmsContent extends Model
 
     protected  $sc_category = []; 
 
-    protected static $getListFull = null;
-
     public function category()
     {
         return $this->belongsTo(CmsCategory::class, 'category_id', 'id');
-    }
-
-    public function stories()
-    {
-        return $this->belongsToMany(AdminStore::class, $this->table.'_store', 'content_id', 'store_id');
     }
 
     public function descriptions()
@@ -50,7 +41,6 @@ class CmsContent extends Model
         static::deleting(function ($content) {
             //Delete content descrition
             $content->descriptions()->delete();
-            $content->stories()->detach();
         });
     }
 
@@ -95,7 +85,7 @@ class CmsContent extends Model
      * @param   [string]  $type  [id, alias]
      *
      */
-    public function getDetail($key, $type = null, $status = 1)
+    public function getDetail($key, $type = null)
     {
         if(empty($key)) {
             return null;
@@ -106,21 +96,13 @@ class CmsContent extends Model
             ->leftJoin($tableDescription, $tableDescription . '.content_id', $this->getTable() . '.id')
             ->where($tableDescription . '.lang', sc_get_locale());
 
-        //Get content active for store
-        $tableNTS = $this->table.'_store';
-        $content = $content->leftJoin($tableNTS, $tableNTS . '.content_id', $this->getTable() . '.id');
-        $content = $content->whereIn($tableNTS . '.store_id', [config('app.storeId'), 0]);
-        //End store
-
-
         if ($type == null) {
             $content = $content->where('id', (int) $key);
         } else {
             $content = $content->where($type, $key);
         }
-        if ($status == 1) {
-            $content = $content->where('status', 1);
-        }
+        $content = $content->where('status', 1)
+            ->where('store_id', config('app.storeId'));
         return $content->first();
     }
 
@@ -157,39 +139,12 @@ class CmsContent extends Model
         return $data;
     }
 
-    /**
-     * Process list full cms content
-     *
-     * @return  [type]  [return description]
-     */
-    public static function getListFull()
-    {
-        if (sc_config_global('cache_status') && sc_config_global('cache_content_cms')) {
-            if (!Cache::has('cache_content_cms')) {
-                if (self::$getListFull === null) {
-                    self::$getListFull = self::get()->keyBy('id')->toJson();
-                }
-                Cache::put('cache_content_cms', self::$getListFull, $seconds = sc_config_global('cache_time')?:600);
-            }
-            return Cache::get('cache_content_cms');
-        } else {
-            if (self::$getListFull === null) {
-                self::$getListFull = self::get()->keyBy('id')->toJson();
-            }
-            return self::$getListFull;
-        }
-    }
-
-
-//=========================
+    //=========================
 
     public function uninstall()
     {
         if (Schema::hasTable($this->table)) {
             Schema::drop($this->table);
-        }
-        if (Schema::hasTable($this->table.'_store')) {
-            Schema::drop($this->table.'_store');
         }
         if (Schema::hasTable($this->table.'_description')) {
             Schema::drop($this->table.'_description');
@@ -207,6 +162,7 @@ class CmsContent extends Model
             $table->string('alias', 120)->unique();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->integer('store_id')->default(1)->index();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
@@ -221,17 +177,10 @@ class CmsContent extends Model
             $table->primary(['content_id', 'lang']);
         });
 
-        Schema::create($this->table.'_store', function (Blueprint $table) {
-            $table->integer('content_id');
-            $table->integer('store_id');
-            $table->primary(['content_id', 'store_id']);
-            }
-        );
-
         DB::connection(SC_CONNECTION)->table($this->table)->insert(
             [
-                ['id' => 1, 'alias' =>  'demo-alias-content-1', 'image' => '/data/cms-image/cms_content_1.jpg', 'category_id' => 1,  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],                    
-                ['id' => 2, 'alias' =>  'demo-alias-content-2', 'image' => '/data/cms-image/cms_content_2.jpg', 'category_id' => 1,  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d")],                    
+                ['id' => 1, 'alias' =>  'demo-alias-content-1', 'image' => '/data/cms-image/cms_content_1.jpg', 'category_id' => 1,  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],                    
+                ['id' => 2, 'alias' =>  'demo-alias-content-2', 'image' => '/data/cms-image/cms_content_2.jpg', 'category_id' => 1,  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],                    
             ]
         );
 
@@ -245,12 +194,6 @@ class CmsContent extends Model
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
                 ['content_id' => '2', 'lang' => 'vi', 'title' => 'Demo cms content 2', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/cms-image/cms.jpg" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
-            ]
-        );
-        DB::connection(SC_CONNECTION)->table($this->table.'_store')->insert(
-            [
-                ['content_id' => '1', 'store_id' => '0'],
-                ['content_id' => '2', 'store_id' => '0'],
             ]
         );
     }
@@ -285,7 +228,6 @@ class CmsContent extends Model
      * @param   [array|int]  $arrCategory 
      */
     public function getContentToCategory($arrCategory) {
-        $this->setStatus(1);
         $this->setCategory($arrCategory);
         return $this;
     }
@@ -309,19 +251,12 @@ class CmsContent extends Model
             });
         }
 
-        //Get content active for store
-        $tableNTS = $this->table.'_store';
-        $query = $query->leftJoin($tableNTS, $tableNTS . '.content_id', $this->getTable() . '.id');
-        $query = $query->whereIn($tableNTS . '.store_id', [config('app.storeId'), 0]);
-        //End store
-
         if (count($this->sc_category)) {
             $query = $query->whereIn('category_id', $this->sc_category);
         }
 
-        if ($this->sc_status !== 'all') {
-            $query = $query->where('status', $this->sc_status);
-        }
+        $query = $query->where('status', 1)
+            ->where('store_id', config('app.storeId'));
 
         if (count($this->sc_moreWhere)) {
             foreach ($this->sc_moreWhere as $key => $where) {
