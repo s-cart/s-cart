@@ -40,7 +40,7 @@ return [
     'new'                                   => 'New',
     'sale'                                  => 'Sale',
     'brand'                                 => 'Brand',
-    'sub_category'                          => 'Category store',
+    'sub_category'                          => 'Sub category',
     'supplier'                              => 'Supplier',
     'availability'                          => 'Availability',
     'in_stock'                              => 'In stock',

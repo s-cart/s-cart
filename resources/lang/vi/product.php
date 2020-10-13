@@ -38,7 +38,7 @@ return [
     'new'                                   => 'Mới',
     'sale'                                  => 'Sale',
     'brand'                                 => 'Nhãn hiệu',
-    'sub_category'                          => 'Danh mục cửa hàng',
+    'sub_category'                          => 'Danh mục nhỏ',
     'supplier'                              => 'Nhà cung cấp',
     'availability'                          => 'Tình trạng',
     'date_available'                        => 'Thời gian bán',
