@@ -1,5 +1,4 @@
 <?php
-#app/Http/Controller/RootFrontController.php
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
