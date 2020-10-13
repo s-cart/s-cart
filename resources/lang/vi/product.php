@@ -143,6 +143,7 @@ return [
         'attribute'                         => 'Sử dụng THUỘC TÍNH (màu sắc, kích thước,...)',
         'promotion'                         => 'Sử dụng GIÁ KHUYẾN MÃI',
         'available'                         => 'Sử dụng THỜI GIAN MỞ BÁN',
+        'sub_category'                      => 'Sử dụng CATEGORY nhỏ',
         'tax'                               => 'Cấu hình thuế',
         'product_display_price_include_tax' => 'Hiển thị giá bao gồm thuế',
         'weight'                            => 'Sử dụng Khối lượng',
