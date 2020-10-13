@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-class ShopCart extends \SCart\Core\Front\Controllers\ShopCart
+class ShopSupplierController extends \SCart\Core\Front\Controllers\ShopSupplierController
 {
     public function __construct()
     {
         parent::__construct();
     }
+
 }
