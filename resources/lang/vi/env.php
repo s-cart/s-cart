@@ -16,6 +16,7 @@ return [
     'PREFIX_BRAND'               => 'Tiền tố trang BRAND',
     'PREFIX_SUPPLIER'            => 'Tiền tố trang SUPPLIER',
     'PREFIX_CATEGORY'            => 'Tiền tố trang CATEGORY ',
+    'PREFIX_SUB_CATEGORY'        => 'Tiền tố trang CATEGORY nhỏ',
     'PREFIX_PRODUCT'             => 'Tiền tố trang PRODUCT',
     'PREFIX_SEARCH'              => 'Tiền tố trang SEARCH',
     'PREFIX_CONTACT'             => 'Tiền tố trang CONTACT',
