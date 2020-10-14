@@ -205,6 +205,7 @@ class DataAdminSeeder extends Seeder
                 'timezone' => $this->timezone_default, 
                 'language' => $this->language_default, 
                 'currency' => 'USD', 
+                'code' => 'root', 
                 'domain' => str_replace(['http://','https://', '/install.php'], '', url('/')),
             ]
         );
