@@ -174,7 +174,7 @@ class CmsCategory extends Model
             $table->increments('id');
             $table->string('image', 100)->nullable();
             $table->integer('parent')->default(0);
-            $table->string('alias', 120)->unique();
+            $table->string('alias', 120)->index();
             $table->integer('store_id')->default(1)->index();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
