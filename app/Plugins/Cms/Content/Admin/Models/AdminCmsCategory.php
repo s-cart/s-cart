@@ -170,4 +170,36 @@ class AdminCmsCategory extends CmsCategory
         return CmsCategoryDescription::create($dataInsert);
     }
 
+    /**
+     * [checkAliasValidationAdmin description]
+     *
+     * @param   [type]$type     [$type description]
+     * @param   null  $fieldValue    [$field description]
+     * @param   null  $categoryId      [$categoryId description]
+     * @param   null  $storeId  [$storeId description]
+     * @param   null            [ description]
+     *
+     * @return  [type]          [return description]
+     */
+    public function checkAliasValidationAdmin($type = null, $fieldValue = null, $categoryId = null, $storeId = null) {
+        $storeId = $storeId ? sc_clean($storeId) : session('adminStoreId');
+        $type = $type ? sc_clean($type) : 'alias';
+        $fieldValue = sc_clean($fieldValue);
+        $categoryId = sc_clean($categoryId);
+        $tablePTS = (new AdminCmsCategory)->getTable();
+        $check =  $this
+        ->where($type, $fieldValue)
+        ->where($tablePTS . '.store_id', $storeId);
+        if($categoryId) {
+            $check = $check->where('id', '<>', $categoryId);
+        }
+        $check = $check->first();
+
+        if($check) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

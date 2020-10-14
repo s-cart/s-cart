@@ -86,7 +86,7 @@ class CmsCategoryController extends RootAdminController
 
         $data['listTh'] = $listTh;
         $data['dataTr'] = $dataTr;
-        $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
+        $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links($this->templatePathAdmin.'component.pagination');
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::Category.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
 
@@ -162,10 +162,11 @@ class CmsCategoryController extends RootAdminController
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_category_alias_unique',
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Category.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Category.title')]),
+            'alias.cms_category_alias_unique' => trans($this->plugin->pathPlugin.'::Category.alias_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -173,7 +174,6 @@ class CmsCategoryController extends RootAdminController
                 ->withErrors($validator)
                 ->withInput($data);
         }
-        $store = $data['store'] ?? [];
         $dataInsert = [
             'image'    => $data['image'],
             'alias'    => $data['alias'],
@@ -252,10 +252,11 @@ class CmsCategoryController extends RootAdminController
             'descriptions.*.title'       => 'required|string|max:200',
             'descriptions.*.keyword'     => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_category_alias_unique:'.$id,
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Category.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Category.title')]),
+            'alias.cms_category_alias_unique' => trans($this->plugin->pathPlugin.'::Category.alias_unique'),
         ]);
 
         if ($validator->fails()) {

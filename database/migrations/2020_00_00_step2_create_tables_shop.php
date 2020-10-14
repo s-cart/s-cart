@@ -295,7 +295,7 @@ class CreateTablesShop extends Migration
             $table->integer('sort')->default(0);
             $table->integer('view')->default(0);
             $table->string('alias', 120)->index();
-            $table->integer('sub_category_id')->nullable()->index();
+            $table->integer('sub_category_id')->default(1)->nullable()->index();
             $table->integer('store_id')->default(1)->index();
             $table->dateTime('date_lastview')->nullable();
             $table->date('date_available')->nullable();

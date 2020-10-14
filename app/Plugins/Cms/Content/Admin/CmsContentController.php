@@ -86,7 +86,7 @@ class CmsContentController extends RootAdminController
         $data['dataTr'] = $dataTr;
         $data['pagination'] = $dataTmp
             ->appends(request()->except(['_token', '_pjax']))
-            ->links('admin.component.pagination');
+            ->links($this->templatePathAdmin.'component.pagination');
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::Content.admin.result_item', 
             [
                 'item_from' => $dataTmp->firstItem(), 
@@ -164,11 +164,12 @@ class CmsContentController extends RootAdminController
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_content_alias_unique',
         ], [
             'descriptions.*.title.required' => trans('validation.required', 
             ['attribute' => trans($this->plugin->pathPlugin.'::Content.title')]),
             'alias.regex' => trans($this->plugin->pathPlugin.'::Content.alias_validate'),
+            'alias.cms_content_alias_unique' => trans($this->plugin->pathPlugin.'::Content.alias_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -250,7 +251,7 @@ class CmsContentController extends RootAdminController
 
         $validator = Validator::make($data, [
             'category_id' => 'required',
-            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100',
+            'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_content_alias_unique:'.$id,
             'sort' => 'numeric|min:0',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
@@ -258,6 +259,7 @@ class CmsContentController extends RootAdminController
         ], [
             'alias.regex' => trans($this->plugin->pathPlugin.'::Content.alias_validate'),
             'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Content.title')]),
+            'alias.cms_content_alias_unique' => trans($this->plugin->pathPlugin.'::Content.alias_unique'),
         ]);
 
         if ($validator->fails()) {

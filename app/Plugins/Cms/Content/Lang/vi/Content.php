@@ -7,6 +7,7 @@ return [
     'content'      => 'Nội dung',
     'alias'                 => 'URL tùy chỉnh <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span>',
     'alias_validate'        => 'Tối đa 100 kí tự trong nhóm: "A-Z", "a-z", "0-9" and "-_" ',
+    'alias_unique' => 'Alias đã có rồi',
     'image'       => 'Hình ảnh',
     'category_id' => 'Danh mục',
     'top'         => 'Hiển thị ngoài web',
