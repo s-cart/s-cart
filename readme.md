@@ -68,7 +68,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Requirements:
 
-Version 3.1
+From Version 4.0
 
 > Core laravel framework 7.x Requirements::
 
@@ -157,6 +157,39 @@ DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
 - Access to url admin: <b>your-domain/sc_admin</b>.
 - User/pass <code><b>admin</b>/<b>admin</b></code>
 
+## Useful information:
+
+To view S-Cart version information
+
+`php artisan sc:info`
+
+To update the core version of S-Cart:
+
+`composer update s-cart / core`
+
+To create a plugin:
+
+`php artisan sc:make plugin  --name=Group\PluginName`
+
+To create the template:
+
+`php artisan sc:make template --name=tem-plate-name`
+
+To create data backup file
+
+`php artisan sc:backup --path=abc.sql`
+
+To recover data:
+
+`php artisan sc:restore --path=abc.sql`
+
+To manually customize the admin page:
+
+`php artian sc:handle admin`
+
+Then set the value  `customize = true` trong `app/config/admin.php`
+
+More detail: https://s-cart.org/docs/master
 
 ## License:
 
