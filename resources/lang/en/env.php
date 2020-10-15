@@ -16,6 +16,7 @@ return [
     'PREFIX_BRAND'               => 'Prefix url BRAND',
     'PREFIX_SUPPLIER'            => 'Prefix url SUPPLIER',
     'PREFIX_CATEGORY'            => 'Prefix url CATEGORY ',
+    'PREFIX_SUB_CATEGORY'        => 'Prefix url sub CATEGORY',
     'PREFIX_PRODUCT'             => 'Prefix url PRODUCT',
     'PREFIX_SEARCH'              => 'Prefix url SEARCH',
     'PREFIX_CONTACT'             => 'Prefix url CONTACT',

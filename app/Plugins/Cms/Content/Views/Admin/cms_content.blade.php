@@ -265,13 +265,7 @@
 @endpush
 
 @push('scripts')
-@include('admin.component.ckeditor_js')
-
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('.select2').select2()
-});
-</script>
+@include($templatePathAdmin.'component.ckeditor_js')
 <script type="text/javascript">
     $('textarea.editor').ckeditor(
     {

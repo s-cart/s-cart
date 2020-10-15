@@ -19,7 +19,15 @@
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a>
+                      @if (sc_config_global('MultiStorePro') && sc_store_active())
+                      <ul class="rd-menu rd-navbar-dropdown">
+                        @foreach (sc_store_active() as $storeActive)
+                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('multistorepro.detail', ['code' => $storeActive->code]) }}"">{{ $storeActive->getTitle() }}</a></li>
+                        @endforeach
+                    </ul>
+                      @endif
+                    </li>
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
                     </li>
@@ -31,7 +39,7 @@
                         @endphp
                         <ul class="rd-menu rd-navbar-dropdown">
                             @foreach ($cmsCategories as $cmsCategory)
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ $cmsCategory->getUrl() }}"">{{ sc_language_render($cmsCategory->title) }}</a></li>
+                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ $cmsCategory->getUrl() }}">{{ sc_language_render($cmsCategory->title) }}</a></li>
                             @endforeach
                         </ul>
                     </li>

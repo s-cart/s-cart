@@ -4,8 +4,8 @@ namespace App\Plugins\Total\Discount;
 
 use App\Plugins\Total\Discount\Models\PluginModel;
 use App\Plugins\Total\Discount\Controllers\FrontController;
-use App\Admin\Models\AdminConfig;
-use App\Admin\Models\AdminMenu;
+use SCart\Core\Admin\Models\AdminConfig;
+use SCart\Core\Admin\Models\AdminMenu;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
@@ -132,7 +132,7 @@ class AppConfig extends ConfigDefault
 
         $check = json_decode((new FrontController)->check($discount, $uID), true);
         if (!empty($discount) && !$check['error']) {
-            $subtotalWithTax = \App\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
+            $subtotalWithTax = \SCart\Core\Front\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
             if ($check['content']['type'] == 'percent') {
                 $value = floor($subtotalWithTax * $check['content']['reward'] / 100);
             } else {

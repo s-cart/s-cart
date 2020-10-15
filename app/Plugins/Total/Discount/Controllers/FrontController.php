@@ -3,7 +3,7 @@
 namespace App\Plugins\Total\Discount\Controllers;
 
 use App\Plugins\Total\Discount\Models\PluginModel as Discount;
-use App\Models\ShopOrderTotal;
+use SCart\Core\Front\Models\ShopOrderTotal;
 use Carbon\Carbon;
 use App\Plugins\Total\Discount\AppConfig;
 use App\Http\Controllers\RootFrontController;
@@ -137,19 +137,24 @@ class FrontController extends RootFrontController
 
         if ($check['error'] === 0) {
             $promocode = (new Discount)->getPromotionByCode($code);
-            try {
-                // increment used
-                $promocode->used += 1;
-                $promocode->save();
-
-                $promocode->users()->attach($uID, [
-                    'used_at' => Carbon::now(),
-                    'log' => $msg,
-                ]);
-                return json_encode(['error' => 0, 'content' => $promocode->load('users')]);
-            } catch (\Exception $e) {
-                return json_encode(['error' => 1, 'msg' => $e->getMessage()]);
+            if($promocode) {
+                try {
+                    // increment used
+                    $promocode->used += 1;
+                    $promocode->save();
+    
+                    $promocode->users()->attach($uID, [
+                        'used_at' => Carbon::now(),
+                        'log' => $msg,
+                    ]);
+                    return json_encode(['error' => 0, 'content' => $promocode->load('users')]);
+                } catch (\Throwable $e) {
+                    return json_encode(['error' => 1, 'msg' => $e->getMessage()]);
+                }
+            } else {
+                return json_encode(['error' => 1, 'msg' => 'error_code_not_exist']);
             }
+
         } else {
             return $checkCode;
         }

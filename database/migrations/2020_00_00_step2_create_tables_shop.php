@@ -295,6 +295,7 @@ class CreateTablesShop extends Migration
             $table->integer('sort')->default(0);
             $table->integer('view')->default(0);
             $table->string('alias', 120)->index();
+            $table->integer('sub_category_id')->default(1)->nullable()->index();
             $table->integer('store_id')->default(1)->index();
             $table->dateTime('date_lastview')->nullable();
             $table->date('date_available')->nullable();
@@ -615,6 +616,26 @@ class CreateTablesShop extends Migration
             }
         );
 
+        Schema::create(SC_DB_PREFIX.'shop_sub_category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('image', 255)->nullable();
+            $table->string('alias', 120)->index();
+            $table->tinyInteger('status')->default(0);
+            $table->integer('sort')->default(0);
+            $table->integer('store_id')->index();
+            }
+        );
+
+        Schema::create(SC_DB_PREFIX.'shop_sub_category_description', function (Blueprint $table) {
+            $table->integer('sub_category_id');
+            $table->string('lang', 10)->index();
+            $table->string('title', 200)->nullable();
+            $table->string('keyword', 200)->nullable();
+            $table->string('description', 300)->nullable();
+            $table->primary(['sub_category_id', 'lang']);
+            }
+        );
+
     }
 
     /**
@@ -681,6 +702,9 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_store_css');
+        
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_sub_category');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_sub_category_description');
     }
 
 }

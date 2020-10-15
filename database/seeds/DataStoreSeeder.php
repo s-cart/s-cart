@@ -38,6 +38,8 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_weight_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_length', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.length', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_length_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute', 'key' => 'product_sub_category', 'value' => '0', 'sort' => '0', 'detail' => 'lang::product.config_manager.sub_category', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'product_config_attribute_required', 'key' => 'product_sub_category_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'product_config', 'key' => 'product_display_out_of_stock', 'value' => '1', 'sort' => '19', 'detail' => 'lang::admin.product_display_out_of_stock', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config', 'key' => 'show_date_available', 'value' => '1', 'sort' => '21', 'detail' => 'lang::admin.show_date_available', 'store_id' => $storeId],
@@ -100,6 +102,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_BRAND', 'value' => 'brand', 'sort' => '0', 'detail' => 'lang::env.PREFIX_BRAND', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SUPPLIER', 'value' => 'supplier', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SUPPLIER', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CATEGORY', 'value' => 'category', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CATEGORY', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SUB_CATEGORY', 'value' => 'sub-category', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SUB_CATEGORY', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_PRODUCT', 'value' => 'product', 'sort' => '0', 'detail' => 'lang::env.PREFIX_PRODUCT', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SEARCH', 'value' => 'search', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SEARCH', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CONTACT', 'value' => 'contact', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CONTACT', 'store_id' => $storeId],

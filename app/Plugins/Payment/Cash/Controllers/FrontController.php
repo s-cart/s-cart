@@ -2,7 +2,7 @@
 #App\Plugins\Payment\Cash\Controllers\FrontController.php
 namespace App\Plugins\Payment\Cash\Controllers;
 
-use SCart\Core\Front\Controllers\ShopCart;
+use SCart\Core\Front\Controllers\ShopCartController;
 use App\Http\Controllers\RootFrontController;
 class FrontController extends RootFrontController
 {
@@ -13,6 +13,6 @@ class FrontController extends RootFrontController
      */
     public function processOrder(){
         
-        return (new ShopCart)->completeOrder();
+        return (new ShopCartController)->completeOrder();
     }
 }
