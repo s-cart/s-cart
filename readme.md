@@ -165,7 +165,7 @@ To view S-Cart version information
 
 To update the core version of S-Cart:
 
-`composer update s-cart / core`
+`composer update s-cart/core`
 
 To create a plugin:
 
@@ -185,7 +185,7 @@ To recover data:
 
 To manually customize the admin page:
 
-`php artian sc:handle admin`
+`php artian sc:customize admin`
 
 Then set the value  `customize = true` trong `app/config/admin.php`
 
