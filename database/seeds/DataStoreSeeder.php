@@ -126,6 +126,148 @@ class DataStoreSeeder extends Seeder
             ]
         );
 
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_email_template')->insert(
+          [
+              ['name' => 'Reset password', 'group' => 'forgot_password', 'text' => '
+<h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">{{$title}}</h1>
+<p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">{{$reason_sendmail}}</p>
+<table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:30px auto;padding:0;text-align:center;width:100%">
+<tbody><tr>
+  <td align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+      <tbody><tr>
+      <td align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+          <table border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+          <tbody><tr>
+              <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+              <a href="{{$reset_link}}" class="button button-primary" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-radius:3px;color:#fff;display:inline-block;text-decoration:none;background-color:#3097d1;border-top:10px solid #3097d1;border-right:18px solid #3097d1;border-bottom:10px solid #3097d1;border-left:18px solid #3097d1" target="_blank">{{$reset_button}}</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </td>
+      </tr>
+  </tbody>
+  </table>
+  </td>
+</tr>
+</tbody>
+</table>
+<p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+{{$note_sendmail}}
+</p>
+<table class="subcopy" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-top:1px solid #edeff2;margin-top:25px;padding-top:25px">
+<tbody><tr>
+<td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+  <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;line-height:1.5em;margin-top:0;text-align:left;font-size:12px">{{$note_access_link}}: <a href="{{$reset_link}}" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#3869d4" target="_blank">{{$reset_link}}</a></p>
+  </td>
+  </tr>
+</tbody>
+</table>', 'status' => '1', 'store_id' => $storeId],
+
+              ['name' => 'Welcome new customer', 'group' => 'welcome_customer', 'text' => '
+<h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:center">{{$title}}</h1>
+<p style="text-align:center;">Welcome to my site!</p>', 'status' => '1', 'store_id' => $storeId],
+              ['name' => 'Send form contact to admin', 'group' => 'contact_to_admin', 'text' => '
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<b>Name</b>: {{$name}}<br>
+<b>Email</b>: {{$email}}<br>
+<b>Phone</b>: {{$phone}}<br>
+</td>
+</tr>
+</table>
+<hr>
+<p style="text-align: center;">Content:<br>
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>{{$content}}</td>
+</tr>
+</table>', 'status' => '1', 'store_id' => $storeId],
+
+              ['name' => 'New order to admin', 'group' => 'order_success_to_admin', 'text' => '
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+  <tr>
+      <td>
+          <b>Order ID</b>: {{$orderID}}<br>
+          <b>Customer name</b>: {{$toname}}<br>
+          <b>Email</b>: {{$email}}<br>
+          <b>Address</b>: {{$address}}<br>
+          <b>Phone</b>: {{$phone}}<br>
+          <b>Order note</b>: {{$comment}}
+      </td>
+  </tr>
+</table>
+<hr>
+<p style="text-align: center;">Order detail:<br>
+===================================<br></p>
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+  {{$orderDetail}}
+  <tr>
+      <td colspan="2"></td>
+      <td colspan="2" style="font-weight: bold;">Sub total</td>
+      <td colspan="2" align="right">{{$subtotal}}</td>
+  </tr>
+  <tr>
+      <td colspan="2"></td>
+      <td colspan="2" style="font-weight: bold;">Shipping fee</td>
+      <td colspan="2" align="right">{{$shipping}}</td>
+  </tr>
+  <tr>
+      <td colspan="2"></td>
+      <td colspan="2" style="font-weight: bold;">Discount</td>
+      <td colspan="2" align="right">{{$discount}}</td>
+  </tr>
+  <tr>
+      <td colspan="2"></td>
+      <td colspan="2" style="font-weight: bold;">Total</td>
+      <td colspan="2" align="right">{{$total}}</td>
+  </tr>
+</table>', 'status' => '1', 'store_id' => $storeId],
+
+              ['name' => 'New order to customr', 'group' => 'order_success_to_customer', 'text' => '
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+      <b>Order ID</b>: {{$orderID}}<br>
+      <b>Customer name</b>: {{$toname}}<br>
+      <b>Address</b>: {{$address}}<br>
+      <b>Phone</b>: {{$phone}}<br>
+      <b>Order note</b>: {{$comment}}
+  </td>
+</tr>
+</table>
+<hr>
+<p style="text-align: center;">Order detail:<br>
+===================================<br></p>
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+{{$orderDetail}}
+<tr>
+  <td colspan="2"></td>
+  <td colspan="2" style="font-weight: bold;">Sub total</td>
+  <td colspan="2" align="right">{{$subtotal}}</td>
+</tr>
+<tr>
+  <td colspan="2"></td>
+  <td colspan="2" style="font-weight: bold;">Shipping fee</td>
+  <td colspan="2" align="right">{{$shipping}}</td>
+</tr>
+<tr>
+  <td colspan="2"></td>
+  <td colspan="2" style="font-weight: bold;">Discount</td>
+  <td colspan="2" align="right">{{$discount}}</td>
+</tr>
+<tr>
+  <td colspan="2"></td>
+  <td colspan="2" style="font-weight: bold;">Total</td>
+  <td colspan="2" align="right">{{$total}}</td>
+</tr>
+</table>', 'status' => '1', 'store_id' => $storeId],
+          ]
+      );
+
+
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_store_css')->insertOrIgnore(
             [
                 [
