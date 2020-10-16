@@ -89,10 +89,14 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </a>
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
+            
+            {{-- Go to store --}}
             @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
             </div>
             @endif
+            {{-- End go to store --}}
+
             @if ($product->allowSale())
             <a onClick="addToCartAjax('{{ $product->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
               <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>

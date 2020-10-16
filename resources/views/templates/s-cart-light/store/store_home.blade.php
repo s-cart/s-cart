@@ -119,8 +119,18 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
 {{-- breadcrumb --}}
 @section('breadcrumb')
+@php
+$bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getData()->first();
+@endphp
 <section class="breadcrumbs-custom">
-  <h2>{{ sc_store('title', $storeId) }}</h2>
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerStore['image'] ?? '') }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerStore['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="breadcrumbs-custom-body parallax-content context-dark">
+      <div class="container">
+        <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
+      </div>
+    </div>
+  </div>
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">

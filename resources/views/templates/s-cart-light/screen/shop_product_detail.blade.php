@@ -61,11 +61,12 @@ $productRelation: no paginate
               <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
               <div class="single-product">
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
-                
+                {{-- Go to store --}}
                 @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
                 <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
                 </div>
                 @endif
+                {{-- End go to store --}}
                 
                 <p>SKU: <span id="product-detail-model">{{ $product->sku }}</span></p>
                 <div class="group-md group-middle">
