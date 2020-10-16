@@ -15,9 +15,9 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_banner')->insert(
             [
-                ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0, 'store_id'=> 1],
-                ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 0, 'store_id'=> 1],
-                ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 2, 'store_id'=> 1],
+                ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
+                ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
+                ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'breadcrumb', 'store_id'=> 1],
             ]
         );
 
