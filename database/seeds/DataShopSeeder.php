@@ -52,7 +52,7 @@ gtag(\'config\', \'UA-128658138-1\');
 
                 ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1', 'store_id' => 1],
                 ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3', 'store_id' => 1],
-                ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'shop_home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0', 'store_id' => 1],
+                ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0', 'store_id' => 1],
                 ['name' => 'Categories', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4', 'store_id' => 1],
                 ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0', 'store_id' => 1],
 
