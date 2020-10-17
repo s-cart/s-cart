@@ -76,6 +76,7 @@ gtag(\'config\', \'UA-128658138-1\');
                 ['key' => 'shop_contact', 'name' => 'lang::layout.page_position.shop_contact'],
                 ['key' => 'content_list', 'name' => 'lang::layout.page_position.content_list'],
                 ['key' => 'content_detail', 'name' => 'lang::layout.page_position.content_detail'],
+                ['key' => 'store_home', 'name' => 'lang::layout.page_position.store_home'],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_position')->insert(
