@@ -30,7 +30,7 @@ $compare: no paginate
                                 @foreach($compare as $key => $item)
                                 @php
                                 $n++;
-                                $product = $modelProduct->start()->getDetail($item->id);
+                                $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
                                 @endphp
                                 <td align="center">
                                     {{ $product->name }}({{ $product->sku }})

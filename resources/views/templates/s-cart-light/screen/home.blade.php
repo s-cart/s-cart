@@ -32,7 +32,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                     </div>
                     @endif
                     @if ($productNew->allowSale())
-                    <a onClick="addToCartAjax('{{ $productNew->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                    <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                     @endif
 
                     {!! $productNew->showPrice() !!}
@@ -48,12 +48,12 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                   @endif
                   <div class="product-button-wrap">
                     <div class="product-button">
-                        <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $productNew->id }}','wishlist')">
+                        <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $productNew->id }}','wishlist','{{ $productNew->store_id }}')">
                             <i class="fas fa-heart"></i>
                         </a>
                     </div>
                     <div class="product-button">
-                        <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $productNew->id }}','compare')">
+                        <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $productNew->id }}','compare','{{ $productNew->store_id }}')">
                             <i class="fa fa-exchange"></i>
                         </a>
                     </div>
