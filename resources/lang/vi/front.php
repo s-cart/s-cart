@@ -36,7 +36,6 @@ return [
     'blog'               => 'Tin tức',
     'contact'            => 'Liên hệ',
     'about'              => 'Giới thiệu',
-    'shop'               => 'Cửa hàng',
     'cms_category'       => 'Danh mục CMS',
     'categories'         => 'Danh mục',
     'sub_categories'     => 'Danh mục con',
