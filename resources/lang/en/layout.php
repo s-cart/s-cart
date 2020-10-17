@@ -4,6 +4,7 @@ return [
         'all'      => 'All Page',
         'home'      => 'Home page',
         'shop_home'      => 'Home shop',
+        'store_home'      => 'Home store',
         'product_list'      => 'Product list',
         'product_detail'      => 'Product detail',
         'shop_cart'      => 'Cart: cart, wishlist, compare, checkout',

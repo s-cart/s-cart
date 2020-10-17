@@ -89,7 +89,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </a>
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
-            
+
             {{-- Go to store --}}
             @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
@@ -146,11 +146,14 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php
-$bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
+if(empty($bannerImage)) {
+  $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
+  $bannerImage = $bannerBreadcrumb['image'];
+}
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerImage ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>

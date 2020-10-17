@@ -3,7 +3,8 @@ return [
     'page_position' => [
         'all'      => 'Tất cả trang',
         'home'      => 'Trang chủ',
-        'shop_home'      => 'Cửa hàng',
+        'shop_home'      => 'Trang chủ Shop',
+        'store_home'      => 'Cửa hàng',
         'product_list'      => 'Danh sách sản phẩm',
         'product_detail'      => 'Sản phẩm chi tiết',
         'shop_cart'      => 'Giỏ hàng: giỏ hàng, wishlist, compare, checkout',
