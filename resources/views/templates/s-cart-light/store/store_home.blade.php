@@ -6,7 +6,7 @@ $layout_page = store_home
 
 @extends($sc_templatePath.'.layout')
 @php
-$productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('product_top'))->setStore($storeId)->getData();
+$productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('product_top', $storeId))->setStore($storeId)->getData();
 @endphp
 
 @section('block_main_content_center')
