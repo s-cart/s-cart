@@ -14,36 +14,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('block_main_content_center')
 <div class="col-lg-8 col-xl-9">
 
-  {{-- sub category --}}
-  @isset ($subCategory)
-  @if($subCategory->count())
-  <h6 class="aside-title">{{ trans('front.sub_categories') }}</h6>
-  <div class="row item-folder">
-      @foreach ($subCategory as $key => $item)
-      <div class="col-6 col-sm-6 col-md-3">
-          <div class="item-folder-wrapper product-single">
-              <div class="single-products">
-                  <div class="productinfo text-center product-box-{{ $item->id }}">
-                      <a href="{{ $item->getUrl() }}"><img src="{{ asset($item->getThumb()) }}"
-                              alt="{{ $item->title }}" /></a>
-                      <a href="{{ $item->getUrl() }}">
-                          <p>{{ $item->title }}</p>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      @endforeach
-      <div style="clear: both; ">
-          <ul class="pagination">
-              {{ $subCategory->appends(request()->except(['page','_token']))->links() }}
-          </ul>
-      </div>
-  </div>
-  @endif
-  @endisset
-  {{-- //sub category --}}
-
   {{-- Sort filter --}}
   <div class="product-top-panel group-md">
     <p class="product-top-panel-title">
@@ -162,6 +132,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('multistorepro.detail', ['code' => $category->store->code]) }}">{{ $category->store->getTitle() }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

@@ -80,7 +80,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                           </div>
                           <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
                           @if ($product->allowSale())
-                          <a onClick="addToCartAjax('{{ $product->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                          <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                           @endif
       
                           {!! $product->showPrice() !!}
@@ -95,12 +95,12 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                         @endif
                         <div class="product-button-wrap">
                           <div class="product-button">
-                              <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist')">
+                              <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist', '{{ $product->store_id }}')">
                                   <i class="fas fa-heart"></i>
                               </a>
                           </div>
                           <div class="product-button">
-                              <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','compare')">
+                              <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','compare', '{{ $product->store_id }}')">
                                   <i class="fa fa-exchange"></i>
                               </a>
                           </div>
