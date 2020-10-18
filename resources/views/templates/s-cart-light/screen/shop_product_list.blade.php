@@ -147,11 +147,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
 @php
   $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
-  $bannerImage = $bannerBreadcrumb['image'];
+  $bannerImage = $bannerBreadcrumb['image'] ?? '';
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerImage ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage) }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>

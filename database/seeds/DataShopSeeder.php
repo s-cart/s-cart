@@ -18,6 +18,7 @@ class DataShopSeeder extends Seeder
                 ['image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
                 ['image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
                 ['image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'breadcrumb', 'store_id'=> 1],
+                ['image' => '/data/banner/store-1.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner-store', 'store_id'=> 1],
             ]
         );
 
