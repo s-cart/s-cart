@@ -1,39 +1,35 @@
+<!--main right-->
+<div class="col-12">
+   <div class="sc-notice">
+       @if(Session::has('message') || Session::has('status'))
+       <div class="alert alert-success alert-dismissible" role="alert">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           {!! Session::get('message') !!}
+           {!! Session::get('status') !!}
+       </div>
+       @endif
 
-@php
-/*
-This view render notice for front-end
-*/
-@endphp
+       @if(Session::has('success'))
+       <div class="alert alert-success alert-dismissible" role="alert">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           {!! Session::get('success') !!}
+       </div>
+       @endif
 
-<!--notice-->
-<div class="sc-notice">
-   @if(Session::has('message'))
-   <div class="alert alert-info alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {!! Session::get('message') !!}
+       @if(Session::has('error'))
+       <div class="alert alert-danger alert-dismissible" role="alert">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           {!! Session::get('error') !!}
+       </div>
+       @endif
+
+       @if(Session::has('warning'))
+       <div class="alert alert-warning alert-dismissible" role="alert">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           {!! Session::get('warning') !!}
+       </div>
+       @endif
+
    </div>
-   @endif
-
-   @if(Session::has('success'))
-   <div class="alert alert-success alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {!! Session::get('success') !!}
-   </div>
-   @endif
-
-   @if(Session::has('error'))
-   <div class="alert alert-error alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {!! Session::get('error') !!}
-   </div>
-   @endif
-
-   @if(Session::has('warning'))
-   <div class="alert alert-warning alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-       {!! Session::get('warning') !!}
-   </div>
-   @endif
-
 </div>
-<!--//notice-->
+<!--//main right-->
