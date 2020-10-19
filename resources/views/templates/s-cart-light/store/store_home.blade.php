@@ -118,6 +118,22 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
       </div>
 @endsection
 
+@section('blockStoreLeft')
+{{-- Categories tore --}}
+
+@if (!empty($listCategoryStore) && $listCategoryStore->count())
+<div class="aside-item col-sm-6 col-md-5 col-lg-12">
+  <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
+  <ul class="list-shop-filter">
+    @foreach ($listCategoryStore as $key => $category)
+    <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
+    @endforeach
+  </ul>
+</div>
+@endif
+{{-- //Categories tore --}}
+@endsection
+
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php

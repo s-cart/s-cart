@@ -39,6 +39,7 @@ return [
     'cms_category'       => 'CMS categories',
     'categories'         => 'Categories',
     'sub_categories'     => 'Sub categories',
+    'categories_store'   => 'Categories store',
     'brands'             => 'Brands',
     'suppliers'          => 'Suppliers',
     'maintenance'        => 'Maintenance',

@@ -39,6 +39,7 @@ return [
     'cms_category'       => 'Danh mục CMS',
     'categories'         => 'Danh mục',
     'sub_categories'     => 'Danh mục con',
+    'categories_store'   => 'Danh mục cửa hàng',
     'brands'             => 'Nhãn hiệu',
     'suppliers'            => 'Nhà cung cấp',
     'maintenance'        => 'Website đang bảo trì',
