@@ -58,14 +58,14 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
           </div>
         </div>
 
-        @if (count($listSubCategory))
-        @foreach ($listSubCategory as $category)
+        @if (!empty($listCategoryStore) && count($listCategoryStore))
+        @foreach ($listCategoryStore as $category)
         <section class="section section-xxl bg-default">
           <div class="container">
                 <h2 class="wow fadeScale">{{ $category->getTitle() }}</h2>
                 <div class="row row-30 row-lg-50">
                   @php
-                      $products = $modelProduct->start()->setStore($storeId)->getProductToSubCategory($category->id)
+                      $products = $modelProduct->start()->setStore($storeId)->getProductToCategoryStore($category->id)
                       ->setLimit(sc_config('product_top', $storeId))->getData()
                   @endphp
                   @foreach ($products as $key => $product)
