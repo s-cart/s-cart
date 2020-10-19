@@ -119,12 +119,15 @@ class AppConfig extends ConfigDefault
 
     public function config()
     {
+        $breadcrumb['url'] = sc_route('admin_plugin', ['code' => $this->configCode]);
+        $breadcrumb['name'] = trans('plugin.' . $this->configCode.'_plugin');
         return view($this->pathPlugin . '::Admin')->with(
             [
                 'pathPlugin' => $this->pathPlugin,
                 'code'       => $this->configCode,
                 'key'        => $this->configKey,
                 'title'      => $this->title,
+                'breadcrumb' => $breadcrumb,
             ]
         );
     }
