@@ -13,7 +13,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
       <!-- New Products-->
       <div class="col-lg-8 col-xl-9">
         <div class="container">
-          <h2 class="wow fadeScale">{{ trans('front.features_items') }}</h2>
+          <h2 class="wow fadeScale">{{ trans('front.products_new') }}</h2>
           <div class="row row-30 row-lg-50">
             @foreach ($productsNew as $key => $productNew)
             <div class="col-sm-6 col-md-4">

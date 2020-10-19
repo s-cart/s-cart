@@ -3,8 +3,8 @@
 namespace App\Plugins\Plugin_Code\Plugin_Key\Controllers;
 
 use App\Plugins\Plugin_Code\Plugin_Key\AppConfig;
-use App\Http\Controllers\GeneralController;
-class FrontController extends GeneralController
+use App\Http\Controllers\RootFrontController;
+class FrontController extends RootFrontController
 {
     public $plugin;
 

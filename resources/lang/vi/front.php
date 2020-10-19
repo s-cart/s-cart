@@ -43,6 +43,7 @@ return [
     'suppliers'            => 'Nhà cung cấp',
     'maintenance'        => 'Website đang bảo trì',
     'features_items'     => 'Sản phẩm nổi bật',
+    'products_new'       => 'Sản phẩm mới nhất',
     'recommended_items'  => 'Sản phẩm đề xuất',
     'thank_contact'      => 'Cảm ơn bạn. Chúng tôi sẽ liên hệ sớm nhất có thể!',
     'date_available'     => 'Ngày bán',
