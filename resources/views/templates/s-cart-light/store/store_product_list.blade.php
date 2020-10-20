@@ -1,6 +1,6 @@
 @php
 /*
-$layout_page = shop_home
+$layout_page = store_product_list
 $subCategory: paginate
 Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
 $products: paginate
@@ -13,6 +13,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- block_main_content_center --}}
 @section('block_main_content_center')
 <div class="col-lg-8 col-xl-9">
+
   {{-- Sort filter --}}
   <div class="product-top-panel group-md">
     <p class="product-top-panel-title">
@@ -58,13 +59,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </a>
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
-
-            {{-- Go to store --}}
-            @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
-            <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
-            </div>
-            @endif
-            {{-- End go to store --}}
 
             @if ($product->allowSale())
             <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
@@ -112,15 +106,31 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- //block_main_content_center --}}
 
 
+@section('blockStoreLeft')
+{{-- Categories tore --}}
+
+@if (!empty($listCategoryStore) && $listCategoryStore->count())
+<div class="aside-item col-sm-6 col-md-5 col-lg-12">
+  <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
+  <ul class="list-shop-filter">
+    @foreach ($listCategoryStore as $key => $category)
+    <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
+    @endforeach
+  </ul>
+</div>
+@endif
+{{-- //Categories tore --}}
+@endsection
+
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php
-  $bannerStore = $modelBanner->start()->getBannerStore()->getData()->first();
-  $bannerImage = $bannerStore['image'] ?? '';
+  $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
+  $bannerImage = $bannerBreadcrumb['image'];
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage) }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerImage ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
@@ -131,6 +141,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('multistorepro.detail', ['code' => $category->store->code]) }}">{{ $category->store->getTitle() }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

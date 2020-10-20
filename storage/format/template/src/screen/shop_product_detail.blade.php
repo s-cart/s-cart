@@ -134,7 +134,11 @@ $productRelation: no paginate
                 @endphp
                 <b>{{ trans('product.groups') }}</b>:<br>
                 @foreach ($groups as $group)
-                  <span class="sc-product-group" data-id="{{ $group->product_id }}">{!! sc_image_render($group->product->image,'','',$group->product->name) !!}</span>
+                  <span class="sc-product-group" data-id="{{ $group->product_id }}">
+                    <a target=_blank href="{{ $group->product->getUrl() }}">
+                      {!! sc_image_render($group->product->image) !!}
+                    </a>
+                  </span>
                 @endforeach
               </div>
               @endif

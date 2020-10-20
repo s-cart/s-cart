@@ -16,7 +16,8 @@ $kind
         @if ($price == $priceFinal)
             <span class="sc-new-price">{!! sc_currency_render($price) !!}</span>
         @else
-            <span class="sc-new-price">{!! sc_currency_render($priceFinal) !!}</span><span class="sc-old-price">{!!  sc_currency_render($price) !!}</span>
+            <span class="sc-new-price">{!! sc_currency_render($priceFinal) !!}</span>
+            <span class="sc-old-price">{!!  sc_currency_render($price) !!}</span>
         @endif
         
 @endswitch

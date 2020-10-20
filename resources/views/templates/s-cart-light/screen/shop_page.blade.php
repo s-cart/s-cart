@@ -22,7 +22,7 @@ $page: no paginate
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php
-$bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->first();
+$bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">

@@ -89,12 +89,16 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </a>
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
+
+            {{-- Go to store --}}
             @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
             </div>
             @endif
+            {{-- End go to store --}}
+
             @if ($product->allowSale())
-            <a onClick="addToCartAjax('{{ $product->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+            <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
               <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
             @endif
 
@@ -111,12 +115,12 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
           @endif
           <div class="product-button-wrap">
             <div class="product-button">
-                <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist')">
+                <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist','{{ $product->store_id }}')">
                     <i class="fas fa-heart"></i>
                 </a>
             </div>
             <div class="product-button">
-                <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','compare')">
+                <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','compare','{{ $product->store_id }}')">
                     <i class="fa fa-exchange"></i>
                 </a>
             </div>
@@ -142,11 +146,12 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php
-$bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->first();
+  $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
+  $bannerImage = $bannerBreadcrumb['image'] ?? '';
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage) }}">
+    <div class="material-parallax parallax"><img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>

@@ -59,13 +59,15 @@ $productRelation: no paginate
             <form id="buy_block" class="product-information" action="{{ sc_route('cart.add') }}" method="post">
               {{ csrf_field() }}
               <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
+              <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
               <div class="single-product">
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
-                
+                {{-- Go to store --}}
                 @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
                 <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
                 </div>
                 @endif
+                {{-- End go to store --}}
                 
                 <p>SKU: <span id="product-detail-model">{{ $product->sku }}</span></p>
                 <div class="group-md group-middle">
@@ -218,7 +220,7 @@ $productRelation: no paginate
                       </div>
                       <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
                       @if ($product_rel->allowSale())
-                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default','{{ $product_rel->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
                         <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                       @endif
             
@@ -234,12 +236,12 @@ $productRelation: no paginate
                     @endif
                     <div class="product-button-wrap">
                       <div class="product-button">
-                          <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','wishlist')">
+                          <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','wishlist','{{ $product_rel->store_id }}')">
                               <i class="fas fa-heart"></i>
                           </a>
                       </div>
                       <div class="product-button">
-                          <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','compare')">
+                          <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','compare','{{ $product_rel->store_id }}')">
                               <i class="fa fa-exchange"></i>
                           </a>
                       </div>
@@ -259,7 +261,7 @@ $productRelation: no paginate
 {{-- breadcrumb --}}
 @section('breadcrumb')
 @php
-$bannerBreadcrumb = $modelBanner->start()->getBannerBreadcrumb()->getData()->first();
+$bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">

@@ -26,7 +26,7 @@ class CreateTablesShop extends Migration
             $table->tinyInteger('status')->default(0);
             $table->integer('sort')->default(0);
             $table->integer('click')->default(0);
-            $table->tinyInteger('type')->default(0);
+            $table->string('type', 20)->index();
             $table->integer('store_id')->default(1)->index();
             $table->timestamps();
             }
@@ -136,7 +136,7 @@ class CreateTablesShop extends Migration
             $table->string('title', 200)->nullable();
             $table->string('keyword', 200)->nullable();
             $table->string('description', 300)->nullable();
-            $table->primary(['category_id', 'lang']);
+            $table->unique(['category_id', 'lang']);
             }
         );
 
@@ -255,7 +255,7 @@ class CreateTablesShop extends Migration
             $table->string('keyword', 200)->nullable();
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
-            $table->primary(['page_id', 'lang']);
+            $table->unique(['page_id', 'lang']);
             }
         );
 
@@ -276,7 +276,7 @@ class CreateTablesShop extends Migration
             $table->string('mpn', 64)->nullable()->comment('mpn code');
             $table->string('image', 255)->nullable();
             $table->integer('brand_id')->nullable()->default(0)->index();
-            $table->string('supplier_id', 50)->nullable()->index();
+            $table->integer('supplier_id')->nullable()->default(0)->index();
             $table->integer('price')->nullable()->default(0);
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);
@@ -295,7 +295,7 @@ class CreateTablesShop extends Migration
             $table->integer('sort')->default(0);
             $table->integer('view')->default(0);
             $table->string('alias', 120)->index();
-            $table->integer('sub_category_id')->default(1)->nullable()->index();
+            $table->integer('category_store_id')->default(1)->nullable()->index();
             $table->integer('store_id')->default(1)->index();
             $table->dateTime('date_lastview')->nullable();
             $table->date('date_available')->nullable();
@@ -310,7 +310,7 @@ class CreateTablesShop extends Migration
             $table->string('keyword', 200)->nullable();
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
-            $table->primary(['product_id', 'lang']);
+            $table->unique(['product_id', 'lang']);
             }
         );
 
@@ -489,7 +489,7 @@ class CreateTablesShop extends Migration
             $table->string('keyword', 200)->nullable();
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
-            $table->primary(['news_id', 'lang']);
+            $table->unique(['news_id', 'lang']);
             }
         );
 
@@ -615,27 +615,6 @@ class CreateTablesShop extends Migration
             $table->integer('store_id')->unique();
             }
         );
-
-        Schema::create(SC_DB_PREFIX.'shop_sub_category', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('image', 255)->nullable();
-            $table->string('alias', 120)->index();
-            $table->tinyInteger('status')->default(0);
-            $table->integer('sort')->default(0);
-            $table->integer('store_id')->index();
-            }
-        );
-
-        Schema::create(SC_DB_PREFIX.'shop_sub_category_description', function (Blueprint $table) {
-            $table->integer('sub_category_id');
-            $table->string('lang', 10)->index();
-            $table->string('title', 200)->nullable();
-            $table->string('keyword', 200)->nullable();
-            $table->string('description', 300)->nullable();
-            $table->primary(['sub_category_id', 'lang']);
-            }
-        );
-
     }
 
     /**
@@ -702,9 +681,6 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_store_css');
-        
-        Schema::dropIfExists(SC_DB_PREFIX.'shop_sub_category');
-        Schema::dropIfExists(SC_DB_PREFIX.'shop_sub_category_description');
     }
 
 }

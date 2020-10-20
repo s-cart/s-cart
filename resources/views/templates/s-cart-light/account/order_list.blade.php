@@ -40,7 +40,6 @@ $statusOrder
           @php
           $n = (isset($n)?$n:0);
           $n++;
-          // $order = $modelProduct->start()->getDetail($item->id);
           @endphp
           <tr>
             <td><span class="item_21_id">{{ $n }}</span></td>

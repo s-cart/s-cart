@@ -40,12 +40,17 @@
 
 <!--process cart-->
 <script type="text/javascript">
-  function addToCartAjax(id,instance = null){
+  function addToCartAjax(id, instance = null, storeId = null){
     $.ajax({
         url: "{{ sc_route('cart.add_ajax') }}",
         type: "POST",
         dataType: "JSON",
-        data: {"id": id,"instance":instance, "_token":"{{ csrf_token() }}"},
+        data: {
+          "id": id,
+          "instance":instance,
+          "storeId":storeId,
+          "_token":"{{ csrf_token() }}"
+        },
         async: false,
         success: function(data){
           // console.log(data);

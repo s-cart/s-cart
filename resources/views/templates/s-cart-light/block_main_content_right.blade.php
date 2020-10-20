@@ -2,7 +2,10 @@
 <!--Module right -->
 @isset ($sc_blocksContent['right'])
 @foreach ( $sc_blocksContent['right']  as $layout)
-  @if ($layout->page == null ||  $layout->page =='*' || $layout->page =='' || (isset($layout_page) && in_array($layout_page, $layout->page) ) )
+  @php
+  $arrPage = explode(',', $layout->page)
+  @endphp
+  @if (empty($layout->page) ||  $layout->page =='*' ||  (isset($layout_page) && in_array($layout_page, $arrPage) ) )
     @if ($layout->type =='html')
       {!! $layout->text !!}
     @elseif($layout->type =='view')

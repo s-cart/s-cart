@@ -42,7 +42,10 @@ $attributesGroup: array
                             @php
                             $n = (isset($n)?$n:0);
                             $n++;
-                            $product = $modelProduct->start()->getDetail($item->id);
+                            $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
+                            if(!$product) {
+                                continue;
+                            }
                             @endphp
                             <tr class="row_cart form-group {{ session('arrErrorQty')[$product->id] ?? '' }}{{ (session('arrErrorQty')[$product->id] ?? 0) ? ' has-error' : '' }}">
                                 <td>{{ $n }}</td>
@@ -67,7 +70,7 @@ $attributesGroup: array
                                 <td class="cart-col-qty">
                                     <div class="cart-qty">
                                         <input style="width: 150px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
-                                            data-rowid="{{$item->rowId}}" onChange="updateCart($(this));"
+                                            data-rowid="{{$item->rowId}}" data-storeId="{{$product->store_id}}" onChange="updateCart($(this));"
                                             class="item-qty form-control" name="qty-{{$item->id}}" value="{{$item->qty}}">
                                     </div>
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
@@ -475,9 +478,10 @@ $attributesGroup: array
     @endforeach
 
     function updateCart(obj){
-        var new_qty = obj.val();
-        var rowid = obj.data('rowid');
-        var id = obj.data('id');
+        let new_qty = obj.val();
+        let storeId = obj.data('storeId');
+        let rowid = obj.data('rowid');
+        let id = obj.data('id');
         $.ajax({
             url: '{{ sc_route('cart.update') }}',
             type: 'POST',
@@ -488,6 +492,7 @@ $attributesGroup: array
                 id: id,
                 rowId: rowid,
                 new_qty: new_qty,
+                storeId: storeId,
                 _token:'{{ csrf_token() }}'},
             success: function(data){
                 error= parseInt(data.error);
