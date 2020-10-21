@@ -79,10 +79,14 @@ $layout_page = shop_contact
 
                         </div>
                     </div>
+
                     {!! $viewCaptcha?? '' !!}
+
+                    {{-- Button submit --}}
                     <div class="btn-toolbar form-group">
                         <input type="submit" value="{{ trans('front.contact_form.submit') }}" class="button button-lg button-secondary" id="button-form-process">
                     </div>
+                    {{--// Button submit --}}
                 </div>
             </form>
         </div>
@@ -98,13 +102,16 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+        <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
       </div>
     </div>
   </div>
+
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
@@ -113,6 +120,7 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
       </ul>
     </div>
   </div>
+
 </section>
 @endsection
 {{-- //breadcrumb --}}

@@ -24,3 +24,11 @@ $layout_page = shop_cart
 
 @section('breadcrumb')
 @endsection
+
+@push('styles')
+{{-- Your css style --}}
+@endpush
+
+@push('scripts')
+{{-- Your scripts --}}
+@endpush

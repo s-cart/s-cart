@@ -1,5 +1,6 @@
 @php
 /*
+* This template only use for MultiStorePro
 $layout_page = store_home
 */ 
 @endphp
@@ -26,20 +27,26 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                         </a>
                     </div>
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
+                    {{-- Button add to cart --}}
                     @if ($productNew->allowSale())
                     <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                     @endif
+                    {{--// Button add to cart --}}
 
                     {!! $productNew->showPrice() !!}
                   </div>
                   
+                  {{-- Product type --}}
                   @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind != SC_PRODUCT_GROUP)
-                  <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                   @elseif($productNew->kind == SC_PRODUCT_BUILD)
-                  <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                   @elseif($productNew->kind == SC_PRODUCT_GROUP)
-                  <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                   @endif
+                  {{--// Product type --}}
+
+                  {{-- Wishlist, compare --}}
                   <div class="product-button-wrap">
                     <div class="product-button">
                         <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $productNew->id }}','wishlist','{{ $productNew->store_id }}')">
@@ -52,6 +59,8 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                         </a>
                     </div>
                   </div>
+                  {{--// Wishlist, compare --}}
+
                 </article>
               </div>
             @endforeach
@@ -79,20 +88,27 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                               </a>
                           </div>
                           <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
+
+                          {{-- Button add to cart --}}
                           @if ($product->allowSale())
                           <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
                           @endif
-      
+                          {{--// Button add to cart --}}
+
                           {!! $product->showPrice() !!}
                         </div>
                         
+                        {{-- Product type --}}
                         @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                        <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                         @elseif($product->kind == SC_PRODUCT_BUILD)
-                        <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                         @elseif($product->kind == SC_PRODUCT_GROUP)
-                        <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                         @endif
+                        {{--// Product type --}}
+
+                        {{-- Wishlist, compare --}}
                         <div class="product-button-wrap">
                           <div class="product-button">
                               <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist', '{{ $product->store_id }}')">
@@ -105,6 +121,8 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                               </a>
                           </div>
                         </div>
+                        {{--// Wishlist, compare --}}
+
                       </article>
                     </div>
                   @endforeach
@@ -119,19 +137,18 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 @endsection
 
 @section('blockStoreLeft')
-{{-- Categories tore --}}
-
-@if (!empty($listCategoryStore) && $listCategoryStore->count())
-<div class="aside-item col-sm-6 col-md-5 col-lg-12">
-  <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
-  <ul class="list-shop-filter">
-    @foreach ($listCategoryStore as $key => $category)
-    <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
-    @endforeach
-  </ul>
-</div>
-@endif
-{{-- //Categories tore --}}
+  {{-- Categories tore --}}
+  @if (!empty($listCategoryStore) && $listCategoryStore->count())
+  <div class="aside-item col-sm-6 col-md-5 col-lg-12">
+    <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
+    <ul class="list-shop-filter">
+      @foreach ($listCategoryStore as $key => $category)
+      <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+  {{-- //Categories tore --}}
 @endsection
 
 {{-- breadcrumb --}}
@@ -141,7 +158,9 @@ $bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getD
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerStore['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerStore['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+      <img src="{{ asset($bannerStore['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
@@ -162,8 +181,9 @@ $bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getD
 
 
 @push('styles')
+{{-- Your css style --}}
 @endpush
 
 @push('scripts')
-
+{{-- Your scripts --}}
 @endpush

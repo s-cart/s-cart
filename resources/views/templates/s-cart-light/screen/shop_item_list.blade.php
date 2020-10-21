@@ -31,7 +31,6 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
                     {{ $itemsList->links() }}
                 </nav>
             </div>
-
         @else
             {!! trans('front.no_data') !!}
         @endif
@@ -49,7 +48,9 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+      <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
@@ -106,4 +107,8 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
       $('#filter_sort').submit();
     });
 </script>
+@endpush
+
+@push('styles')
+{{-- Your css style --}}
 @endpush

@@ -1,8 +1,6 @@
 @php
 /*
 $layout_page = shop_home
-$subCategory: paginate
-Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
 $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
@@ -13,6 +11,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- block_main_content_center --}}
 @section('block_main_content_center')
 <div class="col-lg-8 col-xl-9">
+  
   {{-- Sort filter --}}
   <div class="product-top-panel group-md">
     <p class="product-top-panel-title">

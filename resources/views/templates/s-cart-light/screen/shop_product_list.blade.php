@@ -151,7 +151,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerImage) }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+      <img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
@@ -171,6 +173,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- //breadcrumb --}}
 
 @push('styles')
+{{-- Your css style --}}
 @endpush
 
 @push('scripts')
