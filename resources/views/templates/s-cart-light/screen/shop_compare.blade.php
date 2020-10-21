@@ -15,48 +15,52 @@ $compare: no paginate
                 <h6 class="aside-title">{{ $title }}</h6>
             </div>
             @if (count($compare) ==0)
-            <div class="col-md-12 text-danger min-height-37vh">
-                {{ trans('front.no_data') }}
-            </div>
+                <div class="col-md-12 text-danger min-height-37vh">
+                    {{ trans('front.no_data') }}
+                </div>
             @else
+
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table box table-bordered">
                         <tbody>
                             <tr>
                                 @php
-                                $n = 0;
+                                    $n = 0;
                                 @endphp
+
                                 @foreach($compare as $key => $item)
-                                @php
-                                $n++;
-                                $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
-                                @endphp
-                                <td align="center">
-                                    {{ $product->name }}({{ $product->sku }})
-                                    <hr>
-                                    <a href="{{ $product->getUrl() }}"><img width="100"
-                                            src="{{asset($product->getImage())}}" alt=""></a>
-                                    <hr>
-                                    {!! $product->showPrice() !!}
-                                    <hr>
-                                    {!! $product->description !!}
-                                    <hr>
-                                    <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item"
-                                        class="cart_quantity_delete"
-                                        href="{{ sc_route("compare.remove",['id'=>$item->rowId]) }}"><i
-                                            class="fa fa-times"></i></a>
-                                </td>
-                                @if ($n % 4 == 0)
-                            </tr>
-                            @endif
-                            @endforeach
+                                        @php
+                                            $n++;
+                                            $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
+                                        @endphp
+                                        <td align="center">
+                                            {{ $product->name }}({{ $product->sku }})
+                                            <hr>
+                                            <a href="{{ $product->getUrl() }}"><img width="100"
+                                                    src="{{asset($product->getImage())}}" alt=""></a>
+                                            <hr>
+                                            {!! $product->showPrice() !!}
+                                            <hr>
+                                            {!! $product->description !!}
+                                            <hr>
+                                            <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item"
+                                                class="cart_quantity_delete"
+                                                href="{{ sc_route("compare.remove",['id'=>$item->rowId]) }}"><i
+                                                    class="fa fa-times"></i></a>
+                                        </td>
+                                        @if ($n % 4 == 0)
+                                        </tr>
+                                        @endif
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
             @endif
+            
         </div>
     </div>
 </div>
@@ -76,3 +80,11 @@ $compare: no paginate
 </section>
 @endsection
 {{-- //breadcrumb --}}
+
+@push('scripts')
+{{-- Your scripts --}}
+@endpush
+
+@push('styles')
+{{-- Your css style --}}
+@endpush

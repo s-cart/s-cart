@@ -87,6 +87,10 @@ $wishlist: no paginate
 {{-- //breadcrumb --}}
 
 
+@push('styles')
+{{-- Your css style --}}
+@endpush
 
 @push('scripts')
+{{-- Your scripts --}}
 @endpush

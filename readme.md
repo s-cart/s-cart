@@ -171,10 +171,6 @@ To create a plugin:
 
 `php artisan sc:make plugin  --name=Group\PluginName`
 
-To create the template:
-
-`php artisan sc:make template --name=tem-plate-name`
-
 To create data backup file
 
 `php artisan sc:backup --path=abc.sql`

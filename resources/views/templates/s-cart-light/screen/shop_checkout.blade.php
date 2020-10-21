@@ -7,7 +7,6 @@ $paymentMethod: string
 $dataTotal: array
 $shippingAddress: array
 $attributesGroup: array
-Use paginate: $news->appends(request()->except(['page','_token']))->links()
 $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */
@@ -21,7 +20,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
         <div class="row">
             @if (count($cart) ==0)
             <div class="col-md-12 text-danger min-height-37vh">
-                {!! trans('cart.cart_empty') !!}!
+                {!! trans('cart.cart_empty') !!}
             </div>
             @else
             <div class="col-12">
@@ -40,41 +39,49 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                         <tbody>
 
                             @foreach($cart as $item)
-                            @php
-                            $n = (isset($n)?$n:0);
-                            $n++;
-                            $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
-                            @endphp
-                            <tr class="row_cart">
-                                <td>{{ $n }}</td>
-                                <td>{{ $product->sku }}</td>
-                                <td>
-                                    {{ $product->name }}<br>
-                                    {{-- Process attributes --}}
-                                    @if ($item->options->count())
-                                    (
-                                    @foreach ($item->options as $keyAtt => $att)
-                                    <b>{{ $attributesGroup[$keyAtt] }}</b>: {!! sc_render_option_price($att) !!}
-                                    @endforeach
-                                    )<br>
-                                    @endif
-                                    {{-- //end Process attributes --}}
-                                    <a href="{{$product->getUrl() }}"><img width="100"
-                                            src="{{asset($product->getImage())}}" alt=""></a>
-                                </td>
-                                <td>{!! $product->showPrice() !!}</td>
-                                <td>{{$item->qty}}</td>
-                                <td align="right">{{sc_currency_render($item->subtotal)}}</td>
-                            </tr>
+                                @php
+                                    $n = (isset($n)?$n:0);
+                                    $n++;
+                                    $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
+                                @endphp
+
+                                {{-- Render product in cart --}}
+                                <tr class="row_cart">
+                                    <td>{{ $n }}</td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td>
+                                        {{ $product->name }}<br>
+                                        {{-- Process attributes --}}
+                                        @if ($item->options->count())
+                                        (
+                                        @foreach ($item->options as $keyAtt => $att)
+                                        <b>{{ $attributesGroup[$keyAtt] }}</b>: {!! sc_render_option_price($att) !!}
+                                        @endforeach
+                                        )<br>
+                                        @endif
+                                        {{-- //end Process attributes --}}
+                                        <a href="{{$product->getUrl() }}"><img width="100"
+                                                src="{{asset($product->getImage())}}" alt=""></a>
+                                    </td>
+                                    <td>{!! $product->showPrice() !!}</td>
+                                    <td>{{$item->qty}}</td>
+                                    <td align="right">{{sc_currency_render($item->subtotal)}}</td>
+                                </tr>
+                                {{--// Render product in cart --}}
+
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+
             <div class="col-12">
                 <form class="sc-shipping-address" id="form-order" role="form" method="POST" action="{{ sc_route('order.add') }}">
-                    {{ csrf_field() }}
+                    {{-- Required csrf for secirity --}}
+                    @csrf
+                    {{--// Required csrf for secirity --}}
                     <div class="row">
+                        {{-- Display address --}}
                         <div class="col-12 col-sm-12 col-md-6">
                             <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
                                 {{ trans('cart.shipping_address') }}:<br></h3>
@@ -84,16 +91,17 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     <td>{{ $shippingAddress['first_name'] }} {{ $shippingAddress['last_name'] }}</td>
                                 </tr>
                                 @if (sc_config('customer_name_kana'))
-                                <tr>
-                                    <th>{{ trans('cart.name_kana') }}:</td>
-                                    <td>{{ $shippingAddress['first_name_kana'].$shippingAddress['last_name_kana'] }}</td>
-                                </tr>
+                                    <tr>
+                                        <th>{{ trans('cart.name_kana') }}:</td>
+                                        <td>{{ $shippingAddress['first_name_kana'].$shippingAddress['last_name_kana'] }}</td>
+                                    </tr>
                                 @endif
+
                                 @if (sc_config('customer_phone'))
-                                <tr>
-                                    <th>{{ trans('cart.phone') }}:</td>
-                                    <td>{{ $shippingAddress['phone'] }}</td>
-                                </tr>
+                                    <tr>
+                                        <th>{{ trans('cart.phone') }}:</td>
+                                        <td>{{ $shippingAddress['phone'] }}</td>
+                                    </tr>
                                 @endif
                                 <tr>
                                     <th>{{ trans('cart.email') }}:</td>
@@ -105,19 +113,18 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     </td>
                                 </tr>
                                 @if (sc_config('customer_postcode'))
-                                <tr>
-                                    <th>{{ trans('cart.postcode') }}:</td>
-                                    <td>{{ $shippingAddress['postcode']}}</td>
-                                </tr>
+                                    <tr>
+                                        <th>{{ trans('cart.postcode') }}:</td>
+                                        <td>{{ $shippingAddress['postcode']}}</td>
+                                    </tr>
                                 @endif
 
                                 @if (sc_config('customer_company'))
-                                <tr>
-                                    <th>{{ trans('cart.company') }}:</td>
-                                    <td>{{ $shippingAddress['company']}}</td>
-                                </tr>
+                                    <tr>
+                                        <th>{{ trans('cart.company') }}:</td>
+                                        <td>{{ $shippingAddress['company']}}</td>
+                                    </tr>
                                 @endif
-
 
                                 <tr>
                                     <th>{{ trans('cart.note') }}:</td>
@@ -125,6 +132,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                 </tr>
                             </table>
                         </div>
+                        {{--// Display address --}}
+
                         <div class="col-12 col-sm-12 col-md-6">
                             {{-- Total --}}
                             <h3 class="control-label"><br></h3>
@@ -179,6 +188,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                 </div>
                             </div>
                             {{-- End total --}}
+
+                            {{-- Button process cart --}}
                             <div class="row" style="padding-bottom: 20px;">
                                 <div class="col-md-12 text-center">
                                     <div class="pull-left">
@@ -193,6 +204,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     </div>
                                 </div>
                             </div>
+                            {{--// Button process cart --}}
 
                         </div>
                     </div>
@@ -223,4 +235,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 
 
 @push('scripts')
+{{-- Your scripts --}}
+@endpush
+
+@push('styles')
+{{-- Your css style --}}
 @endpush

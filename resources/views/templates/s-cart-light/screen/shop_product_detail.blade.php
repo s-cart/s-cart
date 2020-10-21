@@ -69,13 +69,21 @@ $productRelation: no paginate
                 @endif
                 {{-- End go to store --}}
                 
-                <p>SKU: <span id="product-detail-model">{{ $product->sku }}</span></p>
+                <p>
+                  SKU: <span id="product-detail-model">{{ $product->sku }}</span>
+                </p>
+
+                {{-- Show price --}}
                 <div class="group-md group-middle">
                   <div class="single-product-price" id="product-detail-price">
                     {!! $product->showPriceDetail() !!}
                   </div>
                 </div>
+                {{--// Show price --}}
+
                 <hr class="hr-gray-100">
+
+                {{-- Button add to cart --}}
                 @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale())
                 <div class="group-xs group-middle">
                     <div class="product-stepper">
@@ -86,7 +94,9 @@ $productRelation: no paginate
                     </div>
                 </div>
                 @endif
+                {{--// Button add to cart --}}
 
+                {{-- Show attribute --}}
                 @if (sc_config('product_property'))
                 <div id="product-detail-attr">
                     @if ($product->attributes())
@@ -94,7 +104,9 @@ $productRelation: no paginate
                     @endif
                 </div>
                 @endif
+                {{--// Show attribute --}}
 
+                {{-- Stock info --}}
                 @if (sc_config('product_stock'))
                 <div>
                     {{ trans('product.stock_status') }}:
@@ -107,7 +119,9 @@ $productRelation: no paginate
                     </span> 
                 </div>
                 @endif
+                {{--// Stock info --}}
 
+                {{-- date available --}}
                 @if (sc_config('product_available') && $product->date_available >= date('Y-m-d H:i:s'))
                 <div>
                     {{ trans('product.date_available') }}:
@@ -116,12 +130,16 @@ $productRelation: no paginate
                     </span>
                 </div>
                 @endif
-                
+                {{--// date available --}}
+
+                {{-- Category info --}}
                 {{ trans('product.category') }}: 
                 @foreach ($product->categories as $category)
-                <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
+                  <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
                 @endforeach
+                {{--// Category info --}}
 
+                {{-- Brand info --}}
                 @if (sc_config('product_brand') && !empty($product->brand->name))
                 <div>
                     {{ trans('product.brand') }}:
@@ -130,45 +148,48 @@ $productRelation: no paginate
                     </span>
                 </div>
                 @endif
+                {{--// Brand info --}}
 
-
+                {{-- Product kind --}}
                 @if ($product->kind == SC_PRODUCT_GROUP)
-                <div class="products-group">
-                    @php
-                    $groups = $product->groups
-                    @endphp
-                    <b>{{ trans('product.groups') }}</b>:<br>
-                    @foreach ($groups as $group)
-                    <span class="sc-product-group">
-                        <a target=_blank href="{{ $group->product->getUrl() }}">
-                            {!! sc_image_render($group->product->image) !!}
-                        </a>
-                    </span>
-                    @endforeach
-                </div>
+                  <div class="products-group">
+                      @php
+                      $groups = $product->groups
+                      @endphp
+                      <b>{{ trans('product.groups') }}</b>:<br>
+                      @foreach ($groups as $group)
+                      <span class="sc-product-group">
+                          <a target=_blank href="{{ $group->product->getUrl() }}">
+                              {!! sc_image_render($group->product->image) !!}
+                          </a>
+                      </span>
+                      @endforeach
+                  </div>
                 @endif
 
                 @if ($product->kind == SC_PRODUCT_BUILD)
-                <div class="products-group">
-                    @php
-                    $builds = $product->builds
-                    @endphp
-                    <b>{{ trans('product.builds') }}</b>:<br>
-                    <span class="sc-product-build">
-                        {!! sc_image_render($product->image) !!} =
-                    </span>
-                    @foreach ($builds as $k => $build)
-                    {!! ($k) ? '<i class="fa fa-plus" aria-hidden="true"></i>':'' !!}
-                    <span class="sc-product-build">{{ $build->quantity }} x
-                        <a target="_new" href="{{ $build->product->getUrl() }}">{!!
-                            sc_image_render($build->product->image) !!}</a>
-                    </span>
-                    @endforeach
-                </div>
+                  <div class="products-group">
+                      @php
+                      $builds = $product->builds
+                      @endphp
+                      <b>{{ trans('product.builds') }}</b>:<br>
+                      <span class="sc-product-build">
+                          {!! sc_image_render($product->image) !!} =
+                      </span>
+                      @foreach ($builds as $k => $build)
+                      {!! ($k) ? '<i class="fa fa-plus" aria-hidden="true"></i>':'' !!}
+                      <span class="sc-product-build">{{ $build->quantity }} x
+                          <a target="_new" href="{{ $build->product->getUrl() }}">{!!
+                              sc_image_render($build->product->image) !!}</a>
+                      </span>
+                      @endforeach
+                  </div>
                 @endif
-
+              {{-- Product kind --}}
 
                 <hr class="hr-gray-100">
+
+                {{-- Social --}}
                 <div class="group-xs group-middle"><span class="list-social-title">Share</span>
                   <div>
                     <ul class="list-inline list-social list-inline-sm">
@@ -179,25 +200,32 @@ $productRelation: no paginate
                     </ul>
                   </div>
                 </div>
+                {{--// Social --}}
+
               </div>
             </form>
             </div>
           </div>
+
           <!-- Bootstrap tabs-->
           <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
             <!-- Nav tabs-->
             <div class="nav-tabs-wrap">
               <ul class="nav nav-tabs nav-tabs-1">
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ trans('product.description') }}</a></li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ trans('product.description') }}</a>
+                </li>
               </ul>
             </div>
 
-            <!-- Tab panes-->
+            {{-- Render connetnt --}}
             <div class="tab-content tab-content-1">
               <div class="tab-pane fade show active" id="tabs-1-1">
                 {!! sc_html_render($product->content) !!}
               </div>
             </div>
+            {{--// Render connetnt --}}
+
           </div>
         </div>
       </section>
@@ -265,7 +293,9 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+      <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ trans('front.product_detail') }}</h2>
@@ -276,9 +306,11 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        {{-- Display store info if use MultiStorePro --}}
         @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
         <li><a href="{{ $goToStore }}">{{ sc_store('title', $product->store_id) }}</a></li>
         @endif
+        {{--// Display store info if use MultiStorePro --}}
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>
@@ -289,8 +321,9 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 
 
 @push('styles')
-
+{{-- Your css style --}}
 @endpush
 
 @push('scripts')
+{{-- Your scripts --}}
 @endpush

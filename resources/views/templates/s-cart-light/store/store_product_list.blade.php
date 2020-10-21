@@ -1,5 +1,6 @@
 @php
 /*
+* This template only use for MultiStorePro
 $layout_page = store_product_list
 $subCategory: paginate
 Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
@@ -60,22 +61,27 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
 
+            {{-- Button add to cart --}}
             @if ($product->allowSale())
             <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
               <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
             @endif
+            {{--// Button add to cart --}}
 
             {!! $product->showPrice() !!}
           </div>
-          
-          @if ($product->price != $product->getFinalPrice() && $product->kind !=
-          SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+
+          {{-- Product type --}}
+          @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
+            <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_BUILD)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+            <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+           <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
           @endif
+          {{--// Product type --}}
+
+          {{-- Wishlist, compare --}}
           <div class="product-button-wrap">
             <div class="product-button">
                 <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist','{{ $product->store_id }}')">
@@ -88,6 +94,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                 </a>
             </div>
           </div>
+          {{--// Wishlist, compare --}}
+
         </article>
       </div>
     @endforeach
@@ -130,7 +138,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerImage ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+    <div class="material-parallax parallax">
+      <img src="{{ asset($bannerImage ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+    </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>
@@ -150,13 +160,14 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @endsection
 {{-- //breadcrumb --}}
 
-@push('styles')
-@endpush
-
 @push('scripts')
 <script type="text/javascript">
   $('[name="filter_sort"]').change(function(event) {
       $('#filter_sort').submit();
   });
 </script>
+@endpush
+
+@push('styles')
+{{-- Your css style --}}
 @endpush
