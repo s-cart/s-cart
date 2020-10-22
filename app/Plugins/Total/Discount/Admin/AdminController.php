@@ -4,11 +4,11 @@
 namespace App\Plugins\Total\Discount\Admin;
 
 use App\Plugins\Total\Discount\Admin\Models\AdminDiscount;
-use App\Http\Controllers\RootFrontController;
+use App\Http\Controllers\RootAdminController;
 use SCart\Core\Front\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use Validator;
-class AdminController extends RootFrontController
+class AdminController extends RootAdminController
 {
     public $plugin;
 
@@ -88,7 +88,7 @@ class AdminController extends RootFrontController
 
         $data['listTh'] = $listTh;
         $data['dataTr'] = $dataTr;
-        $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links('admin.component.pagination');
+        $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links($this->templatePathAdmin.'.component.pagination');
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
         //menuRight
@@ -119,7 +119,7 @@ class AdminController extends RootFrontController
                 </form>';
         //=menuSearch
 
-        return view('admin.screen.list')
+        return view($this->templatePathAdmin.'.screen.list')
             ->with($data);
     }
 
