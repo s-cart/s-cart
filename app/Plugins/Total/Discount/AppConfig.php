@@ -6,6 +6,7 @@ use App\Plugins\Total\Discount\Models\PluginModel;
 use App\Plugins\Total\Discount\Controllers\FrontController;
 use SCart\Core\Admin\Models\AdminConfig;
 use SCart\Core\Admin\Models\AdminMenu;
+use SCart\Core\Front\Models\ShopCurrency;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
@@ -115,39 +116,47 @@ class AppConfig extends ConfigDefault
     {
         $uID = auth()->user()->id ?? 0;
         $arrData = [
-            'title' => $this->title,
-            'code' => $this->configCode,
-            'key' => $this->configKey,
-            'image' => $this->image,
+            'title'      => $this->title,
+            'code'       => $this->configCode,
+            'key'        => $this->configKey,
+            'image'      => $this->image,
             'permission' => self::ALLOW,
-            'value' => 0,
-            'version' => $this->version,
-            'auth' => $this->auth,
-            'link' => $this->link,
+            'value'      => 0,
+            'version'    => $this->version,
+            'auth'       => $this->auth,
+            'link'       => $this->link,
             'pathPlugin' => $this->pathPlugin
         ];
 
-        $totalMethod = session('totalMethod',[]);
+        $totalMethod = session('totalMethod', []);
         $discount = $totalMethod['Discount']??'';
 
         $check = json_decode((new FrontController)->check($discount, $uID), true);
+
         if (!empty($discount) && !$check['error']) {
-            $subtotalWithTax = \SCart\Core\Front\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
+            $storeID = $check['content']['store_id'];
+            $carts = \Cart::instance('default')->getItemsGroupByStore();
+            //Get cart item with group store id
+            $cartStore = $carts[$storeID] ?? [];
+            if (!$cartStore) {
+                return $arrData;
+            }
+            $subtotalWithTax = ShopCurrency::sumCart($cartStore)['subTotalWithTax'];
             if ($check['content']['type'] == 'percent') {
                 $value = floor($subtotalWithTax * $check['content']['reward'] / 100);
             } else {
                 $value = sc_currency_value($check['content']['reward']);
             }
             $arrData = array(
-                'title' => '<b>' . $this->title . ':</b> ' . $discount . '',
-                'code' => $this->configCode,
-                'key' => $this->configKey,
-                'image' => $this->image,
+                'title'      => '<b>' . $this->title . ':</b> ' . $discount . '',
+                'code'       => $this->configCode,
+                'key'        => $this->configKey,
+                'image'      => $this->image,
                 'permission' => self::ALLOW,
-                'value' => ($value > $subtotalWithTax) ? -$subtotalWithTax : -$value,
-                'version' => $this->version,
-                'auth' => $this->auth,
-                'link' => $this->link,
+                'value'      => ($value > $subtotalWithTax) ? -$subtotalWithTax : -$value,
+                'version'    => $this->version,
+                'auth'       => $this->auth,
+                'link'       => $this->link,
                 'pathPlugin' => $this->pathPlugin,
             );
         }

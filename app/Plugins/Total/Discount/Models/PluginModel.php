@@ -107,9 +107,8 @@ class PluginModel extends Model
      */
     public function getPromotionByCode($code) {
         $promocode = $this
-        ->where('code', $code)
-        ->where('store_id', config('app.storeId'))
-        ->first();
+            ->where('code', $code)
+            ->first();
         return $promocode;
     }
 }
