@@ -81,11 +81,11 @@ class AppConfig extends ConfigDefault
     {
         return view($this->pathPlugin.'::Admin')->with(
             [
-                'code' => $this->configCode,
-                'key' => $this->configKey,
-                'title' => $this->title,
+                'code'       => $this->configCode,
+                'key'        => $this->configKey,
+                'title'      => $this->title,
                 'pathPlugin' => $this->pathPlugin,
-                'data' => PluginModel::first(),
+                'data'       => PluginModel::first(),
             ]);
     }
 
@@ -103,36 +103,32 @@ class AppConfig extends ConfigDefault
 
     public function getData()
     {
-        $subtotal = \Cart::subtotal();
+        $carts = \Cart::getItemsGroupByStore();
         $shipping = PluginModel::first();
-        if ($subtotal >= $shipping->shipping_free) {
-            $arrData = [
-                'title' => $this->title,
-                'code' => $this->configCode,
-                'key' => $this->configKey,
-                'image' => $this->image,
-                'permission' => self::ALLOW,
-                'value' => 0,
-                'version' => $this->version,
-                'auth' => $this->auth,
-                'link' => $this->link,
-                'pathPlugin' => $this->pathPlugin,
-            ];
-        } else {
-            $arrData = [
-                'title' => $this->title,
-                'code' => $this->configCode,
-                'key' => $this->configKey,
-                'image' => $this->image,
-                'permission' => self::ALLOW,
-                'value' => $shipping->fee,
-                'version' => $this->version,
-                'auth' => $this->auth,
-                'link' => $this->link,
-                'pathPlugin' => $this->pathPlugin,
-            ];
+        $totalValue = 0;
 
+        //Shipping caculate for earch store
+        foreach ($carts as $key => $cart) {
+            $subTotal = $cart->reduce(function ($subTotal, $item) {
+                return $subTotal + ($item->qty * $item->price);
+            }, 0 );
+            if ($subTotal < $shipping->shipping_free) {
+                $totalValue +=$shipping->fee;
+            }
         }
+
+        $arrData = [
+            'title'      => $this->title,
+            'code'       => $this->configCode,
+            'key'        => $this->configKey,
+            'image'      => $this->image,
+            'permission' => self::ALLOW,
+            'value'      => $totalValue,
+            'version'    => $this->version,
+            'auth'       => $this->auth,
+            'link'       => $this->link,
+            'pathPlugin' => $this->pathPlugin,
+        ];
         return $arrData;
     }
 
