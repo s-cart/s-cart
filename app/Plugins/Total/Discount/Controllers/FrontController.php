@@ -319,7 +319,7 @@ class FrontController extends RootFrontController
 
     public function removeDiscount()
     {
-        // $html = '';
+        $html = '';
         //destroy discount
         $totalMethod = session('totalMethod', []);
         unset($totalMethod[$this->plugin->configKey]);
