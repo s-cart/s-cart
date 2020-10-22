@@ -105,8 +105,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             {!! $product->showPrice() !!}
           </div>
           
-          @if ($product->price != $product->getFinalPrice() && $product->kind !=
-          SC_PRODUCT_GROUP)
+          @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
           <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_BUILD)
           <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
