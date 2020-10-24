@@ -63,6 +63,14 @@ $layout_page = shop_cart
                                             alt="{{ $product->name }}">
                                         <span>
                                             {{ $product->name }}<br />
+
+                                            {{-- Go to store --}}
+                                            @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
+                                            <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
+                                            </div>
+                                            @endif
+                                            {{-- End go to store --}}
+                                            
                                             {{-- Process attributes --}}
                                             @if ($item->options->count())
                                             @foreach ($item->options as $groupAtt => $att)
@@ -79,7 +87,7 @@ $layout_page = shop_cart
                                 <td class="cart-col-qty">
                                     <div class="cart-qty">
                                         <input style="width: 150px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
-                                            data-rowid="{{$item->rowId}}" data-storeId="{{$product->store_id}}" onChange="updateCart($(this));"
+                                            data-rowid="{{$item->rowId}}" data-storeid="{{$product->store_id}}" onChange="updateCart($(this));"
                                             class="item-qty form-control" name="qty-{{$item->id}}" value="{{$item->qty}}">
                                     </div>
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
@@ -491,7 +499,7 @@ $layout_page = shop_cart
 
     function updateCart(obj){
         let new_qty = obj.val();
-        let storeId = obj.data('storeId');
+        let storeId = obj.data('storeid');
         let rowid = obj.data('rowid');
         let id = obj.data('id');
         $.ajax({
@@ -510,7 +518,7 @@ $layout_page = shop_cart
                 error= parseInt(data.error);
                 if(error ===0)
                 {
-                        window.location.replace(location.href);
+                    window.location.replace(location.href);
                 }else{
                     $('.item-qty-'+id).css('display','block').html(data.msg);
                 }
