@@ -272,34 +272,6 @@ gtag(\'config\', \'UA-128658138-1\');
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order')->insert(
-            [
-                ['id' => '1', 'customer_id' => '1', 'subtotal' => '5000', 'shipping' => '2000', 'discount' => '0', 'payment_status' => '1', 'shipping_status' => '1', 'status' => '1', 'tax' => '0', 'total' => '7000', 'currency' => 'USD', 'exchange_rate' => '1', 'received' => '0', 'balance' => '7000', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'address1' => 'ADDRESS 1', 'address2' => 'ADDRESS 2', 'country' => 'VN', 'phone' => '667151172', 'email' => 'test@test.com', 'comment' => 'ok', 'payment_method' => 'Cash', 'shipping_method' => 'ShippingStandard', 'created_at' => date('Y-m-d H:i:s')],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_detail')->insert(
-            [
-                ['id' => '1', 'order_id' => '1', 'product_id' => '1', 'name' => 'Easy Polo Black Edition 1', 'price' => '5000', 'qty' => '1', 'total_price' => '5000', 'sku' => 'ABCZZ', 'currency' => 'USD', 'exchange_rate' => '1.00', 'attribute' => '[]'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_history')->insert(
-            [
-                ['id' => '1', 'order_id' => '1', 'content' => 'New order', 'admin_id' => '0', 'customer_id' => '1', 'order_status_id' => '1', 'add_date' => date('Y-m-d H:i:s')],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_total')->insert(
-            [
-                ['order_id' => '1', 'code' => 'subtotal', 'title' => 'Subtotal', 'value' => '5000', 'sort' => '1'],
-                ['order_id' => '1', 'code' => 'shipping', 'title' => 'Shipping', 'value' => '2000', 'sort' => '10'],
-                ['order_id' => '1', 'code' => 'discount', 'title' => 'Discount', 'value' => '0', 'sort' => '20'],
-                ['order_id' => '1', 'code' => 'total', 'title' => 'Total', 'value' => '7000', 'sort' => '100'],
-                ['order_id' => '1', 'code' => 'received', 'title' => 'Received', 'value' => '0', 'sort' => '200'],
-            ]
-        );
-
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_country')->insert(
             [
                 ['code' => 'AL', 'name' => 'Albania'],
