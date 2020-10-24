@@ -12,7 +12,7 @@ $('#coupon-button').click(function() {
                dataType: 'json',
                data: {
                    code: coupon,
-                   uID: {{ auth()->user()->id ?? 0 }},
+                   uID: {{ session('customer')->id ?? 0 }},
                    _token: "{{ csrf_token() }}",
                },
            })

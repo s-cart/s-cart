@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = shop_home
-$products: paginate
+**Variables:**
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp

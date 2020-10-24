@@ -103,17 +103,16 @@ class AppConfig extends ConfigDefault
 
     public function getData()
     {
-        $carts = \Cart::getItemsGroupByStore();
+        $dataStore = [];
+        $subtotalWithStore = \Cart::getSubtotalGroupByStore();
         $shipping = PluginModel::first();
         $totalValue = 0;
 
         //Shipping caculate for earch store
-        foreach ($carts as $key => $cart) {
-            $subTotal = $cart->reduce(function ($subTotal, $item) {
-                return $subTotal + ($item->qty * $item->price);
-            }, 0 );
-            if ($subTotal < $shipping->shipping_free) {
+        foreach ($subtotalWithStore as $storeId => $subtotal) {
+            if ($subtotal < $shipping->shipping_free) {
                 $totalValue +=$shipping->fee;
+                $dataStore[$storeId]['value'] = $shipping->fee;
             }
         }
 
@@ -128,6 +127,7 @@ class AppConfig extends ConfigDefault
             'auth'       => $this->auth,
             'link'       => $this->link,
             'pathPlugin' => $this->pathPlugin,
+            'store'      => $dataStore,
         ];
         return $arrData;
     }

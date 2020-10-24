@@ -114,7 +114,10 @@ class AppConfig extends ConfigDefault
 
     public function getData()
     {
-        $uID = auth()->user()->id ?? 0;
+        $customer = session('customer');
+        // Get Id customer
+        $uID = $customer->id ?? 0;
+        $dataStore = [];
         $arrData = [
             'title'      => $this->title,
             'code'       => $this->configCode,
@@ -125,7 +128,8 @@ class AppConfig extends ConfigDefault
             'version'    => $this->version,
             'auth'       => $this->auth,
             'link'       => $this->link,
-            'pathPlugin' => $this->pathPlugin
+            'pathPlugin' => $this->pathPlugin,
+            'store'      => $dataStore,
         ];
 
         $totalMethod = session('totalMethod', []);
@@ -135,18 +139,19 @@ class AppConfig extends ConfigDefault
 
         if (!empty($discount) && !$check['error']) {
             $storeID = $check['content']['store_id'];
-            $carts = \Cart::instance('default')->getItemsGroupByStore();
             //Get cart item with group store id
-            $cartStore = $carts[$storeID] ?? [];
-            if (!$cartStore) {
+            $subtotalWithTax = ShopCurrency::sumCart()['store'][$storeID]['subTotalWithTax'] ?? null;
+            if (!$subtotalWithTax) {
                 return $arrData;
             }
-            $subtotalWithTax = ShopCurrency::sumCart($cartStore)['subTotalWithTax'];
             if ($check['content']['type'] == 'percent') {
                 $value = floor($subtotalWithTax * $check['content']['reward'] / 100);
             } else {
                 $value = sc_currency_value($check['content']['reward']);
             }
+            //Add info for earch store
+            $dataStore[$storeID]['value'] = $value;
+
             $arrData = array(
                 'title'      => '<b>' . $this->title . ':</b> ' . $discount . '',
                 'code'       => $this->configCode,
@@ -158,6 +163,7 @@ class AppConfig extends ConfigDefault
                 'auth'       => $this->auth,
                 'link'       => $this->link,
                 'pathPlugin' => $this->pathPlugin,
+                'store'      => $dataStore, //Add info for earch store
             );
         }
         return $arrData;
@@ -170,9 +176,10 @@ class AppConfig extends ConfigDefault
      *
      */
     public function endApp($data = []) {
+        $customer = session('customer');
         $orderID = $data['orderID'] ?? '';
         $code = $data['code'] ?? '';
-        $uID = auth()->user()->id ?? 0;
+        $uID = $customer->id ?? 0;
         $msg = 'Order #'.$orderID;
         return (new FrontController)->apply($code, $uID, $msg);
     }

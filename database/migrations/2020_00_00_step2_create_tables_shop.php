@@ -199,6 +199,7 @@ class CreateTablesShop extends Migration
             $table->string('name', 100);
             $table->integer('price')->default(0);
             $table->integer('qty')->default(0);
+            $table->integer('store_id')->default(1);
             $table->integer('total_price')->default(0);
             $table->integer('tax')->default(0);
             $table->string('sku', 50);
