@@ -105,7 +105,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SEARCH', 'value' => 'search', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SEARCH', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CONTACT', 'value' => 'contact', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CONTACT', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_NEWS', 'value' => 'news', 'sort' => '0', 'detail' => 'lang::env.PREFIX_NEWS', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_MEMBER', 'value' => 'member', 'sort' => '0', 'detail' => 'lang::env.PREFIX_MEMBER', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_MEMBER', 'value' => 'customer', 'sort' => '0', 'detail' => 'lang::env.PREFIX_MEMBER', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_MEMBER_ORDER_LIST', 'value' => 'order-list', 'sort' => '0', 'detail' => 'lang::env.PREFIX_MEMBER_ORDER_LIST', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_MEMBER_CHANGE_PWD', 'value' => 'change-password', 'sort' => '0', 'detail' => 'lang::env.PREFIX_MEMBER_CHANGE_PWD', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_MEMBER_CHANGE_INFO', 'value' => 'change-info', 'sort' => '0', 'detail' => 'lang::env.PREFIX_MEMBER_CHANGE_INFO', 'store_id' => $storeId],
