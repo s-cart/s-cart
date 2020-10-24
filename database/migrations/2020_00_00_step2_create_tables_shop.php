@@ -157,7 +157,6 @@ class CreateTablesShop extends Migration
         Schema::create(SC_DB_PREFIX.'shop_order', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id');
-            $table->integer('store_id')->index()->default(1);
             $table->string('domain')->nullable();
             $table->integer('subtotal')->nullable()->default(0);
             $table->integer('shipping')->nullable()->default(0);
