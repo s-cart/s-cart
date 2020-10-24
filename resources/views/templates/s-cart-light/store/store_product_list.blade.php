@@ -2,9 +2,8 @@
 /*
 * This template only use for MultiStorePro
 $layout_page = store_product_list
-$subCategory: paginate
-Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
-$products: paginate
+**Variables:**
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp

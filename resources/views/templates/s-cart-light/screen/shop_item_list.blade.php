@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = item_list
-$itemsList: paginate
+**Variables:**
+- $itemsList: paginate
 Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 */
 @endphp

@@ -1,13 +1,14 @@
 @php
 /*
 $layout_page = shop_cart
-$cart: no paginate
-$shippingMethod: string
-$paymentMethod: string
-$dataTotal: array
-$shippingAddress: array
-$attributesGroup: array
-$products: paginate
+**Variables:**
+- $cart: no paginate
+- $shippingMethod: string
+- $paymentMethod: string
+- $dataTotal: array
+- $shippingAddress: array
+- $attributesGroup: array
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */
 @endphp

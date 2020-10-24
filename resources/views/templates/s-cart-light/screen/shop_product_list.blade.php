@@ -1,9 +1,10 @@
 @php
 /*
 $layout_page = product_list
-$subCategory: paginate
+**Variables:**
+- $subCategory: paginate
 Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
-$products: paginate
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp

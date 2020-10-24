@@ -1,14 +1,15 @@
 @php
 /*
 $layout_page = shop_cart
-$cart: no paginate
-$shippingMethod: string
-$paymentMethod: string
-$totalMethod: array
-$dataTotal: array
-$shippingAddress: array
-$countries: array
-$attributesGroup: array
+**Variables:**
+- $cart: no paginate
+- $shippingMethod: string
+- $paymentMethod: string
+- $totalMethod: array
+- $dataTotal: array
+- $shippingAddress: array
+- $countries: array
+- $attributesGroup: array
 */
 @endphp
 
@@ -549,7 +550,7 @@ $attributesGroup: array
             $('#form-process [name="address2"]').val('');
         } else {
             $.ajax({
-            url: '{{ sc_route('member.address_detail') }}',
+            url: '{{ sc_route('customer.address_detail') }}',
             type: 'POST',
             dataType: 'json',
             async: false,

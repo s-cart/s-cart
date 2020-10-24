@@ -1,8 +1,9 @@
 @php
 /*
 $layout_page = shop_profile
-$user
-$countries
+** Variables:**
+- $customer
+- $countries
 */ 
 @endphp
 
@@ -19,7 +20,7 @@ $countries
             <h6 class="aside-title">{{ $title }}</h6>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ sc_route('member.post_change_infomation') }}">
+                    <form method="POST" action="{{ sc_route('customer.post_change_infomation') }}">
                         @csrf
                         @if (sc_config('customer_lastname'))
                         <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -28,7 +29,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control" name="first_name" 
-                                    value="{{ (old('first_name'))?old('first_name'):$user['first_name']}}">
+                                    value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
 
                                 @if($errors->has('first_name'))
                                 <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -42,7 +43,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="last_name" type="text" class="form-control" name="last_name" 
-                                    value="{{ (old('last_name'))?old('last_name'):$user['last_name']}}">
+                                    value="{{ (old('last_name'))?old('last_name'):$customer['last_name']}}">
 
                                 @if($errors->has('last_name'))
                                 <span class="help-block">{{ $errors->first('last_name') }}</span>
@@ -57,7 +58,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control" name="first_name" 
-                                    value="{{ (old('first_name'))?old('first_name'):$user['first_name']}}">
+                                    value="{{ (old('first_name'))?old('first_name'):$customer['first_name']}}">
 
                                 @if($errors->has('first_name'))
                                 <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -74,7 +75,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="first_name_kana" type="text" class="form-control" name="first_name_kana" 
-                                    value="{{ (old('first_name_kana'))?old('first_name_kana'):$user['first_name_kana']}}">
+                                    value="{{ (old('first_name_kana'))?old('first_name_kana'):$customer['first_name_kana']}}">
 
                                 @if($errors->has('first_name_kana'))
                                 <span class="help-block">{{ $errors->first('first_name_kana') }}</span>
@@ -88,7 +89,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="last_name_kana" type="text" class="form-control" name="last_name_kana" 
-                                    value="{{ (old('last_name_kana'))?old('last_name_kana'):$user['last_name_kana']}}">
+                                    value="{{ (old('last_name_kana'))?old('last_name_kana'):$customer['last_name_kana']}}">
 
                                 @if($errors->has('last_name_kana'))
                                 <span class="help-block">{{ $errors->first('last_name_kana') }}</span>
@@ -106,7 +107,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control" name="phone" 
-                                    value="{{ (old('phone'))?old('phone'):$user['phone']}}">
+                                    value="{{ (old('phone'))?old('phone'):$customer['phone']}}">
 
                                 @if($errors->has('phone'))
                                 <span class="help-block">{{ $errors->first('phone') }}</span>
@@ -123,7 +124,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="postcode" type="text" class="form-control" name="postcode" 
-                                    value="{{ (old('postcode'))?old('postcode'):$user['postcode']}}">
+                                    value="{{ (old('postcode'))?old('postcode'):$customer['postcode']}}">
 
                                 @if($errors->has('postcode'))
                                 <span class="help-block">{{ $errors->first('postcode') }}</span>
@@ -138,7 +139,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.email') }}</label>
 
                             <div class="col-md-6">
-                                {{ $user['email'] }}
+                                {{ $customer['email'] }}
 
                             </div>
                         </div>
@@ -150,7 +151,7 @@ $countries
 
                             <div class="col-md-6">
                                 <input id="address1" type="text" class="form-control" name="address1" 
-                                    value="{{ (old('address1'))?old('address1'):$user['address1']}}">
+                                    value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
 
                                 @if($errors->has('address1'))
                                 <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -164,7 +165,7 @@ $countries
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address2') }}</label>
                             <div class="col-md-6">
                                 <input id="address2" type="text" class="form-control" name="address2" 
-                                    value="{{ (old('address2'))?old('address2'):$user['address2']}}">
+                                    value="{{ (old('address2'))?old('address2'):$customer['address2']}}">
 
                                 @if($errors->has('address2'))
                                 <span class="help-block">{{ $errors->first('address2') }}</span>
@@ -180,7 +181,7 @@ $countries
 
                                 <div class="col-md-6">
                                     <input id="address1" type="text" class="form-control" name="address1" 
-                                        value="{{ (old('address1'))?old('address1'):$user['address1']}}">
+                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
 
                                     @if($errors->has('address1'))
                                     <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -194,7 +195,7 @@ $countries
 
                         @if (sc_config('customer_country'))
                         @php
-                        $country = (old('country'))?old('country'):$user['country'];
+                        $country = (old('country'))?old('country'):$customer['country'];
                         @endphp
 
                         <div class="form-group row {{ $errors->has('country') ? ' has-error' : '' }}">
@@ -219,7 +220,7 @@ $countries
 
                         @if (sc_config('customer_sex'))
                         @php
-                        $sex = old('sex')?old('sex'):$user['sex'];
+                        $sex = old('sex')?old('sex'):$customer['sex'];
                         @endphp
                         <div class="form-group row {{ $errors->has('sex') ? ' has-error' : '' }}">
                             <label for="sex"
@@ -247,7 +248,7 @@ $countries
                             <div class="col-md-6">
                                 <input type="date" id="birthday" data-date-format="YYYY-MM-DD" class="form-control"
                                     name="birthday" 
-                                    value="{{ (old('birthday'))?old('birthday'):$user['birthday']}}">
+                                    value="{{ (old('birthday'))?old('birthday'):$customer['birthday']}}">
 
                                 @if($errors->has('birthday'))
                                 <span class="help-block">{{ $errors->first('birthday') }}</span>
@@ -281,7 +282,7 @@ $countries
         <div class="container">
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

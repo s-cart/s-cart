@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = shop_profile
-$user
+** Variables:**
+- $customer
 */ 
 @endphp
 
@@ -19,7 +20,7 @@ $user
     <div class="col-12 col-sm-12 col-md-9">
         <div class="card">
             <div class="card-body min-height-37vh member-index">
-                <p>Wellcome <span> {{$user['first_name']}} {{$user['last_name']}}</span>!</p>
+                <p>Wellcome <span> {{$customer['first_name']}} {{$customer['last_name']}}</span>!</p>
             </div>
         </div>
     </div>

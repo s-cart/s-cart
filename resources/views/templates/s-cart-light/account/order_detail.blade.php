@@ -1,8 +1,12 @@
 @php
 /*
 $layout_page = shop_profile
-$statusOrder
-$statusShipping
+** Variables:**
+- $statusOrder
+- $statusShipping
+- $order
+- $countries
+- $attributesGroup
 */ 
 @endphp
 
@@ -194,7 +198,7 @@ $statusShipping
         <div class="container">
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

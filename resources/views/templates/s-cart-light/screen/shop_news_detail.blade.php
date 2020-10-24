@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = news_detail
-$news: no paginate
+**Variables:**
+- $news: no paginate
 */
 @endphp
 
