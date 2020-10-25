@@ -32,7 +32,7 @@ return [
     'account'            => 'Account',
     'logout'             => 'Logout',
     'home'               => 'Home',
-    'shop'               => 'Shop page',
+    'shop'               => 'Shop home',
     'blog'               => 'Blog',
     'contact'            => 'Contact us',
     'about'              => 'About us',

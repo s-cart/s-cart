@@ -378,5 +378,38 @@ img.new {
                     'store_id' => $storeId,
                 ]
             ]);
+
+            DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_store_block')->insert(
+              [
+                  ['name' => 'Facebook code', 'position' => 'top', 'page' => '*', 'type' => 'html', 'text' => '
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = \'//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473\';
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, \'script\', \'facebook-jssdk\'));
+  </script>', 'status' => '1', 'sort' => '0', 'store_id' => $storeId],
+                  ['name' => 'Google Analytics', 'position' => 'header', 'page' => '*', 'type' => 'html', 'text' => '
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128658138-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(\'js\', new Date());
+  gtag(\'config\', \'UA-128658138-1\');
+  </script>', 'status' => '1', 'sort' => '0', 'store_id' => $storeId],
+  
+                  ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1', 'store_id' => $storeId],
+                  ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3', 'store_id' => $storeId],
+                  ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0', 'store_id' => $storeId],
+                  ['name' => 'Categories', 'position' => 'left', 'page' => 'home,shop_home', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4', 'store_id' => $storeId],
+                  ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0', 'store_id' => $storeId],
+  
+              ]
+          );
+
+
     }
 }
