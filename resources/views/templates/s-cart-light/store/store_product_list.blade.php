@@ -133,7 +133,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
 @php
   $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
-  $bannerImage = $bannerBreadcrumb['image'];
+  $bannerImage = $bannerBreadcrumb['image'] ?? '';
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">
