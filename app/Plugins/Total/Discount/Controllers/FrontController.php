@@ -19,6 +19,8 @@ class FrontController extends RootFrontController
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->separator = false;
         $this->suffix = false;
         $this->prefix = false;
@@ -305,18 +307,8 @@ class FrontController extends RootFrontController
 
                 $objects = ShopOrderTotal::getObjectOrderTotal();
                 $dataTotal = ShopOrderTotal::processDataTotal($objects);
-                foreach ($dataTotal as $key => $element) {
-                    if ($element['value'] != 0) {
-                        if ($element['code'] == 'total') {
-                            $html .= "<tr class='showTotal'  style='background:#f5f3f3;font-weight: bold;'>";
-                        } else {
-                            $html .= "<tr class='showTotal'>";
-                        }
-                        $html .= "<th>" . $element['title'] . "</th>
-                        <td style='text-align: right' id='" . $element['code'] . "'>" . $element['text'] . "</td>
-                    </tr>";
-                    }
-
+                if (view()->exists($this->templatePath.'.common.render_total')) {
+                    $html = view($this->templatePath.'.common.render_total')->with(['dataTotal' => $dataTotal])->render();
                 }
             }
 
@@ -335,13 +327,8 @@ class FrontController extends RootFrontController
 
         $objects = ShopOrderTotal::getObjectOrderTotal();
         $dataTotal = ShopOrderTotal::processDataTotal($objects);
-        foreach ($dataTotal as $key => $element) {
-            if ($element['value'] != 0) {
-                $html .= "<tr class='showTotal'>
-                         <th>" . $element['title'] . "</th>
-                         <td style='text-align: right' id='" . $element['code'] . "'>" . $element['text'] . "</td>
-                    </tr>";
-            }
+        if (view()->exists($this->templatePath.'.common.render_total')) {
+            $html = view($this->templatePath.'.common.render_total')->with(['dataTotal' => $dataTotal])->render();
         }
         return json_encode(['html' => $html]);
     }

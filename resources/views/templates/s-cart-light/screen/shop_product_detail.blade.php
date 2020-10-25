@@ -1,8 +1,9 @@
 @php
 /*
 $layout_page = product_detail
-$product: no paginate
-$productRelation: no paginate
+**Variables:**
+- $product: no paginate
+- $productRelation: no paginate
 */
 @endphp
 

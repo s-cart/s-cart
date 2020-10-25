@@ -29,36 +29,6 @@ class DataShopSeeder extends Seeder
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_store_block')->insert(
-            [
-                ['name' => 'Facebook code', 'position' => 'top', 'page' => '*', 'type' => 'html', 'text' => '
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = \'//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473\';
-fjs.parentNode.insertBefore(js, fjs);
-}(document, \'script\', \'facebook-jssdk\'));
-</script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
-                ['name' => 'Google Analytics', 'position' => 'header', 'page' => '*', 'type' => 'html', 'text' => '
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128658138-1"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag(\'js\', new Date());
-gtag(\'config\', \'UA-128658138-1\');
-</script>', 'status' => '1', 'sort' => '0', 'store_id' => 1],
-
-                ['name' => 'Product special', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_special', 'status' => '1', 'sort' => '1', 'store_id' => 1],
-                ['name' => 'Brands', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'brands_left', 'status' => '1', 'sort' => '3', 'store_id' => 1],
-                ['name' => 'Banner home', 'position' => 'banner_top', 'page' => 'home', 'type' => 'view', 'text' => 'banner_image', 'status' => '1', 'sort' => '0', 'store_id' => 1],
-                ['name' => 'Categories', 'position' => 'left', 'page' => 'home,shop_home', 'type' => 'view', 'text' => 'categories', 'status' => '1', 'sort' => '4', 'store_id' => 1],
-                ['name' => 'Product last view', 'position' => 'left', 'page' => '*', 'type' => 'view', 'text' => 'product_lastview', 'status' => '1', 'sort' => '0', 'store_id' => 1],
-
-            ]
-        );
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_page')->insert(
             [
@@ -96,7 +66,7 @@ gtag(\'config\', \'UA-128658138-1\');
             [
                 ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3', 'store_id' => 1],
                 ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4', 'store_id' => 1],
-                ['name' => 'lang::front.my_profile', 'url' => '/member/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
+                ['name' => 'lang::front.my_profile', 'url' => '/customer/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
                 ['name' => 'lang::front.compare_page', 'url' => '/compare.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
                 ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3', 'store_id' => 1],
             ]
@@ -269,34 +239,6 @@ gtag(\'config\', \'UA-128658138-1\');
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_customer')->insert(
             [
                 ['id' => '1', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'email' => 'test@test.com', 'password' => bcrypt(123), 'address1' => 'HCM', 'address2' => 'HCM city', 'phone' => '0667151172', 'postcode' => 70000, 'company' => 'KTC', 'country' => 'VN', 'created_at' => date('Y-m-d H:i:s')],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order')->insert(
-            [
-                ['id' => '1', 'customer_id' => '1', 'subtotal' => '5000', 'shipping' => '2000', 'discount' => '0', 'payment_status' => '1', 'shipping_status' => '1', 'status' => '1', 'tax' => '0', 'total' => '7000', 'currency' => 'USD', 'exchange_rate' => '1', 'received' => '0', 'balance' => '7000', 'first_name' => 'Naruto', 'last_name' => 'Kun', 'address1' => 'ADDRESS 1', 'address2' => 'ADDRESS 2', 'country' => 'VN', 'phone' => '667151172', 'email' => 'test@test.com', 'comment' => 'ok', 'payment_method' => 'Cash', 'shipping_method' => 'ShippingStandard', 'created_at' => date('Y-m-d H:i:s')],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_detail')->insert(
-            [
-                ['id' => '1', 'order_id' => '1', 'product_id' => '1', 'name' => 'Easy Polo Black Edition 1', 'price' => '5000', 'qty' => '1', 'total_price' => '5000', 'sku' => 'ABCZZ', 'currency' => 'USD', 'exchange_rate' => '1.00', 'attribute' => '[]'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_history')->insert(
-            [
-                ['id' => '1', 'order_id' => '1', 'content' => 'New order', 'admin_id' => '0', 'customer_id' => '1', 'order_status_id' => '1', 'add_date' => date('Y-m-d H:i:s')],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_order_total')->insert(
-            [
-                ['order_id' => '1', 'code' => 'subtotal', 'title' => 'Subtotal', 'value' => '5000', 'sort' => '1'],
-                ['order_id' => '1', 'code' => 'shipping', 'title' => 'Shipping', 'value' => '2000', 'sort' => '10'],
-                ['order_id' => '1', 'code' => 'discount', 'title' => 'Discount', 'value' => '0', 'sort' => '20'],
-                ['order_id' => '1', 'code' => 'total', 'title' => 'Total', 'value' => '7000', 'sort' => '100'],
-                ['order_id' => '1', 'code' => 'received', 'title' => 'Received', 'value' => '0', 'sort' => '200'],
             ]
         );
 

@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = news_list
-$news: paginate
+**Variables:**
+- $news: paginate
 Use paginate: $news->appends(request()->except(['page','_token']))->links()
 */
 @endphp

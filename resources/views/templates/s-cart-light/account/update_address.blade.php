@@ -1,8 +1,10 @@
 @php
 /*
 $layout_page = shop_profile
-$user
-$countries
+** Variables:**
+- $customer
+- $countries
+- $address
 */ 
 @endphp
 
@@ -19,7 +21,7 @@ $countries
             <h3 class="title-optoins-customer">{{ $title }}</h3>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ sc_route('member.post_update_address', ['id' => $address->id]) }}">
+                    <form method="POST" action="{{ sc_route('customer.post_update_address', ['id' => $address->id]) }}">
                         @csrf
                         @if (sc_config('customer_lastname'))
                         <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -174,7 +176,7 @@ $countries
                         </div>
                         @endif
 
-                        @if ($address->id != auth()->user()->address_id)
+                        @if ($address->id != $customer->address_id)
                         <div class="form-group row">
                             <label for="default"
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.chose_address_default') }}</label>
@@ -206,7 +208,7 @@ $countries
         <div class="container">
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('member.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

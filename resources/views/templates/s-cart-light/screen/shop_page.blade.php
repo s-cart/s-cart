@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = shop_page
-$page: no paginate
+**Variables:**
+- $page: no paginate
 */ 
 @endphp
 

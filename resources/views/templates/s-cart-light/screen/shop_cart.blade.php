@@ -1,14 +1,15 @@
 @php
 /*
 $layout_page = shop_cart
-$cart: no paginate
-$shippingMethod: string
-$paymentMethod: string
-$totalMethod: array
-$dataTotal: array
-$shippingAddress: array
-$countries: array
-$attributesGroup: array
+**Variables:**
+- $cart: no paginate
+- $shippingMethod: string
+- $paymentMethod: string
+- $totalMethod: array
+- $dataTotal: array
+- $shippingAddress: array
+- $countries: array
+- $attributesGroup: array
 */
 @endphp
 
@@ -62,6 +63,14 @@ $attributesGroup: array
                                             alt="{{ $product->name }}">
                                         <span>
                                             {{ $product->name }}<br />
+
+                                            {{-- Go to store --}}
+                                            @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
+                                            <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
+                                            </div>
+                                            @endif
+                                            {{-- End go to store --}}
+                                            
                                             {{-- Process attributes --}}
                                             @if ($item->options->count())
                                             @foreach ($item->options as $groupAtt => $att)
@@ -78,7 +87,7 @@ $attributesGroup: array
                                 <td class="cart-col-qty">
                                     <div class="cart-qty">
                                         <input style="width: 150px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
-                                            data-rowid="{{$item->rowId}}" data-storeId="{{$product->store_id}}" onChange="updateCart($(this));"
+                                            data-rowid="{{$item->rowId}}" data-store_id="{{$product->store_id}}" onChange="updateCart($(this));"
                                             class="item-qty form-control" name="qty-{{$item->id}}" value="{{$item->qty}}">
                                     </div>
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
@@ -346,25 +355,9 @@ $attributesGroup: array
                             <div class="row">
                                 <div class="col-md-12">
                                     {{-- Data total --}}
-                                    <table class="table box table-bordered" id="showTotal">
-                                        @foreach ($dataTotal as $key => $element)
-                                            @if ($element['code']=='total')
-                                                <tr class="showTotal" style="background:#f5f3f3;font-weight: bold;">
-                                                    <th>{!! $element['title'] !!}</th>
-                                                    <td style="text-align: right" id="{{ $element['code'] }}">
-                                                        {{$element['text'] }}
-                                                    </td>
-                                                </tr>
-                                            @elseif($element['value'] !=0)
-                                                <tr class="showTotal">
-                                                    <th>{!! $element['title'] !!}</th>
-                                                    <td style="text-align: right" id="{{ $element['code'] }}">
-                                                        {{$element['text'] }}
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </table>
+                                    @if (view()->exists($sc_templatePath.'.common.render_total'))
+                                        @include($sc_templatePath.'.common.render_total')
+                                    @endif
                                     {{-- Data total --}}
 
                                     {{-- Total method --}}
@@ -506,7 +499,7 @@ $attributesGroup: array
 
     function updateCart(obj){
         let new_qty = obj.val();
-        let storeId = obj.data('storeId');
+        let storeId = obj.data('store_id');
         let rowid = obj.data('rowid');
         let id = obj.data('id');
         $.ajax({
@@ -525,7 +518,7 @@ $attributesGroup: array
                 error= parseInt(data.error);
                 if(error ===0)
                 {
-                        window.location.replace(location.href);
+                    window.location.replace(location.href);
                 }else{
                     $('.item-qty-'+id).css('display','block').html(data.msg);
                 }
@@ -565,7 +558,7 @@ $attributesGroup: array
             $('#form-process [name="address2"]').val('');
         } else {
             $.ajax({
-            url: '{{ sc_route('member.address_detail') }}',
+            url: '{{ sc_route('customer.address_detail') }}',
             type: 'POST',
             dataType: 'json',
             async: false,

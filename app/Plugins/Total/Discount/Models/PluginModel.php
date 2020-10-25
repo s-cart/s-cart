@@ -106,10 +106,19 @@ class PluginModel extends Model
      * @return  [type]         [return description]
      */
     public function getPromotionByCode($code) {
-        $promocode = $this
-        ->where('code', $code)
-        ->where('store_id', config('app.storeId'))
-        ->first();
+        if (config('app.storeId') == 1) {
+            //If store is primary store, dont check store id
+            $promocode = $this
+                ->where('code', $code)
+                ->first();
+        } else {
+            // Only use for owner store
+            $promocode = $this
+                ->where('store_id', config('app.storeId'))
+                ->where('code', $code)
+                ->first();
+        }
+
         return $promocode;
     }
 }

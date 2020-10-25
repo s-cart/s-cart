@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = shop_cart
-$wishlist: no paginate
+**Variables:**
+- $wishlist: no paginate
 */
 @endphp
 @extends($sc_templatePath.'.layout')

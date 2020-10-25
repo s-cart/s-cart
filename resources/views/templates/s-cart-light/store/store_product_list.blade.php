@@ -2,9 +2,8 @@
 /*
 * This template only use for MultiStorePro
 $layout_page = store_product_list
-$subCategory: paginate
-Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
-$products: paginate
+**Variables:**
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
@@ -117,11 +116,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('blockStoreLeft')
 {{-- Categories tore --}}
 
-@if (!empty($listCategoryStore) && $listCategoryStore->count())
+@if (function_exists('sc_get_categories_store_front') &&  count(sc_get_categories_store_front($storeId)))
 <div class="aside-item col-sm-6 col-md-5 col-lg-12">
   <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
   <ul class="list-shop-filter">
-    @foreach ($listCategoryStore as $key => $category)
+    @foreach (sc_get_categories_store_front($storeId) as $category)
     <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
     @endforeach
   </ul>
@@ -134,7 +133,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('breadcrumb')
 @php
   $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
-  $bannerImage = $bannerBreadcrumb['image'];
+  $bannerImage = $bannerBreadcrumb['image'] ?? '';
 @endphp
 <section class="breadcrumbs-custom">
   <div class="parallax-container" data-parallax-img="{{ asset($bannerImage ?? '') }}">

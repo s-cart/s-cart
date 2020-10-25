@@ -14,6 +14,7 @@ return [
     'free_shipping'         => 'Free shipping',
     'discount'              => 'Discount',
     'total'                 => 'Total',
+    'domain'                => 'Domain',
     'order_total'           => 'Order Total',
     'received'              => 'Received',
     'balance'               => 'Balance',

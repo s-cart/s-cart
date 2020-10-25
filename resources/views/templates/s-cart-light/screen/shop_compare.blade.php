@@ -1,7 +1,8 @@
 @php
 /*
 $layout_page = shop_compare
-$compare: no paginate
+**Variables:**
+- $compare: no paginate
 */
 @endphp
 

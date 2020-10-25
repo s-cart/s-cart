@@ -1,9 +1,10 @@
 @php
 /*
 $layout_page = product_list
-$subCategory: paginate
+**Variables:**
+- $subCategory: paginate
 Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
-$products: paginate
+- $products: paginate
 Use paginate: $products->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
@@ -105,8 +106,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             {!! $product->showPrice() !!}
           </div>
           
-          @if ($product->price != $product->getFinalPrice() && $product->kind !=
-          SC_PRODUCT_GROUP)
+          @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
           <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_BUILD)
           <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>

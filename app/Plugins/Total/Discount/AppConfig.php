@@ -6,6 +6,7 @@ use App\Plugins\Total\Discount\Models\PluginModel;
 use App\Plugins\Total\Discount\Controllers\FrontController;
 use SCart\Core\Admin\Models\AdminConfig;
 use SCart\Core\Admin\Models\AdminMenu;
+use SCart\Core\Front\Models\ShopCurrency;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
@@ -113,42 +114,56 @@ class AppConfig extends ConfigDefault
 
     public function getData()
     {
-        $uID = auth()->user()->id ?? 0;
+        $customer = session('customer');
+        // Get Id customer
+        $uID = $customer->id ?? 0;
+        $dataStore = [];
         $arrData = [
-            'title' => $this->title,
-            'code' => $this->configCode,
-            'key' => $this->configKey,
-            'image' => $this->image,
+            'title'      => $this->title,
+            'code'       => $this->configCode,
+            'key'        => $this->configKey,
+            'image'      => $this->image,
             'permission' => self::ALLOW,
-            'value' => 0,
-            'version' => $this->version,
-            'auth' => $this->auth,
-            'link' => $this->link,
-            'pathPlugin' => $this->pathPlugin
+            'value'      => 0,
+            'version'    => $this->version,
+            'auth'       => $this->auth,
+            'link'       => $this->link,
+            'pathPlugin' => $this->pathPlugin,
+            'store'      => $dataStore,
         ];
 
-        $totalMethod = session('totalMethod',[]);
+        $totalMethod = session('totalMethod', []);
         $discount = $totalMethod['Discount']??'';
 
         $check = json_decode((new FrontController)->check($discount, $uID), true);
+
         if (!empty($discount) && !$check['error']) {
-            $subtotalWithTax = \SCart\Core\Front\Models\ShopCurrency::sumCart(\Cart::instance('default')->content())['subTotalWithTax'];
+            $storeID = $check['content']['store_id'];
+            //Get cart item with group store id
+            $subtotalWithTax = ShopCurrency::sumCart()['store'][$storeID]['subTotalWithTax'] ?? null;
+            if (!$subtotalWithTax) {
+                return $arrData;
+            }
             if ($check['content']['type'] == 'percent') {
                 $value = floor($subtotalWithTax * $check['content']['reward'] / 100);
             } else {
                 $value = sc_currency_value($check['content']['reward']);
             }
+            //Add info for earch store
+            $dataStore[$storeID]['value'] = $value;
+
             $arrData = array(
-                'title' => '<b>' . $this->title . ':</b> ' . $discount . '',
-                'code' => $this->configCode,
-                'key' => $this->configKey,
-                'image' => $this->image,
+                'title'      => '<b>' . $this->title . ':</b> ' . $discount . '',
+                'code'       => $this->configCode,
+                'key'        => $this->configKey,
+                'image'      => $this->image,
                 'permission' => self::ALLOW,
-                'value' => ($value > $subtotalWithTax) ? -$subtotalWithTax : -$value,
-                'version' => $this->version,
-                'auth' => $this->auth,
-                'link' => $this->link,
+                'value'      => ($value > $subtotalWithTax) ? -$subtotalWithTax : -$value,
+                'version'    => $this->version,
+                'auth'       => $this->auth,
+                'link'       => $this->link,
                 'pathPlugin' => $this->pathPlugin,
+                'store'      => $dataStore, //Add info for earch store
             );
         }
         return $arrData;
@@ -161,9 +176,10 @@ class AppConfig extends ConfigDefault
      *
      */
     public function endApp($data = []) {
+        $customer = session('customer');
         $orderID = $data['orderID'] ?? '';
         $code = $data['code'] ?? '';
-        $uID = auth()->user()->id ?? 0;
+        $uID = $customer->id ?? 0;
         $msg = 'Order #'.$orderID;
         return (new FrontController)->apply($code, $uID, $msg);
     }

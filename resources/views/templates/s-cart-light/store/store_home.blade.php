@@ -67,8 +67,8 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
           </div>
         </div>
 
-        @if (!empty($listCategoryStore) && count($listCategoryStore))
-        @foreach ($listCategoryStore as $category)
+        @if (function_exists('sc_get_categories_store_front') &&  count(sc_get_categories_store_front($storeId)))
+        @foreach (sc_get_categories_store_front($storeId) as $category)
         <section class="section section-xxl bg-default">
           <div class="container">
                 <h2 class="wow fadeScale">{{ $category->getTitle() }}</h2>
@@ -138,11 +138,11 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
 @section('blockStoreLeft')
   {{-- Categories tore --}}
-  @if (!empty($listCategoryStore) && $listCategoryStore->count())
+  @if (function_exists('sc_get_categories_store_front') &&  count(sc_get_categories_store_front($storeId)))
   <div class="aside-item col-sm-6 col-md-5 col-lg-12">
     <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
     <ul class="list-shop-filter">
-      @foreach ($listCategoryStore as $key => $category)
+      @foreach (sc_get_categories_store_front($storeId) as $category)
       <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
       @endforeach
     </ul>
