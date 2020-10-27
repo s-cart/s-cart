@@ -166,12 +166,13 @@ To view S-Cart version information
 To update the core version of S-Cart:
 
 `composer update s-cart/core`
+Or you can use `php composer.phar update s-cart/core` if you don't have composer installed.
 
 To create a plugin:
 
 `php artisan sc:make plugin  --name=Group\PluginName`
 
-To create data backup file
+To create data backup file (The sql file is stored in storage/backups):
 
 `php artisan sc:backup --path=abc.sql`
 
@@ -181,9 +182,10 @@ To recover data:
 
 To manually customize the admin page:
 
-`php artian sc:customize admin`
+`php artisan sc:customize admin`
 
-Then set the value  `customize = true` trong `app/config/admin.php`
+This command will create new directories `resources/views/admin` and file `config/admin.php`
+After set the value `customize=true` in `config/admin.php` you can modify template admin. 
 
 More detail: https://s-cart.org/docs/master
 
