@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://s-cart.org/logo.png?v=4" width="150">
 </p>
-<p align="center">Free Laravel e-commerce for business<br>
+<p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
  <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://demo.s-cart.org/sc_admin">Demo admin</a> | <a href="https://s-cart.org/docs/master/installation.html">Installation</a>  | <a href="https://s-cart.org/docs/master/video-guide.html">Video Guide</a> | <a href="https://s-cart.org/download.html">Download full source</a>
@@ -166,12 +166,13 @@ To view S-Cart version information
 To update the core version of S-Cart:
 
 `composer update s-cart/core`
+Or you can use `php composer.phar update s-cart/core` if you don't have composer installed.
 
 To create a plugin:
 
 `php artisan sc:make plugin  --name=Group\PluginName`
 
-To create data backup file
+To create data backup file (The sql file is stored in storage/backups):
 
 `php artisan sc:backup --path=abc.sql`
 
@@ -181,9 +182,10 @@ To recover data:
 
 To manually customize the admin page:
 
-`php artian sc:customize admin`
+`php artisan sc:customize admin`
 
-Then set the value  `customize = true` trong `app/config/admin.php`
+This command will create new directories `resources/views/admin` and file `config/admin.php`
+After set the value `customize=true` in `config/admin.php` you can modify template admin. 
 
 More detail: https://s-cart.org/docs/master
 
