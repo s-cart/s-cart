@@ -55,8 +55,8 @@ return [
         'sort'                => 'Sort',
         'search'              => 'Search',
         'add_new'             => 'Add new',
-        'add_new_title'       => 'Add config',
-        'add_new_des'         => 'Create a new config',
+        'add_new_title'       => 'Add new store',
+        'add_new_des'         => 'Create a new store',
         
         'config_info'         => 'Infomation',
         'config_order'        => 'Order',
