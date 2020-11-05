@@ -98,7 +98,6 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'url_config', 'key' => 'SUFFIX_URL', 'value' => '.html', 'sort' => '0', 'detail' => 'lang::url.SUFFIX_URL', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SHOP', 'value' => 'shop', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SHOP', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_BRAND', 'value' => 'brand', 'sort' => '0', 'detail' => 'lang::env.PREFIX_BRAND', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SUPPLIER', 'value' => 'supplier', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SUPPLIER', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_CATEGORY', 'value' => 'category', 'sort' => '0', 'detail' => 'lang::env.PREFIX_CATEGORY', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SUB_CATEGORY', 'value' => 'sub-category', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SUB_CATEGORY', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_PRODUCT', 'value' => 'product', 'sort' => '0', 'detail' => 'lang::env.PREFIX_PRODUCT', 'store_id' => $storeId],
