@@ -13,7 +13,7 @@ return [
         'title'          => 'Banner',
         'create_success' => 'Create new item success!',
         'edit_success'   => 'Edit item success!',
-        'list'           => 'Brand list',
+        'list'           => 'Banner list',
         'id'             => 'ID',
         'status'         => 'Status',
         'action'         => 'Action',
