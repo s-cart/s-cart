@@ -6,7 +6,7 @@
 namespace App\Plugins\Plugin_Code\Plugin_Key;
 
 use App\Plugins\Plugin_Code\Plugin_Key\Models\PluginModel;
-use App\Admin\Models\AdminConfig;
+use SCart\Core\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
