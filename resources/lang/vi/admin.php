@@ -173,12 +173,8 @@ return [
     'use_shipping'                      => 'Sử dụng shipping',
     'show_date_available'               => 'Hiển thị ngày cho phép mua',
     'show_product_of_category_children' => 'Hiển thị sản phẩm của danh mục con',
-    'product_buy_out_of_stock'          => 'Cho phép mua vượt stock, kể cả đã hết hàng',
     'product_display_out_of_stock'      => 'Hiển thị sản phẩm đã hết hàng',
     'product_last_view'                 => 'Sản phẩm đã xem',
-    'product_preorder'                  => 'Cho phép đặt hàng trước',
-
-    'shop_allow_guest'                  => 'Mua hàng không cần đăng nhập',
     'field_config'                      => 'Tên chức năng',
     'use_mode'                          => 'Chế độ',
     'config_control'                    => 'Bảng điều khiển cấu hình',

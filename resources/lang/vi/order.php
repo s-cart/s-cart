@@ -131,5 +131,10 @@ return [
             'status'         => 'Tất cả trạng thái',
             'payment_method' => 'Phương thúc thanh toán',
         ],
+        'product_preorder'         => 'Cho phép đặt hàng trước',
+        'shop_allow_guest'         => 'Mua hàng không cần đăng nhập',
+        'product_buy_out_of_stock' => 'Mua sản phẩm đã hết hàng',
+        'shipping_off'             => 'Tắt chức năng giao hàng',
+        'payment_off'              => 'Tắt chức năng thanh toán',
     ],
 ];
