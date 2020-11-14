@@ -166,6 +166,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                         @endif
                                         @endforeach
                                     </table>
+
+@if (!sc_config('payment_off'))
                                     {{-- Payment method --}}
                                     <div class="row">
                                         <div class="col-md-12">
@@ -186,6 +188,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                         </div>
                                     </div>
                                     {{-- //Payment method --}}
+@endif
+
                                 </div>
                             </div>
                             {{-- End total --}}
