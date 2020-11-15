@@ -99,6 +99,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '10', 'name' => 'Marketing manager', 'slug' => 'marketing.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/shop_discount/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/customer/*,ANY::'.SC_ADMIN_PREFIX.'/subscribe/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '11', 'name' => 'Report manager', 'slug' => 'report.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/report/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '12', 'name' => 'CMS manager', 'slug' => 'cms.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/page/*,ANY::'.SC_ADMIN_PREFIX.'/banner/*,ANY::'.SC_ADMIN_PREFIX.'/cms_category/*,ANY::'.SC_ADMIN_PREFIX.'/cms_content/*,ANY::'.SC_ADMIN_PREFIX.'/news/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '13', 'name' => 'Change config', 'slug' => 'change.config', 'http_uri' => 'POST::'.SC_ADMIN_PREFIX.'/config/update_info', 'created_at' => date('Y-m-d H:i:s')],
              ]
         );
 
