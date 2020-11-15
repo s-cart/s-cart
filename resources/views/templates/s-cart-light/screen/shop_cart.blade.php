@@ -381,7 +381,7 @@ $layout_page = shop_cart
                                     </div>
                                     {{-- //Total method --}}
 
-
+@if (!sc_config('shipping_off'))
                                     {{-- Shipping method --}}
                                     <div class="row">
                                         <div class="col-md-12">
@@ -412,8 +412,9 @@ $layout_page = shop_cart
                                         </div>
                                     </div>
                                     {{-- //Shipping method --}}
+@endif
 
-
+@if (!sc_config('payment_off'))
                                     {{-- Payment method --}}
                                     <div class="row">
                                         <div class="col-md-12">
@@ -446,6 +447,8 @@ $layout_page = shop_cart
                                         </div>
                                     </div>
                                     {{-- //Payment method --}}
+@endif
+
                                 </div>
                                 
                             </div>

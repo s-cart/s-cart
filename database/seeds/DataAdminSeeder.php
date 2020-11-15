@@ -89,7 +89,7 @@ class DataAdminSeeder extends Seeder
             [
             ['id' => '1', 'name' => 'Auth manager', 'slug' => 'auth.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/auth/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '3', 'name' => 'Store setting', 'slug' => 'admin.manager', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*,ANY::'.SC_ADMIN_PREFIX.'/shipping_status/*,ANY::'.SC_ADMIN_PREFIX.'/payment_status/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,ANY::'.SC_ADMIN_PREFIX.'/length_unit/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '3', 'name' => 'Base setting', 'slug' => 'base.setting', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*,ANY::'.SC_ADMIN_PREFIX.'/shipping_status/*,ANY::'.SC_ADMIN_PREFIX.'/payment_status/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,ANY::'.SC_ADMIN_PREFIX.'/length_unit/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '4', 'name' => 'Store manager', 'slug' => 'store.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/store_maintain/*,ANY::'.SC_ADMIN_PREFIX.'/store_config/*,ANY::'.SC_ADMIN_PREFIX.'/store_css/*,ANY::'.SC_ADMIN_PREFIX.'/store_block/*,ANY::'.SC_ADMIN_PREFIX.'/store_link/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '5', 'name' => 'Product manager', 'slug' => 'product.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/product/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Category manager', 'slug' => 'category.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/category/*','created_at' => date('Y-m-d H:i:s')],
@@ -99,6 +99,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '10', 'name' => 'Marketing manager', 'slug' => 'marketing.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/shop_discount/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/customer/*,ANY::'.SC_ADMIN_PREFIX.'/subscribe/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '11', 'name' => 'Report manager', 'slug' => 'report.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/report/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '12', 'name' => 'CMS manager', 'slug' => 'cms.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/page/*,ANY::'.SC_ADMIN_PREFIX.'/banner/*,ANY::'.SC_ADMIN_PREFIX.'/cms_category/*,ANY::'.SC_ADMIN_PREFIX.'/cms_content/*,ANY::'.SC_ADMIN_PREFIX.'/news/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '13', 'name' => 'Change config', 'slug' => 'change.config', 'http_uri' => 'POST::'.SC_ADMIN_PREFIX.'/config/update_info', 'created_at' => date('Y-m-d H:i:s')],
              ]
         );
 

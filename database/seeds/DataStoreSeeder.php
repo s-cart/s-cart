@@ -69,6 +69,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_NAME', 'value' => 'SCart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => $storeId],
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_LOGO', 'value' => 'SCart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_FOOTER_OFF', 'value' => '0', 'sort' => '0', 'detail' => 'lang::env.ADMIN_FOOTER_OFF', 'store_id' => $storeId],
 
 
             ['group' => '', 'code' => 'display_config', 'key' => 'product_top', 'value' => '8', 'sort' => '0', 'detail' => 'lang::admin.product_top', 'store_id' => $storeId],
@@ -78,9 +79,11 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'display_config', 'key' => 'item_list', 'value' => '12', 'sort' => '0', 'detail' => 'lang::admin.item_list', 'store_id' => $storeId],
             ['group' => '', 'code' => 'display_config', 'key' => 'item_top', 'value' => '8', 'sort' => '0', 'detail' => 'lang::admin.item_top', 'store_id' => $storeId],
 
-            ['group' => '', 'code' => 'order_config', 'key' => 'shop_allow_guest', 'value' => '1', 'sort' => '11', 'detail' => 'lang::admin.shop_allow_guest', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'order_config', 'key' => 'product_preorder', 'value' => '1', 'sort' => '18', 'detail' => 'lang::admin.product_preorder', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'order_config', 'key' => 'product_buy_out_of_stock', 'value' => '1', 'sort' => '20', 'detail' => 'lang::admin.product_buy_out_of_stock', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'order_config', 'key' => 'shop_allow_guest', 'value' => '1', 'sort' => '11', 'detail' => 'lang::order.admin.shop_allow_guest', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'order_config', 'key' => 'product_preorder', 'value' => '1', 'sort' => '18', 'detail' => 'lang::order.admin.product_preorder', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'order_config', 'key' => 'product_buy_out_of_stock', 'value' => '1', 'sort' => '20', 'detail' => 'lang::order.admin.product_buy_out_of_stock', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'order_config', 'key' => 'shipping_off', 'value' => '0', 'sort' => '20', 'detail' => 'lang::order.admin.shipping_off', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'order_config', 'key' => 'payment_off', 'value' => '0', 'sort' => '20', 'detail' => 'lang::order.admin.payment_off', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'email_action', 'key' => 'email_action_mode', 'value' => '0', 'sort' => '0', 'detail' => 'lang::email.email_action.email_action_mode', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'email_action_queue', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.email_action_queue', 'store_id' => $storeId],
