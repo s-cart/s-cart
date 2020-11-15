@@ -136,5 +136,8 @@ return [
         'product_buy_out_of_stock' => 'Mua sản phẩm đã hết hàng',
         'shipping_off'             => 'Tắt chức năng giao hàng',
         'payment_off'              => 'Tắt chức năng thanh toán',
+        'search_order_status'      => 'Trạng thái đơn hàng',
+        'search_email'             => 'Tìm email',
+        'search_id'                => 'Tìm ID đơn hàng',
     ],
 ];

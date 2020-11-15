@@ -136,5 +136,8 @@ return [
         'product_buy_out_of_stock' => 'Allow buy product out of stock',
         'shipping_off'             => 'OFF Shipping method',
         'payment_off'              => 'OFF Payment method',
+        'search_order_status'      => 'Search order status',
+        'search_email'             => 'Search email',
+        'search_id'                => 'Search order ID',
     ],
 ];
