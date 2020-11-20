@@ -51,7 +51,7 @@ class AdminDiscount extends PluginModel
      * @return  [type]              [return description]
      */
     public static function createDiscountAdmin(array $dataInsert) {
-        $dataInsert = sc_clean($dataInsert);
+        $dataInsert = $dataInsert;
         return self::create($dataInsert);
     }
 
@@ -67,20 +67,20 @@ class AdminDiscount extends PluginModel
      * @return  [type]          [return description]
      */
     public function checkDiscountValidationAdmin($type = null, $fieldValue = null, $discountId = null, $storeId = null) {
-        $storeId = $storeId ? sc_clean($storeId) : session('adminStoreId');
-        $type = $type ? sc_clean($type) : 'code';
-        $fieldValue = sc_clean($fieldValue);
-        $discountId = sc_clean($discountId);
+        $storeId = $storeId ? $storeId : session('adminStoreId');
+        $type = $type ? $type : 'code';
+        $fieldValue = $fieldValue;
+        $discountId = $discountId;
         $tablePTS = (new AdminDiscount)->getTable();
         $check =  $this
-        ->where($type, $fieldValue)
-        ->where($tablePTS . '.store_id', $storeId);
-        if($discountId) {
+            ->where($type, $fieldValue)
+            ->where($tablePTS . '.store_id', $storeId);
+        if ($discountId) {
             $check = $check->where('id', '<>', $discountId);
         }
         $check = $check->first();
 
-        if($check) {
+        if ($check) {
             return false;
         } else {
             return true;
