@@ -153,7 +153,7 @@ class AdminCmsContent extends CmsContent
      * @return  [type]              [return description]
      */
     public static function createContentAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return self::create($dataInsert);
     }
 
@@ -166,7 +166,7 @@ class AdminCmsContent extends CmsContent
      * @return  [type]              [return description]
      */
     public static function insertDescriptionAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return CmsContentDescription::create($dataInsert);
     }
 

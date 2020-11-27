@@ -153,7 +153,7 @@ class AdminCmsCategory extends CmsCategory
      * @return  [type]              [return description]
      */
     public static function createCategoryAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return self::create($dataInsert);
     }
 
@@ -166,7 +166,7 @@ class AdminCmsCategory extends CmsCategory
      * @return  [type]              [return description]
      */
     public static function insertDescriptionAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return CmsCategoryDescription::create($dataInsert);
     }
 
