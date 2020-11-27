@@ -44,9 +44,7 @@ class AdminCmsCategory extends CmsCategory
 
         if ($keyword) {
             $categoryList = $categoryList->where(function ($sql) use($tableDescription, $tableCategory, $keyword){
-                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%');
+                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%');
             });
         }
 
@@ -153,7 +151,7 @@ class AdminCmsCategory extends CmsCategory
      * @return  [type]              [return description]
      */
     public static function createCategoryAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return self::create($dataInsert);
     }
 
@@ -166,7 +164,7 @@ class AdminCmsCategory extends CmsCategory
      * @return  [type]              [return description]
      */
     public static function insertDescriptionAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return CmsCategoryDescription::create($dataInsert);
     }
 

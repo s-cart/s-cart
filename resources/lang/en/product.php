@@ -108,7 +108,7 @@ return [
             'sold_asc'                      => 'Sold asc',
         ],
         'search'                            => 'Search',
-        'search_place'                      => 'Search Name, SKU or ID',
+        'search_place'                      => 'Search Name, SKU',
         'cant_remove_child'                 => 'Please remove list products from Builds or Groups before delete them',
     ],
     'types'                                 => [

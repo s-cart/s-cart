@@ -106,7 +106,7 @@ return [
             'sold_asc'                      => 'Bán ra tăng',                         
         ],
         'search'                            => 'Tìm kiếm',
-        'search_place'                      => 'Tìm tên, SKU hoặc ID sản phẩm',
+        'search_place'                      => 'Tìm tên, SKU',
         'cant_remove_child'                 => 'Vui lòng gỡ bỏ những sản phẩm sau khỏi Group hoặc Build trước khi xóa chúng',
         'search_order'                      => [
             'status'                        => 'Tất cả trạng thái',

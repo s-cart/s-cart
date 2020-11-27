@@ -51,7 +51,7 @@ class AdminDiscount extends PluginModel
      * @return  [type]              [return description]
      */
     public static function createDiscountAdmin(array $dataInsert) {
-        $dataInsert = $dataInsert;
+
         return self::create($dataInsert);
     }
 
