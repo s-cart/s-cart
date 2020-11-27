@@ -43,10 +43,8 @@ class AdminCmsContent extends CmsContent
             ->where($tableDescription . '.lang', sc_get_locale());
 
         if ($keyword) {
-            $contentList = $contentList->where(function ($sql) use($tableDescription, $tableContent, $keyword){
-                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%');
+            $contentList = $contentList->where(function ($sql) use($tableDescription, $keyword){
+                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%');
             });
         }
 

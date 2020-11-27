@@ -44,9 +44,7 @@ class AdminCmsCategory extends CmsCategory
 
         if ($keyword) {
             $categoryList = $categoryList->where(function ($sql) use($tableDescription, $tableCategory, $keyword){
-                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.keyword', 'like', '%' . $keyword . '%')
-                    ->orWhere($tableDescription . '.description', 'like', '%' . $keyword . '%');
+                $sql->where($tableDescription . '.title', 'like', '%' . $keyword . '%');
             });
         }
 
