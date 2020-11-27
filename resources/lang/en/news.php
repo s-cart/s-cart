@@ -36,6 +36,6 @@ return [
             'title_desc' => 'Title desc',
         ],
         'search' => 'Search',
-        'search_place' => 'Search title or ID',
+        'search_place' => 'Search title',
     ],
 ];

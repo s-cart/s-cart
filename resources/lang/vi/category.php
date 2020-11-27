@@ -38,7 +38,7 @@ return [
             'title_desc' => 'Tên z-a',
         ],
         'search'          => 'Tìm kiếm',
-        'search_place'    => 'Tìm tên hoặc ID danh mục',
+        'search_place'    => 'Tìm tên',
         'search_order'    => [
             'status' => 'Tất cả trạng thái',
         ],

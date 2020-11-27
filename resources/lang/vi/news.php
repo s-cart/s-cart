@@ -36,7 +36,7 @@ return [
             'title_desc' => 'Tiêu đề z-a',
         ],
         'search' => 'Tìm kiếm',
-        'search_place' => 'Tìm tiêu đề hoặc ID Blog/News',
+        'search_place' => 'Tìm tiêu đề',
         'search_order' => [
             'status' => 'Tất cả trạng thái',
         ],
