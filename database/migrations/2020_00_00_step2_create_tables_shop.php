@@ -19,6 +19,7 @@ class CreateTablesShop extends Migration
 
         Schema::create(SC_DB_PREFIX.'shop_banner', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title', 255)->nullable();
             $table->string('image', 255)->nullable();
             $table->string('url', 100)->nullable();
             $table->string('target', 50)->nullable();
