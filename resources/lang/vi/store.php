@@ -70,5 +70,7 @@ return [
         'active_strict'  =>  'Kích hoạt chế độ kiểm tra tên miền',
         'active_domain'  =>  'Kích hoạt tên miền',
         'active_maintain'  =>  'Kích hoạt chế độ bảo trì',
+        'domain_exist' => ' Tên miền đã có rồi',
+        'value_cannot_change' => 'Giá trị này không thể thay đổi',
     ],
 ];
