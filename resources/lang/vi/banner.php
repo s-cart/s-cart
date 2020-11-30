@@ -9,6 +9,7 @@ return [
     'url'    => 'Liên kết',
     'sort'   => 'Sắp xếp',
     'status' => 'Status',
+    'title' => 'Tiêu đề',
     'admin'  => [
         'title'          => 'Banner',
         'create_success' => 'Tạo mới thành công!',
@@ -28,7 +29,7 @@ return [
         'add_new_title'  => 'Tạo banner',
         'add_new_des'    => 'Tạo mới banner',
         'select_target'    => 'Chọn Target',
-        'search_place'   => 'Tìm tên',
+        'search_place'   => 'Tìm tiêu đề',
 
         'sort_order'     => [
             'id_asc'    => 'ID asc',

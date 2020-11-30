@@ -72,5 +72,7 @@ return [
         'active_strict'  =>  'Activate domain check mode',
         'active_domain'  =>  'Activate the domain name',
         'active_maintain'  =>  'Activate maintenance mode',
+        'domain_exist' => ' Domain exist already',
+        'value_cannot_change' => 'This value cannot be changed',
     ],
 ];

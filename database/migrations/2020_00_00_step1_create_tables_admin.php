@@ -124,6 +124,7 @@ class CreateTablesAdmin extends Migration
             $table->string('warehouse', 300)->nullable();
             $table->string('template', 100)->nullable();
             $table->string('domain', 100)->nullable()->index();
+            $table->string('partner', 10)->default(0)->index();
             $table->string('code', 20)->nullable()->unique();
             $table->string('language', 10);
             $table->string('timezone', 50);

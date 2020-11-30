@@ -115,11 +115,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('blockStoreLeft')
 {{-- Categories tore --}}
 {{-- Only show category store if shop home is not primary store --}}
-@if (config('app.storeId') != 1 && function_exists('sc_get_categories_store_front') &&  count(sc_get_categories_store_front(config('app.storeId'))))
+@if (config('app.storeId') != 1 && function_exists('sc_store_get_categories_front') &&  count(sc_store_get_categories_front(config('app.storeId'))))
 <div class="aside-item col-sm-6 col-md-5 col-lg-12">
   <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
   <ul class="list-shop-filter">
-    @foreach (sc_get_categories_store_front(config('app.storeId')) as $key => $category)
+    @foreach (sc_store_get_categories_front(config('app.storeId')) as $key => $category)
     <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
     @endforeach
   </ul>

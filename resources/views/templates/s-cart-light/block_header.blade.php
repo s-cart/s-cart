@@ -19,19 +19,7 @@
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a>
-
-                      {{-- Only show list store if store is 1 --}}
-                      @if (sc_config_global('MultiStorePro') && sc_store_active() && config('app.storeId') == 1)
-                      <ul class="rd-menu rd-navbar-dropdown">
-                        @foreach (sc_store_active() as $storeActive)
-                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('multistorepro.detail', ['code' => $storeActive->code]) }}"">{{ $storeActive->getTitle() }}</a></li>
-                        @endforeach
-                      </ul>
-                      @endif
-                      {{-- End show list store --}}
-
-                    </li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a></li>
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
                     </li>
