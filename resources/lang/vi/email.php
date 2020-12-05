@@ -39,7 +39,7 @@ return [
         'smtp_password'  => 'Mật khẩu SMTP',
         'smtp_user'      => 'User SMTP',
         'smtp_host'      => 'Server SMTP',
-        'help_note'      => '<span class="text-red">(*)</span>: Email sẽ không được gửi trực tiếp, mà thông qua hàng đợi. Bạn cần phải cài đặt "artisan schedule:run" trước,  chi tiết <a href="https://s-cart.org/docs/'.config('scart.version').'/email.html">TẠI ĐÂY</a>',
+        'help_note'      => '<span class="text-red">(*)</span>: Email sẽ không được gửi trực tiếp, mà thông qua hàng đợi. Bạn cần phải cài đặt "artisan schedule:run" trước,  chi tiết <a href="https://s-cart.org/docs/'.config('s-cart.version').'/email.html">TẠI ĐÂY</a>',
     ],
 
     'email_action'     => [

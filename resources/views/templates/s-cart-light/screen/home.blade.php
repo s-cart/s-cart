@@ -37,7 +37,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                     {{--// Product name --}}
 
                     {{-- Display store - if use MultiStorePro --}}
-                    @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
+                    @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
                       <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $productNew->store_id  }}</a>
                       </div>
                     @endif

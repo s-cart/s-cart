@@ -1,9 +1,9 @@
 <?php
 return [
     'info' => [
-        'about' => 'SCart is a free e-commerce website project for businesses, built on the Laravel framework (PHP & Mysql)',
+        'about' => 'S-Cart is a free e-commerce website project for businesses, built on the Laravel framework (PHP & Mysql)',
         'about_pro' => 'Best Laravel eCommerce Platform for Business!',
-        'about_us' => '- About us, please visit <a target="_new" href="https://s-cart.org/">SCart\'s homepage</a>',
+        'about_us' => '- About us, please visit <a target="_new" href="https://s-cart.org/">S-Cart\'s homepage</a>',
         'document' => '- Installation guide <a target="_new" href="https://s-cart.org/docs/master/installation.html">HERE</a>',
         'version' => 'Versions',
         'terms' => '<span style="color:red">*</span> Please read the terms before installing <a target="_new" href="https://s-cart.org/license.html">HERE</a>.',
@@ -66,7 +66,7 @@ return [
         'timezone_default_required' => 'Timezone default required',
         'language_default_required' => 'Language default required',
     ],
-    'installing_button' => 'Installing SCart',
+    'installing_button' => 'Installing S-Cart',
     'database_host' => 'DB host',
     'database_port' => 'DB port',
     'database_name' => 'DB name',
@@ -80,7 +80,7 @@ return [
     'admin_email' => 'Admin email',
     'language_default' => 'Language',
     'timezone_default' => 'Timezone',
-    'title' => 'Install SCart',
+    'title' => 'Install S-Cart',
     'installing' => 'Begin Install',
     'rename_error' => 'Can not rename file install.php. Please remove or rename it!',
     'terms' => '<span style="color:red">*</span> Agree with the terms and conditions',

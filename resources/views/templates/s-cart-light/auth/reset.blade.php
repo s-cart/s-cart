@@ -8,7 +8,7 @@ $email
 
 @extends($sc_templatePath.'.layout')
 
-@section('main')
+@section('block_main')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-2">
