@@ -188,6 +188,9 @@ class DataAdminSeeder extends Seeder
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_content_cms', 'value' => '0', 'sort' => '7', 'detail' => 'lang::cache.config_manager.cache_content_cms', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_page', 'value' => '0', 'sort' => '8', 'detail' => 'lang::cache.config_manager.cache_page', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_country', 'value' => '0', 'sort' => '10', 'detail' => 'lang::cache.config_manager.cache_country', 'store_id' => 0],
+
+            ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_mode', 'value' => '', 'sort' => '0', 'detail' => 'lang::email.smtp_mode', 'store_id' => 1],
+
             
             ]
         );
