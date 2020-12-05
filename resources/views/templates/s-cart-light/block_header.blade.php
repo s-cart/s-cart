@@ -23,7 +23,7 @@
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
                     </li>
-                    @if (!empty(sc_config('Content')) && config('app.storeId') === 1)
+                    @if (!empty(sc_config('Content')) && config('app.storeId') == SC_ID_ROOT)
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#">{{ trans('front.cms_category') }}</a>
                         @php
                         $nameSpace = sc_get_plugin_namespace('Cms','Content').'\Models\CmsCategory';

@@ -65,7 +65,7 @@ $layout_page = shop_cart
                                             {{ $product->name }}<br />
 
                                             {{-- Go to store --}}
-                                            @if (sc_config_global('MultiStorePro') && config('app.storeId') == 1)
+                                            @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
                                             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
                                             </div>
                                             @endif
