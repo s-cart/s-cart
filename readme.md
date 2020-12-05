@@ -26,6 +26,7 @@ Send us a cup of coffee :stuck_out_tongue_winking_eye: :pray:
 </p>
 
 ## IMAGES:
+<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg">
 <img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
 <img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
 
