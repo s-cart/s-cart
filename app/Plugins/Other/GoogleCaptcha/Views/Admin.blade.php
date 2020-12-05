@@ -17,12 +17,12 @@
 
             <tr>
                   <th width="40%">{{ trans($pathPlugin.'::lang.secrect_key') }}</th>
-                  <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_secrect_key" data-type="text" data-pk="GoogleCaptcha_secrect_key" data-url="{{ sc_route('admin_config.update') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GoogleCaptcha_secrect_key'): 'hidden' }}" data-title="{{ trans($pathPlugin.'::lang.secrect_key') }}"></a></td>
+                  <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_secrect_key" data-type="text" data-pk="GoogleCaptcha_secrect_key" data-url="{{ sc_route('admin_config_global.update') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GoogleCaptcha_secrect_key'): 'hidden' }}" data-title="{{ trans($pathPlugin.'::lang.secrect_key') }}"></a></td>
             </tr>  
 
           <tr>
             <th width="40%">{{ trans($pathPlugin.'::lang.site_key') }}</th>
-            <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_site_key" data-type="text" data-pk="GoogleCaptcha_site_key" data-url="{{ sc_route('admin_config.update') }}" data-value="{{ sc_config('GoogleCaptcha_site_key') }}" data-title="{{ trans($pathPlugin.'::lang.site_key') }}"></a></td>
+            <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_site_key" data-type="text" data-pk="GoogleCaptcha_site_key" data-url="{{ sc_route('admin_config_global.update') }}" data-value="{{ sc_config('GoogleCaptcha_site_key') }}" data-title="{{ trans($pathPlugin.'::lang.site_key') }}"></a></td>
           </tr>    
     </td>
   </tr>
