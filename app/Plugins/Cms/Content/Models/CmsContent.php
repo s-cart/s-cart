@@ -245,9 +245,7 @@ class CmsContent extends Model
         //search keyword
         if ($this->sc_keyword !='') {
             $query = $query->where(function ($sql) use($tableDescription){
-                $sql->where($tableDescription . '.title', 'like', '%' . $this->sc_keyword . '%')
-                ->orWhere($tableDescription . '.keyword', 'like', '%' . $this->sc_keyword . '%')
-                ->orWhere($tableDescription . '.description', 'like', '%' . $this->sc_keyword . '%');
+                $sql->where($tableDescription . '.title', 'like', '%' . $this->sc_keyword . '%');
             });
         }
 
