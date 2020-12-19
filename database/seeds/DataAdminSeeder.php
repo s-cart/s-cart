@@ -213,10 +213,10 @@ class DataAdminSeeder extends Seeder
         
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'admin_store_description')->insert(
             [
-                ['store_id' => '1', 'lang' => 'en', 'title' => 'Demo SCart : Free Laravel eCommerce', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+                ['store_id' => '1', 'lang' => 'en', 'title' => 'Demo S-Cart : Free Laravel eCommerce', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
     <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>
     </center>'],
-                ['store_id' => '1', 'lang' => 'vi', 'title' => 'Demo SCart: Mã nguồn website thương mại điện tử miễn phí', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
+                ['store_id' => '1', 'lang' => 'vi', 'title' => 'Demo S-Cart: Mã nguồn website thương mại điện tử miễn phí', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
     <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
     </center>'],
             ]
