@@ -23,7 +23,7 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
-        "s-cart/core": "^4.4.0"
+        "s-cart/core": "^4.4.1"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",

@@ -1,3 +1,4 @@
+<script type="text/javascript">
 $('#coupon-button').click(function() {
     var coupon = $('#coupon-value').val();
        if(coupon==''){
@@ -62,3 +63,4 @@ $('#coupon-button').click(function() {
                console.log("error");
            })
    });
+   </script>

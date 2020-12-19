@@ -24,6 +24,7 @@ return [
     'password'        => 'Mật khẩu',
     'total_order'     => 'Tổng đơn hàng',
     'total_amount'    => 'Tổng số tiền',
+    'provider'        => 'Tài khoản',
     'admin'                   => [
         'title'               => 'Quản lý khách hàng',
         'create_success'      => 'Tạo item thành công!',

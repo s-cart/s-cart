@@ -23,6 +23,7 @@ return [
     'date'            => 'Date',
     'total_order'     => 'Total orders',
     'total_amount'    => 'Total amount',
+    'provider'        => 'Provider',
     'admin'                   => [
         'title'               => 'Customer manager',
         'create_success'      => 'Create new item success!',
