@@ -493,13 +493,14 @@ $layout_page = shop_cart
 
 
 @push('scripts')
-<script type="text/javascript">
-    @foreach ($totalMethod as $key => $plugin)
-        @if (view()->exists($plugin['pathPlugin'].'::script'))
-            @include($plugin['pathPlugin'].'::script')
-        @endif
-    @endforeach
 
+@foreach ($totalMethod as $key => $plugin)
+@if (view()->exists($plugin['pathPlugin'].'::script'))
+    @include($plugin['pathPlugin'].'::script')
+@endif
+@endforeach
+
+<script type="text/javascript">
     function updateCart(obj){
         let new_qty = obj.val();
         let storeId = obj.data('store_id');
