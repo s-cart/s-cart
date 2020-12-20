@@ -93,6 +93,17 @@ $layout_page = shop_contact
     </div>
 </div>
 </section>
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.shop_contact', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 {{-- breadcrumb --}}
@@ -124,3 +135,19 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 </section>
 @endsection
 {{-- //breadcrumb --}}
+
+@push('styles')
+{{-- Your css style --}}
+@endpush
+
+@push('scripts')
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.shop_contact', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
+@endpush

@@ -132,8 +132,18 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
         @endforeach
         @endif
   
-
       </div>
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.store_home', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 @section('blockStoreLeft')
@@ -185,5 +195,13 @@ $bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getD
 @endpush
 
 @push('scripts')
-{{-- Your scripts --}}
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.store_home', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
 @endpush

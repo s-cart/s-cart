@@ -1,6 +1,6 @@
 @php
 /*
-$layout_page = shop_cart
+$layout_page = shop_order_success
 */
 @endphp
 
@@ -20,6 +20,18 @@ $layout_page = shop_cart
         </div>
     </div>
 </div>
+
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.shop_order_success', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 @section('breadcrumb')
@@ -30,5 +42,13 @@ $layout_page = shop_cart
 @endpush
 
 @push('scripts')
-{{-- Your scripts --}}
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.shop_order_success', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
 @endpush

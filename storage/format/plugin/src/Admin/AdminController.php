@@ -3,15 +3,16 @@
 
 namespace App\Plugins\Plugin_Code\Plugin_Key\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\RootAdminController;
 use App\Plugins\Plugin_Code\Plugin_Key\AppConfig;
 
-class AdminController extends Controller
+class AdminController extends RootAdminController
 {
     public $plugin;
 
     public function __construct()
     {
+        parent::__construct();
         $this->plugin = new AppConfig;
     }
     public function index()
