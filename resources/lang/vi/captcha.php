@@ -11,4 +11,5 @@ return [
     'captcha_page_register'       => 'Đăng ký',
     'captcha_page_forgot_password' => 'Quên mật khẩu',
     'captcha_page_checkout'       => 'Đặt hàng',
+    'captcha_page_review'         => 'Đánh giá sản phẩm',
 ];
