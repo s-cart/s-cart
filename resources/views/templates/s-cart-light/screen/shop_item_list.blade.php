@@ -39,6 +39,17 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
     </div>
   </section>
 </div>
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.item_list', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 
@@ -108,6 +119,17 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
       $('#filter_sort').submit();
     });
 </script>
+
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.item_list', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
+
 @endpush
 
 @push('styles')

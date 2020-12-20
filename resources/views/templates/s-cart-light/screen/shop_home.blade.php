@@ -126,6 +126,18 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 </div>
 @endif
 {{-- //Categories tore --}}
+
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.product_home', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 {{-- breadcrumb --}}
@@ -164,4 +176,15 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
       $('#filter_sort').submit();
   });
 </script>
+
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.shop_home', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
+
 @endpush

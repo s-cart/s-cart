@@ -18,6 +18,17 @@ $layout_page = shop_page
         </div>
     </div>
 </section>
+
+{{-- Render block include view --}}
+@if ($includePathView = config('sc_include_view.shop_page', []))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render block include view --}}
+
 @endsection
 
 {{-- breadcrumb --}}
@@ -53,5 +64,13 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endpush
 
 @push('scripts')
-{{-- Your scripts --}}
+  {{-- Render block include script --}}
+  @if ($includePathScript = config('sc_include_script.shop_page', []))
+  @foreach ($includePathScript as $script)
+    @if (view()->exists($script))
+      @include($script)
+    @endif
+  @endforeach
+  @endif
+  {{--// Render block include script --}}
 @endpush
