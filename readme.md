@@ -19,12 +19,6 @@ Our goal is "Efficient and friendly for everyone":
 - Friendly: Easy to use, easy to maintain, easy to develop.
 - Everyone: Businesses, individuals, developers, students.
 
-## Support the project
-Send us a cup of coffee :stuck_out_tongue_winking_eye: :pray:
-<p align="center">
-    <a href="https://www.paypal.me/LeLanh" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" data-origin="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal Me"></a>
-</p>
-
 ## IMAGES:
 <img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg">
 <img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
@@ -189,6 +183,15 @@ This command will create new directories `resources/views/admin` and file `confi
 After set the value `customize=true` in `config/admin.php` you can modify template admin. 
 
 More detail: https://s-cart.org/docs/master
+
+## Funding and supporting the project
+
+You can support our with donations and sponsoring. Sponsorships are crucial for ongoing and future development of the project. Any support is always welcome even if it's as low as $1 :) 
+Please visit the <a href="https://s-cart.org/license.html" target="_blank">S-Cart</a>
+
+## Security Vulnerabilities:
+
+If you discover a security vulnerability within S-Cart ecommerce, please send an e-mail to Lanh KTC via lanhktc@gmail.com. All security vulnerabilities will be promptly addressed.
 
 ## License:
 
