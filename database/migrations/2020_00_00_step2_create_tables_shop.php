@@ -529,7 +529,7 @@ class CreateTablesShop extends Migration
 
         Schema::create('oauth_refresh_tokens', function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->string('access_token_id', 100);
+            $table->string('access_token_id', 100)->index();
             $table->boolean('revoked');
             $table->dateTime('expires_at')->nullable();
             }
@@ -540,6 +540,7 @@ class CreateTablesShop extends Migration
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->string('name');
             $table->string('secret', 100)->nullable();
+            $table->string('provider')->nullable();
             $table->text('redirect');
             $table->boolean('personal_access_client');
             $table->boolean('password_client');
@@ -603,7 +604,7 @@ class CreateTablesShop extends Migration
 
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uuid')->after('id')->nullable()->unique();
+            $table->string('uuid')->nullable()->unique();
             $table->text('connection');
             $table->text('queue');
             $table->longText('payload');
