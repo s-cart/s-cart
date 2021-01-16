@@ -1,4 +1,8 @@
 <?php
+
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
+
 //Check install
 if (is_file('install.php')) {
     $pathInstall = str_replace('index.php','install.php', $_SERVER['PHP_SELF']);
@@ -6,6 +10,22 @@ if (is_file('install.php')) {
     exit;
 }
 //End install
+
+/*
+|--------------------------------------------------------------------------
+| Check If Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is maintenance / demo mode via the "down" command we
+| will require this file so that any prerendered template can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
+
+if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    require __DIR__.'/../storage/framework/maintenance.php';
+}
+
 
 /**
  * Laravel - A PHP Framework For Web Artisans
@@ -56,12 +76,10 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
 |
  */
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$kernel = $app->make(Kernel::class);
 
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
+$response = tap($kernel->handle(
+    $request = Request::capture()
+))->send();
 
 $kernel->terminate($request, $response);
