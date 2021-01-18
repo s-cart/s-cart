@@ -47,7 +47,7 @@ $layout_page = shop_compare
                                             <hr>
                                             <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item"
                                                 class="cart_quantity_delete"
-                                                href="{{ sc_route("compare.remove",['id'=>$item->rowId]) }}"><i
+                                                href="{{ sc_route("cart.remove",['id'=>$item->rowId, 'instance' => 'compare']) }}"><i
                                                     class="fa fa-times"></i></a>
                                         </td>
                                         @if ($n % 4 == 0)

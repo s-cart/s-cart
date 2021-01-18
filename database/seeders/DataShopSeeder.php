@@ -68,8 +68,8 @@ class DataShopSeeder extends Seeder
             [
                 ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3', 'store_id' => 1],
                 ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4', 'store_id' => 1],
-                ['name' => 'lang::front.my_profile', 'url' => '/customer/login.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
-                ['name' => 'lang::front.compare_page', 'url' => '/compare.html', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'lang::front.my_profile', 'url' => 'route::login', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
+                ['name' => 'lang::front.compare_page', 'url' => 'route::compare', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
                 ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3', 'store_id' => 1],
             ]
         );

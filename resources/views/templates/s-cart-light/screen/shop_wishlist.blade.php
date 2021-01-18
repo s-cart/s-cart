@@ -57,7 +57,7 @@ $layout_page = shop_wishlist
                                 <td>{!! $product->showPrice() !!}</td>
                                 <td>
                                     <a onClick="return confirm('Confirm')" title="Remove Item" alt="Remove Item"
-                                        class="cart_quantity_delete" href="{{ sc_route('wishlist.remove',['id'=>$item->rowId]) }}"><i
+                                        class="cart_quantity_delete" href="{{ sc_route('cart.remove', ['id'=>$item->rowId, 'instance' => 'wishlist']) }}"><i
                                             class="fa fa-times"></i></a>
                                 </td>
                             </tr>
