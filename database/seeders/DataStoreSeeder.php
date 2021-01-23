@@ -171,7 +171,7 @@ class DataStoreSeeder extends Seeder
 <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:center">{{$title}}</h1>
 <p style="text-align:center;">Welcome to my site!</p>', 'status' => '1', 'store_id' => $storeId],
               ['name' => 'Send form contact to admin', 'group' => 'contact_to_admin', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
 <tr>
 <td>
 <b>Name</b>: {{$name}}<br>
@@ -182,14 +182,14 @@ class DataStoreSeeder extends Seeder
 </table>
 <hr>
 <p style="text-align: center;">Content:<br>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td>{{$content}}</td>
 </tr>
 </table>', 'status' => '1', 'store_id' => $storeId],
 
               ['name' => 'New order to admin', 'group' => 'order_success_to_admin', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
   <tr>
       <td>
           <b>Order ID</b>: {{$orderID}}<br>
@@ -204,7 +204,7 @@ class DataStoreSeeder extends Seeder
 <hr>
 <p style="text-align: center;">Order detail:<br>
 ===================================<br></p>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="1">
   {{$orderDetail}}
   <tr>
       <td colspan="2"></td>
@@ -229,7 +229,7 @@ class DataStoreSeeder extends Seeder
 </table>', 'status' => '1', 'store_id' => $storeId],
 
               ['name' => 'New order to customr', 'group' => 'order_success_to_customer', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
 <tr>
   <td>
       <b>Order ID</b>: {{$orderID}}<br>
@@ -243,7 +243,7 @@ class DataStoreSeeder extends Seeder
 <hr>
 <p style="text-align: center;">Order detail:<br>
 ===================================<br></p>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="1">
 {{$orderDetail}}
 <tr>
   <td colspan="2"></td>
