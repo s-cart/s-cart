@@ -87,23 +87,6 @@ return [
         'keyword' => 'Your keyword',
     ],
 
-    'email_action'       => [
-        'manager'                  => 'Email action manager',
-        'type'                     => 'Action type',
-        'mode'                     => 'Action mode',
-        'sort'                     => 'Action sort',
-        'order_success_to_admin'   => 'Send order success to admin',
-        'order_success_to_cutomer' => 'Send order success to customer',
-        'forgot_password'          => 'Send email forgot',
-        'welcome_customer'         => 'Send email welcome',
-        'contact_to_customer'      => 'Send email contact to customer',
-        'contact_to_admin'         => 'Send email contact to admin',
-        'email_action_mode'        => 'ON/OFF send mail',
-        'email_action_smtp_mode'   => 'SMTP mode',
-        'config_smtp'              => 'Config SMTP',
-        'other'                    => 'Other',
-    ],
-
     'shop_info'          => [
         'email'   => 'Email',
         'hotline' => 'Hotline',

@@ -6,17 +6,20 @@
 $suffix = sc_config('SUFFIX_URL')??'';
 $prefixCmsCategory = sc_config('PREFIX_CMS_CATEGORY')??'cms';
 $prefixCmsEntry = sc_config('PREFIX_CMS_ENTRY')??'entry';
+$langUrl = config('app.seoLang'); 
 
-if(sc_config('Content')) {
+if (sc_config('Content')) {
     Route::group(
         [
             'namespace' => 'App\Plugins\Cms\Content\Controllers',
-        ], function () use($suffix, $prefixCmsCategory, $prefixCmsEntry) {
-            Route::get('/'.$prefixCmsCategory.'/{alias}', 'ContentController@category')
+            'prefix' => $langUrl
+        ], function () use ($suffix, $prefixCmsCategory, $prefixCmsEntry) {
+            Route::get($prefixCmsCategory.'/{alias}', 'ContentController@categoryProcessFront')
                 ->name('cms.category');
-            Route::get('/'.$prefixCmsEntry.'/{alias}'.$suffix, 'ContentController@content')
+            Route::get($prefixCmsEntry.'/{alias}'.$suffix, 'ContentController@contentyProcessFront')
                 ->name('cms.content');
-        });
+        }
+    );
 }
 
 

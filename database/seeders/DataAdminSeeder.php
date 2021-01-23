@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -44,7 +46,6 @@ class DataAdminSeeder extends Seeder
             ['id' => 21, 'parent_id' => 3, 'sort' => 0, 'title' => 'lang::subscribe.admin.title', 'icon' => 'fas fa-user-circle', 'uri' => 'admin::subscribe', 'key' => null, 'type' => 0],
             ['id' => 22, 'parent_id' => 67, 'sort' => 1, 'title' => 'lang::store_block.admin.title', 'icon' => 'far fa-newspaper', 'uri' => 'admin::store_block', 'key' => null, 'type' => 0],
             ['id' => 23, 'parent_id' => 67, 'sort' => 2, 'title' => 'lang::admin.menu_titles.block_link', 'icon' => 'fab fa-chrome', 'uri' => 'admin::store_link', 'key' => null, 'type' => 0],
-            ['id' => 44, 'parent_id' => 67, 'sort' => 2, 'title' => 'lang::admin.menu_titles.css', 'icon' => 'far fa-file-code', 'uri' => 'admin::store_css', 'key' => null, 'type' => 0],
             ['id' => 24, 'parent_id' => 4, 'sort' => 0, 'title' => 'lang::admin.menu_titles.template_manager', 'icon' => 'fas fa-columns', 'uri' => 'admin::template', 'key' => null, 'type' => 0],
             ['id' => 25, 'parent_id' => 0, 'sort' => 200, 'title' => 'lang::admin.menu_titles.ADMIN_MARKETING', 'icon' => 'fas fa-sort-amount-up', 'uri' => '', 'key' => 'MARKETING', 'type' => 0],
             ['id' => 26, 'parent_id' => 65, 'sort' => 1, 'title' => 'lang::store.admin.title', 'icon' => 'fas fa-h-square', 'uri' => 'admin::store_info', 'key' => null, 'type' => 0],
@@ -58,24 +59,27 @@ class DataAdminSeeder extends Seeder
             ['id' => 34, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::backup.admin.title', 'icon' => 'fas fa-save', 'uri' => 'admin::backup', 'key' => null, 'type' => 0],
             ['id' => 35, 'parent_id' => 8, 'sort' => 202, 'title' => 'lang::admin.menu_titles.plugins', 'icon' => 'fas fa-puzzle-piece', 'uri' => '', 'key' => 'PLUGIN', 'type' => 0],
             ['id' => 36, 'parent_id' => 28, 'sort' => 2, 'title' => 'lang::admin.menu_titles.webhook', 'icon' => 'fab fa-diaspora', 'uri' => 'admin::config/webhook', 'key' => null, 'type' => 0],
-            ['id' => 37, 'parent_id' => 25, 'sort' => 4, 'title' => 'lang::admin.menu_titles.report_manager', 'icon' => 'fas fa-chart-pie', 'uri' => '', 'key' => 'REPORT_MANAGER', 'type' => 0],
+            ['id' => 37, 'parent_id' => 25, 'sort' => 5, 'title' => 'lang::admin.menu_titles.report_manager', 'icon' => 'fas fa-chart-pie', 'uri' => '', 'key' => 'REPORT_MANAGER', 'type' => 0],
             ['id' => 38, 'parent_id' => 9, 'sort' => 1, 'title' => 'lang::admin.menu_titles.admin', 'icon' => 'fas fa-users-cog', 'uri' => '', 'key' => 'ADMIN', 'type' => 0],
             ['id' => 39, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Payment', 'icon' => 'far fa-money-bill-alt', 'uri' => 'admin::plugin/payment', 'key' => null, 'type' => 0],
             ['id' => 40, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Shipping', 'icon' => 'fas fa-ambulance', 'uri' => 'admin::plugin/shipping', 'key' => null, 'type' => 0],
             ['id' => 41, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Total', 'icon' => 'fas fa-cog', 'uri' => 'admin::plugin/total', 'key' => null, 'type' => 0],
             ['id' => 42, 'parent_id' => 35, 'sort' => 100, 'title' => 'plugin.Other', 'icon' => 'far fa-circle', 'uri' => 'admin::plugin/other', 'key' => null, 'type' => 0],
             ['id' => 43, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Cms', 'icon' => 'fab fa-modx', 'uri' => 'admin::plugin/cms', 'key' => null, 'type' => 0],
+            ['id' => 44, 'parent_id' => 67, 'sort' => 2, 'title' => 'lang::admin.menu_titles.css', 'icon' => 'far fa-file-code', 'uri' => 'admin::store_css', 'key' => null, 'type' => 0],
+            ['id' => 45, 'parent_id' => 25, 'sort' => 4, 'title' => 'lang::admin.menu_titles.seo_manager', 'icon' => 'fab fa-battle-net', 'uri' => '', 'key' => 'SEO_MANAGER', 'type' => 0],
             ['id' => 46, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.users', 'icon' => 'fas fa-users', 'uri' => 'admin::user', 'key' => null, 'type' => 0],
             ['id' => 47, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.roles', 'icon' => 'fas fa-user-tag', 'uri' => 'admin::role', 'key' => null, 'type' => 0],
             ['id' => 48, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.permission', 'icon' => 'fas fa-ban', 'uri' => 'admin::permission', 'key' => null, 'type' => 0],
             ['id' => 49, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.menu', 'icon' => 'fas fa-bars', 'uri' => 'admin::menu', 'key' => null, 'type' => 0],
             ['id' => 50, 'parent_id' => 28, 'sort' => 0, 'title' => 'lang::admin.menu_titles.operation_log', 'icon' => 'fas fa-history', 'uri' => 'admin::log', 'key' => null, 'type' => 0],
+            ['id' => 51, 'parent_id' => 45, 'sort' => 0, 'title' => 'lang::admin.menu_titles.seo_config', 'icon' => 'fas fa-bars', 'uri' => 'admin::seo/config', 'key' => null, 'type' => 0],
             ['id' => 52, 'parent_id' => 7, 'sort' => 103, 'title' => 'lang::news.admin.title', 'icon' => 'far fa-file-powerpoint', 'uri' => 'admin::news', 'key' => null, 'type' => 0],
             ['id' => 54, 'parent_id' => 37, 'sort' => 0, 'title' => 'lang::admin.menu_titles.report_product', 'icon' => 'fas fa-bars', 'uri' => 'admin::report/product', 'key' => null, 'type' => 0],
+            ['id' => 57, 'parent_id' => 65, 'sort' => 4, 'title' => 'lang::admin.menu_titles.store_config', 'icon' => 'fas fa-cog', 'uri' => 'admin::store_config', 'key' => null, 'type' => 0],
             ['id' => 58, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.cache_manager', 'icon' => 'fab fa-tripadvisor', 'uri' => 'admin::cache_config', 'key' => null, 'type' => 0],
             ['id' => 59, 'parent_id' => 9, 'sort' => 7, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fas fa-plug', 'uri' => '', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 65, 'sort' => 3, 'title' => 'lang::store_maintain.config_manager.title', 'icon' => 'fas fa-wrench', 'uri' => 'admin::store_maintain', 'key' => null, 'type' => 0],
-            ['id' => 57, 'parent_id' => 65, 'sort' => 4, 'title' => 'lang::admin.menu_titles.store_config', 'icon' => 'fas fa-cog', 'uri' => 'admin::store_config', 'key' => null, 'type' => 0],
             ['id' => 61, 'parent_id' => 27, 'sort' => 9, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'far fa-calendar-minus', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
             ['id' => 627, 'parent_id' => 27, 'sort' => 6, 'title' => 'lang::weight.admin.title', 'icon' => 'fas fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
             ['id' => 63, 'parent_id' => 27, 'sort' => 7, 'title' => 'lang::length.admin.title', 'icon' => 'fas fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
@@ -96,7 +100,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '7', 'name' => 'Order manager', 'slug' => 'order.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '8', 'name' => 'Upload management', 'slug' => 'upload.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/uploads/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '9', 'name' => 'Extension manager', 'slug' => 'extension.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/template/*,ANY::'.SC_ADMIN_PREFIX.'/plugin/*', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '10', 'name' => 'Marketing manager', 'slug' => 'marketing.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/shop_discount/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/customer/*,ANY::'.SC_ADMIN_PREFIX.'/subscribe/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '10', 'name' => 'Marketing manager', 'slug' => 'marketing.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/shop_discount/*,ANY::'.SC_ADMIN_PREFIX.'/email_template/*,ANY::'.SC_ADMIN_PREFIX.'/customer/*,ANY::'.SC_ADMIN_PREFIX.'/subscribe/*,ANY::'.SC_ADMIN_PREFIX.'/seo/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '11', 'name' => 'Report manager', 'slug' => 'report.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/report/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '12', 'name' => 'CMS manager', 'slug' => 'cms.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/page/*,ANY::'.SC_ADMIN_PREFIX.'/banner/*,ANY::'.SC_ADMIN_PREFIX.'/cms_category/*,ANY::'.SC_ADMIN_PREFIX.'/cms_content/*,ANY::'.SC_ADMIN_PREFIX.'/news/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '13', 'name' => 'Update config', 'slug' => 'change.config', 'http_uri' => 'POST::'.SC_ADMIN_PREFIX.'/store_config/update', 'created_at' => date('Y-m-d H:i:s')],
@@ -174,10 +178,11 @@ class DataAdminSeeder extends Seeder
 
             ['group' => 'global', 'code' => 'env_global', 'key' => 'ADMIN_LOG', 'value' => 'on', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG', 'store_id' => 0],
             ['group' => 'global', 'code' => 'env_global', 'key' => 'ADMIN_LOG_EXP', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG_EXP', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'seo_config', 'key' => 'url_seo_lang', 'value' => '0', 'sort' => '1', 'detail' => 'lang::seo.url_seo_lang', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.LOG_SLACK_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'GOOGLE_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.GOOGLE_CHAT_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'CHATWORK_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.CHATWORK_CHAT_WEBHOOK_URL', 'store_id' => 0],
-            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '1', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
 
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_status', 'value' => '0', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_status', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_time', 'value' => '600', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_time', 'store_id' => 0],

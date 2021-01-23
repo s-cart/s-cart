@@ -8,13 +8,9 @@ $banners = $modelBanner->start()->getBanner()->getData()
     <div class="swiper-slide swiper-slide-caption context-dark" data-slide-bg="{{ asset($banner->image) }}">
       <div class="swiper-slide-caption section-md text-center">
         <div class="container">
-          <h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1>
-          <p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p>
-          <div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300">
-            <a class="button button-zachem-tak-delat button-white button-zakaria" href="{{ sc_route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}">
-              Shop now
-            </a>
-          </div>
+          <a href="{{ sc_route('banner.click',['id' => $banner->id]) }}" target="{{ $banner->target }}">
+            {!! sc_html_render($banner->html) !!}
+          </a>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -89,6 +91,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'email_action', 'key' => 'email_action_queue', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.email_action_queue', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_admin', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.order_success_to_admin', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_customer', 'value' => '0', 'sort' => '2', 'detail' => 'lang::email.email_action.order_success_to_cutomer', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_customer_pdf', 'value' => '0', 'sort' => '3', 'detail' => 'lang::email.email_action.order_success_to_cutomer_pdf', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'welcome_customer', 'value' => '0', 'sort' => '4', 'detail' => 'lang::email.email_action.welcome_customer', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'contact_to_admin', 'value' => '1', 'sort' => '6', 'detail' => 'lang::email.email_action.contact_to_admin', 'store_id' => $storeId],
 
@@ -169,7 +172,7 @@ class DataStoreSeeder extends Seeder
 <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:center">{{$title}}</h1>
 <p style="text-align:center;">Welcome to my site!</p>', 'status' => '1', 'store_id' => $storeId],
               ['name' => 'Send form contact to admin', 'group' => 'contact_to_admin', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
 <tr>
 <td>
 <b>Name</b>: {{$name}}<br>
@@ -180,14 +183,14 @@ class DataStoreSeeder extends Seeder
 </table>
 <hr>
 <p style="text-align: center;">Content:<br>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td>{{$content}}</td>
 </tr>
 </table>', 'status' => '1', 'store_id' => $storeId],
 
               ['name' => 'New order to admin', 'group' => 'order_success_to_admin', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
   <tr>
       <td>
           <b>Order ID</b>: {{$orderID}}<br>
@@ -202,7 +205,7 @@ class DataStoreSeeder extends Seeder
 <hr>
 <p style="text-align: center;">Order detail:<br>
 ===================================<br></p>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="1">
   {{$orderDetail}}
   <tr>
       <td colspan="2"></td>
@@ -227,7 +230,7 @@ class DataStoreSeeder extends Seeder
 </table>', 'status' => '1', 'store_id' => $storeId],
 
               ['name' => 'New order to customr', 'group' => 'order_success_to_customer', 'text' => '
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0">
 <tr>
   <td>
       <b>Order ID</b>: {{$orderID}}<br>
@@ -241,7 +244,7 @@ class DataStoreSeeder extends Seeder
 <hr>
 <p style="text-align: center;">Order detail:<br>
 ===================================<br></p>
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" border="1">
+<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="1">
 {{$orderDetail}}
 <tr>
   <td colspan="2"></td>

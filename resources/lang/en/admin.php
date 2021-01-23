@@ -312,6 +312,8 @@ return [
             'ADMIN_SHOP_SETTING'   => 'SHOP SETTING',
             'webhook'              => 'Webhook',
             'css'                  => 'Css website',
+            'seo_manager'          => 'SEO manager',
+            'seo_config'           => 'SEO config',
       ],
 
       'status'                            => 'Status',

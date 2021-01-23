@@ -48,6 +48,7 @@ return [
         'mode'                     => 'Chế độ',
         'sort'                     => 'Sắp xếp',
         'order_success_to_admin'   => 'Gửi đơn hàng thành công cho admin',
+        'order_success_to_cutomer_pdf' => 'Gửi đơn hàng thành công cho khách kèm PDF',
         'order_success_to_cutomer' => 'Gửi đơn hàng thành công cho khách',
         'forgot_password'          => 'Gửi mail quên mật khẩu',
         'welcome_customer'         => 'Gửi mail chào mừng',

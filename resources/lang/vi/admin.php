@@ -309,6 +309,8 @@ return [
         'ADMIN_SHOP_SETTING'   => 'THIẾT LẬP CỬA HÀNG',
         'webhook'              => 'Webhook',
         'css'                  => 'Css website',
+        'seo_manager'          => 'Quản lý SEO',
+        'seo_config'           => 'Cấu hình SEO',
     ],
     //=======++===========
     'status'           => 'Trạng thái',

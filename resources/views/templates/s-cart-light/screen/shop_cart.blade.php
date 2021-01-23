@@ -105,7 +105,7 @@ $layout_page = shop_cart
                                 <td align="center">
                                     <a onClick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"
                                         class="cart_quantity_delete"
-                                        href="{{ sc_route("cart.remove",['id'=>$item->rowId]) }}">
+                                        href="{{ sc_route("cart.remove", ['id'=>$item->rowId, 'instance' => 'cart']) }}">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -127,7 +127,7 @@ $layout_page = shop_cart
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-delete-all" type="button"
-                        onClick="if(confirm('Confirm ?')) window.location.href='{{ sc_route('cart.clear') }}';">
+                        onClick="if(confirm('Confirm ?')) window.location.href='{{ sc_route('cart.clear', ['instance' => 'cart']) }}';">
                         <i class="fa fa-window-close" aria-hidden="true"></i>
                         {{ trans('cart.remove_all') }}</button>
                 </div>
@@ -135,7 +135,7 @@ $layout_page = shop_cart
             {{--// Button backshop, clear cart --}}
 
             <div class="col-md-12">
-                <form class="sc-shipping-address" id="form-process" role="form" method="POST" action="{{ sc_route('cart.process') }}">
+                <form class="sc-shipping-address" id="form-process" role="form" method="POST" action="{{ sc_route('checkout.prepare') }}">
                     {{-- Required csrf for secirity --}}
                     @csrf
                     {{--// Required csrf for secirity --}}
@@ -588,13 +588,13 @@ $layout_page = shop_cart
         } else {
             $.ajax({
             url: '{{ sc_route('customer.address_detail') }}',
-            type: 'POST',
+            type: 'GET',
             dataType: 'json',
             async: false,
             cache: false,
             data: {
                 id: id,
-                _token:'{{ csrf_token() }}'},
+            },
             success: function(data){
                 error= parseInt(data.error);
                 if(error === 1)
