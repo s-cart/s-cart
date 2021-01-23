@@ -17,8 +17,8 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_banner')->insert(
             [
-                ['title'=> 'Banner 1', 'image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
-                ['title'=> 'Banner 2','image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
+                ['title'=> 'Banner 1', 'image' => '/data/banner/Main-banner-1-1903x600.jpg', 'html' => '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
+                ['title'=> 'Banner 2','image' => '/data/banner/Main-banner-3-1903x600.jpg', 'html' => '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 'target' => '_self',  'status' => 1, 'type' => 'banner', 'store_id'=> 1],
                 ['title'=> 'Banner 3','image' => '/data/banner/bgbr.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'breadcrumb', 'store_id'=> 1],
                 ['title'=> 'Banner 4','image' => '/data/banner/store-1.jpg', 'html' => '', 'target' => '_self',  'status' => 1, 'type' => 'banner-store', 'store_id'=> 1],
             ]
