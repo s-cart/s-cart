@@ -4,7 +4,7 @@
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://demo.s-cart.org/sc_admin">Demo admin</a> | <a href="https://s-cart.org/docs/master/installation.html">Installation</a>  | <a href="https://s-cart.org/docs/master/video-guide.html">Video Guide</a> | <a href="https://s-cart.org/download.html">Download full source</a>
+ <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://demo.s-cart.org/sc_admin">Demo admin</a> | <a href="https://s-cart.org/en/docs/master/installation.html">Installation</a>  | <a href="https://s-cart.org/en/docs/master/video-guide.html">Video Guide</a> | <a href="https://s-cart.org/en/download.html">Download full source</a>
 </p>
 <p align="center">
 <a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Total Downloads"></a>
@@ -81,7 +81,7 @@ From Version 4.0
 
 ## Installation & configuration:
 
-<b>How to map your domain to s-cart? <a href="https://s-cart.org/docs/master/installation.html">CLICK HERE</a></b>
+<b>How to map your domain to s-cart? <a href="https://s-cart.org/en/docs/master/installation.html">CLICK HERE</a></b>
 
 **Step1: Install last version S-cart**
 
@@ -100,7 +100,7 @@ composer install
 ```
 Option 3: **Download full source (included vendors)**
 ```
-https://s-cart.org/download.html
+https://s-cart.org/en/download.html
 ```
 
 **Step2: Set writable permissions for the following directories:**
@@ -182,12 +182,12 @@ To manually customize the admin page:
 This command will create new directories `resources/views/admin` and file `config/admin.php`
 After set the value `customize=true` in `config/admin.php` you can modify template admin. 
 
-More detail: https://s-cart.org/docs/master
+More detail: https://s-cart.org/en/docs/master
 
 ## Funding and supporting the project
 
 You can support our with donations and sponsoring. Sponsorships are crucial for ongoing and future development of the project. Any support is always welcome even if it's as low as $1 :) 
-Please visit the <a href="https://s-cart.org/license.html" target="_blank">S-Cart</a>
+Please visit the <a href="https://s-cart.org/en/license.html" target="_blank">S-Cart</a>
 
 ## Security Vulnerabilities:
 
