@@ -71,6 +71,8 @@ return [
         'edit'                              => 'Edit',
         'add_new'                           => 'Add new',
         'add_new_title'                     => 'Add new product',
+        'add_new_title_build'               => 'Add new product build',
+        'add_new_title_group'               => 'Add new product group',
         'add_new_des'                       => 'Create a new product',
         'export'                            => 'Export',
         'refresh'                           => 'Refresh',
