@@ -50,6 +50,7 @@ return [
         'sort'                     => 'Action sort',
         'order_success_to_admin'   => 'Send order success to admin',
         'order_success_to_cutomer' => 'Send order success to customer',
+        'order_success_to_cutomer_pdf' => 'Send order success to customer with pdf invoice',
         'forgot_password'          => 'Send email forgot',
         'welcome_customer'         => 'Send email welcome',
         'contact_to_customer'      => 'Send email contact to customer',

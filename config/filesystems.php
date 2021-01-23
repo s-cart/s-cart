@@ -76,6 +76,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'invoice' => [
+            'driver'     => 'local',
+            'root'       => storage_path('invoice'),
+            'visibility' => 'public',
+        ],
+
         /*
         |--------------------------------------------------------------------------
         | Symbolic Links
