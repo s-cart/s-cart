@@ -63,12 +63,12 @@ Our goal is "Efficient and friendly for everyone":
 
 ## Requirements:
 
-From Version 4.0
+From Version 5.0
 
-> Core laravel framework 7.x Requirements::
+> Core laravel framework 8.x Requirements::
 
 ```
-- PHP >= 7.2.5
+- PHP >= 7.3
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
@@ -191,7 +191,7 @@ Please visit the <a href="https://s-cart.org/en/license.html" target="_blank">S-
 
 ## Security Vulnerabilities:
 
-If you discover a security vulnerability within S-Cart ecommerce, please send an e-mail to Lanh KTC via lanhktc@gmail.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within S-Cart ecommerce, please send an e-mail to Lanh Le via lanhktc@gmail.com. All security vulnerabilities will be promptly addressed.
 
 ## License:
 
