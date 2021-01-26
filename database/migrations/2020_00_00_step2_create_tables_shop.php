@@ -383,16 +383,6 @@ class CreateTablesShop extends Migration
             }
         );
 
-        Schema::create(SC_DB_PREFIX.'shop_product_promotion', function (Blueprint $table) {
-            $table->integer('product_id')->primary();
-            $table->integer('price_promotion');
-            $table->dateTime('date_start')->nullable();
-            $table->dateTime('date_end')->nullable();
-            $table->integer('status_promotion')->default(1);
-            $table->timestamps();
-            }
-        );
-
         Schema::create(SC_DB_PREFIX.'shop_customer', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name', 100);
@@ -618,6 +608,24 @@ class CreateTablesShop extends Migration
             $table->integer('store_id')->unique();
             }
         );
+
+        Schema::create(SC_DB_PREFIX.'shop_product_promotion', function (Blueprint $table) {
+            $table->integer('product_id')->primary();
+            $table->integer('price_promotion');
+            $table->dateTime('date_start')->nullable();
+            $table->dateTime('date_end')->nullable();
+            $table->integer('status_promotion')->default(1);
+            $table->timestamps();
+            }
+        );
+
+        Schema::create(SC_DB_PREFIX.'shop_product_download', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('product_id', 50);
+            $table->string('path', 255);
+
+            }
+        );
     }
 
     /**
@@ -672,6 +680,7 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_tax');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_weight');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_length');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_product_download');
         //Passport
         Schema::dropIfExists('oauth_auth_codes');
         Schema::dropIfExists('oauth_access_tokens');
