@@ -9,7 +9,7 @@
 
                 <div class="card-tools">
                     <div class="btn-group float-right mr-5">
-                        <a href="{{ sc_route('admin_cms_category.index') }}" class="btn  btn-flat btn-default" title="List"><i
+                        <a href="{{ sc_route_admin('admin_cms_category.index') }}" class="btn  btn-flat btn-default" title="List"><i
                                 class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>

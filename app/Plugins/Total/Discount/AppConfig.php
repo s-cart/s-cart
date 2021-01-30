@@ -40,9 +40,9 @@ class AppConfig extends ConfigDefault
         } else {
             $process = AdminConfig::insert(
                 [
+                    'group' => $this->configGroup,
                     'code' => $this->configCode,
                     'key' => $this->configKey,
-                    'group' => $this->configGroup,
                     'sort' => 0,
                     'value' => self::ON, //Enable extension
                     'detail' => $this->pathPlugin.'::lang.title',

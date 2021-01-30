@@ -42,11 +42,11 @@ class AppConfig extends ConfigDefault
             //Insert plugin to config
             $dataInsert = [
                 [
-                    'group' => $this->configGroup,
-                    'code' => $this->configCode,
-                    'key' => $this->configKey,
-                    'sort' => 0,
-                    'value' => self::ON, //Enable extension
+                    'group'  => $this->configGroup,
+                    'code'   => $this->configCode,
+                    'key'    => $this->configKey,
+                    'sort'   => 0,
+                    'value'  => self::ON, //Enable extension
                     'detail' => $this->pathPlugin.'::lang.title',
                 ],
             ];
