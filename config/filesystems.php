@@ -82,6 +82,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'path_download' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/path_download'),
+            'url' => env('APP_URL').'/storage/path_download',
+        ],
+        
+
         /*
         |--------------------------------------------------------------------------
         | Symbolic Links

@@ -407,6 +407,13 @@ $layout_page = shop_cart
                                                         ({{ sc_currency_render($shipping['value']) }})
                                                     </label>
                                                 </div>
+
+                                                {{-- Render view --}}
+                                                @if (view()->exists($shipping['pathPlugin'].'::render'))
+                                                    @include($shipping['pathPlugin'].'::render')
+                                                @endif
+                                                {{-- //Render view --}}
+
                                                 @endforeach
                                             </div>
                                         </div>
@@ -442,6 +449,13 @@ $layout_page = shop_cart
                                                             </label>
                                                     </label>
                                                 </div>
+
+                                                {{-- Render view --}}
+                                                @if (view()->exists($payment['pathPlugin'].'::render'))
+                                                    @include($payment['pathPlugin'].'::render')
+                                                @endif
+                                                {{-- //Render view --}}
+
                                                 @endforeach
                                             </div>
                                         </div>
@@ -513,6 +527,22 @@ $layout_page = shop_cart
 @endif
 @endforeach
 {{--// Render script from total method --}}
+
+{{-- Render script from shipping method --}}
+@foreach ($shippingMethod as $key => $plugin)
+@if (view()->exists($plugin['pathPlugin'].'::script'))
+    @include($plugin['pathPlugin'].'::script')
+@endif
+@endforeach
+{{--// Render script from shipping method --}}
+
+{{-- Render script from payment method --}}
+@foreach ($paymentMethod as $key => $plugin)
+@if (view()->exists($plugin['pathPlugin'].'::script'))
+    @include($plugin['pathPlugin'].'::script')
+@endif
+@endforeach
+{{--// Render script from payment method --}}
 
 {{-- Render block include script --}}
 @if ($includePathScript = config('sc_include_script.shop_cart', []))

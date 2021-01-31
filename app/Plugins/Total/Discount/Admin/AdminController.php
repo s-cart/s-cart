@@ -25,7 +25,7 @@ class AdminController extends RootAdminController
             'title' => trans($this->plugin->pathPlugin.'::lang.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
-            'urlDeleteItem' => sc_route('admin_discount.delete'),
+            'urlDeleteItem' => sc_route_admin('admin_discount.delete'),
             'removeList' => 1, // 1 - Enable function delete list item
             'buttonRefresh' => 1, // 1 - Enable button refresh
             'buttonSort' => 1, // 1 - Enable button sort
@@ -79,7 +79,7 @@ class AdminController extends RootAdminController
                 'login' => $row['login'],
                 'expires_at' => $row['expires_at'],
                 'action' => '
-                    <a href="' . sc_route('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                   <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                   ',
@@ -92,7 +92,7 @@ class AdminController extends RootAdminController
         $data['resultItems'] = trans($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . sc_route('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . sc_route_admin('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="' . trans($this->plugin->pathPlugin.'::lang.admin.add_new') . '"></i>
                            </a>';
         //=menuRight
@@ -102,13 +102,13 @@ class AdminController extends RootAdminController
         foreach ($arrSort as $key => $status) {
             $optionSort .= '<option  ' . (($sort_order == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
-        $data['urlSort'] = sc_route('admin_discount.index', request()->except(['_token', '_pjax', 'sort_order']));
+        $data['urlSort'] = sc_route_admin('admin_discount.index', request()->except(['_token', '_pjax', 'sort_order']));
         $data['optionSort'] = $optionSort;
         //=menuSort
 
         //menuSearch
         $data['topMenuRight'][] = '
-              <form action="' . sc_route('admin_discount.index') . '" id="button_search">
+              <form action="' . sc_route_admin('admin_discount.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
                     <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
@@ -134,7 +134,7 @@ class AdminController extends RootAdminController
             'title_description' => trans($this->plugin->pathPlugin.'::lang.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'discount' => [],
-            'url_action' => sc_route('admin_discount.create'),
+            'url_action' => sc_route_admin('admin_discount.create'),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);
@@ -197,7 +197,7 @@ class AdminController extends RootAdminController
             'title_description' => '',
             'icon'              => 'fa fa-pencil-square-o',
             'discount'          => $discount,
-            'url_action'        => sc_route('admin_discount.edit', ['id' => $discount['id']]),
+            'url_action'        => sc_route_admin('admin_discount.edit', ['id' => $discount['id']]),
         ];
         return view($this->plugin->pathPlugin.'::Admin')
             ->with($data);

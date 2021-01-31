@@ -123,14 +123,15 @@ return [
         'build'                             => 'Build',
         'group'                             => 'Group',
     ],
-    'propertys'                             => [
+    'properties'                             => [
         'physical'                          => 'Physical',
         'download'                          => 'Download',
         'only_view'                         => 'Only view',
         'service'                           => 'Service',
+        'download_path'                     => 'Path or url download',
     ],
     'config_manager'                        => [
-        'title'                             => ' Config product',
+        'title'                             => 'Config product',
         'field'                             => 'Field config',
         'value'                             => 'Value',
         'brand'                             => 'Use BRAND',

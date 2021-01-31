@@ -9,7 +9,7 @@
 
                 <div class="card-tools">
                     <div class="btn-group float-right mr-5">
-                        <a href="{{ sc_route('admin_cms_content.index') }}" class="btn  btn-flat btn-default" title="List"><i
+                        <a href="{{ sc_route_admin('admin_cms_content.index') }}" class="btn  btn-flat btn-default" title="List"><i
                                 class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                     </div>
                 </div>
@@ -269,10 +269,10 @@
 <script type="text/javascript">
     $('textarea.editor').ckeditor(
     {
-        filebrowserImageBrowseUrl: '{{ sc_route('admin.home').'/'.config('lfm.url_prefix') }}?type=cms-image',
-        filebrowserImageUploadUrl: '{{ sc_route('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=cms-image&_token={{csrf_token()}}',
-        filebrowserBrowseUrl: '{{ sc_route('admin.home').'/'.config('lfm.url_prefix') }}?type=Files',
-        filebrowserUploadUrl: '{{ sc_route('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=file&_token={{csrf_token()}}',
+        filebrowserImageBrowseUrl: '{{ sc_route_admin('admin.home').'/'.config('lfm.url_prefix') }}?type=cms-image',
+        filebrowserImageUploadUrl: '{{ sc_route_admin('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=cms-image&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: '{{ sc_route_admin('admin.home').'/'.config('lfm.url_prefix') }}?type=Files',
+        filebrowserUploadUrl: '{{ sc_route_admin('admin.home').'/'.config('lfm.url_prefix') }}/upload?type=file&_token={{csrf_token()}}',
         filebrowserWindowWidth: '900',
         filebrowserWindowHeight: '500'
     }

@@ -32,9 +32,9 @@ class AppConfig extends ConfigDefault
         } else {
             $process = AdminConfig::insert(
                 [
+                    'group' => $this->configGroup,
                     'code' => $this->configCode,
                     'key' => $this->configKey,
-                    'group' => $this->configGroup,
                     'sort' => 0, // Sort extensions in group
                     'value' => self::ON, //1- Enable extension; 0 - Disable
                     'detail' => $this->pathPlugin.'::lang.title',

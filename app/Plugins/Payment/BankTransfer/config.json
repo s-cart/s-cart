@@ -1,0 +1,11 @@
+{
+    "name": "BankTransfer module",
+    "image": "images/logo.png",
+    "auth": "Lanh Le",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Payment",
+    "configKey": "BankTransfer",
+    "version": "1.1"
+}

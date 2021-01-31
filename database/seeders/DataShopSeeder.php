@@ -496,7 +496,7 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'api_connection')->insert(
             [
-                ['description' => 'Demo api connection', 'apiconnection' => 'appmobile', 'apikey' => uniqid(), 'status' => 1],
+                ['description' => 'Demo api connection', 'apiconnection' => 'appmobile', 'apikey' => uniqid(), 'status' => 0],
             ]
         );
 

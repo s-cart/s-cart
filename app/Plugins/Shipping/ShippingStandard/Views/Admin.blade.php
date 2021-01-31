@@ -9,7 +9,7 @@
 
               <div class="box-tools">
                   <div class="btn-group pull-right" style="margin-right: 5px">
-                      <a href="{{ sc_route('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                      <a href="{{ sc_route_admin('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
                   </div>
               </div>
           </div>

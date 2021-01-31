@@ -1,12 +1,12 @@
 <?php
-#App\Plugins\Shipping\ShippingStandard\AppConfig.php
-namespace App\Plugins\Shipping\ShippingStandard;
+#App\Plugins\Payment\BankTransfer\AppConfig.php
+namespace App\Plugins\Payment\BankTransfer;
 
-use App\Plugins\Shipping\ShippingStandard\Models\PluginModel;
 use SCart\Core\Admin\Models\AdminConfig;
 use App\Plugins\ConfigDefault;
 class AppConfig extends ConfigDefault
 {
+
     public function __construct()
     {
     	$config = file_get_contents(__DIR__.'/config.json');
@@ -22,6 +22,7 @@ class AppConfig extends ConfigDefault
         $this->link = $config['link'];
     }
 
+
     public function install()
     {
         $return = ['error' => 0, 'msg' => ''];
@@ -31,18 +32,26 @@ class AppConfig extends ConfigDefault
         } else {
             $process = AdminConfig::insert(
                 [
-                    'group' => $this->configGroup,
-                    'code' => $this->configCode,
-                    'key' => $this->configKey,
-                    'sort' => 0, // Sort extensions in group
-                    'value' => self::ON, //1- Enable extension; 0 - Disable
-                    'detail' => $this->pathPlugin.'::lang.title',
+                    [
+                        'group' => $this->configGroup,
+                        'code' => $this->configCode,
+                        'key' => $this->configKey,
+                        'sort' => 0, // Sort extensions in group
+                        'value' => self::ON, //1- Enable extension; 0 - Disable
+                        'detail' => $this->pathPlugin.'::lang.title',
+                    ],
+                    [
+                        'group' => '',
+                        'code' => $this->configKey.'_config',
+                        'key' => $this->configKey.'_info',
+                        'sort' => 0, // Sort extensions in group
+                        'value' => 'Bank information: 0123456789',
+                        'detail' => $this->pathPlugin.'::lang.info',
+                    ]
                 ]
             );
             if (!$process) {
                 $return = ['error' => 1, 'msg' => 'Error when install'];
-            } else {
-                $return = (new PluginModel)->installExtension();
             }
         }
         return $return;
@@ -55,7 +64,6 @@ class AppConfig extends ConfigDefault
         if (!$process) {
             $return = ['error' => 1, 'msg' => 'Error when uninstall'];
         }
-        (new PluginModel)->uninstallExtension();
         return $return;
     }
     public function enable()
@@ -77,59 +85,24 @@ class AppConfig extends ConfigDefault
         return $return;
     }
 
-    public function config()
-    {
-        return view($this->pathPlugin.'::Admin')->with(
-            [
-                'code'       => $this->configCode,
-                'key'        => $this->configKey,
-                'title'      => $this->title,
-                'pathPlugin' => $this->pathPlugin,
-                'data'       => PluginModel::first(),
-            ]);
-    }
-
-    public function updateConfig($data)
-    {
-        $return = ['error' => 0, 'msg' => ''];
-        $process = PluginModel::where('id', $data['pk'])
-            ->update([$data['name'] => $data['value']]);
-        if (!$process) {
-            $return = ['error' => 1, 'msg' => 'Error update'];
-        }
-        return json_encode($return);
-    }
-
-
     public function getData()
     {
-        $dataStore = [];
-        $subtotalWithStore = \Cart::getSubtotalGroupByStore();
-        $shipping = PluginModel::first();
-        $totalValue = 0;
-
-        //Shipping caculate for earch store
-        foreach ($subtotalWithStore as $storeId => $subtotal) {
-            if ($subtotal < $shipping->shipping_free) {
-                $totalValue +=$shipping->fee;
-                $dataStore[$storeId]['value'] = $shipping->fee;
-            }
-        }
-
         $arrData = [
-            'title'      => $this->title,
-            'code'       => $this->configCode,
-            'key'        => $this->configKey,
-            'image'      => $this->image,
+            'title' => $this->title,
+            'key' => $this->configKey,
+            'code' => $this->configCode,
+            'image' => $this->image,
             'permission' => self::ALLOW,
-            'value'      => $totalValue,
-            'version'    => $this->version,
-            'auth'       => $this->auth,
-            'link'       => $this->link,
+            'version' => $this->version,
+            'auth' => $this->auth,
+            'link' => $this->link,
             'pathPlugin' => $this->pathPlugin,
-            'store'      => $dataStore,
         ];
         return $arrData;
     }
 
+    public function config()
+    {
+        return redirect()->route('admin_bank_transfer.index');
+    }
 }
