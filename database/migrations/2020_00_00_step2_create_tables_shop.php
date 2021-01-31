@@ -621,7 +621,7 @@ class CreateTablesShop extends Migration
 
         Schema::create(SC_DB_PREFIX.'shop_product_download', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id', 50);
+            $table->integer('product_id');
             $table->string('path', 255);
 
             }
