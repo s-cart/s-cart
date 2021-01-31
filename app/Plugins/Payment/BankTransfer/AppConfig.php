@@ -101,4 +101,8 @@ class AppConfig extends ConfigDefault
         return $arrData;
     }
 
+    public function config()
+    {
+        return redirect()->route('admin_bank_transfer.index');
+    }
 }
