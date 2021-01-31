@@ -27,7 +27,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 2, 'parent_id' => 6, 'sort' => 2, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fas fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
             ['id' => 3, 'parent_id' => 25, 'sort' => 3, 'title' => 'lang::admin.menu_titles.customer_manager', 'icon' => 'fas fa-users', 'uri' => '', 'key' => 'CUSTOMER_MANAGER', 'type' => 0],
             ['id' => 4, 'parent_id' => 8, 'sort' => 201, 'title' => 'lang::admin.menu_titles.template_layout', 'icon' => 'fab fa-windows', 'uri' => '', 'key' => 'TEMPLATE', 'type' => 0],
-            ['id' => 5, 'parent_id' => 9, 'sort' => 2, 'title' => 'lang::admin.menu_titles.config_system', 'icon' => 'fab fa-whmcs', 'uri' => '', 'key' => 'CONFIG_SYSTEM', 'type' => 0],
+            ['id' => 5, 'parent_id' => 9, 'sort' => 2, 'title' => 'lang::admin.menu_titles.admin_global', 'icon' => 'fab fa-whmcs', 'uri' => '', 'key' => 'CONFIG_SYSTEM', 'type' => 0],
             ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::admin.menu_titles.ADMIN_SHOP', 'icon' => 'fab fa-shopify', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
             ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::admin.menu_titles.ADMIN_CONTENT', 'icon' => 'fas fa-file-signature', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
             ['id' => 8, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::admin.menu_titles.ADMIN_EXTENSION', 'icon' => 'fas fa-th', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],

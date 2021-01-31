@@ -238,6 +238,7 @@ return [
             'operation_log'        => 'Operation log',
             'config_manager'       => 'Config Manager',
             'config_system'        => 'Config System',
+            'admin_global'         => 'Admin global',
             'product_mamager'      => 'Product Manager',
             'catalog_mamager'      => 'Product & catalog',
             'categories'           => 'Categories',

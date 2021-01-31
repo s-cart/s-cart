@@ -237,6 +237,7 @@ return [
         'operation_log'        => 'Nhật ký truy cập',
         'config_manager'       => 'Quản lý cấu hình',
         'config_system'        => 'Cấu hình hệ thống',
+        'admin_global'         => 'Quản trị chung',
         'product_mamager'      => 'Quản lý sản phẩm',
         'catalog_mamager'      => 'Sản phẩm & danh mục',
         'categories'           => 'Danh mục',
