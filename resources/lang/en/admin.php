@@ -230,7 +230,7 @@ return [
       'config_url'                       => 'Config URL',
 
       'menu_titles'                       => [
-            'admin'                => 'Admin',
+            'user_permission'      => 'Users & Permissions',
             'users'                => 'Users',
             'roles'                => 'Roles',
             'permission'           => 'Permission',

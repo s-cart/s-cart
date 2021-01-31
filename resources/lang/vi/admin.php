@@ -229,7 +229,7 @@ return [
     'config_url'                        => 'Cấu hình URL',
 
     'menu_titles' => [
-        'admin'                => 'Admin',
+        'user_permission'      => 'Người dùng & Quyền hạn',
         'users'                => 'Users',
         'roles'                => 'Nhóm quyền',
         'permission'           => 'Quyền hạn',
