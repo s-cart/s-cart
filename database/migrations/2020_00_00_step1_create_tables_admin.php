@@ -140,6 +140,7 @@ class CreateTablesAdmin extends Migration
             $table->string('description', 300)->nullable();
             $table->string('keyword', 200)->nullable();
             $table->text('maintain_content')->nullable();
+            $table->string('maintain_note', 300)->nullable();
             $table->primary(['store_id', 'lang']);
         });
     }
