@@ -1,8 +1,6 @@
-@if (sc_store('active') == '0' && !auth()->guard('admin'))
-    @include($sc_templatePath . '.maintenance')
-@else 
-    {{-- Admin logged can view the website content under maintenance --}}
-    @if (sc_store('active') == '0' && auth()->guard('admin'))
+@if (sc_store('active') == '1'  || (sc_store('active') == '0' && auth()->guard('admin')->user()))
+        {{-- Admin logged can view the website content under maintenance --}}
+    @if (sc_store('active') == '0' && auth()->guard('admin')->user())
         @include($sc_templatePath . '.maintenance_note')
     @endif
 <!DOCTYPE html>
@@ -118,4 +116,7 @@
 
 </body>
 </html>
+
+@else
+    @include($sc_templatePath . '.maintenance')
 @endif
