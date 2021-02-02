@@ -1,7 +1,8 @@
-@if (sc_store('active') == '0')
-    @include($sc_templatePath . '.maintenance')
-@else 
-
+@if (sc_store('active') == '1'  || (sc_store('active') == '0' && auth()->guard('admin')->user()))
+        {{-- Admin logged can view the website content under maintenance --}}
+    @if (sc_store('active') == '0' && auth()->guard('admin')->user())
+        @include($sc_templatePath . '.maintenance_note')
+    @endif
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="{{ app()->getLocale() }}">
 <head>
@@ -115,4 +116,7 @@
 
 </body>
 </html>
+
+@else
+    @include($sc_templatePath . '.maintenance')
 @endif

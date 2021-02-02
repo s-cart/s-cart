@@ -33,5 +33,6 @@ return [
     'PREFIX_CART_CHECKOUT'       => 'Tiền tố trang CHECKOUT',
     'PREFIX_ORDER_SUCCESS'       => 'Tiền tố trang ORDER SUCCESS',
     'PREFIX_SHOP'                => 'Link Cửa hàng',
-    'ADMIN_FOOTER_OFF'           => 'Tắt footer',
+    'ADMIN_FOOTER_OFF'           => 'Ẩn footer của trang admin',
+    'ADMIN_CUSTOMIZE_TEMPLATE'   => 'Tùy chỉnh giao diện Admin',
 ];

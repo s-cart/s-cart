@@ -229,14 +229,15 @@ return [
     'config_url'                        => 'Cấu hình URL',
 
     'menu_titles' => [
-        'admin'                => 'Admin',
+        'user_permission'      => 'Người dùng & Quyền',
         'users'                => 'Users',
         'roles'                => 'Nhóm quyền',
         'permission'           => 'Quyền hạn',
-        'menu'                 => 'Menu',
+        'menu'                 => 'Menu admin',
         'operation_log'        => 'Nhật ký truy cập',
         'config_manager'       => 'Quản lý cấu hình',
         'config_system'        => 'Cấu hình hệ thống',
+        'admin_global'         => 'Quản trị chung',
         'product_mamager'      => 'Quản lý sản phẩm',
         'catalog_mamager'      => 'Sản phẩm & danh mục',
         'categories'           => 'Danh mục',
@@ -311,6 +312,7 @@ return [
         'css'                  => 'Css website',
         'seo_manager'          => 'Quản lý SEO',
         'seo_config'           => 'Cấu hình SEO',
+        'env_config'           => 'Cấu hình môi trường',
     ],
     //=======++===========
     'status'           => 'Trạng thái',

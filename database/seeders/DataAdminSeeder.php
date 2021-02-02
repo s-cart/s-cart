@@ -27,7 +27,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 2, 'parent_id' => 6, 'sort' => 2, 'title' => 'lang::admin.menu_titles.catalog_mamager', 'icon' => 'fas fa-folder-open', 'uri' => '', 'key' => 'CATALOG_MANAGER', 'type' => 0],
             ['id' => 3, 'parent_id' => 25, 'sort' => 3, 'title' => 'lang::admin.menu_titles.customer_manager', 'icon' => 'fas fa-users', 'uri' => '', 'key' => 'CUSTOMER_MANAGER', 'type' => 0],
             ['id' => 4, 'parent_id' => 8, 'sort' => 201, 'title' => 'lang::admin.menu_titles.template_layout', 'icon' => 'fab fa-windows', 'uri' => '', 'key' => 'TEMPLATE', 'type' => 0],
-            ['id' => 5, 'parent_id' => 9, 'sort' => 2, 'title' => 'lang::admin.menu_titles.config_system', 'icon' => 'fab fa-whmcs', 'uri' => '', 'key' => 'CONFIG_SYSTEM', 'type' => 0],
+            ['id' => 5, 'parent_id' => 9, 'sort' => 2, 'title' => 'lang::admin.menu_titles.admin_global', 'icon' => 'fab fa-whmcs', 'uri' => '', 'key' => 'CONFIG_SYSTEM', 'type' => 0],
             ['id' => 6, 'parent_id' => 0, 'sort' => 10, 'title' => 'lang::admin.menu_titles.ADMIN_SHOP', 'icon' => 'fab fa-shopify', 'uri' => '', 'key' => 'ADMIN_SHOP', 'type' => 0],
             ['id' => 7, 'parent_id' => 0, 'sort' => 100, 'title' => 'lang::admin.menu_titles.ADMIN_CONTENT', 'icon' => 'fas fa-file-signature', 'uri' => '', 'key' => 'ADMIN_CONTENT', 'type' => 0],
             ['id' => 8, 'parent_id' => 0, 'sort' => 300, 'title' => 'lang::admin.menu_titles.ADMIN_EXTENSION', 'icon' => 'fas fa-th', 'uri' => '', 'key' => 'ADMIN_EXTENSION', 'type' => 0],
@@ -60,7 +60,7 @@ class DataAdminSeeder extends Seeder
             ['id' => 35, 'parent_id' => 8, 'sort' => 202, 'title' => 'lang::admin.menu_titles.plugins', 'icon' => 'fas fa-puzzle-piece', 'uri' => '', 'key' => 'PLUGIN', 'type' => 0],
             ['id' => 36, 'parent_id' => 28, 'sort' => 2, 'title' => 'lang::admin.menu_titles.webhook', 'icon' => 'fab fa-diaspora', 'uri' => 'admin::config/webhook', 'key' => null, 'type' => 0],
             ['id' => 37, 'parent_id' => 25, 'sort' => 5, 'title' => 'lang::admin.menu_titles.report_manager', 'icon' => 'fas fa-chart-pie', 'uri' => '', 'key' => 'REPORT_MANAGER', 'type' => 0],
-            ['id' => 38, 'parent_id' => 9, 'sort' => 1, 'title' => 'lang::admin.menu_titles.admin', 'icon' => 'fas fa-users-cog', 'uri' => '', 'key' => 'ADMIN', 'type' => 0],
+            ['id' => 38, 'parent_id' => 9, 'sort' => 1, 'title' => 'lang::admin.menu_titles.user_permission', 'icon' => 'fas fa-users-cog', 'uri' => '', 'key' => 'ADMIN', 'type' => 0],
             ['id' => 39, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Payment', 'icon' => 'far fa-money-bill-alt', 'uri' => 'admin::plugin/payment', 'key' => null, 'type' => 0],
             ['id' => 40, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Shipping', 'icon' => 'fas fa-ambulance', 'uri' => 'admin::plugin/shipping', 'key' => null, 'type' => 0],
             ['id' => 41, 'parent_id' => 35, 'sort' => 0, 'title' => 'plugin.Total', 'icon' => 'fas fa-cog', 'uri' => 'admin::plugin/total', 'key' => null, 'type' => 0],
@@ -71,12 +71,13 @@ class DataAdminSeeder extends Seeder
             ['id' => 46, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.users', 'icon' => 'fas fa-users', 'uri' => 'admin::user', 'key' => null, 'type' => 0],
             ['id' => 47, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.roles', 'icon' => 'fas fa-user-tag', 'uri' => 'admin::role', 'key' => null, 'type' => 0],
             ['id' => 48, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.permission', 'icon' => 'fas fa-ban', 'uri' => 'admin::permission', 'key' => null, 'type' => 0],
-            ['id' => 49, 'parent_id' => 38, 'sort' => 0, 'title' => 'lang::admin.menu_titles.menu', 'icon' => 'fas fa-bars', 'uri' => 'admin::menu', 'key' => null, 'type' => 0],
+            ['id' => 49, 'parent_id' => 5, 'sort' => 0, 'title' => 'lang::admin.menu_titles.menu', 'icon' => 'fas fa-bars', 'uri' => 'admin::menu', 'key' => null, 'type' => 0],
             ['id' => 50, 'parent_id' => 28, 'sort' => 0, 'title' => 'lang::admin.menu_titles.operation_log', 'icon' => 'fas fa-history', 'uri' => 'admin::log', 'key' => null, 'type' => 0],
             ['id' => 51, 'parent_id' => 45, 'sort' => 0, 'title' => 'lang::admin.menu_titles.seo_config', 'icon' => 'fas fa-bars', 'uri' => 'admin::seo/config', 'key' => null, 'type' => 0],
             ['id' => 52, 'parent_id' => 7, 'sort' => 103, 'title' => 'lang::news.admin.title', 'icon' => 'far fa-file-powerpoint', 'uri' => 'admin::news', 'key' => null, 'type' => 0],
+            ['id' => 53, 'parent_id' => 5, 'sort' => 0, 'title' => 'lang::admin.menu_titles.env_config', 'icon' => 'fas fa-tasks', 'uri' => 'admin::env/config', 'key' => null, 'type' => 0],
             ['id' => 54, 'parent_id' => 37, 'sort' => 0, 'title' => 'lang::admin.menu_titles.report_product', 'icon' => 'fas fa-bars', 'uri' => 'admin::report/product', 'key' => null, 'type' => 0],
-            ['id' => 57, 'parent_id' => 65, 'sort' => 4, 'title' => 'lang::admin.menu_titles.store_config', 'icon' => 'fas fa-cog', 'uri' => 'admin::store_config', 'key' => null, 'type' => 0],
+            ['id' => 57, 'parent_id' => 65, 'sort' => 2, 'title' => 'lang::admin.menu_titles.store_config', 'icon' => 'fas fa-cog', 'uri' => 'admin::store_config', 'key' => null, 'type' => 0],
             ['id' => 58, 'parent_id' => 5, 'sort' => 5, 'title' => 'lang::admin.menu_titles.cache_manager', 'icon' => 'fab fa-tripadvisor', 'uri' => 'admin::cache_config', 'key' => null, 'type' => 0],
             ['id' => 59, 'parent_id' => 9, 'sort' => 7, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fas fa-plug', 'uri' => '', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 65, 'sort' => 3, 'title' => 'lang::store_maintain.config_manager.title', 'icon' => 'fas fa-wrench', 'uri' => 'admin::store_maintain', 'key' => null, 'type' => 0],
@@ -178,6 +179,7 @@ class DataAdminSeeder extends Seeder
 
             ['group' => 'global', 'code' => 'env_global', 'key' => 'ADMIN_LOG', 'value' => 'on', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG', 'store_id' => 0],
             ['group' => 'global', 'code' => 'env_global', 'key' => 'ADMIN_LOG_EXP', 'value' => '', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOG_EXP', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'env_global', 'key' => 'ADMIN_FOOTER_OFF', 'value' => '0', 'sort' => '0', 'detail' => 'lang::env.ADMIN_FOOTER_OFF', 'store_id' => 0],
             ['group' => 'global', 'code' => 'seo_config', 'key' => 'url_seo_lang', 'value' => '0', 'sort' => '1', 'detail' => 'lang::seo.url_seo_lang', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.LOG_SLACK_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'GOOGLE_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.GOOGLE_CHAT_WEBHOOK_URL', 'store_id' => 0],
@@ -220,10 +222,10 @@ class DataAdminSeeder extends Seeder
             [
                 ['store_id' => '1', 'lang' => 'en', 'title' => 'Demo S-Cart : Free Laravel eCommerce', 'description' => 'Free website shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
     <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>
-    </center>'],
+    </center>', 'maintain_note' => 'Website is in maintenance mode!'],
                 ['store_id' => '1', 'lang' => 'vi', 'title' => 'Demo S-Cart: Mã nguồn website thương mại điện tử miễn phí', 'description' => 'Laravel shopping cart for business', 'keyword' => '', 'maintain_content' => '<center><img src="/images/maintenance.png" />
     <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>
-    </center>'],
+    </center>', 'maintain_note' => 'Website đang trong chế độ bảo trì!'],
             ]
         );
     }

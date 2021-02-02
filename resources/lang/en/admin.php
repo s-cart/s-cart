@@ -230,14 +230,15 @@ return [
       'config_url'                       => 'Config URL',
 
       'menu_titles'                       => [
-            'admin'                => 'Admin',
+            'user_permission'      => 'Users & Permissions',
             'users'                => 'Users',
             'roles'                => 'Roles',
             'permission'           => 'Permission',
-            'menu'                 => 'Menu',
+            'menu'                 => 'Menu admin',
             'operation_log'        => 'Operation log',
             'config_manager'       => 'Config Manager',
             'config_system'        => 'Config System',
+            'admin_global'         => 'Admin global',
             'product_mamager'      => 'Product Manager',
             'catalog_mamager'      => 'Product & catalog',
             'categories'           => 'Categories',
@@ -314,6 +315,7 @@ return [
             'css'                  => 'Css website',
             'seo_manager'          => 'SEO manager',
             'seo_config'           => 'SEO config',
+            'env_config'           => 'Config environment', 
       ],
 
       'status'                            => 'Status',
