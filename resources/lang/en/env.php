@@ -34,4 +34,5 @@ return [
     'PREFIX_ORDER_SUCCESS'       => 'Prefix url ORDER SUCCESS',
     'PREFIX_SHOP'                => 'Link shop',
     'ADMIN_FOOTER_OFF'           => 'Hidden footer of page admin',
+    'ADMIN_CUSTOMIZE_TEMPLATE'   => 'Customize template admin'
 ];
