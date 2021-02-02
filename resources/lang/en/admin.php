@@ -234,7 +234,7 @@ return [
             'users'                => 'Users',
             'roles'                => 'Roles',
             'permission'           => 'Permission',
-            'menu'                 => 'Menu',
+            'menu'                 => 'Menu admin',
             'operation_log'        => 'Operation log',
             'config_manager'       => 'Config Manager',
             'config_system'        => 'Config System',

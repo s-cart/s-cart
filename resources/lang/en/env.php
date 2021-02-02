@@ -33,5 +33,5 @@ return [
     'PREFIX_CART_CHECKOUT'       => 'Prefix url CHECKOUT',
     'PREFIX_ORDER_SUCCESS'       => 'Prefix url ORDER SUCCESS',
     'PREFIX_SHOP'                => 'Link shop',
-    'ADMIN_FOOTER_OFF'           => 'Turn off footer',
+    'ADMIN_FOOTER_OFF'           => 'Hidden footer of page admin',
 ];

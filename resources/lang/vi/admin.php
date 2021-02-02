@@ -233,7 +233,7 @@ return [
         'users'                => 'Users',
         'roles'                => 'Nhóm quyền',
         'permission'           => 'Quyền hạn',
-        'menu'                 => 'Menu',
+        'menu'                 => 'Menu admin',
         'operation_log'        => 'Nhật ký truy cập',
         'config_manager'       => 'Quản lý cấu hình',
         'config_system'        => 'Cấu hình hệ thống',
@@ -312,6 +312,7 @@ return [
         'css'                  => 'Css website',
         'seo_manager'          => 'Quản lý SEO',
         'seo_config'           => 'Cấu hình SEO',
+        'env_config'           => 'Cấu hình môi trường',
     ],
     //=======++===========
     'status'           => 'Trạng thái',
