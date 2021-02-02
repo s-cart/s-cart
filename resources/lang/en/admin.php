@@ -315,6 +315,7 @@ return [
             'css'                  => 'Css website',
             'seo_manager'          => 'SEO manager',
             'seo_config'           => 'SEO config',
+            'env_config'           => 'Config environment', 
       ],
 
       'status'                            => 'Status',
