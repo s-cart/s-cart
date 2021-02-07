@@ -404,6 +404,7 @@ class CreateTablesShop extends Migration
             $table->string('remember_token', 100)->nullable();
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('group')->default(1);
+            $table->timestamp('email_verified_at', $precision = 0)->nullable();
             $table->timestamps();
             //Login social
             $table->string('provider', 50)->nullable();
