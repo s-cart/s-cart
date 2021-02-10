@@ -74,6 +74,12 @@ $layout_page = shop_profile
            </tr>
            @endif
 
+           @if (sc_config('customer_address3'))
+           <tr>
+             <td class="td-title">{{ trans('order.shipping_address3') }}:</td><td>{!! $order->address3 !!}</td>
+           </tr>
+           @endif
+
            @if (sc_config('customer_country'))
            <tr>
              <td class="td-title">{{ trans('order.country') }}:</td><td>{!! $countries[$order->country] ?? $order->country !!}</td>

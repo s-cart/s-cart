@@ -10,6 +10,7 @@ return [
     'address'         => 'Address',
     'address1'        => 'Address 1',
     'address2'        => 'Address 2',
+    'address3'        => 'Address 3',
     'country'         => 'Country',
     'company'         => 'Company',
     'postcode'        => 'Postcode',

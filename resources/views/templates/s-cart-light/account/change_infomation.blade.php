@@ -144,7 +144,6 @@ $layout_page = shop_profile
                             </div>
                         </div>
 
-                        @if (sc_config('customer_address2'))
                         <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
                             <label for="address1"
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address1') }}</label>
@@ -160,6 +159,8 @@ $layout_page = shop_profile
                             </div>
                         </div>
 
+
+                        @if (sc_config('customer_address2'))
                         <div class="form-group row {{ $errors->has('address2') ? ' has-error' : '' }}">
                             <label for="address2"
                                 class="col-md-4 col-form-label text-md-right">{{ trans('account.address2') }}</label>
@@ -173,25 +174,24 @@ $layout_page = shop_profile
 
                             </div>
                         </div>
-                        @else
-                            @if (sc_config('customer_address1'))
-                            <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
-                                <label for="address1"
-                                    class="col-md-4 col-form-label text-md-right">{{ trans('account.address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="address1" type="text" class="form-control" name="address1" 
-                                        value="{{ (old('address1'))?old('address1'):$customer['address1']}}">
-
-                                    @if($errors->has('address1'))
-                                    <span class="help-block">{{ $errors->first('address1') }}</span>
-                                    @endif
-
-                                </div>
-                            </div>
-                            @endif
                         @endif
 
+
+                        @if (sc_config('customer_address3'))
+                        <div class="form-group row {{ $errors->has('address3') ? ' has-error' : '' }}">
+                            <label for="address3"
+                                class="col-md-4 col-form-label text-md-right">{{ trans('account.address3') }}</label>
+                            <div class="col-md-6">
+                                <input id="address3" type="text" class="form-control" name="address3" 
+                                    value="{{ (old('address3'))?old('address3'):$customer['address3']}}">
+
+                                @if($errors->has('address3'))
+                                <span class="help-block">{{ $errors->first('address3') }}</span>
+                                @endif
+
+                            </div>
+                        </div>
+                        @endif
 
                         @if (sc_config('customer_country'))
                         @php
