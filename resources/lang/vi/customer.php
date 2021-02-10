@@ -25,7 +25,7 @@ return [
     'total_order'     => 'Tổng đơn hàng',
     'total_amount'    => 'Tổng số tiền',
     'provider'        => 'Tài khoản',
-    'regex'           => 'Định dạng chưa đúng. Chiều dài 8-14, chỉ sử dụng 0-9 và dấu "-".',
+    'phone_regex'     => 'Số điện thoại định dạng chưa đúng. Chiều dài 8-14, chỉ sử dụng 0-9 và dấu "-".',
     'admin'                   => [
         'title'               => 'Quản lý khách hàng',
         'create_success'      => 'Tạo item thành công!',

@@ -24,7 +24,7 @@ return [
     'total_order'     => 'Total orders',
     'total_amount'    => 'Total amount',
     'provider'        => 'Provider',
-    'regex'           => 'The format is not correct. Length 8-14, use only 0-9 and the "-" sign.',
+    'phone_regex'     => 'The phone format is not correct. Length 8-14, use only 0-9 and the "-" sign.',
     'admin'                   => [
         'title'               => 'Customer manager',
         'create_success'      => 'Create new item success!',
