@@ -177,6 +177,7 @@ class CreateTablesShop extends Migration
             $table->string('last_name_kana', 100)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
+            $table->string('address3', 100)->nullable();
             $table->string('country', 10)->nullable()->default('VN');
             $table->string('company', 100)->nullable();
             $table->string('postcode', 10)->nullable();
@@ -397,6 +398,7 @@ class CreateTablesShop extends Migration
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
+            $table->string('address3', 100)->nullable();
             $table->string('company', 100)->nullable();
             $table->string('country', 10)->nullable()->default('VN');
             $table->string('phone', 20)->nullable();;
@@ -423,6 +425,7 @@ class CreateTablesShop extends Migration
             $table->string('postcode', 10)->nullable();
             $table->string('address1', 100)->nullable();
             $table->string('address2', 100)->nullable();
+            $table->string('address3', 100)->nullable();
             $table->string('country', 10)->nullable()->default('VN');
             $table->string('phone', 20)->nullable();
             }
