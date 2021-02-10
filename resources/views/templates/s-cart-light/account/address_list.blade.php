@@ -45,11 +45,14 @@ $layout_page = shop_profile
                 <b>{{ trans('account.postcode') }}:</b> {{ $address['postcode'] }}<br>
                 @endif
 
-                @if (sc_config('customer_address2'))
                 <b>{{ trans('account.address1') }}:</b> {{ $address['address1'] }}<br>
+
+                @if (sc_config('customer_address2'))
                 <b>{{ trans('account.address2') }}:</b> {{ $address['address2'] }}<br>
-                @else
-                <b>{{ trans('account.address') }}:</b> {{ $address['first_address1'] }}<br>
+                @endif
+
+                @if (sc_config('customer_address3'))
+                <b>{{ trans('account.address3') }}:</b> {{ $address['address3'] }}<br>
                 @endif
 
                 @if (sc_config('customer_country'))

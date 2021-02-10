@@ -27,6 +27,7 @@ return [
     'password_old_notcorrect' => 'Old password not correct!',
     'address1'                => 'Address 1',
     'address2'                => 'Address 2',
+    'address3'                => 'Address 3',
     'address'                 => 'Address',
     'postcode'                => 'Postcode',
     'company'                 => 'Company',

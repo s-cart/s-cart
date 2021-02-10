@@ -99,7 +99,6 @@ $layout_page = shop_cart
                                 </td>
 
                                 <td align="right">
-                                    {{sc_currency_render($item->subtotal)}}
                                 </td>
 
                                 <td align="center">
@@ -148,7 +147,7 @@ $layout_page = shop_cart
                                     <select class="form-control" name="address_process" style="width: 100%;" id="addressList">
                                         <option value="">{{ trans('cart.change_address') }}</option>
                                         @foreach ($addressList as $k => $address)
-                                        <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2 }}</option>
+                                        <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2.' '.$address->address3 }}</option>
                                         @endforeach
                                         <option value="new" {{ (old('address_process') ==  'new') ? 'selected':''}}>{{ trans('cart.add_new_address') }}</option>
                                     </select>
@@ -301,41 +300,50 @@ $layout_page = shop_cart
                                     @endif
                                 </tr>
 
+                                @if (sc_config('customer_address1'))
                                 <tr>
-                                    @if (sc_config('customer_address2'))
-                                        <td class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                        <td colspan="2"
+                                            class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
                                             <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
-                                                {{ trans('cart.address1') }}:</label>
+                                                {{ trans('cart.address') }}:</label>
                                             <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address1') }}"
                                                 value="{{ old('address1',$shippingAddress['address1'])}}">
                                             @if($errors->has('address1'))
                                                 <span class="help-block">{{ $errors->first('address1') }}</span>
                                             @endif
                                         </td>
-                                        <td class="form-group {{ $errors->has('address2') ? ' has-error' : '' }}">
+                                </tr>
+                                @endif
+
+                                @if (sc_config('customer_address2'))
+                                <tr>
+                                        <td colspan="2"
+                                            class="form-group {{ $errors->has('address2') ? ' has-error' : '' }}">
                                             <label for="address2" class="control-label"><i class="fa fa-list-ul"></i>
-                                                {{ trans('cart.address2') }}</label>
+                                                {{ trans('cart.address') }}:</label>
                                             <input class="form-control" name="address2" type="text" placeholder="{{ trans('cart.address2') }}"
                                                 value="{{ old('address2',$shippingAddress['address2'])}}">
                                             @if($errors->has('address2'))
-                                            <span class="help-block">{{ $errors->first('address2') }}</span>
+                                                <span class="help-block">{{ $errors->first('address2') }}</span>
                                             @endif
                                         </td>
-                                    @else
-                                        @if (sc_config('customer_address1'))
-                                            <td colspan="2"
-                                                class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
-                                                <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
-                                                    {{ trans('cart.address') }}:</label>
-                                                <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address') }}"
-                                                    value="{{ old('address1',$shippingAddress['address1'])}}">
-                                                @if($errors->has('address1'))
-                                                    <span class="help-block">{{ $errors->first('address1') }}</span>
-                                                @endif
-                                            </td>
-                                        @endif
-                                    @endif
                                 </tr>
+                                @endif
+
+                                @if (sc_config('customer_address3'))
+                                <tr>
+                                        <td colspan="2"
+                                            class="form-group {{ $errors->has('address3') ? ' has-error' : '' }}">
+                                            <label for="address3" class="control-label"><i class="fa fa-list-ul"></i>
+                                                {{ trans('cart.address') }}:</label>
+                                            <input class="form-control" name="address3" type="text" placeholder="{{ trans('cart.address3') }}"
+                                                value="{{ old('address3',$shippingAddress['address3'])}}">
+                                            @if($errors->has('address3'))
+                                                <span class="help-block">{{ $errors->first('address3') }}</span>
+                                            @endif
+                                        </td>
+                                </tr>
+                                @endif
 
                                 <tr>
                                     <td colspan="2">
@@ -404,7 +412,6 @@ $layout_page = shop_cart
                                                             style="position: relative;"
                                                             {{ ($shipping['permission'])?'':'disabled' }}>
                                                         {{ $shipping['title'] }}
-                                                        ({{ sc_currency_render($shipping['value']) }})
                                                     </label>
                                                 </div>
 
@@ -615,6 +622,7 @@ $layout_page = shop_cart
             $('#form-process [name="country"]').val('');
             $('#form-process [name="address1"]').val('');
             $('#form-process [name="address2"]').val('');
+            $('#form-process [name="address3"]').val('');
         } else {
             $.ajax({
             url: '{{ sc_route('customer.address_detail') }}',
@@ -639,6 +647,7 @@ $layout_page = shop_cart
                     $('#form-process [name="country"]').val(data.country);
                     $('#form-process [name="address1"]').val(data.address1);
                     $('#form-process [name="address2"]').val(data.address2);
+                    $('#form-process [name="address3"]').val(data.address3);
                 }
 
                 }
