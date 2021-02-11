@@ -10,6 +10,7 @@ return [
     'address'         => 'Địa chỉ',
     'address1'        => 'Tỉnh/Thành',
     'address2'        => 'Quận/Huyện',
+    'address3'        => 'Địa chỉ nhà',
     'country'         => 'Quốc gia',
     'company'         => 'Công ty',
     'postcode'        => 'Mã bưu chính',
@@ -25,6 +26,7 @@ return [
     'total_order'     => 'Tổng đơn hàng',
     'total_amount'    => 'Tổng số tiền',
     'provider'        => 'Tài khoản',
+    'phone_regex'     => 'Số điện thoại định dạng chưa đúng. Chiều dài 8-14, chỉ sử dụng 0-9 và dấu "-".',
     'admin'                   => [
         'title'               => 'Quản lý khách hàng',
         'create_success'      => 'Tạo item thành công!',
@@ -65,6 +67,7 @@ return [
         'lasttname_kana' => 'Sử dụng họ KANA',
         'address1'       => 'Sử dụng Tỉnh/Thành',
         'address2'       => 'Sử dụng Quận/Huyện',
+        'address3'       => 'Địa chỉ nhà',
         'company'        => 'Sử dụng Công Ty',
         'postcode'       => 'Sử dụng Mã bưu chính',
         'country'        => 'Sử dụng Quốc Gia',

@@ -10,6 +10,7 @@ return [
     'address'         => 'Address',
     'address1'        => 'Address 1',
     'address2'        => 'Address 2',
+    'address3'        => 'Address 3',
     'country'         => 'Country',
     'company'         => 'Company',
     'postcode'        => 'Postcode',
@@ -24,6 +25,7 @@ return [
     'total_order'     => 'Total orders',
     'total_amount'    => 'Total amount',
     'provider'        => 'Provider',
+    'phone_regex'     => 'The phone format is not correct. Length 8-14, use only 0-9 and the "-" sign.',
     'admin'                   => [
         'title'               => 'Customer manager',
         'create_success'      => 'Create new item success!',

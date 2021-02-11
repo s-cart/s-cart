@@ -24,6 +24,7 @@ return [
     'address'          => 'Address',
     'address1'         => 'Address 1',
     'address2'         => 'Address 2',
+    'address3'         => 'Address 3',
     'note'             => 'Note',
     'country'          => 'Country',
     'first_name'       => 'First name',

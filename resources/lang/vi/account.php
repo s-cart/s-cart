@@ -30,6 +30,7 @@ return [
     'phone'                   => 'Số điện thoại',
     'address1'                => 'Tỉnh/Thành phố',
     'address2'                => 'Quận/Huyện',
+    'address3'                => 'Địa chỉ nhà',
     'address'                 => 'Địa chỉ',
     'postcode'                => 'Mã bưu chính',
     'company'                 => 'Công ty',

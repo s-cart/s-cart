@@ -24,6 +24,7 @@ return [
     'address'          => 'Địa chỉ',
     'address1'         => 'Tỉnh/Thành phố',
     'address2'         => 'Quận/Huyện',
+    'address3'         => 'Địa chỉ nhà',
     'note'             => 'Ghi chú đơn hàng',
     'country'         => 'Quốc gia',
     'first_name'      => 'Tên',

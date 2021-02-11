@@ -110,7 +110,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                 </tr>
                                 <tr>
                                     <th>{{ trans('cart.address') }}:</td>
-                                    <td>{{ $shippingAddress['address1'].' '.$shippingAddress['address2'].','.$shippingAddress['country'] }}
+                                    <td>{{ $shippingAddress['address1'].' '.$shippingAddress['address2'].' '.$shippingAddress['address3'].','.$shippingAddress['country'] }}
                                     </td>
                                 </tr>
                                 @if (sc_config('customer_postcode'))

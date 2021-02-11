@@ -107,7 +107,6 @@
                     </div>
                     @endif
             
-                    @if (sc_config('customer_address2'))
                     <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
@@ -118,7 +117,8 @@
                         </span>
                         @endif
                     </div>
-            
+
+                    @if (sc_config('customer_address2'))
                     <div class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('address2'))?"input-error":"" }}"
@@ -129,22 +129,21 @@
                         </span>
                         @endif
                     </div>
-                    @else
-                        @if (sc_config('customer_address1'))
-                        <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
-                            <input type="text"
-                                class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
-                                name="address1" placeholder="{{ trans('account.address') }}" value="{{ old('address1') }}">
-                            @if ($errors->has('address1'))
-                            <span class="help-block">
-                                {{ $errors->first('address1') }}
-                            </span>
-                            @endif
-                        </div>
-                        @endif
                     @endif
             
-            
+                    @if (sc_config('customer_address3'))
+                    <div class="form-group{{ $errors->has('address3') ? ' has-error' : '' }}">
+                        <input type="text"
+                            class="is_required validate account_input form-control {{ ($errors->has('address3'))?"input-error":"" }}"
+                            name="address3" placeholder="{{ trans('account.address3') }}" value="{{ old('address3') }}">
+                        @if ($errors->has('address3'))
+                        <span class="help-block">
+                            {{ $errors->first('address3') }}
+                        </span>
+                        @endif
+                    </div>
+                    @endif
+
                     @if (sc_config('customer_company'))
                     <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                         <input type="text"
