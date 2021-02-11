@@ -52,8 +52,8 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address2', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address2', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address2_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address3', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address3', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address3', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address3', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_company_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_postcode', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.postcode', 'store_id' => $storeId],
@@ -94,6 +94,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_admin', 'value' => '0', 'sort' => '1', 'detail' => 'lang::email.email_action.order_success_to_admin', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_customer', 'value' => '0', 'sort' => '2', 'detail' => 'lang::email.email_action.order_success_to_cutomer', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'order_success_to_customer_pdf', 'value' => '0', 'sort' => '3', 'detail' => 'lang::email.email_action.order_success_to_cutomer_pdf', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'email_action', 'key' => 'customer_verify', 'value' => '0', 'sort' => '4', 'detail' => 'lang::email.email_action.customer_verify', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'welcome_customer', 'value' => '0', 'sort' => '4', 'detail' => 'lang::email.email_action.welcome_customer', 'store_id' => $storeId],
             ['group' => '', 'code' => 'email_action', 'key' => 'contact_to_admin', 'value' => '1', 'sort' => '6', 'detail' => 'lang::email.email_action.contact_to_admin', 'store_id' => $storeId],
 
