@@ -65,6 +65,7 @@ return [
         'lastname_kana'  => 'Use last name KANA',
         'address1'       => 'Use ADDRESS 1',
         'address2'       => 'Use ADDRESS 2',
+        'address3'       => 'Use ADDRESS 3',
         'company'        => 'Use COMPANY',
         'postcode'       => 'Use POSTCODE',
         'country'        => 'Use COUNTRY',
