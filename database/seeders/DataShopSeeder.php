@@ -244,6 +244,12 @@ class DataShopSeeder extends Seeder
             ]
         );
 
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_customer_address')->insert(
+            [
+                ['id' => '1', 'customer_id' => 1, 'first_name' => 'Naruto', 'last_name' => 'Kun', 'address1' => 'HCM', 'address2' => 'HCM city', 'phone' => '0667151172', 'postcode' => 70000, 'country' => 'VN'],
+            ]
+        );
+
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_country')->insert(
             [
                 ['code' => 'AL', 'name' => 'Albania'],
