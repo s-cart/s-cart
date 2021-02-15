@@ -25,7 +25,7 @@
 <div style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#f5f8fa;color:#74787e;height:100%;line-height:1.4;margin:0;width:100%!important;word-break:break-word">
 
 
-  <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#f5f8fa;margin:0;padding:0;width:100%">
+  <table class="wrapper" width="100%" cellpadding="12" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;background-color:#f5f8fa;margin:0;padding:0;width:100%">
     <tbody><tr>
       <td align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
         <table class="content" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:0;padding:0;width:100%">
@@ -33,8 +33,8 @@
             {{-- header --}}
             <tr>
               <td class="header" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:25px 0;text-align:center">
-                <a href="{{ $site_url??sc_route('home') }}" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#bbbfc3;font-size:19px;font-weight:bold;text-decoration:none" target="_blank">
-                  {{ $site_title??config(['app.name']) }}
+                <a href="{{ sc_route('home') }}" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#bbbfc3;font-size:19px;font-weight:bold;text-decoration:none" target="_blank">
+                  {{ config('app.name') }}
                 </a>
               </td>
             </tr>
@@ -47,8 +47,12 @@
 
                 <tbody>
                   <tr>
-                  <td class="content-cell" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
-                    @yield('main')
+                      <td class="content-cell" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
+                        @yield('main')
+                        <p style="box-sizing:border-box;font-family:Avenir,Helvetica,sans-serif;font-size:14px;line-height:1.5em;margin-top:0;text-align:left">
+                          {{ trans('email.msg_goodbye') }}<br>
+                          {{ config('app.name') }}
+                        </p>
                       </td>
                     </tr>
                   </tbody>
@@ -64,7 +68,7 @@
                   <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:0 auto;padding:0;text-align:center;width:570px">
                     <tbody><tr>
                       <td class="content-cell" align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
-                        <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;line-height:1.5em;margin-top:0;color:#aeaeae;font-size:12px;text-align:center">&copy;{{ date('Y') }} {{ $site_title??config(['app.name']) }}. All rights reserved.</p>
+                        <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;line-height:1.5em;margin-top:0;color:#aeaeae;font-size:12px;text-align:center">&copy;{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
                       </td>
                     </tr>
                   </tbody></table>

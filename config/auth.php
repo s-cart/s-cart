@@ -120,4 +120,6 @@ return [
 
     'password_timeout' => 10800,
 
+    'verification' => 60,
+
 ];

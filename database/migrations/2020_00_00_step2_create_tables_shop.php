@@ -401,7 +401,7 @@ class CreateTablesShop extends Migration
             $table->string('address3', 100)->nullable();
             $table->string('company', 100)->nullable();
             $table->string('country', 10)->nullable()->default('VN');
-            $table->string('phone', 20)->nullable();;
+            $table->string('phone', 20)->nullable();
             $table->integer('store_id')->default(1)->index();
             $table->string('remember_token', 100)->nullable();
             $table->tinyInteger('status')->default(1);
