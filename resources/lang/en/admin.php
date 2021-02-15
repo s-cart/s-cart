@@ -301,7 +301,7 @@ return [
             'email_action'         => 'Email action',
             'cache_manager'        => 'Cache manager',
             'store_manager'        => 'Store manager',
-            'store_config'         => 'Store config',
+            'store_config'         => 'Store configuration',
             'setting_system'       => 'Setting',
             'error_log'            => 'Error & Log',
             'config_store_default' => 'Config store default',

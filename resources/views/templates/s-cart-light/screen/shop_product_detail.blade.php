@@ -64,7 +64,7 @@ $layout_page = product_detail
               <div class="single-product">
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
                 {{-- Go to store --}}
-                @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
+                @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
                 <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
                 </div>
                 @endif
@@ -319,11 +319,11 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-        {{-- Display store info if use MultiStorePro --}}
-        @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
+        {{-- Display store info if use MultiVendorPro --}}
+        @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
         <li><a href="{{ $goToStore }}">{{ sc_store('title', $product->store_id) }}</a></li>
         @endif
-        {{--// Display store info if use MultiStorePro --}}
+        {{--// Display store info if use MultiVendorPro --}}
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

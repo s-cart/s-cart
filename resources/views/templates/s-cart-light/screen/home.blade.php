@@ -36,12 +36,12 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
                     {{--// Product name --}}
 
-                    {{-- Display store - if use MultiStorePro --}}
-                    @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
+                    {{-- Display store - if use MultiVendorPro --}}
+                    @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
                       <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $productNew->store_id  }}</a>
                       </div>
                     @endif
-                    {{-- //Display store - if use MultiStorePro --}}
+                    {{-- //Display store - if use MultiVendorPro --}}
 
                     {{-- Add to cart --}}
                     @if ($productNew->allowSale())
