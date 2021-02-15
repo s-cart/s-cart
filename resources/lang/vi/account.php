@@ -47,6 +47,15 @@ return [
     'last_name_kana'          => 'Họ kana',
     'sex_women'               => 'Nữ',
     'sex_men'                 => 'Nam',
+    'verify_email'            =>  [
+        'title_page'   => 'Tài khoản cần xác nhận',
+        'title_header' => 'Xác minh địa chỉ email của bạn',
+        'msg_page_1'   => 'Trước khi tiếp tục, vui lòng kiểm tra email của bạn để biết liên kết xác minh. Nếu bạn không nhận được email, ',
+        'msg_page_2'   => 'hãy nhấp vào đây để yêu cầu.',
+        'msg_sent'     => 'Đã gửi liên kết xác minh!',
+        'link_invalid'   => 'Link không hợp lệ',
+        'verify_success' => 'Xác nhận thành công',
+    ],
     'orders'                   => [
         'empty' => 'Bạn chưa có đơn hàng nào',
         'total' => 'Số tiền',

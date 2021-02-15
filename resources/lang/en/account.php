@@ -46,6 +46,15 @@ return [
     'name'                    => 'Full name',
     'sex_women'               => 'Women',
     'sex_men'                 => 'Men',
+    'verify_email'            =>  [
+        'title_page'     => 'Account need confirmation',
+        'title_header'   => 'Verify Your Email Address',
+        'msg_page_1'     => 'Before proceeding, please check your email for a verification link. If you did not receive the email, ',
+        'msg_page_2'     => 'click here to request another.',
+        'msg_sent'       => 'Verification link sent.',
+        'link_invalid'   => 'Link invalid',
+        'verify_success' => 'Successful confirmation',
+    ],
     'orders'                   => [
         'empty'        => 'You do not have any order',
         'total'        => 'Total',

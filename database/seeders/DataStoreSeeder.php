@@ -45,15 +45,15 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'product_config', 'key' => 'show_date_available', 'value' => '1', 'sort' => '21', 'detail' => 'lang::admin.show_date_available', 'store_id' => $storeId],
             ['group' => '', 'code' => 'product_config', 'key' => 'product_tax', 'value' => '1', 'sort' => '0', 'detail' => 'lang::product.config_manager.tax', 'store_id' => $storeId],
 
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_lastname_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address1', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address1', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address1_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address2', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address2', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address2_required', 'value' => '1', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_lastname', 'value' => '1', 'sort' => '1', 'detail' => 'lang::customer.config_manager.lastname', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_lastname_required', 'value' => '1', 'sort' => '1', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address1', 'value' => '1', 'sort' => '2', 'detail' => 'lang::customer.config_manager.address1', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address1_required', 'value' => '1', 'sort' => '2', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address2', 'value' => '1', 'sort' => '2', 'detail' => 'lang::customer.config_manager.address2', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address2_required', 'value' => '1', 'sort' => '2', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address3', 'value' => '0', 'sort' => '2', 'detail' => 'lang::customer.config_manager.address3', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '2', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address3', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.address3', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_company_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_postcode', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.postcode', 'store_id' => $storeId],
@@ -66,9 +66,9 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_birthday_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_sex', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.sex', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_sex_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_phone', 'value' => '1', 'sort' => '1', 'detail' => 'lang::customer.config_manager.phone', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_phone', 'value' => '1', 'sort' => '0', 'detail' => 'lang::customer.config_manager.phone', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_phone_required', 'value' => '1', 'sort' => '1', 'detail' => '', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_name_kana', 'value' => '0', 'sort' => '1', 'detail' => 'lang::customer.config_manager.name_kana', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_name_kana', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.name_kana', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_name_kana_required', 'value' => '0', 'sort' => '1', 'detail' => '', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_NAME', 'value' => 'S-Cart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => $storeId],
@@ -165,7 +165,44 @@ class DataStoreSeeder extends Seeder
 <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-top:1px solid #edeff2;margin-top:25px;padding-top:25px">
 <tbody><tr>
 <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
-  <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;line-height:1.5em;margin-top:0;text-align:left;font-size:12px">{{$note_access_link}}: <a href="{{$reset_link}}" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#3869d4" target="_blank">{{$reset_link}}</a></p>
+  <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;line-height:1.5em;margin-top:0;text-align:left;font-size:12px">{{$note_access_link}}</p>
+  </td>
+  </tr>
+</tbody>
+</table>', 'status' => '1', 'store_id' => $storeId],
+
+['name' => 'Customer verification', 'group' => 'customer_verify', 'text' => '
+<h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:19px;font-weight:bold;margin-top:0;text-align:left">{{$title}}</h1>
+<p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">{{$reason_sendmail}}</p>
+<table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:30px auto;padding:0;text-align:center;width:100%">
+<tbody><tr>
+  <td align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+      <tbody><tr>
+      <td align="center" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+          <table border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+          <tbody><tr>
+              <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+              <a href="{{$url_verify}}" class="button button-primary" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-radius:3px;color:#fff;display:inline-block;text-decoration:none;background-color:#3097d1;border-top:10px solid #3097d1;border-right:18px solid #3097d1;border-bottom:10px solid #3097d1;border-left:18px solid #3097d1" target="_blank">{{$button}}</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </td>
+      </tr>
+  </tbody>
+  </table>
+  </td>
+</tr>
+</tbody>
+</table>
+<p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+{{$note_sendmail}}
+</p>
+<table class="subcopy" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;border-top:1px solid #edeff2;margin-top:25px;padding-top:25px">
+<tbody><tr>
+<td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
+  <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;line-height:1.5em;margin-top:0;text-align:left;font-size:12px">{{$note_access_link}}</p>
   </td>
   </tr>
 </tbody>
