@@ -106,7 +106,7 @@ class PluginModel extends Model
      * @return  [type]         [return description]
      */
     public function getPromotionByCode($code) {
-        if (config('app.storeId') == 1) {
+        if (config('app.storeId') == SC_ID_ROOT) {
             //If store is primary store, dont check store id
             $promocode = $this
                 ->where('code', $code)
