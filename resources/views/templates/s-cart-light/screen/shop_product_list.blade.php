@@ -92,7 +92,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
 
             {{-- Go to store --}}
-            @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
+            @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
             </div>
             @endif

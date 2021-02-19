@@ -1,6 +1,6 @@
 @php
 /*
-* This template only use for MultiStorePro
+* This template only use for MultiVendorPro
 $layout_page = store_product_list
 **Variables:**
 - $products: paginate
@@ -127,11 +127,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('blockStoreLeft')
 {{-- Categories tore --}}
 
-@if (function_exists('sc_store_get_categories_front') &&  count(sc_store_get_categories_front($storeId)))
+@if (function_exists('sc_vendor_get_categories_front') &&  count(sc_vendor_get_categories_front($storeId)))
 <div class="aside-item col-sm-6 col-md-5 col-lg-12">
   <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
   <ul class="list-shop-filter">
-    @foreach (sc_store_get_categories_front($storeId) as $category)
+    @foreach (sc_vendor_get_categories_front($storeId) as $category)
     <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
     @endforeach
   </ul>
@@ -161,7 +161,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <div class="container">
       <ul class="breadcrumbs-custom-path">
         <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-        <li><a href="{{ sc_route('multistorepro.detail', ['code' => $category->store->code]) }}">{{ $category->store->getTitle() }}</a></li>
+        <li><a href="{{ sc_route('MultiVendorPro.detail', ['code' => $category->store->code]) }}">{{ $category->store->getTitle() }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

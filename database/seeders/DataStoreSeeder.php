@@ -52,7 +52,7 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address2', 'value' => '1', 'sort' => '2', 'detail' => 'lang::customer.config_manager.address2', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address2_required', 'value' => '1', 'sort' => '2', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_address3', 'value' => '0', 'sort' => '2', 'detail' => 'lang::customer.config_manager.address3', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '2', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_address3_required', 'value' => '0', 'sort' => '2', 'detail' => '', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute', 'key' => 'customer_company', 'value' => '0', 'sort' => '0', 'detail' => 'lang::customer.config_manager.company', 'store_id' => $storeId],
             ['group' => '', 'code' => 'customer_config_attribute_required', 'key' => 'customer_company_required', 'value' => '0', 'sort' => '0', 'detail' => '', 'store_id' => $storeId],

@@ -60,7 +60,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
 
             {{-- Go to store --}}
-            @if (sc_config_global('MultiStorePro') && config('app.storeId') == SC_ID_ROOT)
+            @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
             <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
             </div>
             @endif
@@ -115,11 +115,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 @section('blockStoreLeft')
 {{-- Categories tore --}}
 {{-- Only show category store if shop home is not primary store --}}
-@if (config('app.storeId') != 1 && function_exists('sc_store_get_categories_front') &&  count(sc_store_get_categories_front(config('app.storeId'))))
+@if (config('app.storeId') != SC_ID_ROOT && function_exists('sc_vendor_get_categories_front') &&  count(sc_vendor_get_categories_front(config('app.storeId'))))
 <div class="aside-item col-sm-6 col-md-5 col-lg-12">
   <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
   <ul class="list-shop-filter">
-    @foreach (sc_store_get_categories_front(config('app.storeId')) as $key => $category)
+    @foreach (sc_vendor_get_categories_front(config('app.storeId')) as $key => $category)
     <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
     @endforeach
   </ul>
