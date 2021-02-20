@@ -1,2 +1,2 @@
 <?php
-//You functions
+//Your functions
