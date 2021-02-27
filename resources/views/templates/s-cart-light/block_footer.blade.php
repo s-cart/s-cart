@@ -83,8 +83,8 @@
               <div class="col-md-auto">
                 <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title') }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
-              <div class="col-md-auto order-md-1">Hosted by <a target="_blank"
-                href="https://giaiphap247.com">GiaiPhap247.com</a></div>
+              <div class="col-md-auto order-md-1"> <a target="_blank"
+                href="https://www.facebook.com/SCart.Ecommerce/">Fanpage FB</a></div>
               <div class="col-md-auto">
                     Power by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a>
               </div>

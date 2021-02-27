@@ -1,2 +1,6 @@
 <?php
-//You functions
+//Your functions
+ 
+// function demoFunction() {
+//     echo "Hello world!";
+// }
