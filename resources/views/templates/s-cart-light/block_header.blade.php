@@ -52,20 +52,6 @@
                             <li class="rd-dropdown-item">
                                 <a class="rd-dropdown-link" href="{{ sc_route('login') }}"><i class="fa fa-user"></i> {{ trans('front.login') }}</a>
                             </li>
-                            @if (!empty(sc_config('LoginSocialite')))
-                            <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'facebook']) }}"><i class="fab fa-facebook"></i>
-                                 {{ trans('front.login') }} facebook</a>
-                            </li>
-                            <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'google']) }}"><i class="fab fa-google-plus"></i>
-                                 {{ trans('front.login') }} google</a>
-                            </li>
-                            <li class="rd-dropdown-item">
-                              <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'github']) }}"><i class="fab fa-github"></i>
-                                 {{ trans('front.login') }} github</a>
-                            </li>
-                            @endif
 
                             <li class="rd-dropdown-item">
                                 <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 

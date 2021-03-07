@@ -30,6 +30,22 @@
                     @endif
             
                 </div>
+                @if (!empty(sc_config('LoginSocialite')))
+                    <ul>
+                    <li class="rd-dropdown-item">
+                      <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'facebook']) }}"><i class="fab fa-facebook"></i>
+                         {{ trans('front.login') }} facebook</a>
+                    </li>
+                    <li class="rd-dropdown-item">
+                      <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'google']) }}"><i class="fab fa-google-plus"></i>
+                         {{ trans('front.login') }} google</a>
+                    </li>
+                    <li class="rd-dropdown-item">
+                      <a class="rd-dropdown-link" href="{{ sc_route('login_socialite.index', ['provider' => 'github']) }}"><i class="fab fa-github"></i>
+                         {{ trans('front.login') }} github</a>
+                    </li>
+                    </ul>
+                @endif
                 <p class="lost_password form-group">
                     <a class="btn btn-link" href="{{ sc_route('forgot') }}">
                         {{ trans('account.password_forgot') }}
