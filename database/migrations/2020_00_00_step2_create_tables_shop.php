@@ -33,6 +33,15 @@ class CreateTablesShop extends Migration
             }
         );
 
+        Schema::create(SC_DB_PREFIX.'shop_banner_type', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 100)->unique();
+            $table->string('name', 100);
+
+            }
+        );
+        
+
         Schema::create(SC_DB_PREFIX.'shop_email_template', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
@@ -640,6 +649,7 @@ class CreateTablesShop extends Migration
     public function down()
     {
         Schema::dropIfExists(SC_DB_PREFIX.'shop_banner');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_banner_type');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_email_template');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_language');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_store_block');

@@ -1,0 +1,27 @@
+<?php
+return [
+    'id'     => 'ID',
+    'code'   => 'Code',
+    'name'   => 'Name',
+    'admin'  => [
+        'title'          => 'Banner type',
+        'create_success' => 'Create new item success!',
+        'edit_success'   => 'Edit item success!',
+        'list'           => 'Banner type list',
+        'id'             => 'ID',
+        'code'           => 'Code',
+        'name'           => 'Type name',
+        'action'         => 'Action',
+        'edit'           => 'Edit',
+        'export'         => 'Export',
+        'delete'         => 'Delete',
+        'refresh'        => 'Refresh',
+        'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'sort'           => 'Sort',
+        'search'         => 'Search',
+        'add_new'        => 'Add new',
+        'add_new_title'  => 'Add banner type',
+        'add_new_des'    => 'Create a new banner type',
+        'select_target'    => 'Select target',
+    ],
+];
