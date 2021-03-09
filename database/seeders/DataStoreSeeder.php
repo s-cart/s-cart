@@ -103,6 +103,8 @@ class DataStoreSeeder extends Seeder
             ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_password', 'value' => '', 'sort' => '3', 'detail' => 'lang::email.smtp_password', 'store_id' => $storeId],
             ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_security', 'value' => '', 'sort' => '4', 'detail' => 'lang::email.smtp_security', 'store_id' => $storeId],
             ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_port', 'value' => '', 'sort' => '5', 'detail' => 'lang::email.smtp_port', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_name', 'value' => '', 'sort' => '6', 'detail' => 'lang::email.smtp_name', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'smtp_config', 'key' => 'smtp_from', 'value' => '', 'sort' => '7', 'detail' => 'lang::email.smtp_from', 'store_id' => $storeId],
 
             ['group' => '', 'code' => 'url_config', 'key' => 'SUFFIX_URL', 'value' => '.html', 'sort' => '0', 'detail' => 'lang::url.SUFFIX_URL', 'store_id' => $storeId],
             ['group' => '', 'code' => 'url_config', 'key' => 'PREFIX_SHOP', 'value' => 'shop', 'sort' => '0', 'detail' => 'lang::env.PREFIX_SHOP', 'store_id' => $storeId],

@@ -24,6 +24,16 @@ class DataShopSeeder extends Seeder
             ]
         );
 
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_banner_type')->insert(
+            [
+                ['id' => '1', 'code' => 'banner', 'name' => 'Banner website'],
+                ['id' => '2', 'code' => 'background', 'name' => 'Background website'],
+                ['id' => '3', 'code' => 'breadcrumb', 'name' => 'Breadcrumb website'],
+                ['id' => '4', 'code' => 'banner-store', 'name' => 'Banner store'],
+                ['id' => '5', 'code' => 'other', 'name' => 'Other'],
+            ]
+        );
+
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_language')->insert(
             [
                 ['id' => '1', 'name' => 'English', 'code' => 'en', 'icon' => '/data/language/flag_uk.png', 'status' => '1', 'rtl' => '0', 'sort' => '1'],

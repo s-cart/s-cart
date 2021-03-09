@@ -9,6 +9,8 @@ return [
     'smtp_password'    => 'SMTP password',
     'smtp_security'    => 'SMTP security',
     'smtp_port'        => 'SMTP port',
+    'smtp_name'        => 'Email name',
+    'smtp_from'        => 'Send mail from',
     'smtp_load_config' => 'SMTP load config',
     'smtp_load_config_file' => 'Load file config',
     'smtp_load_config_database' => 'Load from database',

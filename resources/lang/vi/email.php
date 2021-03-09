@@ -9,6 +9,8 @@ return [
     'smtp_password'    => 'Mật khẩu SMTP',
     'smtp_security'    => 'Bảo mật SMTP',
     'smtp_port'        => 'Cổng kết nối SMTP',
+    'smtp_name'        => 'Tên gửi mail',
+    'smtp_from'        => 'Địa chỉ email gửi',
     'smtp_load_config' => 'Tải thông tin cấu hình',
     'smtp_load_config_file' => 'Sử dụng file cấu hình',
     'smtp_load_config_database' => 'Sử dụng database',
