@@ -1,5 +1,5 @@
 @php
-$banners = $modelBanner->start()->getBanner()->getData()
+$banners = $modelBanner->start()->setType('banner')->getData()
 @endphp
 @if (!empty($banners))
 <section class="section swiper-container swiper-slider swiper-slider-1" data-loop="true">
