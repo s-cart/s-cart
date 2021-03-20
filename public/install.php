@@ -187,6 +187,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         public_path('data'),
         base_path('vendor'),
         base_path('bootstrap/cache'),
+        base_path('database'),
     ];
     @exec('chmod o+w -R ' . implode(' ', $dirsWritable));
     
