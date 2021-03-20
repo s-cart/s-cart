@@ -150,6 +150,15 @@ class DataShopSeeder extends Seeder
                 ['name' => 'M', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
             ]
         );
+
+
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_property')->insert(
+            [
+                ['id' => '1', 'code' => 'physical', 'name' => 'Product physical'],
+                ['id' => '2', 'code' => 'download', 'name' => 'Product download']
+            ]
+        );
+
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_build')->insert(
             [
                 ['build_id' => '15', 'product_id' => '6', 'quantity' => '1'],
