@@ -124,10 +124,6 @@ return [
         'group'                             => 'Group',
     ],
     'properties'                             => [
-        'physical'                          => 'Physical',
-        'download'                          => 'Download',
-        'only_view'                         => 'Only view',
-        'service'                           => 'Service',
         'download_path'                     => 'Path or url download',
     ],
     'config_manager'                        => [

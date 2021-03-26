@@ -375,6 +375,13 @@ class CreateTablesShop extends Migration
             }
         );
 
+        Schema::create(SC_DB_PREFIX.'shop_product_property', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 100)->unique();
+            $table->string('name', 100);
+
+            }
+        );
 
         Schema::create(SC_DB_PREFIX.'shop_shipping_status', function (Blueprint $table) {
             $table->increments('id');
@@ -677,6 +684,7 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_image');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_build');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_attribute');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_product_property');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_attribute_group');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_group');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_product_category');

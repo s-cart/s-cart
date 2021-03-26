@@ -96,7 +96,7 @@ class DataAdminSeeder extends Seeder
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '3', 'name' => 'Base setting', 'slug' => 'base.setting', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*,ANY::'.SC_ADMIN_PREFIX.'/shipping_status/*,ANY::'.SC_ADMIN_PREFIX.'/payment_status/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,ANY::'.SC_ADMIN_PREFIX.'/length_unit/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '4', 'name' => 'Store manager', 'slug' => 'store.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/store_maintain/*,ANY::'.SC_ADMIN_PREFIX.'/store_config/*,ANY::'.SC_ADMIN_PREFIX.'/store_css/*,ANY::'.SC_ADMIN_PREFIX.'/store_block/*,ANY::'.SC_ADMIN_PREFIX.'/store_link/*','created_at' => date('Y-m-d H:i:s')],
-            ['id' => '5', 'name' => 'Product manager', 'slug' => 'product.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/product/*','created_at' => date('Y-m-d H:i:s')],
+            ['id' => '5', 'name' => 'Product manager', 'slug' => 'product.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/product/*,ANY::'.SC_ADMIN_PREFIX.'/product_property/*,ANY::'.SC_ADMIN_PREFIX.'/product_tag/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Category manager', 'slug' => 'category.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/category/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '7', 'name' => 'Order manager', 'slug' => 'order.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '8', 'name' => 'Upload management', 'slug' => 'upload.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/uploads/*', 'created_at' => date('Y-m-d H:i:s')],
@@ -184,7 +184,7 @@ class DataAdminSeeder extends Seeder
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.LOG_SLACK_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'GOOGLE_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.GOOGLE_CHAT_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'CHATWORK_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.CHATWORK_CHAT_WEBHOOK_URL', 'store_id' => 0],
-            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '1', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
 
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_status', 'value' => '0', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_status', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_time', 'value' => '600', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_time', 'store_id' => 0],

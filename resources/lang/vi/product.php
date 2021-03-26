@@ -125,10 +125,6 @@ return [
         'group'                             => 'Nhóm sản phẩm',
     ],
     'properties'                             => [
-        'physical'                          => 'Vật lý',
-        'download'                          => 'Tải xuống',
-        'only_view'                         => 'Chỉ xem',
-        'service'                           => 'Dịch vụ',
         'download_path'                     => 'Path hoặc url download',
     ],
     'config_manager'                        => [
