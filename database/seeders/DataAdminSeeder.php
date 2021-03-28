@@ -82,11 +82,12 @@ class DataAdminSeeder extends Seeder
             ['id' => 59, 'parent_id' => 9, 'sort' => 7, 'title' => 'lang::admin.menu_titles.api_manager', 'icon' => 'fas fa-plug', 'uri' => '', 'key' => 'API_MANAGER', 'type' => 0],
             ['id' => 60, 'parent_id' => 65, 'sort' => 3, 'title' => 'lang::store_maintain.config_manager.title', 'icon' => 'fas fa-wrench', 'uri' => 'admin::store_maintain', 'key' => null, 'type' => 0],
             ['id' => 61, 'parent_id' => 27, 'sort' => 9, 'title' => 'lang::tax.admin.admin_title', 'icon' => 'far fa-calendar-minus', 'uri' => 'admin::tax', 'key' => null, 'type' => 0],
-            ['id' => 627, 'parent_id' => 27, 'sort' => 6, 'title' => 'lang::weight.admin.title', 'icon' => 'fas fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
+            ['id' => 62, 'parent_id' => 27, 'sort' => 6, 'title' => 'lang::weight.admin.title', 'icon' => 'fas fa-balance-scale', 'uri' => 'admin::weight_unit', 'key' => null, 'type' => 0],
             ['id' => 63, 'parent_id' => 27, 'sort' => 7, 'title' => 'lang::length.admin.title', 'icon' => 'fas fa-minus', 'uri' => 'admin::length_unit', 'key' => null, 'type' => 0],
             ['id' => 65, 'parent_id' => 0, 'sort' => 250, 'title' => 'lang::admin.menu_titles.ADMIN_SHOP_SETTING', 'icon' => 'fas fa-store-alt', 'uri' => '', 'key' => 'ADMIN_SHOP_SETTING', 'type' => 0],
             ['id' => 66, 'parent_id' => 59, 'sort' => 1, 'title' => 'lang::admin.menu_titles.api_config', 'icon' => 'fas fa fa-cog', 'uri' => 'admin::api_connection', 'key' => null, 'type' => 0],
             ['id' => 67, 'parent_id' => 65, 'sort' => 5, 'title' => 'lang::admin.menu_titles.layout', 'icon' => 'far fa-object-group', 'uri' => '', 'key' => null, 'type' => 0],
+            ['id' => 68, 'parent_id' => 27, 'sort' => 5, 'title' => 'lang::custom_field.admin.title', 'icon' => 'fa fa-american-sign-language-interpreting', 'uri' => 'admin::custom_field', 'key' => null, 'type' => 0],
             ]
         );
 
@@ -94,7 +95,7 @@ class DataAdminSeeder extends Seeder
             [
             ['id' => '1', 'name' => 'Auth manager', 'slug' => 'auth.full', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/auth/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '2', 'name' => 'Dashboard', 'slug' => 'dashboard', 'http_uri' => 'GET::'.SC_ADMIN_PREFIX.'', 'created_at' => date('Y-m-d H:i:s')],
-            ['id' => '3', 'name' => 'Base setting', 'slug' => 'base.setting', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*,ANY::'.SC_ADMIN_PREFIX.'/shipping_status/*,ANY::'.SC_ADMIN_PREFIX.'/payment_status/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,ANY::'.SC_ADMIN_PREFIX.'/length_unit/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*', 'created_at' => date('Y-m-d H:i:s')],
+            ['id' => '3', 'name' => 'Base setting', 'slug' => 'base.setting', 'http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/order_status/*,ANY::'.SC_ADMIN_PREFIX.'/shipping_status/*,ANY::'.SC_ADMIN_PREFIX.'/payment_status/*,ANY::'.SC_ADMIN_PREFIX.'/supplier/*,ANY::'.SC_ADMIN_PREFIX.'/brand/*,ANY::'.SC_ADMIN_PREFIX.'/custom_field/*,ANY::'.SC_ADMIN_PREFIX.'/weight_unit/*,ANY::'.SC_ADMIN_PREFIX.'/length_unit/*,ANY::'.SC_ADMIN_PREFIX.'/attribute_group/*,ANY::'.SC_ADMIN_PREFIX.'/tax/*', 'created_at' => date('Y-m-d H:i:s')],
             ['id' => '4', 'name' => 'Store manager', 'slug' => 'store.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/store_info/*,ANY::'.SC_ADMIN_PREFIX.'/store_maintain/*,ANY::'.SC_ADMIN_PREFIX.'/store_config/*,ANY::'.SC_ADMIN_PREFIX.'/store_css/*,ANY::'.SC_ADMIN_PREFIX.'/store_block/*,ANY::'.SC_ADMIN_PREFIX.'/store_link/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '5', 'name' => 'Product manager', 'slug' => 'product.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/product/*,ANY::'.SC_ADMIN_PREFIX.'/product_property/*,ANY::'.SC_ADMIN_PREFIX.'/product_tag/*','created_at' => date('Y-m-d H:i:s')],
             ['id' => '6', 'name' => 'Category manager', 'slug' => 'category.full','http_uri' => 'ANY::'.SC_ADMIN_PREFIX.'/category/*','created_at' => date('Y-m-d H:i:s')],
@@ -184,7 +185,7 @@ class DataAdminSeeder extends Seeder
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'LOG_SLACK_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.LOG_SLACK_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'GOOGLE_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.GOOGLE_CHAT_WEBHOOK_URL', 'store_id' => 0],
             ['group' => 'global', 'code' => 'webhook_config', 'key' => 'CHATWORK_CHAT_WEBHOOK_URL', 'value' => '', 'sort' => '0', 'detail' => 'lang::config.CHATWORK_CHAT_WEBHOOK_URL', 'store_id' => 0],
-            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '0', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
+            ['group' => 'global', 'code' => 'api_config', 'key' => 'api_connection_required', 'value' => '1', 'sort' => '1', 'detail' => 'lang::api_connection.api_connection_required', 'store_id' => 0],
 
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_status', 'value' => '0', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_status', 'store_id' => 0],
             ['group' => 'global', 'code' => 'cache', 'key' => 'cache_time', 'value' => '600', 'sort' => '0', 'detail' => 'lang::cache.config_manager.cache_time', 'store_id' => 0],
