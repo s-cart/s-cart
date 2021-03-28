@@ -1,0 +1,33 @@
+<?php
+return [
+    'id'           => 'ID',
+    'name'         => 'Name',
+    'type'         => 'Type',
+    'code'         => 'Code',
+    'required'     => 'Required',
+    'option'       => 'Option',
+    'default'      => 'Default value',
+    'default_help' => 'Format for "Option" is Radio or Select:<br>{"value1": "Name 1", "value2":"Name 2"}',
+    'status'       => 'Status',
+    'admin'   => [
+        'title'          => 'Custom fields',
+        'create_success' => 'Create new item success!',
+        'edit_success'   => 'Edit item success!',
+        'list'           => 'Custom fields list',
+        'id'             => 'ID',
+        'status'         => 'Status',
+        'action'         => 'Action',
+        'edit'           => 'Edit',
+        'export'         => 'Export',
+        'delete'         => 'Delete',
+        'refresh'        => 'Refresh',
+        'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'sort'           => 'Sort',
+        'search'         => 'Search',
+        'add_new'        => 'Add new',
+        'add_new_title'  => 'Add custom field',
+        'add_new_des'    => 'Create a new custom field',
+
+        'search_place'   => 'Search name',
+    ],
+];

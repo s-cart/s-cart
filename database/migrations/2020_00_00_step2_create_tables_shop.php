@@ -300,7 +300,7 @@ class CreateTablesShop extends Migration
             $table->integer('width')->nullable()->default(0);
             $table->integer('height')->nullable()->default(0);
             $table->tinyInteger('kind')->nullable()->default(0)->comment('0:single, 1:bundle, 2:group')->index();
-            $table->tinyInteger('property')->nullable()->default(0)->comment('0:physical, 1:download, 2:only view, 3: Service')->index();
+            $table->string('property', 50)->nullable()->default('physical')->index();
             $table->string('tax_id', 50)->nullable()->default(0)->comment('0:No-tax, auto: Use tax default')->index();
             $table->tinyInteger('status')->default(0)->index();
             $table->integer('sort')->default(0);
@@ -646,6 +646,27 @@ class CreateTablesShop extends Migration
 
             }
         );
+
+        Schema::create(SC_DB_PREFIX.'shop_custom_field', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type', 50)->index()->comment('product, customer');
+            $table->string('code', 100)->index();
+            $table->string('name', 250);
+            $table->integer('required')->default(0);
+            $table->integer('status')->default(1);
+            $table->string('option', 50)->nullable()->comment('radio, select, input');
+            $table->string('default', 250)->nullable()->comment('{"value1":"name1", "value2":"name2"}');
+            }
+        );
+
+        Schema::create(SC_DB_PREFIX.'shop_custom_field_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('custom_field_id')->index();
+            $table->integer('rel_id')->index();
+            $table->text('text')->nullable();
+            }
+        );
+
     }
 
     /**
@@ -715,6 +736,9 @@ class CreateTablesShop extends Migration
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_store_css');
+        //Custom field
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_custom_field');
+        Schema::dropIfExists(SC_DB_PREFIX.'shop_custom_field_detail');
     }
 
 }
