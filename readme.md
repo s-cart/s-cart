@@ -175,12 +175,16 @@ To recover data:
 
 `php artisan sc:restore --path=abc.sql`
 
-To manually customize the admin page:
+To manually customize the admin page (<code>resources/views/admin + config/admin.php</code>):
 
 `php artisan sc:customize admin`
 
 This command will create new directories `resources/views/admin` and file `config/admin.php`
 After set the value `customize=true` in `config/admin.php` you can modify template admin. 
+
+To manually customize file config validation (<code>config/validation.php</code>):
+
+`php artisan sc:customize validation`
 
 More detail: https://s-cart.org/en/docs/master
 
