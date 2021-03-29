@@ -25,7 +25,7 @@ return [
     'content'                               => 'Content',
     'type'                                  => 'Type',
     'kind'                                  => 'Kind',
-    'property'                              => 'Virtual',
+    'property'                              => 'Product property',
     'cost'                                  => 'Price cost',
     'stock'                                 => 'Stock',
     'stock_status'                          => 'Stock status',
