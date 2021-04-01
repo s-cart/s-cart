@@ -407,7 +407,7 @@ img.new {
   padding: 0px !important;
 }
 .pointer {
-  cursor: pointer: 
+  cursor: pointer;
 }
 .add-to-cart-list {
   padding: 5px 10px !important;
