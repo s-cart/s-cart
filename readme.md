@@ -206,6 +206,10 @@ If you discover a security vulnerability within S-Cart ecommerce, please send an
 - Font-end : http://demo.s-cart.org
 - Back-end: http://demo.s-cart.org/sc_admin   <code>User/pass: test/123456</code>
 
+## Premium version:
+
+- Link : https://s-cart.org/en/premium.html
+
 ## 
 
 VPS SSD $5/mo, gets $100 in credit over 60 days. [DigitalOcean](https://m.do.co/c/84e350ce07c4).
