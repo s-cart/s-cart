@@ -1,6 +1,6 @@
 @php
 /*
-$layout_page = product_list
+$layout_page = shop_product_list
 **Variables:**
 - $subCategory: paginate
 Use paginate: $subCategory->appends(request()->except(['page','_token']))->links()
@@ -140,15 +140,15 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   </div>
   {{-- //Product list --}}
 
-{{-- Render block include view --}}
-@if ($includePathView = config('sc_include_view.product_list', []))
+{{-- Render include view --}}
+@if ($includePathView = config('sc_include_view.'.$layout_page, []) && !empty($layout_page))
 @foreach ($includePathView as $view)
   @if (view()->exists($view))
     @include($view)
   @endif
 @endforeach
 @endif
-{{--// Render block include view --}}
+{{--// Render include view --}}
 
 @endsection
 {{-- //block_main_content_center --}}
@@ -194,14 +194,13 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   });
 </script>
 
-  {{-- Render block include script --}}
-  @if ($includePathScript = config('sc_include_script.product_list', []))
-  @foreach ($includePathScript as $script)
-    @if (view()->exists($script))
-      @include($script)
-    @endif
-  @endforeach
+{{-- Render include script --}}
+@if ($includePathScript = config('sc_include_script.'.$layout_page, []) && !empty($layout_page))
+@foreach ($includePathScript as $script)
+  @if (view()->exists($script))
+    @include($script)
   @endif
-  {{--// Render block include script --}}
-
+@endforeach
+@endif
+{{--// Render include script --}}
 @endpush

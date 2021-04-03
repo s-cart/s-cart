@@ -84,15 +84,15 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
         </div>
       </section>
       
-{{-- Render block include view --}}
-@if ($includePathView = config('sc_include_view.home', []))
+{{-- Render include view --}}
+@if ($includePathView = config('sc_include_view.'.$layout_page, []) && !empty($layout_page))
 @foreach ($includePathView as $view)
   @if (view()->exists($view))
     @include($view)
   @endif
 @endforeach
 @endif
-{{--// Render block include view --}}
+{{--// Render include view --}}
 
 @endsection
 
@@ -127,15 +127,15 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 
 @push('scripts')
 
-{{-- Render block include script --}}
-@if ($includePathScript = config('sc_include_script.home', []))
+{{-- Render include script --}}
+@if ($includePathScript = config('sc_include_script.'.$layout_page, []) && !empty($layout_page))
 @foreach ($includePathScript as $script)
   @if (view()->exists($script))
     @include($script)
   @endif
 @endforeach
 @endif
-{{--// Render block include script --}}
+{{--// Render include script --}}
 
 {{-- Your scripts --}}
 @endpush
