@@ -22,15 +22,15 @@ $layout_page = shop_order_success
 </div>
 
 
-{{-- Render block include view --}}
-@if ($includePathView = config('sc_include_view.shop_order_success', []))
+{{-- Render include view --}}
+@if ($includePathView = config('sc_include_view.'.$layout_page, []) && !empty($layout_page))
 @foreach ($includePathView as $view)
   @if (view()->exists($view))
     @include($view)
   @endif
 @endforeach
 @endif
-{{--// Render block include view --}}
+{{--// Render include view --}}
 
 @endsection
 
@@ -42,13 +42,13 @@ $layout_page = shop_order_success
 @endpush
 
 @push('scripts')
-  {{-- Render block include script --}}
-  @if ($includePathScript = config('sc_include_script.shop_order_success', []))
-  @foreach ($includePathScript as $script)
-    @if (view()->exists($script))
-      @include($script)
-    @endif
-  @endforeach
+{{-- Render include script --}}
+@if ($includePathScript = config('sc_include_script.'.$layout_page, []) && !empty($layout_page))
+@foreach ($includePathScript as $script)
+  @if (view()->exists($script))
+    @include($script)
   @endif
-  {{--// Render block include script --}}
+@endforeach
+@endif
+{{--// Render include script --}}
 @endpush

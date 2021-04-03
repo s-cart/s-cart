@@ -128,15 +128,15 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- //Categories tore --}}
 
 
-{{-- Render block include view --}}
-@if ($includePathView = config('sc_include_view.product_home', []))
+{{-- Render include view --}}
+@if ($includePathView = config('sc_include_view.'.$layout_page, []) && !empty($layout_page))
 @foreach ($includePathView as $view)
   @if (view()->exists($view))
     @include($view)
   @endif
 @endforeach
 @endif
-{{--// Render block include view --}}
+{{--// Render include view --}}
 
 @endsection
 
@@ -177,14 +177,14 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   });
 </script>
 
-  {{-- Render block include script --}}
-  @if ($includePathScript = config('sc_include_script.shop_home', []))
-  @foreach ($includePathScript as $script)
-    @if (view()->exists($script))
-      @include($script)
-    @endif
-  @endforeach
+{{-- Render include script --}}
+@if ($includePathScript = config('sc_include_script.'.$layout_page, []) && !empty($layout_page))
+@foreach ($includePathScript as $script)
+  @if (view()->exists($script))
+    @include($script)
   @endif
-  {{--// Render block include script --}}
+@endforeach
+@endif
+{{--// Render include script --}}
 
 @endpush

@@ -1,6 +1,6 @@
 @php
 /*
-$layout_page = product_detail
+$layout_page = shop_product_detail
 **Variables:**
 - $product: no paginate
 - $productRelation: no paginate
@@ -283,15 +283,15 @@ $layout_page = product_detail
       </section>
       @endif
 
-{{-- Render block include view --}}
-  @if ($includePathView = config('sc_include_view.product_detail', []))
-    @foreach ($includePathView as $view)
-      @if (view()->exists($view))
-        @include($view)
-      @endif
-    @endforeach
+{{-- Render include view --}}
+@if ($includePathView = config('sc_include_view.'.$layout_page, []) && !empty($layout_page))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
   @endif
-{{--// Render block include view --}}
+@endforeach
+@endif
+{{--// Render include view --}}
 
 
 <!--/product-details-->
@@ -338,13 +338,13 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endpush
 
 @push('scripts')
-  {{-- Render block include script --}}
-  @if ($includePathScript = config('sc_include_script.product_detail', []))
-  @foreach ($includePathScript as $script)
-    @if (view()->exists($script))
-      @include($script)
-    @endif
-  @endforeach
+{{-- Render include script --}}
+@if ($includePathScript = config('sc_include_script.'.$layout_page, []) && !empty($layout_page))
+@foreach ($includePathScript as $script)
+  @if (view()->exists($script))
+    @include($script)
   @endif
-  {{--// Render block include script --}}
+@endforeach
+@endif
+{{--// Render include script --}}
 @endpush
