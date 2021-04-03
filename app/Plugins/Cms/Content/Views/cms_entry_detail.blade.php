@@ -10,6 +10,18 @@
         </div>
     </div>
 </section>
+
+
+{{-- Render include view --}}
+@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
+@foreach ($includePathView as $view)
+  @if (view()->exists($view))
+    @include($view)
+  @endif
+@endforeach
+@endif
+{{--// Render include view --}}
+
 @endsection
 
 
@@ -28,3 +40,16 @@
 </section>
 @endsection
 {{-- //breadcrumb --}}
+
+@push('scripts')
+
+{{-- Render include script --}}
+@if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
+@foreach ($includePathScript as $script)
+  @if (view()->exists($script))
+    @include($script)
+  @endif
+@endforeach
+@endif
+{{--// Render include script --}}
+@endpush

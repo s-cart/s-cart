@@ -137,5 +137,4 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 @endif
 {{--// Render include script --}}
 
-{{-- Your scripts --}}
 @endpush
