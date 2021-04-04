@@ -22,12 +22,12 @@ return [
     ],
 
     'page_block' => [
-        'meta' => '<meta> tag',
-        'header' => 'Inside <header>: css, javascript,...',
-        'top' => 'Below <body>',
-        'bottom' => 'Above <footer>',
-        'left' => 'Left Column',
-        'right' => 'Right Column',
-        'banner_top' => 'Banner top',
+        'meta'       => 'Meta - The above <meta> tags </header>',
+        'header'     => 'Header - Above </header>: css, javascript, ...',
+        'top'        => 'Top - Below the <body> tag',
+        'bottom'     => 'Bottom - Above <footer>',
+        'left'       => 'Left - Left column',
+        'right'      => 'Right - Right column',
+        'banner_top' => 'Top banner - Right below <body>',
     ],
 ];
