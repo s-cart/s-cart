@@ -67,6 +67,9 @@ return [
     'price_without_tax'     => 'Giá chưa có thuế',
     'result_item'    => 'Hiển thị <b>:item_from</b>-<b>:item_to</b> của <b>:item_total</b> kết quả</b>',
     'link_useful' => 'Liên kết hứu ích',
+    'flash_stock'      => 'Tổng cộng',
+    'flash_sold'      => 'Đã bán',
+    'flash_title'      => 'Sản phẩm Flash sale',
     'subscribe'          => [
         'manager'           => 'Quản lý theo dõi email',
         'email'             => 'Email',

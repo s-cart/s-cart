@@ -67,6 +67,9 @@ return [
     'price_without_tax'     => 'Price without taxes',
     'result_item'    => 'Showing <b>:item_from</b>-<b>:item_to</b> of <b>:item_total</b> items</b>',
     'link_useful'   => 'Useful Links',
+    'flash_stock'      => 'Available',
+    'flash_sold'      => 'Already Sold',
+    'flash_title'      => 'Flash sale',
     'subscribe'          => [
         'manager'           => 'Subscribe manager',
         'email'             => 'Email',

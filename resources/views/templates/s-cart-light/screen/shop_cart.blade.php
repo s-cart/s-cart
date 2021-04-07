@@ -99,6 +99,7 @@ $layout_page = shop_cart
                                 </td>
 
                                 <td align="right">
+                                    {{sc_currency_render($item->subtotal)}}
                                 </td>
 
                                 <td align="center">
