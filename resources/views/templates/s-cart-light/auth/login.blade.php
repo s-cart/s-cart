@@ -9,7 +9,7 @@
             <h2>{{ trans('account.title_login') }}</h2>
             <form action="{{ sc_route('postLogin') }}" method="post" class="box">
                 {!! csrf_field() !!}
-                <div class="form-group{{ $errors->has('login_email') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="control-label">{{ trans('account.email') }}</label>
                     <input class="is_required validate account_input form-control {{ ($errors->has('email'))?"input-error":"" }}"
                         type="text" name="email" value="{{ old('email') }}">

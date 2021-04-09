@@ -117,4 +117,8 @@ return [
     ],
     'store' => 'Store',
     'view_not_exist' => 'View not exist "<span style=\'color:red\'>:view</span>"',
+    'relation_title' => [
+        'or' => 'OR',
+        'and' => 'AND',
+    ],
 ];
