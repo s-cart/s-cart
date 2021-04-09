@@ -25,6 +25,7 @@ return [
     'password_old_required'   => 'Bạn chưa nhập mật khẩu hiện tại',
     'password_old_notcorrect' => 'Mật khẩu hiện tại chưa đúng',
     'password_forgot'         => 'Quên mật khẩu',
+    'password_remember'       => 'Nhớ mật khẩu',
     'name'                    => 'Tên đầy đủ',
     'email'                   => 'Email',
     'phone'                   => 'Số điện thoại',

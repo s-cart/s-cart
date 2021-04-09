@@ -23,6 +23,7 @@ return [
     'password'                => 'Password',
     'password_confirm'        => 'Confirm password',
     'password_forgot'         => 'Forgot password',
+    'password_remember'       => 'Remember me',
     'password_old_required'   => 'Old password is required!',
     'password_old_notcorrect' => 'Old password not correct!',
     'address1'                => 'Address 1',
