@@ -32,7 +32,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-clipboard-list"></i></span>
                                         </div>
-                                        <input type="text" id="code" name="code" value="{{ old()?old('code'):$discount['code']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="code" name="code" value="{{ old('code', ($discount['code']??'')) }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('code'))
                                             <span class="help-block">
@@ -53,7 +53,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-file-alt"></i></span>
                                         </div>
-                                        <input type="text" id="reward" name="reward" value="{{ old()?old('reward'):$discount['reward']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="reward" name="reward" value="{{ old('reward', ($discount['reward']??'')) }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('reward'))
                                             <span class="help-block">
@@ -88,7 +88,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                        <input type="text" id="data" name="data" value="{{ old()?old('data'):$discount['data']??'' }}" class="form-control" placeholder="" />
+                                        <input type="text" id="data" name="data" value="{{ old('data', ($discount['data']??'')) }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('data'))
                                             <span class="help-block">
@@ -107,7 +107,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         </div>
-                                        <input type="number" id="limit" name="limit" value="{{ old()?old('limit'):$discount['limit']??'1' }}" class="form-control" placeholder="" />
+                                        <input type="number" id="limit" name="limit" value="{{ old('limit', ($discount['limit']??'1')) }}" class="form-control" placeholder="" />
                                     </div>
                                         @if ($errors->has('limit'))
                                             <span class="help-block">
@@ -137,7 +137,7 @@
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
                                         </div>
-                                        <input type="date" id="expires_at" name="expires_at" value="{{ old()?old('expires_at'):$discount['expires_at']??'' }}" class="form-control date_time"  placeholder="" />
+                                        <input type="text" id="expires_at" name="expires_at" value="{{ old('expires_at', ($discount['expires_at']??'')) }}" class="form-control date_time"  placeholder="yyyy-mm-dd" />
                                     </div>
                                         @if ($errors->has('expires_at'))
                                             <span class="help-block">

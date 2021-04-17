@@ -26,9 +26,9 @@ $layout_page = shop_news_detail
 $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
+  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}">
     <div class="material-parallax parallax">
-      <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+      <img src="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
     </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">

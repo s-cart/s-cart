@@ -23,7 +23,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                   <div class="product-body">
                     <div class="product-figure">
                         <a href="{{ $productNew->getUrl() }}">
-                        <img src="{{ asset($productNew->getThumb()) }}" alt="{{ $productNew->name }}"/>
+                        <img src="{{ sc_file($productNew->getThumb()) }}" alt="{{ $productNew->name }}"/>
                         </a>
                     </div>
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
@@ -38,11 +38,11 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                   
                   {{-- Product type --}}
                   @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind != SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                   @elseif($productNew->kind == SC_PRODUCT_BUILD)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                   @elseif($productNew->kind == SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                   @endif
                   {{--// Product type --}}
 
@@ -84,7 +84,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                         <div class="product-body">
                           <div class="product-figure">
                               <a href="{{ $product->getUrl() }}">
-                              <img src="{{ asset($product->getThumb()) }}" alt="{{ $product->name }}"/>
+                              <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
                               </a>
                           </div>
                           <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
@@ -100,11 +100,11 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                         
                         {{-- Product type --}}
                         @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                         @elseif($product->kind == SC_PRODUCT_BUILD)
-                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                         @elseif($product->kind == SC_PRODUCT_GROUP)
-                          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                         @endif
                         {{--// Product type --}}
 
@@ -167,9 +167,9 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 $bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerStore['image'] ?? '') }}">
+  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerStore['image'] ?? '') }}">
     <div class="material-parallax parallax">
-      <img src="{{ asset($bannerStore['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+      <img src="{{ sc_file($bannerStore['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
     </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">

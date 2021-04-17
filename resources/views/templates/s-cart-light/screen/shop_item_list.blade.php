@@ -20,7 +20,7 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
             <div class="col-sm-6 col-lg-4 text-center">
                 <!-- Post Classic-->
                 <article class="post post-classic box-md"><a class="post-classic-figure" href="{{ $item->getUrl() }}">
-                    <img src="{{ asset($item->getThumb()) }}" alt="" width="370" height="239"></a>
+                    <img src="{{ sc_file($item->getThumb()) }}" alt="" width="370" height="239"></a>
                     <h5 class="post-classic-title"><a href="{{ $item->getUrl() }}">{{ $item->name }}</a></h5>
                 </article>
               </div>
@@ -59,9 +59,9 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
+  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}">
     <div class="material-parallax parallax">
-      <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+      <img src="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
     </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">

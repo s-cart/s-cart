@@ -106,6 +106,7 @@ class CreateTablesAdmin extends Migration
             $table->string('code', 50)->index();
             $table->string('key', 50);
             $table->string('value', 200)->nullable();
+            $table->integer('security')->default(0)->nullable();
             $table->integer('store_id')->default(0);
             $table->integer('sort')->default(0);
             $table->string('detail', 300)->nullable();
@@ -115,6 +116,7 @@ class CreateTablesAdmin extends Migration
         Schema::create(SC_DB_PREFIX . 'admin_store', function (Blueprint $table) {
             $table->increments('id');
             $table->string('logo', 255)->nullable();
+            $table->string('icon', 255)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('long_phone', 100)->nullable();
             $table->string('email', 150)->nullable();

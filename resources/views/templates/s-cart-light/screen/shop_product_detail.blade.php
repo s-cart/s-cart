@@ -23,7 +23,7 @@ $layout_page = shop_product_detail
                 <!-- Slick Carousel-->
                 <div class="slick-slider carousel-parent" id="carousel-parent" data-items="1" data-swipe="true" data-child="#child-carousel" data-for="#child-carousel">
                   <div class="item">
-                    <div class="slick-product-figure"><img src="{{ asset($product->getImage()) }}" alt="" width="530" height="480"/>
+                    <div class="slick-product-figure"><img src="{{ sc_file($product->getImage()) }}" alt="" width="530" height="480"/>
                     </div>
                   </div>
                   @if ($product->images->count())
@@ -32,7 +32,7 @@ $layout_page = shop_product_detail
                   @endphp
                   @foreach ($product->images as $key=>$image)
                   <div class="item">
-                    <div class="slick-product-figure"><img src="{{ asset($image->getImage()) }}" alt="" width="530" height="480"/>
+                    <div class="slick-product-figure"><img src="{{ sc_file($image->getImage()) }}" alt="" width="530" height="480"/>
                     </div>
                   </div>
                   @endforeach
@@ -42,12 +42,12 @@ $layout_page = shop_product_detail
                 @if ($countItem > 1)
                 <div class="slick-slider child-carousel slick-nav-1" id="child-carousel" data-arrows="true" data-items="{{ $countItem }}" data-sm-items="{{ $countItem }}" data-md-items="{{ $countItem }}" data-lg-items="{{ $countItem }}" data-xl-items="{{ $countItem }}" data-xxl-items="{{ $countItem }}" data-md-vertical="true" data-for="#carousel-parent">
                     <div class="item">
-                      <div class="slick-product-figure"><img src="{{ asset($product->getImage()) }}" alt="" width="530" height="480"/>
+                      <div class="slick-product-figure"><img src="{{ sc_file($product->getImage()) }}" alt="" width="530" height="480"/>
                       </div>
                     </div>
                     @foreach ($product->images as $key=>$image)
                     <div class="item">
-                      <div class="slick-product-figure"><img src="{{ asset($image->getThumb()) }}" alt="" width="530" height="480"/>
+                      <div class="slick-product-figure"><img src="{{ sc_file($image->getThumb()) }}" alt="" width="530" height="480"/>
                       </div>
                     </div>
                     @endforeach
@@ -244,7 +244,7 @@ $layout_page = shop_product_detail
                     <div class="product-body">
                       <div class="product-figure">
                           <a href="{{ $product_rel->getUrl() }}">
-                          <img src="{{ asset($product_rel->getThumb()) }}" alt="{{ $product_rel->name }}"/>
+                          <img src="{{ sc_file($product_rel->getThumb()) }}" alt="{{ $product_rel->name }}"/>
                           </a>
                       </div>
                       <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
@@ -257,11 +257,11 @@ $layout_page = shop_product_detail
                     </div>
                     
                     @if ($product_rel->price != $product_rel->getFinalPrice() && $product_rel->kind !=SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                     @elseif($product_rel->kind == SC_PRODUCT_BUILD)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                     @elseif($product_rel->kind == SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                     @endif
                     <div class="product-button-wrap">
                       <div class="product-button">
@@ -305,9 +305,9 @@ $layout_page = shop_product_detail
 $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerBreadcrumb['image'] ?? '') }}">
+  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}">
     <div class="material-parallax parallax">
-      <img src="{{ asset($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
+      <img src="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
     </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">

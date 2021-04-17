@@ -54,7 +54,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
           <div class="product-body">
             <div class="product-figure">
                 <a href="{{ $product->getUrl() }}">
-                <img src="{{ asset($product->getThumb()) }}" alt="{{ $product->name }}"/>
+                <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
                 </a>
             </div>
             <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
@@ -76,11 +76,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
           
           @if ($product->price != $product->getFinalPrice() && $product->kind !=
           SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_BUILD)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
           @elseif($product->kind == SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
           @endif
           <div class="product-button-wrap">
             <div class="product-button">
@@ -147,8 +147,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   $bannerImage = $bannerStore['image'] ?? '';
 @endphp
 <section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ asset($bannerImage) }}">
-    <div class="material-parallax parallax"><img src="{{ asset($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
+  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerImage) }}">
+    <div class="material-parallax parallax"><img src="{{ sc_file($bannerImage) }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);"></div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
         <h2 class="breadcrumbs-custom-title">{{ $title ?? '' }}</h2>

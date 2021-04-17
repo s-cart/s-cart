@@ -62,7 +62,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                         @endif
                                         {{-- //end Process attributes --}}
                                         <a href="{{$product->getUrl() }}"><img width="100"
-                                                src="{{asset($product->getImage())}}" alt=""></a>
+                                                src="{{sc_file($product->getImage())}}" alt=""></a>
                                     </td>
                                     <td>{!! $product->showPrice() !!}</td>
                                     <td>{{$item->qty}}</td>
@@ -180,7 +180,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                                     <label class="radio-inline">
                                                         <img title="{{ $paymentMethodData['title'] }}"
                                                             alt="{{ $paymentMethodData['title'] }}"
-                                                            src="{{ asset($paymentMethodData['image']) }}"
+                                                            src="{{ sc_file($paymentMethodData['image']) }}"
                                                             style="width: 120px;">
                                                     </label>
                                                 </div>

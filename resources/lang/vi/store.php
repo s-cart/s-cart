@@ -1,6 +1,7 @@
 <?php
 return [
     'logo'             => 'Logo',
+    'icon'             => 'Icon',
     'title'            => 'Tên website',
     'description'      => 'Mô tả',
     'keyword'          => 'Từ khóa',
@@ -44,6 +45,7 @@ return [
         'value'               => 'Giá trị',
         'config_mode'         => 'Cấu hình mode',
         'config_display'      => 'Cấu hình hiển thị',
+        'config_customize'    => 'Cấu hình tùy chỉnh',
         'status'              => 'Status',
         'action'              => 'Hành động',
         'delete'              => 'Xóa',
