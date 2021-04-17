@@ -89,98 +89,6 @@ class DataShopSeeder extends Seeder
             ]
         );
 
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_category')->insert(
-            [
-                ['product_id' => '1', 'category_id' => '13'],
-                ['product_id' => '2', 'category_id' => '13'],
-                ['product_id' => '1', 'category_id' => '10'],
-                ['product_id' => '1', 'category_id' => '6'],
-                ['product_id' => '3', 'category_id' => '11'],
-                ['product_id' => '4', 'category_id' => '11'],
-                ['product_id' => '5', 'category_id' => '11'],
-                ['product_id' => '6', 'category_id' => '11'],
-                ['product_id' => '7', 'category_id' => '12'],
-                ['product_id' => '8', 'category_id' => '10'],
-                ['product_id' => '9', 'category_id' => '6'],
-                ['product_id' => '10', 'category_id' => '11'],
-                ['product_id' => '11', 'category_id' => '10'],
-                ['product_id' => '12', 'category_id' => '9'],
-                ['product_id' => '13', 'category_id' => '5'],
-                ['product_id' => '14', 'category_id' => '11'],
-                ['product_id' => '15', 'category_id' => '6'],
-                ['product_id' => '16', 'category_id' => '9'],
-                ['product_id' => '17', 'category_id' => '9'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_image')->insert(
-            [
-                ['image' => '/data/product/product-2.png', 'product_id' => '1'],
-                ['image' => '/data/product/product-11.png', 'product_id' => '1'],
-                ['image' => '/data/product/product-8.png', 'product_id' => '11'],
-                ['image' => '/data/product/product-6.png', 'product_id' => '2'],
-                ['image' => '/data/product/product-13.png', 'product_id' => '11'],
-                ['image' => '/data/product/product-12.png', 'product_id' => '5'],
-                ['image' => '/data/product/product-6.png', 'product_id' => '5'],
-                ['image' => '/data/product/product-1.png', 'product_id' => '2'],
-                ['image' => '/data/product/product-15.png', 'product_id' => '2'],
-                ['image' => '/data/product/product-5.png', 'product_id' => '9'],
-                ['image' => '/data/product/product-8.png', 'product_id' => '8'],
-                ['image' => '/data/product/product-2.png', 'product_id' => '7'],
-                ['image' => '/data/product/product-6.png', 'product_id' => '7'],
-                ['image' => '/data/product/product-11.png', 'product_id' => '5'],
-                ['image' => '/data/product/product-13.png', 'product_id' => '4'],
-                ['image' => '/data/product/product-13.png', 'product_id' => '15'],
-                ['image' => '/data/product/product-6.png', 'product_id' => '15'],
-                ['image' => '/data/product/product-12.png', 'product_id' => '17'],
-                ['image' => '/data/product/product-6.png', 'product_id' => '17'],
-                ['image' => '/data/product/product-2.png', 'product_id' => '17'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_attribute')->insert(
-            [
-                ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0', 'add_price' => '50'],
-                ['name' => 'White', 'attribute_group_id' => '1', 'product_id' => '17', 'sort' => '0', 'add_price' => '0'],
-                ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0', 'add_price' => '20'],
-                ['name' => 'XL', 'attribute_group_id' => '2', 'product_id' => '17', 'sort' => '0', 'add_price' => '30'],
-                ['name' => 'Blue', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0', 'add_price' => '150'],
-                ['name' => 'Red', 'attribute_group_id' => '1', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
-                ['name' => 'S', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
-                ['name' => 'M', 'attribute_group_id' => '2', 'product_id' => '10', 'sort' => '0', 'add_price' => '0'],
-            ]
-        );
-
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_property')->insert(
-            [
-                ['id' => '1', 'code' => 'physical', 'name' => 'Product physical'],
-                ['id' => '2', 'code' => 'download', 'name' => 'Product download']
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_build')->insert(
-            [
-                ['build_id' => '15', 'product_id' => '6', 'quantity' => '1'],
-                ['build_id' => '15', 'product_id' => '7', 'quantity' => '2'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_group')->insert(
-            [
-                ['group_id' => '16', 'product_id' => '1'],
-                ['group_id' => '16', 'product_id' => '2'],
-            ]
-        );
-
-        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_product_promotion')->insert(
-            [
-                ['product_id' => '1', 'price_promotion' => '5000'],
-                ['product_id' => '2', 'price_promotion' => '3000'],
-                ['product_id' => '13', 'price_promotion' => '4000'],
-                ['product_id' => '11', 'price_promotion' => '600'],
-            ]
-        );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_attribute_group')->insert(
             [
                 ['name' => 'Color', 'status' => '1', 'sort' => '1', 'type' => 'radio'],
@@ -548,5 +456,98 @@ class DataShopSeeder extends Seeder
                 ['id' => '4', 'name' => 'in', 'description' => 'Inch'],
             ]
         );
+
+
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category')->insert(
+            [
+                ['id' => '1', 'alias'=> 'electronics', 'image' => '/data/category/img-40.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '2', 'alias'=> 'clothing-wears', 'image' => '/data/category/img-44.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '3', 'alias'=> 'mobile', 'image' => '/data/category/img-42.jpg', 'parent' => '1', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '4', 'alias'=> 'accessaries-extras', 'image' => '/data/category/img-18.jpg', 'parent' => '0', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '5', 'alias'=> 'computers', 'image' => '/data/category/img-14.jpg', 'parent' => '1', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '6', 'alias'=> 'tablets', 'image' => '/data/category/img-14.jpg', 'parent' => '1', 'top' => '0', 'sort' => '0', 'status' => '1'],
+                ['id' => '7', 'alias'=> 'appliances', 'image' => '/data/category/img-40.jpg', 'parent' => '1', 'top' => '0', 'sort' => '0', 'status' => '1'],
+                ['id' => '8', 'alias'=> 'men-clothing', 'image' => '/data/category/img-14.jpg', 'parent' => '2', 'top' => '0', 'sort' => '0', 'status' => '1'],
+                ['id' => '9', 'alias'=> 'women-clothing', 'image' => '/data/category/img-18.jpg', 'parent' => '2', 'top' => '1', 'sort' => '0', 'status' => '1'],
+                ['id' => '10', 'alias'=> 'kid-wear', 'image' => '/data/category/img-14.jpg', 'parent' => '2', 'top' => '0', 'sort' => '0', 'status' => '1'],
+                ['id' => '11', 'alias'=> 'mobile-accessaries', 'image' => '/data/category/img-40.jpg', 'parent' => '4', 'top' => '0', 'sort' => '0', 'status' => '1'],
+                ['id' => '12', 'alias'=> 'women-accessaries', 'image' => '/data/category/img-42.jpg', 'parent' => '4', 'top' => '0', 'sort' => '3', 'status' => '1'],
+                ['id' => '13', 'alias'=> 'men-accessaries', 'image' => '/data/category/img-40.jpg', 'parent' => '4', 'top' => '0', 'sort' => '3', 'status' => '1'],
+            ]
+        );
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_category_description')->insert(
+            [
+                ['category_id' => '1', 'lang' => 'en', 'title' => 'Electronics', 'keyword' => '', 'description' => ''],
+                ['category_id' => '2', 'lang' => 'en', 'title' => 'Clothing & Wears', 'keyword' => '', 'description' => ''],
+                ['category_id' => '3', 'lang' => 'en', 'title' => 'Mobile', 'keyword' => '', 'description' => ''],
+                ['category_id' => '4', 'lang' => 'en', 'title' => 'Accessaries & Extras', 'keyword' => '', 'description' => ''],
+                ['category_id' => '5', 'lang' => 'en', 'title' => 'Computers', 'keyword' => '', 'description' => ''],
+                ['category_id' => '6', 'lang' => 'en', 'title' => 'Tablets', 'keyword' => '', 'description' => ''],
+                ['category_id' => '7', 'lang' => 'en', 'title' => 'Appliances', 'keyword' => '', 'description' => ''],
+                ['category_id' => '8', 'lang' => 'en', 'title' => 'Men\'s Clothing', 'keyword' => '', 'description' => ''],
+                ['category_id' => '9', 'lang' => 'en', 'title' => 'Women\'s Clothing', 'keyword' => '', 'description' => ''],
+                ['category_id' => '10', 'lang' => 'en', 'title' => 'Kid\'s Wear', 'keyword' => '', 'description' => ''],
+                ['category_id' => '11', 'lang' => 'en', 'title' => 'Mobile Accessaries', 'keyword' => '', 'description' => ''],
+                ['category_id' => '12', 'lang' => 'en', 'title' => 'Women\'s Accessaries', 'keyword' => '', 'description' => ''],
+                ['category_id' => '13', 'lang' => 'en', 'title' => 'Men\'s Accessaries', 'keyword' => '', 'description' => ''],
+
+                ['category_id' => '1', 'lang' => 'vi', 'title' => 'Thiết bị điện tử', 'keyword' => '', 'description' => ''],
+                ['category_id' => '2', 'lang' => 'vi', 'title' => 'Quần áo', 'keyword' => '', 'description' => ''],
+                ['category_id' => '3', 'lang' => 'vi', 'title' => 'Điện thoại', 'keyword' => '', 'description' => ''],
+                ['category_id' => '4', 'lang' => 'vi', 'title' => 'Phụ kiện ', 'keyword' => '', 'description' => ''],
+                ['category_id' => '5', 'lang' => 'vi', 'title' => 'Máy tính', 'keyword' => '', 'description' => ''],
+                ['category_id' => '6', 'lang' => 'vi', 'title' => 'Máy tính bảng', 'keyword' => '', 'description' => ''],
+                ['category_id' => '7', 'lang' => 'vi', 'title' => 'Thiết bị', 'keyword' => '', 'description' => ''],
+                ['category_id' => '8', 'lang' => 'vi', 'title' => 'Quần áo nam', 'keyword' => '', 'description' => ''],
+                ['category_id' => '9', 'lang' => 'vi', 'title' => 'Quần áo nữ', 'keyword' => '', 'description' => ''],
+                ['category_id' => '10', 'lang' => 'vi', 'title' => 'Đồ trẻ em', 'keyword' => '', 'description' => ''],
+                ['category_id' => '11', 'lang' => 'vi', 'title' => 'Phụ kiện điện thoại', 'keyword' => '', 'description' => ''],
+                ['category_id' => '12', 'lang' => 'vi', 'title' => 'Phụ kiện nữ', 'keyword' => '', 'description' => ''],
+                ['category_id' => '13', 'lang' => 'vi', 'title' => 'Phụ kiện nam', 'keyword' => '', 'description' => ''],
+            ]
+        );
+
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news')->insert(
+            [
+                ['id' => 1, 'alias' =>  'demo-alias-blog-1', 'image' => '/data/content/blog-1.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 2, 'alias' =>  'demo-alias-blog-2', 'image' => '/data/content/blog-2.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 3, 'alias' =>  'demo-alias-blog-3', 'image' => '/data/content/blog-3.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 4, 'alias' =>  'demo-alias-blog-4', 'image' => '/data/content/blog-4.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 5, 'alias' =>  'demo-alias-blog-5', 'image' => '/data/content/blog-5.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+                ['id' => 6, 'alias' =>  'demo-alias-blog-6', 'image' => '/data/content/blog-6.jpg',  'sort' => 0, 'status' => '1', 'created_at' => date("Y-m-d"), 'store_id' => 1],
+            ]
+        );
+
+        DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX.'shop_news_description')->insert(
+            [
+                ['news_id' => '1', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 1', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '2', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 2', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '3', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 3', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '4', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 4', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '5', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 5', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '6', 'lang' => 'en', 'title' => 'Easy Polo Black Edition 6', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '1', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 1', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '2', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 2', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '3', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 3', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '4', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 4', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '5', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 5', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+                ['news_id' => '6', 'lang' => 'vi', 'title' => 'Easy Polo Black Edition 6', 'keyword' => '', 'description' => '', 'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 262px; height: 262px; float: right; margin: 10px;" /></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'],
+            ]
+        );
+
+
+
     }
 }
