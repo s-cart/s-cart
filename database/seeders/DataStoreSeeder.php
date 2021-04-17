@@ -73,7 +73,7 @@ class DataStoreSeeder extends Seeder
 
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_NAME', 'value' => 'S-Cart System', 'sort' => '0', 'detail' => 'lang::env.ADMIN_NAME', 'store_id' => $storeId],
             ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_TITLE', 'value' => 'S-Cart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_TITLE', 'store_id' => $storeId],
-            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_LOGO', 'value' => 'S-Cart Admin', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => $storeId],
+            ['group' => '', 'code' => 'admin_config', 'key' => 'ADMIN_LOGO', 'value' => 'S-Cart <span class="brand-text font-weight-light">Admin</span>', 'sort' => '0', 'detail' => 'lang::env.ADMIN_LOGO', 'store_id' => $storeId],
 
 
             ['group' => '', 'code' => 'display_config', 'key' => 'product_top', 'value' => '8', 'sort' => '0', 'detail' => 'lang::admin.product_top', 'store_id' => $storeId],

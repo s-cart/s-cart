@@ -6,7 +6,7 @@
     <meta name="description" content="{{ $description??sc_store('description') }}">
     <meta name="keyword" content="{{ $keyword??sc_store('keyword') }}">
     <title>{{ trans('front.maintenance') }}</title>
-    <meta property="og:image" content="{{ !empty($og_image)?asset($og_image):asset('images/org.jpg') }}" />
+    <meta property="og:image" content="{{ !empty($og_image)?sc_file($og_image):sc_file('images/org.jpg') }}" />
     <meta property="og:url" content="{{ \Request::fullUrl() }}" />
     <meta property="og:type" content="Website" />
     <meta property="og:title" content="{{ $title??sc_store('title') }}" />

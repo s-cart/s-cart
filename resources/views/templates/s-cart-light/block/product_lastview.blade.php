@@ -29,7 +29,7 @@ if ($lastView && count($lastView)) {
             <article class="post post-minimal">
               <div class="unit unit-spacing-sm flex-column flex-lg-row align-items-lg-center">
                 <div class="unit-left"><a class="post-minimal-figure" href="{{ $productLastView->getUrl() }}">
-                    <img src="{{ asset($productLastView->getThumb()) }}" alt="" width="106" height="104"></a></div>
+                    <img src="{{ sc_file($productLastView->getThumb()) }}" alt="" width="106" height="104"></a></div>
                 <div class="unit-body">
                   <p class="post-minimal-title"><a href="{{ $productLastView->getUrl() }}">{{ $productLastView->name}}</a></p>
                   <div class="post-minimal-time">

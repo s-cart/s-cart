@@ -13,7 +13,7 @@ $productPromotion = $modelProduct->getProductPromotion()->setRandom()->setLimit(
         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
           <div class="unit-left">
             <a class="post-minimal-figure" href="{{ $product->getUrl() }}">
-            <img src="{{ asset($product->getThumb()) }}" alt="" width="106" height="104">
+            <img src="{{ sc_file($product->getThumb()) }}" alt="" width="106" height="104">
             </a>
           </div>
           <div class="unit-body">

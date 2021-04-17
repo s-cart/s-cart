@@ -39,7 +39,7 @@ $layout_page = shop_compare
                                             {{ $product->name }}({{ $product->sku }})
                                             <hr>
                                             <a href="{{ $product->getUrl() }}"><img width="100"
-                                                    src="{{asset($product->getImage())}}" alt=""></a>
+                                                    src="{{sc_file($product->getImage())}}" alt=""></a>
                                             <hr>
                                             {!! $product->showPrice() !!}
                                             <hr>

@@ -11,8 +11,8 @@
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
                   <div class="rd-navbar-brand">
-                    <!--Brand--><a class="brand" href="{{ sc_route('home') }}"><img class="brand-logo-dark" src="{{ asset(sc_store('logo')) }}" alt="" width="105" height="44"/>
-                      <img class="brand-logo-light" src="{{ asset(sc_store('logo')) }}" alt="" width="106" height="44"/></a>
+                    <!--Brand--><a class="brand" href="{{ sc_route('home') }}"><img class="brand-logo-dark" src="{{ sc_file(sc_store('logo')) }}" alt="" width="105" height="44"/>
+                      <img class="brand-logo-light" src="{{ sc_file(sc_store('logo')) }}" alt="" width="106" height="44"/></a>
                   </div>
                 </div>
                 <div class="rd-navbar-nav-wrap">
@@ -97,13 +97,13 @@
                     @if (count($sc_languages)>1)
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="#">
-                            <img src="{{ asset($sc_languages[app()->getLocale()]['icon']) }}" style="height: 25px;"> <i class="fas fa-caret-down"></i>
+                            <img src="{{ sc_file($sc_languages[app()->getLocale()]['icon']) }}" style="height: 25px;"> <i class="fas fa-caret-down"></i>
                         </a>
                         <ul class="rd-menu rd-navbar-dropdown">
                             @foreach ($sc_languages as $key => $language)
                             <li class="rd-dropdown-item">
                                 <a class="rd-dropdown-link" href="{{ sc_route('locale', ['code' => $key]) }}">
-                                    <img src="{{ asset($language['icon']) }}" style="height: 25px;"> {{ $language['name'] }}
+                                    <img src="{{ sc_file($language['icon']) }}" style="height: 25px;"> {{ $language['name'] }}
                                 </a>
                             </li>
                             @endforeach

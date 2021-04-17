@@ -7,7 +7,7 @@
   });
 </script>
 
-<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+<script src="{{ sc_file('js/sweetalert2.all.min.js') }}"></script>
 <script>
       function alertJs(type = 'error', msg = '') {
       const Toast = Swal.mixin({

@@ -175,7 +175,7 @@
                                 @endif
                                 <div id="preview_image" class="img_holder">
                                     @if (old('image',$category['image']??''))
-                                    <img src="{{ asset(old('image',$category['image']??'')) }}">
+                                    <img src="{{ sc_file(old('image',$category['image']??'')) }}">
                                     @endif
 
                                 </div>

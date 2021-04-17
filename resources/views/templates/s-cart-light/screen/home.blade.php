@@ -27,7 +27,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                     {{-- Product image --}}
                     <div class="product-figure">
                         <a href="{{ $productNew->getUrl() }}">
-                        <img src="{{ asset($productNew->getThumb()) }}" alt="{{ $productNew->name }}"/>
+                        <img src="{{ sc_file($productNew->getThumb()) }}" alt="{{ $productNew->name }}"/>
                         </a>
                     </div>
                     {{--// Product image --}}
@@ -54,11 +54,11 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
                   
                   {{-- Product type --}}
                   @if ($productNew->price != $productNew->getFinalPrice() && $productNew->kind !=SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
                     @elseif($productNew->kind == SC_PRODUCT_BUILD)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
                     @elseif($productNew->kind == SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ asset($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
+                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
                   @endif
                   {{-- //Product type --}}
 
@@ -107,7 +107,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
     <div class="owl-carousel owl-style-7" data-items="1" data-sm-items="2" data-xl-items="3" data-xxl-items="4" data-nav="true" data-dots="true" data-margin="30" data-autoplay="true">
       @foreach ($news as $blog)
       <!-- Post Creative-->
-      <article class="post post-creative"><a class="post-creative-figure" href="{{ $blog->getUrl() }}"><img src="{{ asset($blog->getThumb()) }}" alt="" width="420" height="368"/></a>
+      <article class="post post-creative"><a class="post-creative-figure" href="{{ $blog->getUrl() }}"><img src="{{ sc_file($blog->getThumb()) }}" alt="" width="420" height="368"/></a>
         <div class="post-creative-content">
           <h5 class="post-creative-title"><a href="{{ $blog->getUrl() }}">{{ $blog->title }}</a></h5>
           <div class="post-creative-time">

@@ -9,7 +9,7 @@
           <div class="col-sm-6 col-lg-4">
               <!-- Post Classic-->
               <article class="post post-classic box-md"><a class="post-classic-figure" href="{{ $entryDetail->getUrl() }}">
-                  <img src="{{ asset($entryDetail->getThumb()) }}" alt="" width="370" height="239"></a>
+                  <img src="{{ sc_file($entryDetail->getThumb()) }}" alt="" width="370" height="239"></a>
                 <div class="post-classic-content">
                   <h5 class="post-classic-title"><a href="{{ $entryDetail->getUrl() }}">{{ $entryDetail->title }}</a></h5>
                   <p class="post-classic-text">

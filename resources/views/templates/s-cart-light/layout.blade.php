@@ -13,8 +13,8 @@
     <meta name="description" content="{{ $description??sc_store('description') }}">
     <meta name="keyword" content="{{ $keyword??sc_store('keyword') }}">
     <title>{{$title??sc_store('title')}}</title>
-    <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/png" sizes="16x16">
-    <meta property="og:image" content="{{ !empty($og_image)?asset($og_image):asset('images/org.jpg') }}" />
+    <link rel="icon" href="{{ sc_file(sc_store('icon', null, 'images/icon.png')) }}" type="image/png" sizes="16x16">
+    <meta property="og:image" content="{{ !empty($og_image)?sc_file($og_image):sc_file('images/org.jpg') }}" />
     <meta property="og:url" content="{{ \Request::fullUrl() }}" />
     <meta property="og:type" content="Website" />
     <meta property="og:title" content="{{ $title??sc_store('title') }}" />
@@ -42,9 +42,9 @@
     <!-- css default for item s-cart -->
     <!--//end css defaut -->
 
-    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/fonts.css')}}">
-    <link rel="stylesheet" href="{{ asset($sc_templateFile.'/css/style.css')}}">
+    <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/fonts.css')}}">
+    <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/style.css')}}">
     <style>
         {!! sc_store_css() !!}
     </style>
@@ -54,7 +54,7 @@
 <body>
     <div class="ie-panel">
         <a href="http://windows.microsoft.com/en-US/internet-explorer/">
-            <img src="{{ asset($sc_templateFile.'/images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
+            <img src="{{ sc_file($sc_templateFile.'/images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
         </a>
     </div>
 
@@ -107,8 +107,8 @@
         <div class="sc-overlay"><i class="fa fa-spinner fa-pulse fa-5x fa-fw "></i></div>
     </div>
 
-    <script src="{{ asset($sc_templateFile.'/js/core.min.js')}}"></script>
-    <script src="{{ asset($sc_templateFile.'/js/script.js')}}"></script>
+    <script src="{{ sc_file($sc_templateFile.'/js/core.min.js')}}"></script>
+    <script src="{{ sc_file($sc_templateFile.'/js/script.js')}}"></script>
     <!-- js default for item s-cart -->
     @include($sc_templatePath.'.common.js')
     <!--//end js defaut -->

@@ -45,6 +45,7 @@ return [
         'value'               => 'Value',
         'config_mode'         => 'Store mode',
         'config_display'      => 'Store display',
+        'config_customize'    => 'Config customize',
         'status'              => 'Status',
         'action'              => 'Action',
         'edit'                => 'Edit',

@@ -33,7 +33,7 @@
 
 @push('styles')
 <!-- Ediable -->
-<link rel="stylesheet" href="{{ asset('admin/plugin/bootstrap-editable.css')}}">
+<link rel="stylesheet" href="{{ sc_file('admin/plugin/bootstrap-editable.css')}}">
 <style type="text/css">
   #maintain_content img{
     max-width: 100%;
@@ -44,7 +44,7 @@
 @if (empty($dataNotFound))
 @push('scripts')
 <!-- Ediable -->
-<script src="{{ asset('admin/plugin/bootstrap-editable.min.js')}}"></script>
+<script src="{{ sc_file('admin/plugin/bootstrap-editable.min.js')}}"></script>
 
 <script type="text/javascript">
 
@@ -83,7 +83,7 @@ $(document).ready(function() {
   </script>
 
 {{-- //Pjax --}}
-<script src="{{ asset('admin/plugin/jquery.pjax.js')}}"></script>
+<script src="{{ sc_file('admin/plugin/jquery.pjax.js')}}"></script>
 
 @endpush
 @endif

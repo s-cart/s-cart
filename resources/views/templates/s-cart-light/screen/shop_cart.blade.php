@@ -59,7 +59,7 @@ $layout_page = shop_cart
                                 <td>{{ $product->sku }}</td>
                                 <td>
                                     <a href="{{$product->getUrl() }}" class="row_cart-name">
-                                        <img width="100" src="{{asset($product->getImage())}}"
+                                        <img width="100" src="{{sc_file($product->getImage())}}"
                                             alt="{{ $product->name }}">
                                         <span>
                                             {{ $product->name }}<br />
@@ -453,7 +453,7 @@ $layout_page = shop_cart
                                                             <label class="radio-inline" for="payment-{{ $payment['key'] }}">
                                                                 <img title="{{ $payment['title'] }}"
                                                                     alt="{{ $payment['title'] }}"
-                                                                    src="{{ asset($payment['image']) }}">
+                                                                    src="{{ sc_file($payment['image']) }}">
                                                             </label>
                                                     </label>
                                                 </div>
