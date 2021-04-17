@@ -192,7 +192,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
     
     $requirements = [
         'ext' => [
-            'PHP >= 7.3'                 => version_compare(PHP_VERSION, '7.3', '>='),
+            'PHP >= 7.4'                 => version_compare(PHP_VERSION, '7.4', '>='),
             'BCMath PHP Extension'         => extension_loaded('bcmath'),
             'Ctype PHP Extension'          => extension_loaded('ctype'),
             'JSON PHP Extension'           => extension_loaded('json'),
