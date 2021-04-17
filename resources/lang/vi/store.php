@@ -1,6 +1,7 @@
 <?php
 return [
     'logo'             => 'Logo',
+    'icon'             => 'Icon',
     'title'            => 'Tên website',
     'description'      => 'Mô tả',
     'keyword'          => 'Từ khóa',

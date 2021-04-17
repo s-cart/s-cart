@@ -1,6 +1,7 @@
 <?php
 return [
     'logo'             => 'Logo',
+    'icon'             => 'Icon',
     'title'            => 'Title',
     'description'      => 'Description',
     'keyword'          => 'Keyword',
