@@ -14,7 +14,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
       <!-- New Products-->
       <div class="col-lg-8 col-xl-9">
         <div class="container">
-          <h2 class="wow fadeScale">{{ trans('front.products_new') }}</h2>
+          <h2 class="wow fadeScale">{{ sc_language_render('front.products_new') }}</h2>
           <div class="row row-30 row-lg-50">
             @foreach ($productsNew as $key => $productNew)
             <div class="col-sm-6 col-md-4">
@@ -29,7 +29,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
                     {{-- Button add to cart --}}
                     @if ($productNew->allowSale())
-                    <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                    <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('cart.add_to_cart')}}</a>
                     @endif
                     {{--// Button add to cart --}}
 
@@ -91,7 +91,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
                           {{-- Button add to cart --}}
                           @if ($product->allowSale())
-                          <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                          <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('cart.add_to_cart')}}</a>
                           @endif
                           {{--// Button add to cart --}}
 
@@ -150,7 +150,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
   {{-- Categories tore --}}
   @if (function_exists('sc_vendor_get_categories_front') &&  count(sc_vendor_get_categories_front($storeId)))
   <div class="aside-item col-sm-6 col-md-5 col-lg-12">
-    <h6 class="aside-title">{{ trans('front.categories_store') }}</h6>
+    <h6 class="aside-title">{{ sc_language_render('front.categories_store') }}</h6>
     <ul class="list-shop-filter">
       @foreach (sc_vendor_get_categories_front($storeId) as $category)
       <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
@@ -180,7 +180,7 @@ $bannerStore = $modelBanner->start()->getBannerStore()->setStore($storeId)->getD
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
         <li class="active">{{ sc_store('title', $storeId) }}</li>
       </ul>
     </div>

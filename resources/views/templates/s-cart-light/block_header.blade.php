@@ -18,13 +18,13 @@
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ trans('front.shop') }}</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ sc_language_render('front.shop') }}</a></li>
                     <li class="rd-nav-item">
-                        <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ trans('front.blog') }}</a>
+                        <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ sc_language_render('front.blog') }}</a>
                     </li>
                     @if (!empty(sc_config('Content')) && config('app.storeId') == SC_ID_ROOT)
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#">{{ trans('front.cms_category') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#">{{ sc_language_render('front.cms_category') }}</a>
                         @php
                         $nameSpace = sc_get_plugin_namespace('Cms','Content').'\Models\CmsCategory';
                         $cmsCategories = (new $nameSpace)->getCategoryRoot()->getData();
@@ -47,20 +47,20 @@
                     @endif
 
                     @guest
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('front.account') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ sc_language_render('front.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ sc_route('login') }}"><i class="fa fa-user"></i> {{ trans('front.login') }}</a>
+                                <a class="rd-dropdown-link" href="{{ sc_route('login') }}"><i class="fa fa-user"></i> {{ sc_language_render('front.login') }}</a>
                             </li>
 
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ sc_language_render('front.wishlist') }} 
                                     <span class="count sc-wishlist"
                                     id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span>
                                 </a>
                             </li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ sc_language_render('front.compare') }} 
                                     <span class="count sc-compare"
                                     id="shopping-compare">{{ Cart::instance('compare')->count() }}</span>
                                 </a>
@@ -69,19 +69,19 @@
                     </li>
 
                     @else
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ trans('account.my_profile') }}</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ sc_language_render('account.my_profile') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('customer.index') }}"><i class="fa fa-user"></i> {{ trans('front.my_profile') }}</a></li>
+                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('customer.index') }}"><i class="fa fa-user"></i> {{ sc_language_render('front.my_profile') }}</a></li>
                             <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ sc_route('logout') }}" rel="nofollow" onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ trans('front.logout') }}</a></li>
+                               document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ sc_language_render('front.logout') }}</a></li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ trans('front.wishlist') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('wishlist') }}"><i class="fas fa-heart"></i> {{ sc_language_render('front.wishlist') }} 
                                     <span class="count sc-wishlist"
                                     id="shopping-wishlist">{{ Cart::instance('wishlist')->count() }}</span>
                                 </a>
                             </li>
                             <li class="rd-dropdown-item">
-                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ trans('front.compare') }} 
+                                <a class="rd-dropdown-link" href="{{ sc_route('compare') }}"><i class="fa fa-exchange"></i> {{ sc_language_render('front.compare') }} 
                                     <span class="count sc-compare"
                                     id="shopping-compare">{{ Cart::instance('compare')->count() }}</span>
                                 </a>
@@ -137,7 +137,7 @@
                     <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
                     <form class="rd-search" action="{{ sc_route('search') }}"  method="GET">
                       <div class="form-wrap">
-                        <input class="rd-navbar-search-form-input form-input"  type="text" name="keyword"  placeholder="{{ trans('front.search_form.keyword') }}"/>
+                        <input class="rd-navbar-search-form-input form-input"  type="text" name="keyword"  placeholder="{{ sc_language_render('search.placeholder') }}"/>
                         <button class="rd-search-form-submit" type="submit"></button>
                       </div>
                     </form>
@@ -150,7 +150,7 @@
                     </button>
                     </a>
                   </div>
-                  <a title="{{ trans('front.cart_title') }}" style="margin-top:10px;" class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2" href="{{ sc_route('cart') }}">
+                  <a title="{{ sc_language_render('cart.title') }}" style="margin-top:10px;" class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2" href="{{ sc_route('cart') }}">
                     <span class="count sc-cart">{{ Cart::instance('default')->count() }}</span>
                  </a>
                 </div>

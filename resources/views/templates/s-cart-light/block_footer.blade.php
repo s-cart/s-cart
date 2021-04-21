@@ -23,24 +23,24 @@
                 </div>
               </div>
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
-                <h4 class="footer-classic-title">{{ trans('front.about') }}</h4>
+                <h4 class="footer-classic-title">{{ sc_language_render('about.title') }}</h4>
                 <ul class="contacts-creative">
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                      <div class="unit-body"><a href="#">{{ trans('front.shop_info.address') }}: {{ sc_store('address') }}</a></div>
+                      <div class="unit-body"><a href="#">{{ sc_language_render('store.address') }}: {{ sc_store('address') }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a href="tel:#">{{ trans('front.shop_info.hotline') }}: {{ sc_store('long_phone') }}</a></div>
+                      <div class="unit-body"><a href="tel:#">{{ sc_language_render('store.hotline') }}: {{ sc_store('long_phone') }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
-                      <div class="unit-body"><a href="mailto:#{{ sc_store('email') }}">{{ trans('front.shop_info.email') }}: {{ sc_store('email') }}</a></div>
+                      <div class="unit-body"><a href="mailto:#{{ sc_store('email') }}">{{ sc_language_render('store.email') }}: {{ sc_store('email') }}</a></div>
                     </div>
                   </li>
                   <li>
@@ -49,10 +49,10 @@
                         @csrf
                           <div class="form-wrap">
                             <input class="form-input" id="subscribe-form-2-email" type="email" name="subscribe_email" required/>
-                            <label class="form-label" for="subscribe-form-2-email">{{ trans('front.subscribe.subscribe_email') }}</label>
+                            <label class="form-label" for="subscribe-form-2-email">{{ sc_language_render('subscribe.email') }}</label>
                           </div>
                           <div class="form-button">
-                            <button class="button button-icon-2 button-zakaria button-primary" type="submit" title="{{ trans('front.subscribe.title') }}">
+                            <button class="button button-icon-2 button-zakaria button-primary" type="submit" title="{{ sc_language_render('subscribe.title') }}">
                               <span class="fl-bigmug-line-paper122"></span>
                             </button>
                           </div>
@@ -61,7 +61,7 @@
                 </ul>
               </div>
               <div class="col-lg-4 wow fadeInRight" data-wow-delay=".2s">
-                <h4 class="footer-classic-title"> {{ trans('front.my_account') }}</h4>
+                <h4 class="footer-classic-title"> {{ sc_language_render('front.my_profile') }}</h4>
                 <!-- RD Mailform-->
                 <ul class="contacts-creative">
                     @if (!empty($sc_layoutsUrl['footer']))

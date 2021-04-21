@@ -26,7 +26,7 @@ $layout_page = shop_profile
                         @if (sc_config('customer_lastname'))
                         <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
                             <label for="first_name"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.first_name') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.first_name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control" name="first_name" required
@@ -40,7 +40,7 @@ $layout_page = shop_profile
                         </div>
                         <div class="form-group row {{ $errors->has('last_name') ? ' has-error' : '' }}">
                             <label for="last_name"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.last_name') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.last_name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="last_name" type="text" class="form-control" name="last_name" required
@@ -55,7 +55,7 @@ $layout_page = shop_profile
                         @else
                         <div class="form-group row {{ $errors->has('first_name') ? ' has-error' : '' }}">
                             <label for="first_name"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.name') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control" name="first_name" required
@@ -73,7 +73,7 @@ $layout_page = shop_profile
                         @if (sc_config('customer_phone'))
                         <div class="form-group row {{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.phone') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.phone') }}</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control" name="phone" required
@@ -90,7 +90,7 @@ $layout_page = shop_profile
                         @if (sc_config('customer_postcode'))
                         <div class="form-group row {{ $errors->has('postcode') ? ' has-error' : '' }}">
                             <label for="postcode"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.postcode') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.postcode') }}</label>
 
                             <div class="col-md-6">
                                 <input id="postcode" type="text" class="form-control" name="postcode" required
@@ -107,7 +107,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
                             <label for="address1"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.address1') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.address1') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address1" type="text" class="form-control" name="address1" required
@@ -124,7 +124,7 @@ $layout_page = shop_profile
                         @if (sc_config('customer_address2'))
                         <div class="form-group row {{ $errors->has('address2') ? ' has-error' : '' }}">
                             <label for="address2"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.address2') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.address2') }}</label>
                             <div class="col-md-6">
                                 <input id="address2" type="text" class="form-control" name="address2" required
                                     value="{{ (old('address2'))?old('address2'):$address['address2']}}">
@@ -140,7 +140,7 @@ $layout_page = shop_profile
                         @if (sc_config('customer_address3'))
                         <div class="form-group row {{ $errors->has('address3') ? ' has-error' : '' }}">
                             <label for="address3"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.address3') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.address3') }}</label>
                             <div class="col-md-6">
                                 <input id="address3" type="text" class="form-control" name="address3" required
                                     value="{{ (old('address3'))?old('address3'):$address['address3']}}">
@@ -161,10 +161,10 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.country') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.country') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control country" style="width: 100%;" name="country">
-                                    <option>__{{ trans('account.country') }}__</option>
+                                    <option>__{{ sc_language_render('account.country') }}__</option>
                                     @foreach ($countries as $k => $v)
                                     <option value="{{ $k }}" {{ ($country ==$k) ? 'selected':'' }}>{{ $v }}</option>
                                     @endforeach
@@ -181,7 +181,7 @@ $layout_page = shop_profile
                         @if ($address->id != $customer->address_id)
                         <div class="form-group row">
                             <label for="default"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.chose_address_default') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.address_set_default') }}</label>
                             <div class="col-md-6">
                                 <input id="default" type="checkbox" class="form-control" name="default">
                             </div>
@@ -191,7 +191,7 @@ $layout_page = shop_profile
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ trans('account.update_infomation') }}
+                                    {{ sc_language_render('account.update_infomation') }}
                                 </button>
                             </div>
                         </div>
@@ -209,8 +209,8 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ sc_language_render('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

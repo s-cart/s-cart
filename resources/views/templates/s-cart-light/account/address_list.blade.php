@@ -25,48 +25,48 @@ $layout_page = shop_profile
       <h6 class="aside-title">{{ $title }}</h6>
       @if (count($addresses) ==0)
       <div class="text-danger">
-        {{ trans('account.addresses.empty') }}
+        {{ sc_language_render('front.data_notfound') }}
       </div>
       @else
           @foreach($addresses as $address)
               <div class="list">
                 @if (sc_config('customer_lastname'))
-                <b>{{ trans('account.first_name') }}:</b> {{ $address['first_name'] }}<br>
-                <b>{{ trans('account.last_name') }}:</b> {{ $address['last_name'] }}<br>
+                <b>{{ sc_language_render('account.first_name') }}:</b> {{ $address['first_name'] }}<br>
+                <b>{{ sc_language_render('account.last_name') }}:</b> {{ $address['last_name'] }}<br>
                 @else
-                <b>{{ trans('account.name') }}:</b> {{ $address['first_name'] }}<br>
+                <b>{{ sc_language_render('account.name') }}:</b> {{ $address['first_name'] }}<br>
                 @endif
                 
                 @if (sc_config('customer_phone'))
-                <b>{{ trans('account.phone') }}:</b> {{ $address['phone'] }}<br>
+                <b>{{ sc_language_render('account.phone') }}:</b> {{ $address['phone'] }}<br>
                 @endif
 
                 @if (sc_config('customer_postcode'))
-                <b>{{ trans('account.postcode') }}:</b> {{ $address['postcode'] }}<br>
+                <b>{{ sc_language_render('account.postcode') }}:</b> {{ $address['postcode'] }}<br>
                 @endif
 
-                <b>{{ trans('account.address1') }}:</b> {{ $address['address1'] }}<br>
+                <b>{{ sc_language_render('account.address1') }}:</b> {{ $address['address1'] }}<br>
 
                 @if (sc_config('customer_address2'))
-                <b>{{ trans('account.address2') }}:</b> {{ $address['address2'] }}<br>
+                <b>{{ sc_language_render('account.address2') }}:</b> {{ $address['address2'] }}<br>
                 @endif
 
                 @if (sc_config('customer_address3'))
-                <b>{{ trans('account.address3') }}:</b> {{ $address['address3'] }}<br>
+                <b>{{ sc_language_render('account.address3') }}:</b> {{ $address['address3'] }}<br>
                 @endif
 
                 @if (sc_config('customer_country'))
-                <b>{{ trans('account.country') }}:</b> {{ $countries[$address['country']] ?? $address['country'] }}<br>
+                <b>{{ sc_language_render('account.country') }}:</b> {{ $countries[$address['country']] ?? $address['country'] }}<br>
                 @endif
 
                 <span class="btn">
-                  <a title="{{ trans('account.addresses.edit') }}" href="{{ sc_route('customer.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
+                  <a title="{{ sc_language_render('action.edit') }}" href="{{ sc_route('customer.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
                 </span>
                 <span class="btn">
-                  <a href="#" title="{{ trans('account.addresses.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
+                  <a href="#" title="{{ sc_language_render('action.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
                 </span>
                 @if ($address->id == auth()->user()->address_id)
-                <span class="btn" title="{{ trans('account.addresses.default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
+                <span class="btn" title="{{ sc_language_render('account.address_default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
                 @endif
               </div>
           @endforeach
@@ -84,8 +84,8 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ sc_language_render('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>
@@ -99,7 +99,7 @@ $layout_page = shop_profile
 @push('scripts')
 <script>
   $('.delete-address').click(function(){
-    var r = confirm("{{ trans('account.confirm_delete') }}");
+    var r = confirm("{{ sc_language_render('action.delete_confirm') }}");
     if(!r) {
       return;
     }

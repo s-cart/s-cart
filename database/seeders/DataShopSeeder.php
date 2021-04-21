@@ -44,43 +44,43 @@ class DataShopSeeder extends Seeder
 
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_page')->insert(
             [
-                ['key' => 'home', 'name' => 'lang::layout.page_position.home'],
-                ['key' => 'shop_home', 'name' => 'lang::layout.page_position.shop_home'],
-                ['key' => 'shop_product_list', 'name' => 'lang::layout.page_position.product_list'],
-                ['key' => 'product_detail', 'name' => 'lang::layout.page_position.product_detail'],
-                ['key' => 'shop_cart', 'name' => 'lang::layout.page_position.shop_cart'],
-                ['key' => 'shop_item_list', 'name' => 'lang::layout.page_position.item_list'],
-                ['key' => 'shop_item_detail', 'name' => 'lang::layout.page_position.item_detail'],
-                ['key' => 'shop_news', 'name' => 'lang::layout.page_position.news_list'],
-                ['key' => 'shop_news_detail', 'name' => 'lang::layout.page_position.news_detail'],
-                ['key' => 'shop_auth', 'name' => 'lang::layout.page_position.shop_auth'],
-                ['key' => 'shop_profile', 'name' => 'lang::layout.page_position.shop_profile'],
-                ['key' => 'shop_page', 'name' => 'lang::layout.page_position.shop_page'],
-                ['key' => 'shop_contact', 'name' => 'lang::layout.page_position.shop_contact'],
-                ['key' => 'content_list', 'name' => 'lang::layout.page_position.content_list'],
-                ['key' => 'content_detail', 'name' => 'lang::layout.page_position.content_detail'],
-                ['key' => 'store_home', 'name' => 'lang::layout.page_position.store_home'],
-                ['key' => 'store_product_list', 'name' => 'lang::layout.page_position.store_product_list'],
+                ['key' => 'home', 'name' => 'layout.page_position.home'],
+                ['key' => 'shop_home', 'name' => 'layout.page_position.shop_home'],
+                ['key' => 'shop_product_list', 'name' => 'layout.page_position.product_list'],
+                ['key' => 'product_detail', 'name' => 'layout.page_position.product_detail'],
+                ['key' => 'shop_cart', 'name' => 'layout.page_position.shop_cart'],
+                ['key' => 'shop_item_list', 'name' => 'layout.page_position.item_list'],
+                ['key' => 'shop_item_detail', 'name' => 'layout.page_position.item_detail'],
+                ['key' => 'shop_news', 'name' => 'layout.page_position.news_list'],
+                ['key' => 'shop_news_detail', 'name' => 'layout.page_position.news_detail'],
+                ['key' => 'shop_auth', 'name' => 'layout.page_position.shop_auth'],
+                ['key' => 'shop_profile', 'name' => 'layout.page_position.shop_profile'],
+                ['key' => 'shop_page', 'name' => 'layout.page_position.shop_page'],
+                ['key' => 'shop_contact', 'name' => 'layout.page_position.shop_contact'],
+                ['key' => 'content_list', 'name' => 'layout.page_position.content_list'],
+                ['key' => 'content_detail', 'name' => 'layout.page_position.content_detail'],
+                ['key' => 'store_home', 'name' => 'layout.page_position.store_home'],
+                ['key' => 'store_product_list', 'name' => 'layout.page_position.store_product_list'],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_layout_position')->insert(
             [
-                ['key' => 'meta', 'name' => 'lang::layout.page_block.meta'],
-                ['key' => 'header', 'name' => 'lang::layout.page_block.header'],
-                ['key' => 'top', 'name' => 'lang::layout.page_block.top'],
-                ['key' => 'bottom', 'name' => 'lang::layout.page_block.bottom'],
-                ['key' => 'left', 'name' => 'lang::layout.page_block.left'],
-                ['key' => 'right', 'name' => 'lang::layout.page_block.right'],
-                ['key' => 'banner_top', 'name' => 'lang::layout.page_block.banner_top'],
+                ['key' => 'meta', 'name' => 'layout.page_block.meta'],
+                ['key' => 'header', 'name' => 'layout.page_block.header'],
+                ['key' => 'top', 'name' => 'layout.page_block.top'],
+                ['key' => 'bottom', 'name' => 'layout.page_block.bottom'],
+                ['key' => 'left', 'name' => 'layout.page_block.left'],
+                ['key' => 'right', 'name' => 'layout.page_block.right'],
+                ['key' => 'banner_top', 'name' => 'layout.page_block.banner_top'],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_link')->insert(
             [
-                ['name' => 'lang::front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3', 'store_id' => 1],
-                ['name' => 'lang::front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4', 'store_id' => 1],
-                ['name' => 'lang::front.my_profile', 'url' => 'route::login', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
-                ['name' => 'lang::front.compare_page', 'url' => 'route::compare', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
-                ['name' => 'lang::front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3', 'store_id' => 1],
+                ['name' => 'front.contact', 'url' => 'route::contact', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '3', 'store_id' => 1],
+                ['name' => 'front.about', 'url' => 'route::page.detail::about', 'target' => '_self', 'module' => '', 'group' => 'menu', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'front.my_profile', 'url' => 'route::login', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '5', 'store_id' => 1],
+                ['name' => 'front.compare_page', 'url' => 'route::compare', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '4', 'store_id' => 1],
+                ['name' => 'front.wishlist_page', 'url' => 'route::wishlist', 'target' => '_self', 'module' => '', 'group' => 'footer', 'status' => '1', 'sort' => '3', 'store_id' => 1],
             ]
         );
         DB::connection(SC_CONNECTION)->table(SC_DB_PREFIX . 'shop_shipping_standard')->insert(

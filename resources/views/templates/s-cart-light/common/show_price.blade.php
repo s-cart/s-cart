@@ -1,7 +1,7 @@
 <div class="product-price-wrap">
 @switch($kind)
     @case(SC_PRODUCT_GROUP)
-    <div class="product-price">{!! trans('product.price_group') !!}</div>
+    <div class="product-price">{!! sc_language_render('product.price_group') !!}</div>
         @break
     @default
         @if ($price == $priceFinal)

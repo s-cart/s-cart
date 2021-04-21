@@ -20,7 +20,7 @@ if ($lastView && count($lastView)) {
 @endphp
 @if (!empty($arrProductsLastView))
 <div class="aside-item col-sm-6 col-lg-12">
-    <h6 class="aside-title">{{ trans('front.products_last_view') }}</h6>
+    <h6 class="aside-title">{{ sc_language_render('front.products_last_view') }}</h6>
     <!--last_view_product-->
     <div class="row row-20 row-lg-30 gutters-10">
         @foreach ($arrProductsLastView as $productLastView)

@@ -11,9 +11,6 @@ $layout_page = shop_profile
 @section('block_main')
 <div class="container">
     <div class="row">
-        {{-- <div class="col-12">
-            <h2 class="title-page">{{ trans('account.my_profile') }}</h2>
-    </div> --}}
     <div class="col-12 col-sm-12 col-md-3">
         @include($sc_templatePath.'.account.nav_customer')
     </div>
@@ -33,7 +30,7 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>
