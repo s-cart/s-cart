@@ -16,13 +16,13 @@
          <tbody>
 
             <tr>
-                  <th width="40%">{{ trans($pathPlugin.'::lang.secrect_key') }}</th>
-                  <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_secrect_key" data-type="text" data-pk="GoogleCaptcha_secrect_key" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GoogleCaptcha_secrect_key'): 'hidden' }}" data-title="{{ trans($pathPlugin.'::lang.secrect_key') }}"></a></td>
+                  <th width="40%">{{ sc_language_render($pathPlugin.'::lang.secrect_key') }}</th>
+                  <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_secrect_key" data-type="text" data-pk="GoogleCaptcha_secrect_key" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-value="{{ (sc_admin_can_config()) ? sc_config('GoogleCaptcha_secrect_key'): 'hidden' }}" data-title="{{ sc_language_render($pathPlugin.'::lang.secrect_key') }}"></a></td>
             </tr>  
 
           <tr>
-            <th width="40%">{{ trans($pathPlugin.'::lang.site_key') }}</th>
-            <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_site_key" data-type="text" data-pk="GoogleCaptcha_site_key" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-value="{{ sc_config('GoogleCaptcha_site_key') }}" data-title="{{ trans($pathPlugin.'::lang.site_key') }}"></a></td>
+            <th width="40%">{{ sc_language_render($pathPlugin.'::lang.site_key') }}</th>
+            <td><a href="#" class="updateData_can_empty editable editable-click" data-name="GoogleCaptcha_site_key" data-type="text" data-pk="GoogleCaptcha_site_key" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-value="{{ sc_config('GoogleCaptcha_site_key') }}" data-title="{{ sc_language_render($pathPlugin.'::lang.site_key') }}"></a></td>
           </tr>    
     </td>
   </tr>
@@ -65,12 +65,12 @@ $(document).ready(function() {
         $('.fied-required').editable({
         validate: function(value) {
             if (value == '') {
-                return '{{  trans('admin.not_empty') }}';
+                return '{{  sc_language_render('admin.not_empty') }}';
             }
         },
         success: function(data) {
           if(data.error == 0){
-            alertJs('success', '{{ trans('admin.msg_change_success') }}');
+            alertJs('success', '{{ sc_language_render('admin.msg_change_success') }}');
           } else {
             alertJs('error', data.msg);
           }
@@ -81,7 +81,7 @@ $(document).ready(function() {
         success: function(data) {
           console.log(data);
           if(data.error == 0){
-            alertJs('success', '{{ trans('admin.msg_change_success') }}');
+            alertJs('success', '{{ sc_language_render('admin.msg_change_success') }}');
           } else {
             alertJs('error', data.msg);
           }

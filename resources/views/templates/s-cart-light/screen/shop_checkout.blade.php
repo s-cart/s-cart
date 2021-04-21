@@ -21,7 +21,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
         <div class="row">
             @if (count($cart) ==0)
             <div class="col-md-12 text-danger min-height-37vh">
-                {!! trans('cart.cart_empty') !!}
+                {!! sc_language_render('front.data_notfound') !!}
             </div>
             @else
             <div class="col-12">
@@ -30,11 +30,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                         <thead>
                             <tr style="background: #eaebec">
                                 <th style="width: 50px;">No.</th>
-                                <th style="width: 100px;">{{ trans('product.sku') }}</th>
-                                <th>{{ trans('product.name') }}</th>
-                                <th>{{ trans('product.price') }}</th>
-                                <th>{{ trans('product.quantity') }}</th>
-                                <th>{{ trans('product.total_price') }}</th>
+                                <th style="width: 100px;">{{ sc_language_render('product.sku') }}</th>
+                                <th>{{ sc_language_render('product.name') }}</th>
+                                <th>{{ sc_language_render('product.price') }}</th>
+                                <th>{{ sc_language_render('product.quantity') }}</th>
+                                <th>{{ sc_language_render('product.subtotal') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,50 +85,50 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                         {{-- Display address --}}
                         <div class="col-12 col-sm-12 col-md-6">
                             <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
-                                {{ trans('cart.shipping_address') }}:<br></h3>
+                                {{ sc_language_render('cart.shipping_address') }}:<br></h3>
                             <table class="table box table-bordered" id="showTotal">
                                 <tr>
-                                    <th>{{ trans('cart.name') }}:</td>
+                                    <th>{{ sc_language_render('order.name') }}:</td>
                                     <td>{{ $shippingAddress['first_name'] }} {{ $shippingAddress['last_name'] }}</td>
                                 </tr>
                                 @if (sc_config('customer_name_kana'))
                                     <tr>
-                                        <th>{{ trans('cart.name_kana') }}:</td>
+                                        <th>{{ sc_language_render('order.name_kana') }}:</td>
                                         <td>{{ $shippingAddress['first_name_kana'].$shippingAddress['last_name_kana'] }}</td>
                                     </tr>
                                 @endif
 
                                 @if (sc_config('customer_phone'))
                                     <tr>
-                                        <th>{{ trans('cart.phone') }}:</td>
+                                        <th>{{ sc_language_render('order.phone') }}:</td>
                                         <td>{{ $shippingAddress['phone'] }}</td>
                                     </tr>
                                 @endif
                                 <tr>
-                                    <th>{{ trans('cart.email') }}:</td>
+                                    <th>{{ sc_language_render('order.email') }}:</td>
                                     <td>{{ $shippingAddress['email'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ trans('cart.address') }}:</td>
+                                    <th>{{ sc_language_render('order.address') }}:</td>
                                     <td>{{ $shippingAddress['address1'].' '.$shippingAddress['address2'].' '.$shippingAddress['address3'].','.$shippingAddress['country'] }}
                                     </td>
                                 </tr>
                                 @if (sc_config('customer_postcode'))
                                     <tr>
-                                        <th>{{ trans('cart.postcode') }}:</td>
+                                        <th>{{ sc_language_render('order.postcode') }}:</td>
                                         <td>{{ $shippingAddress['postcode']}}</td>
                                     </tr>
                                 @endif
 
                                 @if (sc_config('customer_company'))
                                     <tr>
-                                        <th>{{ trans('cart.company') }}:</td>
+                                        <th>{{ sc_language_render('order.company') }}:</td>
                                         <td>{{ $shippingAddress['company']}}</td>
                                     </tr>
                                 @endif
 
                                 <tr>
-                                    <th>{{ trans('cart.note') }}:</td>
+                                    <th>{{ sc_language_render('cart.note') }}:</td>
                                     <td>{{ $shippingAddress['comment'] }}</td>
                                 </tr>
                             </table>
@@ -173,7 +173,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <h3 class="control-label"><i class="fas fa-credit-card"></i>
-                                                    {{ trans('cart.payment_method') }}:<br></h3>
+                                                    {{ sc_language_render('order.payment_method') }}:<br></h3>
                                             </div>
                                             <div class="form-group">
                                                 <div>
@@ -201,11 +201,11 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                         <button class="button button-lg" type="button"
                                             style="cursor: pointer;padding:10px 30px"
                                             onClick="location.href='{{ sc_route('cart') }}'"><i
-                                                class="fa fa-arrow-left"></i> {{ trans('cart.back_to_cart') }}</button>
+                                                class="fa fa-arrow-left"></i> {{ sc_language_render('cart.back_to_cart') }}</button>
                                     </div>
                                     <div class="pull-right">
                                         <button class="button button-lg button-secondary" id="submit-order" type="submit"
-                                            style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ trans('cart.confirm') }}</button>
+                                            style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ sc_language_render('cart.confirm') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -238,8 +238,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('cart') }}">{{ trans('front.cart') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+            <li><a href="{{ sc_route('cart') }}">{{ sc_language_render('front.cart') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

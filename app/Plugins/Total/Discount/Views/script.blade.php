@@ -3,7 +3,7 @@ $('#coupon-button').click(function() {
     var coupon = $('#coupon-value').val();
        if(coupon==''){
            $('#coupon-group').addClass('has-error');
-           $('.coupon-msg').html('{{ trans('cart.coupon_empty') }}').addClass('text-danger').show();
+           $('.coupon-msg').html('{{ sc_language_render('cart.coupon_empty') }}').addClass('text-danger').show();
        }else{
        $('#coupon-button').button('loading');
        setTimeout(function() {

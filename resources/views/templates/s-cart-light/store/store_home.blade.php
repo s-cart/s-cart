@@ -29,7 +29,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                     <h5 class="product-title"><a href="{{ $productNew->getUrl() }}">{{ $productNew->name }}</a></h5>
                     {{-- Button add to cart --}}
                     @if ($productNew->allowSale())
-                    <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('cart.add_to_cart')}}</a>
+                    <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                     @endif
                     {{--// Button add to cart --}}
 
@@ -91,7 +91,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
                           {{-- Button add to cart --}}
                           @if ($product->allowSale())
-                          <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('cart.add_to_cart')}}</a>
+                          <a onClick="addToCartAjax('{{ $product->id }}','default', '{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                           @endif
                           {{--// Button add to cart --}}
 

@@ -18,7 +18,7 @@ class AppConfig extends ConfigDefault
     	$this->configCode = $config['configCode'];
     	$this->configKey = $config['configKey'];
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
-        $this->title = trans($this->pathPlugin.'::'. $this->configKey . '.title_module');
+        $this->title = sc_language_render($this->pathPlugin.'::'. $this->configKey . '.title_module');
         $this->image = $this->pathPlugin.'/'.$config['image'];
         $this->version = $config['version'];
         $this->auth = $config['auth'];
@@ -31,7 +31,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $check = AdminConfig::where('key', $this->configKey)->first();
         if ($check) {
-            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.plugin_exist')];
+            $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.plugin_exist')];
         } else {
             $process = AdminConfig::insert(
                 [
@@ -43,7 +43,7 @@ class AppConfig extends ConfigDefault
                 ]
             );
             if (!$process) {
-                $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Install'])];
+                $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'Install'])];
             } else {
                 
                 $checkMenu = AdminMenu::where('key',$this->configKey)->first();
@@ -94,7 +94,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
         if (!$process) {
-            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'uninstall'])];
+            $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'uninstall'])];
         }
         (new CmsCategory)->uninstall();
         (new CmsContent)->uninstall();
@@ -129,7 +129,7 @@ class AppConfig extends ConfigDefault
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->update(['value' => self::OFF]);
         if (!$process) {
-            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Disable'])];
+            $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'Disable'])];
         }
         return $return;
     }

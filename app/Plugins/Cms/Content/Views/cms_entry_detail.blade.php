@@ -31,7 +31,7 @@
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             <li><a href="{{ $entry_currently->category->getUrl() }}">{{ $entry_currently->category->getFull()->title }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>

@@ -24,7 +24,7 @@ class CmsContentController extends RootAdminController
     {
         $categoriesTitle =  AdminCmsCategory::getListTitleAdmin();
         $data = [
-            'title'         => trans($this->plugin->pathPlugin.'::Content.admin.list'),
+            'title'         => sc_language_render($this->plugin->pathPlugin.'::Content.admin.list'),
             'subTitle'      => '',
             'icon'          => 'fa fa-indent',
             'menuRight'     => [],
@@ -40,21 +40,21 @@ class CmsContentController extends RootAdminController
         ];
 
         $listTh = [
-            'id'          => trans($this->plugin->pathPlugin.'::Content.id'),
-            'image'       => trans($this->plugin->pathPlugin.'::Content.image'),
-            'title'       => trans($this->plugin->pathPlugin.'::Content.title'),
-            'category_id' => trans($this->plugin->pathPlugin.'::Content.category_id'),
-            'status'      => trans($this->plugin->pathPlugin.'::Content.status'),
-            'sort'        => trans($this->plugin->pathPlugin.'::Content.sort'),
-            'action'      => trans($this->plugin->pathPlugin.'::Content.admin.action'),
+            'id'          => sc_language_render($this->plugin->pathPlugin.'::Content.id'),
+            'image'       => sc_language_render($this->plugin->pathPlugin.'::Content.image'),
+            'title'       => sc_language_render($this->plugin->pathPlugin.'::Content.title'),
+            'category_id' => sc_language_render($this->plugin->pathPlugin.'::Content.category_id'),
+            'status'      => sc_language_render($this->plugin->pathPlugin.'::Content.status'),
+            'sort'        => sc_language_render($this->plugin->pathPlugin.'::Content.sort'),
+            'action'      => sc_language_render($this->plugin->pathPlugin.'::Content.admin.action'),
         ];
         $sort_order = sc_clean(request('sort_order') ?? 'id_desc');
         $keyword    = sc_clean(request('keyword') ?? '');
         $arrSort = [
-            'id__desc'    => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_desc'),
-            'id__asc'     => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.id_asc'),
-            'title__desc' => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.title_desc'),
-            'title__asc'  => trans($this->plugin->pathPlugin.'::Content.admin.sort_order.title_asc'),
+            'id__desc'    => sc_language_render($this->plugin->pathPlugin.'::Content.admin.sort_order.id_desc'),
+            'id__asc'     => sc_language_render($this->plugin->pathPlugin.'::Content.admin.sort_order.id_asc'),
+            'title__desc' => sc_language_render($this->plugin->pathPlugin.'::Content.admin.sort_order.title_desc'),
+            'title__asc'  => sc_language_render($this->plugin->pathPlugin.'::Content.admin.sort_order.title_asc'),
         ];
 
         $dataSearch = [
@@ -75,9 +75,9 @@ class CmsContentController extends RootAdminController
                 'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
                 'sort' => $row['sort'],
                 'action' => '
-                    <a href="' . sc_route_admin('admin_cms_content.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::Content.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route_admin('admin_cms_content.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::Content.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
-                    <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>'
+                    <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render('admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>'
                 ,
             ];
         }
@@ -87,7 +87,7 @@ class CmsContentController extends RootAdminController
         $data['pagination'] = $dataTmp
             ->appends(request()->except(['_token', '_pjax']))
             ->links($this->templatePathAdmin.'component.pagination');
-        $data['resultItems'] = trans($this->plugin->pathPlugin.'::Content.admin.result_item', 
+        $data['resultItems'] = sc_language_render($this->plugin->pathPlugin.'::Content.admin.result_item', 
             [
                 'item_from' => $dataTmp->firstItem(), 
                 'item_to' => $dataTmp->lastItem(), 
@@ -97,7 +97,7 @@ class CmsContentController extends RootAdminController
 
         //menuRight
         $data['menuRight'][] = '<a href="' . sc_route_admin('admin_cms_content.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus"></i><span class="hidden-xs">' . trans('admin.add_new') . '</span>
+                           <i class="fa fa-plus"></i><span class="hidden-xs">' . sc_language_render('admin.add_new') . '</span>
                            </a>';
         //=menuRight
 
@@ -115,7 +115,7 @@ class CmsContentController extends RootAdminController
         $data['topMenuRight'][] = '
             <form action="' . sc_route_admin('admin_cms_content.index') . '" id="button_search">
             <div class="input-group input-group" style="width: 250px;">
-                <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans($this->plugin->pathPlugin.'::Content.admin.search_place') . '" value="' . $keyword . '">
+                <input type="text" name="keyword" class="form-control float-right" placeholder="' . sc_language_render($this->plugin->pathPlugin.'::Content.admin.search_place') . '" value="' . $keyword . '">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
@@ -134,9 +134,9 @@ class CmsContentController extends RootAdminController
     public function create()
     {
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::Content.admin.add_new_title'),
+            'title' => sc_language_render($this->plugin->pathPlugin.'::Content.admin.add_new_title'),
             'subTitle' => '',
-            'title_description' => trans($this->plugin->pathPlugin.'::Content.admin.add_new_des'),
+            'title_description' => sc_language_render($this->plugin->pathPlugin.'::Content.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'languages' => $this->languages,
             'content' => [],
@@ -166,10 +166,10 @@ class CmsContentController extends RootAdminController
             'descriptions.*.description' => 'nullable|string|max:300',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_content_alias_unique',
         ], [
-            'descriptions.*.title.required' => trans('validation.required', 
-            ['attribute' => trans($this->plugin->pathPlugin.'::Content.title')]),
-            'alias.regex' => trans($this->plugin->pathPlugin.'::Content.alias_validate'),
-            'alias.cms_content_alias_unique' => trans($this->plugin->pathPlugin.'::Content.alias_unique'),
+            'descriptions.*.title.required' => sc_language_render('validation.required', 
+            ['attribute' => sc_language_render($this->plugin->pathPlugin.'::Content.title')]),
+            'alias.regex' => sc_language_render($this->plugin->pathPlugin.'::Content.alias_validate'),
+            'alias.cms_content_alias_unique' => sc_language_render($this->plugin->pathPlugin.'::Content.alias_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -202,7 +202,7 @@ class CmsContentController extends RootAdminController
         AdminCmsContent::insertDescriptionAdmin($dataDes);
         sc_clear_cache('cache_cms_content');
         return redirect()->route('admin_cms_content.index')
-            ->with('success', trans($this->plugin->pathPlugin.'::Content.admin.create_success'));
+            ->with('success', sc_language_render($this->plugin->pathPlugin.'::Content.admin.create_success'));
 
     }
 
@@ -217,7 +217,7 @@ class CmsContentController extends RootAdminController
             return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::Content.admin.edit'),
+            'title' => sc_language_render($this->plugin->pathPlugin.'::Content.admin.edit'),
             'subTitle' => '',
             'title_description' => '',
             'icon' => 'fa fa-pencil-square-o',
@@ -257,9 +257,9 @@ class CmsContentController extends RootAdminController
             'descriptions.*.keyword' => 'nullable|string|max:200',
             'descriptions.*.description' => 'nullable|string|max:300',
         ], [
-            'alias.regex' => trans($this->plugin->pathPlugin.'::Content.alias_validate'),
-            'descriptions.*.title.required' => trans('validation.required', ['attribute' => trans($this->plugin->pathPlugin.'::Content.title')]),
-            'alias.cms_content_alias_unique' => trans($this->plugin->pathPlugin.'::Content.alias_unique'),
+            'alias.regex' => sc_language_render($this->plugin->pathPlugin.'::Content.alias_validate'),
+            'descriptions.*.title.required' => sc_language_render('validation.required', ['attribute' => sc_language_render($this->plugin->pathPlugin.'::Content.title')]),
+            'alias.cms_content_alias_unique' => sc_language_render($this->plugin->pathPlugin.'::Content.alias_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -293,7 +293,7 @@ class CmsContentController extends RootAdminController
         }
         AdminCmsContent::insertDescriptionAdmin($dataDes);
         sc_clear_cache('cache_cms_content');
-        return redirect()->route('admin_cms_content.index')->with('success', trans($this->plugin->pathPlugin.'::Content.admin.edit_success'));
+        return redirect()->route('admin_cms_content.index')->with('success', sc_language_render($this->plugin->pathPlugin.'::Content.admin.edit_success'));
 
     }
 
@@ -315,7 +315,7 @@ Need mothod destroy to boot deleting in model
                 }
             }
             if (count($arrDontPermission)) {
-                return response()->json(['error' => 1, 'msg' => trans('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
+                return response()->json(['error' => 1, 'msg' => sc_language_render('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
             }
             AdminCmsContent::destroy($arrID);
             sc_clear_cache('cache_cms_content');

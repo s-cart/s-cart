@@ -50,7 +50,7 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>

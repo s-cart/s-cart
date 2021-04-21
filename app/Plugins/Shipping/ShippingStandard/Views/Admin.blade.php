@@ -9,7 +9,7 @@
 
               <div class="box-tools">
                   <div class="btn-group pull-right" style="margin-right: 5px">
-                      <a href="{{ sc_route_admin('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                      <a href="{{ sc_route_admin('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{sc_language_render('admin.back_list')}}</span></a>
                   </div>
               </div>
           </div>
@@ -18,8 +18,8 @@
              <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th width="40%">{{ trans($pathPlugin.'::lang.fee') }}</th>
-                  <th width="40%">{{ trans($pathPlugin.'::lang.shipping_free') }}</th>
+                  <th width="40%">{{ sc_language_render($pathPlugin.'::lang.fee') }}</th>
+                  <th width="40%">{{ sc_language_render($pathPlugin.'::lang.shipping_free') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                         data-type="text" 
                         data-pk="{{ $data['id'] }}" 
                         data-url="{{ sc_route('shippingstandard.updateConfig') }}" 
-                        data-title="{{ trans($pathPlugin.'::lang.fee') }}">
+                        data-title="{{ sc_language_render($pathPlugin.'::lang.fee') }}">
                           {{ $data['fee'] }}
                         </a>
                     </td>
@@ -40,7 +40,7 @@
                             data-type="text" 
                             data-pk="{{ $data['id'] }}" 
                             data-url="{{ sc_route('shippingstandard.updateConfig') }}" 
-                            data-title="{{ trans($pathPlugin.'::lang.shipping_free') }}">
+                            data-title="{{ sc_language_render($pathPlugin.'::lang.shipping_free') }}">
                             {{ $data['shipping_free'] }}
                             </a>
                         </td>
@@ -79,10 +79,10 @@ $(document).ready(function() {
     },
     validate: function(value) {
         if (value == '') {
-            return '{{  trans('admin.not_empty') }}';
+            return '{{  sc_language_render('admin.not_empty') }}';
         }
         if (!$.isNumeric(value)) {
-            return '{{  trans('admin.only_numeric') }}';
+            return '{{  sc_language_render('admin.only_numeric') }}';
         }
     }
     });

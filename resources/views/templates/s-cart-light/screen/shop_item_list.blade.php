@@ -33,7 +33,7 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
                 </nav>
             </div>
         @else
-            {!! trans('front.no_data') !!}
+            {!! sc_language_render('front.data_notfound') !!}
         @endif
       </div>
     </div>
@@ -72,7 +72,7 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
         <li class="active">{{ $title ?? '' }}</li>
       </ul>
     </div>
@@ -93,19 +93,20 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
             <input type="hidden" name="{{ $key }}" value="{{ $query }}">
             @endforeach
             <select class="custom-select" name="filter_sort">
-                <option value="">{{ trans('front.filters.sort') }}</option>
+                <option value="">{{ sc_language_render('filter_sort.sort') }}</option>
                 <option value="name_asc" {{ ($filter_sort =='name_asc')?'selected':'' }}>
-                    {{ trans('front.filters.name_asc') }}</option>
+                    {{ sc_language_render('filter_sort.name_asc') }}</option>
                 <option value="name_desc" {{ ($filter_sort =='name_desc')?'selected':'' }}>
-                    {{ trans('front.filters.name_desc') }}</option>
+                    {{ sc_language_render('filter_sort.name_desc') }}</option>
                 <option value="sort_asc" {{ ($filter_sort =='sort_asc')?'selected':'' }}>
-                    {{ trans('front.filters.sort_asc') }}</option>
+                    {{ sc_language_render('filter_sort.sort_asc') }}</option>
                 <option value="sort_desc" {{ ($filter_sort =='sort_desc')?'selected':'' }}>
-                    {{ trans('front.filters.sort_desc') }}</option>
-                <option value="id_asc" {{ ($filter_sort =='id_asc')?'selected':'' }}>{{ trans('front.filters.id_asc') }}
+                    {{ sc_language_render('filter_sort.sort_desc') }}</option>
+                <option value="id_asc" {{ ($filter_sort =='id_asc')?'selected':'' }}>
+                  {{ sc_language_render('filter_sort.id_asc') }}
                 </option>
                 <option value="id_desc" {{ ($filter_sort =='id_desc')?'selected':'' }}>
-                    {{ trans('front.filters.id_desc') }}</option>
+                    {{ sc_language_render('filter_sort.id_desc') }}</option>
             </select>
         </div>
     </div>

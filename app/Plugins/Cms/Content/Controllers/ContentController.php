@@ -59,10 +59,10 @@ class ContentController extends RootAdminController
             } else {
                 return view('templates.' . sc_store('template') . '.notfound',
                     array(
-                        'title' => trans('front.item_not_found_title'),
+                        'title' => sc_language_render('front.item_not_found_title'),
                         'description' => '',
                         'keyword' => sc_store('keyword'),
-                        'msg' => trans('front.item_not_found'),
+                        'msg' => sc_language_render('front.item_not_found'),
                     )
                 );
             }
@@ -97,7 +97,7 @@ class ContentController extends RootAdminController
     {
         $entry_currently = (new CmsContent)->getDetail($alias, 'alias');
         if ($entry_currently) {
-            $title = ($entry_currently) ? $entry_currently->title : trans('front.not_found');
+            $title = ($entry_currently) ? $entry_currently->title : sc_language_render('front.not_found');
             return view($this->plugin->pathPlugin.'::cms_entry_detail',
                 array(
                     'title' => $title,
@@ -111,10 +111,10 @@ class ContentController extends RootAdminController
         } else {
             return view('templates.' . sc_store('template') . '.notfound',
                 array(
-                    'title' => trans('front.item_not_found_title'),
+                    'title' => sc_language_render('front.item_not_found_title'),
                     'description' => '',
                     'keyword' => sc_store('keyword'),
-                    'msg' => trans('front.item_not_found'),
+                    'msg' => sc_language_render('front.item_not_found'),
                 )
             );
         }
