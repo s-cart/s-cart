@@ -214,7 +214,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         ]
     ];
 
-    echo view('install', array(
+    echo view('s-cart::install', array(
         'path_lang' => (($lang != 'en') ? "?lang=" . $lang : ""),
         'title'     => trans('install.title'), 'requirements' => $requirements)
     );
