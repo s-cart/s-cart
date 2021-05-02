@@ -9,7 +9,7 @@ class RootAdminController extends Controller
     public $templatePathAdmin;
     public function __construct()
     {
-        $this->templatePathAdmin = (config('admin.customize') ? 'admin.': 's-cart::');
+        $this->templatePathAdmin = config('admin.path_view');
     }
 
 }
