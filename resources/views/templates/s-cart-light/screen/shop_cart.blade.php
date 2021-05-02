@@ -22,7 +22,7 @@ $layout_page = shop_cart
             @if (count($cart) ==0)
 
             <div class="col-md-12">
-                {!! trans('cart.cart_empty') !!}!
+                {!! sc_language_render('front.data_notfound') !!}!
             </div>
 
             @else
@@ -34,11 +34,11 @@ $layout_page = shop_cart
                         <thead>
                             <tr style="background: #eaebec">
                                 <th style="width: 50px;">No.</th>
-                                <th style="width: 100px;">{{ trans('product.sku') }}</th>
-                                <th>{{ trans('product.name') }}</th>
-                                <th>{{ trans('product.price') }}</th>
-                                <th>{{ trans('product.quantity') }}</th>
-                                <th>{{ trans('product.total_price') }}</th>
+                                <th style="width: 100px;">{{ sc_language_render('product.sku') }}</th>
+                                <th>{{ sc_language_render('product.name') }}</th>
+                                <th>{{ sc_language_render('product.price') }}</th>
+                                <th>{{ sc_language_render('product.quantity') }}</th>
+                                <th>{{ sc_language_render('product.subtal') }}</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -66,7 +66,8 @@ $layout_page = shop_cart
 
                                             {{-- Go to store --}}
                                             @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-                                            <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
+                                            <div class="store-url">
+                                                <a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ sc_language_render('front.store').' '. $product->store_id  }}</a>
                                             </div>
                                             @endif
                                             {{-- End go to store --}}
@@ -93,7 +94,7 @@ $layout_page = shop_cart
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
                                     @if (session('arrErrorQty')[$product->id] ?? 0)
                                     <span class="help-block">
-                                        <br>{{ trans('cart.minimum_value', ['value' => session('arrErrorQty')[$product->id]]) }}
+                                        <br>{{ sc_language_render('cart.minimum_value', ['value' => session('arrErrorQty')[$product->id]]) }}
                                     </span>
                                     @endif
                                 </td>
@@ -123,13 +124,13 @@ $layout_page = shop_cart
                 <div class="pull-left">
                     <button class="btn btn-default btn-back" type="button"
                         onClick="location.href='{{ sc_route('home') }}'"><i class="fa fa-arrow-left"></i>
-                        {{ trans('cart.back_to_shop') }}</button>
+                        {{ sc_language_render('cart.back_to_shop') }}</button>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-delete-all" type="button"
                         onClick="if(confirm('Confirm ?')) window.location.href='{{ sc_route('cart.clear', ['instance' => 'cart']) }}';">
                         <i class="fa fa-window-close" aria-hidden="true"></i>
-                        {{ trans('cart.remove_all') }}</button>
+                        {{ sc_language_render('cart.remove_all') }}</button>
                 </div>
             </div>
             {{--// Button backshop, clear cart --}}
@@ -146,11 +147,11 @@ $layout_page = shop_cart
                             @if (auth()->user())
                                 <div class="">
                                     <select class="form-control" name="address_process" style="width: 100%;" id="addressList">
-                                        <option value="">{{ trans('cart.change_address') }}</option>
+                                        <option value="">{{ sc_language_render('cart.change_address') }}</option>
                                         @foreach ($addressList as $k => $address)
                                         <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2.' '.$address->address3 }}</option>
                                         @endforeach
-                                        <option value="new" {{ (old('address_process') ==  'new') ? 'selected':''}}>{{ trans('cart.add_new_address') }}</option>
+                                        <option value="new" {{ (old('address_process') ==  'new') ? 'selected':''}}>{{ sc_language_render('cart.add_new_address') }}</option>
                                     </select>
                                 </div>
                             @endif
@@ -162,9 +163,9 @@ $layout_page = shop_cart
                                     @if (sc_config('customer_lastname'))
                                         <td class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                             <label for="phone" class="control-label"><i class="fa fa-user"></i>
-                                                {{ trans('cart.first_name') }}:</label>
+                                                {{ sc_language_render('order.first_name') }}:</label>
                                             <input class="form-control" name="first_name" type="text"
-                                                placeholder="{{ trans('cart.first_name') }}"
+                                                placeholder="{{ sc_language_render('order.first_name') }}"
                                                 value="{{old('first_name', $shippingAddress['first_name'])}}">
                                             @if($errors->has('first_name'))
                                             <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -172,8 +173,8 @@ $layout_page = shop_cart
                                         </td>
                                         <td class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                             <label for="phone" class="control-label"><i class="fa fa-user"></i>
-                                                {{ trans('cart.last_name') }}:</label>
-                                            <input class="form-control" name="last_name" type="text" placeholder="{{ trans('cart.last_name') }}"
+                                                {{ sc_language_render('order.last_name') }}:</label>
+                                            <input class="form-control" name="last_name" type="text" placeholder="{{ sc_language_render('order.last_name') }}"
                                                 value="{{old('last_name',$shippingAddress['last_name'])}}">
                                             @if($errors->has('last_name'))
                                             <span class="help-block">{{ $errors->first('last_name') }}</span>
@@ -183,8 +184,8 @@ $layout_page = shop_cart
                                         <td colspan="2"
                                             class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                             <label for="phone" class="control-label"><i class="fa fa-user"></i>
-                                                {{ trans('cart.name') }}:</label>
-                                            <input class="form-control" name="first_name" type="text" placeholder="{{ trans('cart.name') }}"
+                                                {{ sc_language_render('order.name') }}:</label>
+                                            <input class="form-control" name="first_name" type="text" placeholder="{{ sc_language_render('order.name') }}"
                                                 value="{{old('first_name',$shippingAddress['first_name'])}}">
                                             @if($errors->has('first_name'))
                                             <span class="help-block">{{ $errors->first('first_name') }}</span>
@@ -197,9 +198,9 @@ $layout_page = shop_cart
                                     <tr>
                                     <td class="form-group{{ $errors->has('first_name_kana') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
-                                            {{ trans('cart.first_name_kana') }}:</label>
+                                            {{ sc_language_render('order.first_name_kana') }}:</label>
                                         <input class="form-control" name="first_name_kana" type="text"
-                                            placeholder="{{ trans('cart.first_name_kana') }}"
+                                            placeholder="{{ sc_language_render('order.first_name_kana') }}"
                                             value="{{old('first_name_kana', $shippingAddress['first_name_kana'])}}">
                                         @if($errors->has('first_name_kana'))
                                         <span class="help-block">{{ $errors->first('first_name_kana') }}</span>
@@ -207,8 +208,8 @@ $layout_page = shop_cart
                                     </td>
                                     <td class="form-group{{ $errors->has('last_name_kana') ? ' has-error' : '' }}">
                                         <label for="phone" class="control-label"><i class="fa fa-user"></i>
-                                            {{ trans('cart.last_name_kana') }}:</label>
-                                        <input class="form-control" name="last_name_kana" type="text" placeholder="{{ trans('cart.last_name_kana') }}"
+                                            {{ sc_language_render('order.last_name_kana') }}:</label>
+                                        <input class="form-control" name="last_name_kana" type="text" placeholder="{{ sc_language_render('order.last_name_kana') }}"
                                             value="{{old('last_name_kana',$shippingAddress['last_name_kana'])}}">
                                         @if($errors->has('last_name_kana'))
                                         <span class="help-block">{{ $errors->first('last_name_kana') }}</span>
@@ -221,8 +222,8 @@ $layout_page = shop_cart
                                     @if (sc_config('customer_phone'))
                                         <td class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                             <label for="email" class="control-label"><i class="fa fa-envelope"></i>
-                                                {{ trans('cart.email') }}:</label>
-                                            <input class="form-control" name="email" type="text" placeholder="{{ trans('cart.email') }}"
+                                                {{ sc_language_render('order.email') }}:</label>
+                                            <input class="form-control" name="email" type="text" placeholder="{{ sc_language_render('order.email') }}"
                                                 value="{{old('email', $shippingAddress['email'])}}">
                                             @if($errors->has('email'))
                                                 <span class="help-block">{{ $errors->first('email') }}</span>
@@ -230,8 +231,8 @@ $layout_page = shop_cart
                                         </td>
                                         <td class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                             <label for="phone" class="control-label"><i class="fa fa-phone"
-                                                    aria-hidden="true"></i> {{ trans('cart.phone') }}:</label>
-                                            <input class="form-control" name="phone" type="text" placeholder="{{ trans('cart.phone') }}"
+                                                    aria-hidden="true"></i> {{ sc_language_render('order.phone') }}:</label>
+                                            <input class="form-control" name="phone" type="text" placeholder="{{ sc_language_render('order.phone') }}"
                                                 value="{{old('phone',$shippingAddress['phone'])}}">
                                             @if($errors->has('phone'))
                                                 <span class="help-block">{{ $errors->first('phone') }}</span>
@@ -240,8 +241,8 @@ $layout_page = shop_cart
                                     @else
                                         <td colspan="2" class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                             <label for="email" class="control-label"><i class="fa fa-envelope"></i>
-                                                {{ trans('cart.email') }}:</label>
-                                            <input class="form-control" name="email" type="text" placeholder="{{ trans('cart.email') }}"
+                                                {{ sc_language_render('order.email') }}:</label>
+                                            <input class="form-control" name="email" type="text" placeholder="{{ sc_language_render('order.email') }}"
                                                 value="{{old('email',$shippingAddress['email'])}}">
                                             @if($errors->has('email'))
                                                 <span class="help-block">{{ $errors->first('email') }}</span>
@@ -255,12 +256,12 @@ $layout_page = shop_cart
                                 <tr>
                                     <td colspan="2" class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                                         <label for="country" class="control-label"><i class="fas fa-globe"></i>
-                                            {{ trans('cart.country') }}:</label>
+                                            {{ sc_language_render('order.country') }}:</label>
                                         @php
                                             $ct = old('country',$shippingAddress['country']);
                                         @endphp
                                         <select class="form-control country " style="width: 100%;" name="country">
-                                            <option value="">__{{ trans('cart.country') }}__</option>
+                                            <option value="">__{{ sc_language_render('order.country') }}__</option>
                                             @foreach ($countries as $k => $v)
                                             <option value="{{ $k }}" {{ ($ct ==$k) ? 'selected':'' }}>{{ $v }}</option>
                                             @endforeach
@@ -279,8 +280,8 @@ $layout_page = shop_cart
                                     @if (sc_config('customer_postcode'))
                                         <td class="form-group {{ $errors->has('postcode') ? ' has-error' : '' }}">
                                             <label for="postcode" class="control-label"><i class="fa fa-tablet"></i>
-                                                {{ trans('cart.postcode') }}:</label>
-                                            <input class="form-control" name="postcode" type="text" placeholder="{{ trans('cart.postcode') }}"
+                                                {{ sc_language_render('order.postcode') }}:</label>
+                                            <input class="form-control" name="postcode" type="text" placeholder="{{ sc_language_render('order.postcode') }}"
                                                 value="{{ old('postcode',$shippingAddress['postcode'])}}">
                                             @if($errors->has('postcode'))
                                                 <span class="help-block">{{ $errors->first('postcode') }}</span>
@@ -291,8 +292,8 @@ $layout_page = shop_cart
                                     @if (sc_config('customer_company'))
                                         <td class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                                             <label for="company" class="control-label"><i class="fa fa-university"></i>
-                                                {{ trans('cart.company') }}</label>
-                                            <input class="form-control" name="company" type="text" placeholder="{{ trans('cart.company') }}"
+                                                {{ sc_language_render('order.company') }}</label>
+                                            <input class="form-control" name="company" type="text" placeholder="{{ sc_language_render('order.company') }}"
                                                 value="{{ old('company',$shippingAddress['company'])}}">
                                             @if($errors->has('company'))
                                                 <span class="help-block">{{ $errors->first('company') }}</span>
@@ -306,8 +307,8 @@ $layout_page = shop_cart
                                         <td colspan="2"
                                             class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
                                             <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
-                                                {{ trans('cart.address') }}:</label>
-                                            <input class="form-control" name="address1" type="text" placeholder="{{ trans('cart.address1') }}"
+                                                {{ sc_language_render('order.address') }}:</label>
+                                            <input class="form-control" name="address1" type="text" placeholder="{{ sc_language_render('order.address1') }}"
                                                 value="{{ old('address1',$shippingAddress['address1'])}}">
                                             @if($errors->has('address1'))
                                                 <span class="help-block">{{ $errors->first('address1') }}</span>
@@ -321,8 +322,8 @@ $layout_page = shop_cart
                                         <td colspan="2"
                                             class="form-group {{ $errors->has('address2') ? ' has-error' : '' }}">
                                             <label for="address2" class="control-label"><i class="fa fa-list-ul"></i>
-                                                {{ trans('cart.address') }}:</label>
-                                            <input class="form-control" name="address2" type="text" placeholder="{{ trans('cart.address2') }}"
+                                                {{ sc_language_render('order.address') }}:</label>
+                                            <input class="form-control" name="address2" type="text" placeholder="{{ sc_language_render('order.address2') }}"
                                                 value="{{ old('address2',$shippingAddress['address2'])}}">
                                             @if($errors->has('address2'))
                                                 <span class="help-block">{{ $errors->first('address2') }}</span>
@@ -336,8 +337,8 @@ $layout_page = shop_cart
                                         <td colspan="2"
                                             class="form-group {{ $errors->has('address3') ? ' has-error' : '' }}">
                                             <label for="address3" class="control-label"><i class="fa fa-list-ul"></i>
-                                                {{ trans('cart.address') }}:</label>
-                                            <input class="form-control" name="address3" type="text" placeholder="{{ trans('cart.address3') }}"
+                                                {{ sc_language_render('order.address') }}:</label>
+                                            <input class="form-control" name="address3" type="text" placeholder="{{ sc_language_render('order.address3') }}"
                                                 value="{{ old('address3',$shippingAddress['address3'])}}">
                                             @if($errors->has('address3'))
                                                 <span class="help-block">{{ $errors->first('address3') }}</span>
@@ -349,9 +350,9 @@ $layout_page = shop_cart
                                 <tr>
                                     <td colspan="2">
                                         <label class="control-label"><i class="fa fa-calendar-o"></i>
-                                            {{ trans('cart.note') }}:</label>
+                                            {{ sc_language_render('cart.note') }}:</label>
                                         <textarea class="form-control" rows="5" name="comment"
-                                            placeholder="{{ trans('cart.note') }}....">{{ old('comment','')}}</textarea>
+                                            placeholder="{{ sc_language_render('cart.note') }}....">{{ old('comment','')}}</textarea>
                                     </td>
                                 </tr>
 
@@ -397,7 +398,7 @@ $layout_page = shop_cart
                                             <div
                                                 class="form-group {{ $errors->has('shippingMethod') ? ' has-error' : '' }}">
                                                 <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
-                                                    {{ trans('cart.shipping_method') }}:<br></h3>
+                                                    {{ sc_language_render('order.shipping_method') }}:<br></h3>
                                                 @if($errors->has('shippingMethod'))
                                                 <span class="help-block">{{ $errors->first('shippingMethod') }}</span>
                                                 @endif
@@ -436,7 +437,7 @@ $layout_page = shop_cart
                                             <div
                                                 class="form-group {{ $errors->has('paymentMethod') ? ' has-error' : '' }}">
                                                 <h3 class="control-label"><i class="fa fa-credit-card-alt"></i>
-                                                    {{ trans('cart.payment_method') }}:<br></h3>
+                                                    {{ sc_language_render('order.payment_method') }}:<br></h3>
                                                 @if($errors->has('paymentMethod'))
                                                 <span class="help-block">{{ $errors->first('paymentMethod') }}</span>
                                                 @endif
@@ -481,7 +482,7 @@ $layout_page = shop_cart
                                 <div class="col-md-12 text-center">
                                     <div class="pull-right">
                                         {!! $viewCaptcha ?? ''!!}
-                                        <button class="button button-lg button-secondary" type="submit" id="button-form-process">{{ trans('cart.checkout') }}</button>
+                                        <button class="button button-lg button-secondary" type="submit" id="button-form-process">{{ sc_language_render('checkout.title') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -516,7 +517,7 @@ $layout_page = shop_cart
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

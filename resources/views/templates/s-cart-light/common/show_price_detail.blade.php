@@ -1,6 +1,6 @@
 @switch($kind)
     @case(SC_PRODUCT_GROUP)
-        <span class="sc-new-price">{!! trans('product.price_group_chose') !!}</span>
+        <span class="sc-new-price">{!! sc_language_render('product.price_group') !!}</span>
         @break
     @default
         @if ($price == $priceFinal)

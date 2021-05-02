@@ -15,7 +15,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
       <section class="section section-xxl bg-default">
         <div class="container">
 
-          <h2 class="wow fadeScale">{{ trans('front.products_new') }}</h2>
+          <h2 class="wow fadeScale">{{ sc_language_render('front.products_new') }}</h2>
 
           <div class="row row-30 row-lg-50">
             @foreach ($productsNew as $key => $productNew)
@@ -38,14 +38,14 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 
                     {{-- Display store - if use MultiVendorPro --}}
                     @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-                      <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $productNew->store_id  }}</a>
+                      <div class="store-url"><a href="{{ $productNew->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ sc_language_render('front.store').' '. $productNew->store_id  }}</a>
                       </div>
                     @endif
                     {{-- //Display store - if use MultiVendorPro --}}
 
                     {{-- Add to cart --}}
                     @if ($productNew->allowSale())
-                      <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                      <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                     @endif
                     {{-- //Add to cart --}}
 
@@ -101,7 +101,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
   <!-- Our Blog-->
   <section class="section section-xxl section-last bg-gray-21">
     <div class="container">
-      <h2 class="wow fadeScale">{{ trans('front.blog') }}</h2>
+      <h2 class="wow fadeScale">{{ sc_language_render('front.blog') }}</h2>
     </div>
     <!-- Owl Carousel-->
     <div class="owl-carousel owl-style-7" data-items="1" data-sm-items="2" data-xl-items="3" data-xxl-items="4" data-nav="true" data-dots="true" data-margin="30" data-autoplay="true">

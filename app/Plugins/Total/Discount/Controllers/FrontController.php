@@ -276,29 +276,29 @@ class FrontController extends RootFrontController
         if ($check['error'] == 1) {
             $error = 1;
             if ($check['msg'] == 'error_code_not_exist') {
-                $msg = trans('promotion.process.invalid');
+                $msg = sc_language_render('promotion.process.invalid');
             } elseif ($check['msg'] == 'error_code_cant_use') {
-                $msg = trans('promotion.process.over');
+                $msg = sc_language_render('promotion.process.over');
             } elseif ($check['msg'] == 'error_code_expired_disabled') {
-                $msg = trans('promotion.process.expire');
+                $msg = sc_language_render('promotion.process.expire');
             } elseif ($check['msg'] == 'error_user_used') {
-                $msg = trans('promotion.process.used');
+                $msg = sc_language_render('promotion.process.used');
             } elseif ($check['msg'] == 'error_uID_input') {
-                $msg = trans('promotion.process.customer_id_invalid');
+                $msg = sc_language_render('promotion.process.customer_id_invalid');
             } elseif ($check['msg'] == 'error_login') {
-                $msg = trans('promotion.process.must_login');
+                $msg = sc_language_render('promotion.process.must_login');
             } else {
-                $msg = trans('promotion.process.undefined');
+                $msg = sc_language_render('promotion.process.undefined');
             }
         } else {
             $content = $check['content'];
             if ($content['type'] === 1) {
                 //Point use in my page
                 $error = 1;
-                $msg = trans('promotion.process.not_allow');
+                $msg = sc_language_render('promotion.process.not_allow');
             } else {
                 $error = 0;
-                $msg = trans('promotion.process.completed');
+                $msg = sc_language_render('promotion.process.completed');
 
                 //Set session discount
                 $totalMethod = session('totalMethod',[]);

@@ -12,8 +12,8 @@
                   <tbody>
 
                     <tr>
-                      <td><i class="fas fa-university"></i> {{ trans($pathPlugin.'::Lang.info') }}</td>
-                      <td><a href="#" class="editable-required editable editable-click" data-name="BankTransfer_info" data-type="text" data-pk="" data-source="" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-title="{{ trans($pathPlugin.'::Lang.info') }}" data-value="{{ sc_config_global('BankTransfer_info') }}" data-original-title="" title="">{{sc_config_global('BankTransfer_info') }}</a></td>
+                      <td><i class="fas fa-university"></i> {{ sc_language_render($pathPlugin.'::Lang.info') }}</td>
+                      <td><a href="#" class="editable-required editable editable-click" data-name="BankTransfer_info" data-type="text" data-pk="" data-source="" data-url="{{ sc_route_admin('admin_config_global.update') }}" data-title="{{ sc_language_render($pathPlugin.'::Lang.info') }}" data-value="{{ sc_config_global('BankTransfer_info') }}" data-original-title="" title="">{{sc_config_global('BankTransfer_info') }}</a></td>
                     </tr>
           
                   </td>
@@ -60,12 +60,12 @@ $(document).ready(function() {
       $('.editable-required').editable({
         validate: function(value) {
             if (value == '') {
-                return '{{  trans('admin.not_empty') }}';
+                return '{{  sc_language_render('admin.not_empty') }}';
             }
         },
         success: function(data) {
           if(data.error == 0){
-            alertJs('success', '{{ trans('admin.msg_change_success') }}');
+            alertJs('success', '{{ sc_language_render('admin.msg_change_success') }}');
           } else {
             alertJs('error', data.msg);
           }

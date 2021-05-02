@@ -16,9 +16,6 @@ $layout_page = shop_profile
 <section class="section section-sm section-first bg-default text-md-left">
 <div class="container">
   <div class="row">
-    {{-- <div class="col-12">
-      <h2 class="title-page">{{ trans('account.my_profile') }}</h2>
-    </div> --}}
     <div class="col-12 col-sm-12 col-md-3">
       @include($sc_templatePath.'.account.nav_customer')
     </div>
@@ -26,63 +23,63 @@ $layout_page = shop_profile
       <h6 class="aside-title">{{ $title }}</h6>
       @if (!$order)
       <div class="text-danger">
-        {{ trans('account.order_detail_not_exist') }}
+        {{ sc_language_render('front.data_notfound') }}
       </div>
       @else
       <div class="row" id="order-body">
       <div class="col-sm-6">
         <table class="table table-bordered">
            <tr>
-             <td class="td-title">{{ trans('order.shipping_first_name') }}:</td><td>{!! $order->first_name !!}</td>
+             <td class="td-title">{{ sc_language_render('order.first_name') }}:</td><td>{!! $order->first_name !!}</td>
            </tr>
 
            @if (sc_config('customer_lastname'))
            <tr>
-             <td class="td-title">{{ trans('order.shipping_last_name') }}:</td><td>{!! $order->last_name !!}</td>
+             <td class="td-title">{{ sc_language_render('order.last_name') }}:</td><td>{!! $order->last_name !!}</td>
            </tr>
            @endif
 
            @if (sc_config('customer_phone'))
            <tr>
-             <td class="td-title">{{ trans('order.shipping_phone') }}:</td><td>{!! $order->phone !!}</td>
+             <td class="td-title">{{ sc_language_render('order.phone') }}:</td><td>{!! $order->phone !!}</td>
            </tr>
            @endif
 
            <tr>
-             <td class="td-title">{{ trans('order.email') }}:</td><td>{!! empty($order->email)?'N/A':$order->email!!}</td>
+             <td class="td-title">{{ sc_language_render('order.email') }}:</td><td>{!! empty($order->email)?'N/A':$order->email!!}</td>
            </tr>
 
            @if (sc_config('customer_company'))
            <tr>
-             <td class="td-title">{{ trans('order.company') }}:</td><td>{!! $order->company !!}</td>
+             <td class="td-title">{{ sc_language_render('order.company') }}:</td><td>{!! $order->company !!}</td>
            </tr>
            @endif
 
            @if (sc_config('customer_postcode'))
            <tr>
-             <td class="td-title">{{ trans('order.postcode') }}:</td><td>{!! $order->postcode !!}</td>
+             <td class="td-title">{{ sc_language_render('order.postcode') }}:</td><td>{!! $order->postcode !!}</td>
            </tr>
            @endif
 
            <tr>
-             <td class="td-title">{{ trans('order.shipping_address1') }}:</td><td>{!! $order->address1 !!}</td>
+             <td class="td-title">{{ sc_language_render('order.address1') }}:</td><td>{!! $order->address1 !!}</td>
            </tr>
 
            @if (sc_config('customer_address2'))
            <tr>
-             <td class="td-title">{{ trans('order.shipping_address2') }}:</td><td>{!! $order->address2 !!}</td>
+             <td class="td-title">{{ sc_language_render('order.address2') }}:</td><td>{!! $order->address2 !!}</td>
            </tr>
            @endif
 
            @if (sc_config('customer_address3'))
            <tr>
-             <td class="td-title">{{ trans('order.shipping_address3') }}:</td><td>{!! $order->address3 !!}</td>
+             <td class="td-title">{{ sc_language_render('order.address3') }}:</td><td>{!! $order->address3 !!}</td>
            </tr>
            @endif
 
            @if (sc_config('customer_country'))
            <tr>
-             <td class="td-title">{{ trans('order.country') }}:</td><td>{!! $countries[$order->country] ?? $order->country !!}</td>
+             <td class="td-title">{{ sc_language_render('order.country') }}:</td><td>{!! $countries[$order->country] ?? $order->country !!}</td>
            </tr>
            @endif
 
@@ -92,15 +89,15 @@ $layout_page = shop_profile
 
    <div class="col-sm-6">
     <table  class="table table-bordered">
-        <tr><td class="td-title">{{ trans('order.order_status') }}:</td><td>{{ $statusOrder[$order->status] }}</td></tr>
-        <tr><td>{{ trans('order.order_shipping_status') }}:</td><td>{{ $statusShipping[$order->shipping_status]??'' }}</td></tr>
-        <tr><td>{{ trans('order.shipping_method') }}:</td><td>{{ $order->shipping_method }}</td></tr>
-        <tr><td>{{ trans('order.payment_method') }}:</td><td>{{ $order->payment_method }}</td></tr>
+        <tr><td class="td-title">{{ sc_language_render('order.order_status') }}:</td><td>{{ $statusOrder[$order->status] }}</td></tr>
+        <tr><td>{{ sc_language_render('order.shipping_status') }}:</td><td>{{ $statusShipping[$order->shipping_status]??'' }}</td></tr>
+        <tr><td>{{ sc_language_render('order.shipping_method') }}:</td><td>{{ $order->shipping_method }}</td></tr>
+        <tr><td>{{ sc_language_render('order.payment_method') }}:</td><td>{{ $order->payment_method }}</td></tr>
         <tr>
-          <td class="td-title">{{ trans('order.currency') }}:</td><td>{{ $order->currency }}</td>
+          <td class="td-title">{{ sc_language_render('order.currency') }}:</td><td>{{ $order->currency }}</td>
         </tr>
         <tr>
-          <td class="td-title">{{ trans('order.exchange_rate') }}:</td><td>{{ ($order->exchange_rate)??1 }}</td>
+          <td class="td-title">{{ sc_language_render('order.exchange_rate') }}:</td><td>{{ ($order->exchange_rate)??1 }}</td>
         </tr>
     </table>
   </div>
@@ -113,12 +110,12 @@ $layout_page = shop_profile
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>{{ trans('product.name') }}</th>
-                    <th>{{ trans('product.sku') }}</th>
-                    <th class="product_price">{{ trans('product.price') }}</th>
-                    <th class="product_qty">{{ trans('product.quantity') }}</th>
-                    <th class="product_total">{{ trans('product.total_price') }}</th>
-                    <th class="product_tax">{{ trans('product.tax') }}</th>
+                    <th>{{ sc_language_render('product.name') }}</th>
+                    <th>{{ sc_language_render('product.sku') }}</th>
+                    <th class="product_price">{{ sc_language_render('product.price') }}</th>
+                    <th class="product_qty">{{ sc_language_render('product.quantity') }}</th>
+                    <th class="product_total">{{ sc_language_render('order.totals.sub_total') }}</th>
+                    <th class="product_tax">{{ sc_language_render('product.tax') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -182,7 +179,7 @@ $layout_page = shop_profile
                   @endif
 
                 @endforeach
-                <tr class="data-balance"><td>{{ trans('order.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->balance) }}</td></tr>
+                <tr class="data-balance"><td>{{ sc_language_render('order.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->balance) }}</td></tr>
             </table>
           </div>
 
@@ -203,8 +200,8 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ sc_language_render('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

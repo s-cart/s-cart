@@ -50,7 +50,7 @@
                       <td class="content-cell" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
                         @yield('main')
                         <p style="box-sizing:border-box;font-family:Avenir,Helvetica,sans-serif;font-size:14px;line-height:1.5em;margin-top:0;text-align:left">
-                          {{ trans('email.msg_goodbye') }}<br>
+                          {{ sc_language_render('email.msg_goodbye') }}<br>
                           {{ config('app.name') }}
                         </p>
                       </td>

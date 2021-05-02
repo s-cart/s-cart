@@ -20,7 +20,7 @@ class AdminController extends RootAdminController
         $pathPlugin = $this->plugin->pathPlugin;
         return view($pathPlugin.'::Admin',
             [
-                'title' => trans($pathPlugin.'::Lang.info'),
+                'title' => sc_language_render($pathPlugin.'::Lang.info'),
                 'pathPlugin' => $pathPlugin
             ]
         );

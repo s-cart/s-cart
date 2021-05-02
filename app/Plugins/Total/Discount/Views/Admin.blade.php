@@ -9,7 +9,7 @@
 
                     <div class="card-tools">
                         <div class="btn-group pull-right" style="margin-right: 5px">
-                            <a href="{{ sc_route_admin('admin_discount.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{trans('admin.back_list')}}</span></a>
+                            <a href="{{ sc_route_admin('admin_discount.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{sc_language_render('admin.back_list')}}</span></a>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                         <div class="fields-group">
 
                             <div class="form-group  row {{ $errors->has('code') ? ' invalid' : '' }}">
-                                <label for="code" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.code') }}</label>
+                                <label for="code" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.code') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -40,14 +40,14 @@
                                             </span>
                                         @else
                                             
-                                                <i class="fa fa-info-circle"></i>  {{ trans('Plugins/Total/Discount::lang.admin.code_helper') }}
+                                                <i class="fa fa-info-circle"></i>  {{ sc_language_render('Plugins/Total/Discount::lang.admin.code_helper') }}
                                       
                                         @endif
                                 </div>
                             </div>
 
                             <div class="form-group  row {{ $errors->has('reward') ? ' invalid' : '' }}">
-                                <label for="reward" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.reward') }}</label>
+                                <label for="reward" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.reward') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -65,7 +65,7 @@
 
 
                             <div class="form-group  row {{ $errors->has('type') ? ' invalid' : '' }}">
-                                <label for="type" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.type') }}</label>
+                                <label for="type" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.type') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                     <label class="radio-inline"><input type="radio" name="type" value="point" {{ (old('type',$discount['type']??'') == 'point')?'checked':'' }}> Point</label>
@@ -82,7 +82,7 @@
 
 
                             <div class="form-group  row {{ $errors->has('data') ? ' invalid' : '' }}">
-                                <label for="data" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.data') }}</label>
+                                <label for="data" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.data') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -101,7 +101,7 @@
 
 
                             <div class="form-group  row {{ $errors->has('limit') ? ' invalid' : '' }}">
-                                <label for="limit" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.limit') }}</label>
+                                <label for="limit" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.limit') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="form-group  row {{ $errors->has('login') ? ' invalid' : '' }}">
-                                <label for="login" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.login') }}</label>
+                                <label for="login" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.login') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <input type="checkbox" class="checkbox" id="login" name="login" {{ old('login',(empty($discount['login'])?0:1))?'checked':''}}  placeholder="" class="check-form" />
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="form-group  row {{ $errors->has('expires_at') ? ' invalid' : '' }}">
-                                <label for="expires_at" class="col-sm-2  control-label">{{ trans('Plugins/Total/Discount::lang.expires_at') }}</label>
+                                <label for="expires_at" class="col-sm-2  control-label">{{ sc_language_render('Plugins/Total/Discount::lang.expires_at') }}</label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -148,7 +148,7 @@
                             </div>
 
                             <div class="form-group row ">
-                                <label for="status" class="col-sm-2 control-label">{{ trans('Plugins/Total/Discount::lang.status') }}</label>
+                                <label for="status" class="col-sm-2 control-label">{{ sc_language_render('Plugins/Total/Discount::lang.status') }}</label>
                                 <div class="col-sm-8">
                                    <input class="checbox" type="checkbox" name="status"  {{ old('status',(empty($discount['status'])?0:1))?'checked':''}}>
                                 </div>
@@ -168,11 +168,11 @@
     
                         <div class="col-md-8">
                             <div class="btn-group float-right">
-                                <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ sc_language_render('admin.submit') }}</button>
                             </div>
     
                             <div class="btn-group float-left">
-                                <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
+                                <button type="reset" class="btn btn-warning">{{ sc_language_render('admin.reset') }}</button>
                             </div>
                         </div>
                     </div>

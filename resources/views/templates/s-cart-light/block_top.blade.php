@@ -17,6 +17,7 @@ $arrPage = explode(',', $layout->page)
 @endisset
 {{-- //Module banner --}}
 
+
 {{-- Module top --}}
 @isset ($sc_blocksContent['top'])
 @foreach ( $sc_blocksContent['top'] as $layout)

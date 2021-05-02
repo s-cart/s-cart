@@ -65,7 +65,7 @@ $layout_page = shop_product_detail
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
                 {{-- Go to store --}}
                 @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-                <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ trans('front.store').' '. $product->store_id  }}</a>
+                <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ sc_language_render('front.store').' '. $product->store_id  }}</a>
                 </div>
                 @endif
                 {{-- End go to store --}}
@@ -91,7 +91,7 @@ $layout_page = shop_product_detail
                       <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
                     </div>
                     <div>
-                        <button class="button button-lg button-secondary button-zakaria" type="submit">{{ trans('front.add_to_cart') }}</button>
+                        <button class="button button-lg button-secondary button-zakaria" type="submit">{{ sc_language_render('action.add_to_cart') }}</button>
                     </div>
                 </div>
                 @endif
@@ -110,12 +110,12 @@ $layout_page = shop_product_detail
                 {{-- Stock info --}}
                 @if (sc_config('product_stock'))
                 <div>
-                    {{ trans('product.stock_status') }}:
+                    {{ sc_language_render('product.stock_status') }}:
                     <span id="stock_status">
                         @if($product->stock <=0 && !sc_config('product_buy_out_of_stock'))
-                            {{ trans('product.out_stock') }} 
+                            {{ sc_language_render('product.out_stock') }} 
                             @else 
-                            {{ trans('product.in_stock') }} 
+                            {{ sc_language_render('product.in_stock') }} 
                             @endif 
                     </span> 
                 </div>
@@ -125,7 +125,7 @@ $layout_page = shop_product_detail
                 {{-- date available --}}
                 @if (sc_config('product_available') && $product->date_available >= date('Y-m-d H:i:s'))
                 <div>
-                    {{ trans('product.date_available') }}:
+                    {{ sc_language_render('product.date_available') }}:
                     <span id="product-detail-available">
                         {{ $product->date_available }}
                     </span>
@@ -134,7 +134,7 @@ $layout_page = shop_product_detail
                 {{--// date available --}}
 
                 {{-- Category info --}}
-                {{ trans('product.category') }}: 
+                {{ sc_language_render('product.category') }}: 
                 @foreach ($product->categories as $category)
                   <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
                 @endforeach
@@ -143,7 +143,7 @@ $layout_page = shop_product_detail
                 {{-- Brand info --}}
                 @if (sc_config('product_brand') && !empty($product->brand->name))
                 <div>
-                    {{ trans('product.brand') }}:
+                    {{ sc_language_render('product.brand') }}:
                     <span id="product-detail-brand">
                         {!! empty($product->brand->name) ? 'None' : '<a href="'.$product->brand->getUrl().'">'.$product->brand->name.'</a>' !!}
                     </span>
@@ -157,7 +157,7 @@ $layout_page = shop_product_detail
                       @php
                       $groups = $product->groups
                       @endphp
-                      <b>{{ trans('product.groups') }}</b>:<br>
+                      <b>{{ sc_language_render('product.kind_group') }}</b>:<br>
                       @foreach ($groups as $group)
                       <span class="sc-product-group">
                           <a target=_blank href="{{ $group->product->getUrl() }}">
@@ -173,7 +173,7 @@ $layout_page = shop_product_detail
                       @php
                       $builds = $product->builds
                       @endphp
-                      <b>{{ trans('product.builds') }}</b>:<br>
+                      <b>{{ sc_language_render('product.kind_bundle') }}</b>:<br>
                       <span class="sc-product-build">
                           {!! sc_image_render($product->image) !!} =
                       </span>
@@ -214,7 +214,7 @@ $layout_page = shop_product_detail
             <div class="nav-tabs-wrap">
               <ul class="nav nav-tabs nav-tabs-1">
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ trans('product.description') }}</a>
+                  <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
                 </li>
               </ul>
             </div>
@@ -250,7 +250,7 @@ $layout_page = shop_product_detail
                       <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
                       @if ($product_rel->allowSale())
                       <a onClick="addToCartAjax('{{ $product_rel->id }}','default','{{ $product_rel->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                        <i class="fa fa-cart-plus"></i> {{trans('front.add_to_cart')}}</a>
+                        <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                       @endif
             
                       {!! $product_rel->showPrice() !!}
@@ -311,14 +311,14 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
     </div>
     <div class="breadcrumbs-custom-body parallax-content context-dark">
       <div class="container">
-        <h2 class="breadcrumbs-custom-title">{{ trans('front.product_detail') }}</h2>
+        <h2 class="breadcrumbs-custom-title">{{ sc_language_render('product.product_detail') }}</h2>
       </div>
     </div>
   </div>
   <div class="breadcrumbs-custom-footer">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+        <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
         {{-- Display store info if use MultiVendorPro --}}
         @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
         <li><a href="{{ $goToStore }}">{{ sc_store('title', $product->store_id) }}</a></li>

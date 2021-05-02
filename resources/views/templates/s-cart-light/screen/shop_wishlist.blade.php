@@ -14,7 +14,7 @@ $layout_page = shop_wishlist
         <div class="row">
             <div class="col-md-12 text-danger">
                 @if (count($wishlist) ==0)
-                    {{ trans('front.empty_product') }}
+                    {{ sc_language_render('front.data_notfound') }}
                 @else
                 <div class="table-responsive">
                     <table class="table box table-bordered">
@@ -89,7 +89,7 @@ $layout_page = shop_wishlist
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

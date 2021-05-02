@@ -23,7 +23,7 @@ class AppConfig extends ConfigDefault
         //Path
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
         //Language
-        $this->title = trans($this->pathPlugin.'::lang.title');
+        $this->title = sc_language_render($this->pathPlugin.'::lang.title');
         //Image logo or thumb
         $this->image = $this->pathPlugin.'/'.$config['image'];
         //
@@ -38,7 +38,7 @@ class AppConfig extends ConfigDefault
         $check = AdminConfig::where('key', $this->configKey)->first();
         if ($check) {
             //Check Plugin key exist
-            $return = ['error' => 1, 'msg' =>  trans('plugin.plugin_action.plugin_exist')];
+            $return = ['error' => 1, 'msg' =>  sc_language_render('plugin.plugin_action.plugin_exist')];
         } else {
             //Insert plugin to config
             $dataInsert = [
@@ -71,7 +71,7 @@ class AppConfig extends ConfigDefault
                 $dataInsert
             );
             if (!$process) {
-                $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.install_faild')];
+                $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.install_faild')];
             } else {
                 $return = (new PluginModel)->installExtension();
             }
@@ -89,7 +89,7 @@ class AppConfig extends ConfigDefault
             ->orWhere('code', $this->configKey.'_config')
             ->delete();
         if (!$process) {
-            $return = ['error' => 1, 'msg' => trans('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
+            $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
         (new PluginModel)->uninstallExtension();
         return $return;
@@ -120,7 +120,7 @@ class AppConfig extends ConfigDefault
     public function config()
     {
         $breadcrumb['url'] = sc_route_admin('admin_plugin', ['code' => $this->configCode]);
-        $breadcrumb['name'] = trans('plugin.' . $this->configCode.'_plugin');
+        $breadcrumb['name'] = sc_language_render('plugin.' . $this->configCode.'_plugin');
         return view($this->pathPlugin . '::Admin')->with(
             [
                 'pathPlugin' => $this->pathPlugin,

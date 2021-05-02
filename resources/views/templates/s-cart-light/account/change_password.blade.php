@@ -12,9 +12,6 @@ $layout_page = shop_profile
 <section class="section section-sm section-first bg-default text-md-left">
 <div class="container">
     <div class="row justify-content-center">
-        {{-- <div class="col-12">
-            <h2 class="title-page">{{ trans('account.my_profile') }}</h2>
-        </div> --}}
         <div class="col-12 col-sm-12 col-md-3">
             @include($sc_templatePath.'.account.nav_customer')
         </div>
@@ -27,7 +24,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ Session::has('password_old_error') ? ' has-error' : '' }}">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.password_old') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_old') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password_old" required>
@@ -41,7 +38,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.password_new') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_new') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -55,7 +52,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ trans('account.password_confirm') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_confirm') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -66,7 +63,7 @@ $layout_page = shop_profile
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ trans('account.update_infomation') }}
+                                    {{ sc_language_render('customer.update_infomation') }}
                                 </button>
                             </div>
                         </div>
@@ -85,8 +82,8 @@ $layout_page = shop_profile
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
-            <li><a href="{{ sc_route('customer.index') }}">{{ trans('front.my_account') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+            <li><a href="{{ sc_route('customer.index') }}">{{ sc_language_render('front.my_account') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>

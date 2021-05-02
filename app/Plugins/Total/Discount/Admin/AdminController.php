@@ -22,7 +22,7 @@ class AdminController extends RootAdminController
     public function index()
     {
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::lang.admin.list'),
+            'title' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.list'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
             'urlDeleteItem' => sc_route_admin('admin_discount.delete'),
@@ -40,24 +40,24 @@ class AdminController extends RootAdminController
 
 
         $listTh = [
-            'code' => trans($this->plugin->pathPlugin.'::lang.code'),
-            'reward' => trans($this->plugin->pathPlugin.'::lang.reward'),
-            'type' => trans($this->plugin->pathPlugin.'::lang.type'),
-            'data' => trans($this->plugin->pathPlugin.'::lang.data'),
-            'limit' => trans($this->plugin->pathPlugin.'::lang.limit'),
-            'used' => trans($this->plugin->pathPlugin.'::lang.used'),
-            'status' => trans($this->plugin->pathPlugin.'::lang.status'),
-            'login' => trans($this->plugin->pathPlugin.'::lang.login'),
-            'expires_at' => trans($this->plugin->pathPlugin.'::lang.expires_at'),
-            'action' => trans($this->plugin->pathPlugin.'::lang.admin.action'),
+            'code' => sc_language_render($this->plugin->pathPlugin.'::lang.code'),
+            'reward' => sc_language_render($this->plugin->pathPlugin.'::lang.reward'),
+            'type' => sc_language_render($this->plugin->pathPlugin.'::lang.type'),
+            'data' => sc_language_render($this->plugin->pathPlugin.'::lang.data'),
+            'limit' => sc_language_render($this->plugin->pathPlugin.'::lang.limit'),
+            'used' => sc_language_render($this->plugin->pathPlugin.'::lang.used'),
+            'status' => sc_language_render($this->plugin->pathPlugin.'::lang.status'),
+            'login' => sc_language_render($this->plugin->pathPlugin.'::lang.login'),
+            'expires_at' => sc_language_render($this->plugin->pathPlugin.'::lang.expires_at'),
+            'action' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.action'),
         ];
         $sort_order = request('sort_order') ?? 'id_desc';
         $keyword = request('keyword') ?? '';
         $arrSort = [
-            'id__desc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.id_desc'),
-            'id__asc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.id_asc'),
-            'code__desc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_desc'),
-            'code__asc' => trans($this->plugin->pathPlugin.'::lang.admin.sort_order.code_asc'),
+            'id__desc' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.sort_order.id_desc'),
+            'id__asc' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.sort_order.id_asc'),
+            'code__desc' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.sort_order.code_desc'),
+            'code__asc' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.sort_order.code_asc'),
         ];
         $dataSearch = [
             'keyword'    => $keyword,
@@ -79,9 +79,9 @@ class AdminController extends RootAdminController
                 'login' => $row['login'],
                 'expires_at' => $row['expires_at'],
                 'action' => '
-                    <a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . trans($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                    <a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
-                  <span onclick="deleteItem(' . $row['id'] . ');"  title="' . trans($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
+                  <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
                   ',
             ];
         }
@@ -89,11 +89,11 @@ class AdminController extends RootAdminController
         $data['listTh'] = $listTh;
         $data['dataTr'] = $dataTr;
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links($this->templatePathAdmin.'.component.pagination');
-        $data['resultItems'] = trans($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'item_total' => $dataTmp->total()]);
+        $data['resultItems'] = sc_language_render($this->plugin->pathPlugin.'::lang.admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'total' =>  $dataTmp->total()]);
 
         //menuRight
         $data['menuRight'][] = '<a href="' . sc_route_admin('admin_discount.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus" title="' . trans($this->plugin->pathPlugin.'::lang.admin.add_new') . '"></i>
+                           <i class="fa fa-plus" title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.add_new') . '"></i>
                            </a>';
         //=menuRight
 
@@ -110,7 +110,7 @@ class AdminController extends RootAdminController
         $data['topMenuRight'][] = '
               <form action="' . sc_route_admin('admin_discount.index') . '" id="button_search">
                 <div class="input-group input-group" style="width: 250px;">
-                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . trans($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.search_place') . '" value="' . $keyword . '">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>
@@ -129,9 +129,9 @@ class AdminController extends RootAdminController
     public function create()
     {
         $data = [
-            'title' => trans($this->plugin->pathPlugin.'::lang.admin.add_new_title'),
+            'title' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.add_new_title'),
             'subTitle' => '',
-            'title_description' => trans($this->plugin->pathPlugin.'::lang.admin.add_new_des'),
+            'title_description' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.add_new_des'),
             'icon' => 'fa fa-plus',
             'discount' => [],
             'url_action' => sc_route_admin('admin_discount.create'),
@@ -153,8 +153,8 @@ class AdminController extends RootAdminController
             'reward' => 'required|numeric|min:0',
             'type'   => 'required',
         ], [
-            'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
-            'code.discount_unique' => trans($this->plugin->pathPlugin.'::lang.discount_unique'),
+            'code.regex' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.code_validate'),
+            'code.discount_unique' => sc_language_render($this->plugin->pathPlugin.'::lang.discount_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -177,7 +177,7 @@ class AdminController extends RootAdminController
         }
         AdminDiscount::createDiscountAdmin($dataInsert);
 
-        return redirect()->route('admin_discount.index')->with('success', trans($this->plugin->pathPlugin.'::lang.admin.create_success'));
+        return redirect()->route('admin_discount.index')->with('success', sc_language_render($this->plugin->pathPlugin.'::lang.admin.create_success'));
 
     }
 
@@ -192,7 +192,7 @@ class AdminController extends RootAdminController
         }
 
         $data = [
-            'title'             => trans($this->plugin->pathPlugin.'::lang.admin.edit'),
+            'title'             => sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit'),
             'subTitle'          => '',
             'title_description' => '',
             'icon'              => 'fa fa-pencil-square-o',
@@ -219,8 +219,8 @@ class AdminController extends RootAdminController
             'reward' => 'required|numeric|min:0',
             'type' => 'required',
         ], [
-            'code.regex' => trans($this->plugin->pathPlugin.'::lang.admin.code_validate'),
-            'code.discount_unique' => trans($this->plugin->pathPlugin.'::lang.discount_unique'),
+            'code.regex' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.code_validate'),
+            'code.discount_unique' => sc_language_render($this->plugin->pathPlugin.'::lang.discount_unique'),
         ]);
 
         if ($validator->fails()) {
@@ -245,7 +245,7 @@ class AdminController extends RootAdminController
         $discount->update($dataUpdate);
 
         return redirect()->route('admin_discount.index')
-            ->with('success', trans($this->plugin->pathPlugin.'::lang.admin.edit_success'));
+            ->with('success', sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit_success'));
 
     }
 
@@ -267,7 +267,7 @@ class AdminController extends RootAdminController
                 }
             }
             if (count($arrDontPermission)) {
-                return response()->json(['error' => 1, 'msg' => trans('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
+                return response()->json(['error' => 1, 'msg' => sc_language_render('admin.remove_dont_permisison') . ': ' . json_encode($arrDontPermission)]);
             }
             AdminDiscount::destroy($arrID);
             return response()->json(['error' => 0, 'msg' => '']);

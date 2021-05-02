@@ -17,13 +17,13 @@ $email
             <div class="card">
 
                 <div class="card-body">
-                    <form method="POST" action="{{ sc_route('password.request') }}" aria-label="{{ __('Reset Password') }}">
+                    <form method="POST" action="{{ sc_route('password.request') }}" aria-label="{{ sc_language_render('customer.password_reset') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -37,7 +37,7 @@ $email
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -51,7 +51,7 @@ $email
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_confirm') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -61,7 +61,7 @@ $email
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="button button-lg button-secondary">
-                                    {{ __('Reset Password') }}
+                                    {{ sc_language_render('customer.password_reset') }}
                                 </button>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ $email
     <div class="breadcrumbs-custom-footer">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             <li class="active">{{ $title ?? '' }}</li>
           </ul>
         </div>
