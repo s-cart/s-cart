@@ -669,7 +669,7 @@ class CreateTablesShop extends Migration
 
         Schema::create(SC_DB_PREFIX.'languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 50)->index();
+            $table->string('code', 100)->index();
             $table->text('text')->nullable();
             $table->string('position', 100)->index();
             $table->string('location', 10)->index();
