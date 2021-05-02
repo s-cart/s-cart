@@ -24,23 +24,27 @@
     <!-- css default for item s-cart -->
     @include($sc_templatePath.'.common.css')
     <!--//end css defaut -->
+    <!-- css default for item s-cart -->
+    <!--//end css defaut -->
 
-    <!--Module meta -->
-    @isset ($sc_blocksContent['meta'])
-    @foreach ( $sc_blocksContent['meta'] as $layout)
+    <!--Module header -->
+    @isset ($sc_blocksContent['header'])
+    @foreach ( $sc_blocksContent['header'] as $layout)
     @php
     $arrPage = explode(',', $layout->page)
     @endphp
     @if ($layout->page == '*' || (isset($layout_page) && in_array($layout_page, $arrPage)))
-    @if ($layout->type =='html')
-    {!! $layout->text !!}
-    @endif
+        @if ($layout->type =='html')
+            {!! $layout->text !!}
+        @elseif($layout->type =='view')
+            @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
+                @include($sc_templatePath.'.block.'.$layout->text)
+            @endif
+        @endif
     @endif
     @endforeach
     @endisset
-    <!--//Module meta -->
-    <!-- css default for item s-cart -->
-    <!--//end css defaut -->
+    <!--//Module header -->
 
     <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/fonts.css')}}">

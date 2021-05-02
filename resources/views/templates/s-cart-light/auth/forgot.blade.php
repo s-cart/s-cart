@@ -11,13 +11,13 @@ $layout_page = shop_auth
     <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12">
-            <h2>{{ sc_language_render('account.password_forgot') }}</h2>
+            <h2>{{ sc_language_render('customer.password_forgot') }}</h2>
 
             <form class="form-horizontal" method="POST" action="{{ sc_route('password.email') }}" id="form-process">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="col-md-12 control-label"><i class="fas fa-envelope"></i>
-                        {{ sc_language_render('account..email') }}</label>
+                        {{ sc_language_render('customer.email') }}</label>
                     <div class="col-md-12">
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
                             required>

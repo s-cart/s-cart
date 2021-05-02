@@ -6,7 +6,7 @@
     <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12">
-            <h2>{{ sc_language_render('account.title_register') }}</h2>
+            <h2>{{ sc_language_render('customer.title_register') }}</h2>
             <form action="{{sc_route('postRegister')}}" method="post" class="box" id="form-process">
                 {!! csrf_field() !!}
                 <div class="form_content" id="collapseExample">
@@ -15,7 +15,7 @@
                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('first_name'))?"input-error":"" }}"
-                            name="first_name" placeholder="{{ sc_language_render('account.first_name') }}"
+                            name="first_name" placeholder="{{ sc_language_render('customer.first_name') }}"
                             value="{{ old('first_name') }}">
                         @if ($errors->has('first_name'))
                         <span class="help-block">
@@ -26,7 +26,7 @@
                     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('last_name'))?"input-error":"" }}"
-                            name="last_name" placeholder="{{ sc_language_render('account.last_name') }}" value="{{ old('last_name') }}">
+                            name="last_name" placeholder="{{ sc_language_render('customer.last_name') }}" value="{{ old('last_name') }}">
                         @if ($errors->has('last_name'))
                         <span class="help-block">
                             {{ $errors->first('last_name') }}
@@ -37,7 +37,7 @@
                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('first_name'))?"input-error":"" }}"
-                            name="first_name" placeholder="{{ sc_language_render('account.name') }}" value="{{ old('first_name') }}">
+                            name="first_name" placeholder="{{ sc_language_render('customer.name') }}" value="{{ old('first_name') }}">
                         @if ($errors->has('first_name'))
                         <span class="help-block">
                             {{ $errors->first('first_name') }}
@@ -50,7 +50,7 @@
                     <div class="form-group{{ $errors->has('first_name_kana') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('first_name_kana'))?"input-error":"" }}"
-                            name="first_name_kana" placeholder="{{ sc_language_render('account.first_name_kana') }}"
+                            name="first_name_kana" placeholder="{{ sc_language_render('customer.first_name_kana') }}"
                             value="{{ old('first_name_kana') }}">
                         @if ($errors->has('first_name_kana'))
                         <span class="help-block">
@@ -61,7 +61,7 @@
                     <div class="form-group{{ $errors->has('last_name_kana') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('last_name_kana'))?"input-error":"" }}"
-                            name="last_name_kana" placeholder="{{ sc_language_render('account.last_name_kana') }}" value="{{ old('last_name_kana') }}">
+                            name="last_name_kana" placeholder="{{ sc_language_render('customer.last_name_kana') }}" value="{{ old('last_name_kana') }}">
                         @if ($errors->has('last_name_kana'))
                         <span class="help-block">
                             {{ $errors->first('last_name_kana') }}
@@ -73,7 +73,7 @@
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('email'))?"input-error":"" }}"
-                            name="email" placeholder="{{ sc_language_render('account.email') }}" value="{{ old('email') }}">
+                            name="email" placeholder="{{ sc_language_render('customer.email') }}" value="{{ old('email') }}">
                         @if ($errors->has('email'))
                         <span class="help-block">
                             {{ $errors->first('email') }}
@@ -85,7 +85,7 @@
                     <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('phone'))?"input-error":"" }}"
-                            name="phone" placeholder="{{ sc_language_render('account.phone') }}" value="{{ old('phone') }}">
+                            name="phone" placeholder="{{ sc_language_render('customer.phone') }}" value="{{ old('phone') }}">
                         @if ($errors->has('phone'))
                         <span class="help-block">
                             {{ $errors->first('phone') }}
@@ -98,7 +98,7 @@
                     <div class="form-group{{ $errors->has('postcode') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('postcode'))?"input-error":"" }}"
-                            name="postcode" placeholder="{{ sc_language_render('account.postcode') }}" value="{{ old('postcode') }}">
+                            name="postcode" placeholder="{{ sc_language_render('customer.postcode') }}" value="{{ old('postcode') }}">
                         @if ($errors->has('postcode'))
                         <span class="help-block">
                             {{ $errors->first('postcode') }}
@@ -110,7 +110,7 @@
                     <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
-                            name="address1" placeholder="{{ sc_language_render('account.address1') }}" value="{{ old('address1') }}">
+                            name="address1" placeholder="{{ sc_language_render('customer.address1') }}" value="{{ old('address1') }}">
                         @if ($errors->has('address1'))
                         <span class="help-block">
                             {{ $errors->first('address1') }}
@@ -122,7 +122,7 @@
                     <div class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('address2'))?"input-error":"" }}"
-                            name="address2" placeholder="{{ sc_language_render('account.address2') }}" value="{{ old('address2') }}">
+                            name="address2" placeholder="{{ sc_language_render('customer.address2') }}" value="{{ old('address2') }}">
                         @if ($errors->has('address2'))
                         <span class="help-block">
                             {{ $errors->first('address2') }}
@@ -135,7 +135,7 @@
                     <div class="form-group{{ $errors->has('address3') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('address3'))?"input-error":"" }}"
-                            name="address3" placeholder="{{ sc_language_render('account.address3') }}" value="{{ old('address3') }}">
+                            name="address3" placeholder="{{ sc_language_render('customer.address3') }}" value="{{ old('address3') }}">
                         @if ($errors->has('address3'))
                         <span class="help-block">
                             {{ $errors->first('address3') }}
@@ -148,7 +148,7 @@
                     <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('company'))?"input-error":"" }}"
-                            name="company" placeholder="{{ sc_language_render('account.company') }}" value="{{ old('company') }}">
+                            name="company" placeholder="{{ sc_language_render('customer.company') }}" value="{{ old('company') }}">
                         @if ($errors->has('company'))
                         <span class="help-block">
                             {{ $errors->first('company') }}
@@ -160,7 +160,7 @@
                     @if (sc_config('customer_country'))
                     <div class="form-group  {{ $errors->has('country') ? ' has-error' : '' }}">
                         <select class="form-control country" style="width: 100%;" name="country">
-                            <option>__{{ sc_language_render('account.country') }}__</option>
+                            <option>__{{ sc_language_render('customer.country') }}__</option>
                             @foreach ($countries as $k => $v)
                             <option value="{{ $k }}" {{ (old('country') ==$k) ? 'selected':'' }}>{{ $v }}</option>
                             @endforeach
@@ -176,12 +176,12 @@
                     @if (sc_config('customer_sex'))
                     <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                         <label
-                            class="validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ sc_language_render('account.sex') }}:
+                            class="validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ sc_language_render('customer.sex') }}:
                         </label>
                         <label class="radio-inline"><input value="0" type="radio" name="sex"
-                                {{ (old('sex') == 0)?'checked':'' }}> {{ sc_language_render('account.sex_women') }}</label>
+                                {{ (old('sex') == 0)?'checked':'' }}> {{ sc_language_render('customer.sex_women') }}</label>
                         <label class="radio-inline"><input value="1" type="radio" name="sex"
-                                {{ (old('sex') == 1)?'checked':'' }}> {{ sc_language_render('account.sex_men') }}</label>
+                                {{ (old('sex') == 1)?'checked':'' }}> {{ sc_language_render('customer.sex_men') }}</label>
                         @if ($errors->has('sex'))
                         <span class="help-block">
                             {{ $errors->first('sex') }}
@@ -194,7 +194,7 @@
                     <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
                         <input type="date"
                             class="is_required validate account_input form-control {{ ($errors->has('birthday'))?"input-error":"" }}"
-                            name="birthday" data-date-format="YYYY-MM-DD" placeholder="{{ sc_language_render('account.birthday') }}"
+                            name="birthday" data-date-format="YYYY-MM-DD" placeholder="{{ sc_language_render('customer.birthday') }}"
                             value="{{ old('birthday','2015-08-09') }}">
                         @if ($errors->has('birthday'))
                         <span class="help-block">
@@ -208,7 +208,7 @@
                     <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('group'))?"input-error":"" }}"
-                            name="group" placeholder="{{ sc_language_render('account.group') }}" value="{{ old('group') }}">
+                            name="group" placeholder="{{ sc_language_render('customer.group') }}" value="{{ old('group') }}">
                         @if ($errors->has('group'))
                         <span class="help-block">
                             {{ $errors->first('group') }}
@@ -220,7 +220,7 @@
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <input type="password"
                             class="is_required validate account_input form-control {{ ($errors->has('password'))?"input-error":"" }}"
-                            name="password" placeholder="{{ sc_language_render('account.password') }}" value="">
+                            name="password" placeholder="{{ sc_language_render('customer.password') }}" value="">
                         @if ($errors->has('password'))
                         <span class="help-block">
                             {{ $errors->first('password') }}
@@ -230,7 +230,7 @@
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                         <input type="password"
                             class="is_required validate account_input form-control {{ ($errors->has('password_confirmation'))?"input-error":"" }}"
-                            placeholder="{{ sc_language_render('account.password_confirm') }}" name="password_confirmation" value="">
+                            placeholder="{{ sc_language_render('customer.password_confirm') }}" name="password_confirmation" value="">
                         @if ($errors->has('password_confirmation'))
                         <span class="help-block">
                             {{ $errors->first('password_confirmation') }}
@@ -239,7 +239,7 @@
                     </div>
                     {!! $viewCaptcha ?? ''!!}
                     <div class="submit">
-                        <button type="submit" name="SubmitCreate" class="button button-lg button-secondary" id="button-form-process">{{ sc_language_render('account.signup') }}</button>
+                        <button type="submit" name="SubmitCreate" class="button button-lg button-secondary" id="button-form-process">{{ sc_language_render('customer.signup') }}</button>
                     </div>
                 </div>
             

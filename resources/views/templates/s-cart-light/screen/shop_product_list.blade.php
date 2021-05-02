@@ -48,7 +48,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   {{-- Sort filter --}}
   <div class="product-top-panel group-md">
     <p class="product-top-panel-title">
-      {!! sc_language_render('front.result_item', ['item_from' => $products->firstItem(), 'item_to'=> $products->lastItem(), 'item_total'=> $products->total()  ]) !!}
+      {!! sc_language_render('front.result_item', ['item_from' => $products->firstItem(), 'item_to'=> $products->lastItem(), 'total'=> $products->total()  ]) !!}
     </p>
         <form action="" method="GET" id="filter_sort">
           @php

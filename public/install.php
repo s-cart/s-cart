@@ -108,7 +108,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         case 'step2-3':
             session(['infoInstall'=> request('infoInstall')]);
             try {
-                Artisan::call('db:seed --class=DataAdminSeeder');
+                Artisan::call('db:seed --class=DataDefaultSeeder');
                 Artisan::call('db:seed --class=DataStoreSeeder');
             } catch(\Throwable $e) {
                 echo json_encode([
@@ -127,7 +127,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             case 'step2-4':
                 session(['infoInstall'=> request('infoInstall')]);
                 try {
-                    Artisan::call('db:seed --class=DataShopSeeder');
+                    Artisan::call('db:seed --class=DataLocaleSeeder');
                 } catch(\Throwable $e) {
                     echo json_encode([
                         'error' => '1',
@@ -145,7 +145,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 case 'step2-5':
                     session(['infoInstall'=> request('infoInstall')]);
                     try {
-                        Artisan::call('db:seed --class=DataProductSeeder');
+                        Artisan::call('db:seed --class=DataSampleSeeder');
                         Artisan::call('passport:install');
                     } catch(\Throwable $e) {
                         echo json_encode([

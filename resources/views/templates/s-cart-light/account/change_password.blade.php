@@ -24,7 +24,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ Session::has('password_old_error') ? ' has-error' : '' }}">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.password_old') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_old') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password_old" required>
@@ -38,7 +38,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.password_new') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_new') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -52,7 +52,7 @@ $layout_page = shop_profile
 
                         <div class="form-group row">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('account.password_confirm') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.password_confirm') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -63,7 +63,7 @@ $layout_page = shop_profile
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ sc_language_render('account.update_infomation') }}
+                                    {{ sc_language_render('customer.update_infomation') }}
                                 </button>
                             </div>
                         </div>

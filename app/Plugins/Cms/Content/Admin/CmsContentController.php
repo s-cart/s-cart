@@ -91,7 +91,7 @@ class CmsContentController extends RootAdminController
             [
                 'item_from' => $dataTmp->firstItem(), 
                 'item_to' => $dataTmp->lastItem(), 
-                'item_total' => $dataTmp->total()
+                'total' =>  $dataTmp->total()
             ]
         );
 

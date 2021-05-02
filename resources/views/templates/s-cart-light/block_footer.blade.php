@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
-                <h4 class="footer-classic-title">{{ sc_language_render('about.title') }}</h4>
+                <h4 class="footer-classic-title">{{ sc_language_render('about.page_title') }}</h4>
                 <ul class="contacts-creative">
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">

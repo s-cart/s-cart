@@ -31,32 +31,32 @@ $layout_page = shop_profile
           @foreach($addresses as $address)
               <div class="list">
                 @if (sc_config('customer_lastname'))
-                <b>{{ sc_language_render('account.first_name') }}:</b> {{ $address['first_name'] }}<br>
-                <b>{{ sc_language_render('account.last_name') }}:</b> {{ $address['last_name'] }}<br>
+                <b>{{ sc_language_render('customer.first_name') }}:</b> {{ $address['first_name'] }}<br>
+                <b>{{ sc_language_render('customer.last_name') }}:</b> {{ $address['last_name'] }}<br>
                 @else
-                <b>{{ sc_language_render('account.name') }}:</b> {{ $address['first_name'] }}<br>
+                <b>{{ sc_language_render('customer.name') }}:</b> {{ $address['first_name'] }}<br>
                 @endif
                 
                 @if (sc_config('customer_phone'))
-                <b>{{ sc_language_render('account.phone') }}:</b> {{ $address['phone'] }}<br>
+                <b>{{ sc_language_render('customer.phone') }}:</b> {{ $address['phone'] }}<br>
                 @endif
 
                 @if (sc_config('customer_postcode'))
-                <b>{{ sc_language_render('account.postcode') }}:</b> {{ $address['postcode'] }}<br>
+                <b>{{ sc_language_render('customer.postcode') }}:</b> {{ $address['postcode'] }}<br>
                 @endif
 
-                <b>{{ sc_language_render('account.address1') }}:</b> {{ $address['address1'] }}<br>
+                <b>{{ sc_language_render('customer.address1') }}:</b> {{ $address['address1'] }}<br>
 
                 @if (sc_config('customer_address2'))
-                <b>{{ sc_language_render('account.address2') }}:</b> {{ $address['address2'] }}<br>
+                <b>{{ sc_language_render('customer.address2') }}:</b> {{ $address['address2'] }}<br>
                 @endif
 
                 @if (sc_config('customer_address3'))
-                <b>{{ sc_language_render('account.address3') }}:</b> {{ $address['address3'] }}<br>
+                <b>{{ sc_language_render('customer.address3') }}:</b> {{ $address['address3'] }}<br>
                 @endif
 
                 @if (sc_config('customer_country'))
-                <b>{{ sc_language_render('account.country') }}:</b> {{ $countries[$address['country']] ?? $address['country'] }}<br>
+                <b>{{ sc_language_render('customer.country') }}:</b> {{ $countries[$address['country']] ?? $address['country'] }}<br>
                 @endif
 
                 <span class="btn">
@@ -66,7 +66,7 @@ $layout_page = shop_profile
                   <a href="#" title="{{ sc_language_render('action.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
                 </span>
                 @if ($address->id == auth()->user()->address_id)
-                <span class="btn" title="{{ sc_language_render('account.address_default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
+                <span class="btn" title="{{ sc_language_render('customer.address_default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
                 @endif
               </div>
           @endforeach

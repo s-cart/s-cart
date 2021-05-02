@@ -114,7 +114,7 @@ $layout_page = shop_profile
                     <th>{{ sc_language_render('product.sku') }}</th>
                     <th class="product_price">{{ sc_language_render('product.price') }}</th>
                     <th class="product_qty">{{ sc_language_render('product.quantity') }}</th>
-                    <th class="product_total">{{ sc_language_render('order.sub_total') }}</th>
+                    <th class="product_total">{{ sc_language_render('order.totals.sub_total') }}</th>
                     <th class="product_tax">{{ sc_language_render('product.tax') }}</th>
                   </tr>
                 </thead>

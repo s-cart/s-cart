@@ -667,6 +667,16 @@ class CreateTablesShop extends Migration
             }
         );
 
+        Schema::create(SC_DB_PREFIX.'languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 50)->index();
+            $table->text('text')->nullable();
+            $table->string('position', 100)->index();
+            $table->string('location', 10)->index();
+            $table->unique(['code', 'location']);
+            }
+        );
+
     }
 
     /**
@@ -739,6 +749,8 @@ class CreateTablesShop extends Migration
         //Custom field
         Schema::dropIfExists(SC_DB_PREFIX.'shop_custom_field');
         Schema::dropIfExists(SC_DB_PREFIX.'shop_custom_field_detail');
+        //Languages
+        Schema::dropIfExists(SC_DB_PREFIX.'languages');
     }
 
 }

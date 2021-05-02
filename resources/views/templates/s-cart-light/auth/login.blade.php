@@ -6,11 +6,11 @@
     <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12">
-            <h2>{{ sc_language_render('account.title_login') }}</h2>
+            <h2>{{ sc_language_render('customer.title_login') }}</h2>
             <form action="{{ sc_route('postLogin') }}" method="post" class="box">
                 {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="control-label">{{ sc_language_render('account.email') }}</label>
+                    <label for="email" class="control-label">{{ sc_language_render('customer.email') }}</label>
                     <input class="is_required validate account_input form-control {{ ($errors->has('email'))?"input-error":"" }}"
                         type="text" name="email" value="{{ old('email') }}">
                     @if ($errors->has('email'))
@@ -20,7 +20,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="control-label">{{ sc_language_render('account.password') }}</label>
+                    <label for="password" class="control-label">{{ sc_language_render('customer.password') }}</label>
                     <input class="is_required validate account_input form-control {{ ($errors->has('password'))?"input-error":"" }}"
                         type="password" name="password" value="">
                     @if ($errors->has('password'))
@@ -48,11 +48,11 @@
                 @endif
                 <p class="lost_password form-group">
                     <a class="btn btn-link" href="{{ sc_route('forgot') }}">
-                        {{ sc_language_render('account.password_forgot') }}
+                        {{ sc_language_render('customer.password_forgot') }}
                     </a>
                     <br>
                     <a class="btn btn-link" href="{{ sc_route('register') }}">
-                        {{ sc_language_render('account.title_register') }}
+                        {{ sc_language_render('customer.title_register') }}
                     </a>
                 </p>
                 <button type="submit" name="SubmitLogin" class="button button-lg button-secondary">{{ sc_language_render('front.login') }}</button>
