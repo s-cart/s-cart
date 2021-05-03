@@ -45,7 +45,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 
                     {{-- Add to cart --}}
                     @if ($productNew->allowSale())
-                      <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
+                      <a onClick="addToCartAjax('{{ $productNew->id }}','default','{{ $productNew->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list"><i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                     @endif
                     {{-- //Add to cart --}}
 

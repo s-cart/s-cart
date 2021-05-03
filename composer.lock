@@ -4644,16 +4644,16 @@
         },
         {
             "name": "s-cart/core",
-            "version": "6.2.1",
+            "version": "6.2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s-cart/core.git",
-                "reference": "eee537f6e2108dff94637499b7d7ed9e6ea7b4e4"
+                "reference": "3f90f6ebc63531106671a8b95908eba119d2fc34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s-cart/core/zipball/eee537f6e2108dff94637499b7d7ed9e6ea7b4e4",
-                "reference": "eee537f6e2108dff94637499b7d7ed9e6ea7b4e4",
+                "url": "https://api.github.com/repos/s-cart/core/zipball/3f90f6ebc63531106671a8b95908eba119d2fc34",
+                "reference": "3f90f6ebc63531106671a8b95908eba119d2fc34",
                 "shasum": ""
             },
             "require": {
@@ -4706,9 +4706,9 @@
             ],
             "support": {
                 "issues": "https://github.com/s-cart/core/issues",
-                "source": "https://github.com/s-cart/core/tree/6.2.1"
+                "source": "https://github.com/s-cart/core/tree/6.2.1.4"
             },
-            "time": "2021-05-02T16:19:59+00:00"
+            "time": "2021-05-03T12:58:12+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

@@ -276,29 +276,29 @@ class FrontController extends RootFrontController
         if ($check['error'] == 1) {
             $error = 1;
             if ($check['msg'] == 'error_code_not_exist') {
-                $msg = sc_language_render('promotion.process.invalid');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.invalid');
             } elseif ($check['msg'] == 'error_code_cant_use') {
-                $msg = sc_language_render('promotion.process.over');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.over');
             } elseif ($check['msg'] == 'error_code_expired_disabled') {
-                $msg = sc_language_render('promotion.process.expire');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.expire');
             } elseif ($check['msg'] == 'error_user_used') {
-                $msg = sc_language_render('promotion.process.used');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.used');
             } elseif ($check['msg'] == 'error_uID_input') {
-                $msg = sc_language_render('promotion.process.customer_id_invalid');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.customer_id_invalid');
             } elseif ($check['msg'] == 'error_login') {
-                $msg = sc_language_render('promotion.process.must_login');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.must_login');
             } else {
-                $msg = sc_language_render('promotion.process.undefined');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.undefined');
             }
         } else {
             $content = $check['content'];
             if ($content['type'] === 1) {
                 //Point use in my page
                 $error = 1;
-                $msg = sc_language_render('promotion.process.not_allow');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.not_allow');
             } else {
                 $error = 0;
-                $msg = sc_language_render('promotion.process.completed');
+                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.completed');
 
                 //Set session discount
                 $totalMethod = session('totalMethod',[]);
