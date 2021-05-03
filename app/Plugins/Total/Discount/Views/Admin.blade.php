@@ -168,11 +168,11 @@
     
                         <div class="col-md-8">
                             <div class="btn-group float-right">
-                                <button type="submit" class="btn btn-primary">{{ sc_language_render('admin.submit') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ sc_language_render('action.submit') }}</button>
                             </div>
     
                             <div class="btn-group float-left">
-                                <button type="reset" class="btn btn-warning">{{ sc_language_render('admin.reset') }}</button>
+                                <button type="reset" class="btn btn-warning">{{ sc_language_render('action.reset') }}</button>
                             </div>
                         </div>
                     </div>

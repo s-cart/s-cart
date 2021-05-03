@@ -249,7 +249,7 @@ $layout_page = shop_product_detail
                       </div>
                       <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
                       @if ($product_rel->allowSale())
-                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default','{{ $product_rel->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default','{{ $product_rel->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
                         <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
                       @endif
             

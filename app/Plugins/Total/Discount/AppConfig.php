@@ -54,7 +54,7 @@ class AppConfig extends ConfigDefault
                 AdminMenu::insert([
                     'sort' => 100,
                     'parent_id' => $blockMarketing->id,
-                    'title' => 'lang::'.$this->pathPlugin.'::lang.title',
+                    'title' => $this->pathPlugin.'::lang.title',
                     'icon' => 'fas fa-tags',
                     'uri' => 'route::admin_discount.index',
                     'key' => $this->configKey,

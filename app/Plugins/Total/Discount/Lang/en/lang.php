@@ -42,4 +42,16 @@ return [
             'code_desc' => 'Code desc',
         ],
     ],
+    'process'     => [
+        'invalid'         => 'This code invalid!',
+        'over'            => 'This code exceeds the number of times it is used!',
+        'used'            => 'You already used this code!',
+        'undefined'       => 'Error undefined!',
+        'not_allow'       => 'You can not use Point in here!',
+        'value'           => 'This coupon have value :value for this order!',
+        'expire'          => 'Code expires!',
+        'completed'       => 'Use coupon success!',
+        'must_login'      => 'You must login to use this coupon!',
+        'user_id_invalid' => 'User ID invalid!',
+    ],
 ];

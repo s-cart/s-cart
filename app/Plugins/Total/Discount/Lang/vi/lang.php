@@ -42,4 +42,17 @@ return [
             'code_desc' => 'Code z-a',
         ],
     ],
+    'process'     => [
+        'invalid'         => 'Mã giảm giá không hợp lệ!',
+        'over'            => 'Mã giảm giá vượt quá số lần sử dụng!',
+        'used'            => 'Bạn đã sử dụng mã này rồi!',
+        'undefined'       => 'Lỗi không xác định!',
+        'not_allow'       => 'Bạn không thể sử Point ở đây!',
+        'value'           => 'Mã giảm giá có giá trị :value cho đơn hàng này!',
+        'expire'          => 'Mã hết hạn sử dụng!',
+        'completed'       => 'Sử dụng mã giảm giá thành công!',
+        'must_login'      => 'Bạn phải đăng nhập để sử dụng mã giảm giá này!',
+        'user_id_invalid' => 'User ID không hợp lệ!',
+    ],
+    
 ];

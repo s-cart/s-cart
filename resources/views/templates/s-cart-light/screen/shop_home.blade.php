@@ -68,7 +68,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
             {{-- End go to store --}}
 
             @if ($product->allowSale())
-            <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-lg button-secondary button-zakaria add-to-cart-list">
+            <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
               <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
             @endif
 
