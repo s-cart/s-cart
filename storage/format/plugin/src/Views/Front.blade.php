@@ -7,7 +7,7 @@
 @section('breadcrumb')
     <div class="breadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="{{ sc_route('home') }}">{{ trans('front.home') }}</a></li>
+          <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
           <li class="active">{{ $title ?? '' }}</li>
         </ol>
       </div>

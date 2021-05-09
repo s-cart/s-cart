@@ -1,7 +1,7 @@
 <?php
 return [
-    'version'     => '6.2',
-    'sub-version' => '6.2.1',
+    'version'     => '6.3',
+    'sub-version' => '6.3.0',
     'type'        => 'basic',
     'homepage'    => 'https://s-cart.org',
     'title'       => 'Free Open Source eCommerce for Business',
