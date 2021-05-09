@@ -91,8 +91,6 @@
         @show
         {{-- //Block main --}}
 
-        @yield('news')
-
         {{-- Block bottom --}}
         @section('block_bottom')
         @include($sc_templatePath.'.block_bottom')
