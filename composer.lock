@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e92ad045bf492e270b1f21cf5406740a",
+    "content-hash": "154136675ee2c721e66fe3c7216cec6d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4644,16 +4644,16 @@
         },
         {
             "name": "s-cart/core",
-            "version": "6.3.0.0",
+            "version": "6.2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s-cart/core.git",
-                "reference": "fa80bc012ad4d660c0d36adc115cfd5094ec0312"
+                "reference": "b2f49a4f342aee29742aa3902bfe6f60ec6bce2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s-cart/core/zipball/fa80bc012ad4d660c0d36adc115cfd5094ec0312",
-                "reference": "fa80bc012ad4d660c0d36adc115cfd5094ec0312",
+                "url": "https://api.github.com/repos/s-cart/core/zipball/b2f49a4f342aee29742aa3902bfe6f60ec6bce2e",
+                "reference": "b2f49a4f342aee29742aa3902bfe6f60ec6bce2e",
                 "shasum": ""
             },
             "require": {
@@ -4706,9 +4706,9 @@
             ],
             "support": {
                 "issues": "https://github.com/s-cart/core/issues",
-                "source": "https://github.com/s-cart/core/tree/6.3.0.0"
+                "source": "https://github.com/s-cart/core/tree/6.2.2.3"
             },
-            "time": "2021-05-09T23:31:00+00:00"
+            "time": "2021-05-09T23:56:34+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
