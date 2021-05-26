@@ -23,7 +23,7 @@ class AppConfig extends ConfigDefault
         //Path
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
         //Language
-        $this->title = sc_language_render($this->pathPlugin.'::lang.title');
+        $this->title = trans($this->pathPlugin.'::lang.title');
         //Image logo or thumb
         $this->image = $this->pathPlugin.'/'.$config['image'];
         //
