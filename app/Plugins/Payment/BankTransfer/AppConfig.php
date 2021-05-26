@@ -15,7 +15,7 @@ class AppConfig extends ConfigDefault
     	$this->configCode = $config['configCode'];
     	$this->configKey = $config['configKey'];
         $this->pathPlugin = $this->configGroup . '/' . $this->configCode . '/' . $this->configKey;
-        $this->title = sc_language_render($this->pathPlugin.'::lang.title');
+        $this->title = trans($this->pathPlugin.'::lang.title');
         $this->image = $this->pathPlugin.'/'.$config['image'];
         $this->version = $config['version'];
         $this->auth = $config['auth'];
