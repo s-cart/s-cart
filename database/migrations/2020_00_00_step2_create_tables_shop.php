@@ -198,6 +198,7 @@ class CreateTablesShop extends Migration
             $table->string('user_agent', 255)->nullable();
             $table->string('ip', 100)->nullable();
             $table->string('transaction', 100)->nullable();
+            $table->integer('store_id')->nullable()->default(1)->index();
             $table->timestamps();
             }
         );
