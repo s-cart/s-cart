@@ -1,6 +1,8 @@
 @php
 /*
 $layout_page = shop_order_success
+**Variables:**
+- $orderInfo
 */
 @endphp
 
@@ -25,17 +27,12 @@ $layout_page = shop_order_success
 {{-- Render include view --}}
 @if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
 @foreach ($includePathView as $view)
-  @if (view()->exists($view))
-    @include($view)
-  @endif
+   @includeIf($view)
 @endforeach
 @endif
 {{--// Render include view --}}
-
 @endsection
 
-@section('breadcrumb')
-@endsection
 
 @push('styles')
 {{-- Your css style --}}
@@ -45,9 +42,7 @@ $layout_page = shop_order_success
 {{-- Render include script --}}
 @if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
 @foreach ($includePathScript as $script)
-  @if (view()->exists($script))
-    @include($script)
-  @endif
+   @includeIf($script)
 @endforeach
 @endif
 {{--// Render include script --}}

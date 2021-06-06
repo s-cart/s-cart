@@ -1,7 +1,7 @@
 @if (sc_store('active') == '1'  || (sc_store('active') == '0' && auth()->guard('admin')->user()))
         {{-- Admin logged can view the website content under maintenance --}}
     @if (sc_store('active') == '0' && auth()->guard('admin')->user())
-        @include($sc_templatePath . '.maintenance_note')
+        @includeIf($sc_templatePath . '.maintenance_note')
     @endif
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="{{ app()->getLocale() }}">
@@ -22,7 +22,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- css default for item s-cart -->
-    @include($sc_templatePath.'.common.css')
+    @includeIf($sc_templatePath.'.common.css')
     <!--//end css defaut -->
     <!-- css default for item s-cart -->
     <!--//end css defaut -->
@@ -37,9 +37,7 @@
         @if ($layout->type =='html')
             {!! $layout->text !!}
         @elseif($layout->type =='view')
-            @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
-                @include($sc_templatePath.'.block.'.$layout->text)
-            @endif
+            @includeIf($sc_templatePath.'.block.'.$layout->text)
         @endif
     @endif
     @endforeach
@@ -93,13 +91,13 @@
 
         {{-- Block bottom --}}
         @section('block_bottom')
-        @include($sc_templatePath.'.block_bottom')
+            @include($sc_templatePath.'.block_bottom')
         @show
         {{-- //Block bottom --}}
 
         {{-- Block footer --}}
         @section('block_footer')
-        @include($sc_templatePath.'.block_footer')
+            @include($sc_templatePath.'.block_footer')
         @show
         {{-- //Block footer --}}
 

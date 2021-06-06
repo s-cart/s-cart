@@ -140,7 +140,7 @@ class AppConfig extends ConfigDefault
         if (!empty($discount) && !$check['error']) {
             $storeID = $check['content']['store_id'];
             //Get cart item with group store id
-            $subtotalWithTax = ShopCurrency::sumCart()['store'][$storeID]['subTotalWithTax'] ?? null;
+            $subtotalWithTax = ShopCurrency::sumCartCheckout()['subTotalWithTax'] ?? null;
             if (!$subtotalWithTax) {
                 return $arrData;
             }

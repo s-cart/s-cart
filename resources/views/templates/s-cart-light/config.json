@@ -1,9 +1,9 @@
 {
     "name": "S-Cart Light",
     "image": "images/scart-min.png",
-    "auth": "Naruto",
+    "auth": "S-Cart",
     "email": "lanhktc@gmail.com",
     "website": "https://S-Cart.Org",
     "configKey": "s-cart-light",
-    "version": "6.1"
+    "version": "6.3"
 }

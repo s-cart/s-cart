@@ -69,38 +69,21 @@ $layout_page = shop_compare
 {{-- Render include view --}}
 @if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
 @foreach ($includePathView as $view)
-  @if (view()->exists($view))
-    @include($view)
-  @endif
+   @includeIf($view)
 @endforeach
 @endif
 {{--// Render include view --}}
 
 @endsection
 
-{{-- breadcrumb --}}
-@section('breadcrumb')
-<section class="breadcrumbs-custom">
-    <div class="breadcrumbs-custom-footer">
-        <div class="container">
-          <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
-            <li class="active">{{ $title ?? '' }}</li>
-          </ul>
-        </div>
-    </div>
-</section>
-@endsection
-{{-- //breadcrumb --}}
+
 
 @push('scripts')
 
 {{-- Render include script --}}
 @if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
 @foreach ($includePathScript as $script)
-  @if (view()->exists($script))
-    @include($script)
-  @endif
+   @includeIf($script)
 @endforeach
 @endif
 {{--// Render include script --}}

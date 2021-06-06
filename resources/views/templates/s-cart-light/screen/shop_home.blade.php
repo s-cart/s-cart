@@ -50,52 +50,9 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   <div class="row row-30 row-lg-50">
     @foreach ($products as $key => $product)
     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-        <!-- Product-->
-        <article class="product wow fadeInRight">
-          <div class="product-body">
-            <div class="product-figure">
-                <a href="{{ $product->getUrl() }}">
-                <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
-                </a>
-            </div>
-            <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
-
-            {{-- Go to store --}}
-            @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-            <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ sc_language_render('front.store').' '. $product->store_id  }}</a>
-            </div>
-            @endif
-            {{-- End go to store --}}
-
-            @if ($product->allowSale())
-            <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
-              <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
-            @endif
-
-            {!! $product->showPrice() !!}
-          </div>
-          
-          @if ($product->price != $product->getFinalPrice() && $product->kind !=
-          SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
-          @elseif($product->kind == SC_PRODUCT_BUILD)
-          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
-          @elseif($product->kind == SC_PRODUCT_GROUP)
-          <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
-          @endif
-          <div class="product-button-wrap">
-            <div class="product-button">
-                <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','wishlist','{{ $product->store_id }}')">
-                    <i class="fas fa-heart"></i>
-                </a>
-            </div>
-            <div class="product-button">
-                <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product->id }}','compare','{{ $product->store_id }}')">
-                    <i class="fa fa-exchange"></i>
-                </a>
-            </div>
-          </div>
-        </article>
+        {{-- Render product single --}}
+        @includeIf($sc_templatePath.'.common.product_single', ['product' => $product])
+        {{-- //Render product single --}}
       </div>
     @endforeach
   </div>
@@ -132,9 +89,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- Render include view --}}
 @if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
 @foreach ($includePathView as $view)
-  @if (view()->exists($view))
-    @include($view)
-  @endif
+   @includeIf($view)
 @endforeach
 @endif
 {{--// Render include view --}}
@@ -181,9 +136,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{-- Render include script --}}
 @if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
 @foreach ($includePathScript as $script)
-  @if (view()->exists($script))
-    @include($script)
-  @endif
+   @includeIf($script)
 @endforeach
 @endif
 {{--// Render include script --}}

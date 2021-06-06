@@ -1,18 +1,16 @@
 {{-- Module banner --}}
 @isset ($sc_blocksContent['banner_top'])
 @foreach ( $sc_blocksContent['banner_top'] as $layout)
-@php
-$arrPage = explode(',', $layout->page)
-@endphp
-@if ($layout->page == '*' || (isset($layout_page) && in_array($layout_page, $arrPage)))
-@if ($layout->type =='html')
-{!! $layout->text !!}
-@elseif($layout->type =='view')
-@if (view()->exists($sc_templatePath.'.block.'.$layout->text))
-@include($sc_templatePath.'.block.'.$layout->text)
-@endif
-@endif
-@endif
+    @php
+    $arrPage = explode(',', $layout->page)
+    @endphp
+    @if ($layout->page == '*' || (isset($layout_page) && in_array($layout_page, $arrPage)))
+        @if ($layout->type =='html')
+        {!! $layout->text !!}
+        @elseif($layout->type =='view')
+            @includeIf($sc_templatePath.'.block.'.$layout->text)
+        @endif
+    @endif
 @endforeach
 @endisset
 {{-- //Module banner --}}
@@ -25,20 +23,20 @@ $arrPage = explode(',', $layout->page)
 $arrPage = explode(',', $layout->page)
 @endphp
 @if ($layout->page == '*' || (isset($layout_page) && in_array($layout_page, $arrPage)))
-@if ($layout->type =='html')
-{!! $layout->text !!}
-@elseif($layout->type =='view')
-@if (view()->exists($sc_templatePath.'.block.'.$layout->text))
-@include($sc_templatePath.'.block.'.$layout->text)
-@endif
-@endif
+    @if ($layout->type =='html')
+    {!! $layout->text !!}
+    @elseif($layout->type =='view')
+        @includeIf($sc_templatePath.'.block.'.$layout->text)
+    @endif
 @endif
 @endforeach
 @endisset
 {{-- //Module top --}}
 
-@yield('breadcrumb')
+@section('breadcrumb')
+    @includeIf($sc_templatePath.'.common.breadcrumb')
+@show
 
 <!--Notice -->
-@include($sc_templatePath.'.common.notice')
+@includeIf($sc_templatePath.'.common.notice')
 <!--//Notice -->

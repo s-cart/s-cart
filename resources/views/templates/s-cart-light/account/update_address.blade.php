@@ -11,6 +11,7 @@ $layout_page = shop_profile
 @extends($sc_templatePath.'.layout')
 
 @section('block_main')
+<section class="section section-sm section-first bg-default text-md-left">
 <div class="container">
     <div class="row justify-content-center">
 
@@ -201,20 +202,5 @@ $layout_page = shop_profile
         </div>
     </div>
 </div>
-@endsection
-
-{{-- breadcrumb --}}
-@section('breadcrumb')
-<section class="breadcrumbs-custom">
-    <div class="breadcrumbs-custom-footer">
-        <div class="container">
-          <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
-            <li><a href="{{ sc_route('customer.index') }}">{{ sc_language_render('front.my_account') }}</a></li>
-            <li class="active">{{ $title ?? '' }}</li>
-          </ul>
-        </div>
-    </div>
 </section>
 @endsection
-{{-- //breadcrumb --}}
