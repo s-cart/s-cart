@@ -72,19 +72,3 @@ $email
     </div>
 </div>
 @endsection
-
-{{-- breadcrumb --}}
-@section('breadcrumb')
-<section class="breadcrumbs-custom">
-    <div class="breadcrumbs-custom-footer">
-        <div class="container">
-          <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
-            <li class="active">{{ $title ?? '' }}</li>
-          </ul>
-        </div>
-    </div>
-</section>
-@endsection
-{{-- //breadcrumb --}}
-

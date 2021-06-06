@@ -9,9 +9,7 @@
     @if ($layout->type =='html')
       {!! $layout->text !!}
     @elseif($layout->type =='view')
-      @if (view()->exists($sc_templatePath.'.block.'.$layout->text))
-       @include($sc_templatePath.'.block.'.$layout->text)
-      @endif
+      @includeIf($sc_templatePath.'.block.'.$layout->text)
     @endif
   @endif
 @endforeach

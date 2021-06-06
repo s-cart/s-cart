@@ -63,12 +63,8 @@ $layout_page = shop_product_detail
               <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
               <div class="single-product">
                 <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
-                {{-- Go to store --}}
-                @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-                <div class="store-url"><a href="{{ $product->goToStore() }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ sc_language_render('front.store').' '. $product->store_id  }}</a>
-                </div>
-                @endif
-                {{-- End go to store --}}
+                
+                {!! $product->displayVendor() !!}
                 
                 <p>
                   SKU: <span id="product-detail-model">{{ $product->sku }}</span>
@@ -236,46 +232,13 @@ $layout_page = shop_product_detail
       <!-- Related Products-->
       <section class="section section-sm section-last bg-default">
         <div class="container">
-          <h4 class="font-weight-sbold">Featured Products</h4>
+          <h4 class="font-weight-sbold">{{ sc_language_render('front.products_recommend') }}</h4>
           <div class="row row-lg row-30 row-lg-50 justify-content-center">
-            @foreach ($productRelation as $key => $product_rel)
+            @foreach ($productRelation as $key => $productRel)
             <div class="col-sm-6 col-md-5 col-lg-3">
-                <article class="product wow fadeInRight">
-                    <div class="product-body">
-                      <div class="product-figure">
-                          <a href="{{ $product_rel->getUrl() }}">
-                          <img src="{{ sc_file($product_rel->getThumb()) }}" alt="{{ $product_rel->name }}"/>
-                          </a>
-                      </div>
-                      <h5 class="product-title"><a href="{{ $product_rel->getUrl() }}">{{ $product_rel->name }}</a></h5>
-                      @if ($product_rel->allowSale())
-                      <a onClick="addToCartAjax('{{ $product_rel->id }}','default','{{ $product_rel->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
-                        <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
-                      @endif
-            
-                      {!! $product_rel->showPrice() !!}
-                    </div>
-                    
-                    @if ($product_rel->price != $product_rel->getFinalPrice() && $product_rel->kind !=SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
-                    @elseif($product_rel->kind == SC_PRODUCT_BUILD)
-                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" /></span>
-                    @elseif($product_rel->kind == SC_PRODUCT_GROUP)
-                    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" /></span>
-                    @endif
-                    <div class="product-button-wrap">
-                      <div class="product-button">
-                          <a class="button button-secondary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','wishlist','{{ $product_rel->store_id }}')">
-                              <i class="fas fa-heart"></i>
-                          </a>
-                      </div>
-                      <div class="product-button">
-                          <a class="button button-primary button-zakaria" onClick="addToCartAjax('{{ $product_rel->id }}','compare','{{ $product_rel->store_id }}')">
-                              <i class="fa fa-exchange"></i>
-                          </a>
-                      </div>
-                    </div>
-                  </article>
+                  {{-- Render product single --}}
+                  @includeIf($sc_templatePath.'.common.product_single', ['product' => $productRel])
+                  {{-- //Render product single --}}
             </div>
             @endforeach
           </div>
@@ -286,9 +249,7 @@ $layout_page = shop_product_detail
 {{-- Render include view --}}
 @if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
 @foreach ($includePathView as $view)
-  @if (view()->exists($view))
-    @include($view)
-  @endif
+   @includeIf($view)
 @endforeach
 @endif
 {{--// Render include view --}}
@@ -299,40 +260,6 @@ $layout_page = shop_product_detail
 {{-- block_main --}}
 
 
-{{-- breadcrumb --}}
-@section('breadcrumb')
-@php
-$bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
-@endphp
-<section class="breadcrumbs-custom">
-  <div class="parallax-container" data-parallax-img="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}">
-    <div class="material-parallax parallax">
-      <img src="{{ sc_file($bannerBreadcrumb['image'] ?? '') }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
-    </div>
-    <div class="breadcrumbs-custom-body parallax-content context-dark">
-      <div class="container">
-        <h2 class="breadcrumbs-custom-title">{{ sc_language_render('product.product_detail') }}</h2>
-      </div>
-    </div>
-  </div>
-  <div class="breadcrumbs-custom-footer">
-    <div class="container">
-      <ul class="breadcrumbs-custom-path">
-        <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
-        {{-- Display store info if use MultiVendorPro --}}
-        @if (sc_config_global('MultiVendorPro') && config('app.storeId') == SC_ID_ROOT)
-        <li><a href="{{ $goToStore }}">{{ sc_store('title', $product->store_id) }}</a></li>
-        @endif
-        {{--// Display store info if use MultiVendorPro --}}
-        <li class="active">{{ $title ?? '' }}</li>
-      </ul>
-    </div>
-  </div>
-</section>
-@endsection
-{{-- //breadcrumb --}}
-
-
 @push('styles')
 {{-- Your css style --}}
 @endpush
@@ -341,9 +268,7 @@ $bannerBreadcrumb = $modelBanner->start()->getBreadcrumb()->getData()->first();
 {{-- Render include script --}}
 @if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
 @foreach ($includePathScript as $script)
-  @if (view()->exists($script))
-    @include($script)
-  @endif
+   @includeIf($script)
 @endforeach
 @endif
 {{--// Render include script --}}
