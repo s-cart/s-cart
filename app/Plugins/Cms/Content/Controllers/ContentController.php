@@ -49,20 +49,23 @@ class ContentController extends RootAdminController
                 return view(
                     $this->plugin->pathPlugin.'::cms_category',
                     array(
-                        'title' => $category_currently['title'],
+                        'title'       => $category_currently['title'],
                         'description' => $category_currently['description'],
-                        'keyword' => $category_currently['keyword'],
-                        'entries' => $entries,
+                        'keyword'     => $category_currently['keyword'],
+                        'entries'     => $entries,
                         'layout_page' => 'content_list',
+                        'breadcrumbs' => [
+                            ['url'    => '', 'title' => $category_currently['title']],
+                        ],
                     )
                 );
             } else {
                 return view('templates.' . sc_store('template') . '.notfound',
                     array(
-                        'title' => sc_language_render('front.item_not_found_title'),
+                        'title'       => sc_language_render('front.item_not_found_title'),
                         'description' => '',
-                        'keyword' => sc_store('keyword'),
-                        'msg' => sc_language_render('front.item_not_found'),
+                        'keyword'     => '',
+                        'msg'         => sc_language_render('front.item_not_found'),
                     )
                 );
             }
@@ -100,21 +103,25 @@ class ContentController extends RootAdminController
             $title = ($entry_currently) ? $entry_currently->title : sc_language_render('front.not_found');
             return view($this->plugin->pathPlugin.'::cms_entry_detail',
                 array(
-                    'title' => $title,
+                    'title'           => $title,
                     'entry_currently' => $entry_currently,
-                    'description' => $entry_currently['description'],
-                    'keyword' => $entry_currently['keyword'],
-                    'og_image' => $entry_currently->getImage(),
-                    'layout_page' => 'content_detail',
+                    'description'     => $entry_currently['description'],
+                    'keyword'         => $entry_currently['keyword'],
+                    'og_image'        => $entry_currently->getImage(),
+                    'layout_page'     => 'content_detail',
+                    'breadcrumbs'     => [
+                        ['url'        => $entry_currently->category->getUrl(), 'title' => $entry_currently->category->getFull()->title],
+                        ['url'        => '', 'title' => $title],
+                    ],
                 )
             );
         } else {
             return view('templates.' . sc_store('template') . '.notfound',
                 array(
-                    'title' => sc_language_render('front.item_not_found_title'),
+                    'title'       => sc_language_render('front.item_not_found_title'),
                     'description' => '',
-                    'keyword' => sc_store('keyword'),
-                    'msg' => sc_language_render('front.item_not_found'),
+                    'keyword'     => '',
+                    'msg'         => sc_language_render('front.item_not_found'),
                 )
             );
         }

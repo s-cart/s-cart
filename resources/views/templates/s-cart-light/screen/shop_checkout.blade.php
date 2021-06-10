@@ -30,7 +30,7 @@ $layout_page = shop_checkout
             </div>
 
             {{-- Item cart detail --}}
-            @includeIf($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
+            @include($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
             {{-- //Item cart detail --}}
 
 
@@ -264,7 +264,7 @@ $layout_page = shop_checkout
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- Data total --}}
-                                @includeIf($sc_templatePath.'.common.render_total')
+                                @include($sc_templatePath.'.common.render_total')
                                 {{-- Data total --}}
 
                                 {{-- Total method --}}
@@ -393,13 +393,9 @@ $layout_page = shop_checkout
     </div>
 </section>
 
-{{-- Render include view --}}
-@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
-@foreach ($includePathView as $view)
-   @includeIf($view)
-@endforeach
-@endif
-{{--// Render include view --}}
+   {{-- Render include view --}}
+   @include($sc_templatePath.'.common.include_view')
+   {{--// Render include view --}}
 
 @endsection
 
@@ -407,7 +403,6 @@ $layout_page = shop_checkout
 
 
 @push('scripts')
-
 
 {{-- Render script from total method --}}
 @foreach ($totalMethod as $key => $plugin)
@@ -427,55 +422,7 @@ $layout_page = shop_checkout
 @endforeach
 {{--// Render script from payment method --}}
 
-{{-- Render include script --}}
-@if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
-@foreach ($includePathScript as $script)
-   @includeIf($script)
-@endforeach
-@endif
-{{--// Render include script --}}
-
 <script type="text/javascript">
-    function updateCart(obj){
-        let new_qty = obj.val();
-        let storeId = obj.data('store_id');
-        let rowid = obj.data('rowid');
-        let id = obj.data('id');
-        $.ajax({
-            url: '{{ sc_route('cart.update') }}',
-            type: 'POST',
-            dataType: 'json',
-            async: false,
-            cache: false,
-            data: {
-                id: id,
-                rowId: rowid,
-                new_qty: new_qty,
-                storeId: storeId,
-                _token:'{{ csrf_token() }}'},
-            success: function(data){
-                error= parseInt(data.error);
-                if(error ===0)
-                {
-                    window.location.replace(location.href);
-                }else{
-                    $('.item-qty-'+id).css('display','block').html(data.msg);
-                }
-
-                }
-        });
-    }
-
-    function buttonQty(obj, action){
-        var parent = obj.parent();
-        var input = parent.find(".item-qty");
-        if(action === 'reduce'){
-            input.val(parseInt(input.val()) - 1);
-        }else{
-            input.val(parseInt(input.val()) + 1);
-        }
-        updateCart(input)
-    }
 
     $('#button-form-process').click(function(){
         $('#form-process').submit();

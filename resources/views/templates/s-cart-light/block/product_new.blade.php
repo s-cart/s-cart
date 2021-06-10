@@ -13,7 +13,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
         @foreach ($productsNew as $key => $productNew)
         <div class="col-sm-6 col-md-4 col-lg-3">
             {{-- Render product single --}}
-            @includeIf($sc_templatePath.'.common.product_single', ['product' => $productNew])
+            @include($sc_templatePath.'.common.product_single', ['product' => $productNew])
             {{-- //Render product single --}}
         </div>
         @endforeach

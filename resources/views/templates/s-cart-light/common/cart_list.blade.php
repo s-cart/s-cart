@@ -79,3 +79,49 @@
       </table>
   </div>
 </div>
+
+
+@push('scripts')
+<script type="text/javascript">
+    function updateCart(obj){
+        let new_qty = obj.val();
+        let storeId = obj.data('store_id');
+        let rowid = obj.data('rowid');
+        let id = obj.data('id');
+        $.ajax({
+            url: '{{ sc_route('cart.update') }}',
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            cache: false,
+            data: {
+                id: id,
+                rowId: rowid,
+                new_qty: new_qty,
+                storeId: storeId,
+                _token:'{{ csrf_token() }}'},
+            success: function(data){
+                error= parseInt(data.error);
+                if(error ===0)
+                {
+                    window.location.replace(location.href);
+                }else{
+                    $('.item-qty-'+id).css('display','block').html(data.msg);
+                }
+
+                }
+        });
+    }
+
+    function buttonQty(obj, action){
+        var parent = obj.parent();
+        var input = parent.find(".item-qty");
+        if(action === 'reduce'){
+            input.val(parseInt(input.val()) - 1);
+        }else{
+            input.val(parseInt(input.val()) + 1);
+        }
+        updateCart(input)
+    }
+</script>
+@endpush

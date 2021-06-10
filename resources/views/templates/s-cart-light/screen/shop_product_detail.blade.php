@@ -237,7 +237,7 @@ $layout_page = shop_product_detail
             @foreach ($productRelation as $key => $productRel)
             <div class="col-sm-6 col-md-5 col-lg-3">
                   {{-- Render product single --}}
-                  @includeIf($sc_templatePath.'.common.product_single', ['product' => $productRel])
+                  @include($sc_templatePath.'.common.product_single', ['product' => $productRel])
                   {{-- //Render product single --}}
             </div>
             @endforeach
@@ -246,13 +246,9 @@ $layout_page = shop_product_detail
       </section>
       @endif
 
-{{-- Render include view --}}
-@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
-@foreach ($includePathView as $view)
-   @includeIf($view)
-@endforeach
-@endif
-{{--// Render include view --}}
+   {{-- Render include view --}}
+   @include($sc_templatePath.'.common.include_view')
+   {{--// Render include view --}}
 
 
 <!--/product-details-->
@@ -265,11 +261,5 @@ $layout_page = shop_product_detail
 @endpush
 
 @push('scripts')
-{{-- Render include script --}}
-@if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
-@foreach ($includePathScript as $script)
-   @includeIf($script)
-@endforeach
-@endif
-{{--// Render include script --}}
+{{-- //script here --}}
 @endpush

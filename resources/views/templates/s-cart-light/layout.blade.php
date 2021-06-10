@@ -22,7 +22,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- css default for item s-cart -->
-    @includeIf($sc_templatePath.'.common.css')
+    @include($sc_templatePath.'.common.css')
     <!--//end css defaut -->
     <!-- css default for item s-cart -->
     <!--//end css defaut -->

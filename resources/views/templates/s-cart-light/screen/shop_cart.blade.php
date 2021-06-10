@@ -37,7 +37,7 @@ $layout_page = shop_cart
                     @csrf
 
                     {{-- Item cart detail --}}
-                    @includeIf($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
+                    @include($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
                     {{-- //Item cart detail --}}
                     
                     {{-- Button checkout --}}
@@ -56,70 +56,16 @@ $layout_page = shop_cart
     </div>
 </section>
 
-{{-- Render include view --}}
-@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
-@foreach ($includePathView as $view)
-   @includeIf($view)
-@endforeach
-@endif
-{{--// Render include view --}}
+   {{-- Render include view --}}
+   @include($sc_templatePath.'.common.include_view')
+   {{--// Render include view --}}
 
 @endsection
 
 
 
 @push('scripts')
-
-{{-- Render include script --}}
-@if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
-@foreach ($includePathScript as $script)
-   @includeIf($script)
-@endforeach
-@endif
-{{--// Render include script --}}
-
-<script type="text/javascript">
-    function updateCart(obj){
-        let new_qty = obj.val();
-        let storeId = obj.data('store_id');
-        let rowid = obj.data('rowid');
-        let id = obj.data('id');
-        $.ajax({
-            url: '{{ sc_route('cart.update') }}',
-            type: 'POST',
-            dataType: 'json',
-            async: false,
-            cache: false,
-            data: {
-                id: id,
-                rowId: rowid,
-                new_qty: new_qty,
-                storeId: storeId,
-                _token:'{{ csrf_token() }}'},
-            success: function(data){
-                error= parseInt(data.error);
-                if(error ===0)
-                {
-                    window.location.replace(location.href);
-                }else{
-                    $('.item-qty-'+id).css('display','block').html(data.msg);
-                }
-
-                }
-        });
-    }
-
-    function buttonQty(obj, action){
-        var parent = obj.parent();
-        var input = parent.find(".item-qty");
-        if(action === 'reduce'){
-            input.val(parseInt(input.val()) - 1);
-        }else{
-            input.val(parseInt(input.val()) + 1);
-        }
-        updateCart(input)
-    }
-</script>
+{{-- //script here --}}
 @endpush
 
 @push('styles')

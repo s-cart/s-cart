@@ -1,4 +1,3 @@
-<!-- Product-->
 <article class="product wow fadeInRight">
     <div class="product-body">
       <div class="product-figure">
@@ -39,4 +38,4 @@
           </a>
       </div>
     </div>
-  </article>
+</article>
