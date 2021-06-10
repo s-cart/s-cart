@@ -34,9 +34,9 @@ $arrPage = explode(',', $layout->page)
 {{-- //Module top --}}
 
 @section('breadcrumb')
-    @includeIf($sc_templatePath.'.common.breadcrumb')
+    @include($sc_templatePath.'.common.breadcrumb')
 @show
 
 <!--Notice -->
-@includeIf($sc_templatePath.'.common.notice')
+@include($sc_templatePath.'.common.notice')
 <!--//Notice -->

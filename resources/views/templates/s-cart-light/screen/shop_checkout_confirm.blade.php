@@ -220,28 +220,16 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     </div>
 </section>
 
-{{-- Render include view --}}
-@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
-@foreach ($includePathView as $view)
-   @includeIf($view)
-@endforeach
-@endif
-{{--// Render include view --}}
+   {{-- Render include view --}}
+   @include($sc_templatePath.'.common.include_view')
+   {{--// Render include view --}}
 
 @endsection
 
 
 
 @push('scripts')
-
-{{-- Render include script --}}
-@if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
-@foreach ($includePathScript as $script)
-   @includeIf($script)
-@endforeach
-@endif
-{{--// Render include script --}}
-
+{{-- //script here --}}
 @endpush
 
 @push('styles')
