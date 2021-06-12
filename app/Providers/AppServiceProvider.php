@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        //If env is production, then disable debug mode
+        if (config('app.env') === 'production') {
+            config(['app.debug' => false]);
+        }
     }
 
     /**
