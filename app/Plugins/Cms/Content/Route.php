@@ -4,7 +4,7 @@
  */
 
 $suffix = sc_config('SUFFIX_URL')??'';
-$prefixCmsCategory = sc_config('PREFIX_CMS_CATEGORY')??'cms';
+$prefixCmsCategory = sc_config('PREFIX_CMS_CATEGORY')??'cms-category';
 $prefixCmsEntry = sc_config('PREFIX_CMS_ENTRY')??'entry';
 $langUrl = config('app.seoLang'); 
 
@@ -14,6 +14,8 @@ if (sc_config('Content')) {
             'namespace' => 'App\Plugins\Cms\Content\Controllers',
             'prefix' => $langUrl
         ], function () use ($suffix, $prefixCmsCategory, $prefixCmsEntry) {
+            Route::get($prefixCmsCategory, 'ContentController@cmsProcessFront')
+                ->name('cms.index');
             Route::get($prefixCmsCategory.'/{alias}', 'ContentController@categoryProcessFront')
                 ->name('cms.category');
             Route::get($prefixCmsEntry.'/{alias}'.$suffix, 'ContentController@contentProcessFront')

@@ -4,6 +4,7 @@ namespace App\Plugins\Cms\Content;
 ///
 use SCart\Core\Admin\Models\AdminMenu;
 use SCart\Core\Admin\Models\AdminConfig;
+use SCart\Core\Front\Models\ShopLink;
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
 use App\Plugins\Cms\Content\Models\CmsImage;
@@ -42,6 +43,20 @@ class AppConfig extends ConfigDefault
                     'detail' => $this->pathPlugin.'::'. $this->configKey . '.title',
                 ]
             );
+
+            ShopLink::insert(
+                [
+                    'name' => $this->pathPlugin.'::'. $this->configKey . '.title_module',
+                    'url' => 'route::cms.index',
+                    'target' => '_self',
+                    'module' => $this->configKey,
+                    'group' => 'menu',
+                    'status' => '1',
+                    'sort' => '20',
+                    'store_id' => 1,
+                ]
+            );
+
             if (!$process) {
                 $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'Install'])];
             } else {
@@ -93,6 +108,7 @@ class AppConfig extends ConfigDefault
     {
         $return = ['error' => 0, 'msg' => ''];
         $process = (new AdminConfig)->where('key', $this->configKey)->delete();
+        ShopLink::where('module', $this->configKey)->delete();
         if (!$process) {
             $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'uninstall'])];
         }

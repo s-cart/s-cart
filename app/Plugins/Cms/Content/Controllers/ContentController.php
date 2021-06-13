@@ -4,10 +4,10 @@ namespace App\Plugins\Cms\Content\Controllers;
 
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
-use App\Http\Controllers\RootAdminController;
+use App\Http\Controllers\RootFrontController;
 use App\Plugins\Cms\Content\AppConfig;
 
-class ContentController extends RootAdminController
+class ContentController extends RootFrontController
 {
     public $plugin;
     public function __construct()
@@ -17,7 +17,67 @@ class ContentController extends RootAdminController
     }
 
     /**
-     * Process front all products
+     * Process cms front
+     *
+     * @param [type] ...$params
+     * @return void
+     */
+    public function cmsProcessFront(...$params) 
+    {
+        if (config('app.seoLang')) {
+            $lang = $params[0] ?? '';
+            sc_lang_switch($lang);
+        }
+        return $this->_cms();
+    }
+
+    /**
+     * Cms 
+     * @return [type] [description]
+     */
+    private function _cms()
+    {
+        $sortBy = 'sort';
+        $sortOrder = 'asc';
+        $filter_sort = request('filter_sort') ?? '';
+        $filterArr = [
+            'sort_desc' => ['sort', 'desc'],
+            'sort_asc' => ['sort', 'asc'],
+            'id_desc' => ['id', 'desc'],
+            'id_asc' => ['id', 'asc'],
+        ];
+        if (array_key_exists($filter_sort, $filterArr)) {
+            $sortBy = $filterArr[$filter_sort][0];
+            $sortOrder = $filterArr[$filter_sort][1];
+        }
+
+        $itemsList = (new CmsCategory)
+            ->getCategoryRoot()
+            ->setSort([$sortBy, $sortOrder])
+            ->setPaginate()
+            ->setLimit(sc_config('item_list'))
+            ->getData();
+
+        sc_check_view($this->templatePath . '.screen.shop_item_list');
+        return view(
+            $this->templatePath . '.screen.shop_item_list',
+            array(
+                'title'       => sc_language_render('front.categories'),
+                'itemsList'   => $itemsList,
+                'keyword'     => '',
+                'description' => '',
+                'layout_page' => 'shop_item_list',
+                'filter_sort' => $filter_sort,
+                'breadcrumbs' => [
+                    ['url'    => '', 'title' => sc_language_render('front.categories')],
+                ],
+            )
+        );
+    }
+
+
+    /**
+     * Process front category
      *
      * @param [type] ...$params
      * @return void
@@ -55,6 +115,7 @@ class ContentController extends RootAdminController
                         'entries'     => $entries,
                         'layout_page' => 'content_list',
                         'breadcrumbs' => [
+                            ['url'    => sc_route('cms.index'), 'title' => sc_language_render('front.categories')],
                             ['url'    => '', 'title' => $category_currently['title']],
                         ],
                     )

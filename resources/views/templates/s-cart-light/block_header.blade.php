@@ -20,23 +20,6 @@
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ sc_language_render('front.shop') }}</a></li>
-                    <li class="rd-nav-item">
-                        <a class="rd-nav-link" href="{{ sc_route('news') }}">{{ sc_language_render('front.blog') }}</a>
-                    </li>
-                    @if (!empty(sc_config('Content')) && config('app.storeId') == SC_ID_ROOT)
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="#">{{ sc_language_render('front.cms_category') }}</a>
-                        @php
-                        $nameSpace = sc_get_plugin_namespace('Cms','Content').'\Models\CmsCategory';
-                        $cmsCategories = (new $nameSpace)->getCategoryRoot()->getData();
-                        @endphp
-                        <ul class="rd-menu rd-navbar-dropdown">
-                            @foreach ($cmsCategories as $cmsCategory)
-                            <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="{{ $cmsCategory->getUrl() }}">{{ sc_language_render($cmsCategory->title) }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @endif
-
                     @if (!empty($sc_layoutsUrl['menu']))
                     @foreach ($sc_layoutsUrl['menu'] as $url)
                     <li class="rd-nav-item">
