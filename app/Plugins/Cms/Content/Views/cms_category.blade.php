@@ -27,7 +27,7 @@ Use paginate: $entries->appends(request()->except(['page','_token']))->links()
       {{--// Render pagination --}}
 
       @else
-          {!! sc_language_render('front.no_data') !!}
+          {!! sc_language_render('front.data_not_found') !!}
       @endif
     </div>
 
