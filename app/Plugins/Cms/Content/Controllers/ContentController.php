@@ -62,10 +62,10 @@ class ContentController extends RootAdminController
             } else {
                 return view('templates.' . sc_store('template') . '.notfound',
                     array(
-                        'title'       => sc_language_render('front.item_not_found_title'),
+                        'title'       => sc_language_render('front.data_not_found'),
                         'description' => '',
                         'keyword'     => '',
-                        'msg'         => sc_language_render('front.item_not_found'),
+                        'msg'         => sc_language_render('front.data_not_found'),
                     )
                 );
             }
@@ -118,10 +118,10 @@ class ContentController extends RootAdminController
         } else {
             return view('templates.' . sc_store('template') . '.notfound',
                 array(
-                    'title'       => sc_language_render('front.item_not_found_title'),
+                    'title'       => sc_language_render('front.data_not_found'),
                     'description' => '',
                     'keyword'     => '',
-                    'msg'         => sc_language_render('front.item_not_found'),
+                    'msg'         => sc_language_render('front.data_not_found'),
                 )
             );
         }
