@@ -46,7 +46,7 @@ class AppConfig extends ConfigDefault
 
             ShopLink::insert(
                 [
-                    'name' => $this->pathPlugin.'::'. $this->configKey . '.title_module',
+                    'name' => $this->pathPlugin.'::'. $this->configKey . '.cms_content',
                     'url' => 'route::cms.index',
                     'target' => '_self',
                     'module' => $this->configKey,
