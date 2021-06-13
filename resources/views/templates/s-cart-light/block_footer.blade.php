@@ -5,10 +5,10 @@
             <div class="row row-40 row-md-50 justify-content-xl-between">
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight">
                 <a href="{{ sc_route('home') }}">
-                    <img class="logo-footer" src="{{  sc_file($logo ?? sc_store('logo')) }}" alt="{{ sc_store('title') }}">
+                    <img class="logo-footer" src="{{  sc_store('logo', ($storeId ?? null)) }}" alt="{{ sc_store('title', ($storeId ?? null)) }}">
                 </a>
-                <p>{{ sc_store('title') }}</p>
-                <p> {!! sc_store('time_active')  !!}</p>
+                <p>{{ sc_store('title', ($storeId ?? null)) }}</p>
+                <p> {!! sc_store('time_active', ($storeId ?? null))  !!}</p>
                 <div class="footer-classic-social">
                   <div class="group-lg group-middle">
                     <div>
@@ -28,19 +28,19 @@
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                      <div class="unit-body"><a href="#">{{ sc_language_render('store.address') }}: {{ sc_store('address') }}</a></div>
+                      <div class="unit-body"><a href="#">{{ sc_language_render('store.address') }}: {{ sc_store('address', ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a href="tel:#">{{ sc_language_render('store.hotline') }}: {{ sc_store('long_phone') }}</a></div>
+                      <div class="unit-body"><a href="tel:#">{{ sc_language_render('store.hotline') }}: {{ sc_store('long_phone', ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
-                      <div class="unit-body"><a href="mailto:#{{ sc_store('email') }}">{{ sc_language_render('store.email') }}: {{ sc_store('email') }}</a></div>
+                      <div class="unit-body"><a href="mailto:#{{ sc_store('email', ($storeId ?? null)) }}">{{ sc_language_render('store.email') }}: {{ sc_store('email', ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
@@ -77,11 +77,13 @@
             </div>
           </div>
         </div>
+
+        @if (sc_config_global('hidden_copyright_footer'))
         <div class="footer-classic-panel">
           <div class="container">
             <div class="row row-10 align-items-center justify-content-sm-between">
               <div class="col-md-auto">
-                <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title') }}</span><span>.&nbsp; All rights reserved</span></p>
+                <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
               <div class="col-md-auto order-md-1"> <a target="_blank"
                 href="https://www.facebook.com/SCart.Ecommerce/">Fanpage FB</a></div>
@@ -91,4 +93,5 @@
             </div>
           </div>
         </div>
+        @endif
       </footer>
