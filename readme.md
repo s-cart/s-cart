@@ -128,7 +128,7 @@ Option 2: **Manual installation**
 
 If installing with link "install.php" unsuccessful, you can install it manually below.
 ```
-- 1: Import file database/*.sql to database.
+- 1: Import file database/*.sql or /vendor/s-cart/core/src/DB/s-cart-yyyy-mm-dd.sql to database.
 - 2: Rename or delete file public/install.php
 - 3: Copy file .env.example to .env if file .env not exist.
 - 4: Generate API key if APP_KEY is null. 
