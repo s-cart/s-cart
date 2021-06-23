@@ -72,7 +72,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         //Drop table migrations if exist
         try {
             \Schema::dropIfExists('migrations');
-            Artisan::call('migrate --path=/database/migrations/2020_00_00_step1_create_tables_admin.php');
+            Artisan::call('migrate --path=/database/migrations/step1_create_tables_admin.php');
         } catch(\Throwable $e) {
             echo json_encode([
                 'error' => '1',
@@ -90,7 +90,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         case 'step2-2':
             session(['infoInstall'=> request('infoInstall')]);
             try {
-                Artisan::call('migrate --path=/database/migrations/2020_00_00_step2_create_tables_shop.php');
+                Artisan::call('migrate --path=/database/migrations/step2_create_tables_shop.php');
             } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
