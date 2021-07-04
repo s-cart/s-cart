@@ -2,10 +2,10 @@
     "name": "Cms content module",
     "image": "images/logo.jpg",
     "auth": "S-Cart",
-    "email": "lanhktc@gmail.com",
+    "email": "support@s-cart.org",
     "link": "https://S-Cart.Org",
     "configGroup": "Plugins",
     "configCode": "Cms",
     "configKey": "Content",
-    "version": "5.0"
+    "version": "5.1"
 }
