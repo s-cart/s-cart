@@ -1,11 +1,11 @@
 {
     "name": "Google reCaptcha module",
     "image": "images/google-captcha.jpg",
-    "auth": "Lanh le",
-    "email": "lanhktc@gmail.com",
+    "auth": "S-Cart",
+    "email": "support@s-cart.org",
     "link": "https://s-cart.org",
     "configGroup": "Plugins",
     "configCode": "Other",
     "configKey": "GoogleCaptcha",
-    "version": "1.0"
+    "version": "1.1"
 }

@@ -3,6 +3,7 @@
 namespace App\Plugins\Total\Discount;
 
 use App\Plugins\Total\Discount\Models\PluginModel;
+use App\Plugins\Total\Discount\Models\ShopDiscountStore;
 use App\Plugins\Total\Discount\Controllers\FrontController;
 use SCart\Core\Admin\Models\AdminConfig;
 use SCart\Core\Admin\Models\AdminMenu;
@@ -66,6 +67,7 @@ class AppConfig extends ConfigDefault
             } else {
                try {
                     (new PluginModel)->install();
+                    (new ShopDiscountStore)->install();
                } catch (\Throwable $e) {
                     return  ['error' => 1, 'msg' => $e->getMessage()];
                }
@@ -84,6 +86,7 @@ class AppConfig extends ConfigDefault
             $return = ['error' => 1, 'msg' => sc_language_render('plugin.plugin_action.action_error', ['action' => 'Uninstall'])];
         }
         (new PluginModel)->uninstall();
+        (new ShopDiscountStore)->uninstall();
         return $return;
     }
     public function enable()

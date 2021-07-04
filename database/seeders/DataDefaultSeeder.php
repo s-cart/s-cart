@@ -56,6 +56,7 @@ class DataDefaultSeeder extends Seeder
             $this->adminPassword,
             $this->adminEmail,
             $this->timezone_default,
+            $this->language_default,
             str_replace(['http://','https://', '/install.php'], '', url('/')),
         ];
         $content = str_replace(

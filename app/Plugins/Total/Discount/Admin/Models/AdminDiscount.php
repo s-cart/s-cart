@@ -3,6 +3,7 @@
 namespace App\Plugins\Total\Discount\Admin\Models;
 
 use App\Plugins\Total\Discount\Models\PluginModel;
+use App\Plugins\Total\Discount\Models\ShopDiscountStore;
 class AdminDiscount extends PluginModel
 {
     /**
@@ -13,9 +14,16 @@ class AdminDiscount extends PluginModel
      * @return  [type]       [return description]
      */
     public static function getDiscountAdmin($id) {
-        return self::where('id', $id)
-        ->where('store_id', session('adminStoreId'))
-        ->first();
+        $data =  self::where('id', $id);
+        if (sc_config_global('MultiVendorPro')) {
+            if (session('adminStoreId') != SC_ID_ROOT) {
+                $tableDiscountStore = (new ShopDiscountStore)->getTable();
+                $data = $data->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
+                $data = $data->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+            }
+        }
+        $data = $data->first();
+        return $data;
     }
 
     /**
@@ -28,8 +36,15 @@ class AdminDiscount extends PluginModel
     public function getDiscountListAdmin(array $dataSearch) {
         $sort_order       = $dataSearch['sort_order'] ?? '';
         $arrSort          = $dataSearch['arrSort'] ?? '';
-        $discountList = (new AdminDiscount)
-            ->where('store_id', session('adminStoreId'));
+        $discountList = (new AdminDiscount);
+
+        if (sc_config_global('MultiVendorPro')) {
+            if (session('adminStoreId') != SC_ID_ROOT) {
+                $tableDiscountStore = (new ShopDiscountStore)->getTable();
+                $discountList = $discountList->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
+                $discountList = $discountList->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+            }
+        }
 
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
@@ -70,13 +85,18 @@ class AdminDiscount extends PluginModel
         $storeId = $storeId ? $storeId : session('adminStoreId');
         $type = $type ? $type : 'code';
         $fieldValue = $fieldValue;
-        $discountId = $discountId;
-        $tablePTS = (new AdminDiscount)->getTable();
-        $check =  $this
-            ->where($type, $fieldValue)
-            ->where($tablePTS . '.store_id', $storeId);
+        $tableDiscount = (new AdminDiscount)->getTable();
+        $check = (new AdminDiscount)->where($type, $fieldValue);
+
+        if (sc_config_global('MultiVendorPro')) {
+            if (session('adminStoreId') != SC_ID_ROOT) {
+                $tableDiscountStore = (new ShopDiscountStore)->getTable();
+                $check = $check->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
+                $check = $check->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+            }
+        }
         if ($discountId) {
-            $check = $check->where('id', '<>', $discountId);
+            $check = $check->where($tableDiscount.'.id', '<>', $discountId);
         }
         $check = $check->first();
 

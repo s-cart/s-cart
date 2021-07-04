@@ -108,8 +108,18 @@ if (request()->method() == 'POST' && request()->ajax()) {
         case 'step2-3':
             session(['infoInstall'=> request('infoInstall')]);
             try {
-                Artisan::call('db:seed --class=DataDefaultSeeder');
-                Artisan::call('db:seed --class=DataStoreSeeder');
+                Artisan::call('db:seed', 
+                    [
+                        '--class' => 'DataDefaultSeeder',
+                        '--force' => true
+                    ]
+                );
+                Artisan::call('db:seed', 
+                    [
+                        '--class' => 'DataStoreSeeder',
+                        '--force' => true
+                    ]
+                );
             } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
@@ -127,7 +137,12 @@ if (request()->method() == 'POST' && request()->ajax()) {
             case 'step2-4':
                 session(['infoInstall'=> request('infoInstall')]);
                 try {
-                    Artisan::call('db:seed --class=DataLocaleSeeder');
+                    Artisan::call('db:seed', 
+                        [
+                            '--class' => 'DataLocaleSeeder',
+                            '--force' => true
+                        ]
+                    );
                 } catch(\Throwable $e) {
                     echo json_encode([
                         'error' => '1',
@@ -145,7 +160,12 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 case 'step2-5':
                     session(['infoInstall'=> request('infoInstall')]);
                     try {
-                        Artisan::call('db:seed --class=DataSampleSeeder');
+                        Artisan::call('db:seed', 
+                            [
+                                '--class' => 'DataSampleSeeder',
+                                '--force' => true
+                            ]
+                        );
                         Artisan::call('passport:install');
                     } catch(\Throwable $e) {
                         echo json_encode([

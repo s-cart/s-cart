@@ -26,7 +26,7 @@ return [
         'add_new_des'     => 'Tạo mới một Danh mục',
         'export'          => 'Xuất',
         'refresh'         => 'Làm mới',
-        'result_item'     => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:item_total</b> kết quả</b>',
+        'result_item'     => 'Hiển thị <b>:item_from</b> tới <b>:item_to</b> trong số <b>:total</b> kết quả</b>',
         'sort'            => 'Sắp xếp',
         'select_category' => 'Chọn Danh mục',
 

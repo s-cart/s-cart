@@ -25,7 +25,7 @@ return [
         'add_new'        => 'Thêm mới',
         'export'         => 'Xuất',
         'refresh'        => 'Làm mới',
-        'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'result_item'    => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:total</b> items</b>',
         'sort'           => 'Sắp xếp',
         'search'         => 'Tìm kiếm',
         'add_new_title'  => 'Tạo mã giảm giá',

@@ -208,4 +208,5 @@ If you discover a security vulnerability within S-Cart ecommerce, please send an
 
 ## Plugins pro:
 
-- Link : https://s-cart.org/en/m-vendor.html
+- Multi vendor : https://s-cart.org/en/multi-vendor.html
+- Multi store : https://s-cart.org/en/multi-store.html
