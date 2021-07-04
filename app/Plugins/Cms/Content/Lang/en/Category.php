@@ -26,7 +26,7 @@ return [
         'add_new_des'     => 'Create a new category',
         'export'          => 'Export',
         'refresh'         => 'Refresh',
-        'result_item'     => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:item_total</b> items</b>',
+        'result_item'     => 'Showing <b>:item_from</b> to <b>:item_to</b> of <b>:total</b> items</b>',
         'sort'            => 'Sort',
         'select_category' => 'Select category',
 

@@ -2,6 +2,7 @@
 #App\Plugins\Total\Discount\Models\PluginModel.php
 namespace App\Plugins\Total\Discount\Models;
 
+use SCart\Core\Front\Models\ShopStore;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,6 +15,11 @@ class PluginModel extends Model
     protected $connection = SC_CONNECTION;
     protected $guarded    = [];
     protected $dates      = ['expires_at'];
+
+    public function stores()
+    {
+        return $this->belongsToMany(ShopStore::class, ShopDiscountStore::class, 'discount_id', 'store_id');
+    }
 
     public function __construct(array $attributes = [])
     {
@@ -34,6 +40,7 @@ class PluginModel extends Model
         // before delete() method call this
         static::deleting(function ($model) {
                 $model->users()->detach();
+                $model->stores()->detach();
             }
         );
     }
@@ -51,7 +58,6 @@ class PluginModel extends Model
             $table->integer('limit')->default(1);
             $table->integer('used')->default(0);
             $table->integer('login')->default(0);
-            $table->integer('store_id')->default(1)->index();
             $table->tinyInteger('status')->default(0);
             $table->dateTime('expires_at')->nullable();
         });
@@ -73,7 +79,7 @@ class PluginModel extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(\SCart\Core\Front\Models\ShopCustomer::class, $this->table_related, 'discount_id','customer_id')
+        return $this->belongsToMany(\SCart\Core\Front\Models\ShopCustomer::class, $this->table_related, 'discount_id', 'customer_id')
             ->withPivot('used_at', 'log');
     }
 
@@ -106,19 +112,20 @@ class PluginModel extends Model
      * @return  [type]         [return description]
      */
     public function getPromotionByCode($code) {
-        if (config('app.storeId') == SC_ID_ROOT) {
-            //If store is primary store, dont check store id
-            $promocode = $this
-                ->where('code', $code)
-                ->first();
-        } else {
-            // Only use for owner store
-            $promocode = $this
-                ->where('store_id', config('app.storeId'))
-                ->where('code', $code)
-                ->first();
-        }
+        $promotion = $this->where($this->getTable().'.code', $code);
 
-        return $promocode;
+        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+            $storeId = config('app.storeId');
+            $tableStore = (new ShopStore)->getTable();
+            $tableDiscountStore = (new ShopDiscountStore)->getTable();
+
+            $promotion = $promotion->join($tableDiscountStore, $tableDiscountStore.'.discount_id', $this->getTable() . '.id');
+            $promotion = $promotion->join($tableStore, $tableStore . '.id', $tableDiscountStore.'.store_id');
+            $promotion = $promotion->where($tableStore . '.status', '1');
+            $promotion = $promotion->where($tableDiscountStore.'.store_id', $storeId);
+
+        }
+        $promotion = $promotion->first();
+        return $promotion;
     }
 }

@@ -7,6 +7,8 @@ use App\Plugins\Total\Discount\Admin\Models\AdminDiscount;
 use App\Http\Controllers\RootAdminController;
 use SCart\Core\Front\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
+use App\Plugins\Total\Discount\Models\ShopDiscountStore;
+use SCart\Core\Admin\Models\AdminStore;
 use Validator;
 class AdminController extends RootAdminController
 {
@@ -40,17 +42,26 @@ class AdminController extends RootAdminController
 
 
         $listTh = [
+            'id' => 'ID',
             'code' => sc_language_render($this->plugin->pathPlugin.'::lang.code'),
             'reward' => sc_language_render($this->plugin->pathPlugin.'::lang.reward'),
             'type' => sc_language_render($this->plugin->pathPlugin.'::lang.type'),
             'data' => sc_language_render($this->plugin->pathPlugin.'::lang.data'),
-            'limit' => sc_language_render($this->plugin->pathPlugin.'::lang.limit'),
             'used' => sc_language_render($this->plugin->pathPlugin.'::lang.used'),
             'status' => sc_language_render($this->plugin->pathPlugin.'::lang.status'),
-            'login' => sc_language_render($this->plugin->pathPlugin.'::lang.login'),
-            'expires_at' => sc_language_render($this->plugin->pathPlugin.'::lang.expires_at'),
-            'action' => sc_language_render($this->plugin->pathPlugin.'::lang.admin.action'),
         ];
+
+        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+            if (session('adminStoreId') == SC_ID_ROOT) {
+                // Only show store info if store is root
+                $listTh['shop_store'] = sc_language_render('front.store_list');
+            }
+        }
+        $listTh['login'] = sc_language_render($this->plugin->pathPlugin.'::lang.login');
+        $listTh['expires_at'] = sc_language_render($this->plugin->pathPlugin.'::lang.expires_at');
+        $listTh['action'] = sc_language_render($this->plugin->pathPlugin.'::lang.admin.action');
+
+
         $sort_order = request('sort_order') ?? 'id_desc';
         $keyword = request('keyword') ?? '';
         $arrSort = [
@@ -64,26 +75,50 @@ class AdminController extends RootAdminController
             'sort_order' => $sort_order,
             'arrSort'    => $arrSort,
         ];
+
         $dataTmp = (new AdminDiscount)->getDiscountListAdmin($dataSearch);
+        $arrDiscountId = $dataTmp->pluck('id')->toArray();
+        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+            if (session('adminStoreId') == SC_ID_ROOT) {
+                // Only show store info if store is root
+                $tableStore = (new AdminStore)->getTable();
+                $tableDiscountStore = (new ShopDiscountStore)->getTable();
+                $dataStores =  ShopDiscountStore::select($tableStore.'.code', $tableStore.'.id', 'discount_id')
+                    ->join($tableStore, $tableStore.'.id', $tableDiscountStore.'.store_id')
+                    ->whereIn('discount_id', $arrDiscountId)
+                    ->get()
+                    ->groupBy('discount_id');
+            }
+        }
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
-            $dataTr[] = [
+            $dataMap = [
+                'id' => $row['id'],
                 'code' => $row['code'],
                 'reward' => $row['reward'],
                 'type' => ($row['type'] == 'point') ? 'Point' : '%',
                 'data' => $row['data'],
-                'limit' => $row['limit'],
-                'used' => $row['used'],
+                'used' => $row['used'].'/'.$row['limit'],
                 'status' => $row['status'] ? '<span class="label label-success">ON</span>' : '<span class="label label-danger">OFF</span>',
-                'login' => $row['login'],
-                'expires_at' => $row['expires_at'],
-                'action' => '
-                    <a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-
-                  <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>
-                  ',
             ];
+
+            if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+                $dataMap['shop_store'] = '';
+                if (session('adminStoreId') == SC_ID_ROOT) {
+                    // Only show store info if store is root
+                    if (!empty($dataStores[$row['id']])) {
+                       $storeTmp = $dataStores[$row['id']]->pluck('code', 'id')->toArray();
+                       $dataMap['shop_store'] = '<i class="nav-icon fab fa-shopify"></i> '.implode('<br><i class="nav-icon fab fa-shopify"></i> ', $storeTmp);
+                    }
+                }
+            }
+
+            $dataMap['login'] = $row['login'];
+            $dataMap['expires_at'] = $row['expires_at'];
+            $dataMap['action'] = '<a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
+                                <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+            $dataTr[] = $dataMap;
         }
 
         $data['listTh'] = $listTh;
@@ -170,12 +205,20 @@ class AdminController extends RootAdminController
             'data'       => $data['data'],
             'login'      => empty($data['login']) ? 0 : 1,
             'status'     => empty($data['status']) ? 0 : 1,
-            'store_id'   => session('adminStoreId'),
         ];
         if(!empty($data['expires_at'])) {
             $dataInsert['expires_at'] = $data['expires_at'];
         }
-        AdminDiscount::createDiscountAdmin($dataInsert);
+        $discount = AdminDiscount::createDiscountAdmin($dataInsert);
+
+        if (sc_config_global('MultiStorePro') || sc_config_global('MultiVendorPro')) {
+            // If multi-store
+            $shopStore        = $data['shop_store'] ?? [];
+            $discount->stores()->detach();
+            if ($shopStore) {
+                $discount->stores()->attach($shopStore);
+            }
+        }
 
         return redirect()->route('admin_discount.index')->with('success', sc_language_render($this->plugin->pathPlugin.'::lang.admin.create_success'));
 
@@ -237,13 +280,21 @@ class AdminController extends RootAdminController
             'data'       => $data['data'],
             'login'      => empty($data['login']) ? 0 : 1,
             'status'     => empty($data['status']) ? 0 : 1,
-            'store_id'   => session('adminStoreId'),
         ];
         if(!empty($data['expires_at'])) {
             $dataUpdate['expires_at'] = $data['expires_at'];
         }
         $discount->update($dataUpdate);
 
+        if (sc_config_global('MultiStorePro') || sc_config_global('MultiVendorPro')) {
+            // If multi-store
+            $shopStore        = $data['shop_store'] ?? [];
+            $discount->stores()->detach();
+            if ($shopStore) {
+                $discount->stores()->attach($shopStore);
+            }
+        }
+    
         return redirect()->route('admin_discount.index')
             ->with('success', sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit_success'));
 
