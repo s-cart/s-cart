@@ -51,7 +51,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             fclose($env);
 
         } catch (\Throwable $e) {
-            echo json_encode(['error' => 1, 'msg' => $e->getMessage()]);
+            echo json_encode(['error' => 1, 'msg' => '#ISC001::'.$e->getMessage()]);
             exit();
         }
 
@@ -76,7 +76,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         } catch(\Throwable $e) {
             echo json_encode([
                 'error' => '1',
-                'msg' => $e->getMessage(),
+                'msg' => '#ISC002::'.$e->getMessage(),
             ]);
             break;
         }
@@ -94,7 +94,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
-                    'msg' => $e->getMessage(),
+                    'msg' => '#ISC003::'.$e->getMessage(),
                 ]);
                 break;
             }
@@ -123,7 +123,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             } catch(\Throwable $e) {
                 echo json_encode([
                     'error' => '1',
-                    'msg' => $e->getMessage(),
+                    'msg' => '#ISC004::'.$e->getMessage(),
                 ]);
                 break;
             }
@@ -146,7 +146,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 } catch(\Throwable $e) {
                     echo json_encode([
                         'error' => '1',
-                        'msg' => $e->getMessage(),
+                        'msg' => '#ISC005::'.$e->getMessage(),
                     ]);
                     break;
                 }
@@ -170,7 +170,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
                     } catch(\Throwable $e) {
                         echo json_encode([
                             'error' => '1',
-                            'msg' => $e->getMessage(),
+                            'msg' => '#ISC006::'.$e->getMessage(),
                         ]);
                         break;
                     }
@@ -188,7 +188,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         } catch (\Throwable $e) {
             echo json_encode([
                 'error' => '1',
-                'msg' => trans('install.rename_error'),
+                'msg' => '#ISC007::'.trans('install.rename_error'),
             ]);
             break;
         }
@@ -208,8 +208,14 @@ if (request()->method() == 'POST' && request()->ajax()) {
         base_path('vendor'),
         base_path('bootstrap/cache'),
     ];
-    @exec('chmod o+w -R ' . implode(' ', $dirsWritable));
-    
+    try {
+        @exec('chmod o+w -R ' . implode(' ', $dirsWritable));
+    } catch (\Throwable $e) {   
+        echo json_encode([
+            'error' => '1',
+            'msg' => '#ISC008::'.trans('install.rename_error'),
+        ]);
+    }
     $requirements = [
         'ext' => [
             'PHP >= 7.4'                 => version_compare(PHP_VERSION, '7.4', '>='),
