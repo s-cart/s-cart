@@ -3,18 +3,18 @@
 @section('main')
 <div class="row">
   <div class="col-md-12">
-     <div class="box">
-          <div class="box-header with-border">
-              <h2 class="box-title">{{ $title_description??'' }}</h2>
+     <div class="card">
+          <div class="card-header with-border">
+              <h2 class="card-title">{{ $title_description??'' }}</h2>
 
-              <div class="box-tools">
+              <div class="card-tools">
                   <div class="btn-group pull-right" style="margin-right: 5px">
                       <a href="{{ sc_route_admin('admin_plugin',['code'=>'Shipping']) }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{sc_language_render('admin.back_list')}}</span></a>
                   </div>
               </div>
           </div>
-            <!-- /.box-header -->
-            <div class="box-body">
+            <!-- /.card-header -->
+            <div class="card-body">
              <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -50,7 +50,7 @@
                 </tfoot>
               </table>
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
      </div>
   </div>
 </div>
