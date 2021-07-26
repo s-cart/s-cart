@@ -138,11 +138,9 @@ class AppConfig extends ConfigDefault
         $totalMethod = session('totalMethod', []);
         $discount = $totalMethod['Discount']??'';
 
-        $check = json_decode((new FrontController)->check($discount, $uID), true);
+        $check = (new FrontController)->check($discount, $uID);
 
         if (!empty($discount) && !$check['error']) {
-            $storeID = $check['content']['store_id'];
-            //Get cart item with group store id
             $subtotalWithTax = ShopCurrency::sumCartCheckout()['subTotalWithTax'] ?? null;
             if (!$subtotalWithTax) {
                 return $arrData;
@@ -152,8 +150,13 @@ class AppConfig extends ConfigDefault
             } else {
                 $value = sc_currency_value($check['content']['reward']);
             }
-            //Add info for earch store
-            $dataStore[$storeID]['value'] = $value;
+            if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+                //Add info for earch store
+                $storeID = $check['content']['store_id'];
+                $dataStore[$storeID]['value'] = $value;
+            } else {
+                $dataStore = [];
+            }
 
             $arrData = array(
                 'title'      => '<b>' . $this->title . ':</b> ' . $discount . '',
@@ -179,11 +182,6 @@ class AppConfig extends ConfigDefault
      *
      */
     public function endApp($data = []) {
-        $customer = session('customer');
-        $orderID = $data['orderID'] ?? '';
-        $code = $data['code'] ?? '';
-        $uID = $customer->id ?? 0;
-        $msg = 'Order #'.$orderID;
-        return (new FrontController)->apply($code, $uID, $msg);
+        return;
     }
 }

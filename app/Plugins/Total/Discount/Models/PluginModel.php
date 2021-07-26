@@ -63,11 +63,10 @@ class PluginModel extends Model
         });
 
         Schema::create($this->table_related, function (Blueprint $table) {
-            $table->integer('customer_id');
-            $table->integer('discount_id');
+            $table->integer('customer_id')->index();
+            $table->integer('discount_id')->index();
             $table->text('log')->nullable();
             $table->timestamp('used_at')->nullable();
-            $table->primary(['customer_id', 'discount_id']);
         });
         
 

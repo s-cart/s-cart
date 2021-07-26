@@ -96,19 +96,19 @@ class FrontController extends RootFrontController
         $uID = (int) $uID;
         $promocode = (new Discount)->getPromotionByCode($code);
         if ($promocode === null) {
-            return json_encode(['error' => 1, 'msg' => "error_code_not_exist"]);
+            return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.invalid')];
         }
         //Check user  login
         if ($promocode->login && !$uID) {
-            return json_encode(['error' => 1, 'msg' => "error_login"]);
+            return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.must_login')];
         }
 
         if ($promocode->limit == 0 || $promocode->limit <= $promocode->used) {
-            return json_encode(['error' => 1, 'msg' => "error_code_cant_use"]);
+            return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.over')];
         }
 
         if ($promocode->status == 0 || $promocode->isExpired()) {
-            return json_encode(['error' => 1, 'msg' => "error_code_expired_disabled"]);
+            return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.expire')];
         }
         if ($promocode->login) {
             //check if this user has already used this code already
@@ -117,11 +117,10 @@ class FrontController extends RootFrontController
                 $arrUsers[] = $value->pivot->customer_id;
             }
             if (in_array($uID, $arrUsers)) {
-                return json_encode(['error' => 1, 'msg' => "error_user_used"]);
+                return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.used')];
             }
         }
-
-        return json_encode(['error' => 0, 'content' => $promocode]);
+        return ['error' => 0, 'content' => $promocode];
     }
 
 /**
@@ -135,11 +134,10 @@ class FrontController extends RootFrontController
     {
         //check code valid
         $checkCode = $this->check($code, $uID);
-        $check = json_decode($checkCode, true);
 
-        if ($check['error'] === 0) {
+        if ($checkCode['error'] === 0) {
             $promocode = (new Discount)->getPromotionByCode($code);
-            if($promocode) {
+            if ($promocode) {
                 try {
                     // increment used
                     $promocode->used += 1;
@@ -149,12 +147,12 @@ class FrontController extends RootFrontController
                         'used_at' => Carbon::now(),
                         'log' => $msg,
                     ]);
-                    return json_encode(['error' => 0, 'content' => $promocode->load('users')]);
+                    return ['error' => 0, 'content' => $promocode->load('users')];
                 } catch (\Throwable $e) {
-                    return json_encode(['error' => 1, 'msg' => $e->getMessage()]);
+                    return ['error' => 1, 'msg' => $e->getMessage()];
                 }
             } else {
-                return json_encode(['error' => 1, 'msg' => 'error_code_not_exist']);
+                return ['error' => 1, 'msg' => sc_language_render($this->plugin->pathPlugin.'::lang.process.undefined')];
             }
 
         } else {
@@ -272,24 +270,10 @@ class FrontController extends RootFrontController
         $html = '';
         $code = request('code');
         $uID = request('uID');
-        $check = json_decode($this->check($code, $uID), true);
+        $check = $this->check($code, $uID);
         if ($check['error'] == 1) {
             $error = 1;
-            if ($check['msg'] == 'error_code_not_exist') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.invalid');
-            } elseif ($check['msg'] == 'error_code_cant_use') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.over');
-            } elseif ($check['msg'] == 'error_code_expired_disabled') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.expire');
-            } elseif ($check['msg'] == 'error_user_used') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.used');
-            } elseif ($check['msg'] == 'error_uID_input') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.customer_id_invalid');
-            } elseif ($check['msg'] == 'error_login') {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.must_login');
-            } else {
-                $msg = sc_language_render($this->plugin->pathPlugin.'::lang.process.undefined');
-            }
+            $msg = $check['msg'];
         } else {
             $content = $check['content'];
             if ($content['type'] === 1) {
