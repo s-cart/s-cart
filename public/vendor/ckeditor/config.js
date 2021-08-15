@@ -8,8 +8,25 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
     config.removePlugins = 'forms';
-        config.allowedContent = true;
+    config.allowedContent = true;
+    config.removePlugins = 'uploadform';
     CKEDITOR.dtd.$removeEmpty['i'] = false;
     CKEDITOR.dtd.$removeEmpty['span'] = false;
     config.enterMode = CKEDITOR.ENTER_BR;
 };
+
+CKEDITOR.on( 'dialogDefinition', function( ev )
+{
+    // Take the dialog name and its definition from the event
+    // data.
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+
+    // Check if the definition is from the dialog we're
+    // interested on (the Link and Image dialog).
+    if ( dialogName == 'link' || dialogName == 'image' )
+    {
+        // remove Upload tab
+        dialogDefinition.removeContents( 'Upload' );
+    }
+});
