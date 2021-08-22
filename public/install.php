@@ -209,7 +209,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         base_path('bootstrap/cache'),
     ];
     try {
-        @exec('chmod o+w -R ' . implode(' ', $dirsWritable));
+        @exec('chmod g+w -R ' . implode(' ', $dirsWritable));
     } catch (\Throwable $e) {   
         echo json_encode([
             'error' => '1',
