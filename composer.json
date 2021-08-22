@@ -23,8 +23,8 @@
         "laravel/passport": "^10.1",
         "laravel/socialite": "^5.13",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "3.2",
-        "s-cart/core": "~6.4.0"
+        "laravel/ui": "~3.3",
+        "s-cart/core": "~6.5.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
