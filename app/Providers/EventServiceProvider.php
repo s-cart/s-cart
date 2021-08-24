@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         \SCart\Core\Events\CustomerCreated::class => [
             \App\Listeners\ProcessCustomerCreated::class,
         ],
+        \SCart\Core\Events\OrderUpdateStatus::class => [
+            \App\Listeners\ProcessOrderUpdateStatus::class,
+        ],
     ];
 
     /**
