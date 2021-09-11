@@ -30,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         \SCart\Core\Events\OrderUpdateStatus::class => [
             \App\Listeners\ProcessOrderUpdateStatus::class,
         ],
+        \Illuminate\Auth\Events\Login::class => [
+            \App\Listeners\ProcessLogin::class,
+        ],
     ];
 
     /**
