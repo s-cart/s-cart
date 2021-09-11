@@ -28,21 +28,8 @@ class ProcessLogin
     public function handle(Login $event)
     {
         $user = $event->user;
-        //Process sync cart data and session
-        $userId = $user->id;
-        $cartDB = \SCart\Core\Library\ShoppingCart\CartModel::where('identifier', $userId)
-            ->where('store_id', config('app.storeId'))
-            ->get()->keyBy('instance');
-        if ($cartDB) {
-            foreach ($cartDB as $instance => $cartInstance) {
-                $content = json_decode($cartInstance->content, true);
-                if ($content) {
-                    foreach ($content as $key => $dataItem) {
-                        Cart::instance($instance)->add($dataItem);
-                    }
-                }
-            }
-        }
-        //End process sync cart
+
+        //Sync data cart
+        sc_sync_cart($user->id);
     }
 }
