@@ -13,10 +13,9 @@
                   <div class="group-lg group-middle">
                     <div>
                       <ul class="list-inline list-social list-inline-sm">
-                        <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                        <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                        <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                        <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
+                        <li><a class="icon mdi mdi-facebook" href="{{ sc_config('facebook_url') }}"></a></li>
+                        <li><a class="icon mdi mdi-twitter" href="{{ sc_config('twitter_url') }}"></a></li>
+                        <li><a class="icon mdi mdi-instagram" href="{{ sc_config('instagram_url') }}"></a></li>
                       </ul>
                     </div>
                   </div>
@@ -86,7 +85,7 @@
                 <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
               <div class="col-md-auto order-md-1"> <a target="_blank"
-                href="https://www.facebook.com/SCart.Ecommerce/">Fanpage FB</a></div>
+                href="{{ sc_config('fanpage_url') }}">Fanpage FB</a></div>
               <div class="col-md-auto">
                     Power by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a>
               </div>
