@@ -77,7 +77,7 @@
           </div>
         </div>
 
-        @if (!sc_config_global('hidden_copyright_footer'))
+        @if (!sc_config('hidden_copyright_footer'))
         <div class="footer-classic-panel">
           <div class="container">
             <div class="row row-10 align-items-center justify-content-sm-between">
