@@ -10,7 +10,6 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
 @extends($sc_templatePath.'.layout')
 
 @section('block_main_content_center')
-<div class="col-lg-8 col-xl-9">
 <h6 class="aside-title">{{ $title }}</h6>
 <section class="section section-xl bg-default">
     <div class="container">
@@ -34,11 +33,6 @@ Use paginate: $itemsList->appends(request()->except(['page','_token']))->links()
       </div>
     </div>
   </section>
-</div>
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
 @endsection
 
 @push('scripts')

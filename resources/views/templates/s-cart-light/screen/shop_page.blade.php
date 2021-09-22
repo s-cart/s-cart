@@ -18,11 +18,6 @@ $layout_page = shop_page
         </div>
     </div>
 </section>
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
 @endsection
 
 

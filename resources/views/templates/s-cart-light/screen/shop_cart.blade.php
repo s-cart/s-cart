@@ -55,11 +55,6 @@ $layout_page = shop_cart
         </div>
     </div>
 </section>
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
 @endsection
 
 

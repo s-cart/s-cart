@@ -246,11 +246,6 @@ $layout_page = shop_product_detail
       </section>
       @endif
 
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
-
 <!--/product-details-->
 @endsection
 {{-- block_main --}}

@@ -219,11 +219,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
         </div>
     </div>
 </section>
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
 @endsection
 
 

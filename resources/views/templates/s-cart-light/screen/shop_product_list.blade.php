@@ -13,8 +13,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 
 {{-- block_main_content_center --}}
 @section('block_main_content_center')
-<div class="col-lg-8 col-xl-9">
-
   {{-- sub category --}}
   @isset ($subCategory)
     @if($subCategory->count())
@@ -70,10 +68,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
    {{-- Render pagination --}}
    @include($sc_templatePath.'.common.pagination', ['items' => $products])
    {{--// Render pagination --}}
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
 
 @endsection
 {{-- //block_main_content_center --}}

@@ -9,7 +9,6 @@ $layout_page = shop_order_success
 @extends($sc_templatePath.'.layout')
 
 @section('block_main_content_center')
-<div class="col-lg-8 col-xl-9">
 <h6 class="aside-title">{{ $title }}</h6>
 <div class="container">
     <div class="row">
@@ -22,11 +21,6 @@ $layout_page = shop_order_success
         </div>
     </div>
 </div>
-
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
 @endsection
 
 

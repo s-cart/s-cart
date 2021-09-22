@@ -34,7 +34,7 @@
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
             @foreach ($breadcrumbs as $key => $item)
-            @if (($key - 1) == count($breadcrumbs))
+            @if (($key + 1) == count($breadcrumbs))
                 <li class="active">{{ $item['title'] }}</li>
             @else
                 <li><a href="{{ $item['url'] }}">{{ $item['title'] }}</a></li>

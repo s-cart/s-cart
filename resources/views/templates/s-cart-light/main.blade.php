@@ -80,31 +80,41 @@
 
         {{-- Block main --}}
         @section('block_main')
-        <section class="section section-xxl bg-default text-md-left">
-            <div class="container">
-                <div class="row row-50">
-                    @section('block_main_content')
-                        <!--Block left-->
-                        @section('block_main_content_left')
-                            @include($sc_templatePath.'.block_main_content_left')
-                        @show
-                        <!--//Block left-->
+            <section class="section section-xxl bg-default text-md-left">
+                <div class="container">
+                    <div class="row row-50">
+                        @section('block_main_content')
+                            <!--Block left-->
+                            <div class="col-lg-4 col-xl-3">
+                                @section('block_main_content_left')
+                                    @include($sc_templatePath.'.block_main_content_left')
+                                @show
+                            </div>
+                            <!--//Block left-->
 
-                        <!--Block center-->
-                        @section('block_main_content_center')
-                            @include($sc_templatePath.'.block_main_content_center')
+                            <!--Block center-->
+                            <div class="col-lg-8 col-xl-9">
+                                @section('block_main_content_center')
+                                    @include($sc_templatePath.'.block_main_content_center')
+                                @show
+                            </div>
+                            <!-- Render include view -->
+                            @include($sc_templatePath.'.common.include_view')
+                            <!--// Render include view -->
+                            <!--//Block center-->
+                            
+                            <!--Block right -->
+                            @section('block_main_content_right')
+                                @include($sc_templatePath.'.block_main_content_right')
+                            @show
+                            <!--//Block right -->
                         @show
-                        <!--//Block center-->
-                        
-                        <!--Block right -->
-                        @section('block_main_content_right')
-                            @include($sc_templatePath.'.block_main_content_right')
-                        @show
-                        <!--//Block right -->
-                    @show
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <!-- Render include view -->
+            @include($sc_templatePath.'.common.include_view')
+            <!--// Render include view -->
         @show
         {{-- //Block main --}}
 

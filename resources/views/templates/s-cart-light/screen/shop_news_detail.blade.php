@@ -20,11 +20,6 @@ $layout_page = shop_news_detail
 </section>
 @endsection
 
-
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
 @push('styles')
 {{-- Your css style --}}
 @endpush

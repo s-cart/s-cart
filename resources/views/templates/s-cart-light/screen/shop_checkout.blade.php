@@ -393,10 +393,6 @@ $layout_page = shop_checkout
     </div>
 </section>
 
-   {{-- Render include view --}}
-   @include($sc_templatePath.'.common.include_view')
-   {{--// Render include view --}}
-
 @endsection
 
 

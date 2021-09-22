@@ -1,4 +1,3 @@
-  <div class="col-lg-4 col-xl-3">
     <div class="aside row row-30 row-md-50 justify-content-md-between">
 
       @yield('blockStoreLeft')
@@ -21,4 +20,3 @@
       <!--//Module left -->
 
     </div>
-  </div>
