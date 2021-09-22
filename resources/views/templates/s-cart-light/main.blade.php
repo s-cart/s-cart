@@ -58,13 +58,23 @@
     <div class="page">
         {{-- Block header --}}
         @section('block_header')
-        @include($sc_templatePath.'.block_header')
+            @include($sc_templatePath.'.block_header')
         @show
         {{--// Block header --}}
 
         {{-- Block top --}}
         @section('block_top')
-        @include($sc_templatePath.'.block_top')
+            @include($sc_templatePath.'.block_top')
+
+            <!--Breadcrumb -->
+            @section('breadcrumb')
+                @include($sc_templatePath.'.common.breadcrumb')
+            @show
+            <!--//Breadcrumb -->
+
+            <!--Notice -->
+            @include($sc_templatePath.'.common.notice')
+            <!--//Notice -->
         @show
         {{-- //Block top --}}
 
@@ -74,9 +84,23 @@
             <div class="container">
                 <div class="row row-50">
                     @section('block_main_content')
-                    @include($sc_templatePath.'.block_main_content_left')
-                    @include($sc_templatePath.'.block_main_content_center')
-                    @include($sc_templatePath.'.block_main_content_right')
+                        <!--Block left-->
+                        @section('block_main_content_left')
+                            @include($sc_templatePath.'.block_main_content_left')
+                        @show
+                        <!--//Block left-->
+
+                        <!--Block center-->
+                        @section('block_main_content_center')
+                            @include($sc_templatePath.'.block_main_content_center')
+                        @show
+                        <!--//Block center-->
+                        
+                        <!--Block right -->
+                        @section('block_main_content_right')
+                            @include($sc_templatePath.'.block_main_content_right')
+                        @show
+                        <!--//Block right -->
                     @show
                 </div>
             </div>

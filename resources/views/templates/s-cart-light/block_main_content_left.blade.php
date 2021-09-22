@@ -1,5 +1,3 @@
-<!--main left-->
-  @section('block_main_content_left')
   <div class="col-lg-4 col-xl-3">
     <div class="aside row row-30 row-md-50 justify-content-md-between">
 
@@ -24,5 +22,3 @@
 
     </div>
   </div>
-  @show
-<!--//main left-->

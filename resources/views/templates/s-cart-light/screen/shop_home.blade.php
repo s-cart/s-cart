@@ -39,7 +39,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
    {{-- Render pagination --}}
    @include($sc_templatePath.'.common.pagination', ['items' => $products])
    {{--// Render pagination --}}
-
+</div>
 @endsection
 {{-- //block_main_content_center --}}
 
