@@ -1,4 +1,4 @@
-@if (!empty($layout_page && $includePathView = config('sc_include_view.'.$layout_page, [])))
+@if (!empty($layout_page) && $includePathView = config('sc_include_view.'.$layout_page, []))
    @foreach ($includePathView as $view)
       @includeIf($view)
    @endforeach
