@@ -49,7 +49,7 @@ $layout_page = shop_compare
                                                 href="{{ sc_route("cart.remove",['id'=>$item->rowId, 'instance' => 'compare']) }}"><i
                                                     class="fa fa-times"></i></a>
                                         </td>
-                                        @if ($n % 4 == 0)
+                                        @if ($n % 4 == 0 || $n == count($compare))
                                         </tr>
                                         @endif
                                 @endforeach

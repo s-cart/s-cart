@@ -6,23 +6,16 @@ $layout_page = shop_profile
 */ 
 @endphp
 
-@extends($sc_templatePath.'.layout')
+@extends($sc_templatePath.'.account.layout')
 
-@section('block_main')
+@section('block_main_profile')
 <style>
   .list{
     padding: 5px;
     border-bottom: 1px solid #c5baba;
   }
 </style>
-<section class="section section-sm section-first bg-default text-md-left">
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-3">
-      @include($sc_templatePath.'.account.nav_customer')
-    </div>
-    <div class="col-md-9 ">
-      <h6 class="aside-title">{{ $title }}</h6>
+<h6 class="title-store">{{ $title }}</h6>
       @if (count($addresses) ==0)
       <div class="text-danger">
         {{ sc_language_render('front.data_notfound') }}
@@ -60,21 +53,17 @@ $layout_page = shop_profile
                 @endif
 
                 <span class="btn">
-                  <a title="{{ sc_language_render('action.edit') }}" href="{{ sc_route('customer.update_address', ['id' => $address->id]) }}"><i class="fas fa-edit"></i></a>
+                  <a title="{{ sc_language_render('action.edit') }}" href="{{ sc_route('customer.update_address', ['id' => $address->id]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </span>
                 <span class="btn">
-                  <a href="#" title="{{ sc_language_render('action.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fas fa-trash-alt"></i></a>
+                  <a href="#" title="{{ sc_language_render('action.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </span>
                 @if ($address->id == auth()->user()->address_id)
-                <span class="btn" title="{{ sc_language_render('customer.address_default') }}"><i class="fas fa-university" aria-hidden="true"></i></span>
+                <span class="btn" title="{{ sc_language_render('customer.address_default') }}"><i class="fa fa-font-awesome" aria-hidden="true"></i></span>
                 @endif
               </div>
           @endforeach
       @endif
-    </div>
-  </div>
-</div>
-</section>
 @endsection
 
 

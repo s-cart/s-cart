@@ -7,17 +7,10 @@ $layout_page = shop_profile
 */ 
 @endphp
 
-@extends($sc_templatePath.'.layout')
+@extends($sc_templatePath.'.account.layout')
 
-@section('block_main')
-<section class="section section-sm section-first bg-default text-md-left">
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-3">
-      @include($sc_templatePath.'.account.nav_customer')
-    </div>
-    <div class="col-12 col-sm-12 col-md-9 min-height-37vh">
-      <h6 class="aside-title">{{ $title }}</h6>
+@section('block_main_profile')
+<h6 class="title-store">{{ $title }}</h6>
       @if (count($orders) ==0)
       <div class="text-danger">
         {{ sc_language_render('front.data_notfound') }}
@@ -56,8 +49,4 @@ $layout_page = shop_profile
         </tbody>
       </table>
       @endif
-    </div>
-  </div>
-</div>
-</section>
 @endsection

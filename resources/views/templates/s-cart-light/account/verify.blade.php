@@ -1,9 +1,10 @@
 @extends($sc_templatePath.'.layout')
 
 @section('block_main')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<section class="page-section">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
             <div class="card">
                 <div class="card-header">{{ sc_language_render('customer.verify_email.title_header') }}</div>
 
@@ -24,4 +25,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
