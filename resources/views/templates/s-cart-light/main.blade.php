@@ -109,11 +109,13 @@
                     </div>
                 </div>
             </section>
-            <!-- Render include view -->
-            @include($sc_templatePath.'.common.include_view')
-            <!--// Render include view -->
         @show
         {{-- //Block main --}}
+
+        <!-- Render include view -->
+        @include($sc_templatePath.'.common.include_view')
+        <!--// Render include view -->
+
 
         {{-- Block bottom --}}
         @section('block_bottom')

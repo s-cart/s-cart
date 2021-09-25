@@ -5,15 +5,37 @@
         @php
             $bannerBreadcrumbImage = '';
             $bannerBreadcrumbTmp = [];
-            if (in_array($layout_page, ['shop_product_list','shop_contact', 'shop_page', 'shop_news','shop_news_detail', 'shop_item_list','shop_product_detail'])) {
+            $arrBreadcrumbPage = [
+                'shop_product_list',
+                'shop_contact', 
+                'shop_page', 
+                'shop_news',
+                'shop_news_detail', 
+                'shop_item_list',
+                'shop_product_detail',
+                'shop_search'
+            ];
+            $arrBreadcrumbHome = [
+                'shop_home',
+                'vendor_home',
+                'vendor_product_list'
+            ];
+            if (in_array($layout_page, $arrBreadcrumbPage)) {
                 $bannerBreadcrumbTmp = $modelBanner->start()->getBreadcrumb()->getData()->first();
-            } elseif (in_array($layout_page, ['shop_home'])) {
-                $bannerBreadcrumbTmp = $modelBanner->start()->getBannerStore()->getData()->first();
+                $brPosition = 'bg-br-page';
+            } elseif (in_array($layout_page, $arrBreadcrumbHome)) {
+                if (isset($storeId)) {
+                    $bannerBreadcrumbTmp = $modelBanner->start()->setStore($storeId)->getBannerStore()->getData()->first();
+                } else {
+                    $bannerBreadcrumbTmp = $modelBanner->start()->getBannerStore()->getData()->first();
+                }
+                $brPosition = 'bg-br-home';
             }
             if ($bannerBreadcrumbTmp) {
                 $bannerBreadcrumbImage = sc_file($bannerBreadcrumbTmp['image'] ?? '');
             }
         @endphp
+
         @if ($bannerBreadcrumbImage)
         <div class="parallax-container" data-parallax-img="{{ $bannerBreadcrumbImage }}">
             <div class="material-parallax parallax">
