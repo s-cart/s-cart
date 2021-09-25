@@ -10,7 +10,7 @@ $layout_page = shop_product_detail
 @extends($sc_templatePath.'.layout')
 
 {{-- block_main --}}
-@section('block_main')
+@section('block_main_content_center')
 @php
     $countItem = 0
 @endphp
