@@ -98,9 +98,6 @@
                                     @include($sc_templatePath.'.block_main_content_center')
                                 @show
                             </div>
-                            <!-- Render include view -->
-                            @include($sc_templatePath.'.common.include_view')
-                            <!--// Render include view -->
                             <!--//Block center-->
                             
                             <!--Block right -->
