@@ -4,7 +4,7 @@
    @endforeach
 @endif
 
-@push('script')
+@push('scripts')
    @if (!empty($layout_page) && $includePathScript = config('sc_include_script.'.$layout_page, []))
       @foreach ($includePathScript as $script)
          @includeIf($script)
