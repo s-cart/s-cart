@@ -49,27 +49,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{--  //block_main_content_center  --}}
 
 
-@section('blockStoreLeft')
-    <!-- Categories tore -->
-    <!-- Only show category store if shop home is not primary store -->
-    @if (config('app.storeId') != SC_ID_ROOT && function_exists('sc_vendor_get_categories_front') &&  count(sc_vendor_get_categories_front(config('app.storeId'))))
-    <div class="aside-item col-sm-6 col-md-5 col-lg-12">
-      <h6 class="aside-title">{{ sc_language_render('front.categories_store') }}</h6>
-      <ul class="list-shop-filter">
-        @foreach (sc_vendor_get_categories_front(config('app.storeId')) as $key => $category)
-        <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->getTitle() }}</a></li>
-        @endforeach
-      </ul>
-    </div>
-    @endif
-    <!-- //Categories tore -->
-    
-   <!-- Render include view -->
-   @include($sc_templatePath.'.common.include_view')
-   <!--// Render include view -->
-@endsection
-
-
 @push('styles')
 @endpush
 
