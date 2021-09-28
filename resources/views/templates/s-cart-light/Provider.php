@@ -98,7 +98,7 @@ function sc_template_install_store($storeId = null) {
         'page'     => '*',
         'text'     => 'product_special_left',
         'type'     => 'view',
-        'sort'     => 50,
+        'sort'     => 30,
         'status'   => 1,
         'template' => 's-cart-light',
         'store_id' => $storeId,
@@ -107,23 +107,16 @@ function sc_template_install_store($storeId = null) {
     \SCart\Core\Admin\Models\AdminStoreBlockContent::createStoreBlockContentAdmin($dataInsert);
     
     $modelBanner = new \SCart\Core\Front\Models\ShopBanner;
-    $modelBannerStore = new \SCart\Core\Front\Models\ShopBannerStore;   
-    $idBanner1 = $modelBanner->insertGetId(['title' => 'Banner special 1 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-special-1.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-special']);
-    $modelBannerStore->insert(['banner_id' => $idBanner1, 'store_id' => $storeId]);
-    $idBanner2 = $modelBanner->insertGetId(['title' => 'Banner special 2 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-special-2.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-special']);
-    $modelBannerStore->insert(['banner_id' => $idBanner2, 'store_id' => $storeId]);
-    
-    $idBannerHome1 = $modelBanner->insertGetId(['title' => 'Banner home 1 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-home-1.jpg', 'target' => '_self', 'html' => '<div class="row"><div class="col-lg-5"><h1>Sale off</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p><a href="#" class="primary-btn">Shop Now</a></div></div><div class="off-card"><h2>Sale <span>50%</span></h2></div>', 'status' => 1, 'type' => 'banner-home']);
-    $modelBannerStore->insert(['banner_id' => $idBannerHome1, 'store_id' => $storeId]);
-    $idBannerHome2 = $modelBanner->insertGetId(['title' => 'Banner home 2 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-home-2.jpg', 'target' => '_self', 'html' => '<div class="row"><div class="col-lg-5"><h1>Sale off</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p><a href="#" class="primary-btn">Shop Now</a></div></div><div class="off-card"><h2>Sale <span>50%</span></h2></div>', 'status' => 1, 'type' => 'banner-home']);
-    $modelBannerStore->insert(['banner_id' => $idBannerHome2, 'store_id' => $storeId]);
+    $modelBannerStore = new \SCart\Core\Front\Models\ShopBannerStore; 
 
-    $idBannerSmall1 = $modelBanner->insertGetId(['title' => 'Banner small 1 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-small-1.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-small']);
-    $modelBannerStore->insert(['banner_id' => $idBannerSmall1, 'store_id' => $storeId]);
-    $idBannerSmall2 = $modelBanner->insertGetId(['title' => 'Banner small 2 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-small-2.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-small']);
-    $modelBannerStore->insert(['banner_id' => $idBannerSmall2, 'store_id' => $storeId]);
-    $idBannerSmall3 = $modelBanner->insertGetId(['title' => 'Banner small 3 (s-cart-light)', 'image' => '/templates/s-cart-light/images/banner/banner-small-3.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-small']);
-    $modelBannerStore->insert(['banner_id' => $idBannerSmall3, 'store_id' => $storeId]);
+    $idBanner1 = $modelBanner->insertGetId(['title' => 'Banner home 1 (s-cart-light)', 'image' => '/data/banner/banner-home-1.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+    $modelBannerStore->insert(['banner_id' => $idBanner1, 'store_id' => $storeId]);
+    $idBanner2 = $modelBanner->insertGetId(['title' => 'Banner home 2 (s-cart-light)', 'image' => '/data/banner/banner-home-2.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+    $modelBannerStore->insert(['banner_id' => $idBanner2, 'store_id' => $storeId]);
+    $idBanner3 = $modelBanner->insertGetId(['title' => 'Banner breadcrumb (s-cart-light)', 'image' => '/data/banner/breadcrumb.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
+    $modelBannerStore->insert(['banner_id' => $idBanner3, 'store_id' => $storeId]);
+    $idBanner4 = $modelBanner->insertGetId(['title' => 'Banner store (s-cart-light)', 'image' => '/data/banner/banner-store.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
+    $modelBannerStore->insert(['banner_id' => $idBanner4, 'store_id' => $storeId]);
 }
 
 /**
