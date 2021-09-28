@@ -1,5 +1,6 @@
   {{-- Categories tore --}}
   @php
+    // isset $storeId if is layout_page is vendor_home or vendor_product_lis
       $vendorStoreId = isset($storeId) ? $storeId : config('app.storeId');
   @endphp
   @if (function_exists('sc_vendor_get_categories_front') &&  count(sc_vendor_get_categories_front($vendorStoreId)))
