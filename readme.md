@@ -21,41 +21,36 @@ Our goal is "Efficient and friendly for everyone":
 
 ## IMAGES:
 <img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg">
+<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/page/0api.jpg">
 <img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
 <img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
 
 ## S-Cart functions:
 
 <pre>
-======= FRONT-END =======
-- Multi-language
-- Multi-currency
-- Multi-address
-- Shopping cart
-- Customer login
-- Product attributes: cost price, promotion price, stock, tax..
-- CMS content: category, news, content, web page
-- Plugin: Shipping, payment, Discount, Total, Multiple vendor...
-- Upload manager: banner, images,..
-- SEO support: custome URL
-- API module
-- Support library plugin, template online
-...
-
-======= ADMIN =======
-
-- Admin roles, permission
-- Product manager
-- Order management
-- Customer management
-- Template manager
-- Plugin manager
-- Store manager
-- System config: email setting, info shop, maintain status,...
-- Backup, restore data
-- Report: chart, statistics, export csv, pdf...
-...
-
+💥S-Cart - FREE Laravel ecommerce for business💥:
+- Build plugin packages HMVC
+- Support to upgrade and patch S-Cart via command line
+- Full document for dev and client
+👉Full support for the functions of a professional sales website:
+- Multi-language, multi-currency
+- Make cart, manage orders, manage products, manage customers...
+- CMS news management: categories, news, news pages
+- Plugin: Payment, shipping, discounts, taxes ...
+- Plugin pro: multi-vendor, multi-store
+- Online library: plugin, template
+- API suppport and security for app, mobile
+👉Powerful admin page:
+- Roles, permission: admin, manager, maketing, ..
+- Security with log full, access, auth, captcha ...
+- Manage products, orders, customers ...
+- Charts, statistics
+- Backup, restore
+- Activity log
+- And many other functions.
+👉Plugin pro:
+- Multi-vendor: https://s-cart.org/en/multi-vendor.html
+- Multi-store: https://s-cart.org/en/multi-store.html
 </pre>
 
 ## Technology
