@@ -123,23 +123,23 @@ Option 2: **Manual installation**
 
 If installing with link "install.php" unsuccessful, you can install it manually below.
 ```
-- 1: Import file database/*.sql or /vendor/s-cart/core/src/DB/s-cart-yyyy-mm-dd.sql to database.
-- 2: Rename or delete file public/install.php
-- 3: Copy file .env.example to .env if file .env not exist.
-- 4: Generate API key if APP_KEY is null. 
-  Use command "php artisan key:generate"
-- 5: Generates the encryption keys
+1: Create new database, then import file /vendor/s-cart/core/src/DB/s-cart-yyyy-mm-dd.sql to database.
+2: Rename or delete file public/install.php
+3: Copy file .env.example to .env if file .env not exist.
+4: Generate API key if APP_KEY is null. 
+- Use command "php artisan key:generate"
+5: Generates the encryption keys
   Use command "php artisan passport:keys"
-- 6: Config value of file .env:
-APP_DEBUG=false (Set "false" is security)
-DB_HOST=127.0.0.1 (Database host)
-DB_PORT=3306 (Database port)
-DB_DATABASE=s-cart (Database name)
-DB_USERNAME=root (User name use database)
-DB_PASSWORD= (Password connect to database)
-APP_URL=http://localhost (Your url)
-ADMIN_PREFIX=sc_admin (Path to admin)
-DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
+6: Config value of file .env:
+- APP_DEBUG=false (Set "false" is security)
+- DB_HOST=127.0.0.1 (Database host)
+- DB_PORT=3306 (Database port)
+- DB_DATABASE=s-cart (Database name)
+- DB_USERNAME=root (User name use database)
+- DB_PASSWORD= (Password connect to database)
+- APP_URL=http://localhost (Your url)
+- ADMIN_PREFIX=sc_admin (Path to admin)
+- DB_PREFIX=sc_ (Must be "sc_" because it is fixed in the .sql file)
 ```
 
 **Step5: Install completed**
@@ -185,7 +185,6 @@ More detail: https://s-cart.org/en/docs/master
 
 ## Funding and supporting the project
 
-You can support our with donations and sponsoring. Sponsorships are crucial for ongoing and future development of the project. Any support is always welcome even if it's as low as $1 :) 
 Please visit the <a href="https://s-cart.org/en/license.html" target="_blank">S-Cart</a>
 
 ## Security Vulnerabilities:
