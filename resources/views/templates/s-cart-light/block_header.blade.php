@@ -18,8 +18,12 @@
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
+                    @if (sc_config('link_home_page', null, 1))
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
+                    @endif
+                    @if (sc_config('link_shop_page', null, 1))
                     <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ sc_language_render('front.shop') }}</a></li>
+                    @endif
                     @if (!empty($sc_layoutsUrl['menu']))
                     @foreach ($sc_layoutsUrl['menu'] as $url)
                     <li class="rd-nav-item">
@@ -29,6 +33,7 @@
                     @endforeach
                     @endif
 
+                    @if (sc_config('link_account', null, 1))
                     @guest
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ sc_language_render('front.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
@@ -75,8 +80,9 @@
                         </ul>
                     </li>
                     @endguest
+                    @endif
 
-
+                    @if (sc_config('link_language', null, 1))
                     @if (count($sc_languages)>1)
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="#">
@@ -93,7 +99,9 @@
                         </ul>
                     </li>
                     @endif
+                    @endif
 
+                    @if (sc_config('link_currency', null, 1))
                     @if (count($sc_currencies)>1)
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="#">
@@ -110,6 +118,7 @@
                         </ul>
                     </li>
                     @endif
+                    @endif
 
                   </ul>
                 </div>
@@ -125,6 +134,7 @@
                       </div>
                     </form>
                   </div>
+                  @if (sc_config('link_cart', null, 1))
                   <!-- RD Navbar Basket-->
                   <div class="rd-navbar-basket-wrap">
                     <a href="{{ sc_route('cart') }}">
@@ -136,6 +146,7 @@
                   <a title="{{ sc_language_render('cart.page_title') }}" style="margin-top:10px;" class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2" href="{{ sc_route('cart') }}">
                     <span class="count sc-cart">{{ Cart::instance('default')->count() }}</span>
                  </a>
+                @endif
                 </div>
               </div>
             </div>
