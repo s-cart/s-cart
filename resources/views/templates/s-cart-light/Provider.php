@@ -1,8 +1,50 @@
 <?php
 
+/**
+ * Install template
+ *
+ * @param [type] $storeId
+ * @return void
+ */
+function sc_template_install($data = []) {
+    $storeId = $data['store_id'] ?? null;
+    sc_template_install_default();
+    sc_template_install_store($storeId);
+}
+
+/**
+ * Uninstall template
+ *
+ * @param [type] $storeId
+ * @return void
+ */
+function sc_template_uninstall($data = []) {
+    $storeId = $data['store_id'] ?? null;
+    sc_template_uninstall_default();
+    sc_template_uninstall_store($storeId);
+}
+
+
+/**
+ * Insert css default for template
+ *
+ * @param   [type]  $storeId  [$storeId description]
+ *
+ * @return  [type]            [return description]
+ */
+function sc_process_css_default($storeId = null) {
+        if ($storeId) {
+        $cssContent = '';
+        if (file_exists($path = resource_path() . '/views/templates/s-cart-light/css_default.css')) {
+            $cssContent = file_get_contents($path);
+        }
+        \SCart\Core\Front\Models\ShopStoreCss::insert(['css' => $cssContent, 'store_id' => $storeId, 'template' => 's-cart-light']);
+    }
+}
+
 //Setup for every store
 function sc_template_install_store($storeId = null) {
-    $storeId = $storeId ? $storeId : session('adminStoreId');
+        $storeId = $storeId ? $storeId : session('adminStoreId');
     //Uninstall for store before install
     sc_template_uninstall_store($storeId);
 
@@ -105,7 +147,7 @@ function sc_template_install_store($storeId = null) {
     ];
 
     \SCart\Core\Admin\Models\AdminStoreBlockContent::createStoreBlockContentAdmin($dataInsert);
-    
+
     $modelBanner = new \SCart\Core\Front\Models\ShopBanner;
     $modelBannerStore = new \SCart\Core\Front\Models\ShopBannerStore; 
 
@@ -117,6 +159,9 @@ function sc_template_install_store($storeId = null) {
     $modelBannerStore->insert(['banner_id' => $idBanner3, 'store_id' => $storeId]);
     $idBanner4 = $modelBanner->insertGetId(['title' => 'Banner store (s-cart-light)', 'image' => '/data/banner/banner-store.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
     $modelBannerStore->insert(['banner_id' => $idBanner4, 'store_id' => $storeId]);
+
+    //Insert css default
+    sc_process_css_default($storeId);
 }
 
 /**
@@ -141,7 +186,7 @@ function sc_template_uninstall_default() {}
  * @return void
  */
 function sc_template_uninstall_store($storeId = null) {
-    if ($storeId) {
+        if ($storeId) {
         \SCart\Core\Admin\Models\AdminStoreBlockContent::where('template', 's-cart-light')
             ->where('store_id', $storeId)
             ->delete();
@@ -159,6 +204,9 @@ function sc_template_uninstall_store($storeId = null) {
             \SCart\Core\Front\Models\ShopBanner::whereIn('id', $idBanners)
             ->delete();
         }
+        \SCart\Core\Front\Models\ShopStoreCss::where('template', 's-cart-light')
+        ->where('store_id', $storeId)
+        ->delete();
     } else {
         // Remove from all stories
         \SCart\Core\Admin\Models\AdminStoreBlockContent::where('template', 's-cart-light')
@@ -171,30 +219,9 @@ function sc_template_uninstall_store($storeId = null) {
             \SCart\Core\Front\Models\ShopBanner::where('title', 'like', '%(s-cart-light)%')
             ->delete();
         }
+        \SCart\Core\Front\Models\ShopStoreCss::where('template', 's-cart-light')
+        ->delete();
     }
 
-}
 
-/**
- * Install template
- *
- * @param [type] $storeId
- * @return void
- */
-function sc_template_install($data = []) {
-    $storeId = $data['store_id'] ?? null;
-    sc_template_install_default();
-    sc_template_install_store($storeId);
-}
-
-/**
- * Uninstall template
- *
- * @param [type] $storeId
- * @return void
- */
-function sc_template_uninstall($data = []) {
-    $storeId = $data['store_id'] ?? null;
-    sc_template_uninstall_default();
-    sc_template_uninstall_store($storeId);
 }
