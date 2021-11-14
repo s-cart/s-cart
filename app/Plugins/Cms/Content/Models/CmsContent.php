@@ -170,10 +170,10 @@ class CmsContent extends Model
         Schema::create($this->table.'_description', function (Blueprint $table) {
             $table->integer('content_id');
             $table->string('lang', 10);
-            $table->string('title', 200)->nullable();
+            $table->string('title', 300)->nullable();
             $table->string('keyword', 200)->nullable();
-            $table->string('description', 300)->nullable();
-            $table->text('content')->nullable();
+            $table->string('description', 500)->nullable();
+            $table->mediumText('content')->nullable();
             $table->primary(['content_id', 'lang']);
         });
 

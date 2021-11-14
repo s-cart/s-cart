@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700%7CLato%7CKalam:300,400,700">
+    <link rel="canonical" href="{{ request()->url() }}" />
     <meta name="description" content="{{ $description??sc_store('description') }}">
     <meta name="keyword" content="{{ $keyword??sc_store('keyword') }}">
     <title>{{$title??sc_store('title')}}</title>
