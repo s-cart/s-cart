@@ -48,9 +48,10 @@ Our goal is "Efficient and friendly for everyone":
 - Backup, restore
 - Activity log
 - And many other functions.
+Demo API: <a href="https://s-cart.org/en/developer/master/about-api-scart.html">https://s-cart.org/en/developer/master/about-api-scart.html</a>
 👉Plugin pro:
-- Multi-vendor: https://s-cart.org/en/multi-vendor.html
-- Multi-store: https://s-cart.org/en/multi-store.html
+- Multi-vendor: <a href="https://s-cart.org/en/multi-vendor.html">https://s-cart.org/en/multi-vendor.html</a>
+- Multi-store: <a href="https://s-cart.org/en/multi-store.html">https://s-cart.org/en/multi-store.html</a>
 </pre>
 
 ## Technology
