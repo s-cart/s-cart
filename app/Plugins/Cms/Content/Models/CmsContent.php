@@ -85,7 +85,7 @@ class CmsContent extends Model
      * @param   [string]  $type  [id, alias]
      *
      */
-    public function getDetail($key, $type = null)
+    public function getDetail($key, $type = null, $status = 1)
     {
         if(empty($key)) {
             return null;
@@ -101,7 +101,7 @@ class CmsContent extends Model
         } else {
             $content = $content->where($type, $key);
         }
-        $content = $content->where('status', 1)
+        $content = $content->where('status', $status)
             ->where('store_id', config('app.storeId'));
         return $content->first();
     }

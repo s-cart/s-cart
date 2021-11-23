@@ -129,7 +129,7 @@ class CmsCategory extends Model
      * @param   [string]  $type  [id, alias]
      *
      */
-    public function getDetail($key, $type = null)
+    public function getDetail($key, $type = null, $status = 1)
     {
         if(empty($key)) {
             return null;
@@ -148,7 +148,7 @@ class CmsCategory extends Model
         } else {
             $category = $category->where($type, $key);
         }
-        $category = $category->where('status', 1);
+        $category = $category->where('status', $status);
 
         return $category->first();
     }
