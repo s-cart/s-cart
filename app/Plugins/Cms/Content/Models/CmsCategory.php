@@ -127,9 +127,10 @@ class CmsCategory extends Model
      *
      * @param   [string]  $key     [$key description]
      * @param   [string]  $type  [id, alias]
+     * @param   [int]  $checkActive
      *
      */
-    public function getDetail($key, $type = null, $status = 1)
+    public function getDetail($key, $type = null, $checkActive = 1)
     {
         if(empty($key)) {
             return null;
@@ -148,7 +149,9 @@ class CmsCategory extends Model
         } else {
             $category = $category->where($type, $key);
         }
-        $category = $category->where('status', $status);
+        if ($checkActive) {
+            $category = $category->where('status', 1);
+        }
 
         return $category->first();
     }

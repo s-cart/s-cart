@@ -83,9 +83,10 @@ class CmsContent extends Model
      *
      * @param   [string]  $key     [$key description]
      * @param   [string]  $type  [id, alias]
+     * @param   [int]  $checkActive
      *
      */
-    public function getDetail($key, $type = null, $status = 1)
+    public function getDetail($key, $type = null, $checkActive = 1)
     {
         if(empty($key)) {
             return null;
@@ -101,8 +102,10 @@ class CmsContent extends Model
         } else {
             $content = $content->where($type, $key);
         }
-        $content = $content->where('status', $status)
-            ->where('store_id', config('app.storeId'));
+        if ($checkActive) {
+            $content = $content->where('status', 1);
+        }
+        $content = $content->where('store_id', config('app.storeId'));
         return $content->first();
     }
 
