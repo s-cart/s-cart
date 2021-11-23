@@ -24,20 +24,7 @@
     <!--//end css defaut -->
 
     <!--Module header -->
-    @isset ($sc_blocksContent['header'])
-    @foreach ( $sc_blocksContent['header'] as $layout)
-    @php
-    $arrPage = explode(',', $layout->page)
-    @endphp
-    @if ($layout->page == '*' || (isset($layout_page) && in_array($layout_page, $arrPage)))
-        @if ($layout->type =='html')
-            {!! $layout->text !!}
-        @elseif($layout->type =='view')
-            @includeIf($sc_templatePath.'.block.'.$layout->text)
-        @endif
-    @endif
-    @endforeach
-    @endisset
+    @includeIf($sc_templatePath.'.common.render_block', ['positionBlock' => 'header'])
     <!--//Module header -->
 
     <link rel="stylesheet" href="{{ sc_file($sc_templateFile.'/css/bootstrap.css')}}">
