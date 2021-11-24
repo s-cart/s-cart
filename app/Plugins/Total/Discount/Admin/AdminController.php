@@ -214,13 +214,10 @@ class AdminController extends RootAdminController
         }
         $discount = AdminDiscount::createDiscountAdmin($dataInsert);
 
-        if (sc_config_global('MultiStorePro') || sc_config_global('MultiVendorPro')) {
-            // If multi-store
-            $shopStore        = $data['shop_store'] ?? [];
-            $discount->stores()->detach();
-            if ($shopStore) {
-                $discount->stores()->attach($shopStore);
-            }
+        $shopStore        = $data['shop_store'] ?? [session('adminStoreId')];
+        $discount->stores()->detach();
+        if ($shopStore) {
+            $discount->stores()->attach($shopStore);
         }
 
         return redirect()->route('admin_discount.index')->with('success', sc_language_render($this->plugin->pathPlugin.'::lang.admin.create_success'));
@@ -289,13 +286,10 @@ class AdminController extends RootAdminController
         }
         $discount->update($dataUpdate);
 
-        if (sc_config_global('MultiStorePro') || sc_config_global('MultiVendorPro')) {
-            // If multi-store
-            $shopStore        = $data['shop_store'] ?? [];
-            $discount->stores()->detach();
-            if ($shopStore) {
-                $discount->stores()->attach($shopStore);
-            }
+        $shopStore        = $data['shop_store'] ?? [session('adminStoreId')];
+        $discount->stores()->detach();
+        if ($shopStore) {
+            $discount->stores()->attach($shopStore);
         }
     
         return redirect()->route('admin_discount.index')
