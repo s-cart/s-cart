@@ -13,7 +13,15 @@
             @elseif($layout->type =='view')
                 @includeIf($sc_templatePath.'.block.'.$layout->text)
             @elseif($layout->type =='page')
+            <section class="section section-xxl bg-default">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
                 {!! sc_html_render($modelPage->start()->getDetail($layout->text, $type = 'alias', $checkActive = 0)->content ?? '') !!}
+                        </div>
+                    </div>
+                </div>
+            </section>
             @endif
         @endif
     @endforeach
