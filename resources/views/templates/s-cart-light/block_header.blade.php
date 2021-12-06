@@ -18,12 +18,6 @@
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    @if (sc_config('link_home_page', null, 1))
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ sc_route('home') }}">{{ sc_language_render('front.home') }}</a></li>
-                    @endif
-                    @if (sc_config('link_shop_page', null, 1))
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ sc_route('shop') }}">{{ sc_language_render('front.shop') }}</a></li>
-                    @endif
                     @if (!empty($sc_layoutsUrl['menu']))
                     @foreach ($sc_layoutsUrl['menu'] as $url)
                     <li class="rd-nav-item">

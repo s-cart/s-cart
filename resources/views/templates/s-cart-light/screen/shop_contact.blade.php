@@ -14,9 +14,9 @@ $layout_page = shop_contact
             <img src="{{ sc_file(sc_store('logo')) }}">
             <address>
                 <p>{{ sc_store('title') }}</p>
-                <p>{{ sc_store('address') }}</p>
-                <p>{{ sc_store('long_phone') }}</p>
-                <p>{{ sc_store('email') }}</p>
+                <p><span class="icon mdi mdi-map-marker"></span> {{ sc_store('address') }}</p>
+                <p><span class="icon mdi mdi-phone"></span> {{ sc_store('long_phone') }}</p>
+                <p><span class="icon mdi mdi-email-outline"></span> {{ sc_store('email') }}</p>
             </address>
         </div>
         <div class="col-12 col-sm-12 col-md-6">

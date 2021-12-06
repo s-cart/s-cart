@@ -77,20 +77,23 @@
           </div>
         </div>
 
-        @if (!sc_config('hidden_copyright_footer'))
         <div class="footer-classic-panel">
           <div class="container">
             <div class="row row-10 align-items-center justify-content-sm-between">
               <div class="col-md-auto">
                 <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
+              @if (sc_config('fanpage_url'))
               <div class="col-md-auto order-md-1"> <a target="_blank"
-                href="{{ sc_config('fanpage_url') }}">Fanpage FB</a></div>
+                href="{{ sc_config('fanpage_url') }}">Fanpage FB</a>
+              </div>
+              @endif
+              @if (!sc_config('hidden_copyright_footer'))
               <div class="col-md-auto">
                     Power by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a>
               </div>
+              @endif
             </div>
           </div>
         </div>
-        @endif
       </footer>
