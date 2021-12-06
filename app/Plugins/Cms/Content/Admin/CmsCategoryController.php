@@ -161,7 +161,7 @@ class CmsCategoryController extends RootAdminController
             'parent' => 'required',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
+            'descriptions.*.description' => 'nullable|string|max:500',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_category_alias_unique',
         ], [
             'alias.regex' => sc_language_render($this->plugin->pathPlugin.'::Category.alias_validate'),
@@ -251,7 +251,7 @@ class CmsCategoryController extends RootAdminController
             'parent'                     => 'required',
             'descriptions.*.title'       => 'required|string|max:200',
             'descriptions.*.keyword'     => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
+            'descriptions.*.description' => 'nullable|string|max:500',
             'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_category_alias_unique:'.$id,
         ], [
             'alias.regex' => sc_language_render($this->plugin->pathPlugin.'::Category.alias_validate'),

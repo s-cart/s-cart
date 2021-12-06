@@ -163,7 +163,7 @@ class CmsContentController extends RootAdminController
             'category_id' => 'required',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
+            'descriptions.*.description' => 'nullable|string|max:500',
             'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:100|cms_content_alias_unique',
         ], [
             'descriptions.*.title.required' => sc_language_render('validation.required', 
@@ -255,7 +255,7 @@ class CmsContentController extends RootAdminController
             'sort' => 'numeric|min:0',
             'descriptions.*.title' => 'required|string|max:200',
             'descriptions.*.keyword' => 'nullable|string|max:200',
-            'descriptions.*.description' => 'nullable|string|max:300',
+            'descriptions.*.description' => 'nullable|string|max:500',
         ], [
             'alias.regex' => sc_language_render($this->plugin->pathPlugin.'::Content.alias_validate'),
             'descriptions.*.title.required' => sc_language_render('validation.required', ['attribute' => sc_language_render($this->plugin->pathPlugin.'::Content.title')]),

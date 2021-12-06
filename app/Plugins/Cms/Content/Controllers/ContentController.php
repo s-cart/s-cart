@@ -104,6 +104,7 @@ class ContentController extends RootFrontController
             if ($category_currently) { 
                 $entries = (new CmsContent)
                     ->getContentToCategory($category_currently->id)
+                    ->setLimit(sc_config('item_list'))
                     ->setPaginate()
                     ->getData();
                 return view(
