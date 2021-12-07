@@ -836,7 +836,7 @@
 				options.autoplay = {
 					delay: Number(autoplayAttr),
 					stopOnLastSlide: false,
-					disableOnInteraction: true,
+					disableOnInteraction: false,
 					reverseDirection: false,
 				};
 			}
