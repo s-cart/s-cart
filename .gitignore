@@ -1,5 +1,6 @@
 /node_modules
 /storage/*.key
+/storage/logs/*.log
 /*.zip
 /vendor
 /.idea

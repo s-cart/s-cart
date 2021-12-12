@@ -4,7 +4,7 @@
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  | <a href="https://s-cart.org/en/developer/master">Document for Developer</a> | <a href="https://s-cart.org/en/developer/master/about-api-scart.html">API document</a>
+ <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  | <a href="https://s-cart.org/en/developer/master">Document for Developer</a> | <a href="https://s-cart.org/en/developer/master/about-api-scart.html">API document</a> | <a href="https://s-cart.org/en/about.html">Features in S-Cart</a>
 </p>
 <p align="center">
 <a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Total Downloads"></a>
@@ -20,8 +20,7 @@ Our goal is "Efficient and friendly for everyone":
 - Everyone: Businesses, individuals, developers, students.
 
 ## IMAGES:
-<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg">
-<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/page/0api.jpg">
+<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg?v=1">
 <img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
 <img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
 
