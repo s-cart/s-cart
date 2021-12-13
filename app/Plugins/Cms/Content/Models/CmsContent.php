@@ -72,10 +72,10 @@ class CmsContent extends Model
     }
 
     //Scort
-    public function scopeSort($query, $column = null)
+    public function scopeSort($query, $sortBy = null, $sortOrder = 'asc')
     {
-        $column = $column ?? 'sort';
-        return $query->orderBy($column, 'asc')->orderBy('id', 'desc');
+        $sortBy = $sortBy ?? 'sort';
+        return $query->orderBy($sortBy, $sortOrder);
     }
 
     /**
@@ -269,14 +269,25 @@ class CmsContent extends Model
         if ($this->sc_random) {
             $query = $query->inRandomOrder();
         } else {
+            $ckeckSort = false;
             if (is_array($this->sc_sort) && count($this->sc_sort)) {
                 foreach ($this->sc_sort as  $rowSort) {
-                    if(is_array($rowSort) && count($rowSort) == 2) {
+                    if (is_array($rowSort) && count($rowSort) == 2) {
+                        if ($rowSort[0] == 'sort') {
+                            $ckeckSort = true;
+                        }
                         $query = $query->sort($rowSort[0], $rowSort[1]);
                     }
                 }
             }
         }
+
+        //Use field "sort" if haven't above
+        if (!$ckeckSort) {
+            $query = $query->orderBy($this->getTable().'.sort', 'asc');
+        }
+        //Default, will sort id
+        $query = $query->orderBy($this->getTable().'.id', 'desc');
 
         return $query;
     }    
