@@ -20,7 +20,7 @@ Our goal is "Efficient and friendly for everyone":
 - Everyone: Businesses, individuals, developers, students.
 
 ## IMAGES:
-<img src="https://sc-shared.s3.ap-southeast-1.amazonaws.com/guide/info/s-cart-content.jpg?v=1">
+<img src="https://static.s-cart.org/guide/info/s-cart-content.jpg">
 <img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
 <img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
 
