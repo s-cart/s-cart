@@ -150,7 +150,7 @@ class AppConfig extends ConfigDefault
             } else {
                 $value = sc_currency_value($check['content']['reward']);
             }
-            if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+            if (sc_check_multi_shop_installed()) {
                 //Add info for earch store
                 $storeID = $check['content']['store_id'];
                 $dataStore[$storeID]['value'] = $value;

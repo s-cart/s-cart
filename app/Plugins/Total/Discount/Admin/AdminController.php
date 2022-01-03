@@ -51,7 +51,7 @@ class AdminController extends RootAdminController
             'status' => sc_language_render($this->plugin->pathPlugin.'::lang.status'),
         ];
 
-        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+        if (sc_check_multi_shop_installed()) {
             if (session('adminStoreId') == SC_ID_ROOT) {
                 // Only show store info if store is root
                 $listTh['shop_store'] = sc_language_render('front.store_list');
@@ -78,7 +78,7 @@ class AdminController extends RootAdminController
 
         $dataTmp = (new AdminDiscount)->getDiscountListAdmin($dataSearch);
         $arrDiscountId = $dataTmp->pluck('id')->toArray();
-        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+        if (sc_check_multi_shop_installed()) {
             if (session('adminStoreId') == SC_ID_ROOT) {
                 // Only show store info if store is root
                 $tableStore = (new AdminStore)->getTable();
@@ -103,7 +103,7 @@ class AdminController extends RootAdminController
                 'status' => $row['status'] ? '<span class="label label-success">ON</span>' : '<span class="label label-danger">OFF</span>',
             ];
 
-            if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+            if (sc_check_multi_shop_installed()) {
                 $dataMap['shop_store'] = '';
                 if (session('adminStoreId') == SC_ID_ROOT) {
                     // Only show store info if store is root

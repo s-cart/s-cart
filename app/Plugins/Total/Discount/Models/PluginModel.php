@@ -113,7 +113,7 @@ class PluginModel extends Model
     public function getPromotionByCode($code) {
         $promotion = $this->where($this->getTable().'.code', $code);
 
-        if (sc_config_global('MultiVendorPro') || sc_config_global('MultiStorePro')) {
+        if (sc_check_multi_shop_installed()) {
             $storeId = config('app.storeId');
             $tableStore = (new ShopStore)->getTable();
             $tableDiscountStore = (new ShopDiscountStore)->getTable();

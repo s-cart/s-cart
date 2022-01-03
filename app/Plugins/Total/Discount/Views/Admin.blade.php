@@ -147,7 +147,7 @@
                                 </div>
                             </div>
 
-@if (sc_config_global('MultiStorePro') || sc_config_global('MultiVendorPro'))
+@if (sc_check_multi_shop_installed())
                             {{-- select shop_store --}}
                             @php
                             $listStore = [];

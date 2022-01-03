@@ -15,7 +15,7 @@ class AdminDiscount extends PluginModel
      */
     public static function getDiscountAdmin($id) {
         $data =  self::where('id', $id);
-        if (sc_config_global('MultiVendorPro')) {
+        if (sc_check_multi_vendor_installed()) {
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $data = $data->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
@@ -38,7 +38,7 @@ class AdminDiscount extends PluginModel
         $arrSort          = $dataSearch['arrSort'] ?? '';
         $discountList = (new AdminDiscount);
 
-        if (sc_config_global('MultiVendorPro')) {
+        if (sc_check_multi_vendor_installed()) {
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $discountList = $discountList->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
@@ -88,7 +88,7 @@ class AdminDiscount extends PluginModel
         $tableDiscount = (new AdminDiscount)->getTable();
         $check = (new AdminDiscount)->where($type, $fieldValue);
 
-        if (sc_config_global('MultiVendorPro')) {
+        if (sc_check_multi_vendor_installed()) {
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $check = $check->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
