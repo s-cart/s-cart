@@ -81,7 +81,7 @@
                             <!--//Block left-->
 
                             <!--Block center-->
-                            <div class="col-lg-8 col-xl-9">
+                            <div class="col-lg-9 col-xl-9">
                                 @section('block_main_content_center')
                                     @include($sc_templatePath.'.block_main_content_center')
                                 @show
