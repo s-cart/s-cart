@@ -20,8 +20,6 @@
     <!-- css default for item s-cart -->
     @include($sc_templatePath.'.common.css')
     <!--//end css defaut -->
-    <!-- css default for item s-cart -->
-    <!--//end css defaut -->
 
     <!--Module header -->
     @includeIf($sc_templatePath.'.common.render_block', ['positionBlock' => 'header'])
@@ -72,6 +70,8 @@
                 <div class="container">
                     <div class="row row-50">
                         @section('block_main_content')
+
+                        @if (empty($hiddenBlockLeft))
                             <!--Block left-->
                             <div class="col-lg-4 col-xl-3">
                                 @section('block_main_content_left')
@@ -87,12 +87,22 @@
                                 @show
                             </div>
                             <!--//Block center-->
-                            
+                        @else
+                            <!--Block center-->
+                            @section('block_main_content_center')
+                                @include($sc_templatePath.'.block_main_content_center')
+                            @show
+                            <!--//Block center-->
+                        @endif
+
+                        @if (empty($hiddenBlockRight))
                             <!--Block right -->
                             @section('block_main_content_right')
                                 @include($sc_templatePath.'.block_main_content_right')
                             @show
                             <!--//Block right -->
+                        @endif
+
                         @show
                     </div>
                 </div>
@@ -125,6 +135,7 @@
 
     <script src="{{ sc_file($sc_templateFile.'/js/core.min.js')}}"></script>
     <script src="{{ sc_file($sc_templateFile.'/js/script.js')}}"></script>
+    
     <!-- js default for item s-cart -->
     @include($sc_templatePath.'.common.js')
     <!--//end js defaut -->
