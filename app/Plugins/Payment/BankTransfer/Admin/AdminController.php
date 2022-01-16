@@ -3,7 +3,7 @@
 
 namespace App\Plugins\Payment\BankTransfer\Admin;
 
-use App\Http\Controllers\RootAdminController;
+use SCart\Core\Admin\Controllers\RootAdminController;
 use App\Plugins\Payment\BankTransfer\AppConfig;
 
 class AdminController extends RootAdminController

@@ -6,7 +6,7 @@ use App\Plugins\Total\Discount\Models\PluginModel as Discount;
 use SCart\Core\Front\Models\ShopOrderTotal;
 use Carbon\Carbon;
 use App\Plugins\Total\Discount\AppConfig;
-use App\Http\Controllers\RootFrontController;
+use SCart\Core\Front\Controllers\RootFrontController;
 class FrontController extends RootFrontController
 {
     private $codes = [];

@@ -4,7 +4,7 @@
 namespace App\Plugins\Total\Discount\Admin;
 
 use App\Plugins\Total\Discount\Admin\Models\AdminDiscount;
-use App\Http\Controllers\RootAdminController;
+use SCart\Core\Admin\Controllers\RootAdminController;
 use SCart\Core\Front\Models\ShopLanguage;
 use App\Plugins\Total\Discount\AppConfig;
 use App\Plugins\Total\Discount\Models\ShopDiscountStore;

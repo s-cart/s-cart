@@ -3,7 +3,7 @@
 namespace App\Plugins\Payment\Cash\Controllers;
 
 use SCart\Core\Front\Controllers\ShopCartController;
-use App\Http\Controllers\RootFrontController;
+use SCart\Core\Front\Controllers\RootFrontController;
 class FrontController extends RootFrontController
 {
     /**

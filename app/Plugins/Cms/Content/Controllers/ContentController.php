@@ -4,7 +4,7 @@ namespace App\Plugins\Cms\Content\Controllers;
 
 use App\Plugins\Cms\Content\Models\CmsCategory;
 use App\Plugins\Cms\Content\Models\CmsContent;
-use App\Http\Controllers\RootFrontController;
+use SCart\Core\Front\Controllers\RootFrontController;
 use App\Plugins\Cms\Content\AppConfig;
 
 class ContentController extends RootFrontController
