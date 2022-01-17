@@ -207,6 +207,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         public_path('data'),
         base_path('vendor'),
         base_path('bootstrap/cache'),
+        base_path('app/Plugins'),
     ];
     try {
         @exec('chmod g+w -R ' . implode(' ', $dirsWritable));
@@ -237,6 +238,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             public_path('data') => is_writable(public_path('data')),
             base_path('vendor') => is_writable(base_path('vendor')),
             base_path('bootstrap/cache') => is_writable(base_path('bootstrap/cache')),
+            base_path('app/Plugins') => is_writable(base_path('app/Plugins')),
         ]
     ];
 
