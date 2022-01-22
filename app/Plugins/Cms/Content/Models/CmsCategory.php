@@ -99,9 +99,9 @@ class CmsCategory extends Model
 
     }
 
-    public function getUrl()
+    public function getUrl($lang = null)
     {
-        return sc_route('cms.category', ['alias' => $this->alias]);
+        return sc_route('cms.category', ['alias' => $this->alias, 'lang' => $lang ?? app()->getLocale()]);
     }
 
 
