@@ -182,6 +182,7 @@ class CmsCategoryController extends RootAdminController
             'sort'     => (int) $data['sort'],
             'store_id' => session('adminStoreId'),
         ];
+        $dataInsert = sc_clean($dataInsert, [], true);
 
         $category = AdminCmsCategory::createCategoryAdmin($dataInsert);
         $id = $category->id;
@@ -196,6 +197,7 @@ class CmsCategoryController extends RootAdminController
                 'description' => $data['descriptions'][$code]['description'],
             ];
         }
+        $dataDes = sc_clean($dataDes, [], true);
         AdminCmsCategory::insertDescriptionAdmin($dataDes);
 
         sc_clear_cache('cache_cms_category');
@@ -273,7 +275,7 @@ class CmsCategoryController extends RootAdminController
             'status'   => empty($data['status']) ? 0 : 1,
             'store_id' => session('adminStoreId'),
         ];
-
+        $dataUpdate = sc_clean($dataUpdate, [], true);
         $category->update($dataUpdate);
         $category->descriptions()->delete();
         $dataDes = [];
@@ -286,7 +288,7 @@ class CmsCategoryController extends RootAdminController
                 'description' => $row['description'],
             ];
         }
-
+        $dataDes = sc_clean($dataDes, [], true);
         AdminCmsCategory::insertDescriptionAdmin($dataDes);
 
         sc_clear_cache('cache_cms_category');

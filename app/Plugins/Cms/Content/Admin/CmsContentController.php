@@ -185,6 +185,7 @@ class CmsContentController extends RootAdminController
             'sort'        => (int) $data['sort'],
             'store_id'    => session('adminStoreId'),
         ];
+        $dataInsert = sc_clean($dataInsert, [], true);
         $content = AdminCmsContent::createContentAdmin($dataInsert);
         $id = $content->id;
         $dataDes = [];
@@ -199,6 +200,7 @@ class CmsContentController extends RootAdminController
                 'content' => $data['descriptions'][$code]['content'],
             ];
         }
+        $dataDes = sc_clean($dataDes, ['content'], true);
         AdminCmsContent::insertDescriptionAdmin($dataDes);
         sc_clear_cache('cache_cms_content');
         return redirect()->route('admin_cms_content.index')
@@ -267,8 +269,7 @@ class CmsContentController extends RootAdminController
                 ->withErrors($validator)
                 ->withInput($data);
         }
-//Edit
-        $store = $data['store'] ?? [];
+        //Edit
         $dataUpdate = [
             'image'       => $data['image'],
             'alias'       => $data['alias'],
@@ -277,7 +278,7 @@ class CmsContentController extends RootAdminController
             'status'      => empty($data['status']) ? 0 : 1,
             'store_id'    => session('adminStoreId'),
         ];
-
+        $dataUpdate = sc_clean($dataUpdate, [], true);
         $content->update($dataUpdate);
         $content->descriptions()->delete();
         $dataDes = [];
@@ -291,6 +292,7 @@ class CmsContentController extends RootAdminController
                 'content'     => $row['content'],
             ];
         }
+        $dataDes = sc_clean($dataDes, ['content'], true);
         AdminCmsContent::insertDescriptionAdmin($dataDes);
         sc_clear_cache('cache_cms_content');
         return redirect()->route('admin_cms_content.index')->with('success', sc_language_render($this->plugin->pathPlugin.'::Content.admin.edit_success'));

@@ -212,6 +212,7 @@ class AdminController extends RootAdminController
         if(!empty($data['expires_at'])) {
             $dataInsert['expires_at'] = $data['expires_at'];
         }
+        $dataInsert = sc_clean($dataInsert, [], true);
         $discount = AdminDiscount::createDiscountAdmin($dataInsert);
 
         $shopStore        = $data['shop_store'] ?? [session('adminStoreId')];
@@ -284,6 +285,7 @@ class AdminController extends RootAdminController
         if(!empty($data['expires_at'])) {
             $dataUpdate['expires_at'] = $data['expires_at'];
         }
+        $dataUpdate = sc_clean($dataUpdate, [], true);
         $discount->update($dataUpdate);
 
         $shopStore        = $data['shop_store'] ?? [session('adminStoreId')];
