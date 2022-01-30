@@ -36,10 +36,8 @@ class Handler extends ExceptionHandler
     public function report(Throwable $exception)
     {
         if ($this->shouldReport($exception)) {
-            $msg = "```". $exception->getMessage().'```'.PHP_EOL;
-            $msg .= "*File* `".$exception->getFile()."`, *Line:* ".$exception->getLine().", *Code:* ".$exception->getCode().PHP_EOL.'URL= '.url()->current();
-            if (function_exists('sc_report')) {
-                sc_report($msg);
+            if (function_exists('sc_handle_exception')) {
+                sc_handle_exception($exception);
             }
         }
         parent::report($exception);
