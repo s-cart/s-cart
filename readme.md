@@ -4,12 +4,18 @@
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Home page</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  | <a href="https://s-cart.org/en/developer/master">Document for Developer</a> | <a href="https://s-cart.org/en/developer/master/about-api-scart.html">API document</a> | <a href="https://s-cart.org/en/about.html">Features in S-Cart</a>
+ <a href="https://s-cart.org">Home</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  | <a href="https://s-cart.org/en/developer/master">Document for Developer</a> | <a href="https://s-cart.org/en/developer/master/about-api-scart.html">API document</a> | <a href="https://s-cart.org/en/about.html">Features in S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Group FB</a>
 </p>
+
 <p align="center">
-<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/v/stable" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/license" alt="License"></a>
+<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Packagist Downloads"></a>
+<a href="https://github.com/s-cart/s-cart"><img src="https://img.shields.io/github/downloads/s-cart/s-cart/total" alt="Git Downloads"></a>
+<a href="https://github.com/s-cart/s-cart/releases"><img src="https://poser.pugx.org/s-cart/s-cart/v/stable" alt="Latest Stable Version"></a>
+<a href="https://github.com/s-cart/s-cart/blob/master/LICENSE"><img src="https://poser.pugx.org/s-cart/s-cart/license" alt="License"></a>
+</p>
+
+<p align="center">
+    <a href="https://www.youtube.com/channel/UCR8kitefby3N6KvvawQVqdg"><img src="https://img.shields.io/youtube/channel/subscribers/UCR8kitefby3N6KvvawQVqdg?style=social"></a>
 </p>
 
 ## About S-cart
@@ -100,6 +106,7 @@ composer install
 - <code>vendor</code>
 - <code>public/data</code>
 - <code>bootstrap/cache</code>
+- <code>app/Plugins</code>
 
 
 **Step3: Create database**
@@ -143,6 +150,8 @@ If installing with link "install.php" unsuccessful, you can install it manually 
 - Access to url admin: <b>your-domain/sc_admin</b>.
 - User/pass <code><b>admin</b>/<b>admin</b></code>
 
+More detail for installation: <a href="https://s-cart.org/en/docs/master/installation.html">HERE</a>
+
 ## Useful information:
 
 To view S-Cart version information
@@ -152,11 +161,16 @@ To view S-Cart version information
 To update the core version of S-Cart:
 
 `composer update s-cart/core`
+
 Or you can use `php composer.phar update s-cart/core` if you don't have composer installed.
 
 To create a plugin:
 
 `php artisan sc:make plugin  --name=Group\PluginName`
+
+Detail: <a href="https://s-cart.org/en/docs/master/how-to-install-module-extension.html">HERE</a>
+
+Library of free plugins for S-Cart: <a href="https://s-cart.org/en/plugin.html">HERE</a>
 
 To create data backup file (The sql file is stored in storage/backups):
 
