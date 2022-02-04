@@ -62,8 +62,8 @@ if (request()->method() == 'POST' && request()->ajax()) {
             'admin_password' => bcrypt(request('admin_password')),
             'admin_email' => request('admin_email'),
             'admin_url' => $admin_url,
+            'exclude_sample' => request('exclude_sample'),
         ];
-
             echo json_encode(['error' => 0, 'msg' => trans('install.env.process_sucess'), 'infoInstall' => $infoInstall]);
             break;
 
@@ -154,25 +154,27 @@ if (request()->method() == 'POST' && request()->ajax()) {
                 echo json_encode([
                     'error' => '0',
                     'msg' => trans('install.database.process_sucess_4'),
+                    'infoInstall' => request('infoInstall')
                 ]);
                 break;
 
                 case 'step2-5':
-                    session(['infoInstall'=> request('infoInstall')]);
-                    try {
-                        Artisan::call('db:seed', 
-                            [
-                                '--class' => 'DataSampleSeeder',
-                                '--force' => true
-                            ]
-                        );
-                        Artisan::call('passport:install');
-                    } catch(\Throwable $e) {
-                        echo json_encode([
-                            'error' => '1',
-                            'msg' => '#ISC006::'.$e->getMessage(),
-                        ]);
-                        break;
+                    if (!(request('infoInstall')['exclude_sample'] ?? 0)) {
+                        try {
+                            Artisan::call('db:seed', 
+                                [
+                                    '--class' => 'DataSampleSeeder',
+                                    '--force' => true
+                                ]
+                            );
+                            Artisan::call('passport:install');
+                        } catch(\Throwable $e) {
+                            echo json_encode([
+                                'error' => '1',
+                                'msg' => '#ISC006::'.$e->getMessage(),
+                            ]);
+                            break;
+                        }
                     }
                     session()->forget('infoInstall');
                     echo json_encode([

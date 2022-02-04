@@ -85,4 +85,5 @@ return [
     'check_failed' => 'Failed',
     'check_ok' => 'OK',
     'drop_db' => 'Drop table database if exist',
+    'exclude_sample' => 'Exclude data sample',
 ];

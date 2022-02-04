@@ -85,4 +85,5 @@ return [
     'check_failed' => 'Thất bại',
     'check_ok' => 'OK',
     'drop_db' => 'Xóa bảng dữ liệu nếu có sẵn',
+    'exclude_sample' => 'Không bao gồm dữ liệu mẫu',
 ];
