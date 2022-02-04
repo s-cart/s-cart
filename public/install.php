@@ -176,7 +176,6 @@ if (request()->method() == 'POST' && request()->ajax()) {
                             break;
                         }
                     }
-                    session()->forget('infoInstall');
                     echo json_encode([
                         'error' => '0',
                         'msg' => trans('install.database.process_sucess_5'),
