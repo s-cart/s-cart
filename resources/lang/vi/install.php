@@ -86,4 +86,6 @@ return [
     'check_ok' => 'OK',
     'drop_db' => 'Xóa bảng dữ liệu nếu có sẵn',
     'exclude_sample' => 'Không bao gồm dữ liệu mẫu',
+    'website_title' => 'Tên website',
+    'website_title_place' => 'Tên website của bạn',
 ];

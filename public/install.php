@@ -64,6 +64,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             'admin_email' => request('admin_email'),
             'admin_url' => $admin_url,
             'exclude_sample' => request('exclude_sample'),
+            'website_title' => request('website_title'),
         ];
             echo json_encode(['error' => 0, 'msg' => trans('install.env.process_sucess'), 'infoInstall' => $infoInstall]);
             break;
