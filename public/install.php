@@ -46,7 +46,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             $getEnv = str_replace('sc_database_password', $database_password, $getEnv);
             $getEnv = str_replace('sc_api_key', $api_key, $getEnv);
             $getEnv = str_replace('sc_admin', $admin_url, $getEnv);
-            $getEnv = str_replace('sc_your_timezone', $timezone_default, $getEnv);
+            $getEnv = str_replace('Asia/ho_chi_minh', $timezone_default, $getEnv);
 
             $env = fopen(base_path() . "/.env", "w") or die(json_encode(['error' => 1, 'msg' => trans('install.env.error_open')]));
             fwrite($env, $getEnv);
