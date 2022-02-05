@@ -25,6 +25,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             $database_user     = request('database_user') ?? '';
             $database_password = request('database_password') ?? '';
             $database_prefix   = request('database_prefix') ?? '';
+            $timezone_default   = request('timezone_default') ?? '';
             $admin_url         = request('admin_url') ?? '';
             $admin_url         = str_replace('/','',strip_tags(strtolower($admin_url)));
             if (in_array($admin_url, ['','admin','css','data','images','js','packages','templates', 'plugin', 'plugins','vendor','component'])) {
@@ -45,6 +46,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
             $getEnv = str_replace('sc_database_password', $database_password, $getEnv);
             $getEnv = str_replace('sc_api_key', $api_key, $getEnv);
             $getEnv = str_replace('sc_admin', $admin_url, $getEnv);
+            $getEnv = str_replace('sc_your_timezone', $timezone_default, $getEnv);
 
             $env = fopen(base_path() . "/.env", "w") or die(json_encode(['error' => 1, 'msg' => trans('install.env.error_open')]));
             fwrite($env, $getEnv);
@@ -56,7 +58,6 @@ if (request()->method() == 'POST' && request()->ajax()) {
         }
 
         $infoInstall =  [
-            'timezone_default' => request('timezone_default'),
             'language_default' => request('language_default'),
             'admin_user' => request('admin_user'),
             'admin_password' => bcrypt(request('admin_password')),
