@@ -42,7 +42,6 @@ class AdminController extends RootAdminController
 
 
         $listTh = [
-            'id' => 'ID',
             'code' => sc_language_render($this->plugin->pathPlugin.'::lang.code'),
             'reward' => sc_language_render($this->plugin->pathPlugin.'::lang.reward'),
             'type' => sc_language_render($this->plugin->pathPlugin.'::lang.type'),
@@ -94,7 +93,6 @@ class AdminController extends RootAdminController
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
             $dataMap = [
-                'id' => $row['id'],
                 'code' => $row['code'],
                 'reward' => $row['reward'],
                 'type' => ($row['type'] == 'point') ? 'Point' : '%',
@@ -121,7 +119,7 @@ class AdminController extends RootAdminController
             $dataMap['expires_at'] = $row['expires_at'];
             $dataMap['action'] = '<a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                                 <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
-            $dataTr[] = $dataMap;
+            $dataTr[$row['id']] = $dataMap;
         }
 
         $data['listTh'] = $listTh;

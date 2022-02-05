@@ -42,7 +42,6 @@ class CmsCategoryController extends RootAdminController
         ];
 
         $listTh = [
-            'id' => sc_language_render($this->plugin->pathPlugin.'::Category.id'),
             'image' => sc_language_render($this->plugin->pathPlugin.'::Category.image'),
             'title' => sc_language_render($this->plugin->pathPlugin.'::Category.title'),
             'parent' => sc_language_render($this->plugin->pathPlugin.'::Category.parent'),
@@ -68,8 +67,7 @@ class CmsCategoryController extends RootAdminController
 
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
-            $dataTr[] = [
-                'id' => $row['id'],
+            $dataTr[$row['id']] = [
                 'image' => sc_image_render($row->getThumb(), '50px', '50px',$row['title']),
                 'title' => $row['title'],
                 'parent' => $row['parent'] ? ($categoriesTitle[$row['parent']] ?? '') : 'ROOT',
