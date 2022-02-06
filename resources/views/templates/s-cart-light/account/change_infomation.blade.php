@@ -252,7 +252,7 @@ $layout_page = shop_profile
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="site-btn">
+                        <button type="submit" class="button button-lg button-secondary">
                             {{ sc_language_render('customer.update_infomation') }}
                         </button>
                     </div>

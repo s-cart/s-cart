@@ -172,7 +172,7 @@ $layout_page = shop_profile
                   @endif
 
                 @endforeach
-                <tr class="data-balance"><td>{{ sc_language_render('order.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->balance) }}</td></tr>
+                <tr class="data-balance"><td>{{ sc_language_render('order.totals.balance') }}:</td><td style="text-align:right">{{ sc_currency_format($order->balance) }}</td></tr>
             </table>
           </div>
 

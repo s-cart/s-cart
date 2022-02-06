@@ -23,35 +23,37 @@ $layout_page = shop_profile
       @else
           @foreach($addresses as $address)
               <div class="list">
+                <table style="width:300px">
+                  
                 @if (sc_config('customer_lastname'))
-                <b>{{ sc_language_render('customer.first_name') }}:</b> {{ $address['first_name'] }}<br>
-                <b>{{ sc_language_render('customer.last_name') }}:</b> {{ $address['last_name'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.first_name') }}:</b></td><td> {{ $address['first_name'] }}</td></tr>
+                <tr><td><b>{{ sc_language_render('customer.last_name') }}:</td><td> {{ $address['last_name'] }}</td></tr>
                 @else
-                <b>{{ sc_language_render('customer.name') }}:</b> {{ $address['first_name'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.name') }}:</td><td> {{ $address['first_name'] }}</td></tr>
                 @endif
                 
                 @if (sc_config('customer_phone'))
-                <b>{{ sc_language_render('customer.phone') }}:</b> {{ $address['phone'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.phone') }}:</td><td> {{ $address['phone'] }}</td></tr>
                 @endif
 
                 @if (sc_config('customer_postcode'))
-                <b>{{ sc_language_render('customer.postcode') }}:</b> {{ $address['postcode'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.postcode') }}:</td><td> {{ $address['postcode'] }}</td></tr>
                 @endif
 
-                <b>{{ sc_language_render('customer.address1') }}:</b> {{ $address['address1'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.address1') }}:</td><td> {{ $address['address1'] }}</td></tr>
 
                 @if (sc_config('customer_address2'))
-                <b>{{ sc_language_render('customer.address2') }}:</b> {{ $address['address2'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.address2') }}:</td><td> {{ $address['address2'] }}</td></tr>
                 @endif
 
                 @if (sc_config('customer_address3'))
-                <b>{{ sc_language_render('customer.address3') }}:</b> {{ $address['address3'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.address3') }}:</td><td> {{ $address['address3'] }}</td></tr>
                 @endif
 
                 @if (sc_config('customer_country'))
-                <b>{{ sc_language_render('customer.country') }}:</b> {{ $countries[$address['country']] ?? $address['country'] }}<br>
+                <tr><td><b>{{ sc_language_render('customer.country') }}:</td><td> {{ $countries[$address['country']] ?? $address['country'] }}</td></tr>
                 @endif
-
+                <tr><td colspan="2">
                 <span class="btn">
                   <a title="{{ sc_language_render('action.edit') }}" href="{{ sc_route('customer.update_address', ['id' => $address->id]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </span>
@@ -61,6 +63,8 @@ $layout_page = shop_profile
                 @if ($address->id == auth()->user()->address_id)
                 <span class="btn" title="{{ sc_language_render('customer.address_default') }}"><i class="fa fa-font-awesome" aria-hidden="true"></i></span>
                 @endif
+               </td></tr>
+                </table>
               </div>
           @endforeach
       @endif

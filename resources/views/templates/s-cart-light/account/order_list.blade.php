@@ -16,14 +16,14 @@ $layout_page = shop_profile
         {{ sc_language_render('front.data_notfound') }}
       </div>
       @else
-      <table class="table box table-bordered table-responsive" width="100%">
+      <table class="table box table-bordered" width="100%">
         <thead>
           <tr>
             <th style="width: 50px;">No.</th>
             <th style="width: 100px;">ID</th>
             <th>{{ sc_language_render('order.total') }}</th>
             <th>{{ sc_language_render('order.order_status') }}</th>
-            <th>{{ sc_language_render('other.created_at') }}</th>
+            <th>{{ sc_language_render('common.created_at') }}</th>
             <th></th>
           </tr>
         </thead>
