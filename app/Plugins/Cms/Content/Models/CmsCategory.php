@@ -13,7 +13,8 @@ use SCart\Core\Front\Models\ModelTrait;
 class CmsCategory extends Model
 {
     use ModelTrait;
-
+    use \SCart\Core\Front\Models\UuidTrait;
+    
     public $timestamps = false;
     public $table = SC_DB_PREFIX.'cms_category';
     protected $guarded = [];
@@ -113,7 +114,15 @@ class CmsCategory extends Model
             //Delete category descrition
             $category->descriptions()->delete();
         });
+
+        //Uuid
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = sc_generate_id($type = 'cms_category');
+            }
+        });
     }
+
 
 //Scort
     public function scopeSort($query, $sortBy = null, $sortOrder = 'asc')
@@ -174,17 +183,17 @@ class CmsCategory extends Model
         $this->uninstall();
 
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->string('image', 100)->nullable();
-            $table->integer('parent')->default(0);
+            $table->uuid('parent')->default(0);
             $table->string('alias', 120)->index();
-            $table->integer('store_id')->default(1)->index();
+            $table->uuid('store_id')->default(1)->index();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
         });
 
         Schema::create($this->table.'_description', function (Blueprint $table) {
-            $table->integer('category_id');
+            $table->uuid('category_id');
             $table->string('lang', 10);
             $table->string('title', 300)->nullable();
             $table->string('keyword', 200)->nullable();
@@ -208,6 +217,7 @@ class CmsCategory extends Model
             ]
         );
     }
+    
     /**
      * Start new process get data
      *

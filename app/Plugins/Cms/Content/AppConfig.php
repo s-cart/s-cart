@@ -45,7 +45,7 @@ class AppConfig extends ConfigDefault
                 ]
             );
 
-            $linkId = ShopLink::insertGetId(
+            $link = ShopLink::create(
                 [
                     'name' => $this->pathPlugin.'::'. $this->configKey . '.cms_content',
                     'url' => 'route::cms.index',
@@ -56,6 +56,7 @@ class AppConfig extends ConfigDefault
                     'sort' => '20',
                 ]
             );
+            $linkId = $link->id;
             ShopLinkStore::insert(['store_id' => SC_ID_ROOT, 'link_id' => $linkId]);
 
             if (!$process) {
@@ -67,13 +68,14 @@ class AppConfig extends ConfigDefault
                 if ($checkMenu) { 
                     $position = $checkMenu->id;
                 } else {
-                    $position = AdminMenu::insertGetId([
+                    $checkMenu = AdminMenu::create([
                         'sort' => 102,
                         'parent_id' => 7,
                         'title' => $this->pathPlugin.'::'.$this->configKey . '.cms_manager',
                         'icon' => 'fas fa-mug-hot',
                         'key' => $this->configKey,
                     ]);
+                    $position = $checkMenu->id;
                 }
                 try {
                     (new CmsCategory)->install();

@@ -9,6 +9,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 class PluginModel extends Model
 {
+    use \SCart\Core\Front\Models\UuidTrait;
+    
     public $timestamps    = false;
     public $table = SC_DB_PREFIX.'shop_discount';
     public $table_related = SC_DB_PREFIX.'shop_discount_customer';
@@ -43,6 +45,13 @@ class PluginModel extends Model
                 $model->stores()->detach();
             }
         );
+
+        //Uuid
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = sc_generate_id($type = 'shop_discount');
+            }
+        });
     }
 
     public function install()
@@ -50,7 +59,7 @@ class PluginModel extends Model
         $this->uninstall();
 
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->string('code', 50)->unique();
             $table->integer('reward')->default(2);
             $table->string('type', 10)->default('point')->comment('point - Point; percent - %');
@@ -63,8 +72,8 @@ class PluginModel extends Model
         });
 
         Schema::create($this->table_related, function (Blueprint $table) {
-            $table->integer('customer_id')->index();
-            $table->integer('discount_id')->index();
+            $table->uuid('customer_id')->index();
+            $table->uuid('discount_id')->index();
             $table->text('log')->nullable();
             $table->timestamp('used_at')->nullable();
         });

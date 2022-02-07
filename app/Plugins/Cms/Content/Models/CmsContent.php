@@ -13,7 +13,8 @@ use SCart\Core\Front\Models\ModelTrait;
 class CmsContent extends Model
 {
     use ModelTrait;
-
+    use \SCart\Core\Front\Models\UuidTrait;
+    
     public $table = SC_DB_PREFIX.'cms_content';
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
@@ -41,6 +42,13 @@ class CmsContent extends Model
         static::deleting(function ($content) {
             //Delete content descrition
             $content->descriptions()->delete();
+        });
+
+        //Uuid
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = sc_generate_id($type = 'cms_content');
+            }
         });
     }
 
@@ -159,19 +167,19 @@ class CmsContent extends Model
         $this->uninstall();
 
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('category_id')->default(0);
+            $table->uuid('id')->primary();
+            $table->uuid('category_id')->default(0);
             $table->string('image', 100)->nullable();
             $table->string('alias', 120)->index();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
-            $table->integer('store_id')->default(1)->index();
+            $table->uuid('store_id')->default(1)->index();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
 
         Schema::create($this->table.'_description', function (Blueprint $table) {
-            $table->integer('content_id');
+            $table->uuid('content_id');
             $table->string('lang', 10);
             $table->string('title', 300)->nullable();
             $table->string('keyword', 200)->nullable();

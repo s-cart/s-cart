@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schema;
 
 class ShopDiscountStore extends Model
 {
+    use \SCart\Core\Front\Models\UuidTrait;
+    
     protected $primaryKey = ['store_id', 'discount_id'];
     public $incrementing  = false;
     protected $guarded    = [];
@@ -21,9 +23,18 @@ class ShopDiscountStore extends Model
         $this->uninstall();
 
         Schema::create($this->table, function (Blueprint $table) {
-            $table->integer('discount_id');
-            $table->integer('store_id');
+            $table->uuid('discount_id');
+            $table->uuid('store_id');
             $table->primary(['discount_id', 'store_id']);
+        });
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($model) {
+            //
         });
     }
 
