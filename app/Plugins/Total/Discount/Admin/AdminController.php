@@ -118,7 +118,7 @@ class AdminController extends RootAdminController
             $dataMap['login'] = $row['login'];
             $dataMap['expires_at'] = $row['expires_at'];
             $dataMap['action'] = '<a href="' . sc_route_admin('admin_discount.edit', ['id' => $row['id']]) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.edit') . '" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
-                                <span onclick="deleteItem(' . $row['id'] . ');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                                <span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . sc_language_render($this->plugin->pathPlugin.'::lang.admin.delete') . '" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
             $dataTr[$row['id']] = $dataMap;
         }
 
