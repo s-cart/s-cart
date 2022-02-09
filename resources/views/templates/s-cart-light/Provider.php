@@ -49,7 +49,6 @@ function sc_template_install_store($storeId = null) {
     sc_template_uninstall_store($storeId);
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Banner top (s-cart-light)',
         'position' => 'banner_top',
         'page'     => 'home',
@@ -62,7 +61,6 @@ function sc_template_install_store($storeId = null) {
     ];
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'New product (s-cart-light)',
         'position' => 'top',
         'page'     => 'home',
@@ -75,7 +73,6 @@ function sc_template_install_store($storeId = null) {
     ];
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Top news (s-cart-light)',
         'position' => 'bottom',
         'page'     => 'home',
@@ -89,7 +86,6 @@ function sc_template_install_store($storeId = null) {
 
     
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Category store left (s-cart-light)',
         'position' => 'left',
         'page'     => 'shop_home,vendor_home,vendor_product_list',
@@ -102,7 +98,6 @@ function sc_template_install_store($storeId = null) {
     ];
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Category left (s-cart-light)',
         'position' => 'left',
         'page'     => 'shop_product_list',
@@ -115,7 +110,6 @@ function sc_template_install_store($storeId = null) {
     ];
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Brand left (s-cart-light)',
         'position' => 'left',
         'page'     => 'shop_product_list',
@@ -129,7 +123,6 @@ function sc_template_install_store($storeId = null) {
 
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Product last view (s-cart-light)',
         'position' => 'left',
         'page'     => '*',
@@ -142,7 +135,6 @@ function sc_template_install_store($storeId = null) {
     ];
 
     $dataInsert[] = [
-        'id'       => sc_uuid(),
         'name'     => 'Product special (s-cart-light)',
         'position' => 'left',
         'page'     => '*',
@@ -153,19 +145,20 @@ function sc_template_install_store($storeId = null) {
         'template' => 's-cart-light',
         'store_id' => $storeId,
     ];
+
     \SCart\Core\Admin\Models\AdminStoreBlockContent::createStoreBlockContentAdmin($dataInsert);
 
     $modelBanner = new \SCart\Core\Front\Models\ShopBanner;
     $modelBannerStore = new \SCart\Core\Front\Models\ShopBannerStore; 
 
-    $idBanner1 = $modelBanner->create(['title' => 'Banner home 1 (s-cart-light)', 'image' => '/data/banner/banner-home-1.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
-    $modelBannerStore->create(['banner_id' => $idBanner1->id, 'store_id' => $storeId]);
-    $idBanner2 = $modelBanner->create(['title' => 'Banner home 2 (s-cart-light)', 'image' => '/data/banner/banner-home-2.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
-    $modelBannerStore->create(['banner_id' => $idBanner2->id, 'store_id' => $storeId]);
-    $idBanner3 = $modelBanner->create(['title' => 'Banner breadcrumb (s-cart-light)', 'image' => '/data/banner/breadcrumb.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
-    $modelBannerStore->create(['banner_id' => $idBanner3->id, 'store_id' => $storeId]);
-    $idBanner4 = $modelBanner->create(['title' => 'Banner store (s-cart-light)', 'image' => '/data/banner/banner-store.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
-    $modelBannerStore->create(['banner_id' => $idBanner4->id, 'store_id' => $storeId]);
+    $idBanner1 = $modelBanner->insertGetId(['title' => 'Banner home 1 (s-cart-light)', 'image' => '/data/banner/banner-home-1.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+    $modelBannerStore->insert(['banner_id' => $idBanner1, 'store_id' => $storeId]);
+    $idBanner2 = $modelBanner->insertGetId(['title' => 'Banner home 2 (s-cart-light)', 'image' => '/data/banner/banner-home-2.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+    $modelBannerStore->insert(['banner_id' => $idBanner2, 'store_id' => $storeId]);
+    $idBanner3 = $modelBanner->insertGetId(['title' => 'Banner breadcrumb (s-cart-light)', 'image' => '/data/banner/breadcrumb.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
+    $modelBannerStore->insert(['banner_id' => $idBanner3, 'store_id' => $storeId]);
+    $idBanner4 = $modelBanner->insertGetId(['title' => 'Banner store (s-cart-light)', 'image' => '/data/banner/banner-store.jpg', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
+    $modelBannerStore->insert(['banner_id' => $idBanner4, 'store_id' => $storeId]);
 
     //Insert css default
     sc_process_css_default($storeId);
