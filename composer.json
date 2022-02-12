@@ -24,7 +24,7 @@
         "laravel/socialite": "^5.13",
         "laravel/tinker": "^2.5",
         "laravel/ui": "~3.3",
-        "s-cart/core": "dev-master"
+        "s-cart/core": "~6.9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
