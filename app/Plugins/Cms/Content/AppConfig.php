@@ -146,6 +146,11 @@ class AppConfig extends ConfigDefault
         return $return;
     }
 
+    public function config() 
+    {
+        return redirect()->route('admin_cms_category.index');
+    }
+
     public function disable()
     {
         $return = ['error' => 0, 'msg' => ''];
