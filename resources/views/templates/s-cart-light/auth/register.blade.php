@@ -217,6 +217,55 @@
                     </div>
                     @endif
             
+
+{{-- Custom fields --}}
+@if ($customFields)
+                    @foreach ($customFields as $keyField => $field)
+                    <div class="form-group{{ $errors->has('fields.'.$field->code) ? ' has-error' : '' }}">
+                    @php
+                        $default  = json_decode($field->default, true);
+                    @endphp
+                            @if ($field->option == 'radio')
+                                @if ($default)
+                                    <b>{{ sc_language_render($field->name) }}:</b> 
+                                    @foreach ($default as $key => $name)
+                                    <div>
+                                        <input type="radio" id="{{ $keyField.'__'.$key }}" name="fields[{{ $field->code }}]" value="{{ $key }}" {{ (old('fields.'.$field->code) == $key)?'checked':'' }}>
+                                        <label for="{{ $keyField.'__'.$key }}">
+                                            {{ $name }}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                @endif
+                            @elseif($field->option == 'select')
+                                @if ($default)
+                                <select class="form-control input-sm {{ $field->code }}" style="width: 100%;"
+                                    name="fields[{{ $field->code }}]">
+                                    <option value="">{{ sc_language_render($field->name) }}</option>
+                                    @foreach ($default as $key => $name)
+                                    <option value="{{ $key }}" {{ (old('fields.'.$field->code) == $key) ? 'selected':'' }}>
+                                        {{ $name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            @else
+                                <input type="text"
+                                    class="is_required validate account_input form-control {{ ($errors->has('fields.'.$field->code))?"input-error":"" }}"
+                                    name="fields[{{ $field->code }}]" placeholder="{{ sc_language_render($field->name) }}" value="{{ old('fields.'.$field->code) }}">
+                            @endif
+
+                            @if ($errors->has('fields.'.$field->code))
+                            <span class="help-block">
+                                <i class="fa fa-info-circle"></i> {{ $errors->first('fields.'.$field->code) }}
+                            </span>
+                            @endif
+                    </div>
+                    @endforeach
+@endif
+{{-- //Custom fields --}}
+
+
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <input type="password"
                             class="is_required validate account_input form-control {{ ($errors->has('password'))?"input-error":"" }}"
