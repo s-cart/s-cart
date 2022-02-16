@@ -186,6 +186,7 @@ class CmsContent extends Model
             $table->string('description', 500)->nullable();
             $table->mediumText('content')->nullable();
             $table->primary(['content_id', 'lang']);
+            $table->timestamps();
         });
 
         DB::connection(SC_CONNECTION)->table($this->table)->insert(

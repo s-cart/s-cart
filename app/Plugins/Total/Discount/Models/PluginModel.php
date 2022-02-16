@@ -11,7 +11,6 @@ class PluginModel extends Model
 {
     use \SCart\Core\Front\Models\UuidTrait;
     
-    public $timestamps    = false;
     public $table = SC_DB_PREFIX.'shop_discount';
     public $table_related = SC_DB_PREFIX.'shop_discount_customer';
     protected $connection = SC_CONNECTION;
@@ -69,6 +68,7 @@ class PluginModel extends Model
             $table->integer('login')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->dateTime('expires_at')->nullable();
+            $table->timestamps();
         });
 
         Schema::create($this->table_related, function (Blueprint $table) {
@@ -76,6 +76,7 @@ class PluginModel extends Model
             $table->uuid('discount_id')->index();
             $table->text('log')->nullable();
             $table->timestamp('used_at')->nullable();
+            $table->timestamps();
         });
         
 

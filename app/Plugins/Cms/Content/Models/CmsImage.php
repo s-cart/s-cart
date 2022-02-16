@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CmsImage extends Model
 {
-    public $timestamps  = false;
     public $table = SC_DB_PREFIX.'cms_image';
     protected $fillable = ['id', 'image', 'content_id', 'status'];
     protected $connection = SC_CONNECTION;
@@ -36,6 +35,7 @@ class CmsImage extends Model
             $table->string('image', 100)->nullable();
             $table->tinyInteger('sort')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->timestamps();
         });
     }
 
