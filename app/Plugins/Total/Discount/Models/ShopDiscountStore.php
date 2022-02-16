@@ -13,6 +13,7 @@ class ShopDiscountStore extends Model
     protected $primaryKey = ['store_id', 'discount_id'];
     public $incrementing  = false;
     protected $guarded    = [];
+    public $timestamps    = false;
     public $table = SC_DB_PREFIX.'shop_discount_store';
     protected $connection = SC_CONNECTION;
 
@@ -25,7 +26,6 @@ class ShopDiscountStore extends Model
             $table->uuid('discount_id');
             $table->uuid('store_id');
             $table->primary(['discount_id', 'store_id']);
-            $table->timestamps();
         });
     }
 

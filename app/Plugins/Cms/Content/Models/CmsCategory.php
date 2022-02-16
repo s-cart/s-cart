@@ -199,7 +199,6 @@ class CmsCategory extends Model
             $table->string('keyword', 200)->nullable();
             $table->string('description', 500)->nullable();
             $table->primary(['category_id', 'lang']);
-            $table->timestamps();
         });
 
         DB::connection(SC_CONNECTION)->table($this->table)->insert(
