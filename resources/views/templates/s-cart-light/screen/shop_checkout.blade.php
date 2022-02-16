@@ -30,7 +30,7 @@ $layout_page = shop_checkout
             </div>
 
             {{-- Item cart detail --}}
-            @include($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
+            @include($sc_templatePath.'.common.checkout_list', ['cartItem' => $cartItem])
             {{-- //Item cart detail --}}
 
 
