@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 class DataDefaultSeeder extends Seeder
 {
-    use \SCart\Core\DB\Trait\DataDefaultSeederTrait;
+    use \SCart\Core\DB\Traits\DataDefaultSeederTrait;
 
     /**
      * Run the database seeds.

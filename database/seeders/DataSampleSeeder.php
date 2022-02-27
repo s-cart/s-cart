@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 
 class DataSampleSeeder extends Seeder
 {
-    use \SCart\Core\DB\Trait\DataSampleSeederTrait;
+    use \SCart\Core\DB\Traits\DataSampleSeederTrait;
 
     /**
      * Run the database seeds.

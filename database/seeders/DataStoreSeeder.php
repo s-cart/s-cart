@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 
 class DataStoreSeeder extends Seeder
 {
-    use \SCart\Core\DB\Trait\DataStoreSeederTrait;
+    use \SCart\Core\DB\Traits\DataStoreSeederTrait;
     /**
      * Run the database seeds.
      *

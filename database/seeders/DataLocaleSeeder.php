@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 
 class DataLocaleSeeder extends Seeder
 {
-    use \SCart\Core\DB\Trait\DataLocaleSeederTrait;
+    use \SCart\Core\DB\Traits\DataLocaleSeederTrait;
 
     /**
      * Run the database seeds.
