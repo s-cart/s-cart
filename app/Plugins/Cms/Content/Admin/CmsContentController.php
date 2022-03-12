@@ -76,7 +76,7 @@ class CmsContentController extends RootAdminController
                     <a href="' . sc_route_admin('admin_cms_content.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . sc_language_render($this->plugin->pathPlugin.'::Content.admin.edit') . '" type="button" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
                     <span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . sc_language_render('admin.delete') . '" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-trash"></i></span>
-                    <a target=_new href="' . sc_route('cms.content', ['alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-flat btn-sm btn-warning"><i class="fas fa-external-link-alt"></i></a>'
+                    <a target=_new href="' . sc_route('cms.content', ['category' => $row->category->alias ?? 'null', 'alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-flat btn-sm btn-warning"><i class="fas fa-external-link-alt"></i></a>'
                 ,
             ];
         }
