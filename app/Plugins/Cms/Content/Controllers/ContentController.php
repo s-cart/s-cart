@@ -143,12 +143,14 @@ class ContentController extends RootFrontController
     {
         if (config('app.seoLang')) {
             $lang = $params[0] ?? '';
-            $alias = $params[1] ?? '';
+            $category = $params[1] ?? '';
+            $alias = $params[2] ?? '';
             sc_lang_switch($lang);
         } else {
-            $alias = $params[0] ?? '';
+            $category = $params[0] ?? '';
+            $alias = $params[1] ?? '';
         }
-        return $this->_content($alias);
+        return $this->_content($category, $alias);
     }
 
     /**
@@ -158,9 +160,20 @@ class ContentController extends RootFrontController
      *
      * @return  [type]          [return description]
      */
-    private function _content($alias)
+    private function _content($category, $alias)
     {
         $entry_currently = (new CmsContent)->getDetail($alias, 'alias');
+        $categoryCms = $entry_currently->category;
+        if (!$categoryCms || $categoryCms->alias != $category) {
+            return view('templates.' . sc_store('template') . '.notfound',
+            array(
+                'title'       => sc_language_render('front.data_not_found'),
+                'description' => '',
+                'keyword'     => '',
+                'msg'         => sc_language_render('front.data_not_found'),
+            )
+        );
+        }
         if ($entry_currently) {
             $title = ($entry_currently) ? $entry_currently->title : sc_language_render('front.not_found');
             return view($this->plugin->pathPlugin.'::cms_entry_detail',
@@ -172,7 +185,7 @@ class ContentController extends RootFrontController
                     'og_image'        => $entry_currently->getImage(),
                     'layout_page'     => 'content_detail',
                     'breadcrumbs'     => [
-                        ['url'        => $entry_currently->category->getUrl(), 'title' => $entry_currently->category->getFull()->title],
+                        ['url'        => $categoryCms->getUrl(), 'title' => $categoryCms->getFull()->title],
                         ['url'        => '', 'title' => $title],
                     ],
                 )

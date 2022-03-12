@@ -76,7 +76,7 @@ class CmsContent extends Model
      */
     public function getUrl($lang = null)
     {
-        return sc_route('cms.content', ['alias' => $this->alias, 'lang' => $lang ?? app()->getLocale()]);
+        return sc_route('cms.content', ['category' => $this->category->alias, 'alias' => $this->alias, 'lang' => $lang ?? app()->getLocale()]);
     }
 
     //Scort
