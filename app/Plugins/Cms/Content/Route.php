@@ -17,7 +17,7 @@ if (sc_config('Content')) {
                 ->name('cms.index');
             Route::get($prefixCmsCategory.'/{alias}', 'ContentController@categoryProcessFront')
                 ->name('cms.category');
-            Route::get('{category}/{alias}'.$suffix, 'ContentController@contentProcessFront')
+            Route::get('{category}_{alias}'.$suffix, 'ContentController@contentProcessFront')
                 ->name('cms.content');
         }
     );
