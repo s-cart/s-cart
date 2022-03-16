@@ -12,28 +12,16 @@
     ],
     "type" : "project",
     "require": {
-        "php": "^7.4|^8.0",
-        "aws/aws-sdk-php": "^3.0",
-        "barryvdh/laravel-dompdf": "^0.9.0",
-        "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.54",
-        "laravel/helpers": "^1.4",
-        "laravel/legacy-factories": "^1.1",
-        "laravel/passport": "^10.1",
-        "laravel/socialite": "^5.13",
-        "laravel/tinker": "^2.5",
-        "laravel/ui": "~3.3",
-        "s-cart/core": "~6.9.2"
+        "s-cart/core": "7.x-dev"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
-        "barryvdh/laravel-debugbar": "^3.5",
-        "phpunit/phpunit": "^9.3.3"
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1.0",
+        "barryvdh/laravel-debugbar": "^3.6",
+        "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
         "psr-4": {
