@@ -39,6 +39,7 @@ Our goal is "Efficient and friendly for everyone":
 - Full document for dev and client
 👉Full support for the functions of a professional sales website:
 - Multi-language, multi-currency
+- Multi-vendor
 - Make cart, manage orders, manage products, manage customers...
 - CMS news management: categories, news, news pages
 - Plugin: Payment, shipping, discounts, taxes ...
@@ -62,14 +63,21 @@ Demo API: <a href="https://s-cart.org/en/developer/master/about-api-scart.html">
 ## Technology
 - Core <a href="https://laravel.com">Laravel Framework</a>
 
+## Laravel core:
+
+S-Cart 6.x
+
+> Core laravel framework 8.x 
+
+S-Cart 7.x
+
+> Core laravel framework 9.x 
+
 ## Requirements:
 
-From Version 5.0
-
-> Core laravel framework 8.x Requirements::
-
 ```
-- PHP >= 7.3
+- PHP >= ^7.3|^8.0 (S-Cart 6.x)
+- PHP >= ^8.0.2 (S-Cart 7.x)
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
