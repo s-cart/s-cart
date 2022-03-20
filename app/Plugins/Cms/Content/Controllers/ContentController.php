@@ -163,18 +163,22 @@ class ContentController extends RootFrontController
     private function _content($category, $alias)
     {
         $entry_currently = (new CmsContent)->getDetail($alias, 'alias');
-        $categoryCms = $entry_currently->category;
-        if (!$categoryCms || $categoryCms->alias != $category) {
-            return view('templates.' . sc_store('template') . '.notfound',
-            array(
-                'title'       => sc_language_render('front.data_not_found'),
-                'description' => '',
-                'keyword'     => '',
-                'msg'         => sc_language_render('front.data_not_found'),
-            )
-        );
-        }
+
         if ($entry_currently) {
+
+            $categoryCms = $entry_currently->category;
+
+            if (!$categoryCms || $categoryCms->alias != $category) {
+                return view('templates.' . sc_store('template') . '.notfound',
+                    array(
+                        'title'       => sc_language_render('front.data_not_found'),
+                        'description' => '',
+                        'keyword'     => '',
+                        'msg'         => sc_language_render('front.data_not_found'),
+                    )
+                );
+            }
+
             $title = ($entry_currently) ? $entry_currently->title : sc_language_render('front.not_found');
             return view($this->plugin->pathPlugin.'::cms_entry_detail',
                 array(
