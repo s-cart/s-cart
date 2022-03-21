@@ -153,7 +153,7 @@ class CmsCategory extends Model
             ->where($this->getTable() . '.store_id', config('app.storeId'));
 
         if ($type == null) {
-            $category = $category->where('id', (int) $key);
+            $category = $category->where('id', $key);
         } else {
             $category = $category->where($type, $key);
         }
@@ -234,7 +234,7 @@ class CmsCategory extends Model
         if ($parent === 'all') {
             $this->sc_parent = $parent;
         } else {
-            $this->sc_parent = (int)$parent;
+            $this->sc_parent = $parent;
         }
         return $this;
     }

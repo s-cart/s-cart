@@ -106,7 +106,7 @@ class CmsContent extends Model
             ->where($tableDescription . '.lang', sc_get_locale());
 
         if ($type == null) {
-            $content = $content->where('id', (int) $key);
+            $content = $content->where('id', $key);
         } else {
             $content = $content->where($type, $key);
         }
@@ -229,7 +229,7 @@ class CmsContent extends Model
         if (is_array($category)) {
             $this->sc_category = $category;
         } else {
-            $this->sc_category = array((int)$category);
+            $this->sc_category = array($category);
         }
         return $this;
     }
@@ -300,4 +300,24 @@ class CmsContent extends Model
         return $query;
     }    
 
+    /**
+     * Get list content with category alias
+     *
+     * @param   string  $aliasCategory  [$aliasCategory description]
+     *
+     * @return  [type]                  [return description]
+     */
+    public function getContentWithAliasCategory(string $aliasCategory) {
+        $tableDescription = (new CmsContentDescription)->getTable();
+        $tableCmsCategory = (new CmsCategory)->getTable();
+        $content = $this
+        ->selectRaw($this->getTable().'.*, '.$tableDescription.'.*')
+        ->leftJoin($tableCmsCategory, $tableCmsCategory . '.id', $this->getTable() . '.category_id')
+        ->leftJoin($tableDescription, $tableDescription . '.content_id', $this->getTable() . '.id')
+        ->where($tableDescription . '.lang', sc_get_locale())
+        ->where($tableCmsCategory . '.alias', $aliasCategory)
+        ->where($this->getTable() . '.status', 1)
+        ->get();
+        return $content;
+    }
 }
