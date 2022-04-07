@@ -272,13 +272,18 @@ class CmsCategory extends Model
             $query = $query->where('parent', $this->sc_parent);
         }
 
+        /**
+        Note: sc_moreWhere will remove in the next version
+         */
         if (count($this->sc_moreWhere)) {
             foreach ($this->sc_moreWhere as $key => $where) {
-                if(count($where)) {
+                if (count($where)) {
                     $query = $query->where($where[0], $where[1], $where[2]);
                 }
             }
         }
+        $query = $this->processMoreQuery($query);
+        
         if ($this->sc_random) {
             $query = $query->inRandomOrder();
         } else {
