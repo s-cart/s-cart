@@ -27,8 +27,8 @@ Our goal is "Efficient and friendly for everyone":
 
 ## IMAGES:
 <img src="https://static.s-cart.org/guide/info/s-cart-content.jpg">
-<img src="https://s-cart.org/data/30/shop-list.jpg?v=1">
-<img src="https://s-cart.org/data/30/admin-dashboard.jpg?v=1">
+<img src="https://static.s-cart.org/guide/use/common/shop.jpg">
+<img src="https://static.s-cart.org/guide/use/common/dashboard.jpg">
 
 ## S-Cart functions:
 
