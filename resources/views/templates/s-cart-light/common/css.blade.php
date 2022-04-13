@@ -27,14 +27,14 @@
 /*price*/
 .sc-new-price{
   color:#FE980F;
-  font-size: 14px;
+  font-size: 20px;
   padding: 10px 5px;
   font-weight:bold;
   }
   .sc-old-price {
   text-decoration: line-through;
   color: #a95d5d;
-  font-size: 13px;
+  font-size: 18px;
   padding: 10px;
   }
   /*end price*/
@@ -103,4 +103,8 @@ img.new {
   color: red;
   font-style: italic;
 }
-</style
+.post-minimal-time {
+  font-size: 10px;
+  font-style: italic;
+}
+</style>

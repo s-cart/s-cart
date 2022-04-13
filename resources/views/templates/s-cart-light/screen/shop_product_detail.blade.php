@@ -120,20 +120,20 @@ $layout_page = shop_product_detail
 
                 {{-- date available --}}
                 @if (sc_config('product_available') && $product->date_available >= date('Y-m-d H:i:s'))
-                <div>
                     {{ sc_language_render('product.date_available') }}:
                     <span id="product-detail-available">
                         {{ $product->date_available }}
                     </span>
-                </div>
                 @endif
                 {{--// date available --}}
 
                 {{-- Category info --}}
+                <div>
                 {{ sc_language_render('product.category') }}: 
                 @foreach ($product->categories as $category)
                   <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
                 @endforeach
+                </div>
                 {{--// Category info --}}
 
                 {{-- Brand info --}}
