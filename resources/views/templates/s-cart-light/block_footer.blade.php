@@ -13,9 +13,18 @@
                   <div class="group-lg group-middle">
                     <div>
                       <ul class="list-inline list-social list-inline-sm">
+                        @if (sc_config('facebook_url'))
                         <li><a class="icon mdi mdi-facebook" href="{{ sc_config('facebook_url') }}"></a></li>
+                        @endif
+                        @if (sc_config('twitter_url'))
                         <li><a class="icon mdi mdi-twitter" href="{{ sc_config('twitter_url') }}"></a></li>
+                        @endif
+                        @if (sc_config('instagram_url'))
                         <li><a class="icon mdi mdi-instagram" href="{{ sc_config('instagram_url') }}"></a></li>
+                        @endif
+                        @if (sc_config('youtube_url'))
+                        <li><a class="icon mdi mdi-youtube-play" href="{{ sc_config('youtube_url') }}"></a></li>
+                        @endif
                       </ul>
                     </div>
                   </div>
