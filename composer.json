@@ -12,7 +12,7 @@
     ],
     "type" : "project",
     "require": {
-        "s-cart/core": "~7.0.4"
+        "s-cart/core": "~7.1.0"
     },
     "autoload": {
         "psr-4": {
