@@ -60,7 +60,7 @@ class PluginModel extends Model
         Schema::create($this->table, function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('code', 50)->unique();
-            $table->decimal('reward')->default(2);
+            $table->decimal('reward',15,2)->default(2);
             $table->string('type', 10)->default('point')->comment('point - Point; percent - %');
             $table->string('data', 300)->nullable();
             $table->integer('limit')->default(1);
