@@ -13,7 +13,7 @@ $layout_page = shop_page
     <div class="container">
         <div class="row">
             <div class="col-12">
-                {!! sc_html_render($page->content) !!}
+                {!! sc_html_render($page->content ?? '') !!}
             </div>
         </div>
     </div>
