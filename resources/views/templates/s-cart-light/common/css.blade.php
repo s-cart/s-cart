@@ -107,4 +107,7 @@ img.new {
   font-size: 10px;
   font-style: italic;
 }
+.sc-point {
+  cursor: pointer;
+}
 </style>
