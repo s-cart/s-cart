@@ -95,18 +95,18 @@ S-Cart 7.x
 **Step1: Install last version S-cart**
 
 Option 1: **From composer**
-```
-composer create-project s-cart/s-cart
-```
+
+>composer create-project s-cart/s-cart
+
 
 Option 2: **From github**
-```
-git clone https://github.com/s-cart/s-cart.git
-```
+
+>git clone https://github.com/s-cart/s-cart.git
+
 Then, install vendor:
-```
-composer install
-```
+
+>composer install
+
 
 **Step2: Set writable permissions for the following directories:**
 
@@ -164,40 +164,54 @@ More detail for installation: <a href="https://s-cart.org/en/docs/master/install
 
 To view S-Cart version information
 
-`php artisan sc:info`
+>`php artisan sc:info`
 
 To update the core version of S-Cart:
 
-`composer update s-cart/core`
+>`composer update s-cart/core`
 
 Or you can use `php composer.phar update s-cart/core` if you don't have composer installed.
 
+Then, run `php artisan sc:update`
+
 To create a plugin:
 
-`php artisan sc:make plugin  --name=Group\PluginName`
+>`php artisan sc:make plugin  --name=Group\PluginName`
+
+To create a zip file plugin:
+
+>`php artisan sc:make plugin  --name=Group\PluginName --download=1`
 
 Detail: <a href="https://s-cart.org/en/docs/master/how-to-install-module-extension.html">HERE</a>
 
 Library of free plugins for S-Cart: <a href="https://s-cart.org/en/plugin.html">HERE</a>
 
+To create a template:
+
+>`php artisan sc:make template  --name=your-template-name`
+
+To create a zip file template:
+
+>`php artisan sc:make template  --name=your-template-name --download=1`
+
 To create data backup file (The sql file is stored in storage/backups):
 
-`php artisan sc:backup --path=abc.sql`
+>`php artisan sc:backup --path=abc.sql`
 
 To recover data:
 
-`php artisan sc:restore --path=abc.sql`
+>`php artisan sc:restore --path=abc.sql`
 
 To manually customize the admin page (<code>resources/views/admin + config/admin.php</code>):
 
-`php artisan sc:customize admin`
+>`php artisan sc:customize admin`
 
 This command will create new directories `resources/views/admin` and file `config/admin.php`
 After set the value `customize=true` in `config/admin.php` you can modify template admin. 
 
 To manually customize file config validation (<code>config/validation.php</code>):
 
-`php artisan sc:customize validation`
+>`php artisan sc:customize validation`
 
 More detail: https://s-cart.org/en/docs/master
 
