@@ -46,11 +46,11 @@ return [
         ],
 
         'api'   => [
-            'driver'   => 'passport',
+            'driver'   => 'sanctum',
             'provider' => 'users',
         ],
         'admin-api'   => [
-            'driver'   => 'passport',
+            'driver'   => 'sanctum',
             'provider' => 'admins',
         ],
     ],
