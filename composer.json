@@ -12,7 +12,7 @@
     ],
     "type" : "project",
     "require": {
-        "s-cart/core": "~7.1.20"
+        "s-cart/core": "~7.2.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
