@@ -7,5 +7,6 @@
     "configGroup": "Plugins",
     "configCode": "Payment",
     "configKey": "BankTransfer",
-    "version": "1.1"
+    "version": "1.2",
+    "scartVersion": "7.1|7.2"
 }

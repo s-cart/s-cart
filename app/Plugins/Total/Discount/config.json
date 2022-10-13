@@ -7,5 +7,6 @@
     "configGroup": "Plugins",
     "configCode": "Total",
     "configKey": "Discount",
-    "version": "2.0"
+    "version": "2.1",
+    "scartVersion": "7.1|7.2"
 }
