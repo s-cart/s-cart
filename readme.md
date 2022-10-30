@@ -239,4 +239,4 @@ If you discover a security vulnerability within S-Cart ecommerce, please send an
 
 ## Donors:
 
-<img width=100 alt="GiaiPhap247.Com" src="https://giaiphap247.com/data/logo/gp247.png" title="GP247 - Chuyên xây dựng website và cung cấp các dich vụ, giải pháp phần mềm cho doanh nghiệp.">
+<a href="https://giaiphap247.com"><img width=100 alt="GiaiPhap247.Com" src="https://giaiphap247.com/data/logo/gp247.png" title="GP247 - Chuyên xây dựng website và cung cấp các dich vụ, giải pháp phần mềm cho doanh nghiệp."></a>
