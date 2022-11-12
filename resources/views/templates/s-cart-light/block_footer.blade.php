@@ -72,14 +72,16 @@
                 <h4 class="footer-classic-title"> {{ sc_language_render('front.my_profile') }}</h4>
                 <!-- RD Mailform-->
                 <ul class="contacts-creative">
-                    @if (!empty($sc_layoutsUrl['footer']))
-                    @foreach ($sc_layoutsUrl['footer'] as $url)
-                    <li>
-                        <a {{ ($url->target =='_blank')?'target=_blank':''  }}
-                            href="{{ sc_url_render($url->url) }}">{{ sc_language_render($url->name) }}</a>
-                    </li>
-                    @endforeach
+                  @if (!empty(sc_link_collection()['footer']))
+                  @foreach (sc_link_collection()['footer'] as $url)
+                    @if ($url['type'] != 'collection')
+                      <li class="rd-nav-item">
+                        <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
+                            href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
+                      </li>
                     @endif
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
