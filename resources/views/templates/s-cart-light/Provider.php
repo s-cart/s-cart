@@ -223,7 +223,7 @@ function sc_template_uninstall_store($storeId = null) {
         if ($idBanners) {
             \SCart\Core\Front\Models\ShopBannerStore::whereIn('banner_id', $idBanners)
             ->delete();
-            \SCart\Core\Front\Models\ShopBanner::where('title', 'like', '%(s-cart-light)%')
+            \SCart\Core\Front\Models\ShopBanner::whereIn('id', $idBanners)
             ->delete();
         }
         \SCart\Core\Front\Models\ShopStoreCss::where('template', 's-cart-light')
