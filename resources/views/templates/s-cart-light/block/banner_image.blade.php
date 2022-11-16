@@ -1,7 +1,7 @@
 @php
 $banners = $modelBanner->start()->setType('banner')->getData()
 @endphp
-@if (!empty($banners))
+@if ($banners->count())
 <section class="section swiper-container swiper-slider swiper-slider-1" data-loop="true" data-autoplay="5000">
   <div class="swiper-wrapper text-center text-lg-left">
     @foreach ($banners as $key => $banner)

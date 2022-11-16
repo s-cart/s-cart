@@ -2,7 +2,7 @@
 $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('product_top'))->getData();
 @endphp
 
-@if ($productsNew)
+@if ($productsNew->count())
       <!-- New Products-->
   <section class="section section-xxl bg-default">
     <div class="container">

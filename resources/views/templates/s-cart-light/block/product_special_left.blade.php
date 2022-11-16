@@ -1,7 +1,7 @@
 @php
 $productPromotion = $modelProduct->getProductPromotion()->setRandom()->setLimit(sc_config('product_viewed'))->getData()
 @endphp
-@if (!empty($productPromotion))
+@if (($productPromotion->count()))
 
 <div class="aside-item col-sm-6 col-lg-12">
   <h6 class="aside-title">{{ sc_language_render('front.products_special') }}</h6>

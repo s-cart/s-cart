@@ -1,7 +1,7 @@
 @php
 $brands = $modelBrand->start()->getData()
 @endphp
-@if (!empty($brands))
+@if ($brands->count())
 <div class="aside-item col-sm-6 col-lg-12">
     <h6 class="aside-title">{{ sc_language_render('front.brands') }}</h6>
     <div class="row row-10 row-lg-20 gutters-10">

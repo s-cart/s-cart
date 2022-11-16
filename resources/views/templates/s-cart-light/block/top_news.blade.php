@@ -2,7 +2,7 @@
 $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 @endphp
 
-@if ($news)
+@if ($news->count())
 <!-- START SECTION NEWS -->
   <section class="section section-xxl section-last bg-gray-21">
     <div class="container">
