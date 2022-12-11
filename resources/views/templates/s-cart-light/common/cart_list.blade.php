@@ -51,7 +51,7 @@
                       <div class="cart-qty">
                           <input style="width: 150px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
                               data-rowid="{{$item->rowId}}" data-store_id="{{$product->store_id}}" onChange="updateCart($(this));"
-                              class="item-qty form-control" name="qty-{{$item->id}}" value="{{$item->qty}}">
+                              class="item-qty form-control" name="qty-{{$item->rowId}}" value="{{$item->qty}}">
                       </div>
                       <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
                       @if (session('arrErrorQty')[$product->id] ?? 0)
