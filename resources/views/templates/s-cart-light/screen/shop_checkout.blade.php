@@ -341,7 +341,7 @@ $layout_page = shop_checkout
                                                 <label class="radio-inline">
                                                     <input type="radio" name="paymentMethod"
                                                         value="{{ $payment['key'] }}"
-                                                        {{ (old('shippingMethod') == $key)?'checked':'' }}
+                                                        {{ (old('paymentMethod') == $key)?'checked':'' }}
                                                         style="position: relative;"
                                                         {{ ($payment['permission'])?'':'disabled' }}>
                                                         <label class="radio-inline" for="payment-{{ $payment['key'] }}">
