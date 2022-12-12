@@ -29,8 +29,8 @@
                    }else{
                        $('#removeCoupon').show();
                        $('.coupon-msg').html(result.msg).addClass('text-success').show();
-                       $('.showTotal').remove();
-                       $('#showTotal').prepend(result.html);
+                       $('.sc_showTotal').remove();
+                       $('#sc_showTotal').prepend(result.html);
                    }
                })
                .fail(function() {
@@ -56,8 +56,8 @@
                        $('.coupon-msg').removeClass('text-danger');
                        $('.coupon-msg').removeClass('text-success');
                        $('.coupon-msg').hide();
-                       $('.showTotal').remove();
-                       $('#showTotal').prepend(result.html);
+                       $('.sc_showTotal').remove();
+                       $('#sc_showTotal').prepend(result.html);
                })
                .fail(function() {
                    console.log("error");

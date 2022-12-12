@@ -1,15 +1,15 @@
 @if (!empty($dataTotal) && count($dataTotal))
-<table class="table box table-bordered" id="showTotal">
+<table class="table box table-bordered" id="sc_showTotal">
     @foreach ($dataTotal as $key => $element)
         @if ($element['code']=='total')
-            <tr class="showTotal" style="background:#f5f3f3;font-weight: bold;">
+            <tr class="sc_showTotal" style="background:#f5f3f3;font-weight: bold;">
                 <th>{!! $element['title'] !!}</th>
                 <td style="text-align: right" id="{{ $element['code'] }}">
                     {{$element['text'] }}
                 </td>
             </tr>
         @elseif($element['value'] !=0)
-            <tr class="showTotal">
+            <tr class="sc_showTotal">
                 <th>{!! $element['title'] !!}</th>
                 <td style="text-align: right" id="{{ $element['code'] }}">
                     {{$element['text'] }}

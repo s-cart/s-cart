@@ -59,7 +59,7 @@ $layout_page = shop_checkout
                             <tr width=100%>
                                 @if (sc_config('customer_lastname'))
                                     <td class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                        <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                        <label class="control-label"><i class="fa fa-user"></i>
                                             {{ sc_language_render('order.first_name') }}:</label>
                                         <input class="form-control" name="first_name" type="text"
                                             placeholder="{{ sc_language_render('order.first_name') }}"
@@ -69,7 +69,7 @@ $layout_page = shop_checkout
                                         @endif
                                     </td>
                                     <td class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                        <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                        <label class="control-label"><i class="fa fa-user"></i>
                                             {{ sc_language_render('order.last_name') }}:</label>
                                         <input class="form-control" name="last_name" type="text" placeholder="{{ sc_language_render('order.last_name') }}"
                                             value="{{old('last_name',$shippingAddress['last_name'])}}">
@@ -80,7 +80,7 @@ $layout_page = shop_checkout
                                 @else
                                     <td colspan="2"
                                         class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                        <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                        <label class="control-label"><i class="fa fa-user"></i>
                                             {{ sc_language_render('order.name') }}:</label>
                                         <input class="form-control" name="first_name" type="text" placeholder="{{ sc_language_render('order.name') }}"
                                             value="{{old('first_name',$shippingAddress['first_name'])}}">
@@ -94,7 +94,7 @@ $layout_page = shop_checkout
                             @if (sc_config('customer_name_kana'))
                                 <tr>
                                 <td class="form-group{{ $errors->has('first_name_kana') ? ' has-error' : '' }}">
-                                    <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                    <label class="control-label"><i class="fa fa-user"></i>
                                         {{ sc_language_render('order.first_name_kana') }}:</label>
                                     <input class="form-control" name="first_name_kana" type="text"
                                         placeholder="{{ sc_language_render('order.first_name_kana') }}"
@@ -104,7 +104,7 @@ $layout_page = shop_checkout
                                     @endif
                                 </td>
                                 <td class="form-group{{ $errors->has('last_name_kana') ? ' has-error' : '' }}">
-                                    <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                    <label class="control-label"><i class="fa fa-user"></i>
                                         {{ sc_language_render('order.last_name_kana') }}:</label>
                                     <input class="form-control" name="last_name_kana" type="text" placeholder="{{ sc_language_render('order.last_name_kana') }}"
                                         value="{{old('last_name_kana',$shippingAddress['last_name_kana'])}}">
@@ -118,7 +118,7 @@ $layout_page = shop_checkout
                             <tr>
                                 @if (sc_config('customer_phone'))
                                     <td class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <label for="email" class="control-label"><i class="fa fa-envelope"></i>
+                                        <label class="control-label"><i class="fa fa-envelope"></i>
                                             {{ sc_language_render('order.email') }}:</label>
                                         <input class="form-control" name="email" type="text" placeholder="{{ sc_language_render('order.email') }}"
                                             value="{{old('email', $shippingAddress['email'])}}">
@@ -127,7 +127,7 @@ $layout_page = shop_checkout
                                         @endif
                                     </td>
                                     <td class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                        <label for="phone" class="control-label"><i class="fa fa-phone"
+                                        <label class="control-label"><i class="fa fa-phone"
                                                 aria-hidden="true"></i> {{ sc_language_render('order.phone') }}:</label>
                                         <input class="form-control" name="phone" type="text" placeholder="{{ sc_language_render('order.phone') }}"
                                             value="{{old('phone',$shippingAddress['phone'])}}">
@@ -137,7 +137,7 @@ $layout_page = shop_checkout
                                     </td>
                                 @else
                                     <td colspan="2" class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <label for="email" class="control-label"><i class="fa fa-envelope"></i>
+                                        <label class="control-label"><i class="fa fa-envelope"></i>
                                             {{ sc_language_render('order.email') }}:</label>
                                         <input class="form-control" name="email" type="text" placeholder="{{ sc_language_render('order.email') }}"
                                             value="{{old('email',$shippingAddress['email'])}}">
@@ -308,7 +308,7 @@ $layout_page = shop_checkout
                                                         {{ (old('shippingMethod') == $key)?'checked':'' }}
                                                         style="position: relative;"
                                                         {{ ($shipping['permission'])?'':'disabled' }}>
-                                                    {{ $shipping['title'] }}
+                                                    <span for="shippingMethod">{{ $shipping['title'] }}</span>
                                                 </label>
                                             </div>
 
@@ -344,11 +344,11 @@ $layout_page = shop_checkout
                                                         {{ (old('paymentMethod') == $key)?'checked':'' }}
                                                         style="position: relative;"
                                                         {{ ($payment['permission'])?'':'disabled' }}>
-                                                        <label class="radio-inline" for="payment-{{ $payment['key'] }}">
+                                                        <span class="radio-inline" for="paymentMethod">
                                                             <img title="{{ $payment['title'] }}"
                                                                 alt="{{ $payment['title'] }}"
                                                                 src="{{ sc_file($payment['image']) }}">
-                                                        </label>
+                                                        </span>
                                                 </label>
                                             </div>
 
