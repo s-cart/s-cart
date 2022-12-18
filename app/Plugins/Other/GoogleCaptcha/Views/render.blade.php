@@ -1,5 +1,5 @@
 <style>
-    #{{ $idButtonForm ?? 'button-form-process'}}{
+    #{{ $idButtonForm ?? 'sc_button-form-process'}}{
         display: none !important;
     }
 </style>
@@ -15,6 +15,6 @@
         data-action='submit'>{{ $titleButton ?? sc_language_render('front.captcha_action.submit') }}</button>
 <script>
     function onSubmit(token) {
-        document.getElementById("{{ $idForm ?? "form-process" }}").submit();
+        document.getElementById("{{ $idForm ?? "sc_form-process" }}").submit();
     }
 </script>

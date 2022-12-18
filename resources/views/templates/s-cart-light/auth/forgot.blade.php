@@ -28,7 +28,7 @@ $layout_page = shop_auth
                         <br />
                         @endif
                         {!! $viewCaptcha ?? ''!!}
-                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary" id="button-form-process">{{ sc_language_render('action.submit') }}</button>
+                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary" id="sc_button-form-process">{{ sc_language_render('action.submit') }}</button>
                     </div>
                 </div>
             </form>

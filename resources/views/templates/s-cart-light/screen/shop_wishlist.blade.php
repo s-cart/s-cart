@@ -13,17 +13,17 @@ $layout_page = shop_wishlist
         <div class="row">
             <div class="col-md-12 text-danger">
                 @if (count($wishlist) ==0)
-                    {{ sc_language_render('front.data_notfound') }}
+                    {{ sc_language_render('front.no_item') }}
                 @else
                 <div class="table-responsive">
                     <table class="table box table-bordered">
                         <thead>
                             <tr style="background: #eaebec">
                                 <th style="width: 50px;">No.</th>
-                                <th style="width: 100px;">SKU</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Remove</th>
+                                <th style="width: 100px;">{{ sc_language_render('product.sku') }}</th>
+                                <th>{{ sc_language_render('product.name') }}</th>
+                                <th>{{ sc_language_render('product.price') }}</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

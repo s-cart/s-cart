@@ -28,7 +28,7 @@ Use paginate: $news->appends(request()->except(['page','_token']))->links()
         {{--// Render pagination --}}
 
         @else
-            {!! sc_language_render('front.data_notfound') !!}
+            {!! sc_language_render('front.no_item') !!}
         @endif
       </div>
 

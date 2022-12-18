@@ -18,7 +18,7 @@ $layout_page = shop_profile
 <h6 class="title-store">{{ $title }}</h6>
       @if (count($addresses) ==0)
       <div class="text-danger">
-        {{ sc_language_render('front.data_notfound') }}
+        {{ sc_language_render('front.no_item') }}
       </div>
       @else
           @foreach($addresses as $address)

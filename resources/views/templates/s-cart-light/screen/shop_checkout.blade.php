@@ -35,7 +35,7 @@ $layout_page = shop_checkout
 
 
             <div class="col-md-12">
-            <form class="sc-shipping-address" id="form-process" role="form" method="POST" action="{{ sc_route('checkout.process') }}">
+            <form class="sc-shipping-address" id="sc_form-process" role="form" method="POST" action="{{ sc_route('checkout.process') }}">
                 @csrf
                 <div class="row">
                     {{-- Begin address shipping --}}
@@ -373,7 +373,7 @@ $layout_page = shop_checkout
                             <div class="col-md-12 text-center">
                                 <div class="pull-right">
                                     {!! $viewCaptcha ?? ''!!}
-                                    <button class="button button-lg button-secondary" type="submit" id="button-form-process">{{ sc_language_render('cart.checkout') }}</button>
+                                    <button class="button button-lg button-secondary" type="submit" id="sc_button-form-process">{{ sc_language_render('cart.checkout') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -420,8 +420,8 @@ $layout_page = shop_checkout
 
 <script type="text/javascript">
 
-    $('#button-form-process').click(function(){
-        $('#form-process').submit();
+    $('#sc_button-form-process').click(function(){
+        $('#sc_form-process').submit();
         $(this).prop('disabled',true);
     });
 
@@ -430,15 +430,15 @@ $layout_page = shop_checkout
         if(!id) {
             return;   
         } else if(id == 'new') {
-            $('#form-process [name="first_name"]').val('');
-            $('#form-process [name="last_name"]').val('');
-            $('#form-process [name="phone"]').val('');
-            $('#form-process [name="postcode"]').val('');
-            $('#form-process [name="company"]').val('');
-            $('#form-process [name="country"]').val('');
-            $('#form-process [name="address1"]').val('');
-            $('#form-process [name="address2"]').val('');
-            $('#form-process [name="address3"]').val('');
+            $('#sc_form-process [name="first_name"]').val('');
+            $('#sc_form-process [name="last_name"]').val('');
+            $('#sc_form-process [name="phone"]').val('');
+            $('#sc_form-process [name="postcode"]').val('');
+            $('#sc_form-process [name="company"]').val('');
+            $('#sc_form-process [name="country"]').val('');
+            $('#sc_form-process [name="address1"]').val('');
+            $('#sc_form-process [name="address2"]').val('');
+            $('#sc_form-process [name="address3"]').val('');
         } else {
             $.ajax({
             url: '{{ sc_route('customer.address_detail') }}',
@@ -455,15 +455,15 @@ $layout_page = shop_checkout
                 {
                     alert(data.msg);
                 }else{
-                    $('#form-process [name="first_name"]').val(data.first_name);
-                    $('#form-process [name="last_name"]').val(data.last_name);
-                    $('#form-process [name="phone"]').val(data.phone);
-                    $('#form-process [name="postcode"]').val(data.postcode);
-                    $('#form-process [name="company"]').val(data.company);
-                    $('#form-process [name="country"]').val(data.country);
-                    $('#form-process [name="address1"]').val(data.address1);
-                    $('#form-process [name="address2"]').val(data.address2);
-                    $('#form-process [name="address3"]').val(data.address3);
+                    $('#sc_form-process [name="first_name"]').val(data.first_name);
+                    $('#sc_form-process [name="last_name"]').val(data.last_name);
+                    $('#sc_form-process [name="phone"]').val(data.phone);
+                    $('#sc_form-process [name="postcode"]').val(data.postcode);
+                    $('#sc_form-process [name="company"]').val(data.company);
+                    $('#sc_form-process [name="country"]').val(data.country);
+                    $('#sc_form-process [name="address1"]').val(data.address1);
+                    $('#sc_form-process [name="address2"]').val(data.address2);
+                    $('#sc_form-process [name="address3"]').val(data.address3);
                 }
 
                 }

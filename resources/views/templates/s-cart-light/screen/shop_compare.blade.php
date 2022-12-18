@@ -16,7 +16,7 @@ $layout_page = shop_compare
             </div>
             @if (count($compare) ==0)
                 <div class="col-md-12 text-danger min-height-37vh">
-                    {{ sc_language_render('front.data_notfound') }}
+                    {{ sc_language_render('front.no_item') }}
                 </div>
             @else
 
@@ -24,7 +24,6 @@ $layout_page = shop_compare
                 <div class="table-responsive">
                     <table class="table box table-bordered">
                         <tbody>
-                            <tr>
                                 @php
                                     $n = 0;
                                 @endphp
@@ -34,6 +33,9 @@ $layout_page = shop_compare
                                             $n++;
                                             $product = $modelProduct->start()->getDetail($item->id, null, $item->storeId);
                                         @endphp
+                                        @if ($n % 4 == 1)
+                                        <tr>
+                                        @endif
                                         <td align="center">
                                             {{ $product->name }}({{ $product->sku }})
                                             <hr>
@@ -53,7 +55,6 @@ $layout_page = shop_compare
                                         </tr>
                                         @endif
                                 @endforeach
-                            </tr>
                         </tbody>
                     </table>
                 </div>

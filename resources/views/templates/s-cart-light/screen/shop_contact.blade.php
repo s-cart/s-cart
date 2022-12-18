@@ -84,7 +84,7 @@ $layout_page = shop_contact
 
                     {{-- Button submit --}}
                     <div class="btn-toolbar form-group">
-                        <input type="submit" value="{{ sc_language_render('action.submit') }}" class="button button-lg button-secondary" id="button-form-process">
+                        <input type="submit" value="{{ sc_language_render('action.submit') }}" class="button button-lg button-secondary" id="sc_button-form-process">
                     </div>
                     {{--// Button submit --}}
                 </div>
