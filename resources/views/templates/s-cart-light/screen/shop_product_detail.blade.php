@@ -87,7 +87,19 @@ $layout_page = shop_product_detail
                       <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
                     </div>
                     <div>
-                        <button class="button button-lg button-secondary button-zakaria" type="submit">{{ sc_language_render('action.add_to_cart') }}</button>
+                      @php
+                      $dataButton = [
+                              'class' => '', 
+                              'id' =>  'sc_button-form-process',
+                              'type_w' => '',
+                              'type_t' => 'buy',
+                              'type_a' => '',
+                              'type' => 'submit',
+                              'name' => ''.sc_language_render('action.add_to_cart'),
+                              'html' => ''
+                          ];
+                      @endphp
+                      @include($sc_templatePath.'.common.button.button', $dataButton)
                     </div>
                 </div>
                 @endif

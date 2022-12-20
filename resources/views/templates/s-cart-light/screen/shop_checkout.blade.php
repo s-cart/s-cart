@@ -373,7 +373,19 @@ $layout_page = shop_checkout
                             <div class="col-md-12 text-center">
                                 <div class="pull-right">
                                     {!! $viewCaptcha ?? ''!!}
-                                    <button class="button button-lg button-secondary" type="submit" id="sc_button-form-process">{{ sc_language_render('cart.checkout') }}</button>
+                                    @php
+                                    $dataButton = [
+                                            'class' => '', 
+                                            'id' =>  'sc_button-form-process',
+                                            'type_w' => '',
+                                            'type_t' => 'buy',
+                                            'type_a' => '',
+                                            'type' => 'submit',
+                                            'name' => ''.sc_language_render('cart.checkout'),
+                                            'html' => 'onClick="location.href=\' '.sc_route('cart').' \'"'
+                                        ];
+                                    @endphp
+                                    @include($sc_templatePath.'.common.button.button', $dataButton)
                                 </div>
                             </div>
                         </div>

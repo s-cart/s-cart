@@ -28,7 +28,19 @@ $layout_page = shop_auth
                         <br />
                         @endif
                         {!! $viewCaptcha ?? ''!!}
-                        <button type="submit" name="SubmitLogin" class="button button-lg button-secondary" id="sc_button-form-process">{{ sc_language_render('action.submit') }}</button>
+                        @php
+                        $dataButton = [
+                                'class' => '', 
+                                'id' =>  'sc_button-form-process',
+                                'type_w' => '',
+                                'type_t' => 'buy',
+                                'type_a' => '',
+                                'type' => 'submit',
+                                'name' => ''.sc_language_render('action.submit'),
+                                'html' => ''
+                            ];
+                        @endphp
+                        @include($sc_templatePath.'.common.button.button', $dataButton)
                     </div>
                 </div>
             </form>

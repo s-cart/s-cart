@@ -55,7 +55,19 @@
                         {{ sc_language_render('customer.title_register') }}
                     </a>
                 </p>
-                <button type="submit" name="SubmitLogin" class="button button-lg button-secondary">{{ sc_language_render('front.login') }}</button>
+                @php
+                $dataButton = [
+                        'class' => '', 
+                        'id' =>  '',
+                        'type_w' => '',
+                        'type_t' => 'buy',
+                        'type_a' => '',
+                        'type' => 'submit',
+                        'name' => ''.sc_language_render('front.login'),
+                        'html' => 'name="SubmitLogin"'
+                    ];
+                @endphp
+                @include($sc_templatePath.'.common.button.button', $dataButton)
             </form>
         </div>
     </div>

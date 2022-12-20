@@ -12,8 +12,18 @@
       @endif
 
       @if ($product->allowSale() && !sc_config('product_cart_off'))
-      <a onClick="addToCartAjax('{{ $product->id }}','default','{{ $product->store_id }}')" class="button button-secondary button-zakaria add-to-cart-list">
-        <i class="fa fa-cart-plus"></i> {{sc_language_render('action.add_to_cart')}}</a>
+      @php
+          $dataLink = [
+              'class' => '', 
+              'id' =>  '',
+              'type_w' => '',
+              'type_t' => 'cart',
+              'type_a' => '',
+              'name' => '<i class="fa fa-cart-plus"></i> '.sc_language_render('action.add_to_cart'),
+              'html' => 'onClick="addToCartAjax(\''.$product->id.'\',\'default\',\''.$product->store_id.'\')"'
+          ];
+      @endphp
+      @include($sc_templatePath.'.common.button.link', $dataLink)
       @endif
 
       {!! $product->showPrice() !!}

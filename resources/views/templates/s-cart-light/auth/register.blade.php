@@ -288,7 +288,20 @@
                     </div>
                     {!! $viewCaptcha ?? ''!!}
                     <div class="submit">
-                        <button type="submit" name="SubmitCreate" class="button button-lg button-secondary" id="sc_button-form-process">{{ sc_language_render('customer.signup') }}</button>
+                        @php
+                        $dataButton = [
+                                'class' => '', 
+                                'id' =>  'sc_button-form-process',
+                                'type_w' => '',
+                                'type_t' => 'buy',
+                                'type_a' => '',
+                                'type' => 'submit',
+                                'name' => ''.sc_language_render('customer.signup'),
+                                'html' => 'name="SubmitCreate"'
+                            ];
+                        @endphp
+                        @include($sc_templatePath.'.common.button.button', $dataButton)
+
                     </div>
                 </div>
             

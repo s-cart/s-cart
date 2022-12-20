@@ -198,14 +198,35 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                             <div class="row" style="padding-bottom: 20px;">
                                 <div class="col-md-12 text-center">
                                     <div class="pull-left">
-                                        <button class="button button-lg" type="button"
-                                            style="cursor: pointer;padding:10px 30px"
-                                            onClick="location.href='{{ sc_route('cart') }}'"><i
-                                                class="fa fa-arrow-left"></i> {{ sc_language_render('cart.back_to_cart') }}</button>
+                                        @php
+                                        $dataButton = [
+                                                'class' => '', 
+                                                'id' =>  '',
+                                                'type_w' => '',
+                                                'type_t' => '',
+                                                'type_a' => '',
+                                                'type' => 'button',
+                                                'name' => '<i class="fa fa-arrow-left"></i>'.sc_language_render('cart.back_to_cart'),
+                                                'html' => 'onClick="location.href=\' '.sc_route('cart').' \'"'
+                                            ];
+                                        @endphp
+                                        @include($sc_templatePath.'.common.button.button', $dataButton)
+
                                     </div>
                                     <div class="pull-right">
-                                        <button class="button button-lg button-secondary" id="submit-order" type="submit"
-                                            style="cursor: pointer;padding:10px 30px"><i class="fa fa-check"></i> {{ sc_language_render('cart.confirm') }}</button>
+                                        @php
+                                        $dataButton = [
+                                                'class' => '', 
+                                                'id' =>  '',
+                                                'type_w' => '',
+                                                'type_t' => 'buy',
+                                                'type_a' => '',
+                                                'type' => 'submit',
+                                                'name' => '<i class="fa fa-check"></i>'.sc_language_render('cart.confirm'),
+                                                'html' => ''
+                                            ];
+                                        @endphp
+                                        @include($sc_templatePath.'.common.button.button', $dataButton)
                                     </div>
                                 </div>
                             </div>

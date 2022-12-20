@@ -84,7 +84,20 @@ $layout_page = shop_contact
 
                     {{-- Button submit --}}
                     <div class="btn-toolbar form-group">
-                        <input type="submit" value="{{ sc_language_render('action.submit') }}" class="button button-lg button-secondary" id="sc_button-form-process">
+                        @php
+                        $dataButton = [
+                                'class' => '', 
+                                'id' =>  'sc_button-form-process',
+                                'type_w' => '',
+                                'type_t' => 'buy',
+                                'type_a' => '',
+                                'type' => 'submit',
+                                'name' => ''.sc_language_render('action.submit'),
+                                'html' => ''
+                            ];
+                        @endphp
+                        @include($sc_templatePath.'.common.button.button', $dataButton)
+
                     </div>
                     {{--// Button submit --}}
                 </div>

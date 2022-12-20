@@ -43,7 +43,19 @@ $layout_page = shop_cart
                     {{-- Button checkout --}}
                     <div class="col-md-12 text-center">
                         <div class="pull-right">
-                            <button class="button button-lg button-secondary" type="submit">{{ sc_language_render('cart.checkout') }}</button>
+                            @php
+                                $dataButton = [
+                                    'class' => '', 
+                                    'id' =>  '',
+                                    'type_w' => '',
+                                    'type_t' => 'buy',
+                                    'type_a' => '',
+                                    'type' => 'submit',
+                                    'name' => ''.sc_language_render('cart.checkout'),
+                                    'html' => ''
+                                ];
+                            @endphp
+                            @include($sc_templatePath.'.common.button.button', $dataButton)
                         </div>
                     </div>
                     {{-- Button checkout --}}
