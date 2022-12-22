@@ -55,7 +55,14 @@ function sc_process_css_default($storeId = null) {
     }
 }
 
-//Setup for every store
+/**
+ * [sc_template_install_store description]
+ * This data is added for each store:
+ * - For root store when installing the template for the first time
+ * - Give the store when a new store is created
+ * - For the store when changing the template (use the template for the first time)
+ * => Therefore, the default data for the template, applicable to the whole system should not be placed here. Should be used in sc_template_install_default()
+ */
 function sc_template_install_store($storeId = null) {
     $storeId = $storeId ? $storeId : session('adminStoreId');
     $dataInsert[] = [
@@ -183,7 +190,7 @@ function sc_template_install_store($storeId = null) {
 
 /**
  * Setup default
- *
+ * This data is only added for the first time when installing the template
  * @return void
  */
 function sc_template_install_default() {}
