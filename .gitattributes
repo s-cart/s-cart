@@ -6,6 +6,7 @@
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
+*.blade.php diff=php
 *.php diff=php
 
 /.github export-ignore
