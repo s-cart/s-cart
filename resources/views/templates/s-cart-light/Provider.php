@@ -57,11 +57,11 @@ function sc_process_css_default($storeId = null) {
 
 /**
  * [sc_template_install_store description]
- * This data is added for each store:
- * - For root store when installing the template for the first time
- * - Give the store when a new store is created
- * - For the store when changing the template (use the template for the first time)
- * => Therefore, the default data for the template, applicable to the whole system should not be placed here. Should be used in sc_template_install_default()
+ * This function contains the settings information for each store using the template. It is called when:
+ * The main store installs the template for the first time in the system. The parameters are set for the main store.
+ * When a new store is created, the parameters of the selected template will be set for this store.
+ * When the store changes the new template, the parameters of this template will be set for the store
+ * -> Therefore, the default data for the whole system, only setting 1 should not be placed here. Let's put them in sc_template_install_default()
  */
 function sc_template_install_store($storeId = null) {
     $storeId = $storeId ? $storeId : session('adminStoreId');
@@ -190,7 +190,7 @@ function sc_template_install_store($storeId = null) {
 
 /**
  * Setup default
- * This data is only added for the first time when installing the template
+ * This function installs information for the whole system. This function is only called the first time the template is installed.
  * @return void
  */
 function sc_template_install_default() {}
