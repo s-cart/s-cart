@@ -20,7 +20,7 @@ $layout_page = shop_contact
             </address>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form" id="form-process">
+            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form" id="sc_form-process">
                 {{ csrf_field() }}
                 <div id="contactFormWrapper">
                     <div class="row">

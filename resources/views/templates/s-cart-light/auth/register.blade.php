@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12 col-sm-12">
             <h2>{{ sc_language_render('customer.title_register') }}</h2>
-            <form action="{{sc_route('postRegister')}}" method="post" class="box" id="form-process">
+            <form action="{{sc_route('postRegister')}}" method="post" class="box" id="sc_form-process">
                 {!! csrf_field() !!}
                 <div class="form_content" id="collapseExample">
             
