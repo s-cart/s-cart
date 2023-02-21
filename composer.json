@@ -12,16 +12,17 @@
     ],
     "type" : "project",
     "require": {
-        "s-cart/core": "~7.2.5"
+        "s-cart/core": "dev-8-dev"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1.0",
-        "barryvdh/laravel-debugbar": "^3.6",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0",
+        "barryvdh/laravel-debugbar": "^3.6"
     },
     "autoload": {
         "psr-4": {
