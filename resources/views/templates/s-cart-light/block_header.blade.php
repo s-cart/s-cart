@@ -43,7 +43,7 @@
                     @endforeach
                     @endif
 
-                    @if (sc_config('link_account', null, 1))
+                    @if (sc_config('link_account', null, 1) && config('s-cart.ecommerce_mode', 1))
                     @guest
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ sc_language_render('front.account') }}</a>
                         <ul class="rd-menu rd-navbar-dropdown">
@@ -111,7 +111,7 @@
                     @endif
                     @endif
 
-                    @if (sc_config('link_currency', null, 1))
+                    @if (sc_config('link_currency', null, 1) && config('s-cart.ecommerce_mode', 1))
                     @if (count($sc_currencies)>1)
                     <li class="rd-nav-item">
                         <a class="rd-nav-link" href="#">
@@ -144,7 +144,7 @@
                       </div>
                     </form>
                   </div>
-                  @if (sc_config('link_cart', null, 1))
+                  @if (sc_config('link_cart', null, 1) && config('s-cart.ecommerce_mode', 1))
                   <!-- RD Navbar Basket-->
                   <div class="rd-navbar-basket-wrap">
                     <a href="{{ sc_route('cart') }}">
