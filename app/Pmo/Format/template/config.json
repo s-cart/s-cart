@@ -1,0 +1,10 @@
+{
+    "name": "your-template-name",
+    "image": "images/scart-min.png",
+    "auth": "S-Cart",
+    "email": "support@s-cart.org",
+    "website": "https://S-Cart.Org",
+    "configKey": "your-template-name",
+    "version": "1.0",
+    "scartVersion": "7.1|7.2"
+}

@@ -155,6 +155,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         
+        App\Providers\PmoServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     ],
 
@@ -204,6 +205,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Export'=> App\Pmo\Library\ProcessData\Export::class,
+        'Import'=> App\Pmo\Library\ProcessData\Import::class,
+        'Cart'=> App\Pmo\Library\ShoppingCart\Facades\Cart::class,
+        'Admin'=> App\Pmo\Admin\Admin::class
     ],
 
     'debug_blacklist' => [

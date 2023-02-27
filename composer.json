@@ -12,7 +12,24 @@
     ],
     "type" : "project",
     "require": {
-        "s-cart/core": "~7.2.5"
+        "php": "^8.0.2",
+        "laravel/sanctum": "^3.0",
+        "unisharp/laravel-filemanager": "^2.5",
+        "spatie/laravel-pjax": "^2.2",
+        "phpoffice/phpspreadsheet": "^1.20",
+        "spatie/laravel-json-api-paginate": "^1.11",
+        "spatie/db-dumper": "^3.0",
+        "google/apiclient": "^2.0",
+        "jenssegers/agent": "^2.6",
+        "aws/aws-sdk-php": "^3.0",
+        "barryvdh/laravel-dompdf": "^v1.0.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.0",
+        "laravel/helpers": "^1.5",
+        "laravel/legacy-factories": "^1.1",
+        "laravel/socialite": "^5.13",
+        "laravel/tinker": "^2.7",
+        "laravel/ui": "~3.3"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
