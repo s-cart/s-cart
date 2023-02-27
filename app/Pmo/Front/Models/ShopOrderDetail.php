@@ -1,5 +1,5 @@
 <?php
-#S-Cart/Core/Front/Models/ShopOrderDetail.php
+#s-pmo/Core/Front/Models/ShopOrderDetail.php
 namespace App\Pmo\Front\Models;
 
 use App\Pmo\Front\Models\ShopProduct;

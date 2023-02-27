@@ -1,5 +1,5 @@
 <?php
-#S-Cart/Core/Front/Models/ShopNewsStore.php
+#s-pmo/Core/Front/Models/ShopNewsStore.php
 namespace App\Pmo\Front\Models;
 
 use Illuminate\Database\Eloquent\Model;

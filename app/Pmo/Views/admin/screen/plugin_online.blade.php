@@ -86,7 +86,7 @@
     {
       $pluginAction = '<span title="'.sc_language_render('admin.plugin.located').'" class="btn btn-flat btn-default"><i class="fa fa-check" aria-hidden="true"></i></span>';
 
-    } elseif(!in_array(config('s-cart.core'), $scVersion)) {
+    } elseif(!in_array(config('s-pmo.core'), $scVersion)) {
       $pluginAction = '';
     } else {
       if(($plugin['is_free'] || $plugin['price_final'] == 0)) {

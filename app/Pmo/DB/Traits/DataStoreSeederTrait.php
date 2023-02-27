@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 trait DataStoreSeederTrait
 {
     public function getTemplateDefault() {
-        return  empty(session('lastStoreTemplate')) ? 's-cart-light' : session('lastStoreTemplate');
+        return  empty(session('lastStoreTemplate')) ? 's-pmo-light' : session('lastStoreTemplate');
     }
     /**
      * Run the database seeds.
@@ -97,9 +97,9 @@ trait DataStoreSeederTrait
             ['group' => '','code' => 'customer_config_attribute_required','key' => 'customer_phone_required','value' => '1','sort' => '1','detail' => '','store_id' => $storeId],
             ['group' => '','code' => 'customer_config_attribute','key' => 'customer_name_kana','value' => '0','sort' => '0','detail' => 'customer.config_manager.name_kana','store_id' => $storeId],
             ['group' => '','code' => 'customer_config_attribute_required','key' => 'customer_name_kana_required','value' => '0','sort' => '1','detail' => '','store_id' => $storeId],
-            ['group' => '','code' => 'admin_config','key' => 'ADMIN_NAME','value' => 'S-Cart System','sort' => '0','detail' => 'admin.env.ADMIN_NAME','store_id' => $storeId],
-            ['group' => '','code' => 'admin_config','key' => 'ADMIN_TITLE','value' => 'S-Cart Admin','sort' => '0','detail' => 'admin.env.ADMIN_TITLE','store_id' => $storeId],
-            ['group' => '','code' => 'admin_config','key' => 'ADMIN_LOGO','value' => 'S-Cart <span class="brand-text font-weight-light">Admin</span>','sort' => '0','detail' => 'admin.env.ADMIN_LOGO','store_id' => $storeId],
+            ['group' => '','code' => 'admin_config','key' => 'ADMIN_NAME','value' => 's-pmo System','sort' => '0','detail' => 'admin.env.ADMIN_NAME','store_id' => $storeId],
+            ['group' => '','code' => 'admin_config','key' => 'ADMIN_TITLE','value' => 's-pmo Admin','sort' => '0','detail' => 'admin.env.ADMIN_TITLE','store_id' => $storeId],
+            ['group' => '','code' => 'admin_config','key' => 'ADMIN_LOGO','value' => 's-pmo <span class="brand-text font-weight-light">Admin</span>','sort' => '0','detail' => 'admin.env.ADMIN_LOGO','store_id' => $storeId],
             ['group' => '','code' => 'admin_config','key' => 'hidden_copyright_footer','value' => '0','sort' => '0','detail' => 'admin.env.hidden_copyright_footer','store_id' => $storeId],
             ['group' => '','code' => 'admin_config','key' => 'hidden_copyright_footer_admin','value' => '0','sort' => '0','detail' => 'admin.env.hidden_copyright_footer_admin','store_id' => $storeId],
             ['group' => '','code' => 'display_config','key' => 'product_top','value' => '12','sort' => '0','detail' => 'store.display.product_top','store_id' => $storeId],

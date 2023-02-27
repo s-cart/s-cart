@@ -36,7 +36,7 @@ return [
         'api_template' => env('SC_ADMIN_API_TEMPLATE', 1),
     ],
     //Prefix path view admin
-    'path_view' => 's-cart-admin::',
+    'path_view' => 's-pmo-admin::',
 
     //Config global
     'admin_log' => env('SC_ADMIN_LOG', 1), //Log access admin

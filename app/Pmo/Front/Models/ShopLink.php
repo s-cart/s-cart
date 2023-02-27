@@ -1,5 +1,5 @@
 <?php
-#S-Cart/Core/Front/Models/ShopLink.php
+#s-pmo/Core/Front/Models/ShopLink.php
 namespace App\Pmo\Front\Models;
 
 use App\Pmo\Front\Models\ShopStore;

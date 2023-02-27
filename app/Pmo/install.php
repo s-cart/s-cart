@@ -248,7 +248,7 @@ if (request()->method() == 'POST' && request()->ajax()) {
         ]
     ];
 
-    echo view('s-cart-front::install', array(
+    echo view('s-pmo-front::install', array(
         'path_lang' => (($lang != 'en') ? "?lang=" . $lang : ""),
         'title'     => trans('install.title'), 'requirements' => $requirements)
     );

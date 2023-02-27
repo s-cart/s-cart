@@ -87,8 +87,8 @@ class Make extends Command
         $tmpPublic = $this->tmpFolder."/".$sID.'/'.$pluginKey.'/public';
         $destination = 'Plugins/'.$pluginCode.'/'.$pluginKey;
         try {
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$source), storage_path($tmp));
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$sourcePublic), storage_path($tmpPublic));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$source), storage_path($tmp));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$sourcePublic), storage_path($tmpPublic));
 
             $adminController = file_get_contents(storage_path($tmp.'/Admin/AdminController.php'));
             $adminController      = str_replace('Plugin_Code', $pluginCode, $adminController);
@@ -180,8 +180,8 @@ class Make extends Command
         $tmpPublic = $this->tmpFolder."/".$sID.'/'.$name.'/public';
         $destination = 'templates/'.$name;
         try {
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$source), storage_path($tmp));
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$sourcePublic), storage_path($tmpPublic));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$source), storage_path($tmp));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$sourcePublic), storage_path($tmpPublic));
 
             $providerContent = file_get_contents(storage_path($tmp.'/Provider.php'));
             $providerContent      = str_replace('your-template-name', $name, $providerContent);

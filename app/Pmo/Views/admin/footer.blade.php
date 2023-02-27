@@ -5,9 +5,9 @@
       {{ config('app.env') }}
       &nbsp;&nbsp;
       <strong>Version</strong> 
-      {{ config('s-cart.sub-version') }} ({{ config('s-cart.core-sub-version') }})
+      {{ config('s-pmo.sub-version') }} ({{ config('s-pmo.core-sub-version') }})
     </div>
-    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ config('s-cart.homepage') }}">S-Cart: {{ config('s-cart.title') }}</a>.</strong> All rights
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ config('s-pmo.homepage') }}">s-pmo: {{ config('s-pmo.title') }}</a>.</strong> All rights
     reserved.
   @endif
 </footer>

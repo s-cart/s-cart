@@ -161,7 +161,7 @@ class AdminPluginsController extends RootAdminController
                     $scartVersion = $config['scartVersion'] ?? '';
                     if (!sc_plugin_compatibility_check($scartVersion)) {
                         File::deleteDirectory(storage_path('tmp/'.$pathTmp));
-                        return redirect()->back()->with('error', sc_language_render('admin.plugin.not_compatible', ['version' => $scartVersion, 'sc_version' => config('s-cart.core')]));
+                        return redirect()->back()->with('error', sc_language_render('admin.plugin.not_compatible', ['version' => $scartVersion, 'sc_version' => config('s-pmo.core')]));
                     }
 
                     $configGroup = $config['configGroup'] ?? '';

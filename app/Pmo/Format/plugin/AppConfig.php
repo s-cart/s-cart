@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin format 3.0
- * Use for S-cart 7.x
+ * Use for s-pmo 7.x
  */
 #App\Plugins\Plugin_Code\Plugin_Key\AppConfig.php
 namespace App\Plugins\Plugin_Code\Plugin_Key;
@@ -56,7 +56,7 @@ class AppConfig extends ConfigDefault
             );
 
             /*Insert plugin's html elements into index of admin pages
-            Detail: https://s-cart.org/docs/master/create-new-a-plugin.html 
+            Detail: https://s-pmo.org/docs/master/create-new-a-plugin.html 
             */
 
             // AdminConfig::insert(

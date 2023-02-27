@@ -45,7 +45,7 @@ class PmoServiceProvider extends ServiceProvider
             echo ('<div style="color:red;font-size:10px; background:black;z-index:99999;position:fixed; top:1px;">Sorry!! SC cannot use route cache. Please delete the file "bootstrap/cache/routes-v7.php" or use the command "php artisan route:clear""</div>');
         }
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-        $this->loadTranslationsFrom(app_path('Pmo').'/Lang', 's-cart');
+        $this->loadTranslationsFrom(app_path('Pmo').'/Lang', 's-pmo');
 
         if (!file_exists(public_path('install.php')) && file_exists(base_path('.env'))) {
 
@@ -81,7 +81,7 @@ class PmoServiceProvider extends ServiceProvider
                 exit;
             }
 
-            //Boot process S-Cart
+            //Boot process s-pmo
             try {
                 $this->bootScart();
             } catch (\Throwable $e) {
@@ -184,12 +184,12 @@ class PmoServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(app_path('Pmo').'/Config/admin.php', 'admin');
         $this->mergeConfigFrom(app_path('Pmo').'/Config/validation.php', 'validation');
         $this->mergeConfigFrom(app_path('Pmo').'/Config/lfm.php', 'lfm');
-        $this->mergeConfigFrom(app_path('Pmo').'/Config/s-cart.php', 's-cart');
+        $this->mergeConfigFrom(app_path('Pmo').'/Config/s-pmo.php', 's-pmo');
         $this->mergeConfigFrom(app_path('Pmo').'/Config/cart.php', 'cart');
         $this->mergeConfigFrom(app_path('Pmo').'/Config/middleware.php', 'middleware');
         $this->mergeConfigFrom(app_path('Pmo').'/Config/api.php', 'api');
-        $this->loadViewsFrom(app_path('Pmo').'/Views/admin', 's-cart-admin');
-        $this->loadViewsFrom(app_path('Pmo').'/Views/front', 's-cart-front');
+        $this->loadViewsFrom(app_path('Pmo').'/Views/admin', 's-pmo-admin');
+        $this->loadViewsFrom(app_path('Pmo').'/Views/front', 's-pmo-front');
     }
 
     public function bootScart()
@@ -357,8 +357,8 @@ class PmoServiceProvider extends ServiceProvider
     protected function registerPublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([app_path('Pmo').'/Views/admin'  => resource_path('views/vendor/s-cart-admin')], 'sc:view-admin');
-            $this->publishes([app_path('Pmo').'/Views/front'  => resource_path('views/vendor/s-cart-front')], 'sc:view-front');
+            $this->publishes([app_path('Pmo').'/Views/admin'  => resource_path('views/vendor/s-pmo-admin')], 'sc:view-admin');
+            $this->publishes([app_path('Pmo').'/Views/front'  => resource_path('views/vendor/s-pmo-front')], 'sc:view-front');
             $this->publishes([app_path('Pmo').'/Config/admin.php' => config_path('admin.php')], 'sc:config-admin');
             $this->publishes([app_path('Pmo').'/Config/validation.php' => config_path('validation.php')], 'sc:config-validation');
             $this->publishes([app_path('Pmo').'/Config/cart.php' => config_path('cart.php')], 'sc:config-cart');

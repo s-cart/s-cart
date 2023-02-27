@@ -11,8 +11,8 @@ trait DataDefaultSeederTrait
     public $adminPassword = '$2y$10$JcmAHe5eUZ2rS0jU1GWr/.xhwCnh2RU13qwjTPcqfmtZXjZxcryPO';
     public $adminEmail = 'your-email@your-domain.com';
     public $language_default = 'en';
-    public $title_en = 'Demo S-Cart : Free Laravel eCommerce';
-    public $title_vi = 'Demo S-Cart: Mã nguồn website thương mại điện tử miễn phí';
+    public $title_en = 'Demo s-pmo : Free Laravel eCommerce';
+    public $title_vi = 'Demo s-pmo: Mã nguồn website thương mại điện tử miễn phí';
 
     /**
      * Run the database seeds.
@@ -179,12 +179,12 @@ trait DataDefaultSeederTrait
             ['id' => 36,'parent_id' => 28,'sort' => 2,'title' => 'admin.menu_titles.webhook','icon' => 'fab fa-diaspora','uri' => 'admin::config/webhook','key' => null,'type' => 0],
             ['id' => 37,'parent_id' => 25,'sort' => 5,'title' => 'admin.menu_titles.report_manager','icon' => 'fas fa-chart-pie','uri' => '','key' => 'REPORT_MANAGER','type' => 0],
             ['id' => 38,'parent_id' => 9,'sort' => 1,'title' => 'admin.menu_titles.user_permission','icon' => 'fas fa-users-cog','uri' => '','key' => 'ADMIN','type' => 0],
-            ['id' => 39,'parent_id' => 35,'sort' => 0,'title' => 's-cart::admin.menu_titles.plugin_payment','icon' => 'far fa-money-bill-alt','uri' => 'admin::plugin/payment','key' => null,'type' => 0],
-            ['id' => 40,'parent_id' => 35,'sort' => 1,'title' => 's-cart::admin.menu_titles.plugin_shipping','icon' => 'fas fa-ambulance','uri' => 'admin::plugin/shipping','key' => null,'type' => 0],
-            ['id' => 41,'parent_id' => 35,'sort' => 2,'title' => 's-cart::admin.menu_titles.plugin_total','icon' => 'fas fa-atom','uri' => 'admin::plugin/total','key' => null,'type' => 0],
-            ['id' => 53,'parent_id' => 35,'sort' => 3,'title' => 's-cart::admin.menu_titles.plugin_fee','icon' => 'fas fa-box','uri' => 'admin::plugin/fee','key' => null,'type' => 0],
-            ['id' => 42,'parent_id' => 35,'sort' => 100,'title' => 's-cart::admin.menu_titles.plugin_other','icon' => 'far fa-circle','uri' => 'admin::plugin/other','key' => null,'type' => 0],
-            ['id' => 43,'parent_id' => 35,'sort' => 4,'title' => 's-cart::admin.menu_titles.plugin_cms','icon' => 'fab fa-modx','uri' => 'admin::plugin/cms','key' => null,'type' => 0],
+            ['id' => 39,'parent_id' => 35,'sort' => 0,'title' => 's-pmo::admin.menu_titles.plugin_payment','icon' => 'far fa-money-bill-alt','uri' => 'admin::plugin/payment','key' => null,'type' => 0],
+            ['id' => 40,'parent_id' => 35,'sort' => 1,'title' => 's-pmo::admin.menu_titles.plugin_shipping','icon' => 'fas fa-ambulance','uri' => 'admin::plugin/shipping','key' => null,'type' => 0],
+            ['id' => 41,'parent_id' => 35,'sort' => 2,'title' => 's-pmo::admin.menu_titles.plugin_total','icon' => 'fas fa-atom','uri' => 'admin::plugin/total','key' => null,'type' => 0],
+            ['id' => 53,'parent_id' => 35,'sort' => 3,'title' => 's-pmo::admin.menu_titles.plugin_fee','icon' => 'fas fa-box','uri' => 'admin::plugin/fee','key' => null,'type' => 0],
+            ['id' => 42,'parent_id' => 35,'sort' => 100,'title' => 's-pmo::admin.menu_titles.plugin_other','icon' => 'far fa-circle','uri' => 'admin::plugin/other','key' => null,'type' => 0],
+            ['id' => 43,'parent_id' => 35,'sort' => 4,'title' => 's-pmo::admin.menu_titles.plugin_cms','icon' => 'fab fa-modx','uri' => 'admin::plugin/cms','key' => null,'type' => 0],
             ['id' => 44,'parent_id' => 67,'sort' => 3,'title' => 'admin.menu_titles.css','icon' => 'far fa-file-code','uri' => 'admin::store_css','key' => null,'type' => 0],
             ['id' => 45,'parent_id' => 25,'sort' => 4,'title' => 'admin.menu_titles.seo_manager','icon' => 'fab fa-battle-net','uri' => '','key' => 'SEO_MANAGER','type' => 0],
             ['id' => 46,'parent_id' => 38,'sort' => 0,'title' => 'admin.menu_titles.users','icon' => 'fas fa-users','uri' => 'admin::user','key' => null,'type' => 0],
@@ -246,7 +246,7 @@ trait DataDefaultSeederTrait
 
     public function dataAdminTemplate() {
         $dataAdminTemplate = [
-            ['id' => '1','key' => 's-cart-light','name' => 'S-Cart Light','status' => 1]
+            ['id' => '1','key' => 's-pmo-light','name' => 's-pmo Light','status' => 1]
         ];
         return $dataAdminTemplate;
     }
@@ -327,7 +327,7 @@ trait DataDefaultSeederTrait
 
     public function dataAdminStore($email, $language, $domain) {
         $dataAdminStore = [
-            ['id' => 1,'logo' => 'data/logo/scart-mid.png','template' => 's-cart-light','phone' => '0123456789','long_phone' => 'Support: 0987654321','email' => $email,'time_active' =>'','address' => '123st - abc - xyz','language' => $language,'currency' => 'USD','code' => 's-cart','domain' => $domain]
+            ['id' => 1,'logo' => 'data/logo/scart-mid.png','template' => 's-pmo-light','phone' => '0123456789','long_phone' => 'Support: 0987654321','email' => $email,'time_active' =>'','address' => '123st - abc - xyz','language' => $language,'currency' => 'USD','code' => 's-pmo','domain' => $domain]
         ];
         return $dataAdminStore;
     }
@@ -410,9 +410,9 @@ trait DataDefaultSeederTrait
     public function dataShopLink() {
         $dataShopLink = [
             ['id' => 1,'name' => 'front.about','url' => 'route::page.detail::about','target' => '_self','module' => null,'group' => 'menu','type' => null, 'collection_id' => null, 'status' => '1','sort' => '50'],
-            ['id' => 2,'name' => 'S-Cart','url' => '#collection','target' => '_self','module' => null,'group' => 'menu', 'type' => 'collection', 'collection_id' => null, 'status' => '1','sort' => '60'],
-            ['id' => 3,'name' => 'About us','url' => 'https://s-cart.org/en/about.html','target' => '_self','module' => null,'group' => 'menu', 'type' => null, 'collection_id' => 2, 'status' => '1','sort' => '10'],
-            ['id' => 4,'name' => 'Github','url' => 'https://github.com/s-cart/s-cart','target' => '_self','module' => null,'group' => 'menu', 'type' => null, 'collection_id' => 2, 'status' => '1','sort' => '20'],
+            ['id' => 2,'name' => 's-pmo','url' => '#collection','target' => '_self','module' => null,'group' => 'menu', 'type' => 'collection', 'collection_id' => null, 'status' => '1','sort' => '60'],
+            ['id' => 3,'name' => 'About us','url' => 'https://s-pmo.org/en/about.html','target' => '_self','module' => null,'group' => 'menu', 'type' => null, 'collection_id' => 2, 'status' => '1','sort' => '10'],
+            ['id' => 4,'name' => 'Github','url' => 'https://github.com/s-pmo/s-pmo','target' => '_self','module' => null,'group' => 'menu', 'type' => null, 'collection_id' => 2, 'status' => '1','sort' => '20'],
 
         ];
         return $dataShopLink;

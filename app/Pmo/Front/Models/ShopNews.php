@@ -1,5 +1,5 @@
 <?php
-#S-Cart/Core/Front/Models/ShopNews.php
+#s-pmo/Core/Front/Models/ShopNews.php
 namespace App\Pmo\Front\Models;
 
 use App\Pmo\Front\Models\ShopNewsDescription;

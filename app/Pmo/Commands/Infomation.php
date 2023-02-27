@@ -20,7 +20,7 @@ class Infomation extends Command
      *
      * @var string
      */
-    protected $description = 'Get infomation S-Cart';
+    protected $description = 'Get infomation s-pmo';
     const LIMIT = 10;
 
     /**
@@ -30,16 +30,16 @@ class Infomation extends Command
      */
     public function handle()
     {
-        $this->info(config('s-cart.name').' - '.config('s-cart.title'));
-        $this->info(config('s-cart.auth').' <'.config('s-cart.email').'>');
-        $this->info('Version: '.config('s-cart.version'));
-        $this->info('Sub-version: '.config('s-cart.sub-version'));
-        $this->info('Core: '.config('s-cart.core'));
-        $this->info('Core sub-version: '.config('s-cart.core-sub-version'));
-        $this->info('Type: '.config('s-cart.type'));
-        $this->info('Homepage: '.config('s-cart.homepage'));
-        $this->info('Github: '.config('s-cart.github'));
-        $this->info('Facebook: '.config('s-cart.facebook'));
-        $this->info('API: '.config('s-cart.api_link'));
+        $this->info(config('s-pmo.name').' - '.config('s-pmo.title'));
+        $this->info(config('s-pmo.auth').' <'.config('s-pmo.email').'>');
+        $this->info('Version: '.config('s-pmo.version'));
+        $this->info('Sub-version: '.config('s-pmo.sub-version'));
+        $this->info('Core: '.config('s-pmo.core'));
+        $this->info('Core sub-version: '.config('s-pmo.core-sub-version'));
+        $this->info('Type: '.config('s-pmo.type'));
+        $this->info('Homepage: '.config('s-pmo.homepage'));
+        $this->info('Github: '.config('s-pmo.github'));
+        $this->info('Facebook: '.config('s-pmo.facebook'));
+        $this->info('API: '.config('s-pmo.api_link'));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-if (config('s-cart.ecommerce_mode', 1)) {
+if (config('s-pmo.ecommerce_mode', 1)) {
 //Route api
 Route::group(
     [

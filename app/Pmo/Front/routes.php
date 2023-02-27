@@ -33,7 +33,7 @@ Route::group(
 
 
 //Include route ecommerce
-if (config('s-cart.ecommerce_mode', 1)) {
+if (config('s-pmo.ecommerce_mode', 1)) {
     Route::middleware(SC_FRONT_MIDDLEWARE)
         ->group(function () use ($suffix, $langUrl) {
             foreach (glob(__DIR__ . '/Routes/*.php') as $filename) {
@@ -70,7 +70,7 @@ Route::group(
         $prefixNews = sc_config('PREFIX_NEWS')??'news';
 
         //Search
-        if (config('s-cart.ecommerce_mode', 1)) {
+        if (config('s-pmo.ecommerce_mode', 1)) {
             Route::get($prefixSearch.$suffix, $nameSpaceFrontStore.'\ShopStoreController@searchProcessFront')
                 ->name('search');
         } else {
@@ -139,7 +139,7 @@ Route::group(
             return redirect($urlBack);
         })->name('locale');
         
-        if (config('s-cart.ecommerce_mode', 1)) {
+        if (config('s-pmo.ecommerce_mode', 1)) {
             //Currency
             Route::get('currency/{code}', function ($code) {
                 session(['currency' => $code]);

@@ -81,8 +81,8 @@ class MakePlugin extends Command
         $tmpPublic = $this->tmpFolder."/".$sID.'/'.$pluginKey.'/public';
         $description = 'Plugins/'.$pluginCode.'/'.$pluginKey;
         try {
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$source), storage_path($tmp));
-            File::copyDirectory(base_path('vendor/s-cart/core/src/'.$sourcePublic), storage_path($tmpPublic));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$source), storage_path($tmp));
+            File::copyDirectory(base_path('vendor/s-pmo/core/src/'.$sourcePublic), storage_path($tmpPublic));
 
             $adminController = file_get_contents(storage_path($tmp.'/Admin/AdminController.php'));
             $adminController      = str_replace('Plugin_Code', $pluginCode, $adminController);

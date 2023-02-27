@@ -88,7 +88,7 @@
   if (array_key_exists($template['key'], $arrTemplateLocal)) 
   {
   $templateAction = '<span title="'.sc_language_render('admin.template.located').'" class="btn btn-flat btn-default"><i class="fa fa-check" aria-hidden="true"></i></span>';
-  } elseif(!in_array(config('s-cart.core'), $scVersion)) {
+  } elseif(!in_array(config('s-pmo.core'), $scVersion)) {
   $templateAction = '';
   } else {
   if(($template['is_free'] || $template['price_final'] == 0)) {

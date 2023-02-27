@@ -17,13 +17,13 @@ class AdminTemplateOnlineController extends RootAdminController
         $arrTemplateLibrary = [];
         $resultItems = '';
         $htmlPaging = '';
-        $sc_version = config('s-cart.core');
+        $sc_version = config('s-pmo.core');
         $filter_free = request('filter_free', 0);
         $filter_type = request('filter_type', '');
         $filter_keyword = request('filter_keyword', '');
 
         $page = request('page') ?? 1;
-        $url = config('s-cart.api_link').'/templates/?page[size]=20&page[number]='.$page;
+        $url = config('s-pmo.api_link').'/templates/?page[size]=20&page[number]='.$page;
         $url .='&version='.$sc_version;
         $url .='&filter_free='.$filter_free;
         $url .='&filter_type='.$filter_type;
@@ -138,7 +138,7 @@ class AdminTemplateOnlineController extends RootAdminController
             $scartVersion = $config['scartVersion'] ?? '';
             if (!sc_plugin_compatibility_check($scartVersion)) {
                 File::deleteDirectory(storage_path('tmp/'.$pathTmp));
-                $response = ['error' => 1, 'msg' => sc_language_render('admin.plugin.not_compatible', ['version' => $scartVersion, 'sc_version' => config('s-cart.core')])];
+                $response = ['error' => 1, 'msg' => sc_language_render('admin.plugin.not_compatible', ['version' => $scartVersion, 'sc_version' => config('s-pmo.core')])];
             } else {
                 $folderName = explode('/config.json', $checkConfig[0]);
                 $folderName = explode('/', $folderName[0]);

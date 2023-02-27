@@ -12,7 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table s-cart.failed_jobs
+-- Dumping structure for table s-pmo.failed_jobs
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -26,12 +26,12 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.failed_jobs: ~0 rows (approximately)
+-- Dumping data for table s-pmo.failed_jobs: ~0 rows (approximately)
 DELETE FROM `failed_jobs`;
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.jobs
+-- Dumping structure for table s-pmo.jobs
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE IF NOT EXISTS `jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -45,12 +45,12 @@ CREATE TABLE IF NOT EXISTS `jobs` (
   KEY `jobs_queue_index` (`queue`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.jobs: ~0 rows (approximately)
+-- Dumping data for table s-pmo.jobs: ~0 rows (approximately)
 DELETE FROM `jobs`;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.migrations
+-- Dumping structure for table s-pmo.migrations
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.migrations: ~2 rows (approximately)
+-- Dumping data for table s-pmo.migrations: ~2 rows (approximately)
 DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(2, '00_00_00_step2_create_tables_shop', 2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.personal_access_tokens
+-- Dumping structure for table s-pmo.personal_access_tokens
 DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -85,12 +85,12 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.personal_access_tokens: ~0 rows (approximately)
+-- Dumping data for table s-pmo.personal_access_tokens: ~0 rows (approximately)
 DELETE FROM `personal_access_tokens`;
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_config
+-- Dumping structure for table s-pmo.sc_admin_config
 DROP TABLE IF EXISTS `sc_admin_config`;
 CREATE TABLE IF NOT EXISTS `sc_admin_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `sc_admin_config` (
   KEY `sc_admin_config_code_index` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_config: ~136 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_config: ~136 rows (approximately)
 DELETE FROM `sc_admin_config`;
 /*!40000 ALTER TABLE `sc_admin_config` DISABLE KEYS */;
 INSERT INTO `sc_admin_config` (`id`, `group`, `code`, `key`, `value`, `security`, `store_id`, `sort`, `detail`, `created_at`, `updated_at`) VALUES
@@ -184,9 +184,9 @@ INSERT INTO `sc_admin_config` (`id`, `group`, `code`, `key`, `value`, `security`
 	(69, '', 'customer_config_attribute_required', 'customer_phone_required', '1', 0, '1', 1, '', NULL, NULL),
 	(70, '', 'customer_config_attribute', 'customer_name_kana', '0', 0, '1', 0, 'customer.config_manager.name_kana', NULL, NULL),
 	(71, '', 'customer_config_attribute_required', 'customer_name_kana_required', '0', 0, '1', 1, '', NULL, NULL),
-	(72, '', 'admin_config', 'ADMIN_NAME', 'S-Cart System', 0, '1', 0, 'admin.env.ADMIN_NAME', NULL, NULL),
-	(73, '', 'admin_config', 'ADMIN_TITLE', 'S-Cart Admin', 0, '1', 0, 'admin.env.ADMIN_TITLE', NULL, NULL),
-	(74, '', 'admin_config', 'ADMIN_LOGO', 'S-Cart <span class="brand-text font-weight-light">Admin</span>', 0, '1', 0, 'admin.env.ADMIN_LOGO', NULL, NULL),
+	(72, '', 'admin_config', 'ADMIN_NAME', 's-pmo System', 0, '1', 0, 'admin.env.ADMIN_NAME', NULL, NULL),
+	(73, '', 'admin_config', 'ADMIN_TITLE', 's-pmo Admin', 0, '1', 0, 'admin.env.ADMIN_TITLE', NULL, NULL),
+	(74, '', 'admin_config', 'ADMIN_LOGO', 's-pmo <span class="brand-text font-weight-light">Admin</span>', 0, '1', 0, 'admin.env.ADMIN_LOGO', NULL, NULL),
 	(75, '', 'admin_config', 'hidden_copyright_footer', '0', 0, '1', 0, 'admin.env.hidden_copyright_footer', NULL, NULL),
 	(76, '', 'admin_config', 'hidden_copyright_footer_admin', '0', 0, '1', 0, 'admin.env.hidden_copyright_footer_admin', NULL, NULL),
 	(77, '', 'display_config', 'product_top', '12', 0, '1', 0, 'store.display.product_top', NULL, NULL),
@@ -251,7 +251,7 @@ INSERT INTO `sc_admin_config` (`id`, `group`, `code`, `key`, `value`, `security`
 	(136, '', 'config_layout', 'link_cart', '1', 0, '1', 0, 'admin.config_layout.link_cart', NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_config` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_log
+-- Dumping structure for table s-pmo.sc_admin_log
 DROP TABLE IF EXISTS `sc_admin_log`;
 CREATE TABLE IF NOT EXISTS `sc_admin_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -267,12 +267,12 @@ CREATE TABLE IF NOT EXISTS `sc_admin_log` (
   KEY `sc_admin_log_user_id_index` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_log: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_log: ~0 rows (approximately)
 DELETE FROM `sc_admin_log`;
 /*!40000 ALTER TABLE `sc_admin_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_admin_log` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_menu
+-- Dumping structure for table s-pmo.sc_admin_menu
 DROP TABLE IF EXISTS `sc_admin_menu`;
 CREATE TABLE IF NOT EXISTS `sc_admin_menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `sc_admin_menu` (
   UNIQUE KEY `sc_admin_menu_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_menu: ~67 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_menu: ~67 rows (approximately)
 DELETE FROM `sc_admin_menu`;
 /*!40000 ALTER TABLE `sc_admin_menu` DISABLE KEYS */;
 INSERT INTO `sc_admin_menu` (`id`, `parent_id`, `sort`, `title`, `icon`, `uri`, `type`, `hidden`, `key`, `created_at`, `updated_at`) VALUES
@@ -332,11 +332,11 @@ INSERT INTO `sc_admin_menu` (`id`, `parent_id`, `sort`, `title`, `icon`, `uri`, 
 	(36, 28, 2, 'admin.menu_titles.webhook', 'fab fa-diaspora', 'admin::config/webhook', 0, 0, NULL, NULL, NULL),
 	(37, 25, 5, 'admin.menu_titles.report_manager', 'fas fa-chart-pie', '', 0, 0, 'REPORT_MANAGER', NULL, NULL),
 	(38, 9, 1, 'admin.menu_titles.user_permission', 'fas fa-users-cog', '', 0, 0, 'ADMIN', NULL, NULL),
-	(39, 35, 0, 's-cart::admin.menu_titles.plugin_payment', 'far fa-money-bill-alt', 'admin::plugin/payment', 0, 0, NULL, NULL, NULL),
-	(40, 35, 1, 's-cart::admin.menu_titles.plugin_shipping', 'fas fa-ambulance', 'admin::plugin/shipping', 0, 0, NULL, NULL, NULL),
-	(41, 35, 2, 's-cart::admin.menu_titles.plugin_total', 'fas fa-atom', 'admin::plugin/total', 0, 0, NULL, NULL, NULL),
-	(42, 35, 100, 's-cart::admin.menu_titles.plugin_other', 'far fa-circle', 'admin::plugin/other', 0, 0, NULL, NULL, NULL),
-	(43, 35, 4, 's-cart::admin.menu_titles.plugin_cms', 'fab fa-modx', 'admin::plugin/cms', 0, 0, NULL, NULL, NULL),
+	(39, 35, 0, 's-pmo::admin.menu_titles.plugin_payment', 'far fa-money-bill-alt', 'admin::plugin/payment', 0, 0, NULL, NULL, NULL),
+	(40, 35, 1, 's-pmo::admin.menu_titles.plugin_shipping', 'fas fa-ambulance', 'admin::plugin/shipping', 0, 0, NULL, NULL, NULL),
+	(41, 35, 2, 's-pmo::admin.menu_titles.plugin_total', 'fas fa-atom', 'admin::plugin/total', 0, 0, NULL, NULL, NULL),
+	(42, 35, 100, 's-pmo::admin.menu_titles.plugin_other', 'far fa-circle', 'admin::plugin/other', 0, 0, NULL, NULL, NULL),
+	(43, 35, 4, 's-pmo::admin.menu_titles.plugin_cms', 'fab fa-modx', 'admin::plugin/cms', 0, 0, NULL, NULL, NULL),
 	(44, 67, 3, 'admin.menu_titles.css', 'far fa-file-code', 'admin::store_css', 0, 0, NULL, NULL, NULL),
 	(45, 25, 4, 'admin.menu_titles.seo_manager', 'fab fa-battle-net', '', 0, 0, 'SEO_MANAGER', NULL, NULL),
 	(46, 38, 0, 'admin.menu_titles.users', 'fas fa-users', 'admin::user', 0, 0, NULL, NULL, NULL),
@@ -346,7 +346,7 @@ INSERT INTO `sc_admin_menu` (`id`, `parent_id`, `sort`, `title`, `icon`, `uri`, 
 	(50, 28, 0, 'admin.menu_titles.operation_log', 'fas fa-history', 'admin::log', 0, 0, NULL, NULL, NULL),
 	(51, 45, 0, 'admin.menu_titles.seo_config', 'fas fa-bars', 'admin::seo/config', 0, 0, NULL, NULL, NULL),
 	(52, 7, 103, 'admin.menu_titles.news', 'far fa-file-powerpoint', 'admin::news', 0, 0, NULL, NULL, NULL),
-	(53, 35, 3, 's-cart::admin.menu_titles.plugin_fee', 'fas fa-box', 'admin::plugin/fee', 0, 0, NULL, NULL, NULL),
+	(53, 35, 3, 's-pmo::admin.menu_titles.plugin_fee', 'fas fa-box', 'admin::plugin/fee', 0, 0, NULL, NULL, NULL),
 	(54, 37, 0, 'admin.menu_titles.report_product', 'fas fa-bars', 'admin::report/product', 0, 0, NULL, NULL, NULL),
 	(57, 65, 2, 'admin.menu_titles.store_config', 'fas fa-cog', 'admin::store_config', 0, 0, NULL, NULL, NULL),
 	(58, 5, 5, 'admin.menu_titles.cache_manager', 'fab fa-tripadvisor', 'admin::cache_config', 0, 0, NULL, NULL, NULL),
@@ -363,7 +363,7 @@ INSERT INTO `sc_admin_menu` (`id`, `parent_id`, `sort`, `title`, `icon`, `uri`, 
 	(70, 9, 6, 'admin.menu_titles.security', 'fab fa-shirtsinbulk', '', 0, 0, 'ADMIN_SECURITY', NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_menu` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_password_resets
+-- Dumping structure for table s-pmo.sc_admin_password_resets
 DROP TABLE IF EXISTS `sc_admin_password_resets`;
 CREATE TABLE IF NOT EXISTS `sc_admin_password_resets` (
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -372,12 +372,12 @@ CREATE TABLE IF NOT EXISTS `sc_admin_password_resets` (
   KEY `sc_admin_password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_password_resets: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_password_resets: ~0 rows (approximately)
 DELETE FROM `sc_admin_password_resets`;
 /*!40000 ALTER TABLE `sc_admin_password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_admin_password_resets` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_permission
+-- Dumping structure for table s-pmo.sc_admin_permission
 DROP TABLE IF EXISTS `sc_admin_permission`;
 CREATE TABLE IF NOT EXISTS `sc_admin_permission` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `sc_admin_permission` (
   UNIQUE KEY `sc_admin_permission_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_permission: ~13 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_permission: ~13 rows (approximately)
 DELETE FROM `sc_admin_permission`;
 /*!40000 ALTER TABLE `sc_admin_permission` DISABLE KEYS */;
 INSERT INTO `sc_admin_permission` (`id`, `name`, `slug`, `http_uri`, `created_at`, `updated_at`) VALUES
@@ -410,7 +410,7 @@ INSERT INTO `sc_admin_permission` (`id`, `name`, `slug`, `http_uri`, `created_at
 	(13, 'Update config', 'change.config', 'POST::sc_admin/store_config/update', NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_permission` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_role
+-- Dumping structure for table s-pmo.sc_admin_role
 DROP TABLE IF EXISTS `sc_admin_role`;
 CREATE TABLE IF NOT EXISTS `sc_admin_role` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `sc_admin_role` (
   UNIQUE KEY `sc_admin_role_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_role: ~7 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_role: ~7 rows (approximately)
 DELETE FROM `sc_admin_role`;
 /*!40000 ALTER TABLE `sc_admin_role` DISABLE KEYS */;
 INSERT INTO `sc_admin_role` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
@@ -435,7 +435,7 @@ INSERT INTO `sc_admin_role` (`id`, `name`, `slug`, `created_at`, `updated_at`) V
 	(7, 'Admin CMS', 'admin_cms', NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_role` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_role_permission
+-- Dumping structure for table s-pmo.sc_admin_role_permission
 DROP TABLE IF EXISTS `sc_admin_role_permission`;
 CREATE TABLE IF NOT EXISTS `sc_admin_role_permission` (
   `role_id` int(11) NOT NULL,
@@ -446,7 +446,7 @@ CREATE TABLE IF NOT EXISTS `sc_admin_role_permission` (
   KEY `sc_admin_role_permission_role_id_permission_id_index` (`role_id`,`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_role_permission: ~30 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_role_permission: ~30 rows (approximately)
 DELETE FROM `sc_admin_role_permission`;
 /*!40000 ALTER TABLE `sc_admin_role_permission` DISABLE KEYS */;
 INSERT INTO `sc_admin_role_permission` (`role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
@@ -482,7 +482,7 @@ INSERT INTO `sc_admin_role_permission` (`role_id`, `permission_id`, `created_at`
 	(7, 13, NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_role_permission` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_role_user
+-- Dumping structure for table s-pmo.sc_admin_role_user
 DROP TABLE IF EXISTS `sc_admin_role_user`;
 CREATE TABLE IF NOT EXISTS `sc_admin_role_user` (
   `role_id` int(11) NOT NULL,
@@ -492,14 +492,14 @@ CREATE TABLE IF NOT EXISTS `sc_admin_role_user` (
   KEY `sc_admin_role_user_role_id_user_id_index` (`role_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_role_user: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_role_user: ~1 rows (approximately)
 DELETE FROM `sc_admin_role_user`;
 /*!40000 ALTER TABLE `sc_admin_role_user` DISABLE KEYS */;
 INSERT INTO `sc_admin_role_user` (`role_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(1, '1', NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_role_user` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_store
+-- Dumping structure for table s-pmo.sc_admin_store
 DROP TABLE IF EXISTS `sc_admin_store`;
 CREATE TABLE IF NOT EXISTS `sc_admin_store` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -529,14 +529,14 @@ CREATE TABLE IF NOT EXISTS `sc_admin_store` (
   KEY `sc_admin_store_partner_index` (`partner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_store: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_store: ~1 rows (approximately)
 DELETE FROM `sc_admin_store`;
 /*!40000 ALTER TABLE `sc_admin_store` DISABLE KEYS */;
 INSERT INTO `sc_admin_store` (`id`, `logo`, `icon`, `phone`, `long_phone`, `email`, `time_active`, `address`, `office`, `warehouse`, `template`, `domain`, `partner`, `code`, `language`, `timezone`, `currency`, `status`, `active`, `created_at`, `updated_at`) VALUES
-	('1', 'data/logo/scart-mid.png', NULL, '0123456789', 'Support: 0987654321', 'admin@gmail.com', '', '123st - abc - xyz', NULL, NULL, 's-cart-light', 'scart.local', '0', 's-cart', 'en', '', 'USD', 1, 1, NULL, NULL);
+	('1', 'data/logo/scart-mid.png', NULL, '0123456789', 'Support: 0987654321', 'admin@gmail.com', '', '123st - abc - xyz', NULL, NULL, 's-pmo-light', 'scart.local', '0', 's-pmo', 'en', '', 'USD', 1, 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_store_description
+-- Dumping structure for table s-pmo.sc_admin_store_description
 DROP TABLE IF EXISTS `sc_admin_store_description`;
 CREATE TABLE IF NOT EXISTS `sc_admin_store_description` (
   `store_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -550,15 +550,15 @@ CREATE TABLE IF NOT EXISTS `sc_admin_store_description` (
   KEY `sc_admin_store_description_lang_index` (`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_store_description: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_store_description: ~2 rows (approximately)
 DELETE FROM `sc_admin_store_description`;
 /*!40000 ALTER TABLE `sc_admin_store_description` DISABLE KEYS */;
 INSERT INTO `sc_admin_store_description` (`store_id`, `lang`, `title`, `description`, `keyword`, `maintain_content`, `maintain_note`) VALUES
-	('1', 'en', 'Demo S-Cart : Free Laravel eCommerce', 'Free website shopping cart for business', '', '<center><img src="/images/maintenance.png" />\r\n            <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>\r\n            </center>', 'Website is in maintenance mode!'),
-	('1', 'vi', 'Demo S-Cart: Mã nguồn website thương mại điện tử miễn phí', 'Laravel shopping cart for business', '', '<center><img src="/images/maintenance.png" />\r\n            <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>\r\n            </center>', 'Website đang trong chế độ bảo trì!');
+	('1', 'en', 'Demo s-pmo : Free Laravel eCommerce', 'Free website shopping cart for business', '', '<center><img src="/images/maintenance.png" />\r\n            <h3><span style="color:#e74c3c;"><strong>Sorry! We are currently doing site maintenance!</strong></span></h3>\r\n            </center>', 'Website is in maintenance mode!'),
+	('1', 'vi', 'Demo s-pmo: Mã nguồn website thương mại điện tử miễn phí', 'Laravel shopping cart for business', '', '<center><img src="/images/maintenance.png" />\r\n            <h3><span style="color:#e74c3c;"><strong>Xin lỗi! Hiện tại website đang bảo trì!</strong></span></h3>\r\n            </center>', 'Website đang trong chế độ bảo trì!');
 /*!40000 ALTER TABLE `sc_admin_store_description` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_template
+-- Dumping structure for table s-pmo.sc_admin_template
 DROP TABLE IF EXISTS `sc_admin_template`;
 CREATE TABLE IF NOT EXISTS `sc_admin_template` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -571,14 +571,14 @@ CREATE TABLE IF NOT EXISTS `sc_admin_template` (
   UNIQUE KEY `sc_admin_template_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_template: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_template: ~1 rows (approximately)
 DELETE FROM `sc_admin_template`;
 /*!40000 ALTER TABLE `sc_admin_template` DISABLE KEYS */;
 INSERT INTO `sc_admin_template` (`id`, `key`, `name`, `status`, `created_at`, `updated_at`) VALUES
-	(1, 's-cart-light', 'S-Cart Light', 1, NULL, NULL);
+	(1, 's-pmo-light', 's-pmo Light', 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_template` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_user
+-- Dumping structure for table s-pmo.sc_admin_user
 DROP TABLE IF EXISTS `sc_admin_user`;
 CREATE TABLE IF NOT EXISTS `sc_admin_user` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -596,14 +596,14 @@ CREATE TABLE IF NOT EXISTS `sc_admin_user` (
   UNIQUE KEY `sc_admin_user_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_user: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_user: ~1 rows (approximately)
 DELETE FROM `sc_admin_user`;
 /*!40000 ALTER TABLE `sc_admin_user` DISABLE KEYS */;
 INSERT INTO `sc_admin_user` (`id`, `username`, `password`, `name`, `email`, `avatar`, `remember_token`, `theme`, `created_at`, `updated_at`) VALUES
 	('1', 'admin', '$2y$10$tnOlTdZVuoHzSY4yztefRe8nCXIve3LUL7VqEOcjFEFb8kkO/J0w2', 'Administrator', 'admin@gmail.com', '/admin/avatar/user.jpg', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `sc_admin_user` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_admin_user_permission
+-- Dumping structure for table s-pmo.sc_admin_user_permission
 DROP TABLE IF EXISTS `sc_admin_user_permission`;
 CREATE TABLE IF NOT EXISTS `sc_admin_user_permission` (
   `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -614,12 +614,12 @@ CREATE TABLE IF NOT EXISTS `sc_admin_user_permission` (
   KEY `sc_admin_user_permission_user_id_permission_id_index` (`user_id`,`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_admin_user_permission: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_admin_user_permission: ~0 rows (approximately)
 DELETE FROM `sc_admin_user_permission`;
 /*!40000 ALTER TABLE `sc_admin_user_permission` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_admin_user_permission` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_api_connection
+-- Dumping structure for table s-pmo.sc_api_connection
 DROP TABLE IF EXISTS `sc_api_connection`;
 CREATE TABLE IF NOT EXISTS `sc_api_connection` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -635,14 +635,14 @@ CREATE TABLE IF NOT EXISTS `sc_api_connection` (
   UNIQUE KEY `sc_api_connection_apiconnection_unique` (`apiconnection`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_api_connection: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_api_connection: ~1 rows (approximately)
 DELETE FROM `sc_api_connection`;
 /*!40000 ALTER TABLE `sc_api_connection` DISABLE KEYS */;
 INSERT INTO `sc_api_connection` (`id`, `description`, `apiconnection`, `apikey`, `expire`, `last_active`, `created_at`, `updated_at`, `status`) VALUES
 	(1, 'Demo api connection', 'appmobile', '986302e3-dde8-448e-b850-1bf57934591d', NULL, NULL, NULL, NULL, 0);
 /*!40000 ALTER TABLE `sc_api_connection` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_languages
+-- Dumping structure for table s-pmo.sc_languages
 DROP TABLE IF EXISTS `sc_languages`;
 CREATE TABLE IF NOT EXISTS `sc_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -659,7 +659,7 @@ CREATE TABLE IF NOT EXISTS `sc_languages` (
   KEY `sc_languages_location_index` (`location`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_languages: ~2,717 rows (approximately)
+-- Dumping data for table s-pmo.sc_languages: ~2,717 rows (approximately)
 DELETE FROM `sc_languages`;
 /*!40000 ALTER TABLE `sc_languages` DISABLE KEYS */;
 INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `created_at`, `updated_at`) VALUES
@@ -2132,8 +2132,8 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(1467, 'admin.api_connection.create', 'Creat new connection', 'admin.api_connection', 'en', NULL, NULL),
 	(1468, 'admin.api_connection.edit', 'Chỉnh sửa connection', 'admin.api_connection', 'vi', NULL, NULL),
 	(1469, 'admin.api_connection.edit', 'Edit connection', 'admin.api_connection', 'en', NULL, NULL),
-	(1470, 'admin.api_connection.api_connection_required_help', '<ul><li>Nếu không sử dụng API, hãy hãy chuyển sang trạng thái "OFF API"</li><li>Nếu không sử dụng apikey và apiconnection, hãy chuyển sang trạng thái "OFF CONNECTION"</li></ul>\r\n                <a href="https://s-cart.org/vi/docs/developer/about-api-scart.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true">Xem chi tiết ở đây</i></a>\r\n                ', 'admin.api_connection', 'vi', NULL, NULL),
-	(1471, 'admin.api_connection.api_connection_required_help', '<ul><li>If not using API, please switch to "OFF API" state</li><li>If apikey and apiconnection are not used, switch to "OFF CONNECTION" state</li></ul>\r\n                <a href="https://s-cart.org/docs/developer/about-api-scart.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true"></i>See full infomation</a>\r\n                ', 'admin.api_connection', 'en', NULL, NULL),
+	(1470, 'admin.api_connection.api_connection_required_help', '<ul><li>Nếu không sử dụng API, hãy hãy chuyển sang trạng thái "OFF API"</li><li>Nếu không sử dụng apikey và apiconnection, hãy chuyển sang trạng thái "OFF CONNECTION"</li></ul>\r\n                <a href="https://s-pmo.org/vi/docs/developer/about-api-scart.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true">Xem chi tiết ở đây</i></a>\r\n                ', 'admin.api_connection', 'vi', NULL, NULL),
+	(1471, 'admin.api_connection.api_connection_required_help', '<ul><li>If not using API, please switch to "OFF API" state</li><li>If apikey and apiconnection are not used, switch to "OFF CONNECTION" state</li></ul>\r\n                <a href="https://s-pmo.org/docs/developer/about-api-scart.html" target="_new"><i class="fa fa-info-circle" aria-hidden="true"></i>See full infomation</a>\r\n                ', 'admin.api_connection', 'en', NULL, NULL),
 	(1472, 'admin.result_item', 'Showing <b>:item_from</b>-<b>:item_to</b> of <b>:total</b> results</b>', 'admin', 'en', NULL, NULL),
 	(1473, 'admin.result_item', 'Hiển thị <b>:item_from</b>-<b>:item_to</b> của <b>:total</b> kết quả</b>', 'admin', 'vi', NULL, NULL),
 	(1474, 'admin.method_not_allow', 'Method not allow', 'admin', 'en', NULL, NULL),
@@ -2180,7 +2180,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(1515, 'admin.backup.title', 'Backup list', 'admin.backup', 'en', NULL, NULL),
 	(1516, 'admin.backup.processing', 'Đang xử lý...', 'admin.backup', 'vi', NULL, NULL),
 	(1517, 'admin.backup.processing', 'Processing...', 'admin.backup', 'en', NULL, NULL),
-	(1518, 'admin.backup.guide', '<span class="text-danger">Chú ý: Bạn cần phải cài đặt đường dẫn hệ thống chính xác. Xem hướng dẫn <a target=_new href="https://s-cart.org/guide/backup.html?lang=vi">TẠI ĐÂY</a></span>', 'admin.backup', 'vi', NULL, NULL),
+	(1518, 'admin.backup.guide', '<span class="text-danger">Chú ý: Bạn cần phải cài đặt đường dẫn hệ thống chính xác. Xem hướng dẫn <a target=_new href="https://s-pmo.org/guide/backup.html?lang=vi">TẠI ĐÂY</a></span>', 'admin.backup', 'vi', NULL, NULL),
 	(1519, 'admin.backup.generate_now', 'Tạo một backup ngay', 'admin.backup', 'vi', NULL, NULL),
 	(1520, 'admin.backup.manager', 'Quản lý sao lưu', 'admin.backup', 'vi', NULL, NULL),
 	(1521, 'admin.backup.name', 'Tên file', 'admin.backup', 'vi', NULL, NULL),
@@ -2194,7 +2194,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(1529, 'admin.backup.restore_success', 'Phục hồi dữ liệu thành công!', 'admin.backup', 'vi', NULL, NULL),
 	(1530, 'admin.backup.generate_success', 'Tạo file backup thành công!', 'admin.backup', 'vi', NULL, NULL),
 	(1531, 'admin.backup.limit_backup', 'Bạn chỉ được tạo tối đa 10 bản sao lưu!', 'admin.backup', 'vi', NULL, NULL),
-	(1532, 'admin.backup.guide', '<span class="text-danger">NOTE: To use MySQL server on the command line, you must have the correct system path. This is usually done automatically. Read document in <a target=_new href="https://s-cart.org/guide/backup.html">HERE</a></span>', 'admin.backup', 'en', NULL, NULL),
+	(1532, 'admin.backup.guide', '<span class="text-danger">NOTE: To use MySQL server on the command line, you must have the correct system path. This is usually done automatically. Read document in <a target=_new href="https://s-pmo.org/guide/backup.html">HERE</a></span>', 'admin.backup', 'en', NULL, NULL),
 	(1533, 'admin.backup.generate_now', 'Gererate a backup now', 'admin.backup', 'en', NULL, NULL),
 	(1534, 'admin.backup.manager', 'Backup management', 'admin.backup', 'en', NULL, NULL),
 	(1535, 'admin.backup.name', 'File name', 'admin.backup', 'en', NULL, NULL),
@@ -2599,8 +2599,8 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(1934, 'email.email_action.customer_verify', 'Gửi email xác thực tài khoản', 'email.admin', 'vi', NULL, NULL),
 	(1935, 'email.email_action.smtp_mode', 'Sử dụng cấu hình SMTP', 'email.admin', 'vi', NULL, NULL),
 	(1936, 'email.email_action.smtp_mode', 'Use SMTP config', 'email.admin', 'en', NULL, NULL),
-	(1937, 'email.email_action.help_note', '<span class="text-red">(*)</span>: Email sẽ không được gửi trực tiếp, mà thông qua hàng đợi. Bạn cần phải cài đặt "artisan schedule:run" trước,  chi tiết <a href="https://s-cart.org/docs/master/email.html">TẠI ĐÂY</a>', 'email.admin', 'vi', NULL, NULL),
-	(1938, 'email.email_action.help_note', '<span class="text-red">(*)</span>: Emails will not be sent directly, but through a queue. You need to set up "artisan schedule: run" first, details <a href="https://s-cart.org/docs/master/email.html">HERE</a>', 'email.admin', 'en', NULL, NULL),
+	(1937, 'email.email_action.help_note', '<span class="text-red">(*)</span>: Email sẽ không được gửi trực tiếp, mà thông qua hàng đợi. Bạn cần phải cài đặt "artisan schedule:run" trước,  chi tiết <a href="https://s-pmo.org/docs/master/email.html">TẠI ĐÂY</a>', 'email.admin', 'vi', NULL, NULL),
+	(1938, 'email.email_action.help_note', '<span class="text-red">(*)</span>: Emails will not be sent directly, but through a queue. You need to set up "artisan schedule: run" first, details <a href="https://s-pmo.org/docs/master/email.html">HERE</a>', 'email.admin', 'en', NULL, NULL),
 	(1939, 'email.config_smtp.smtp_host', 'SMTP host', 'email.admin', 'en', NULL, NULL),
 	(1940, 'email.config_smtp.smtp_user', 'SMTP user', 'email.admin', 'en', NULL, NULL),
 	(1941, 'email.config_smtp.smtp_password', 'SMTP password', 'email.admin', 'en', NULL, NULL),
@@ -3004,7 +3004,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(2339, 'admin.template.import_success', 'Import success!', 'admin.template', 'en', NULL, NULL),
 	(2340, 'admin.template.error_exist', 'Template exist!', 'admin.template', 'en', NULL, NULL),
 	(2341, 'admin.template.template_import', '<a href="import" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Template</span></a>', 'admin.template', 'en', NULL, NULL),
-	(2342, 'admin.template.template_more', '<a href="https://s-cart.org/en/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>', 'admin.template', 'en', NULL, NULL),
+	(2342, 'admin.template.template_more', '<a href="https://s-pmo.org/en/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>', 'admin.template', 'en', NULL, NULL),
 	(2343, 'admin.template.manager', 'Template management', 'admin.template', 'en', NULL, NULL),
 	(2344, 'admin.template.title', 'Template list', 'admin.template', 'en', NULL, NULL),
 	(2345, 'admin.template.name', 'Template name', 'admin.template', 'en', NULL, NULL),
@@ -3049,7 +3049,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(2384, 'admin.template.import_success', 'Import thành công!', 'admin.template', 'vi', NULL, NULL),
 	(2385, 'admin.template.error_exist', 'Giao diện đã tồn tại!', 'admin.template', 'vi', NULL, NULL),
 	(2386, 'admin.template.template_import', '<a href="import" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>', 'admin.template', 'vi', NULL, NULL),
-	(2387, 'admin.template.template_more', '<a href="https://s-cart.org/vi/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download đầy đủ Ở ĐÂY</a>', 'admin.template', 'vi', NULL, NULL),
+	(2387, 'admin.template.template_more', '<a href="https://s-pmo.org/vi/template.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download đầy đủ Ở ĐÂY</a>', 'admin.template', 'vi', NULL, NULL),
 	(2388, 'admin.template.manager', 'Quản lý giao diện', 'admin.template', 'vi', NULL, NULL),
 	(2389, 'admin.template.title', 'Danh sách giao diện', 'admin.template', 'vi', NULL, NULL),
 	(2390, 'admin.template.name', 'Tên giao diện', 'admin.template', 'vi', NULL, NULL),
@@ -3133,7 +3133,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(2468, 'admin.plugin.import_success', 'Import thành công!', 'admin.plugin', 'vi', NULL, NULL),
 	(2469, 'admin.plugin.error_exist', 'Plugin đã tồn tại!', 'admin.plugin', 'vi', NULL, NULL),
 	(2470, 'admin.plugin.plugin_import', '<a href="import" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>', 'admin.plugin', 'vi', NULL, NULL),
-	(2471, 'admin.plugin.plugin_more', '<a href="https://s-cart.org/vi/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download đầy đủ Ở ĐÂY</a>', 'admin.plugin', 'vi', NULL, NULL),
+	(2471, 'admin.plugin.plugin_more', '<a href="https://s-pmo.org/vi/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download đầy đủ Ở ĐÂY</a>', 'admin.plugin', 'vi', NULL, NULL),
 	(2472, 'admin.plugin.Shipping_plugin', 'Shipping extension', 'admin.plugin', 'en', NULL, NULL),
 	(2473, 'admin.plugin.Payment_plugin', 'Payment extension', 'admin.plugin', 'en', NULL, NULL),
 	(2474, 'admin.plugin.Total_plugin', 'Order total extension', 'admin.plugin', 'en', NULL, NULL),
@@ -3201,7 +3201,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(2536, 'admin.plugin.import_success', 'Import success!', 'admin.plugin', 'en', NULL, NULL),
 	(2537, 'admin.plugin.error_exist', 'Plugin exist!', 'admin.plugin', 'en', NULL, NULL),
 	(2538, 'admin.plugin.plugin_import', '<a href="import" target=_new><span class="btn btn-success btn-flat"><i class="fa fa-floppy-o" aria-hidden="true"></i> Import Plugin</span></a>', 'admin.plugin', 'en', NULL, NULL),
-	(2539, 'admin.plugin.plugin_more', '<a href="https://s-cart.org/en/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>', 'admin.plugin', 'en', NULL, NULL),
+	(2539, 'admin.plugin.plugin_more', '<a href="https://s-pmo.org/en/plugin.html" target=_new><i class="fa fa-download" aria-hidden="true"></i> Download more HERE</a>', 'admin.plugin', 'en', NULL, NULL),
 	(2540, 'admin.plugin.install_success', 'Installed successfully', 'admin.plugin', 'en', NULL, NULL),
 	(2541, 'admin.plugin.install_faild', 'Installation failed', 'admin.plugin', 'en', NULL, NULL),
 	(2542, 'admin.plugin.table_exist', 'Table :table already exists', 'admin.plugin', 'en', NULL, NULL),
@@ -3382,7 +3382,7 @@ INSERT INTO `sc_languages` (`id`, `code`, `text`, `position`, `location`, `creat
 	(2717, 'plugin.plugin_action.plugin_exist', 'This plugin already exists', 'plugin', 'en', NULL, NULL);
 /*!40000 ALTER TABLE `sc_languages` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_product_review
+-- Dumping structure for table s-pmo.sc_product_review
 DROP TABLE IF EXISTS `sc_product_review`;
 CREATE TABLE IF NOT EXISTS `sc_product_review` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3397,12 +3397,12 @@ CREATE TABLE IF NOT EXISTS `sc_product_review` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_product_review: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_product_review: ~0 rows (approximately)
 DELETE FROM `sc_product_review`;
 /*!40000 ALTER TABLE `sc_product_review` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_product_review` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_attribute_group
+-- Dumping structure for table s-pmo.sc_shop_attribute_group
 DROP TABLE IF EXISTS `sc_shop_attribute_group`;
 CREATE TABLE IF NOT EXISTS `sc_shop_attribute_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -3415,7 +3415,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_attribute_group` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_attribute_group: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_attribute_group: ~2 rows (approximately)
 DELETE FROM `sc_shop_attribute_group`;
 /*!40000 ALTER TABLE `sc_shop_attribute_group` DISABLE KEYS */;
 INSERT INTO `sc_shop_attribute_group` (`id`, `name`, `status`, `sort`, `type`, `created_at`, `updated_at`) VALUES
@@ -3423,7 +3423,7 @@ INSERT INTO `sc_shop_attribute_group` (`id`, `name`, `status`, `sort`, `type`, `
 	(2, 'Size', 1, 2, 'select', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_attribute_group` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_banner
+-- Dumping structure for table s-pmo.sc_shop_banner
 DROP TABLE IF EXISTS `sc_shop_banner`;
 CREATE TABLE IF NOT EXISTS `sc_shop_banner` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3442,21 +3442,21 @@ CREATE TABLE IF NOT EXISTS `sc_shop_banner` (
   KEY `sc_shop_banner_type_index` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_banner: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_banner: ~8 rows (approximately)
 DELETE FROM `sc_shop_banner`;
 /*!40000 ALTER TABLE `sc_shop_banner` DISABLE KEYS */;
 INSERT INTO `sc_shop_banner` (`id`, `title`, `image`, `url`, `target`, `html`, `status`, `sort`, `click`, `type`, `created_at`, `updated_at`) VALUES
-	('986302e4-0a92-4443-926c-a66a4683ebe2', 'Banner home 1 (s-cart-light)', '/data/banner/banner-home-1.jpg', NULL, '_self', '', 1, 0, 0, 'banner', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
-	('986302e4-1572-4f41-ac4b-c2eb1eb8d11c', 'Banner home 2 (s-cart-light)', '/data/banner/banner-home-2.jpg', NULL, '_self', '', 1, 0, 0, 'banner', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
-	('986302e4-309e-4dbd-9459-3143435d72e8', 'Banner breadcrumb (s-cart-light)', '/data/banner/breadcrumb.jpg', NULL, '_self', '', 1, 0, 0, 'breadcrumb', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
-	('986302e4-37ba-4997-b853-3abc70d3844b', 'Banner store (s-cart-light)', '/data/banner/banner-store.jpg', NULL, '_self', '', 1, 0, 0, 'banner-store', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
-	('986302e5-652f-42b3-b83d-10480bcc828b', 'Banner home 1 (s-cart-light)', '/data/banner/banner-home-1.jpg', NULL, '_self', '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 1, 0, 0, 'banner', NULL, NULL),
-	('986302e5-6538-4d71-9f34-02b00a87da5e', 'Banner home 2 (s-cart-light)', '/data/banner/banner-home-2.jpg', NULL, '_self', '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 1, 0, 0, 'banner', NULL, NULL),
-	('986302e5-653d-403b-b284-c3fb1143eca1', 'Banner breadcrumb (s-cart-light)', '/data/banner/breadcrumb.jpg', NULL, '_self', '', 1, 0, 0, 'breadcrumb', NULL, NULL),
-	('986302e5-6541-4130-b7c9-2c75f6bb6c71', 'Banner store (s-cart-light)', '/data/banner/banner-store.jpg', NULL, '_self', '', 1, 0, 0, 'banner-store', NULL, NULL);
+	('986302e4-0a92-4443-926c-a66a4683ebe2', 'Banner home 1 (s-pmo-light)', '/data/banner/banner-home-1.jpg', NULL, '_self', '', 1, 0, 0, 'banner', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
+	('986302e4-1572-4f41-ac4b-c2eb1eb8d11c', 'Banner home 2 (s-pmo-light)', '/data/banner/banner-home-2.jpg', NULL, '_self', '', 1, 0, 0, 'banner', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
+	('986302e4-309e-4dbd-9459-3143435d72e8', 'Banner breadcrumb (s-pmo-light)', '/data/banner/breadcrumb.jpg', NULL, '_self', '', 1, 0, 0, 'breadcrumb', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
+	('986302e4-37ba-4997-b853-3abc70d3844b', 'Banner store (s-pmo-light)', '/data/banner/banner-store.jpg', NULL, '_self', '', 1, 0, 0, 'banner-store', '2023-02-04 18:29:36', '2023-02-04 18:29:36'),
+	('986302e5-652f-42b3-b83d-10480bcc828b', 'Banner home 1 (s-pmo-light)', '/data/banner/banner-home-1.jpg', NULL, '_self', '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 1, 0, 0, 'banner', NULL, NULL),
+	('986302e5-6538-4d71-9f34-02b00a87da5e', 'Banner home 2 (s-pmo-light)', '/data/banner/banner-home-2.jpg', NULL, '_self', '<h1 class="swiper-title-1" data-caption-animate="fadeScale" data-caption-delay="100">Top-notch Furniture</h1><p class="biggest text-white-70" data-caption-animate="fadeScale" data-caption-delay="200">Sofa Store provides the best furniture and accessories for homes and offices.</p><div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="300"> <span class="button button-zachem-tak-delat button-white button-zakaria"> Shop now</span> </div>', 1, 0, 0, 'banner', NULL, NULL),
+	('986302e5-653d-403b-b284-c3fb1143eca1', 'Banner breadcrumb (s-pmo-light)', '/data/banner/breadcrumb.jpg', NULL, '_self', '', 1, 0, 0, 'breadcrumb', NULL, NULL),
+	('986302e5-6541-4130-b7c9-2c75f6bb6c71', 'Banner store (s-pmo-light)', '/data/banner/banner-store.jpg', NULL, '_self', '', 1, 0, 0, 'banner-store', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_banner` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_banner_store
+-- Dumping structure for table s-pmo.sc_shop_banner_store
 DROP TABLE IF EXISTS `sc_shop_banner_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_banner_store` (
   `banner_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3464,7 +3464,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_banner_store` (
   PRIMARY KEY (`banner_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_banner_store: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_banner_store: ~8 rows (approximately)
 DELETE FROM `sc_shop_banner_store`;
 /*!40000 ALTER TABLE `sc_shop_banner_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_banner_store` (`banner_id`, `store_id`) VALUES
@@ -3478,7 +3478,7 @@ INSERT INTO `sc_shop_banner_store` (`banner_id`, `store_id`) VALUES
 	('986302e5-6541-4130-b7c9-2c75f6bb6c71', '1');
 /*!40000 ALTER TABLE `sc_shop_banner_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_banner_type
+-- Dumping structure for table s-pmo.sc_shop_banner_type
 DROP TABLE IF EXISTS `sc_shop_banner_type`;
 CREATE TABLE IF NOT EXISTS `sc_shop_banner_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -3490,7 +3490,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_banner_type` (
   UNIQUE KEY `sc_shop_banner_type_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_banner_type: ~7 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_banner_type: ~7 rows (approximately)
 DELETE FROM `sc_shop_banner_type`;
 /*!40000 ALTER TABLE `sc_shop_banner_type` DISABLE KEYS */;
 INSERT INTO `sc_shop_banner_type` (`id`, `code`, `name`, `created_at`, `updated_at`) VALUES
@@ -3503,7 +3503,7 @@ INSERT INTO `sc_shop_banner_type` (`id`, `code`, `name`, `created_at`, `updated_
 	(7, 'other', 'Other', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_banner_type` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_brand
+-- Dumping structure for table s-pmo.sc_shop_brand
 DROP TABLE IF EXISTS `sc_shop_brand`;
 CREATE TABLE IF NOT EXISTS `sc_shop_brand` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3519,7 +3519,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_brand` (
   KEY `sc_shop_brand_alias_index` (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_brand: ~9 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_brand: ~9 rows (approximately)
 DELETE FROM `sc_shop_brand`;
 /*!40000 ALTER TABLE `sc_shop_brand` DISABLE KEYS */;
 INSERT INTO `sc_shop_brand` (`id`, `name`, `alias`, `image`, `url`, `status`, `sort`, `created_at`, `updated_at`) VALUES
@@ -3534,7 +3534,7 @@ INSERT INTO `sc_shop_brand` (`id`, `name`, `alias`, `image`, `url`, `status`, `s
 	('986302e5-62e0-4131-b9fb-b8ae143c84f9', 'ThanhHoa', 'thanhhoa', '/data/brand/vaio.png', NULL, 1, 0, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_brand` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_brand_store
+-- Dumping structure for table s-pmo.sc_shop_brand_store
 DROP TABLE IF EXISTS `sc_shop_brand_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_brand_store` (
   `brand_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3542,7 +3542,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_brand_store` (
   PRIMARY KEY (`brand_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_brand_store: ~9 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_brand_store: ~9 rows (approximately)
 DELETE FROM `sc_shop_brand_store`;
 /*!40000 ALTER TABLE `sc_shop_brand_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_brand_store` (`brand_id`, `store_id`) VALUES
@@ -3557,7 +3557,7 @@ INSERT INTO `sc_shop_brand_store` (`brand_id`, `store_id`) VALUES
 	('986302e5-62e0-4131-b9fb-b8ae143c84f9', '1');
 /*!40000 ALTER TABLE `sc_shop_brand_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_category
+-- Dumping structure for table s-pmo.sc_shop_category
 DROP TABLE IF EXISTS `sc_shop_category`;
 CREATE TABLE IF NOT EXISTS `sc_shop_category` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3573,7 +3573,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_category` (
   KEY `sc_shop_category_alias_index` (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_category: ~27 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_category: ~27 rows (approximately)
 DELETE FROM `sc_shop_category`;
 /*!40000 ALTER TABLE `sc_shop_category` DISABLE KEYS */;
 INSERT INTO `sc_shop_category` (`id`, `image`, `alias`, `parent`, `top`, `status`, `sort`, `created_at`, `updated_at`) VALUES
@@ -3606,7 +3606,7 @@ INSERT INTO `sc_shop_category` (`id`, `image`, `alias`, `parent`, `top`, `status
 	('986302e5-5b11-45c2-99bc-e16501051ad1', '/data/category/print1.png', 'con-dao', '986302e5-5aab-46ad-aa9d-505667dcc74a', 1, 1, 10, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_category` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_category_description
+-- Dumping structure for table s-pmo.sc_shop_category_description
 DROP TABLE IF EXISTS `sc_shop_category_description`;
 CREATE TABLE IF NOT EXISTS `sc_shop_category_description` (
   `category_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3618,7 +3618,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_category_description` (
   KEY `sc_shop_category_description_lang_index` (`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_category_description: ~54 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_category_description: ~54 rows (approximately)
 DELETE FROM `sc_shop_category_description`;
 /*!40000 ALTER TABLE `sc_shop_category_description` DISABLE KEYS */;
 INSERT INTO `sc_shop_category_description` (`category_id`, `lang`, `title`, `keyword`, `description`) VALUES
@@ -3678,7 +3678,7 @@ INSERT INTO `sc_shop_category_description` (`category_id`, `lang`, `title`, `key
 	('986302e5-5b11-45c2-99bc-e16501051ad1', 'vi', 'Con Dao', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_category_description` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_category_store
+-- Dumping structure for table s-pmo.sc_shop_category_store
 DROP TABLE IF EXISTS `sc_shop_category_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_category_store` (
   `category_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3686,7 +3686,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_category_store` (
   PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_category_store: ~27 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_category_store: ~27 rows (approximately)
 DELETE FROM `sc_shop_category_store`;
 /*!40000 ALTER TABLE `sc_shop_category_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_category_store` (`category_id`, `store_id`) VALUES
@@ -3719,7 +3719,7 @@ INSERT INTO `sc_shop_category_store` (`category_id`, `store_id`) VALUES
 	('986302e5-5b11-45c2-99bc-e16501051ad1', '1');
 /*!40000 ALTER TABLE `sc_shop_category_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_country
+-- Dumping structure for table s-pmo.sc_shop_country
 DROP TABLE IF EXISTS `sc_shop_country`;
 CREATE TABLE IF NOT EXISTS `sc_shop_country` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -3729,7 +3729,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_country` (
   UNIQUE KEY `sc_shop_country_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_country: ~245 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_country: ~245 rows (approximately)
 DELETE FROM `sc_shop_country`;
 /*!40000 ALTER TABLE `sc_shop_country` DISABLE KEYS */;
 INSERT INTO `sc_shop_country` (`id`, `code`, `name`) VALUES
@@ -3980,7 +3980,7 @@ INSERT INTO `sc_shop_country` (`id`, `code`, `name`) VALUES
 	(245, 'ZW', 'Zimbabwe');
 /*!40000 ALTER TABLE `sc_shop_country` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_currency
+-- Dumping structure for table s-pmo.sc_shop_currency
 DROP TABLE IF EXISTS `sc_shop_currency`;
 CREATE TABLE IF NOT EXISTS `sc_shop_currency` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -3999,7 +3999,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_currency` (
   UNIQUE KEY `sc_shop_currency_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_currency: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_currency: ~2 rows (approximately)
 DELETE FROM `sc_shop_currency`;
 /*!40000 ALTER TABLE `sc_shop_currency` DISABLE KEYS */;
 INSERT INTO `sc_shop_currency` (`id`, `name`, `code`, `symbol`, `exchange_rate`, `precision`, `symbol_first`, `thousands`, `status`, `sort`, `created_at`, `updated_at`) VALUES
@@ -4007,7 +4007,7 @@ INSERT INTO `sc_shop_currency` (`id`, `name`, `code`, `symbol`, `exchange_rate`,
 	(2, 'VietNam Dong', 'VND', '₫', 20000.00, 0, 0, ',', 1, 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_currency` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_customer
+-- Dumping structure for table s-pmo.sc_shop_customer
 DROP TABLE IF EXISTS `sc_shop_customer`;
 CREATE TABLE IF NOT EXISTS `sc_shop_customer` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4042,12 +4042,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_customer` (
   KEY `sc_shop_customer_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_customer: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_customer: ~0 rows (approximately)
 DELETE FROM `sc_shop_customer`;
 /*!40000 ALTER TABLE `sc_shop_customer` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_customer` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_customer_address
+-- Dumping structure for table s-pmo.sc_shop_customer_address
 DROP TABLE IF EXISTS `sc_shop_customer_address`;
 CREATE TABLE IF NOT EXISTS `sc_shop_customer_address` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4068,12 +4068,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_customer_address` (
   KEY `sc_shop_customer_address_customer_id_index` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_customer_address: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_customer_address: ~0 rows (approximately)
 DELETE FROM `sc_shop_customer_address`;
 /*!40000 ALTER TABLE `sc_shop_customer_address` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_customer_address` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_custom_field
+-- Dumping structure for table s-pmo.sc_shop_custom_field
 DROP TABLE IF EXISTS `sc_shop_custom_field`;
 CREATE TABLE IF NOT EXISTS `sc_shop_custom_field` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4091,12 +4091,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_custom_field` (
   KEY `sc_shop_custom_field_code_index` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_custom_field: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_custom_field: ~0 rows (approximately)
 DELETE FROM `sc_shop_custom_field`;
 /*!40000 ALTER TABLE `sc_shop_custom_field` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_custom_field` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_custom_field_detail
+-- Dumping structure for table s-pmo.sc_shop_custom_field_detail
 DROP TABLE IF EXISTS `sc_shop_custom_field_detail`;
 CREATE TABLE IF NOT EXISTS `sc_shop_custom_field_detail` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4110,12 +4110,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_custom_field_detail` (
   KEY `sc_shop_custom_field_detail_rel_id_index` (`rel_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_custom_field_detail: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_custom_field_detail: ~0 rows (approximately)
 DELETE FROM `sc_shop_custom_field_detail`;
 /*!40000 ALTER TABLE `sc_shop_custom_field_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_custom_field_detail` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_discount
+-- Dumping structure for table s-pmo.sc_shop_discount
 DROP TABLE IF EXISTS `sc_shop_discount`;
 CREATE TABLE IF NOT EXISTS `sc_shop_discount` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4134,12 +4134,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_discount` (
   UNIQUE KEY `sc_shop_discount_code_unique` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_discount: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_discount: ~0 rows (approximately)
 DELETE FROM `sc_shop_discount`;
 /*!40000 ALTER TABLE `sc_shop_discount` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_discount` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_discount_customer
+-- Dumping structure for table s-pmo.sc_shop_discount_customer
 DROP TABLE IF EXISTS `sc_shop_discount_customer`;
 CREATE TABLE IF NOT EXISTS `sc_shop_discount_customer` (
   `customer_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4152,12 +4152,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_discount_customer` (
   KEY `sc_shop_discount_customer_discount_id_index` (`discount_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_discount_customer: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_discount_customer: ~0 rows (approximately)
 DELETE FROM `sc_shop_discount_customer`;
 /*!40000 ALTER TABLE `sc_shop_discount_customer` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_discount_customer` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_discount_store
+-- Dumping structure for table s-pmo.sc_shop_discount_store
 DROP TABLE IF EXISTS `sc_shop_discount_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_discount_store` (
   `discount_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4165,12 +4165,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_discount_store` (
   PRIMARY KEY (`discount_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_discount_store: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_discount_store: ~0 rows (approximately)
 DELETE FROM `sc_shop_discount_store`;
 /*!40000 ALTER TABLE `sc_shop_discount_store` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_discount_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_email_template
+-- Dumping structure for table s-pmo.sc_shop_email_template
 DROP TABLE IF EXISTS `sc_shop_email_template`;
 CREATE TABLE IF NOT EXISTS `sc_shop_email_template` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4185,7 +4185,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_email_template` (
   KEY `sc_shop_email_template_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_email_template: ~6 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_email_template: ~6 rows (approximately)
 DELETE FROM `sc_shop_email_template`;
 /*!40000 ALTER TABLE `sc_shop_email_template` DISABLE KEYS */;
 INSERT INTO `sc_shop_email_template` (`id`, `name`, `group`, `text`, `store_id`, `status`, `created_at`, `updated_at`) VALUES
@@ -4197,7 +4197,7 @@ INSERT INTO `sc_shop_email_template` (`id`, `name`, `group`, `text`, `store_id`,
 	('986302e3-f199-445f-987b-2afe75ad8e70', 'New order to customr', 'order_success_to_customer', '\r\n<table class="inner-body" align="center" cellpadding="0" cellspacing="0">\r\n<tr>\r\n   <td>\r\n      <b>Order ID</b>: {{$orderID}}<br>\r\n      <b>Customer name</b>: {{$toname}}<br>\r\n      <b>Address</b>: {{$address}}<br>\r\n      <b>Phone</b>: {{$phone}}<br>\r\n      <b>Order note</b>: {{$comment}}\r\n   </td>\r\n</tr>\r\n</table>\r\n<hr>\r\n<p style="text-align: center;">Order detail:<br>\r\n   ===================================<br>\r\n</p>\r\n<table class="inner-body" align="center" cellpadding="0" cellspacing="0" border="1">\r\n{{$orderDetail}}\r\n<tr>\r\n   <td colspan="2"></td>\r\n   <td colspan="2" style="font-weight: bold;">Sub total</td>\r\n   <td colspan="2" align="right">{{$subtotal}}</td>\r\n</tr>\r\n<tr>\r\n   <td colspan="2"></td>\r\n   <td colspan="2" style="font-weight: bold;">Shipping fee</td>\r\n   <td colspan="2" align="right">{{$shipping}}</td>\r\n</tr>\r\n<tr>\r\n   <td colspan="2"></td>\r\n   <td colspan="2" style="font-weight: bold;">Discount</td>\r\n   <td colspan="2" align="right">{{$discount}}</td>\r\n</tr>\r\n<tr>\r\n   <td colspan="2"></td>\r\n   <td colspan="2" style="font-weight: bold;">Total</td>\r\n   <td colspan="2" align="right">{{$total}}</td>\r\n</tr>\r\n</table>', '1', 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_email_template` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_language
+-- Dumping structure for table s-pmo.sc_shop_language
 DROP TABLE IF EXISTS `sc_shop_language`;
 CREATE TABLE IF NOT EXISTS `sc_shop_language` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4213,7 +4213,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_language` (
   UNIQUE KEY `sc_shop_language_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_language: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_language: ~2 rows (approximately)
 DELETE FROM `sc_shop_language`;
 /*!40000 ALTER TABLE `sc_shop_language` DISABLE KEYS */;
 INSERT INTO `sc_shop_language` (`id`, `name`, `code`, `icon`, `status`, `rtl`, `sort`, `created_at`, `updated_at`) VALUES
@@ -4221,7 +4221,7 @@ INSERT INTO `sc_shop_language` (`id`, `name`, `code`, `icon`, `status`, `rtl`, `
 	(2, 'Tiếng Việt', 'vi', '/data/language/flag_vn.png', 1, 0, 2, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_language` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_layout_page
+-- Dumping structure for table s-pmo.sc_shop_layout_page
 DROP TABLE IF EXISTS `sc_shop_layout_page`;
 CREATE TABLE IF NOT EXISTS `sc_shop_layout_page` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4233,7 +4233,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_layout_page` (
   UNIQUE KEY `sc_shop_layout_page_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_layout_page: ~18 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_layout_page: ~18 rows (approximately)
 DELETE FROM `sc_shop_layout_page`;
 /*!40000 ALTER TABLE `sc_shop_layout_page` DISABLE KEYS */;
 INSERT INTO `sc_shop_layout_page` (`id`, `key`, `name`, `created_at`, `updated_at`) VALUES
@@ -4257,7 +4257,7 @@ INSERT INTO `sc_shop_layout_page` (`id`, `key`, `name`, `created_at`, `updated_a
 	(18, 'store_product_list', 'admin.layout_page_position.store_product_list', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_layout_page` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_layout_position
+-- Dumping structure for table s-pmo.sc_shop_layout_position
 DROP TABLE IF EXISTS `sc_shop_layout_position`;
 CREATE TABLE IF NOT EXISTS `sc_shop_layout_position` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4269,7 +4269,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_layout_position` (
   UNIQUE KEY `sc_shop_layout_position_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_layout_position: ~6 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_layout_position: ~6 rows (approximately)
 DELETE FROM `sc_shop_layout_position`;
 /*!40000 ALTER TABLE `sc_shop_layout_position` DISABLE KEYS */;
 INSERT INTO `sc_shop_layout_position` (`id`, `key`, `name`, `created_at`, `updated_at`) VALUES
@@ -4281,7 +4281,7 @@ INSERT INTO `sc_shop_layout_position` (`id`, `key`, `name`, `created_at`, `updat
 	(6, 'bottom', 'admin.layout_page_block.bottom', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_layout_position` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_length
+-- Dumping structure for table s-pmo.sc_shop_length
 DROP TABLE IF EXISTS `sc_shop_length`;
 CREATE TABLE IF NOT EXISTS `sc_shop_length` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4293,7 +4293,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_length` (
   UNIQUE KEY `sc_shop_length_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_length: ~4 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_length: ~4 rows (approximately)
 DELETE FROM `sc_shop_length`;
 /*!40000 ALTER TABLE `sc_shop_length` DISABLE KEYS */;
 INSERT INTO `sc_shop_length` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
@@ -4303,7 +4303,7 @@ INSERT INTO `sc_shop_length` (`id`, `name`, `description`, `created_at`, `update
 	(4, 'in', 'Inch ', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_length` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_link
+-- Dumping structure for table s-pmo.sc_shop_link
 DROP TABLE IF EXISTS `sc_shop_link`;
 CREATE TABLE IF NOT EXISTS `sc_shop_link` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4321,14 +4321,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_link` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_link: ~11 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_link: ~11 rows (approximately)
 DELETE FROM `sc_shop_link`;
 /*!40000 ALTER TABLE `sc_shop_link` DISABLE KEYS */;
 INSERT INTO `sc_shop_link` (`id`, `name`, `url`, `target`, `group`, `module`, `type`, `collection_id`, `status`, `sort`, `created_at`, `updated_at`) VALUES
 	('1', 'front.about', 'route::page.detail::about', '_self', 'menu', NULL, NULL, NULL, 1, 50, NULL, NULL),
-	('2', 'S-Cart', '#collection', '_self', 'menu', NULL, 'collection', NULL, 1, 60, NULL, NULL),
-	('3', 'About us', 'https://s-cart.org/en/about.html', '_self', 'menu', NULL, NULL, '2', 1, 10, NULL, NULL),
-	('4', 'Github', 'https://github.com/s-cart/s-cart', '_self', 'menu', NULL, NULL, '2', 1, 20, NULL, NULL),
+	('2', 's-pmo', '#collection', '_self', 'menu', NULL, 'collection', NULL, 1, 60, NULL, NULL),
+	('3', 'About us', 'https://s-pmo.org/en/about.html', '_self', 'menu', NULL, NULL, '2', 1, 10, NULL, NULL),
+	('4', 'Github', 'https://github.com/s-pmo/s-pmo', '_self', 'menu', NULL, NULL, '2', 1, 20, NULL, NULL),
 	('986302e3-f33c-4100-a138-1bbf9a42c3d7', 'front.home', 'route::home', '_self', 'menu', '', NULL, NULL, 1, 10, NULL, NULL),
 	('986302e3-f34a-46a5-899f-abdecca44f9c', 'front.shop', 'route::shop', '_self', 'menu', '', NULL, NULL, 1, 20, NULL, NULL),
 	('986302e3-f354-4db4-b71d-e85563c1c3d9', 'front.blog', 'route::news', '_self', 'menu', '', NULL, NULL, 1, 30, NULL, NULL),
@@ -4338,7 +4338,7 @@ INSERT INTO `sc_shop_link` (`id`, `name`, `url`, `target`, `group`, `module`, `t
 	('986302e3-f37f-4bfa-994b-1c6ee7014e40', 'front.wishlist_page', 'route::wishlist', '_self', 'footer', '', NULL, NULL, 1, 80, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_link` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_link_group
+-- Dumping structure for table s-pmo.sc_shop_link_group
 DROP TABLE IF EXISTS `sc_shop_link_group`;
 CREATE TABLE IF NOT EXISTS `sc_shop_link_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4350,7 +4350,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_link_group` (
   UNIQUE KEY `sc_shop_link_group_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_link_group: ~7 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_link_group: ~7 rows (approximately)
 DELETE FROM `sc_shop_link_group`;
 /*!40000 ALTER TABLE `sc_shop_link_group` DISABLE KEYS */;
 INSERT INTO `sc_shop_link_group` (`id`, `code`, `name`, `created_at`, `updated_at`) VALUES
@@ -4363,7 +4363,7 @@ INSERT INTO `sc_shop_link_group` (`id`, `code`, `name`, `created_at`, `updated_a
 	(7, 'sidebar', 'Sidebar', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_link_group` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_link_store
+-- Dumping structure for table s-pmo.sc_shop_link_store
 DROP TABLE IF EXISTS `sc_shop_link_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_link_store` (
   `link_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4371,7 +4371,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_link_store` (
   PRIMARY KEY (`link_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_link_store: ~11 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_link_store: ~11 rows (approximately)
 DELETE FROM `sc_shop_link_store`;
 /*!40000 ALTER TABLE `sc_shop_link_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_link_store` (`link_id`, `store_id`) VALUES
@@ -4388,7 +4388,7 @@ INSERT INTO `sc_shop_link_store` (`link_id`, `store_id`) VALUES
 	('986302e3-f37f-4bfa-994b-1c6ee7014e40', '1');
 /*!40000 ALTER TABLE `sc_shop_link_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_news
+-- Dumping structure for table s-pmo.sc_shop_news
 DROP TABLE IF EXISTS `sc_shop_news`;
 CREATE TABLE IF NOT EXISTS `sc_shop_news` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4402,7 +4402,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_news` (
   KEY `sc_shop_news_alias_index` (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_news: ~6 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_news: ~6 rows (approximately)
 DELETE FROM `sc_shop_news`;
 /*!40000 ALTER TABLE `sc_shop_news` DISABLE KEYS */;
 INSERT INTO `sc_shop_news` (`id`, `image`, `alias`, `sort`, `status`, `created_at`, `updated_at`) VALUES
@@ -4414,7 +4414,7 @@ INSERT INTO `sc_shop_news` (`id`, `image`, `alias`, `sort`, `status`, `created_a
 	('986302e5-56da-45e7-bb34-a2eea8ba6bcc', '/data/content/blog-6.jpg', 'demo-scart-blog-6', 0, 1, '2023-02-04 18:29:37', NULL);
 /*!40000 ALTER TABLE `sc_shop_news` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_news_description
+-- Dumping structure for table s-pmo.sc_shop_news_description
 DROP TABLE IF EXISTS `sc_shop_news_description`;
 CREATE TABLE IF NOT EXISTS `sc_shop_news_description` (
   `news_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4426,7 +4426,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_news_description` (
   UNIQUE KEY `sc_shop_news_description_news_id_lang_unique` (`news_id`,`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_news_description: ~12 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_news_description: ~12 rows (approximately)
 DELETE FROM `sc_shop_news_description`;
 /*!40000 ALTER TABLE `sc_shop_news_description` DISABLE KEYS */;
 INSERT INTO `sc_shop_news_description` (`news_id`, `lang`, `title`, `keyword`, `description`, `content`) VALUES
@@ -4444,7 +4444,7 @@ INSERT INTO `sc_shop_news_description` (`news_id`, `lang`, `title`, `keyword`, `
 	('986302e5-56da-45e7-bb34-a2eea8ba6bcc', 'vi', 'Easy Polo Black Edition 6', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 150px; float: right; margin: 10px;" /></p>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>');
 /*!40000 ALTER TABLE `sc_shop_news_description` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_news_store
+-- Dumping structure for table s-pmo.sc_shop_news_store
 DROP TABLE IF EXISTS `sc_shop_news_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_news_store` (
   `news_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4452,7 +4452,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_news_store` (
   PRIMARY KEY (`news_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_news_store: ~6 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_news_store: ~6 rows (approximately)
 DELETE FROM `sc_shop_news_store`;
 /*!40000 ALTER TABLE `sc_shop_news_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_news_store` (`news_id`, `store_id`) VALUES
@@ -4464,7 +4464,7 @@ INSERT INTO `sc_shop_news_store` (`news_id`, `store_id`) VALUES
 	('986302e5-56da-45e7-bb34-a2eea8ba6bcc', '1');
 /*!40000 ALTER TABLE `sc_shop_news_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_order
+-- Dumping structure for table s-pmo.sc_shop_order
 DROP TABLE IF EXISTS `sc_shop_order`;
 CREATE TABLE IF NOT EXISTS `sc_shop_order` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4511,12 +4511,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_order` (
   KEY `sc_shop_order_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_order: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_order: ~0 rows (approximately)
 DELETE FROM `sc_shop_order`;
 /*!40000 ALTER TABLE `sc_shop_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_order` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_order_detail
+-- Dumping structure for table s-pmo.sc_shop_order_detail
 DROP TABLE IF EXISTS `sc_shop_order_detail`;
 CREATE TABLE IF NOT EXISTS `sc_shop_order_detail` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4537,12 +4537,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_order_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_order_detail: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_order_detail: ~0 rows (approximately)
 DELETE FROM `sc_shop_order_detail`;
 /*!40000 ALTER TABLE `sc_shop_order_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_order_detail` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_order_history
+-- Dumping structure for table s-pmo.sc_shop_order_history
 DROP TABLE IF EXISTS `sc_shop_order_history`;
 CREATE TABLE IF NOT EXISTS `sc_shop_order_history` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4555,12 +4555,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_order_history` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_order_history: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_order_history: ~0 rows (approximately)
 DELETE FROM `sc_shop_order_history`;
 /*!40000 ALTER TABLE `sc_shop_order_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_order_history` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_order_status
+-- Dumping structure for table s-pmo.sc_shop_order_status
 DROP TABLE IF EXISTS `sc_shop_order_status`;
 CREATE TABLE IF NOT EXISTS `sc_shop_order_status` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4570,7 +4570,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_order_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_order_status: ~6 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_order_status: ~6 rows (approximately)
 DELETE FROM `sc_shop_order_status`;
 /*!40000 ALTER TABLE `sc_shop_order_status` DISABLE KEYS */;
 INSERT INTO `sc_shop_order_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -4582,7 +4582,7 @@ INSERT INTO `sc_shop_order_status` (`id`, `name`, `created_at`, `updated_at`) VA
 	(6, 'Failed', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_order_status` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_order_total
+-- Dumping structure for table s-pmo.sc_shop_order_total
 DROP TABLE IF EXISTS `sc_shop_order_total`;
 CREATE TABLE IF NOT EXISTS `sc_shop_order_total` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4598,12 +4598,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_order_total` (
   KEY `sc_shop_order_total_order_id_index` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_order_total: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_order_total: ~0 rows (approximately)
 DELETE FROM `sc_shop_order_total`;
 /*!40000 ALTER TABLE `sc_shop_order_total` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_order_total` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_page
+-- Dumping structure for table s-pmo.sc_shop_page
 DROP TABLE IF EXISTS `sc_shop_page`;
 CREATE TABLE IF NOT EXISTS `sc_shop_page` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4616,14 +4616,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_page` (
   KEY `sc_shop_page_alias_index` (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_page: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_page: ~1 rows (approximately)
 DELETE FROM `sc_shop_page`;
 /*!40000 ALTER TABLE `sc_shop_page` DISABLE KEYS */;
 INSERT INTO `sc_shop_page` (`id`, `image`, `alias`, `status`, `created_at`, `updated_at`) VALUES
 	('1', '', 'about', 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_page` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_page_description
+-- Dumping structure for table s-pmo.sc_shop_page_description
 DROP TABLE IF EXISTS `sc_shop_page_description`;
 CREATE TABLE IF NOT EXISTS `sc_shop_page_description` (
   `page_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4636,7 +4636,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_page_description` (
   KEY `sc_shop_page_description_lang_index` (`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_page_description: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_page_description: ~2 rows (approximately)
 DELETE FROM `sc_shop_page_description`;
 /*!40000 ALTER TABLE `sc_shop_page_description` DISABLE KEYS */;
 INSERT INTO `sc_shop_page_description` (`page_id`, `lang`, `title`, `keyword`, `description`, `content`) VALUES
@@ -4644,7 +4644,7 @@ INSERT INTO `sc_shop_page_description` (`page_id`, `lang`, `title`, `keyword`, `
 	('1', 'vi', 'Giới thiệu', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-2.png" style="width: 150px; float: right; margin: 10px;" /></p>\r\n            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>');
 /*!40000 ALTER TABLE `sc_shop_page_description` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_page_store
+-- Dumping structure for table s-pmo.sc_shop_page_store
 DROP TABLE IF EXISTS `sc_shop_page_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_page_store` (
   `page_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4652,14 +4652,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_page_store` (
   PRIMARY KEY (`page_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_page_store: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_page_store: ~1 rows (approximately)
 DELETE FROM `sc_shop_page_store`;
 /*!40000 ALTER TABLE `sc_shop_page_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_page_store` (`page_id`, `store_id`) VALUES
 	('1', '1');
 /*!40000 ALTER TABLE `sc_shop_page_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_password_resets
+-- Dumping structure for table s-pmo.sc_shop_password_resets
 DROP TABLE IF EXISTS `sc_shop_password_resets`;
 CREATE TABLE IF NOT EXISTS `sc_shop_password_resets` (
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4668,12 +4668,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_password_resets` (
   KEY `sc_shop_password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_password_resets: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_password_resets: ~0 rows (approximately)
 DELETE FROM `sc_shop_password_resets`;
 /*!40000 ALTER TABLE `sc_shop_password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_password_resets` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_payment_status
+-- Dumping structure for table s-pmo.sc_shop_payment_status
 DROP TABLE IF EXISTS `sc_shop_payment_status`;
 CREATE TABLE IF NOT EXISTS `sc_shop_payment_status` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -4683,7 +4683,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_payment_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_payment_status: ~4 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_payment_status: ~4 rows (approximately)
 DELETE FROM `sc_shop_payment_status`;
 /*!40000 ALTER TABLE `sc_shop_payment_status` DISABLE KEYS */;
 INSERT INTO `sc_shop_payment_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -4693,7 +4693,7 @@ INSERT INTO `sc_shop_payment_status` (`id`, `name`, `created_at`, `updated_at`) 
 	(4, 'Refurn', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_payment_status` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product
+-- Dumping structure for table s-pmo.sc_shop_product
 DROP TABLE IF EXISTS `sc_shop_product`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4741,7 +4741,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product` (
   KEY `sc_shop_product_alias_index` (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product: ~36 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product: ~36 rows (approximately)
 DELETE FROM `sc_shop_product`;
 /*!40000 ALTER TABLE `sc_shop_product` DISABLE KEYS */;
 INSERT INTO `sc_shop_product` (`id`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `image`, `brand_id`, `supplier_id`, `price`, `cost`, `stock`, `sold`, `minimum`, `weight_class`, `weight`, `length_class`, `length`, `width`, `height`, `kind`, `property`, `tax_id`, `status`, `approve`, `sort`, `view`, `alias`, `date_lastview`, `date_available`, `created_at`, `updated_at`) VALUES
@@ -4783,7 +4783,7 @@ INSERT INTO `sc_shop_product` (`id`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, 
 	('986302e5-6803-4510-bc70-9eee93fe74cf', 'THANH-LONG-RUOT-DO', NULL, NULL, NULL, NULL, NULL, '/data/product/product-36.png', '986302e5-62d8-4f8f-928c-0db7bb2b7916', '986302e5-60f8-426c-a223-16b8d7cb3df5', 60.00, 0.00, 100, 0, 0, NULL, 0.00, NULL, 0.00, 0.00, 0.00, 0, 'physical', 'auto', 1, 1, 0, 0, 'thanh-long-ruot-do', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_product` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_attribute
+-- Dumping structure for table s-pmo.sc_shop_product_attribute
 DROP TABLE IF EXISTS `sc_shop_product_attribute`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_attribute` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -4797,7 +4797,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_attribute` (
   KEY `sc_shop_product_attribute_product_id_attribute_group_id_index` (`product_id`,`attribute_group_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_attribute: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_attribute: ~8 rows (approximately)
 DELETE FROM `sc_shop_product_attribute`;
 /*!40000 ALTER TABLE `sc_shop_product_attribute` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_attribute` (`id`, `name`, `attribute_group_id`, `product_id`, `add_price`, `sort`, `status`) VALUES
@@ -4811,7 +4811,7 @@ INSERT INTO `sc_shop_product_attribute` (`id`, `name`, `attribute_group_id`, `pr
 	(8, 'M', 2, '986302e5-67a3-47e4-9f4c-49bc84e655b1', 0.00, 0, 1);
 /*!40000 ALTER TABLE `sc_shop_product_attribute` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_build
+-- Dumping structure for table s-pmo.sc_shop_product_build
 DROP TABLE IF EXISTS `sc_shop_product_build`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_build` (
   `build_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4820,7 +4820,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_build` (
   PRIMARY KEY (`build_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_build: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_build: ~8 rows (approximately)
 DELETE FROM `sc_shop_product_build`;
 /*!40000 ALTER TABLE `sc_shop_product_build` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_build` (`build_id`, `product_id`, `quantity`) VALUES
@@ -4834,7 +4834,7 @@ INSERT INTO `sc_shop_product_build` (`build_id`, `product_id`, `quantity`) VALUE
 	('986302e5-67f7-4281-ae48-8a833ef8c0f5', '986302e5-67a7-4e5c-8705-5e92ccbbfa81', 2);
 /*!40000 ALTER TABLE `sc_shop_product_build` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_category
+-- Dumping structure for table s-pmo.sc_shop_product_category
 DROP TABLE IF EXISTS `sc_shop_product_category`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_category` (
   `product_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4842,7 +4842,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_category` (
   PRIMARY KEY (`product_id`,`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_category: ~38 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_category: ~38 rows (approximately)
 DELETE FROM `sc_shop_product_category`;
 /*!40000 ALTER TABLE `sc_shop_product_category` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_category` (`product_id`, `category_id`) VALUES
@@ -4886,7 +4886,7 @@ INSERT INTO `sc_shop_product_category` (`product_id`, `category_id`) VALUES
 	('986302e5-6803-4510-bc70-9eee93fe74cf', '986302e5-5ae5-4fdf-9ea6-daf1d32000b3');
 /*!40000 ALTER TABLE `sc_shop_product_category` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_description
+-- Dumping structure for table s-pmo.sc_shop_product_description
 DROP TABLE IF EXISTS `sc_shop_product_description`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_description` (
   `product_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4899,7 +4899,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_description` (
   KEY `sc_shop_product_description_lang_index` (`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_description: ~72 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_description: ~72 rows (approximately)
 DELETE FROM `sc_shop_product_description`;
 /*!40000 ALTER TABLE `sc_shop_product_description` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_description` (`product_id`, `lang`, `name`, `keyword`, `description`, `content`) VALUES
@@ -4977,7 +4977,7 @@ INSERT INTO `sc_shop_product_description` (`product_id`, `lang`, `name`, `keywor
 	('986302e5-6803-4510-bc70-9eee93fe74cf', 'vi', 'Thanh Long Ruot Do', NULL, '- 27-inch (diagonal) Retina 5K display\r\n        - 3.1GHz 6-core 10th-generation Intel Core i5\r\n        - AMD Radeon Pro 5300 graphics', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt="" src="/data/product/product-10.png" style="width: 150px; float: right; margin: 10px;" /></p>\r\n                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>');
 /*!40000 ALTER TABLE `sc_shop_product_description` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_download
+-- Dumping structure for table s-pmo.sc_shop_product_download
 DROP TABLE IF EXISTS `sc_shop_product_download`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_download` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -4986,12 +4986,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_download` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_download: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_download: ~0 rows (approximately)
 DELETE FROM `sc_shop_product_download`;
 /*!40000 ALTER TABLE `sc_shop_product_download` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_product_download` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_flash
+-- Dumping structure for table s-pmo.sc_shop_product_flash
 DROP TABLE IF EXISTS `sc_shop_product_flash`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_flash` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5003,14 +5003,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_flash` (
   UNIQUE KEY `sc_shop_product_flash_product_id_unique` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_flash: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_flash: ~0 rows (approximately)
 DELETE FROM `sc_shop_product_flash`;
 /*!40000 ALTER TABLE `sc_shop_product_flash` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_flash` (`id`, `product_id`, `stock`, `sold`, `sort`) VALUES
 	('980cabb3-f046-4caf-979b-4cdd22456bae', '980c9f18-50d1-47cd-9a64-16285c691310', 1212, 0, 1212);
 /*!40000 ALTER TABLE `sc_shop_product_flash` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_group
+-- Dumping structure for table s-pmo.sc_shop_product_group
 DROP TABLE IF EXISTS `sc_shop_product_group`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_group` (
   `group_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5018,7 +5018,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_group` (
   PRIMARY KEY (`group_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_group: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_group: ~8 rows (approximately)
 DELETE FROM `sc_shop_product_group`;
 /*!40000 ALTER TABLE `sc_shop_product_group` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_group` (`group_id`, `product_id`) VALUES
@@ -5032,7 +5032,7 @@ INSERT INTO `sc_shop_product_group` (`group_id`, `product_id`) VALUES
 	('986302e5-67fc-4104-bb38-57edc6f41c72', '986302e5-678f-4868-adbe-8081cd6e06cc');
 /*!40000 ALTER TABLE `sc_shop_product_group` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_image
+-- Dumping structure for table s-pmo.sc_shop_product_image
 DROP TABLE IF EXISTS `sc_shop_product_image`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_image` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5042,7 +5042,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_image` (
   KEY `sc_shop_product_image_product_id_index` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_image: ~24 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_image: ~24 rows (approximately)
 DELETE FROM `sc_shop_product_image`;
 /*!40000 ALTER TABLE `sc_shop_product_image` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_image` (`id`, `image`, `product_id`) VALUES
@@ -5072,7 +5072,7 @@ INSERT INTO `sc_shop_product_image` (`id`, `image`, `product_id`) VALUES
 	('986302e5-6897-4d44-be43-2bd9ccd2e764', '/data/product/product-22.png', '986302e5-67d3-4e5c-99fb-ec43b8e4375f');
 /*!40000 ALTER TABLE `sc_shop_product_image` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_promotion
+-- Dumping structure for table s-pmo.sc_shop_product_promotion
 DROP TABLE IF EXISTS `sc_shop_product_promotion`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_promotion` (
   `product_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5085,7 +5085,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_promotion` (
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_promotion: ~14 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_promotion: ~14 rows (approximately)
 DELETE FROM `sc_shop_product_promotion`;
 /*!40000 ALTER TABLE `sc_shop_product_promotion` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_promotion` (`product_id`, `price_promotion`, `date_start`, `date_end`, `status_promotion`, `created_at`, `updated_at`) VALUES
@@ -5105,7 +5105,7 @@ INSERT INTO `sc_shop_product_promotion` (`product_id`, `price_promotion`, `date_
 	('986302e5-6803-4510-bc70-9eee93fe74cf', 50.00, NULL, NULL, 1, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_product_promotion` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_property
+-- Dumping structure for table s-pmo.sc_shop_product_property
 DROP TABLE IF EXISTS `sc_shop_product_property`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_property` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -5117,7 +5117,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_property` (
   UNIQUE KEY `sc_shop_product_property_code_unique` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_property: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_property: ~2 rows (approximately)
 DELETE FROM `sc_shop_product_property`;
 /*!40000 ALTER TABLE `sc_shop_product_property` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_property` (`id`, `code`, `name`, `created_at`, `updated_at`) VALUES
@@ -5125,7 +5125,7 @@ INSERT INTO `sc_shop_product_property` (`id`, `code`, `name`, `created_at`, `upd
 	(2, 'download', 'Product download', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_product_property` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_product_store
+-- Dumping structure for table s-pmo.sc_shop_product_store
 DROP TABLE IF EXISTS `sc_shop_product_store`;
 CREATE TABLE IF NOT EXISTS `sc_shop_product_store` (
   `product_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5133,7 +5133,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_product_store` (
   PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_product_store: ~36 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_product_store: ~36 rows (approximately)
 DELETE FROM `sc_shop_product_store`;
 /*!40000 ALTER TABLE `sc_shop_product_store` DISABLE KEYS */;
 INSERT INTO `sc_shop_product_store` (`product_id`, `store_id`) VALUES
@@ -5175,7 +5175,7 @@ INSERT INTO `sc_shop_product_store` (`product_id`, `store_id`) VALUES
 	('986302e5-6803-4510-bc70-9eee93fe74cf', '1');
 /*!40000 ALTER TABLE `sc_shop_product_store` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_sessions
+-- Dumping structure for table s-pmo.sc_shop_sessions
 DROP TABLE IF EXISTS `sc_shop_sessions`;
 CREATE TABLE IF NOT EXISTS `sc_shop_sessions` (
   `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5189,12 +5189,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_sessions` (
   UNIQUE KEY `sc_shop_sessions_id_unique` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_sessions: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_sessions: ~0 rows (approximately)
 DELETE FROM `sc_shop_sessions`;
 /*!40000 ALTER TABLE `sc_shop_sessions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_sessions` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_shipping_standard
+-- Dumping structure for table s-pmo.sc_shop_shipping_standard
 DROP TABLE IF EXISTS `sc_shop_shipping_standard`;
 CREATE TABLE IF NOT EXISTS `sc_shop_shipping_standard` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -5205,14 +5205,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_shipping_standard` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_shipping_standard: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_shipping_standard: ~1 rows (approximately)
 DELETE FROM `sc_shop_shipping_standard`;
 /*!40000 ALTER TABLE `sc_shop_shipping_standard` DISABLE KEYS */;
 INSERT INTO `sc_shop_shipping_standard` (`id`, `fee`, `shipping_free`, `created_at`, `updated_at`) VALUES
 	(1, 20.00, 10000.00, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_shipping_standard` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_shipping_status
+-- Dumping structure for table s-pmo.sc_shop_shipping_status
 DROP TABLE IF EXISTS `sc_shop_shipping_status`;
 CREATE TABLE IF NOT EXISTS `sc_shop_shipping_status` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -5222,7 +5222,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_shipping_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_shipping_status: ~3 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_shipping_status: ~3 rows (approximately)
 DELETE FROM `sc_shop_shipping_status`;
 /*!40000 ALTER TABLE `sc_shop_shipping_status` DISABLE KEYS */;
 INSERT INTO `sc_shop_shipping_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -5231,7 +5231,7 @@ INSERT INTO `sc_shop_shipping_status` (`id`, `name`, `created_at`, `updated_at`)
 	(3, 'Shipping done', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_shipping_status` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_shoppingcart
+-- Dumping structure for table s-pmo.sc_shop_shoppingcart
 DROP TABLE IF EXISTS `sc_shop_shoppingcart`;
 CREATE TABLE IF NOT EXISTS `sc_shop_shoppingcart` (
   `identifier` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5244,12 +5244,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_shoppingcart` (
   KEY `sc_shop_shoppingcart_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_shoppingcart: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_shoppingcart: ~0 rows (approximately)
 DELETE FROM `sc_shop_shoppingcart`;
 /*!40000 ALTER TABLE `sc_shop_shoppingcart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_shoppingcart` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_store_block
+-- Dumping structure for table s-pmo.sc_shop_store_block
 DROP TABLE IF EXISTS `sc_shop_store_block`;
 CREATE TABLE IF NOT EXISTS `sc_shop_store_block` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5269,21 +5269,21 @@ CREATE TABLE IF NOT EXISTS `sc_shop_store_block` (
   KEY `sc_shop_store_block_template_index` (`template`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_store_block: ~8 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_store_block: ~8 rows (approximately)
 DELETE FROM `sc_shop_store_block`;
 /*!40000 ALTER TABLE `sc_shop_store_block` DISABLE KEYS */;
 INSERT INTO `sc_shop_store_block` (`id`, `name`, `position`, `page`, `type`, `text`, `status`, `sort`, `store_id`, `template`, `created_at`, `updated_at`) VALUES
-	('986302e3-f5bd-4f30-bc9c-b161136b86b5', 'Banner top (s-cart-light)', 'banner_top', 'home', 'view', 'banner_image', 1, 10, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f5ff-46cc-b9da-2c750d26d849', 'New product (s-cart-light)', 'top', 'home', 'view', 'product_new', 1, 20, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f62b-4b6e-be12-5392ce0a879b', 'Top news (s-cart-light)', 'bottom', 'home', 'view', 'top_news', 1, 10, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f67a-4e2d-a452-ec02769d4a7a', 'Category store left (s-cart-light)', 'left', 'shop_home,vendor_home,vendor_product_list', 'view', 'category_store_left', 1, 10, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f6a4-447c-9a80-f0475d5e3a5d', 'Category left (s-cart-light)', 'left', 'shop_product_list,shop_home', 'view', 'category_left', 1, 20, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f6cd-4fdd-a4f3-0c6897bb8d50', 'Brand left (s-cart-light)', 'left', 'shop_product_list,shop_home', 'view', 'brand_left', 1, 30, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f6fe-4a78-a076-1c650fafba15', 'Product last view (s-cart-light)', 'left', '*', 'view', 'product_lastview_left', 1, 40, '1', 's-cart-light', NULL, NULL),
-	('986302e3-f737-4c67-b81c-7f35397f04be', 'Product special (s-cart-light)', 'left', '*', 'view', 'product_special_left', 1, 30, '1', 's-cart-light', NULL, NULL);
+	('986302e3-f5bd-4f30-bc9c-b161136b86b5', 'Banner top (s-pmo-light)', 'banner_top', 'home', 'view', 'banner_image', 1, 10, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f5ff-46cc-b9da-2c750d26d849', 'New product (s-pmo-light)', 'top', 'home', 'view', 'product_new', 1, 20, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f62b-4b6e-be12-5392ce0a879b', 'Top news (s-pmo-light)', 'bottom', 'home', 'view', 'top_news', 1, 10, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f67a-4e2d-a452-ec02769d4a7a', 'Category store left (s-pmo-light)', 'left', 'shop_home,vendor_home,vendor_product_list', 'view', 'category_store_left', 1, 10, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f6a4-447c-9a80-f0475d5e3a5d', 'Category left (s-pmo-light)', 'left', 'shop_product_list,shop_home', 'view', 'category_left', 1, 20, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f6cd-4fdd-a4f3-0c6897bb8d50', 'Brand left (s-pmo-light)', 'left', 'shop_product_list,shop_home', 'view', 'brand_left', 1, 30, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f6fe-4a78-a076-1c650fafba15', 'Product last view (s-pmo-light)', 'left', '*', 'view', 'product_lastview_left', 1, 40, '1', 's-pmo-light', NULL, NULL),
+	('986302e3-f737-4c67-b81c-7f35397f04be', 'Product special (s-pmo-light)', 'left', '*', 'view', 'product_special_left', 1, 30, '1', 's-pmo-light', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_store_block` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_store_css
+-- Dumping structure for table s-pmo.sc_shop_store_css
 DROP TABLE IF EXISTS `sc_shop_store_css`;
 CREATE TABLE IF NOT EXISTS `sc_shop_store_css` (
   `css` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5294,14 +5294,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_store_css` (
   UNIQUE KEY `sc_shop_store_css_store_id_template_unique` (`store_id`,`template`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_store_css: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_store_css: ~1 rows (approximately)
 DELETE FROM `sc_shop_store_css`;
 /*!40000 ALTER TABLE `sc_shop_store_css` DISABLE KEYS */;
 INSERT INTO `sc_shop_store_css` (`css`, `store_id`, `template`, `created_at`, `updated_at`) VALUES
-	('####CSS HERE ######', '1', 's-cart-light', NULL, NULL);
+	('####CSS HERE ######', '1', 's-pmo-light', NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_store_css` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_subscribe
+-- Dumping structure for table s-pmo.sc_shop_subscribe
 DROP TABLE IF EXISTS `sc_shop_subscribe`;
 CREATE TABLE IF NOT EXISTS `sc_shop_subscribe` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5317,12 +5317,12 @@ CREATE TABLE IF NOT EXISTS `sc_shop_subscribe` (
   KEY `sc_shop_subscribe_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_subscribe: ~0 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_subscribe: ~0 rows (approximately)
 DELETE FROM `sc_shop_subscribe`;
 /*!40000 ALTER TABLE `sc_shop_subscribe` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sc_shop_subscribe` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_supplier
+-- Dumping structure for table s-pmo.sc_shop_supplier
 DROP TABLE IF EXISTS `sc_shop_supplier`;
 CREATE TABLE IF NOT EXISTS `sc_shop_supplier` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -5343,7 +5343,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_supplier` (
   KEY `sc_shop_supplier_store_id_index` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_supplier: ~2 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_supplier: ~2 rows (approximately)
 DELETE FROM `sc_shop_supplier`;
 /*!40000 ALTER TABLE `sc_shop_supplier` DISABLE KEYS */;
 INSERT INTO `sc_shop_supplier` (`id`, `name`, `alias`, `email`, `phone`, `image`, `address`, `url`, `status`, `store_id`, `sort`, `created_at`, `updated_at`) VALUES
@@ -5351,7 +5351,7 @@ INSERT INTO `sc_shop_supplier` (`id`, `name`, `alias`, `email`, `phone`, `image`
 	('986302e5-6101-4457-9956-18133055b214', 'Supplier XYZ', 'supplier-xyz', 'xyz@gmail.com', '0987654321', '/data/supplier/supplier.jpg', NULL, NULL, 1, '1', 0, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_supplier` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_tax
+-- Dumping structure for table s-pmo.sc_shop_tax
 DROP TABLE IF EXISTS `sc_shop_tax`;
 CREATE TABLE IF NOT EXISTS `sc_shop_tax` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -5362,14 +5362,14 @@ CREATE TABLE IF NOT EXISTS `sc_shop_tax` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_tax: ~1 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_tax: ~1 rows (approximately)
 DELETE FROM `sc_shop_tax`;
 /*!40000 ALTER TABLE `sc_shop_tax` DISABLE KEYS */;
 INSERT INTO `sc_shop_tax` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUES
 	(1, 'Tax default (10%)', 10, NULL, NULL);
 /*!40000 ALTER TABLE `sc_shop_tax` ENABLE KEYS */;
 
--- Dumping structure for table s-cart.sc_shop_weight
+-- Dumping structure for table s-pmo.sc_shop_weight
 DROP TABLE IF EXISTS `sc_shop_weight`;
 CREATE TABLE IF NOT EXISTS `sc_shop_weight` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -5381,7 +5381,7 @@ CREATE TABLE IF NOT EXISTS `sc_shop_weight` (
   UNIQUE KEY `sc_shop_weight_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table s-cart.sc_shop_weight: ~4 rows (approximately)
+-- Dumping data for table s-pmo.sc_shop_weight: ~4 rows (approximately)
 DELETE FROM `sc_shop_weight`;
 /*!40000 ALTER TABLE `sc_shop_weight` DISABLE KEYS */;
 INSERT INTO `sc_shop_weight` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES

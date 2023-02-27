@@ -1,5 +1,5 @@
 <?php
-#S-Cart/Core/Front/Models/ShopCustomerPasswordReset.php
+#s-pmo/Core/Front/Models/ShopCustomerPasswordReset.php
 namespace App\Pmo\Front\Models;
 
 use Illuminate\Database\Eloquent\Model;

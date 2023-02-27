@@ -56,10 +56,10 @@ class Export
         $sheetname = $options['sheetname'] ?? self::$sheetname;
         $title = $options['title'] ?? self::$title;
         $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader("Xlsx");
-        if (file_exists(resource_path('views/vendor/s-cart-admin/format/export/invoice.xlsx'))) {
-            $spreadsheet = $reader->load(resource_path('views/vendor/s-cart-admin/format/export/invoice.xlsx'));
+        if (file_exists(resource_path('views/vendor/s-pmo-admin/format/export/invoice.xlsx'))) {
+            $spreadsheet = $reader->load(resource_path('views/vendor/s-pmo-admin/format/export/invoice.xlsx'));
         } else {
-            $spreadsheet = $reader->load(base_path('vendor/s-cart/core/src/Views/admin/format/export/invoice.xlsx'));
+            $spreadsheet = $reader->load(base_path('vendor/s-pmo/core/src/Views/admin/format/export/invoice.xlsx'));
         }
         $worksheet = $spreadsheet->getActiveSheet();
         // $worksheet->getDefaultColumnDimension()->setWidth(100);
