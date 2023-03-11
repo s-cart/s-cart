@@ -73,11 +73,16 @@ S-Cart 7.x
 
 > Core laravel framework 9.x 
 
+S-Cart 8.x
+
+> Core laravel framework 10.x 
+
 ## Requirements:
 
 ```
-- PHP >= ^7.3|^8.0 (S-Cart 6.x)
-- PHP >= ^8.0.2 (S-Cart 7.x)
+- PHP ^7.3|^8.0 (S-Cart 6.x)
+- PHP ^8.0.2 (S-Cart 7.x)
+- PHP ^8.1 (S-Cart 8.x)
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
