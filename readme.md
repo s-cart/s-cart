@@ -241,7 +241,3 @@ If you discover a security vulnerability within S-Cart ecommerce, please send an
 
 - Multi vendor : https://s-cart.org/en/multi-vendor.html
 - Multi store : https://s-cart.org/en/multi-store.html
-
-## Donors:
-
-<a href="https://giaiphap247.com"><img width=100 alt="GiaiPhap247.Com" src="https://giaiphap247.com/data/logo/gp247.png" title="GP247 - Chuyên xây dựng website và cung cấp các dich vụ, giải pháp phần mềm cho doanh nghiệp."></a>
