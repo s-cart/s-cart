@@ -19869,3 +19869,20 @@ disabled look for disabled choices in the results dropdown
     text-align: left;
     box-shadow: unset !important;
 }
+
+/* footer fixes */
+.footer-fix-about-us{
+	padding-left: 50px;
+}
+.footer-fix-profile{
+	padding-left: 100px;
+}
+.footer-fix-container{
+	max-width: 900px;
+}
+.footer-fix-address{
+	width: 300px;
+}
+.footer-fix-title{
+	margin-top: 20px !important;
+}

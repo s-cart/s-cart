@@ -21,10 +21,30 @@
                     @if (!empty(sc_link_collection()['menu']))
                     @foreach (sc_link_collection()['menu'] as $url)
                       @if ($url['type'] != 'collection')
+                      @if ($url['data']['name']=='category')
                         <li class="rd-nav-item">
                           <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
-                              href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
+                          href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
+                         
+                         {{-- for category hover options --}}
+                          <ul
+                          class="rd-menu rd-navbar-dropdown">
+                            <li class="rd-nav-item">
+                              <a class="rd-nav-link" href="#" >Boys</a>
+                            </li>
+                            <div style="padding-bottom: 20px"></div>
+                            <li class="rd-nav-item">
+                              <a class="rd-nav-link" href="#" >Girls</a>
+                            </li>
+                            
+                          </ul>
                         </li>
+                      @else
+                        <li class="rd-nav-item">
+                          <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
+                          href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
+                        </li>
+                        @endif  
                       @else
                         @if (count($url['childs']))
                         <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i> {{ $url['data']['name'] }}</a>
