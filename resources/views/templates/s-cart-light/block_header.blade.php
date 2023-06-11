@@ -22,16 +22,18 @@
                     @foreach (sc_link_collection()['menu'] as $url)
                       @if ($url['type'] != 'collection')
                       @if ($url['data']['name']=='category')
-                        <li onmouseover="" class="rd-nav-item">
+                        <li class="rd-nav-item">
                           <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
                           href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
+                         
+                         {{-- for category hover options --}}
                           <ul
                           class="rd-menu rd-navbar-dropdown">
-                            <li onmouseover="" class="rd-nav-item">
+                            <li class="rd-nav-item">
                               <a class="rd-nav-link" href="#" >Boys</a>
                             </li>
                             <div style="padding-bottom: 20px"></div>
-                            <li onmouseover="" class="rd-nav-item">
+                            <li class="rd-nav-item">
                               <a class="rd-nav-link" href="#" >Girls</a>
                             </li>
                             
