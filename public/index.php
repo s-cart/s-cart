@@ -4,11 +4,11 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 //Check install
-if (is_file('install.php')) {
-    $pathInstall = str_replace('index.php','install.php', $_SERVER['PHP_SELF']);
-    header('Location: '.$pathInstall);
-    exit;
-}
+// if (is_file('install.php')) {
+//     $pathInstall = str_replace('index.php','install.php', $_SERVER['PHP_SELF']);
+//     header('Location: '.$pathInstall);
+//     exit;
+// }
 //End install
 
 /*
