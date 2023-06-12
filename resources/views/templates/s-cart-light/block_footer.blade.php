@@ -9,7 +9,7 @@
                 </a>
                 <p>{{ sc_store('title', ($storeId ?? null)) }}</p>
                 <p> {!! sc_store('time_active', ($storeId ?? null))  !!}</p>
-                <div class="footer-classic-social">
+                <div class="footer-classic-social footer-fix-hr-line">
                   <div class="group-lg group-middle">
                     <div>
                       <ul class="list-inline list-social list-inline-sm">

@@ -19891,3 +19891,9 @@ disabled look for disabled choices in the results dropdown
 .footer-fix-title{
 	margin-top: 20px !important;
 }
+.footer-fix-hr-line{
+	display: none;
+	@media screen and (max-width: 575px) {
+		display: block;		
+	}
+}
