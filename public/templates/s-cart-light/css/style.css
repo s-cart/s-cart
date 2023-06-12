@@ -19878,8 +19878,14 @@ disabled look for disabled choices in the results dropdown
 	}
 }
 .footer-fix-profile{
-	@media screen and (min-width: 1200px) {
-		padding-left: 100px;
+	/* padding-left: 100px; */
+	@media screen and (min-width: 769px) {
+		padding-left:200px;
+	}
+}
+.footer-fix-profile-row{
+	@media screen and (min-width: 769px) {
+		width:200px;
 	}
 }
 .footer-fix-container{

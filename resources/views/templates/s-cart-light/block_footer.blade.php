@@ -75,7 +75,7 @@
                   @if (!empty(sc_link_collection()['footer']))
                   @foreach (sc_link_collection()['footer'] as $url)
                     @if ($url['type'] != 'collection')
-                      <li class="rd-nav-item">
+                      <li class="rd-nav-item footer-fix-profile-row">
                         <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
                             href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
                       </li>
