@@ -19872,10 +19872,15 @@ disabled look for disabled choices in the results dropdown
 
 /* footer fixes */
 .footer-fix-about-us{
-	padding-left: 50px;
+	/* padding-left: 50px; */
+	@media screen and (min-width: 1200px) {
+		width: 300px;		
+	}
 }
 .footer-fix-profile{
-	padding-left: 100px;
+	@media screen and (min-width: 1200px) {
+		padding-left: 100px;
+	}
 }
 .footer-fix-container{
 	max-width: 900px;
