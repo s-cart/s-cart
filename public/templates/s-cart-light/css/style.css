@@ -19872,10 +19872,21 @@ disabled look for disabled choices in the results dropdown
 
 /* footer fixes */
 .footer-fix-about-us{
-	padding-left: 50px;
+	/* padding-left: 50px; */
+	@media screen and (min-width: 1200px) {
+		width: 300px;		
+	}
 }
 .footer-fix-profile{
-	padding-left: 100px;
+	/* padding-left: 100px; */
+	@media screen and (min-width: 769px) {
+		padding-left:200px;
+	}
+}
+.footer-fix-profile-row{
+	@media screen and (min-width: 769px) {
+		width:200px;
+	}
 }
 .footer-fix-container{
 	max-width: 900px;
@@ -19885,4 +19896,10 @@ disabled look for disabled choices in the results dropdown
 }
 .footer-fix-title{
 	margin-top: 20px !important;
+}
+.footer-fix-hr-line{
+	display: none;
+	@media screen and (max-width: 575px) {
+		display: block;		
+	}
 }

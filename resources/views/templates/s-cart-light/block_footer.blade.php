@@ -9,7 +9,7 @@
                 </a>
                 <p>{{ sc_store('title', ($storeId ?? null)) }}</p>
                 <p> {!! sc_store('time_active', ($storeId ?? null))  !!}</p>
-                <div class="footer-classic-social">
+                <div class="footer-classic-social footer-fix-hr-line">
                   <div class="group-lg group-middle">
                     <div>
                       <ul class="list-inline list-social list-inline-sm">
@@ -75,7 +75,7 @@
                   @if (!empty(sc_link_collection()['footer']))
                   @foreach (sc_link_collection()['footer'] as $url)
                     @if ($url['type'] != 'collection')
-                      <li class="rd-nav-item">
+                      <li class="rd-nav-item footer-fix-profile-row">
                         <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
                             href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
                       </li>
