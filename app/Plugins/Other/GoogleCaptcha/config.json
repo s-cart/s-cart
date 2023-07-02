@@ -7,6 +7,6 @@
     "configGroup": "Plugins",
     "configCode": "Other",
     "configKey": "GoogleCaptcha",
-    "version": "1.2",
-    "scartVersion": "7.1|7.2"
+    "version": "1.3",
+    "scartVersion": "8.0"
 }

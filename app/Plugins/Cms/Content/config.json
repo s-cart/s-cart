@@ -7,6 +7,6 @@
     "configGroup": "Plugins",
     "configCode": "Cms",
     "configKey": "Content",
-    "version": "5.4",
-    "scartVersion": "7.1|7.2"
+    "version": "5.5",
+    "scartVersion": "8.0"
 }
