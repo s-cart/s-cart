@@ -86,6 +86,7 @@ return [
     'check_ok' => 'OK',
     'drop_db' => 'Xóa bảng dữ liệu nếu có sẵn',
     'exclude_sample' => 'Không bao gồm dữ liệu mẫu',
+    'only_cms' => 'Chỉ cài đặt CMS (loại bỏ chức năng cửa hàng)',
     'website_title' => 'Tên website',
     'website_title_place' => 'Tên website của bạn',
 ];

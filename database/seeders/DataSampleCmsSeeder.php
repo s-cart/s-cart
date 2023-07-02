@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class DataSampleSeeder extends Seeder
+class DataSampleCmsSeeder extends Seeder
 {
-    use \SCart\Core\DB\Traits\DataSampleSeederTrait;
+    use \SCart\Core\DB\Traits\DataSampleCmsSeederTrait;
 
     /**
      * Run the database seeds.

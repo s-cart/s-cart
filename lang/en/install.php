@@ -86,6 +86,7 @@ return [
     'check_ok' => 'OK',
     'drop_db' => 'Drop table database if exist',
     'exclude_sample' => 'Exclude data sample',
+    'only_cms' => 'Install CMS only (store functionality not included)',
     'website_title' => 'Website title',
     'website_title_place' => 'Your website name',
 ];
