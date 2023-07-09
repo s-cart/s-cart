@@ -2,6 +2,7 @@
 /*
 $layout_page = content_list
 **Variables:**
+- $cmsCategory
 - $entries: paginate
 Use paginate: $entries->appends(request()->except(['page','_token']))->links()
 */

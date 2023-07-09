@@ -2,7 +2,7 @@
 /*
 $layout_page = content_detail
 **Variables:**
-- $entry_currently: colection
+- $cmsContent: colection
 */
 @endphp
 
@@ -13,7 +13,7 @@ $layout_page = content_detail
       <div class="container">
           <div class="row">
               <div class="col-12">
-                  {!! sc_html_render($entry_currently->content) !!}
+                  {!! sc_html_render($cmsContent->content) !!}
               </div>
           </div>
       </div>

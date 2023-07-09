@@ -100,24 +100,25 @@ class ContentController extends RootFrontController
      */
     private function _category($alias)
     {
-        $category_currently = (new CmsCategory)->getDetail($alias, 'alias');
-            if ($category_currently) { 
+        $cmsCategory = (new CmsCategory)->getDetail($alias, 'alias');
+            if ($cmsCategory) { 
                 $entries = (new CmsContent)
-                    ->getContentToCategory($category_currently->id)
+                    ->getContentToCategory($cmsCategory->id)
                     ->setLimit(sc_config('item_list'))
                     ->setPaginate()
                     ->getData();
                 return view(
                     $this->plugin->pathPlugin.'::cms_category',
                     array(
-                        'title'       => $category_currently['title'],
-                        'description' => $category_currently['description'],
-                        'keyword'     => $category_currently['keyword'],
+                        'title'       => $cmsCategory['title'],
+                        'description' => $cmsCategory['description'],
+                        'keyword'     => $cmsCategory['keyword'],
                         'entries'     => $entries,
+                        'cmsCategory' => $cmsCategory,
                         'layout_page' => 'content_list',
                         'breadcrumbs' => [
                             ['url'    => sc_route('cms.index'), 'title' => sc_language_render('front.categories')],
-                            ['url'    => '', 'title' => $category_currently['title']],
+                            ['url'    => '', 'title' => $cmsCategory['title']],
                         ],
                     )
                 );
@@ -162,11 +163,11 @@ class ContentController extends RootFrontController
      */
     private function _content($category, $alias)
     {
-        $entry_currently = (new CmsContent)->getDetail($alias, 'alias');
+        $cmsContent = (new CmsContent)->getDetail($alias, 'alias');
 
-        if ($entry_currently) {
+        if ($cmsContent) {
 
-            $categoryCms = $entry_currently->category;
+            $categoryCms = $cmsContent->category;
 
             if (!$categoryCms || $categoryCms->alias != $category) {
                 return view('templates.' . sc_store('template') . '.notfound',
@@ -179,14 +180,15 @@ class ContentController extends RootFrontController
                 );
             }
 
-            $title = ($entry_currently) ? $entry_currently->title : sc_language_render('front.not_found');
+            $title = ($cmsContent) ? $cmsContent->title : sc_language_render('front.not_found');
             return view($this->plugin->pathPlugin.'::cms_entry_detail',
                 array(
                     'title'           => $title,
-                    'entry_currently' => $entry_currently,
-                    'description'     => $entry_currently['description'],
-                    'keyword'         => $entry_currently['keyword'],
-                    'og_image'        => $entry_currently->getImage(),
+                    'entry_currently' => $cmsContent, // This variable will remove in next version
+                    'cmsContent'      => $cmsContent,
+                    'description'     => $cmsContent['description'],
+                    'keyword'         => $cmsContent['keyword'],
+                    'og_image'        => $cmsContent->getImage(),
                     'layout_page'     => 'content_detail',
                     'breadcrumbs'     => [
                         ['url'        => $categoryCms->getUrl(), 'title' => $categoryCms->getFull()->title],
