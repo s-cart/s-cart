@@ -296,12 +296,12 @@ class CmsContent extends Model
         if ($this->sc_random) {
             $query = $query->inRandomOrder();
         } else {
-            $ckeckSort = false;
+            $checkSort = false;
             if (is_array($this->sc_sort) && count($this->sc_sort)) {
                 foreach ($this->sc_sort as  $rowSort) {
                     if (is_array($rowSort) && count($rowSort) == 2) {
                         if ($rowSort[0] == 'sort') {
-                            $ckeckSort = true;
+                            $checkSort = true;
                         }
                         $query = $query->sort($rowSort[0], $rowSort[1]);
                     }
@@ -310,7 +310,7 @@ class CmsContent extends Model
         }
 
         //Use field "sort" if haven't above
-        if (!$ckeckSort) {
+        if (empty($checkSort)) {
             $query = $query->orderBy($this->getTable().'.sort', 'asc');
         }
         //Default, will sort id
