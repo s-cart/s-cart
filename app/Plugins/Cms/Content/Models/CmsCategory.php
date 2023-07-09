@@ -25,6 +25,26 @@ class CmsCategory extends Model
     {
         return $this->hasMany(CmsCategoryDescription::class, 'category_id', 'id');
     }
+
+    //Function get text description
+    public function getText()
+    {
+        return $this->descriptions()->where('lang', sc_get_locale())->first();
+    }
+    public function getTitle()
+    {
+        return $this->getText()->title ?? '';
+    }
+    public function getDescription()
+    {
+        return $this->getText()->description ?? '';
+    }
+    public function getKeyword()
+    {
+        return $this->getText()->keyword?? '';
+    }
+    //End  get text description
+
     public function contents()
     {
         return $this->hasMany(CmsContent::class, 'category_id', 'id');

@@ -30,6 +30,30 @@ class CmsContent extends Model
     {
         return $this->hasMany(CmsContentDescription::class, 'content_id', 'id');
     }
+
+    //Function get text description
+    public function getText()
+    {
+        return $this->descriptions()->where('lang', sc_get_locale())->first();
+    }
+    public function getTitle()
+    {
+        return $this->getText()->title ?? '';
+    }
+    public function getDescription()
+    {
+        return $this->getText()->description ?? '';
+    }
+    public function getKeyword()
+    {
+        return $this->getText()->keyword?? '';
+    }
+    public function getContent()
+    {
+        return $this->getText()->content;
+    }
+    //End  get text description
+
     public function images()
     {
         return $this->hasMany(CmsImage::class, 'content_id', 'id');
