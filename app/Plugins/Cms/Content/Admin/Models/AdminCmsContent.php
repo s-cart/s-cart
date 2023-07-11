@@ -173,23 +173,23 @@ class AdminCmsContent extends CmsContent
      *
      * @param   [type]$type     [$type description]
      * @param   null  $fieldValue    [$field description]
-     * @param   null  $categoryId      [$categoryId description]
+     * @param   null  $contentId      [$contentId description]
      * @param   null  $storeId  [$storeId description]
      * @param   null            [ description]
      *
      * @return  [type]          [return description]
      */
-    public function checkAliasValidationAdmin($type = null, $fieldValue = null, $categoryId = null, $storeId = null) {
+    public function checkAliasValidationAdmin($type = null, $fieldValue = null, $contentId = null, $storeId = null) {
         $storeId = $storeId ? $storeId : session('adminStoreId');
         $type = $type ? $type : 'alias';
         $fieldValue = $fieldValue;
-        $categoryId = $categoryId;
+        $contentId = $contentId;
         $tablePTS = (new AdminCmsContent)->getTable();
         $check =  $this
         ->where($type, $fieldValue)
         ->where($tablePTS . '.store_id', $storeId);
-        if($categoryId) {
-            $check = $check->where('id', '<>', $categoryId);
+        if($contentId) {
+            $check = $check->where('id', '<>', $contentId);
         }
         $check = $check->first();
 
