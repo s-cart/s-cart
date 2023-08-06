@@ -54,5 +54,7 @@ return [
         'must_login'      => 'Bạn phải đăng nhập để sử dụng mã giảm giá này!',
         'user_id_invalid' => 'User ID không hợp lệ!',
     ],
-    
+    'plugin_action' => [
+        'plugin_discount_pro_exist' => 'Hãy xóa plugin DiscountPro trước khi cài đặt plugin này'
+    ],
 ];

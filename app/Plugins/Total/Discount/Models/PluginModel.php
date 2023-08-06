@@ -13,6 +13,7 @@ class PluginModel extends Model
     
     public $table = SC_DB_PREFIX.'shop_discount';
     public $table_related = SC_DB_PREFIX.'shop_discount_customer';
+    public $table_discount_store = SC_DB_PREFIX.'shop_discount_store';
     protected $connection = SC_CONNECTION;
     protected $guarded    = [];
     protected $dates      = ['expires_at'];
@@ -32,6 +33,9 @@ class PluginModel extends Model
         }
         if (Schema::hasTable($this->table_related)) {
             Schema::drop($this->table_related);
+        }
+        if (Schema::hasTable($this->table_discount_store)) {
+            Schema::drop($this->table_discount_store);
         }
     }
 
@@ -79,6 +83,11 @@ class PluginModel extends Model
             $table->timestamps();
         });
         
+        Schema::create($this->table_discount_store, function (Blueprint $table) {
+            $table->uuid('discount_id');
+            $table->uuid('store_id');
+            $table->primary(['discount_id', 'store_id']);
+        });
 
     }
     /**

@@ -15,6 +15,7 @@ class AdminDiscount extends PluginModel
      */
     public static function getDiscountAdmin($id) {
         $data =  self::where('id', $id);
+        $tableDiscount = (new AdminDiscount)->getTable();
         if (sc_check_multi_vendor_installed()) {
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
@@ -37,7 +38,7 @@ class AdminDiscount extends PluginModel
         $sort_order       = $dataSearch['sort_order'] ?? '';
         $arrSort          = $dataSearch['arrSort'] ?? '';
         $discountList = (new AdminDiscount);
-
+        $tableDiscount = (new AdminDiscount)->getTable();
         if (sc_check_multi_vendor_installed()) {
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();

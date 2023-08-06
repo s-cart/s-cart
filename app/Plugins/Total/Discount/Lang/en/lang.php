@@ -54,4 +54,7 @@ return [
         'must_login'      => 'You must login to use this coupon!',
         'user_id_invalid' => 'User ID invalid!',
     ],
+    'plugin_action' => [
+        'plugin_discount_pro_exist' => 'Remove plugin DiscountPro before install this plugin'
+    ],
 ];
