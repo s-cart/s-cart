@@ -20,7 +20,7 @@ class AdminDiscount extends PluginModel
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $data = $data->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
-                $data = $data->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+                $data = $data->where($tableDiscountStore . '.store_id', session('adminStoreId'));
             }
         }
         $data = $data->first();
@@ -43,7 +43,7 @@ class AdminDiscount extends PluginModel
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $discountList = $discountList->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
-                $discountList = $discountList->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+                $discountList = $discountList->where($tableDiscountStore . '.store_id', session('adminStoreId'));
             }
         }
 
@@ -93,7 +93,7 @@ class AdminDiscount extends PluginModel
             if (session('adminStoreId') != SC_ID_ROOT) {
                 $tableDiscountStore = (new ShopDiscountStore)->getTable();
                 $check = $check->leftJoin($tableDiscountStore, $tableDiscountStore . '.discount_id', $tableDiscount . '.id');
-                $check = $check->where($tableDiscountStore, $tableDiscountStore . '.store_id', session('adminStoreId'));
+                $check = $check->where($tableDiscountStore . '.store_id', session('adminStoreId'));
             }
         }
         if ($discountId) {
