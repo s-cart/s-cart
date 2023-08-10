@@ -37,6 +37,7 @@ class AdminDiscount extends PluginModel
     public function getDiscountListAdmin(array $dataSearch) {
         $sort_order       = $dataSearch['sort_order'] ?? '';
         $arrSort          = $dataSearch['arrSort'] ?? '';
+        $keyword          = $dataSearch['keyword'] ?? '';
         $discountList = (new AdminDiscount);
         $tableDiscount = (new AdminDiscount)->getTable();
         if (sc_check_multi_vendor_installed()) {
@@ -46,7 +47,9 @@ class AdminDiscount extends PluginModel
                 $discountList = $discountList->where($tableDiscountStore . '.store_id', session('adminStoreId'));
             }
         }
-
+        if ($keyword) {
+            $discountList = $discountList->where('code', 'like', '%'.$keyword.'%');
+        }
         if ($sort_order && array_key_exists($sort_order, $arrSort)) {
             $field = explode('__', $sort_order)[0];
             $sort_field = explode('__', $sort_order)[1];
