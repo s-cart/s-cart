@@ -12508,7 +12508,7 @@ html.rd-navbar-fixed-linked .page {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 13px 0;
+	padding: 13px 0!important;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1170px;
