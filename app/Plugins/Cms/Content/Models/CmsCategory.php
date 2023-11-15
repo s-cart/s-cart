@@ -188,20 +188,23 @@ class CmsCategory extends Model
 
     public function uninstall()
     {
-        if (Schema::hasTable($this->table)) {
-            Schema::drop($this->table);
+        $schema = Schema::connection(SC_CONNECTION);
+
+        if ($schema->hasTable($this->table)) {
+            $schema->drop($this->table);
         }
 
-        if (Schema::hasTable($this->table.'_description')) {
-            Schema::drop($this->table.'_description');
+        if ($schema->hasTable($this->table.'_description')) {
+            $schema->drop($this->table.'_description');
         }
     }
 
     public function install()
     {
         $this->uninstall();
+        $schema = Schema::connection(SC_CONNECTION);
 
-        Schema::create($this->table, function (Blueprint $table) {
+        $schema->create($this->table, function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('image', 100)->nullable();
             $table->uuid('parent')->default(0);
@@ -212,7 +215,7 @@ class CmsCategory extends Model
             $table->timestamps();
         });
 
-        Schema::create($this->table.'_description', function (Blueprint $table) {
+        $schema->create($this->table.'_description', function (Blueprint $table) {
             $table->uuid('category_id');
             $table->string('lang', 10);
             $table->string('title', 300)->nullable();

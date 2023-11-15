@@ -20,16 +20,18 @@ class CmsImage extends Model
 
     public function uninstall()
     {
-        if (Schema::hasTable($this->table)) {
-            Schema::drop($this->table);
+        $schema = Schema::connection(SC_CONNECTION);
+
+        if ($schema->hasTable($this->table)) {
+            $schema->drop($this->table);
         }
     }
 
     public function install()
     {
         $this->uninstall();
-
-        Schema::create($this->table, function (Blueprint $table) {
+        $schema = Schema::connection(SC_CONNECTION);
+        $schema->create($this->table, function (Blueprint $table) {
             $table->increments('id');
             $table->integer('content_id')->default(0);
             $table->string('image', 100)->nullable();
