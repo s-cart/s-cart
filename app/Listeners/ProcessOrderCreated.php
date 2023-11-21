@@ -28,7 +28,5 @@ class ProcessOrderCreated
     {
         $order = $event->order;
         // \Log::info($order);
-        //Add notice (from SC 8.1)
-        sc_notice_add('sc_order_created', $order->id);
     }
 }
