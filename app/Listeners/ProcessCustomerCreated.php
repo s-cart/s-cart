@@ -26,7 +26,9 @@ class ProcessCustomerCreated
      */
     public function handle(CustomerCreated $event)
     {
-        // $customer = $event->customer;
+        $customer = $event->customer;
         // \Log::info($customer);
+        //Add notice (from SC 8.1)
+        sc_notice_add('sc_customer_created', $customer->id);
     }
 }

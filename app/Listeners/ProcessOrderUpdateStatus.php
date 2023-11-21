@@ -26,7 +26,9 @@ class ProcessOrderUpdateStatus
      */
     public function handle(OrderUpdateStatus $event)
     {
-        // $order = $event->order;
+        $order = $event->order;
         // \Log::error($order);
+        //Add notice (from SC 8.1)
+        sc_notice_add('sc_order_update_status', $order->id);
     }
 }

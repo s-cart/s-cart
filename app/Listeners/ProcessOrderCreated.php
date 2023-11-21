@@ -26,7 +26,7 @@ class ProcessOrderCreated
      */
     public function handle(OrderCreated $event)
     {
-        // $order = $event->order;
+        $order = $event->order;
         // \Log::info($order);
     }
 }
