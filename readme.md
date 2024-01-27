@@ -129,24 +129,23 @@ Then, install vendor:
 
 **Step4: Install**
 
-Option 1: **Install automatic**
+------ Option 1: **Install automatic** ------------
 ```
-Access your-domain.com/install.php to install S-cart.
+1. Rename or delete the .env file if it exists.
+(You may encounter installation errors via "php artisan serve" if the .env file exists)
+2. Access your-domain.com/install.php to install S-cart.
 ```
 Then, remove or rename file *public/install.php*
 
-Option 2: **Manual installation**
+------ Option 2: **Manual installation** ------------
 
-If installing with link "install.php" unsuccessful, you can install it manually below.
 ```
-1: Create new database, then import file /vendor/s-cart/core/src/DB/s-cart-yyyy-mm-dd.sql to database.
-2: Rename or delete file public/install.php
-3: Copy file .env.example to .env if file .env not exist.
+1. Create new database, then import file /vendor/s-cart/core/src/DB/s-cart-yyyy-mm-dd.sql to database.
+2. Rename or delete file public/install.php
+3. Copy file .env.example to .env if file .env not exist.
 4: Generate API key if APP_KEY is null. 
 - Use command "php artisan key:generate"
-5: Generates the encryption keys
-  Use command "php artisan passport:keys"
-6: Config value of file .env:
+5: Config value of file .env:
 - APP_DEBUG=false (Set "false" is security)
 - DB_HOST=127.0.0.1 (Database host)
 - DB_PORT=3306 (Database port)
