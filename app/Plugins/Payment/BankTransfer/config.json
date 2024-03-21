@@ -8,5 +8,5 @@
     "configCode": "Payment",
     "configKey": "BankTransfer",
     "version": "2.0",
-    "scartVersion": "8.0|8.1|8.2"
+    "scartVersion": "8.0|8.1|8.2|9.0"
 }

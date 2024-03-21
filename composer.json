@@ -12,14 +12,14 @@
     ],
     "type" : "project",
     "require": {
-        "s-cart/core": "~8.1.0"
+        "s-cart/core": "~9.0.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
+        "nunomaduro/collision": "^8.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0",
         "barryvdh/laravel-debugbar": "^3.6"
