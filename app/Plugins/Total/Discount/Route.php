@@ -2,23 +2,24 @@
 /**
  * Route front
  */
-if(sc_config('Discount')) {
-Route::group(
-    [
-        'prefix'    => 'plugin/discount',
-        'namespace' => 'App\Plugins\Total\Discount\Controllers',
-    ],
-    function () {
-        Route::post('/discount_process', 'FrontController@useDiscount')
-            ->name('discount.process');
-        Route::post('/discount_remove', 'FrontController@removeDiscount')
-            ->name('discount.remove');
-    }
-);
+if(sc_config_exist('Discount')) {
+    Route::group(
+        [
+            'prefix'    => 'plugin/discount',
+            'namespace' => 'App\Plugins\Total\Discount\Controllers',
+        ],
+        function () {
+            Route::post('/discount_process', 'FrontController@useDiscount')
+                ->name('discount.process');
+            Route::post('/discount_remove', 'FrontController@removeDiscount')
+                ->name('discount.remove');
+        }
+    );
 }
 /**
  * Route admin
  */
+if(sc_config_exist('Discount', SC_ID_ROOT)) {
 Route::group(
     [
         'prefix' => SC_ADMIN_PREFIX.'/shop_discount',
@@ -40,3 +41,4 @@ Route::group(
             ->name('admin_discount.delete');
     }
 );
+}

@@ -7,7 +7,7 @@ $suffix = sc_config('SUFFIX_URL')??'';
 $prefixCmsCategory = sc_config('PREFIX_CMS_CATEGORY')??'cms-category';
 $langUrl = config('app.seoLang'); 
 
-if (sc_config('Content')) {
+if (sc_config_exist('Content')) {
     Route::group(
         [
             'namespace' => 'App\Plugins\Cms\Content\Controllers',
@@ -23,7 +23,7 @@ if (sc_config('Content')) {
     );
 }
 
-
+if (sc_config_exist('Content', SC_ID_ROOT)) {
 /**
  * Route admin
  */
@@ -66,4 +66,4 @@ Route::group(
 
     }
 );
-
+}
