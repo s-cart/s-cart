@@ -71,13 +71,6 @@ S-Cart 10.x
 > Core laravel framework 12.x 
 
 
-## Laravel core:
-
-GP247 1.x
-
-> Core laravel framework 11.x 
-
-
 ## Website structure using GP247
 
     Website-folder/
