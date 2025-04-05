@@ -41,10 +41,10 @@ class Update extends Command
         $commands = Artisan::all();
         
         // Update GP247
-        // check command gp247:update is exist
-        if (array_key_exists('gp247:update', $commands)) {
-            $this->info('Updating GP247...');
-            $this->call('gp247:update');
+        // check command gp247:core-update is exist
+        if (array_key_exists('gp247:core-update', $commands)) {
+            $this->info('Updating Core...');
+            $this->call('gp247:core-update');
         }
         // Update Front
         if (array_key_exists('gp247:front-update', $commands)) {
