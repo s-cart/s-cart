@@ -118,7 +118,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
   If the APP_KEY is not set, use the following command to generate it: 
   >`php artisan key:generate`
 
-- **Step 3**: Initialize gp247
+- **Step 3**: Initialize S-Cart
 
   Run the command: 
   >`php artisan sc:install`
@@ -126,15 +126,18 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
 ## Useful information:
 
-**To view GP247 version**
+**To view S-Cart version**
 
 >`php artisan sc:info`
 
-**Update gp247**
+**Update S-Cart**
 
 Update the package using the command: 
+
 >`composer update gp247/core`
+
 >`composer update gp247/front`
+
 >`composer update gp247/shop`
 
 Then, run the command: 
@@ -192,7 +195,6 @@ To create a zip file template:
 Use prefix and middleware constants `GP247_ADMIN_PREFIX`, `GP247_ADMIN_MIDDLEWARE` in route declaration.
 
 References: https://github.com/gp247net/core/blob/master/src/Admin/routes.php
-
 
 
 ## Environment variables in .env file
