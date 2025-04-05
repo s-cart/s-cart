@@ -121,7 +121,7 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - **Step 3**: Initialize gp247
 
   Run the command: 
-  >`php artisan sc:install`if install sample
+  >`php artisan sc:install`
 
 
 ## Useful information:
