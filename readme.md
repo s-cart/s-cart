@@ -67,7 +67,8 @@ Demo API: <a href="https://s-cart.org/en/docs/master/about-api-scart.html">https
 
 S-Cart 10.x
 
-> Build from  GP247/Core and GP247/Shop
+> Power by GP247 system
+
 > Core laravel framework 12.x 
 
 
@@ -94,9 +95,8 @@ S-Cart 10.x
     │                           └── gp247-front(+) //Customize view front
     ├── vendor
     │     ├── gp247/core
-    │     └── gp247/front
-    ├── .env
-    │     └── GP247_ACTIVE=1 //ON|OFF gp247
+    │     ├── gp247/front
+    │     └── gp247/shop
     └──...
 
 ## Support the project
@@ -121,16 +121,14 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - **Step 3**: Initialize gp247
 
   Run the command: 
-  >`php artisan gp247:install`
-  >`php artisan gp247:shop-install`
-  >`php artisan gp247:shop-sample` # if install sample
+  >`php artisan sc:install`if install sample
 
 
 ## Useful information:
 
 **To view GP247 version**
 
->`php artisan gp247:info`
+>`php artisan sc:info`
 
 **Update gp247**
 
@@ -141,7 +139,7 @@ Update the package using the command:
 
 Then, run the command: 
 
->`php artisan gp247:update`
+>`php artisan sc:update`
 
 **To create a plugin:**
 
@@ -151,7 +149,7 @@ To create a zip file plugin
 
 >`php artisan gp247:make-plugin  --name=PluginName --download=1`
 
-**To create a template (`IF you have gp247/front installed`):**
+**To create a template:**
 
 >`php artisan gp247:make-template  --name=TemplateName`
 
