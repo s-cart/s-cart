@@ -1,5 +1,6 @@
 <p align="center">
-    <img src="https://s-cart.org/logo.png?v=4" width="150">
+    <img src="https://s-cart.org/logo.png" height="100">  
+    <img src="https://static.gp247.net/logo/logo.png" height="100">
 </p>
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
