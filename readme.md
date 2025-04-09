@@ -1,6 +1,6 @@
 <p align="center">
-    <img src="https://s-cart.org/logo.png" height="100">  
-    <img src="https://static.gp247.net/logo/logo.png" height="100">
+    <a href="https://s-cart.org"><img src="https://s-cart.org/logo.png" height="100"><a/>
+    <a href="https://gp247.net"><img src="https://static.gp247.net/logo/logo.png" height="100"></a>
 </p>
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
@@ -81,9 +81,9 @@ S-Cart 10.x
     │     └── GP247
     │           ├── Core(+) //Customize controller of Core
     │           ├── Helpers(+) //Auto load Helpers/*.php
-    │           ├── Blocks(+) // The list of blades will be used to display on the admin homepage.
     │           ├── Plugins(+) //Use `php artisan gp247:make-plugin --name=NameOfPlugin`
     │           ├── Front(+) //Customize controller of Front 
+    │           ├── Shop(+) //Customize controller of Shop 
     │           └── Templates(+) //Use `php artisan gp247:make-template --name=NameOfTempate`
     ├── public
     │     └── GP247
