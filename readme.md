@@ -124,6 +124,10 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
   Run the command: 
   >`php artisan sc:install`
 
+- **Step 4**: Install sample data (optional)
+
+  If you want to install sample data, run the command:
+  >`php artisan sc:sample`
 
 ## Useful information:
 

@@ -43,11 +43,6 @@ class Install extends Command
                 $this->info('Installing Shop...');
                 $this->call('gp247:shop-install');
             }
-            //Check command gp247:shop-sample is exist
-            if (array_key_exists('gp247:shop-sample', Artisan::all())) {
-                $this->info('Installing Shop Sample...');
-                $this->call('gp247:shop-sample');
-            }
             $this->info('S-Cart installed successfully');
         }
     }
