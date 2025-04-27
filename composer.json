@@ -15,7 +15,7 @@
         "php": "^8.2",
         "gp247/core": "~1.1",
         "gp247/front": "~1.1",
-        "gp247/shop": "dev-master",
+        "gp247/shop": "~1.1",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.9"
     },
