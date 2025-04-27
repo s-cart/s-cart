@@ -167,31 +167,30 @@ To create a zip file template:
 
 ## Customize
 
-**Customize gp247-config and functions**
 
->`php artisan gp247:customize config`
+**Customize lfm configuration for upload**
 
-**Customize view admin**
+>`php artisan vendor:publish --tag=config-lfm`
 
->`php artisan gp247:customize view`
+**Customize core admin view**
+
+>`php artisan vendor:publish --tag=gp247:view-core`
 
 **Overwrite gp247_* helper functions**
 
->Step 1: Use the command `php artisan gp247:customize config` to copy the file `app/config/gp247_functions_except.php`
+>Step 1: Add the list of functions you want to override to `config/gp247_functions_except.php`
 
->Step 2: Add the list of functions you want to override to `gp247_functions_except.php`
-
->Step 3: Create a new function in the `app/GP247/Helpers folder`
+>Step 2: Create new php files containing the new functions in the `app/GP247/Helpers` directory, for example `app/GP247/Helpers/myfunction.php`
 
 **Overwrite gp247 controller files**
 
->Step 1: Copy the controller files you want to override in vendor/gp247/core/src/Core/Controllers -> app/GP247/Core/Admin/Controllers
+>Step 1: Copy the controller files you want to override from vendor/gp247/core/src/Core/Controllers -> app/GP247/Core/Controllers
 
->Step 2: Change `namespace GP247\Core\Admin\Controllers` to `namespace App\GP247\Core\Admin\Controllers`
+>Step 2: Change `namespace GP247\Core\Controllers` to `namespace App\GP247\Core\Controllers`
 
 **Overwrite gp247 API controller files**
 
->Step 1: Copy the controller files you want to override in vendor vendor/gp247/core/src/Api/Controllers ->  app/GP247/Core/Api/Controllers
+>Step 1: Copy the controller files you want to override from vendor/gp247/core/src/Api/Controllers -> app/GP247/Core/Api/Controllers
 
 >Step 2: Change `namespace GP247\Core\Api\Controllers` to `namespace App\GP247\Core\Api\Controllers`
 
@@ -199,7 +198,7 @@ To create a zip file template:
 
 Use prefix and middleware constants `GP247_ADMIN_PREFIX`, `GP247_ADMIN_MIDDLEWARE` in route declaration.
 
-References: https://github.com/gp247net/core/blob/master/src/Admin/routes.php
+References: https://github.com/gp247net/core/blob/master/src/routes.php
 
 
 ## Environment variables in .env file

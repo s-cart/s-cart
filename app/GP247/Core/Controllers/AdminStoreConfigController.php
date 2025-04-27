@@ -1,9 +1,9 @@
 <?php
 namespace App\GP247\Core\Controllers;
 
-use GP247\Core\Controllers\AdminStoreConfigController as CoreAdminStoreConfigController;
+use GP247\Core\Controllers\AdminStoreConfigController as VendorAdminStoreConfigController;
 
-class AdminStoreConfigController extends CoreAdminStoreConfigController
+class AdminStoreConfigController extends VendorAdminStoreConfigController
 {
     public function __construct()
     {

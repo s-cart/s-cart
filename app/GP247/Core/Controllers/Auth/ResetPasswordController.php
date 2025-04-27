@@ -2,9 +2,9 @@
 
 namespace App\GP247\Core\Controllers\Auth;
 
-use GP247\Core\Controllers\Auth\ResetPasswordController as CoreResetPasswordController;
+use GP247\Core\Controllers\Auth\ResetPasswordController as VendorResetPasswordController;
 
-class ResetPasswordController extends CoreResetPasswordController
+class ResetPasswordController extends VendorResetPasswordController
 {
 
     /**

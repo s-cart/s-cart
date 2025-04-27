@@ -1,9 +1,9 @@
 <?php
 namespace App\GP247\Core\Controllers;
 
-use GP247\Core\Controllers\AdminLanguageController as CoreAdminLanguageController;
+use GP247\Core\Controllers\AdminLanguageController as VendorAdminLanguageController;
 
-class AdminLanguageController extends CoreAdminLanguageController
+class AdminLanguageController extends VendorAdminLanguageController
 {
     public function __construct()
     {

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\GP247\Core\Controllers\Auth;
+namespace App\GP247\Shop\Controllers\Auth;
 
-use GP247\Core\Controllers\Auth\ForgotPasswordController as VendorForgotPasswordController;
+use GP247\Shop\Controllers\Auth\ForgotPasswordController as VendorForgotPasswordController;
 
 class ForgotPasswordController extends VendorForgotPasswordController
 {
+
     /**
      * Create a new controller instance.
      *
@@ -14,6 +15,5 @@ class ForgotPasswordController extends VendorForgotPasswordController
     public function __construct()
     {
         parent::__construct();
-
     }
 }

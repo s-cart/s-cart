@@ -1,9 +1,9 @@
 <?php
 namespace App\GP247\Front\Controllers\Admin;
 
-use GP247\Front\Controllers\Admin\AdminLayoutBlockController as FrontAdminLayoutBlockController;
+use GP247\Front\Controllers\Admin\AdminLayoutBlockController as VendorAdminLayoutBlockController;
 
-class AdminLayoutBlockController extends FrontAdminLayoutBlockController
+class AdminLayoutBlockController extends VendorAdminLayoutBlockController
 {
     public function __construct()
     {

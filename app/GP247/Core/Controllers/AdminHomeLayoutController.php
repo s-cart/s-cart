@@ -1,9 +1,9 @@
 <?php
 namespace App\GP247\Core\Controllers;
 
-use GP247\Core\Controllers\AdminHomeLayoutController as CoreAdminHomeLayoutController;
+use GP247\Core\Controllers\AdminHomeLayoutController as VendorAdminHomeLayoutController;
 
-class AdminHomeLayoutController extends CoreAdminHomeLayoutController
+class AdminHomeLayoutController extends VendorAdminHomeLayoutController
 {
     public function __construct()
     {

@@ -2,9 +2,9 @@
 namespace App\GP247\Front\Controllers\Admin;
 
 
-use GP247\Front\Controllers\Admin\AdminBannerController as FrontAdminBannerController;
+use GP247\Front\Controllers\Admin\AdminBannerController as VendorAdminBannerController;
 
-class AdminBannerController extends FrontAdminBannerController
+class AdminBannerController extends VendorAdminBannerController
 {
 
     public function __construct()

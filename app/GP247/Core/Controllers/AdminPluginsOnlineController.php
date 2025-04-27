@@ -1,8 +1,8 @@
 <?php
 namespace App\GP247\Core\Controllers;
 
-use GP247\Core\Controllers\AdminPluginsOnlineController as CoreAdminPluginsOnlineController;
-class AdminPluginsOnlineController extends CoreAdminPluginsOnlineController
+use GP247\Core\Controllers\AdminPluginsOnlineController as VendorAdminPluginsOnlineController;
+class AdminPluginsOnlineController extends VendorAdminPluginsOnlineController
 {
     public function __construct()
     {

@@ -1,8 +1,8 @@
 <?php
 namespace App\GP247\Front\Controllers\Admin;
 
-use GP247\Front\Controllers\Admin\AdminBannerTypeController as FrontAdminBannerTypeController;
-class AdminBannerTypeController extends FrontAdminBannerTypeController
+use GP247\Front\Controllers\Admin\AdminBannerTypeController as VendorAdminBannerTypeController;
+class AdminBannerTypeController extends VendorAdminBannerTypeController
 {
     public function __construct()
     {
