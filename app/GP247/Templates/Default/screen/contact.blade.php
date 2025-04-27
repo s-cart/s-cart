@@ -84,19 +84,7 @@ $layout_page = front_contact
 
                     {{-- Button submit --}}
                     <div class="btn-toolbar form-group">
-                        @php
-                        $dataButton = [
-                                'class' => '', 
-                                'id' =>  'gp247_button-form-process',
-                                'type_w' => '',
-                                'type_t' => 'buy',
-                                'type_a' => '',
-                                'type' => 'submit',
-                                'name' => ''.gp247_language_render('action.submit'),
-                                'html' => ''
-                            ];
-                        @endphp
-                        @include($GP247TemplatePath.'.common.button.button', $dataButton)
+                        <button class="button-secondary button-zakaria"  id="gp247-button-process">{{ gp247_language_render('action.submit') }}</button>
 
                     </div>
                     {{--// Button submit --}}
