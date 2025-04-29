@@ -1,7 +1,7 @@
 <?php
-namespace App\GP247\Front\Controllers\Admin;
+namespace App\GP247\Front\Admin\Controllers;
 
-use GP247\Front\Controllers\Admin\AdminLayoutBlockController as VendorAdminLayoutBlockController;
+use GP247\Front\Admin\Controllers\AdminLayoutBlockController as VendorAdminLayoutBlockController;
 
 class AdminLayoutBlockController extends VendorAdminLayoutBlockController
 {

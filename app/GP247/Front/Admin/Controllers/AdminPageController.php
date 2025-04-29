@@ -1,7 +1,7 @@
 <?php
-namespace App\GP247\Front\Controllers\Admin;
+namespace App\GP247\Front\Admin\Controllers;
 
-use GP247\Front\Controllers\Admin\AdminPageController as VendorAdminPageController;
+use GP247\Front\Admin\Controllers\AdminPageController as VendorAdminPageController;
 
 class AdminPageController extends VendorAdminPageController
 {

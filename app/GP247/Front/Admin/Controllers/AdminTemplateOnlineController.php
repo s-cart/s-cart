@@ -1,7 +1,7 @@
 <?php
-namespace App\GP247\Front\Controllers\Admin;
+namespace App\GP247\Front\Admin\Controllers;
 
-use GP247\Front\Controllers\Admin\AdminTemplateOnlineController as VendorAdminTemplateOnlineController;
+use GP247\Front\Admin\Controllers\AdminTemplateOnlineController as VendorAdminTemplateOnlineController;
 
 class AdminTemplateOnlineController extends VendorAdminTemplateOnlineController
 {
