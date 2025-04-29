@@ -33,44 +33,59 @@ Our goal is "Efficient and friendly for everyone":
 
 ## S-Cart functions:
 
-<pre>
-💥S-Cart - FREE Laravel ecommerce for business💥:
+### 💥 S-Cart - FREE Laravel ecommerce for business 💥
+
+#### Core Features
 - Build plugin packages HMVC
 - Support to upgrade and patch S-Cart via command line
-- Full document for dev and client
-👉Full support for the functions of a professional sales website:
-- Multi-language, multi-currency
-- Multi-vendor
-- Make cart, manage orders, manage products, manage customers...
-- CMS news management: categories, news, news pages
-- Plugin: Payment, shipping, discounts, taxes ...
-- Plugin pro: multi-vendor, multi-store
-- Online library: plugin, template
-- API suppport and security for app, mobile
-👉Powerful admin page:
-- Roles, permission: admin, manager, maketing, ..
-- Security with log full, access, auth, captcha ...
-- Manage products, orders, customers ...
-- Charts, statistics
-- Backup, restore
-- Activity log
-- And many other functions.
-Demo API: <a href="https://s-cart.org/en/docs/master/about-api-scart.html">https://s-cart.org/en/docs/master/about-api-scart.html</a>
-👉Plugin pro:
-- Multi-vendor: <a href="https://s-cart.org/en/multi-vendor.html">https://s-cart.org/en/multi-vendor.html</a>
-- Multi-store: <a href="https://s-cart.org/en/multi-store.html">https://s-cart.org/en/multi-store.html</a>
-</pre>
+- Full documentation for developers and clients
 
-## Technology
-- Core <a href="https://laravel.com">Laravel Framework</a>
+#### 👉 Professional Sales Website Functions
+- **Multi-language, multi-currency**
+- **Multi-vendor**
+- Complete e-commerce features:
+  - Shopping cart management
+  - Order management
+  - Product management
+  - Customer management
+- **CMS Management**:
+  - Categories
+  - News
+  - Content pages
+- **Extensions**:
+  - Payment plugins
+  - Shipping methods
+  - Discount systems
+  - Tax calculation
+- **Pro Plugins**:
+  - Multi-vendor: <a href="https://s-cart.org/en/multi-vendor.html">https://s-cart.org/en/multi-vendor.html</a>
+  - Multi-store: <a href="https://s-cart.org/en/multi-store.html">https://s-cart.org/en/multi-store.html</a>
+- **Developer Resources**:
+  - Online library of plugins and templates
+  - API support with security for apps and mobile integration
 
-## Laravel core:
+#### 👉 Powerful Admin Features
+- **User Management**:
+  - Role-based permissions (admin, manager, marketing, etc.)
+  - Comprehensive security with full logging
+  - Access control, authentication, and CAPTCHA
+- **Business Tools**:
+  - Product management
+  - Order processing
+  - Customer relationship management
+  - Analytics and statistics
+  - Data backup and restoration
+  - Activity monitoring
 
-S-Cart 10.x
+#### API Documentation
+- Demo API: <a href="https://s-cart.org/en/docs/master/about-api-scart.html">https://s-cart.org/en/docs/master/about-api-scart.html</a>
 
-> Power by GP247 system
+## S-Cart 10.x:
 
-> Core laravel framework 12.x 
+
+> Power by GP247 system <a href="https://github.com/gp247net">https://github.com/gp247net</a>
+
+> Core laravel framework 12.x <a href="https://github.com/laravel/laravel">https://github.com/laravel/laravel</a>
 
 
 ## Website structure using GP247
@@ -128,6 +143,18 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 
   If you want to install sample data, run the command:
   >`php artisan sc:sample`
+
+### Important Note on Directory Permissions
+
+Make sure the following directories have write permissions:
+- `app/GP247`
+- `public/GP247`
+- `public/vendor`
+- `resources/views/vendor`
+- `storage`
+- `vendor`
+
+Without proper write permissions, installation and various features will not work correctly.
 
 ## Useful information:
 
@@ -202,9 +229,6 @@ References: https://github.com/gp247net/core/blob/master/src/routes.php
 
 
 ## Environment variables in .env file
-
-**Quickly disable GP247 and plugins**
-> `GP247_ACTIVE=1` // To disable, set value 0
 
 **Disable APIs**
 > `GP247_API_MODE=1` // To disable, set value 0
