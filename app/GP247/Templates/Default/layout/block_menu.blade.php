@@ -143,7 +143,7 @@
                     <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
                     <form class="rd-search" action="{{ gp247_route_front('front.search') }}"  method="GET">
                       <div class="form-wrap">
-                        <input class="rd-navbar-search-form-input form-input"  type="text" name="keyword"  placeholder="{{ gp247_language_render('search.placeholder') }}"/>
+                        <input class="rd-navbar-search-form-input form-input"  type="text" name="keyword" value="{{ request('keyword') }}" placeholder="{{ gp247_language_render('search.placeholder') }}"/>
                         <button class="rd-search-form-submit" type="submit"></button>
                       </div>
                     </form>
