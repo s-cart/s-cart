@@ -99,11 +99,6 @@
         @show
         {{-- //Block main --}}
 
-        <!-- Render include view -->
-        @include($GP247TemplatePath.'.common.include_view')
-        <!--// Render include view -->
-
-
         {{-- Block bottom --}}
         @section('block_bottom')
             @include($GP247TemplatePath.'.layout.block_bottom')
