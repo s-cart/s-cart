@@ -22,7 +22,7 @@
     <!--//end css defaut -->
 
     <!--Module header -->
-    @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'header'])
+    {!! gp247_render_block('header', $layout_page ?? null) !!}
     <!--//Module header -->
 
     <link rel="stylesheet" href="{{ gp247_file($GP247TemplateFile.'/css/bootstrap.css')}}">
@@ -47,7 +47,7 @@
             <!--//Notice -->
 
             {{-- Module top --}}
-            @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'top'])
+            {!! gp247_render_block('top', $layout_page ?? null) !!}
             {{-- //Module top --}}
 
             <!--Breadcrumb -->
@@ -71,7 +71,7 @@
                             <div class="col-lg-4 col-xl-3">
                                 <div class="aside row row-30 row-md-50 justify-content-md-between">
                                     <!--Module left -->
-                                    @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'left'])
+                                    {!! gp247_render_block('left', $layout_page ?? null) !!}
                                     <!--//Module left -->
                                 </div>
                             </div>
@@ -81,14 +81,14 @@
                             <!--Block center-->
                             @section('block_main_content_center')
                             <div class="col-lg-9 col-xl-9">
-                                @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'center'])
+                                {!! gp247_render_block('center', $layout_page ?? null) !!}
                             </div>
                             @show
                             <!--//Block center-->
 
                             <!--Block right -->
                             @section('block_main_content_right')
-                                @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'right'])
+                             {!! gp247_render_block('right', $layout_page ?? null) !!}
                             @show
                             <!--//Block right -->
 
@@ -101,6 +101,9 @@
 
         {{-- Block bottom --}}
         @section('block_bottom')
+            <!--Module bottom -->
+            {!! gp247_render_block('bottom', $layout_page ?? null) !!}
+            <!--//Module bottom -->
             @include($GP247TemplatePath.'.layout.block_bottom')
         @show
         {{-- //Block bottom --}}
@@ -108,7 +111,7 @@
         {{-- Block footer --}}
         @section('block_footer')
             <!--Module bottom -->
-            @includeIf($GP247TemplatePath.'.common.render_block', ['positionBlock' => 'footer'])
+            {!! gp247_render_block('footer', $layout_page ?? null) !!}
             <!--//Module bottom -->
             @include($GP247TemplatePath.'.layout.block_footer')
         @show
