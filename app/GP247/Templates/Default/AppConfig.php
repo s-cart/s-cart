@@ -77,8 +77,8 @@ class AppConfig extends ExtensionConfigDefault
 
         }
 
-        //Setup store for Root store
-        $this->setupStore(GP247_STORE_ID_ROOT);
+        //Setup store
+        $this->setupStore();
 
         return $return;
     }
@@ -197,50 +197,54 @@ class AppConfig extends ExtensionConfigDefault
 
     public function setupStore($storeId = null)
     {
-        // Change template for store
-        AdminStore::where('id', $storeId)
-            ->update(['template' => $this->configKey]);
+        if ($storeId) {
+            // Change template for store
+            AdminStore::where('id', $storeId)
+                ->update(['template' => $this->configKey]);
 
-        // Insert layout block for store
-        $dataInsert[] = [
-            'id'       => $this->uuid(),
-            'name'     => 'Banner top ('.$this->configKey.')',
-            'position' => 'top',
-            'page'     => 'front_home',
-            'text'     => 'banner_image',
-            'type'     => 'view',
-            'sort'     => 10,
-            'status'   => 1,
-            'template' => $this->configKey,
-            'store_id' => $storeId,
-        ];
+            // Insert layout block for store
+            $dataInsert[] = [
+                'id'       => $this->uuid(),
+                'name'     => 'Banner top ('.$this->configKey.')',
+                'position' => 'top',
+                'page'     => 'front_home',
+                'text'     => 'banner_image',
+                'type'     => 'view',
+                'sort'     => 10,
+                'status'   => 1,
+                'template' => $this->configKey,
+                'store_id' => $storeId,
+            ];
 
-        $dataInsert[] = [
-            'id'       => $this->uuid(),
-            'name'     => 'Page home ('.$this->configKey.')',
-            'position' => 'bottom',
-            'page'     => 'front_home',
-            'text'     => 'home',
-            'type'     => 'page',
-            'sort'     => 10,
-            'status'   => 1,
-            'template' => $this->configKey,
-            'store_id' => $storeId,
-        ];
+            $dataInsert[] = [
+                'id'       => $this->uuid(),
+                'name'     => 'Page home ('.$this->configKey.')',
+                'position' => 'bottom',
+                'page'     => 'front_home',
+                'text'     => 'home',
+                'type'     => 'page',
+                'sort'     => 10,
+                'status'   => 1,
+                'template' => $this->configKey,
+                'store_id' => $storeId,
+            ];
 
-        FrontLayoutBlock::insert($dataInsert);
-    
-        $modelBanner = new FrontBanner;
-        $modelBannerStore = new FrontBannerStore; 
-    
-        $idBanner1 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 1 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=1', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
-        $modelBannerStore->create(['banner_id' => $idBanner1->id, 'store_id' => $storeId]);
-        $idBanner2 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 2 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=2', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
-        $modelBannerStore->create(['banner_id' => $idBanner2->id, 'store_id' => $storeId]);
-        $idBanner3 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner breadcrumb ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=3', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
-        $modelBannerStore->create(['banner_id' => $idBanner3->id, 'store_id' => $storeId]);
-        $idBanner4 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner store ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=4', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
-        $modelBannerStore->create(['banner_id' => $idBanner4->id, 'store_id' => $storeId]);
+            FrontLayoutBlock::insert($dataInsert);
+        
+            $modelBanner = new FrontBanner;
+            $modelBannerStore = new FrontBannerStore; 
+        
+            $idBanner1 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 1 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=1', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+            $modelBannerStore->create(['banner_id' => $idBanner1->id, 'store_id' => $storeId]);
+            $idBanner2 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 2 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=2', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+            $modelBannerStore->create(['banner_id' => $idBanner2->id, 'store_id' => $storeId]);
+            $idBanner3 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner breadcrumb ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=3', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
+            $modelBannerStore->create(['banner_id' => $idBanner3->id, 'store_id' => $storeId]);
+            $idBanner4 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner store ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=4', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
+            $modelBannerStore->create(['banner_id' => $idBanner4->id, 'store_id' => $storeId]);
+        } else {
+            return null;
+        }
     
     }
     private function uuid() {

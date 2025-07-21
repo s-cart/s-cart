@@ -44,17 +44,6 @@ class Install extends Command
                 $this->call('gp247:shop-install');
             }
 
-            //Setup store with template
-            $this->info(' - Setup store with template...');
-            $template = (defined('GP247_TEMPLATE_FRONT_DEFAULT') ? GP247_TEMPLATE_FRONT_DEFAULT : 'Default');
-            $classTemplate = 'App\GP247\Templates\\'.$template.'\AppConfig';
-            if (class_exists($classTemplate)) {
-                $template = new $classTemplate;
-                if (method_exists($template, 'setupStore')) {
-                    $storeId = GP247_STORE_ID_ROOT;
-                    $template->setupStore($storeId);
-                }
-            }
             $this->info('S-Cart installed successfully');
         }
     }
