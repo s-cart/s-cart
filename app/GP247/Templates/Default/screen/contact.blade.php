@@ -20,7 +20,7 @@ $layout_page = front_contact
             </address>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <form method="post" action="{{ gp247_route_front('front.contact.post') }}" class="contact-form" id="gp247_form-process">
+            <form method="post" action="{{ gp247_route_front('front.contact.post') }}" class="contact-form" id="gp247-form-process">
                 {{ csrf_field() }}
                 <div id="contactFormWrapper">
                     <div class="row">
