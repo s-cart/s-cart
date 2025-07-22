@@ -234,13 +234,13 @@ class AppConfig extends ExtensionConfigDefault
             $modelBanner = new FrontBanner;
             $modelBannerStore = new FrontBannerStore; 
         
-            $idBanner1 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 1 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=1', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+            $idBanner1 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 1 ('.$this->configKey.')', 'image' => 'https://picsum.photos/1000/400?random=1', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
             $modelBannerStore->create(['banner_id' => $idBanner1->id, 'store_id' => $storeId]);
-            $idBanner2 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 2 ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=2', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
+            $idBanner2 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner home 2 ('.$this->configKey.')', 'image' => 'https://picsum.photos/1000/400?random=2', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner']);
             $modelBannerStore->create(['banner_id' => $idBanner2->id, 'store_id' => $storeId]);
-            $idBanner3 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner breadcrumb ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=3', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
+            $idBanner3 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner breadcrumb ('.$this->configKey.')', 'image' => 'https://picsum.photos/1000/400?random=3', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'breadcrumb']);
             $modelBannerStore->create(['banner_id' => $idBanner3->id, 'store_id' => $storeId]);
-            $idBanner4 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner store ('.$this->configKey.')', 'image' => 'https://picsum.photos/800/400?random=4', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
+            $idBanner4 = $modelBanner->create(['id' => $this->uuid(), 'title' => 'Banner store ('.$this->configKey.')', 'image' => 'https://picsum.photos/1000/400?random=4', 'target' => '_self', 'html' => '', 'status' => 1, 'type' => 'banner-store']);
             $modelBannerStore->create(['banner_id' => $idBanner4->id, 'store_id' => $storeId]);
         } else {
             return null;
