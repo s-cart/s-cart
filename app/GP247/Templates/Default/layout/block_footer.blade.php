@@ -5,10 +5,10 @@
             <div class="row row-40 row-md-50 justify-content-xl-between">
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight">
                 <a href="{{ gp247_route_front('front.home') }}">
-                    <img class="logo-footer" src="{{  gp247_file(gp247_store_info('logo', ($storeId ?? null))) }}" alt="{{ gp247_store_info('title', ($storeId ?? null)) }}">
+                    <img class="logo-footer" src="{{  gp247_file(gp247_store_info(key:'logo', storeId: ($storeId ?? null))) }}" alt="{{ gp247_store_info(key:'title', storeId: ($storeId ?? null)) }}">
                 </a>
-                <p>{{ gp247_store_info('title', ($storeId ?? null)) }}</p>
-                <p> {!! gp247_store_info('time_active', ($storeId ?? null))  !!}</p>
+                <p>{{ gp247_store_info(key:'title', storeId: ($storeId ?? null)) }}</p>
+                <p> {!! gp247_store_info(key:'time_active', storeId: ($storeId ?? null))  !!}</p>
                 <div class="footer-classic-social">
                   <div class="group-lg group-middle">
                     <div>
@@ -36,19 +36,19 @@
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                      <div class="unit-body"><a href="#">{{ gp247_language_render('store.address') }}: {{ gp247_store_info('address', ($storeId ?? null)) }}</a></div>
+                      <div class="unit-body"><a href="#">{{ gp247_language_render('store.address') }}: {{ gp247_store_info(key:'address', storeId: ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a href="tel:#">{{ gp247_language_render('store.hotline') }}: {{ gp247_store_info('long_phone', ($storeId ?? null)) }}</a></div>
+                      <div class="unit-body"><a href="tel:#">{{ gp247_language_render('store.hotline') }}: {{ gp247_store_info(key:'long_phone', storeId: ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
                       <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
-                      <div class="unit-body"><a href="mailto:#{{ gp247_store_info('email', ($storeId ?? null)) }}">{{ gp247_language_render('store.email') }}: {{ gp247_store_info('email', ($storeId ?? null)) }}</a></div>
+                      <div class="unit-body"><a href="mailto:#{{ gp247_store_info(key:'email', storeId: ($storeId ?? null)) }}">{{ gp247_language_render('store.email') }}: {{ gp247_store_info(key:'email', storeId: ($storeId ?? null)) }}</a></div>
                     </div>
                   </li>
                   <li>
@@ -92,7 +92,7 @@
           <div class="container">
             <div class="row row-10 align-items-center justify-content-sm-between">
               <div class="col-md-auto">
-                <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ gp247_store_info('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
+                <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ gp247_store_info(key:'title', storeId: ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
               @if (gp247_config('fanpage_url'))
               <div class="col-md-auto order-md-1"> <a target="_blank"
