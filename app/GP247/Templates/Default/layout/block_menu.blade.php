@@ -11,8 +11,8 @@
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
                   <div class="rd-navbar-brand">
-                    <!--Brand--><a class="brand" href="{{ gp247_route_front('front.home') }}"><img class="brand-logo-dark" src="{{ gp247_file(gp247_store_info('logo', ($storeId ?? null))) }}" alt="" width="105" height="44"/>
-                      <img class="brand-logo-light" src="{{ gp247_file(gp247_store_info('logo', ($storeId ?? null))) }}" alt="" width="106" height="44"/></a>
+                    <!--Brand--><a class="brand" href="{{ gp247_route_front('front.home') }}"><img class="brand-logo-dark" src="{{ gp247_file(gp247_store_info(key:'logo', storeId: ($storeId ?? null))) }}" alt="" width="105" height="44"/>
+                      <img class="brand-logo-light" src="{{ gp247_file(gp247_store_info(key: 'logo', storeId: ($storeId ?? null))) }}" alt="" width="106" height="44"/></a>
                   </div>
                 </div>
                 <div class="rd-navbar-nav-wrap">
