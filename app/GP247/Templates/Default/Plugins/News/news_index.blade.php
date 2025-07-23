@@ -1,9 +1,9 @@
 @php
 /*
-$layout_page = front_news
+$layout_page = news_index
 **Variables:**
-- $news: paginate
-Use paginate: $news->appends(request()->except(['page','_token']))->links()
+- $entries: paginate
+Use paginate: $entries->appends(request()->except(['page','_token']))->links()
 */
 @endphp
 
@@ -14,8 +14,8 @@ Use paginate: $news->appends(request()->except(['page','_token']))->links()
 <section class="section section-xl bg-default">
     <div class="container">
       <div class="row row-30">
-        @if ($news->count())
-            @foreach ($news as $newsDetail)
+        @if ($entries->count())
+            @foreach ($entries as $newsDetail)
             <div class="col-sm-6 col-lg-4">
               {{-- Render product single --}}
               @php

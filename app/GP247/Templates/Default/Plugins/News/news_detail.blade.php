@@ -1,8 +1,8 @@
 @php
 /*
-$layout_page = front_news_detail
+$layout_page = news_detail
 **Variables:**
-- $news: no paginate
+- $newsContent: no paginate
 */
 @endphp
 
@@ -13,7 +13,7 @@ $layout_page = front_news_detail
     <div class="container">
         <div class="row">
             <div class="col-12">
-                {!! gp247_html_render($news->content) !!}
+                {!! gp247_html_render($newsContent->content) !!}
             </div>
         </div>
     </div>
