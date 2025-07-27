@@ -30,9 +30,9 @@ Use paginate: $entries->appends(request()->except(['page','_token']))->links()
             </div>
             @endforeach
 
-        {{-- Render pagination --}}
-        @include($GP247TemplatePath.'.common.pagination', ['items' => $news])
-        {{--// Render pagination --}}
+          {{-- Render pagination --}}
+          @include($GP247TemplatePath.'.common.pagination', ['items' => $entries])
+          {{--// Render pagination --}}
 
         @else
             {!! gp247_language_render('front.no_item') !!}

@@ -1,6 +1,6 @@
 @php
 /*
-$layout_page = quick-order
+$layout_page = vendor_quick_order
 */ 
 @endphp
 
