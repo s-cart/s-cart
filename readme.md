@@ -57,9 +57,9 @@ Our goal is "Efficient and friendly for everyone":
   - Shipping methods
   - Discount systems
   - Tax calculation
-- **Pro Plugins**:
-  - Multi-vendor: <a href="https://s-cart.org/en/multi-vendor.html">https://s-cart.org/en/multi-vendor.html</a>
-  - Multi-store: <a href="https://s-cart.org/en/multi-store.html">https://s-cart.org/en/multi-store.html</a>
+- **Pro Plugins for S-Cart**:
+  - Multi-vendor: https://gp247.net/en/s-cart/multi-vendor.html
+  - Multi-store: https://gp247.net/en/s-cart/multi-store.html
 - **Developer Resources**:
   - Online library of plugins and templates
   - API support with security for apps and mobile integration
@@ -83,9 +83,9 @@ Our goal is "Efficient and friendly for everyone":
 ## S-Cart 10.x:
 
 
-> Power by GP247 system <a href="https://github.com/gp247net">https://github.com/gp247net</a>
+> Powered by GP247 system <a href="https://github.com/gp247net">https://github.com/gp247net</a>
 
-> Core laravel framework 12.x <a href="https://github.com/laravel/laravel">https://github.com/laravel/laravel</a>
+> Core Laravel framework 12.x <a href="https://github.com/laravel/laravel">https://github.com/laravel/laravel</a>
 
 
 ## Website structure using GP247
@@ -122,6 +122,9 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 </p>
 
 ## Quick Installation Guide
+
+### Method 1: Installation via Composer (Recommended)
+
 - **Step 1**: 
 
   Refer to the command: 
@@ -142,6 +145,48 @@ Support this project :stuck_out_tongue_winking_eye: :pray:
 - **Step 4**: Install sample data (optional)
 
   If you want to install sample data, run the command:
+  >`php artisan sc:sample`
+
+### Method 2: Installation via Git Clone
+
+- **Step 1**: Clone repository from GitHub
+
+  >`git clone https://github.com/s-cart/s-cart.git`
+
+- **Step 2**: Move to project directory
+
+  >`cd s-cart`
+
+- **Step 3**: Create .env file from sample file
+
+  >`cp .env.example .env`
+
+- **Step 4**: Generate APP_KEY
+
+  >`php artisan key:generate`
+
+- **Step 5**: Install dependencies via Composer
+
+  >`composer install`
+
+- **Step 6**: Configure database in .env file
+
+  Edit database connection information in .env file:
+  ```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=your_database_name
+  DB_USERNAME=your_username
+  DB_PASSWORD=your_password
+  ```
+
+- **Step 7**: Initialize S-Cart
+
+  >`php artisan sc:install`
+
+- **Step 8**: Install sample data (optional)
+
   >`php artisan sc:sample`
 
 ### Important Note on Directory Permissions

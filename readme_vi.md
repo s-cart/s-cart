@@ -57,9 +57,9 @@ Mục tiêu của chúng tôi là "Hiệu quả và thân thiện cho tất cả
   - Phương thức vận chuyển
   - Hệ thống giảm giá
   - Tính thuế
-- **Plugin chuyên nghiệp**:
-  - Đa nhà cung cấp: <a href="https://s-cart.org/en/multi-vendor.html">https://s-cart.org/en/multi-vendor.html</a>
-  - Đa cửa hàng: <a href="https://s-cart.org/en/multi-store.html">https://s-cart.org/en/multi-store.html</a>
+- **Plugin chuyên nghiệp cho S-Cart**:
+  - Multi-vendor: https://gp247.net/vi/s-cart/multi-vendor.html
+  - Multi-stores: https://gp247.net/vi/s-cart/multi-store.html
 - **Tài nguyên cho nhà phát triển**:
   - Thư viện trực tuyến: plugin và template
   - Hỗ trợ API với bảo mật cho ứng dụng và tích hợp di động
@@ -122,6 +122,9 @@ Hỗ trợ dự án này :stuck_out_tongue_winking_eye: :pray:
 </p>
 
 ## Hướng dẫn cài đặt nhanh
+
+### Phương pháp 1: Cài đặt bằng Composer (Khuyến nghị)
+
 - **Bước 1**: 
 
   Tham khảo lệnh: 
@@ -142,6 +145,48 @@ Hỗ trợ dự án này :stuck_out_tongue_winking_eye: :pray:
 - **Bước 4**: Cài đặt dữ liệu mẫu (tùy chọn)
 
   Nếu bạn muốn cài đặt dữ liệu mẫu, chạy lệnh:
+  >`php artisan sc:sample`
+
+### Phương pháp 2: Cài đặt bằng Git Clone
+
+- **Bước 1**: Clone repository từ GitHub
+
+  >`git clone https://github.com/s-cart/s-cart.git`
+
+- **Bước 2**: Di chuyển vào thư mục dự án
+
+  >`cd s-cart`
+
+- **Bước 3**: Tạo file .env từ file mẫu
+
+  >`cp .env.example .env`
+
+- **Bước 4**: Tạo APP_KEY
+
+  >`php artisan key:generate`
+
+- **Bước 5**: Cài đặt dependencies bằng Composer
+
+  >`composer install`
+
+- **Bước 6**: Cấu hình cơ sở dữ liệu trong file .env
+
+  Chỉnh sửa các thông tin kết nối database trong file .env:
+  ```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=your_database_name
+  DB_USERNAME=your_username
+  DB_PASSWORD=your_password
+  ```
+
+- **Bước 7**: Khởi tạo S-Cart
+
+  >`php artisan sc:install`
+
+- **Bước 8**: Cài đặt dữ liệu mẫu (tùy chọn)
+
   >`php artisan sc:sample`
 
 ### Lưu ý quan trọng về quyền thư mục
