@@ -5,7 +5,7 @@
 <p align="center">Mã nguồn mở miễn phí cho website thương mại điện tử<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Trang chủ</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Tài liệu</a>  |  <a href="https://s-cart.org/en/docs/master/about-api-scart.html">Tài liệu API</a> | <a href="https://s-cart.org/en/about.html">Tính năng của S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Nhóm FB</a>
+ <a href="https://s-cart.org">Trang chủ</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Tài liệu</a>  | <a href="https://s-cart.org/en/about.html">Tính năng của S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Nhóm FB</a>
 </p>
 
 <p align="center">
@@ -27,20 +27,19 @@ Mục tiêu của chúng tôi là "Hiệu quả và thân thiện cho tất cả
 - Tất cả mọi người: Doanh nghiệp, cá nhân, lập trình viên, sinh viên.
 
 ## HÌNH ẢNH:
-<img src="https://static.s-cart.org/guide/info/s-cart-content.jpg">
 <img src="https://static.s-cart.org/guide/use/common/shop.jpg">
 <img src="https://static.s-cart.org/guide/use/common/dashboard.jpg">
 
 ## Các chức năng của S-Cart:
 
-### 💥 S-Cart - Thương mại điện tử Laravel MIỄN PHÍ cho doanh nghiệp 💥
+###  S-Cart - Thương mại điện tử Laravel MIỄN PHÍ cho doanh nghiệp 
 
 #### Tính năng cốt lõi
 - Xây dựng gói plugin theo mô hình HMVC
 - Hỗ trợ nâng cấp và vá lỗi S-Cart qua dòng lệnh
 - Tài liệu đầy đủ cho nhà phát triển và khách hàng
 
-#### 👉 Chức năng của website bán hàng chuyên nghiệp
+####  Chức năng của website bán hàng chuyên nghiệp
 - **Đa ngôn ngữ, đa tiền tệ**
 - **Đa nhà cung cấp**
 - Đầy đủ tính năng thương mại điện tử:
@@ -58,13 +57,13 @@ Mục tiêu của chúng tôi là "Hiệu quả và thân thiện cho tất cả
   - Hệ thống giảm giá
   - Tính thuế
 - **Plugin chuyên nghiệp cho S-Cart**:
-  - Multi-vendor: https://gp247.net/vi/s-cart/multi-vendor.html
-  - Multi-stores: https://gp247.net/vi/s-cart/multi-store.html
+  - Multi-vendor: https://gp247.net/vi/docs/s-cart/multi-vendor.html
+  - Multi-stores: https://gp247.net/vi/docs/s-cart/multi-store.html
 - **Tài nguyên cho nhà phát triển**:
   - Thư viện trực tuyến: plugin và template
   - Hỗ trợ API với bảo mật cho ứng dụng và tích hợp di động
 
-#### 👉 Tính năng quản trị mạnh mẽ
+####  Tính năng quản trị mạnh mẽ
 - **Quản lý người dùng**:
   - Phân quyền dựa trên vai trò (quản trị viên, quản lý, marketing, v.v.)
   - Bảo mật toàn diện với ghi nhật ký đầy đủ
@@ -77,8 +76,6 @@ Mục tiêu của chúng tôi là "Hiệu quả và thân thiện cho tất cả
   - Sao lưu và khôi phục dữ liệu
   - Theo dõi hoạt động
 
-#### Tài liệu API
-- Demo API: <a href="https://s-cart.org/en/docs/master/about-api-scart.html">https://s-cart.org/en/docs/master/about-api-scart.html</a>
 
 ## S-Cart 10.x:
 

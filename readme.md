@@ -5,7 +5,7 @@
 <p align="center">Free open source e-commerce for business<br>
     <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Home</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  |  <a href="https://s-cart.org/en/docs/master/about-api-scart.html">API document</a> | <a href="https://s-cart.org/en/about.html">Features in S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Group FB</a>
+ <a href="https://s-cart.org">Home</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Document</a>  | <a href="https://s-cart.org/en/about.html">Features in S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Group FB</a>
 </p>
 
 <p align="center">
@@ -27,20 +27,19 @@ Our goal is "Efficient and friendly for everyone":
 - Everyone: Businesses, individuals, developers, students.
 
 ## IMAGES:
-<img src="https://static.s-cart.org/guide/info/s-cart-content.jpg">
 <img src="https://static.s-cart.org/guide/use/common/shop.jpg">
 <img src="https://static.s-cart.org/guide/use/common/dashboard.jpg">
 
 ## S-Cart functions:
 
-### 💥 S-Cart - FREE Laravel ecommerce for business 💥
+###  S-Cart - FREE Laravel ecommerce for business 
 
 #### Core Features
 - Build plugin packages HMVC
 - Support to upgrade and patch S-Cart via command line
 - Full documentation for developers and clients
 
-#### 👉 Professional Sales Website Functions
+####  Professional Sales Website Functions
 - **Multi-language, multi-currency**
 - **Multi-vendor**
 - Complete e-commerce features:
@@ -58,13 +57,13 @@ Our goal is "Efficient and friendly for everyone":
   - Discount systems
   - Tax calculation
 - **Pro Plugins for S-Cart**:
-  - Multi-vendor: https://gp247.net/en/s-cart/multi-vendor.html
-  - Multi-store: https://gp247.net/en/s-cart/multi-store.html
+  - Multi-vendor: https://gp247.net/en/docs/s-cart/multi-vendor.html
+  - Multi-store: https://gp247.net/en/docs/s-cart/multi-store.html
 - **Developer Resources**:
   - Online library of plugins and templates
   - API support with security for apps and mobile integration
 
-#### 👉 Powerful Admin Features
+####  Powerful Admin Features
 - **User Management**:
   - Role-based permissions (admin, manager, marketing, etc.)
   - Comprehensive security with full logging
@@ -77,8 +76,6 @@ Our goal is "Efficient and friendly for everyone":
   - Data backup and restoration
   - Activity monitoring
 
-#### API Documentation
-- Demo API: <a href="https://s-cart.org/en/docs/master/about-api-scart.html">https://s-cart.org/en/docs/master/about-api-scart.html</a>
 
 ## S-Cart 10.x:
 
