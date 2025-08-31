@@ -9,14 +9,24 @@
 </p>
 
 <p align="center">
-<a href="https://packagist.org/packages/gp247/s-cart"><img src="https://poser.pugx.org/gp247/s-cart/d/total" alt="Packagist Downloads"></a>
-<a href="https://github.com/gp247net/s-cart"><img src="https://img.shields.io/github/downloads/s-cart/s-cart/total" alt="Git Downloads"></a>
-<a href="https://github.com/gp247net/s-cart/releases"><img src="https://poser.pugx.org/gp247/s-cart/v/stable" alt="Latest Stable Version"></a>
-<a href="https://github.com/gp247net/s-cart/blob/master/LICENSE"><img src="https://poser.pugx.org/gp247/s-cart/license" alt="License"></a>
+<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Packagist Downloads"></a>
+<a href="https://github.com/s-cart/s-cart"><img src="https://img.shields.io/github/downloads/s-cart/s-cart/total" alt="Git Downloads"></a>
+<a href="https://github.com/s-cart/s-cart/releases"><img src="https://poser.pugx.org/s-cart/s-cart/v/stable" alt="Latest Stable Version"></a>
+<a href="https://github.com/s-cart/s-cart/blob/master/LICENSE"><img src="https://poser.pugx.org/s-cart/s-cart/license" alt="License"></a>
 </p>
 
 
+
+`From September 2025, s-cart will be moved to a new location::`
+
+**New repo:** <a href="https://github.com/gp247net/s-cart">https://github.com/gp247net/s-cart</a>
+
+**New package:** <a href="https://github.com/gp247net/s-cart">https://packagist.org/packages/gp247/s-cart</a>
+
+**Installation:**
+
 ~~**composer create-project s-cart/s-cart**~~
+
 >**composer create-project gp247/s-cart**
 
 
