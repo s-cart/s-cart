@@ -3,21 +3,21 @@
     <a href="https://gp247.net"><img src="https://static.gp247.net/logo/logo.png" height="100"></a>
 </p>
 <p align="center">Mã nguồn mở miễn phí cho website thương mại điện tử<br>
-    <code><b>composer create-project s-cart/s-cart</b></code></p>
 <p align="center">
- <a href="https://s-cart.org">Trang chủ</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://s-cart.org/en/docs/master">Tài liệu</a>  | <a href="https://s-cart.org/en/about.html">Tính năng của S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Nhóm FB</a>
+ <a href="https://s-cart.org">Trang chủ</a> | <a href="https://demo.s-cart.org">Demo</a> | <a href="https://gp247.net/en/docs/s-cart/s-cart-overview.html">Thông tin S-Cart</a> | <a href="https://www.facebook.com/groups/scart.opensource">Nhóm FB</a>
 </p>
 
 <p align="center">
-<a href="https://packagist.org/packages/s-cart/s-cart"><img src="https://poser.pugx.org/s-cart/s-cart/d/total" alt="Packagist Downloads"></a>
-<a href="https://github.com/s-cart/s-cart"><img src="https://img.shields.io/github/downloads/s-cart/s-cart/total" alt="Git Downloads"></a>
-<a href="https://github.com/s-cart/s-cart/releases"><img src="https://poser.pugx.org/s-cart/s-cart/v/stable" alt="Latest Stable Version"></a>
-<a href="https://github.com/s-cart/s-cart/blob/master/LICENSE"><img src="https://poser.pugx.org/s-cart/s-cart/license" alt="License"></a>
+<a href="https://packagist.org/packages/gp247/s-cart"><img src="https://poser.pugx.org/gp247/s-cart/d/total" alt="Packagist Downloads"></a>
+<a href="https://github.com/gp247net/s-cart"><img src="https://img.shields.io/github/downloads/s-cart/s-cart/total" alt="Git Downloads"></a>
+<a href="https://github.com/gp247net/s-cart/releases"><img src="https://poser.pugx.org/gp247/s-cart/v/stable" alt="Latest Stable Version"></a>
+<a href="https://github.com/gp247net/s-cart/blob/master/LICENSE"><img src="https://poser.pugx.org/gp247/s-cart/license" alt="License"></a>
 </p>
 
-<p align="center">
-    <a href="https://www.youtube.com/channel/UCR8kitefby3N6KvvawQVqdg"><img src="https://img.shields.io/youtube/channel/subscribers/UCR8kitefby3N6KvvawQVqdg?style=social"></a>
-</p>
+~~**composer create-project s-cart/s-cart**~~
+>**composer create-project gp247/s-cart**
+
+
 
 ## Giới thiệu về S-Cart X
 S-Cart là dự án website thương mại điện tử miễn phí tốt nhất dành cho cá nhân và doanh nghiệp, được xây dựng trên nền tảng Laravel Framework và các công nghệ mới nhất.
